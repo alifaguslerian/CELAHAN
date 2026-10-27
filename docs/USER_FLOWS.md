@@ -10,7 +10,8 @@ Supported locales are `id` and `en`. Technical slugs are shared, while navigatio
 | Page key | Indonesian | English | ID / EN label |
 | --- | --- | --- | --- |
 | home | `/id/` | `/en/` | Beranda / Home |
-| services | `/id/services/` | `/en/services/` | Layanan / Services |
+| services | `/id/services/` | `/en/services/` | Layanan dan Paket / Services and Packages |
+| about | `/id/about/` | `/en/about/` | Tentang CELAHAN / About CELAHAN |
 | process | `/id/process/` | `/en/process/` | Alur / Process |
 | request | `/id/request/` | `/en/request/` | Minta Layanan / Request a Service |
 | received | `/id/request/received/` | `/en/request/received/` | Permintaan Diterima / Request Received |
@@ -31,13 +32,24 @@ Unknown URLs return a custom 404. The global fallback may display both languages
 
 On mobile, a compact header provides the logo, language control, and menu button. The menu opens a destination list; choosing a link closes it. Escape closes the menu and returns focus to its trigger. The menu must not hide language selection or privacy access.
 
+### Package exploration and simulated consultation
+
+1. Home and Services expose all four named package controls: SCOUT, WARDEN, NEXUS, and ATLAS.
+2. Selecting one displays its suitability, quantified scope, exclusions, outputs, walkthrough/retest terms, and illustrative starting price. Conceptual effort and prices carry nearby simulation labels. Exact panel/modal presentation remains a design decision; all text works without artwork. The numerical source and counting rules are in Service Packages section 6 and remain under owner review.
+3. An unsure-which-package action provides local scripted guidance or a route to the same simulated request form. Optional fit questions and rules still require review; answers remain in memory and never inspect the URL.
+4. Explain a mismatched choice and offer a suitable scope/package without forcing an upgrade or implying that a public-only review covers private features.
+   If a cap is exceeded or complexity remains uncertain, explain the uncovered area and offer custom scoping or a clearly limited assessment. Never silently omit a supporting API, treat a starting price as an unlimited offer, or compute an unapproved surcharge.
+5. A visibly simulated free-consultation/request CTA opens the form. The initial choice is interest, not payment, a booking, or written authorization.
+
+Draft baseline: package selection/fit answers live in separate planning state, survive same-locale internal navigation, and clear on successful submission alongside the request draft. Reset, confirmed language changes, reload, new tabs, and restored-document handling clear them as well. Treat nonempty planning state as a draft for existing reset/language guards. It never changes the sample report or appears in the success/session contract. Package definitions are in [Service Packages](SERVICE_PACKAGES.md).
+
 ## 3. Form → success
 
 1. The form explains the simulation, asks visitors not to enter secrets, and states that inputs are not transmitted.
 2. The visitor enters a name, sample URL, needs, and selects the authorization checkbox.
 3. Submission runs the local validator. Show errors after submission or when a touched field loses focus; do not interrupt every keystroke with screen-reader announcements.
 4. If invalid, values remain in memory; move focus to the first invalid field and provide an error summary.
-5. If valid, generate a `DEMO-XXXXXXXX` ticket, clear the name/URL/needs/checkbox from state, and navigate internally to the success page.
+5. If valid, generate a `DEMO-XXXXXXXX` ticket, clear the name/URL/needs/checkbox and any package-selection/fit state, and navigate internally to the success page.
 6. The success page contains only the sample ticket, an explanation that no request was sent, and actions to view status/report or start a new request.
 
 Do not repeat the name or URL on the success page. The visitor can understand the outcome without extending input retention. A double click must not create two tickets or trigger two navigations.
@@ -96,6 +108,8 @@ Session-page guards wait for client initialization so they do not render tickets
 
 The guide opens at the visitor's request. Initial topics: scope and permission, understanding risk, the five findings, and retesting. Responses come from local content; there is no free-text chat field or AI connection.
 
+Package specialties can inform predefined explanation topics. Package browsing remains independent of this optional guide. Neither the guide nor a package claims to find every vulnerability or perform automatic repairs.
+
 Desktop uses a bounded side panel. Mobile uses a dismissible sheet/dialog with a heading and close button, avoiding obstruction of the form when the virtual keyboard opens. A modal dialog contains focus, supports Escape, and restores focus to its trigger. Open/closed state remains in memory.
 
 ## 9. Errors and limitations
@@ -109,4 +123,4 @@ Desktop uses a bounded side panel. Mobile uses a dismissible sheet/dialog with a
 
 ## 10. Flow verification
 
-Run browsing, invalid form, valid form, progress, direct report, reset, cancel/confirm language switching, success-page refresh, and 404 scenarios in ID/EN on desktop/mobile. Record evidence according to [Quality](QUALITY_AND_SECURITY.md). These documented flows have not yet been tested in an application.
+Run browsing, package selection, uncertain/mismatched fit, simulated consultation, invalid form, valid form, progress, direct report, reset, cancel/confirm language switching, success-page refresh, and 404 scenarios in ID/EN on desktop/mobile. Include planning-state clearing and unchanged findings under all four packages. Record evidence according to [Quality](QUALITY_AND_SECURITY.md). These documented flows have not yet been tested in an application.
