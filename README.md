@@ -12,16 +12,17 @@ The Indonesian statement above is the mandatory original product disclaimer.
 
 **Stage: documentation and planning — October 27, 2026.**
 
-The initial Project Brief has been approved. The remaining documentation includes confirmed requirements and proposed designs that still need review. There is no application code, installed dependency set, final logo/mascot, video, application test result, or deployment yet. This repository can be published as the initial documentation baseline, with that status clearly stated.
+The initial Project Brief, four-package concept, and owner-selected visual reference roles have been approved. Detailed package caps, illustrative prices, effort, and retest conditions have now been drafted at the owner's request; these numerical assumptions still need review alongside the interaction, technical, and final design baselines. There is no application code, installed dependency set, final logo/mascot, video, application test result, or deployment yet. This repository can be published as a documentation baseline, with that status clearly stated.
 
 According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
 
 ## Planned experience
 
-- Home, services, an eight-stage process, a request form, and status/sample reports.
+- Home, services/packages, an eight-stage process, a simulated consultation/request form, status/sample reports, and supporting project information.
+- Four premium package concepts: SCOUT, WARDEN, NEXUS, and ATLAS, represented by a coherent mascot family; complete draft scope, fictional starting prices, and retest terms are recorded for review.
 - Dedicated mobile and desktop UI with equivalent functionality.
 - Indonesian and English across pages, forms, reports, navigation, and system messages.
-- A terminal/tactical visual identity with dark mode, an amber accent, a logo, and an optional mascot guide.
+- A dark/amber identity combining terminal/tactical information design with a cinematic doorway hero, four selectable package mascots, a logo, and an optional guide.
 - Privacy information, a custom 404 page, accessibility, performance checks, and deployment security.
 - A promotional video and process documentation for coursework and the portfolio.
 
@@ -39,6 +40,8 @@ Entered application addresses are never accessed. Forms do not transmit data or 
 | [User Flows](docs/USER_FLOWS.md) | Navigation, forms, status, reset, language switching, and error states |
 | [Content and Simulation](docs/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
 | [Design Direction](docs/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
+| [Visual References](docs/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
+| [Service Packages](docs/SERVICE_PACKAGES.md) | Approved concepts, mascot roles, detailed draft scope/prices, counting rules, deliverables, and retest conditions |
 | [Architecture](docs/ARCHITECTURE.md) | System boundaries, routing, state, structure, and dependencies |
 | [Quality and Security](docs/QUALITY_AND_SECURITY.md) | Testing criteria, performance, accessibility, and security |
 | [Implementation Plan](docs/IMPLEMENTATION_PLAN.md) | Small phases, deliverables, dependencies, and review points |
@@ -66,7 +69,13 @@ Phase status is recorded in [Implementation Plan](docs/IMPLEMENTATION_PLAN.md), 
 
 Completed checks: [documentation review on October 27, 2026](docs/validation/2026-10-27-documentation.md). These are not application test results.
 
+Approved package/reference direction: [package and visual direction review](docs/validation/2026-10-27-package-and-visual-direction.md).
+
+Detailed scope/pricing baseline and per-file handoff: [package-detail documentation review](docs/validation/2026-10-27-package-details.md).
+
 **All Git operations are performed manually by the project owner. Agents do not run Git or modify repositories through APIs.** Unimplemented files and checks that have not been run must remain explicitly identified.
+
+The owner commits files individually. Handoffs provide one English commit-message suggestion per file; they do not claim which files are currently uncommitted.
 
 ## References and assets
 
