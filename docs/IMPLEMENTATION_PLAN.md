@@ -25,8 +25,8 @@ For implementers: read [AGENTS.md](../AGENTS.md). Work in independently reviewab
 
 | Phase | Deliverable | Dependencies | Status |
 | --- | --- | --- | --- |
-| P0 | Documentation baseline | Brief and conversation | Draft written; awaiting review |
-| P1 | Brand identity and core assets | P0 + owner's visual choices | Not started |
+| P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
+| P1 | Brand identity and core assets | P0 + owner's visual choices | Reference roles and four character directions approved; asset production not started |
 | P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Not started |
 | P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
 | P4 | Informational pages and content | P2 + P3 | Not started |
@@ -45,8 +45,11 @@ The academic prototype may be handed over once P4/P5 sufficiently demonstrate th
 - [x] Summarize the combined frontend + product design goal.
 - [x] Write requirements, flows, data, design, architecture, quality, release, and video documents.
 - [x] Include mobile UI, ID/EN, the Git prohibition, and academic/portfolio milestones.
+- [x] Record the approved four-package concepts, character directions, hero references, and no-complete-security guarantee boundary.
 - [ ] Owner reviews draft baselines and open decisions.
 - [ ] Record review decisions without treating recommendations as automatic approvals.
+- [x] Write a complete draft of numerical package scope, fictional starting prices, counting rules, conceptual effort, and retest conditions.
+- [ ] Owner reviews the numerical package baseline before final package copy and production implementation.
 
 Deliverable: a readable documentation snapshot for GitHub. Application code is not required yet.
 
@@ -54,10 +57,11 @@ Deliverable: a readable documentation snapshot for GitHub. Application code is n
 
 Planned files/assets: `docs/DESIGN_DIRECTION.md`, `docs/DECISIONS.md`, editable sources in `assets/source/`, selected exports in `public/brand/` and `public/mascot/`.
 
-- [ ] Agree on brand messaging, visual references, logo form, and mascot character.
+- [x] Record owner-selected visual reference roles and the four package-character directions in Visual References and Service Packages.
+- [ ] Finalize brand messaging, logo direction, mascot proportions/palette, and the exact artwork treatment.
 - [ ] Create logo options after asset-production authorization; evaluate small-size and monochrome readability.
 - [ ] Select one direction and produce the required wordmark/symbol.
-- [ ] Create the minimum mascot poses from Design Direction after character approval.
+- [ ] Create the four package-character variants and minimum guide/hero poses after asset-production authorization and artwork review; preserve the shared skin-derived identity.
 - [ ] Record process, sources, licenses, and export formats; do not include heavy raw assets in the runtime.
 
 Verification: the logo is readable in the mobile header/favicon; the mascot is recognizable at guide size; inspect personal metadata and SVG scripts. Decorative assets do not require unit tests.
@@ -69,6 +73,8 @@ Suggested manual commit handoff: `design: establish CELAHAN brand assets`.
 Planned files: Design Direction, User Flows, Content, and design artifacts in `design/` if needed.
 
 - [ ] Wireframe all core pages and error/success states.
+- [ ] Begin the visual review with low-fidelity desktop/mobile home and four-package group/detail states, using text/placeholders before final artwork is needed.
+- [ ] Review the package comparison, uncertain/mismatched fit, simulated consultation entry, About, and FAQ; distinguish the authored numerical baseline from owner-approved concepts.
 - [ ] Review the no-mascot journey, direct report access, and language/reset guards.
 - [ ] Create desktop/mobile compositions using the five findings and actual ID/EN copy.
 - [ ] Define color/font/spacing tokens and component patterns; measure chosen color contrasts.
@@ -86,7 +92,7 @@ Planned files: `package.json`, lockfile, Next/TypeScript/ESLint configuration, r
 - [ ] Build ID/EN route skeletons with correct `html lang` and metadata; do not fill them with fabricated product claims.
 - [ ] Verify static export, the `/` entry, deep links, and custom HTTP 404 behavior; resolve the framework/fallback choice in Decisions.
 - [ ] Build the header/footer/menu/language shell and CSS tokens; include mandatory labels in both locales.
-- [ ] Add an empty session provider per locale and the language-switch guard, without storage.
+- [ ] Add an empty session provider per locale and the language-switch guard, without storage; include separate package-planning state covered by the same lifecycle guards.
 - [ ] Update the README with commands that actually exist.
 
 Interfaces: `Locale`, `PageKey`, `routeFor`, `getDictionary`, and the provider specified in Architecture. Verification: build/lint/typecheck, route inventory, locale metadata, static-preview deep links, and the no-JavaScript shell. Do not build further features on a failing routing foundation.
@@ -100,6 +106,7 @@ Handoff: `chore: scaffold bilingual static application`.
 Files: `src/app/[locale]/page.tsx`, dictionaries, and only the hero/summary components actually needed.
 
 - [ ] Implement the hero, concept label, form CTA, and report link.
+- [ ] Apply the selected headline/description composition and doorway/mascot scene; include named package selection and direct textual detail access.
 - [ ] Apply desktop/mobile layouts and both languages.
 - [ ] Check keyboard use, long text, the 320 px viewport, and initial asset load.
 
@@ -107,9 +114,11 @@ Handoff: `feat: add bilingual home page`.
 
 ### P4.2 Services and Process
 
-Files: `services/page.tsx`, `process/page.tsx`, local stage content.
+Files: `services/page.tsx`, `process/page.tsx`, local stage/package content, and `features/packages/` where needed.
 
 - [ ] Write scope and exclusions with clear written-authorization requirements.
+- [ ] Present SCOUT, WARDEN, NEXUS, and ATLAS from shared reviewed content with suitability, quantified scope, exclusions, outputs, effort, retest terms, and visibly illustrative prices; no checkout or finding quotas.
+- [ ] Implement the package group/detail presentation with named controls and a missing-artwork fallback; optional guided matching follows P5.4.
 - [ ] Implement the eight stages and conceptual outputs in ID/EN.
 - [ ] Check semantic order and a mobile timeline without mandatory horizontal scrolling.
 
@@ -117,9 +126,10 @@ Handoff: `feat: explain service scope and process`.
 
 ### P4.3 Supporting pages
 
-Files: `privacy/page.tsx`, the P3-selected 404 template, metadata/sitemap as needed.
+Files: `about/page.tsx`, `privacy/page.tsx`, the P3-selected 404 template, shared FAQ content, and metadata/sitemap as needed.
 
 - [ ] Implement privacy copy matching application behavior; retain hosting review as a release gate.
+- [ ] Add accurate project/about content, service strengths, and a concise scope/package/remediation FAQ without fabricated business claims.
 - [ ] Apply a custom 404 and home links for both languages.
 - [ ] Check footer links, titles/descriptions, canonicals/alternates, and noindex on demo routes.
 
@@ -157,8 +167,20 @@ Files: `content/findings.ts`, `features/report/`, `report/page.tsx`, `tests/unit
 - [ ] Test dataset values/statuses/order and ID/EN decimal formatting.
 - [ ] Implement the desktop table, mobile list, and details from the same dataset.
 - [ ] Check direct report access without a form, illustration labels, complete fields, and keyboard access to details/assistance.
+- [ ] Verify that each package selection still exposes the same five findings and never implies repairs or URL-derived results.
 
 Handoff: `feat: present illustrative findings across devices`.
+
+### P5.4 Package fit and simulated consultation
+
+Files: `features/packages/`, local dictionaries, shared temporary planning state, and focused browser/logic checks as needed.
+
+- [ ] Review exact fit questions/rules before implementing them; permit uncertainty and mixed requirements rather than forcing an upgrade.
+- [ ] Connect package/unsure/free-consultation actions to local guidance and the existing request form, with visible simulation labels.
+- [ ] Cover planning state in reset/language/navigation behavior and clear it on submission; retain the existing success/session fields.
+- [ ] Run T-13 in both locales and mobile/desktop; no target request, communication, purchase, booking, persistence, or dataset variation.
+
+Handoff: `feat: connect package guidance to the request simulation`.
 
 Prototype milestone: once these units work, the owner can assess academic submission with clearly stated limitations. This does not remove P6–P9 from the portfolio plan.
 
@@ -177,7 +199,7 @@ Handoff: `feat: add optional simulation guide`.
 
 Files: necessary security/build configuration, tests, and `docs/validation/` for actual results.
 
-- [ ] Run T-01 through T-12 and record outcomes/environment limitations.
+- [ ] Run T-01 through T-14 and record outcomes/environment limitations.
 - [ ] Construct CSP/headers for the build output, then test hydration and functionality with the policy active.
 - [ ] Audit dependencies, external resources, storage, canary leakage, and public files.
 - [ ] Measure performance using the Quality procedure; optimize based on observed issues.
@@ -214,3 +236,5 @@ Handoff: `docs: add CELAHAN portfolio case study`.
 ## 13. Updating progress
 
 Check off a step only after it is completed. Record actual results in validation reports rather than marking every phase done after one build. When a unit is ready, report changes and limitations to the owner for review/manual commit. Agents perform no Git step in any phase.
+
+Provide a separate English commit-message suggestion for each file. If the handoff also includes an earlier update, identify that scope and let the owner skip files already committed; never inspect Git to determine pending files.
