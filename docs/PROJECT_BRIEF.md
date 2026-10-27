@@ -1,6 +1,6 @@
 # CELAHAN — Project Brief
 
-Status: Initial brief approved; mobile/bilingual revisions and planning details are under review  
+Status: Initial brief, package concepts, and visual reference roles approved; detailed planning remains under review  
 Updated: October 27, 2026  
 Stage: Requirements and documentation; implementation has not started
 
@@ -81,13 +81,16 @@ Privacy information must match the actual implementation and hosting configurati
 | --- | --- |
 | Home | Introduce CELAHAN, summarize the service, and direct visitors to the form |
 | Services | Explain included work, service boundaries, and written authorization requirements |
+| About CELAHAN | Explain the concept, approach, and coursework/portfolio context without fabricated company history |
 | Process | Explain the eight service stages |
 | Request a Service | Name, application address, needs, and authorization checkbox; validation and a simulated submission outcome |
 | Status and Sample Report | Represent waiting for authorization, testing, and report-ready states; present five illustrative findings |
 
 Basic journey: discover the service → understand its scope and process → try a request → view simulated status and an illustrative report.
 
-Visual identity, an interactive mascot as a simulation guide, a privacy page, a custom 404, and a promotional video have been accepted as development directions. Their detailed interactions, placement, and release priorities have not been finalized.
+Visual identity, an interactive mascot as a simulation guide, a privacy page, a custom 404, and a promotional video have been accepted as development directions. The owner has also approved four premium package concepts with selectable mascot variants: SCOUT for public websites, WARDEN for authenticated web applications, NEXUS for applications/APIs, and ATLAS for multiple related systems or custom complexity. Their scope, outputs, and retest allowances are recorded in [Service Packages](SERVICE_PACKAGES.md). Numerical caps, fictional starting prices, effort, counting rules, and retest conditions have been fully drafted at the owner's request and remain under review rather than owner-confirmed commercial terms.
+
+Package selection expresses interest before conceptual consultation and written scope agreement. Free-consultation invitations are simulation entry points, without real bookings, checkout, communication, or data transmission. Reports explain risk and remediation priorities; the application owner's developers implement fixes. No package guarantees all vulnerabilities will be found or complete security.
 
 ## 7. Design direction and mascot role
 
@@ -95,7 +98,9 @@ The initial visual direction is terminal/tactical: dark mode by default, a near-
 
 The mobile experience is designed specifically for small devices, including navigation, forms, status, reports, and assistance. It is more than a smaller desktop layout; functionality and data remain equivalent, with shared domain logic. Language switching must never justify transmitting or storing inputs.
 
-The logo must work independently. The mascot will give the brand character and help visitors understand the simulation. Its form, name, personality, and implementation have not been decided.
+The logo must work independently. The four package mascots use SCOUT, WARDEN, NEXUS, and ATLAS as working names, with the approved specialty/personality directions in Service Packages. Their shared starting point is the owner's Minecraft skin. Final artwork, proportions, palette, and implementation remain open.
+
+The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied dark stairway/bright-doorway scene to replace the hero's block objects with a CELAHAN character. These reference roles are recorded in [Visual References](VISUAL_REFERENCES.md). They add cinematic expression to the dark/amber direction; final typography and mobile composition still require design review.
 
 The mascot must not dominate product decisions. Navigation, forms, reports, and core information must remain usable without its guidance. Animation and assistance must account for accessibility, mobile devices, and performance.
 
@@ -131,7 +136,7 @@ The project achieves its baseline goals when:
 
 ## 10. Open decisions
 
-Owner choices are still needed for the logo/mascot form, final fonts and composition, video details, publication account/domain, licensing, and which personal/team information may be published. There is no fixed deadline to guess; additional academic requirements will be recorded if they emerge.
+Owner choices are still needed for the final logo/mascot artwork, fonts and compositions, review of the authored package-detail baseline, video details, publication account/domain, licensing, and which personal/team information may be published. There is no fixed deadline to guess; additional academic requirements will be recorded if they emerge.
 
 The supporting documents propose baseline ticket/status/reset behavior, bilingual routing, quality targets, and phase sequencing. These details remain reviewable before implementation. Automated tours and some additional features are deferred so they do not enter scope without a decision. See [Decisions](DECISIONS.md) for the complete list and statuses.
 
