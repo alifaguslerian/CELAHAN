@@ -25,6 +25,8 @@ Complete documentation, a successful build, passing browser tests, and verified 
 | T-10 | FUN-14 | JavaScript disabled before loading; form Enter/click | No native GET/POST carrying input; information remains readable |
 | T-11 | QLT-03 | Network/storage before and after every action | Inputs/tickets are not transmitted or persisted |
 | T-12 | QLT-02, QLT-04 | Build/lint/typecheck, unit/E2E, asset sizes, lab measurements | Actual command output and measurement reports |
+| T-13 | FUN-15–18, AC-08–10 | All four package details; keyboard/touch; missing artwork; uncertain/mismatched fit; simulated consultation; lifecycle clearing | Complete localized scope/outputs, no purchase/booking/network activity, and unchanged five-finding dataset |
+| T-14 | FUN-15–16, AC-11 | Compare all package views/locales against the reviewed numerical source; inspect counting/effort/retest copy, custom scope, and labels | Same IDR values and scope meanings; explicit fictional-price/effort labels; correct initial-report window basis; no unlimited-scope, automatic repair, delivery guarantee, billing, or work countdown |
 
 Run critical E2E tests against the static production build, not only the development server. Unit tests focus on the validator, reducer, route/locale mapping, and dataset consistency; avoid tests that merely mirror markup without checking behavior.
 
@@ -116,4 +118,4 @@ When application testing begins, create `docs/validation/YYYY-MM-DD-check-type.m
 
 Release gate: no simulation/privacy violations; critical flows and both languages pass; no accessibility blockers; build/lint/typecheck pass; relevant dependency issues addressed; performance targets evaluated; metadata/404/headers checked on hosting; privacy copy matches configuration.
 
-Status when this document was written: **all application tests remain unrun**. Documentation checks may be recorded separately without marking T-01 through T-12 as passed.
+Status when this document was written: **all application tests remain unrun**. Documentation checks may be recorded separately without marking T-01 through T-14 as passed.
