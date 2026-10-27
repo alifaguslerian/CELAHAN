@@ -10,9 +10,9 @@ The Indonesian statement above is the mandatory original product disclaimer.
 
 ## Project status
 
-**Stage: documentation and planning — October 27, 2026.**
+**Stage: documentation and visual design — October 27, 2026.**
 
-The initial Project Brief, four-package concept, and owner-selected visual reference roles have been approved. Detailed package caps, illustrative prices, effort, and retest conditions have now been drafted at the owner's request; these numerical assumptions still need review alongside the interaction, technical, and final design baselines. There is no application code, installed dependency set, final logo/mascot, video, application test result, or deployment yet. This repository can be published as a documentation baseline, with that status clearly stated.
+The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged in the project and governed by the Design Reference Lock. The four package pets must be small and distinct in shape and principal color. Detailed package caps, illustrative prices, effort, and retest conditions are drafted for review. Complete pages/mobile screens, the final logo and four-character export set, technical implementation, application test results, video, and deployment do not yet exist. This repository can be published as a planning/design baseline, with that status clearly stated.
 
 According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
 
@@ -22,7 +22,7 @@ According to the project owner, a prototype is sufficient for coursework submiss
 - Four premium package concepts: SCOUT, WARDEN, NEXUS, and ATLAS, represented by a coherent mascot family; complete draft scope, fictional starting prices, and retest terms are recorded for review.
 - Dedicated mobile and desktop UI with equivalent functionality.
 - Indonesian and English across pages, forms, reports, navigation, and system messages.
-- A dark/amber identity combining terminal/tactical information design with a cinematic doorway hero, four selectable package mascots, a logo, and an optional guide.
+- An approved warm near-black/ivory/sand hero with subtle olive details, a dim doorway, and a compact pet; four selectable package mascots with distinct shapes/colors, a logo, and an optional guide.
 - Privacy information, a custom 404 page, accessibility, performance checks, and deployment security.
 - A promotional video and process documentation for coursework and the portfolio.
 
@@ -40,6 +40,7 @@ Entered application addresses are never accessed. Forms do not transmit data or 
 | [User Flows](docs/USER_FLOWS.md) | Navigation, forms, status, reset, language switching, and error states |
 | [Content and Simulation](docs/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
 | [Design Direction](docs/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
+| [Design Reference Lock](docs/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
 | [Visual References](docs/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
 | [Service Packages](docs/SERVICE_PACKAGES.md) | Approved concepts, mascot roles, detailed draft scope/prices, counting rules, deliverables, and retest conditions |
 | [Architecture](docs/ARCHITECTURE.md) | System boundaries, routing, state, structure, and dependencies |
