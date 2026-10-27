@@ -1,13 +1,13 @@
 # CELAHAN — Design Direction
 
-Status: Reference roles and package/character concepts approved; detailed UI remains draft; no final screens or assets exist · October 27, 2026  
-References: [PRD](PRD.md), [User Flows](USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](SERVICE_PACKAGES.md)
+Status: Revised desktop hero approved and preserved; complete pages/mobile and the four-pet lineup remain to be designed · October 27, 2026  
+References: [PRD](PRD.md), [User Flows](USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](SERVICE_PACKAGES.md), [Design Reference Lock](DESIGN_REFERENCE_LOCK.md)
 
 ## 1. Character and principles
 
-A precise, calm, readable terminal/tactical identity. Use a near-black background, one amber accent, monospace headings, strong lines, and sharp corners. Information density must be supported by hierarchy rather than small text. Simulation labels are part of the primary composition.
+A precise, calm, readable identity anchored to the approved hero in Design Reference Lock: warm near-black, ivory, sand emphasis, restrained olive details, low-glare cinematic depth, and a small original pet. Terminal/tactical clarity remains appropriate for technical information. Information density must be supported by hierarchy rather than small text. Simulation labels are part of the primary composition.
 
-The owner's newer references add a cinematic doorway/mascot hero and a four-character package selector. Preserve their selected composition and interaction roles rather than copying an entire site. Exact headline typography may be reviewed against the initial monospace direction; final fonts, character palette, and illustration technology are not selected. The approved package names/roles do not imply that final artwork exists.
+The owner approved the generated hero revision after rejecting the humanoid Minecraft figure and excessive doorway brightness. Preserve the actual saved composition and appearance rather than reinterpreting the older inspiration. The hero uses large sans-serif lines and an italic-serif emphasis; font-family selection/licensing, exact implementation tokens, and rendering technology remain open. Four package pets must have distinct principal colors and body silhouettes, with shared illustration quality and compact scale.
 
 Visual choices must support service discovery, form completion, report reading, or user orientation. Avoid terminal decoration implying real network activity, random code, fabricated performance figures, and distracting glitch effects.
 
@@ -15,22 +15,22 @@ Visual choices must support service discovery, form completion, report reading, 
 
 | Element | Direction |
 | --- | --- |
-| Color | Near-black background; lighter neutral surfaces; light text; amber for actions/emphasis |
+| Color | Warm near-black/charcoal surfaces, ivory text, sand emphasis/actions, muted olive details; distinct mascot colors stay within the artwork rather than recoloring the interface |
 | Severity | High/Medium/Low labels, text weight, and patterns/borders; do not add accent colors solely for badges |
-| Typography | Monospace headings/data labels; body copy may use a readable sans-serif |
+| Typography | Follow the approved large sans-serif hero and sand italic-serif emphasis; readable sans-serif body copy and restrained monospace technical/data labels; exact families still require selection |
 | Sizing | Main body text at least 16 CSS px as a baseline; secondary data may use 14 px if readable; do not restrict zoom |
 | Spacing | Proposed scale: 4, 8, 12, 16, 24, 32, 48, 64 px; apply consistently after prototyping |
-| Shape | Sharp corners or a very small radius where controls need it; do not present all content in identical cards |
+| Shape | Match the approved hero's modest rounded-rectangle CTA and precise layout; define other control geometry deliberately rather than forcing every surface into the same shape |
 | Icons | Only for clear functions; provide text for actions that are not universally recognizable |
 | Assets | Local fonts and images; set intrinsic dimensions to maintain layout stability |
 
-Final colors/fonts have not been selected. Measure contrast for every color pairing before considering it ready. Draft tokens are not accessibility audit results.
+The visual color/type direction is approved in the saved image; exact CSS tokens and licensed font families are not selected. Measure contrast for every implemented pairing before considering it ready. Image approval is not an accessibility audit result.
 
 ## 3. Page composition
 
 | Page | Desktop | Mobile |
 | --- | --- | --- |
-| Home | Large left headline, central mascot/bright-doorway scene, right description/CTA; package selector, service summary, and illustrative report preview below | Recompose headline, explanation, actions, and bounded illustration; four named package controls and readable stacked details |
+| Home | Preserve the approved large left headline, central pet/dim-doorway scene, and right description/CTA; design the package selector, service summary, and illustrative report preview below | Recompose headline, explanation, actions, and bounded illustration with the same dim atmosphere; four named package controls and readable stacked details |
 | Services | Four-package comparison and selected details with suitability, scope, exclusions, outputs, retesting, and illustrative prices | Named selectors/list and stacked details; all scope boundaries remain visible without hover or dragging |
 | About | Readable project context, approach, and portfolio purpose | Single reading column; no fictional team or company history |
 | Process | Numbered list/timeline with stage outputs | Vertical timeline; all eight stages readable without horizontal dragging |
@@ -75,9 +75,9 @@ Planned logo deliverables: a primary wordmark, a compact symbol if needed for th
 
 Planned mascot deliverables: neutral, introducing, explaining, directing attention, and finished poses. Expressions represent guidance, not proof that a scanner is working. Choose a simple form recognizable at small sizes; do not require 3D assets or a heavy animation runtime.
 
-The approved working names are SCOUT, WARDEN, NEXUS, and ATLAS, with personalities/attribute directions defined in Service Packages. The owner's Minecraft skin is the starting point; Avara informs grouped selection and focused details. The hero replaces the first reference's block imagery with a mascot at a bright doorway above stairs. Preserve face/silhouette across hero and package treatments.
+The approved working names are SCOUT, WARDEN, NEXUS, and ATLAS, with personalities/attribute directions defined in Service Packages. The Minecraft screenshot informs colors/motifs; Avara informs friendly iconic character language and grouped selection. The approved hero shows a compact pet at a dim doorway above stairs. Each pet must have its own distinct body silhouette and principal color; preserve that individual identity across its appearances rather than making all four bodies identical.
 
-Before asset production, review final proportions, palette, artwork, voice, logo form, and usage contexts. Record sources, export formats, production process, and usage rights once assets exist. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. No assets have been produced during this documentation stage.
+One owner-approved hero image now exists and is preserved in the project. Review the four-character lineup, individual palettes, voice, logo form, and usage contexts before final asset production. Record sources, export formats, production process, and usage rights as assets are produced. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. Complete pages, mobile designs, the final logo, and final mascot exports have not been produced.
 
 ## 8. Motion and assistance
 
