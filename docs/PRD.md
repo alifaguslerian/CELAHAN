@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
 Status: Complete draft for review; not authorization to implement  
-Version: 0.3 · October 27, 2026  
+Version: 0.4 · October 27, 2026  
 References: [Project Brief](PROJECT_BRIEF.md), [Decisions](DECISIONS.md)
 
 ## 1. Product goals
@@ -22,7 +22,7 @@ Proposed v1 priority: a clear demonstration experience for all visitors, with no
 
 ## 3. Decision and release levels
 
-- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, logo/mascot direction, four package concepts, visual reference roles, supporting-page direction, video, and manual Git with per-file English handoff messages. Detailed numerical package limits, fictional prices, effort, and retest conditions have been drafted for review; final assets remain open.
+- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, the preserved revised desktop hero, four distinct compact package pets, package concepts, supporting-page direction, video, and manual Git with per-file English handoff messages. Detailed numerical package limits, fictional prices, effort, and retest conditions are drafted for review; complete pages/mobile and the final asset set remain open.
 - **Draft baseline:** concrete behavior proposed in this document for review and later implementation after approval. These details must not be represented as additional decisions already approved by the owner.
 - **Open:** visual, asset, and publication choices recorded in Decisions.
 
@@ -57,9 +57,9 @@ All requirements below target portfolio website v1. Draft behavior may be revise
 | FUN-15 | Four premium packages can be explored | SCOUT, WARDEN, NEXUS, and ATLAS have named, keyboard/touch-operable selection and details covering suitability, quantified scope, exclusions, outputs, effort, and retest terms; prices are visibly illustrative, values come from shared package content, and text remains accessible without mascot assets |
 | FUN-16 | Package fit and consultation are explained | Provide an unsure-which-package path and explain mismatched scope; consultation CTAs are visibly simulated; no payment, communication, booking, or URL analysis occurs. Exact local-questionnaire rules remain a draft |
 | FUN-17 | Supporting information is useful and accurate | About explains the project/approach; concise FAQ covers scope, package fit, simulation, remediation, and no security guarantee; strengths describe the service model rather than fabricated achievements |
-| FUN-18 | Home follows the selected visual reference roles | Headline/description composition follows reference 1; a mascot/doorway scene replaces the block imagery; four-character package interaction follows reference 2; mobile, translation, reduced-motion, and performance requirements apply |
+| FUN-18 | Home follows the approved saved desktop hero | Preserve its headline hierarchy, warm dark/ivory/sand appearance, compact pet, dim doorway/stairs, description/CTA placement, and atmosphere; compare actual implementation screenshots against Design Reference Lock; four package pets have different body silhouettes and principal colors; mobile, translation, reduced-motion, and performance requirements apply |
 
-The approved concepts and complete draft numerical/commercial baseline are detailed in [Service Packages](SERVICE_PACKAGES.md). Prices/caps/effort are fictional authored assumptions pending review, not market evidence or live offers. Reference roles are detailed in [Visual References](VISUAL_REFERENCES.md). These additions do not authorize code or asset production. Package selection never filters, rewrites, or claims provenance for the five canonical sample findings.
+The approved concepts and complete draft numerical/commercial baseline are detailed in [Service Packages](SERVICE_PACKAGES.md). Prices/caps/effort are fictional authored assumptions pending review, not market evidence or live offers. Supporting reference roles are detailed in [Visual References](VISUAL_REFERENCES.md); the approved generated hero and its preservation/fidelity rules are in [Design Reference Lock](DESIGN_REFERENCE_LOCK.md). Documentation and design approval do not authorize application implementation or deployment. Additional image work follows the owner's requested stage. Package selection never filters, rewrites, or claims provenance for the five canonical sample findings.
 
 ### Baseline form contract
 
