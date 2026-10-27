@@ -18,7 +18,7 @@ Updated: October 27, 2026. This document distinguishes owner instructions, propo
 | DEC-03 | Five core pages and five illustrative findings from the PDF | Original brief and PDF comparison |
 | DEC-04 | Frontend development and product design are joint portfolio goals | Explicit confirmation of option 3 |
 | DEC-05 | Next.js App Router + TypeScript; custom design; free Vercel target | Original brief; versions/configuration not selected |
-| DEC-06 | Dark terminal/tactical direction, amber, monospace headings, sharp corners | Original design brief |
+| DEC-06 | Initial dark terminal/tactical direction | Original brief; the approved hero in DEC-20 now refines the palette, hero typography, lighting, and control appearance; preserve technical clarity elsewhere |
 | DEC-07 | Logo, interactive guide mascot, privacy, custom 404, and promotional video | Direction approved; details remain open |
 | DEC-08 | UI/UX, system design, performance, and security are equally important; the mascot must not dominate | Owner's focus correction |
 | DEC-09 | Dedicated mobile UI and Indonesian–English support | Owner request |
@@ -32,6 +32,8 @@ Updated: October 27, 2026. This document distinguishes owner instructions, propo
 | DEC-17 | Use the selected hero, package-interaction, and character reference roles | Owner selected Constant Performance text composition, Avara four-character selection, a supplied doorway scene, and their Minecraft skin; see Visual References |
 | DEC-18 | Include project/about information, service strengths, FAQ, and simulated free-consultation invitations | Owner approved the analysis and supporting-page direction; routes/layout/questionnaire details remain draft baselines |
 | DEC-19 | Provide one English commit-message suggestion per file; the owner commits files individually | Explicit owner request; agents still perform no Git or repository API operations |
+| DEC-20 | Preserve the owner-approved revised desktop hero as the implementation visual target | The owner approved the small-pet/dim-doorway image and requested it be saved and followed closely; see Design Reference Lock and the unchanged reference PNG |
+| DEC-21 | Four package mascots are small compact pets with distinct body silhouettes and principal colors | Explicit owner correction/approval; the Minecraft source informs colors/motifs only, and identical bodies with accessory/color swaps are insufficient |
 
 ## 3. Proposed baselines for review
 
@@ -52,6 +54,7 @@ Updated: October 27, 2026. This document distinguishes owner instructions, propo
 | DRAFT-13 | Keep package/fit state separate from the request draft and clear it on submission/reset/language change/reload | Preserves the existing ticket-only success/session contract without data serialization |
 | DRAFT-14 | Reuse Services and Request for package-fit guidance and simulated consultation; add an About route and contextual FAQ | Keeps the approved supporting information navigable without adding live booking/chat/payment flows |
 | DRAFT-15 | Use the complete package-detail matrix and policies in Service Packages section 6 as the review baseline | Supplies scope caps, fictional starting prices, effort, counting rules, walkthroughs, and retest conditions for wireframes; authored at the owner's request, without claiming market validation or owner approval of each number |
+| DRAFT-16 | Design the shared four-pet family, then complete home/mobile, service-discovery, simulation, and supporting-screen batches before implementation | Answers the owner's sequencing question; each batch follows the saved hero and actual ID/EN copy, while reusable states can share component specifications |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
 
@@ -59,8 +62,8 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 
 | ID | Question | Needed before | Safe interim approach |
 | --- | --- | --- | --- |
-| OPEN-01 | Final logo and mascot artwork, proportions, palette, and asset rights | Final identity production (P1) | Use the approved working names, character directions, and reference roles; do not generate final assets |
-| OPEN-02 | Desktop/mobile composition, fonts, motion details | Design approval (P2) | Follow the boundaries and screen inventory in Design Direction |
+| OPEN-01 | Final logo, distinct four-pet lineup/individual palettes, identity mapping, exports, and asset rights | Final identity production (P1) | Follow the approved compact-pet aesthetic and preserve the saved hero; the four final characters are not yet produced |
+| OPEN-02 | Complete-page/mobile layouts, exact licensed fonts, implementation tokens, and motion details | Relevant design approval (P2) | The desktop hero appearance is already approved; use Design Reference Lock and review responsive/accessibility changes explicitly |
 | OPEN-03 | Hosting account, project/domain name, repository publication, and license | Relevant publication (P8) | Do not create accounts, purchase a domain, or assign a license |
 | OPEN-04 | Video duration, aspect ratio, music, narration, and primary language | Video production (P9) | Prepare an initial storyboard without treating duration as a lecturer requirement |
 | OPEN-05 | Physical devices/browsers available for checks | Validation (P7) | Plan emulation and record limitations; do not claim physical-device testing |
@@ -83,5 +86,6 @@ Automated cross-page tours, report filtering/sorting, a plain-language/technical
 | October 27, 2026 | Project Markdown documentation translated into English; documentation language rule updated; required Indonesian source/product content preserved |
 | October 27, 2026 | Owner approved four premium package/mascot concepts and visual reference roles; added Service Packages and Visual References, synchronized supporting-page, state, quality, and delivery plans; pricing and final design remain open |
 | October 27, 2026 | Owner requested complete package details and per-file commit-message handoffs; wrote the scope/pricing/effort/retest draft baseline and synchronized affected documents; no implementation or Git operations |
+| October 27, 2026 | Generated/revised a hero preview at the owner's request; owner approved the compact pet and subdued doorway, requested preservation and four distinct small pets; copied the selected PNG unchanged into the project and recorded the reference lock and proposed remaining-screen batches |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
