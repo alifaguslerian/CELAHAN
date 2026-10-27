@@ -1,6 +1,6 @@
 # CELAHAN — Implementation Plan
 
-Status: Phase plan for review; only documentation work is currently authorized  
+Status: Phase plan for review; documentation and requested image-based design exploration are active; application implementation has not started  
 Updated: October 27, 2026
 
 **Goal:** complete a bilingual concept website with dedicated mobile/desktop UI, a strong identity, safe simulation, quality evidence, and portfolio publication.
@@ -26,8 +26,8 @@ For implementers: read [AGENTS.md](../AGENTS.md). Work in independently reviewab
 | Phase | Deliverable | Dependencies | Status |
 | --- | --- | --- | --- |
 | P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
-| P1 | Brand identity and core assets | P0 + owner's visual choices | Reference roles and four character directions approved; asset production not started |
-| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Not started |
+| P1 | Brand identity and core assets | P0 + owner's visual choices | Hero pet aesthetic approved; final logo and distinct four-pet lineup not produced |
+| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Revised desktop hero approved and preserved; full pages/mobile pending |
 | P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
 | P4 | Informational pages and content | P2 + P3 | Not started |
 | P5 | Form, session, status, and report | P3 + content contracts; P2 styling | Not started |
@@ -36,7 +36,7 @@ For implementers: read [AGENTS.md](../AGENTS.md). Work in independently reviewab
 | P8 | Deployment and handoff | P7 + confirmed account/publication choices | Not started |
 | P9 | Video and case study | Sufficiently stable UI; P8 for the final URL | Not started |
 
-Primary production sequence: documentation → identity direction → wireframes/flows → logo/core assets and screen design → foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
+Current production sequence: preserve the approved desktop hero → shared visual rules and four distinct pets → complete home/mobile → service-discovery, simulation, and supporting-screen designs → final assets and implementation foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Design Reference Lock records proposed screen batches. Flow/wireframe review remains useful for unreviewed screens without reopening the already-approved hero. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
 
 The academic prototype may be handed over once P4/P5 sufficiently demonstrate the flow and simulation boundaries. Do not call it the final portfolio website while assets, validation, or deployment remain unfinished. No calendar duration is imposed; development may continue after coursework submission.
 
@@ -46,6 +46,7 @@ The academic prototype may be handed over once P4/P5 sufficiently demonstrate th
 - [x] Write requirements, flows, data, design, architecture, quality, release, and video documents.
 - [x] Include mobile UI, ID/EN, the Git prohibition, and academic/portfolio milestones.
 - [x] Record the approved four-package concepts, character directions, hero references, and no-complete-security guarantee boundary.
+- [x] Save the owner-approved revised desktop hero unchanged and record the corrected pet/lighting direction and fidelity rules.
 - [ ] Owner reviews draft baselines and open decisions.
 - [ ] Record review decisions without treating recommendations as automatic approvals.
 - [x] Write a complete draft of numerical package scope, fictional starting prices, counting rules, conceptual effort, and retest conditions.
@@ -58,10 +59,11 @@ Deliverable: a readable documentation snapshot for GitHub. Application code is n
 Planned files/assets: `docs/DESIGN_DIRECTION.md`, `docs/DECISIONS.md`, editable sources in `assets/source/`, selected exports in `public/brand/` and `public/mascot/`.
 
 - [x] Record owner-selected visual reference roles and the four package-character directions in Visual References and Service Packages.
+- [x] Preserve the approved hero pet aesthetic as a source reference in Design Reference Lock; final isolated character exports are still pending.
 - [ ] Finalize brand messaging, logo direction, mascot proportions/palette, and the exact artwork treatment.
 - [ ] Create logo options after asset-production authorization; evaluate small-size and monochrome readability.
 - [ ] Select one direction and produce the required wordmark/symbol.
-- [ ] Create the four package-character variants and minimum guide/hero poses after asset-production authorization and artwork review; preserve the shared skin-derived identity.
+- [ ] Create four compact pets with distinct body silhouettes/principal colors and minimum guide/hero poses when requested; share illustration quality and follow color/motif inspiration without humanoid skin reproduction.
 - [ ] Record process, sources, licenses, and export formats; do not include heavy raw assets in the runtime.
 
 Verification: the logo is readable in the mobile header/favicon; the mascot is recognizable at guide size; inspect personal metadata and SVG scripts. Decorative assets do not require unit tests.
@@ -73,7 +75,8 @@ Suggested manual commit handoff: `design: establish CELAHAN brand assets`.
 Planned files: Design Direction, User Flows, Content, and design artifacts in `design/` if needed.
 
 - [ ] Wireframe all core pages and error/success states.
-- [ ] Begin the visual review with low-fidelity desktop/mobile home and four-package group/detail states, using text/placeholders before final artwork is needed.
+- [x] Record owner approval of the revised desktop hero image; this does not complete the homepage or mobile UI.
+- [ ] Review the distinct four-pet lineup/shared visual rules, then remaining home sections, mobile home, and four-package group/detail states using the preserved desktop hero as the target.
 - [ ] Review the package comparison, uncertain/mismatched fit, simulated consultation entry, About, and FAQ; distinguish the authored numerical baseline from owner-approved concepts.
 - [ ] Review the no-mascot journey, direct report access, and language/reset guards.
 - [ ] Create desktop/mobile compositions using the five findings and actual ID/EN copy.
@@ -199,7 +202,7 @@ Handoff: `feat: add optional simulation guide`.
 
 Files: necessary security/build configuration, tests, and `docs/validation/` for actual results.
 
-- [ ] Run T-01 through T-14 and record outcomes/environment limitations.
+- [ ] Run T-01 through T-15 and record outcomes/environment limitations.
 - [ ] Construct CSP/headers for the build output, then test hydration and functionality with the policy active.
 - [ ] Audit dependencies, external resources, storage, canary leakage, and public files.
 - [ ] Measure performance using the Quality procedure; optimize based on observed issues.
