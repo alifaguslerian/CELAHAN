@@ -48,6 +48,7 @@ src/
       layout.tsx
       page.tsx
       services/page.tsx
+      about/page.tsx
       process/page.tsx
       request/page.tsx
       request/received/page.tsx
@@ -61,11 +62,13 @@ src/
     layout/             # Header, footer, menu, language switch
     ui/                 # Button, field, dialog, disclosure
   features/
+    packages/           # Named selection, detail panel, local fit guidance
     request/            # Form, validator, error messages
     simulation/         # Provider, reducer, ticket, status
     report/             # Table, mobile list, detail
     companion/          # Guide topics, panel, mascot presentation
   content/
+    packages.ts         # Approved package IDs and structured scope/outputs
     findings.ts         # Canonical domain data and stable IDs
     id.ts               # Indonesian copy and explanations
     en.ts               # English copy and explanations
@@ -93,7 +96,10 @@ These contracts describe interfaces for later implementation; they are not runna
 | Contract | Definition |
 | --- | --- |
 | `Locale` | `id` or `en` |
-| `PageKey` | `home`, `services`, `process`, `request`, `received`, `report`, `privacy` |
+| `PageKey` | `home`, `services`, `about`, `process`, `request`, `received`, `report`, `privacy` |
+| `PackageId` | `scout`, `warden`, `nexus`, `atlas`; stable across locales |
+| `PackageDefinition` | Shared ID, suitability, inclusions/exclusions, deliverables, `illustrativeStartingPriceIdr` as an integer, structured `scopeCaps`, `effortWorkingDays` range, walkthrough allowance, `retestPolicy` for cycles/window/basis, and localized copy keys; use the reviewed Service Packages section 6 baseline |
+| `PackagePlanningState` | Selected `PackageId` or none and optional local fit answers; separate from `RequestDraft` and `DemoSession`; exact fit rules remain under review |
 | `RequestDraft` | `name: string`, `applicationUrl: string`, `needs: string`, `authorized: boolean` |
 | `ValidationErrors` | Maps field names to stable error codes rather than mixed-language text |
 | `Stage` | `awaiting_permission`, `testing`, `report_ready` |
@@ -108,9 +114,13 @@ These contracts describe interfaces for later implementation; they are not runna
 
 Separate finding remediation status (`fixed`/`not_fixed`) from session stage. Do not recalculate scores. Enums and IDs are not translated; presentation strings are.
 
+Package values come from one static definition set shared by comparison and selected-detail views. Currency formatting remains IDR in both locales. Keep `origin`, UI route family, API operation/group, role pair, application, and business-flow limits distinct. Retest windows use the initial report as their conceptual basis; the demo creates no real report timestamp, expiry calculator, booking, work countdown, or billing state. Package metadata and effort assumptions are fictional content, not an executable assessment schedule.
+
 ## 5. State and lifecycle
 
 Place the client provider in the locale layout that persists during internal navigation. It manages the draft and session; the form mounts only on the request page. A valid submission generates a ticket, clears the draft, and navigates to the success page on the client.
+
+Draft package-state extension: the same provider manages separate temporary package-selection/fit state. A nonempty selection/fit state activates existing draft reset/language guards. Clear it on successful submission, reset, confirmed language change, reload, and restored-document handling. Do not add it to `DemoSession`, success output, route parameters, storage, or server props. Package definitions are public static content; visitor selections and fit answers are private temporary state. No choice changes the five findings or triggers URL analysis, payment, booking, or a real recommendation service.
 
 Do not serialize session data into server props, URLs, cookies, logs, storage, or caches. SessionStorage is prohibited even though it is tab-scoped. Language preference resides in the path; assistance preferences remain in memory.
 
