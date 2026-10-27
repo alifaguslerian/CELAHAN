@@ -25,6 +25,7 @@ The project owner prohibits agents from touching Git in any way.
 - Agents may edit project files and inspect them with ordinary filesystem tools.
 - Report changed files and checks actually performed. The project owner reviews, stages, commits, and pushes manually.
 - Suggested commit messages must be in English. Never execute them.
+- Give a separate suggested commit message for each file in the handoff. The owner commits files individually. If including files from an earlier update, label that scope and do not claim to know which files are still uncommitted.
 
 ## Non-negotiable product boundaries
 
