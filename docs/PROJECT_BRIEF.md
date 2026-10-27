@@ -1,8 +1,8 @@
 # CELAHAN — Project Brief
 
-Status: Initial brief, package concepts, and visual reference roles approved; detailed planning remains under review  
+Status: Initial brief, package concepts, and revised desktop hero approved; remaining screens and detailed planning remain under review  
 Updated: October 27, 2026  
-Stage: Requirements and documentation; implementation has not started
+Stage: Documentation and visual design; application implementation has not started
 
 ## 1. Project overview
 
@@ -94,13 +94,13 @@ Package selection expresses interest before conceptual consultation and written 
 
 ## 7. Design direction and mascot role
 
-The initial visual direction is terminal/tactical: dark mode by default, a near-black background, a single amber accent, monospace headings, sharp corners, and a compact layout with a clear hierarchy. The interface supports Indonesian and English, including forms, errors, status, reports, assistance, privacy information, and metadata. Avoid pastel gradients, uniform rounded white cards, default purple styling, and icons that do not improve understanding.
+The original terminal/tactical direction has been refined through owner review of an actual hero image. The approved desktop target uses warm near-black, ivory text, sand emphasis/actions, muted olive details, a dim doorway/stair scene, and a compact pet. Its large sans-serif headline and italic-serif emphasis supersede the initial all-monospace hero suggestion; monospace remains suitable for technical labels. The preserved [Design Reference Lock](DESIGN_REFERENCE_LOCK.md) is authoritative for the hero's composition and atmosphere. The interface supports Indonesian and English, including forms, errors, status, reports, assistance, privacy information, and metadata.
 
 The mobile experience is designed specifically for small devices, including navigation, forms, status, reports, and assistance. It is more than a smaller desktop layout; functionality and data remain equivalent, with shared domain logic. Language switching must never justify transmitting or storing inputs.
 
-The logo must work independently. The four package mascots use SCOUT, WARDEN, NEXUS, and ATLAS as working names, with the approved specialty/personality directions in Service Packages. Their shared starting point is the owner's Minecraft skin. Final artwork, proportions, palette, and implementation remain open.
+The logo must work independently. The four package mascots use SCOUT, WARDEN, NEXUS, and ATLAS as working names, with the approved specialty/personality directions in Service Packages. All are small compact pets with different body shapes and principal colors. The Minecraft reference informs colors/motifs only; the owner rejected a humanoid skin interpretation. The revised hero pet aesthetic is approved, while the four-character lineup, individual palettes, final exports, and implementation remain open.
 
-The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied dark stairway/bright-doorway scene to replace the hero's block objects with a CELAHAN character. These reference roles are recorded in [Visual References](VISUAL_REFERENCES.md). They add cinematic expression to the dark/amber direction; final typography and mobile composition still require design review.
+The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied stairway/doorway scene. A generated revision with an original pet and subdued lighting was then explicitly approved. The saved revision takes precedence over the older bright-doorway screenshot. Supporting references remain in [Visual References](VISUAL_REFERENCES.md). Exact licensed fonts, complete-page layouts, and mobile composition still require design review.
 
 The mascot must not dominate product decisions. Navigation, forms, reports, and core information must remain usable without its guidance. Animation and assistance must account for accessibility, mobile devices, and performance.
 
