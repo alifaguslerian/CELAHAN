@@ -27,6 +27,7 @@ Complete documentation, a successful build, passing browser tests, and verified 
 | T-12 | QLT-02, QLT-04 | Build/lint/typecheck, unit/E2E, asset sizes, lab measurements | Actual command output and measurement reports |
 | T-13 | FUN-15–18, AC-08–10 | All four package details; keyboard/touch; missing artwork; uncertain/mismatched fit; simulated consultation; lifecycle clearing | Complete localized scope/outputs, no purchase/booking/network activity, and unchanged five-finding dataset |
 | T-14 | FUN-15–16, AC-11 | Compare all package views/locales against the reviewed numerical source; inspect counting/effort/retest copy, custom scope, and labels | Same IDR values and scope meanings; explicit fictional-price/effort labels; correct initial-report window basis; no unlimited-scope, automatic repair, delivery guarantee, billing, or work countdown |
+| T-15 | FUN-18, QLT-06 | Compare actual desktop hero browser capture against the preserved approved PNG; review mobile reflow and four pet silhouettes/colors | Side-by-side evidence for typography, scene placement, subdued lighting, palette, CTA, spacing, and pet identity; reviewed explanations for responsive/accessibility differences; no Minecraft humanoid or brilliant portal |
 
 Run critical E2E tests against the static production build, not only the development server. Unit tests focus on the validator, reducer, route/locale mapping, and dataset consistency; avoid tests that merely mirror markup without checking behavior.
 
@@ -106,6 +107,8 @@ Field Core Web Vitals are evaluated across visitor distributions; LCP/INP/CLS ta
 
 If a budget is missed, identify the responsible resource/interaction, optimize, and measure again. Exceptions must record cost, rationale, and owner approval; never silently lower a target.
 
+The approved PNG in [Design Reference Lock](DESIGN_REFERENCE_LOCK.md) is preserved source evidence, not a runtime-size exception. Extract/produce appropriate isolated, optimized assets while keeping text and controls in HTML, then compare the implemented result with the saved target. The source-file checksum only verifies preservation; T-15 requires actual implementation screenshots and remains unrun until the application exists.
+
 ## 9. Devices and environments
 
 Minimum planned coverage: desktop Chromium, desktop Firefox, WebKit through a runner, mobile emulation at T-07 sizes, and real Android/iOS browsers if devices are available. A WebKit runner does not prove testing on an actual iPhone running Safari. Record at least one complete keyboard test and one screen-reader check.
@@ -118,4 +121,4 @@ When application testing begins, create `docs/validation/YYYY-MM-DD-check-type.m
 
 Release gate: no simulation/privacy violations; critical flows and both languages pass; no accessibility blockers; build/lint/typecheck pass; relevant dependency issues addressed; performance targets evaluated; metadata/404/headers checked on hosting; privacy copy matches configuration.
 
-Status when this document was written: **all application tests remain unrun**. Documentation checks may be recorded separately without marking T-01 through T-14 as passed.
+Status when this document was written: **all application tests remain unrun**. Documentation and reference-file checks may be recorded separately without marking T-01 through T-15 as passed.
