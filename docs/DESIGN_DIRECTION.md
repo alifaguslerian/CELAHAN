@@ -1,11 +1,13 @@
 # CELAHAN — Design Direction
 
-Status: Draft baseline; no final screen designs or assets exist · October 27, 2026  
-References: [PRD](PRD.md), [User Flows](USER_FLOWS.md)
+Status: Reference roles and package/character concepts approved; detailed UI remains draft; no final screens or assets exist · October 27, 2026  
+References: [PRD](PRD.md), [User Flows](USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](SERVICE_PACKAGES.md)
 
 ## 1. Character and principles
 
 A precise, calm, readable terminal/tactical identity. Use a near-black background, one amber accent, monospace headings, strong lines, and sharp corners. Information density must be supported by hierarchy rather than small text. Simulation labels are part of the primary composition.
+
+The owner's newer references add a cinematic doorway/mascot hero and a four-character package selector. Preserve their selected composition and interaction roles rather than copying an entire site. Exact headline typography may be reviewed against the initial monospace direction; final fonts, character palette, and illustration technology are not selected. The approved package names/roles do not imply that final artwork exists.
 
 Visual choices must support service discovery, form completion, report reading, or user orientation. Avoid terminal decoration implying real network activity, random code, fabricated performance figures, and distracting glitch effects.
 
@@ -28,8 +30,9 @@ Final colors/fonts have not been selected. Measure contrast for every color pair
 
 | Page | Desktop | Mobile |
 | --- | --- | --- |
-| Home | Editorial hero with primary CTA, illustrative report preview, and service summary | Single-column sequence: identity/concept, service value, CTA, then a compact preview |
-| Services | Scope and boundaries in easily comparable groups | Stacked sections with clear headings; service boundaries remain visible |
+| Home | Large left headline, central mascot/bright-doorway scene, right description/CTA; package selector, service summary, and illustrative report preview below | Recompose headline, explanation, actions, and bounded illustration; four named package controls and readable stacked details |
+| Services | Four-package comparison and selected details with suitability, scope, exclusions, outputs, retesting, and illustrative prices | Named selectors/list and stacked details; all scope boundaries remain visible without hover or dragging |
+| About | Readable project context, approach, and portfolio purpose | Single reading column; no fictional team or company history |
 | Process | Numbered list/timeline with stage outputs | Vertical timeline; all eight stages readable without horizontal dragging |
 | Form | Main form with a guidance panel; controlled input widths | Single column; guidance close to inputs; CTA stays in the flow and clear of the keyboard |
 | Success | Demo ticket as the focal point with next actions | Ticket can wrap; simulation explanation and CTA are immediately visible |
@@ -72,7 +75,9 @@ Planned logo deliverables: a primary wordmark, a compact symbol if needed for th
 
 Planned mascot deliverables: neutral, introducing, explaining, directing attention, and finished poses. Expressions represent guidance, not proof that a scanner is working. Choose a simple form recognizable at small sizes; do not require 3D assets or a heavy animation runtime.
 
-Before asset production, agree on form, name, personality, voice, and usage contexts. Record sources, export formats, production process, and usage rights once the assets exist. No assets have been produced during this documentation stage.
+The approved working names are SCOUT, WARDEN, NEXUS, and ATLAS, with personalities/attribute directions defined in Service Packages. The owner's Minecraft skin is the starting point; Avara informs grouped selection and focused details. The hero replaces the first reference's block imagery with a mascot at a bright doorway above stairs. Preserve face/silhouette across hero and package treatments.
+
+Before asset production, review final proportions, palette, artwork, voice, logo form, and usage contexts. Record sources, export formats, production process, and usage rights once assets exist. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. No assets have been produced during this documentation stage.
 
 ## 8. Motion and assistance
 
@@ -86,6 +91,8 @@ Before asset production, agree on form, name, personality, voice, and usage cont
 ## 9. Screen inventory for review
 
 Prepare desktop and mobile presentations for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
+
+Also cover the four-character group, each selected package, package comparison, uncertain/mismatched package guidance, the simulated consultation entry, FAQ, and About. Use the complete draft price/cap/effort/retest content from Service Packages section 6 for review; final UI follows the reviewed version. Review absent/failed mascot artwork, long localized IDR prices, simultaneous caps, ATLAS custom-estimate wording, and the same finding dataset under every package selection. Fictional-price and conceptual-effort labels remain close to their values, including on mobile.
 
 Review both languages. Not every combination requires a separate mockup if its components and behavior have already been demonstrated; still cover important combinations during testing.
 
