@@ -6,10 +6,11 @@
 2. `docs/PROJECT_BRIEF.md` and `docs/PRD.md` for goals, boundaries, and requirements.
 3. `docs/DECISIONS.md` for confirmed decisions, recommendations, and open questions.
 4. The relevant subject documents before changing design, content, architecture, or implementation.
+5. `docs/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
 
 ## Authorization and work stage
 
-- Only documentation work is currently authorized. Do not install dependencies, write application code, generate logos/mascots/videos, or deploy until the project owner requests that stage.
+- The current stage is documentation and requested image-based design exploration. The revised desktop hero has been approved and saved in the project. Produce additional design assets only for stages/screens the owner requests; do not install dependencies, write application code, or deploy until implementation is requested.
 - Approval of an idea does not automatically authorize asset production or implementation.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
 - Update related documents when requirements change. Do not leave contradictory decisions across files.
@@ -44,6 +45,9 @@ The project owner prohibits agents from touching Git in any way.
 - Design dedicated mobile and desktop experiences with equivalent functionality and shared data/domain logic.
 - All public content and interactions support Indonesian and English. Do not use flags as the only language labels.
 - The mascot is an optional guide; access to information and core functionality must not depend on it.
+- Preserve the approved hero reference in `design/references/home-hero-desktop-approved-v1.png`. Do not overwrite it or silently substitute a regenerated design. Compare future desktop implementation against the saved image and record reviewed changes.
+- Mascots are small compact pets. Minecraft informs color/motif only; do not reproduce a humanoid skin. The four package pets must have different body silhouettes and principal colors, rather than the same body with different accessories.
+- Follow the approved subdued lighting and warm near-black/ivory/sand/olive appearance. A brilliant portal or a default monospace hero would contradict the approved image. See the design lock for approved composition and open choices.
 - Account for accessibility, reduced motion, performance, security, and privacy during design.
 - Explain the reason for every dependency. Do not install a package merely because it is available or popular.
 - Do not claim a successful build, lint run, browser test, audit, or deployment without actual results. Documentation checks are not application tests.
