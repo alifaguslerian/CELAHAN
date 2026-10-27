@@ -1,7 +1,7 @@
 # CELAHAN — Content and Simulation Contracts
 
 Status: Draft baseline for review · October 27, 2026  
-References: [PRD](PRD.md), [User Flows](USER_FLOWS.md)
+References: [PRD](PRD.md), [User Flows](USER_FLOWS.md), [Service Packages](SERVICE_PACKAGES.md)
 
 ## 1. Source and editorial rules
 
@@ -10,6 +10,8 @@ The canonical five findings come from Chapter IV, section 4.3 of `CELAHAN_Peranc
 The Indonesian titles, categories, locations, scores, severity levels, and statuses below must not be changed during copy polishing. Translations and supplementary explanations are website content and must be distinguished from PDF quotations. Categories refer to OWASP Top 10:2021; sample scores follow the PDF's discussion of CVSS 3.x, not a recalculation or verified calculator output.
 
 Tone: clear, calm, professional, and understandable. Avoid promises such as “100% secure,” “all vulnerabilities found,” “certified AI,” or “scan completed” without simulation context. The mascot must not claim to perform network assessments.
+
+The owner explicitly accepted the no-complete-security/no-all-vulnerabilities guarantee boundary. SCOUT, WARDEN, NEXUS, and ATLAS are approved premium package concepts and working names, with definitions in Service Packages. Premium copy describes scope clarity, appropriate examination, readable reports, and follow-up rather than fabricated achievements.
 
 This document is written in English. Indonesian source findings and UI copy are intentionally preserved in the tables because the website remains bilingual and the source dataset must remain verbatim.
 
@@ -24,6 +26,8 @@ This document is written in English. Indonesian source findings and UI copy are 
 | noSubmission | Tidak ada permintaan yang dikirim. | No request has been sent. |
 | noScan | Tidak ada pemindaian atau akses ke alamat aplikasi. | No scan is performed and the application address is not accessed. |
 | temporaryState | Sesi demo hanya sementara dan akan hilang saat halaman dimuat ulang. | This demo session is temporary and will be lost when the page is reloaded. |
+| illustrativePrice | Harga ilustrasi — bukan penawaran layanan nyata. | Illustrative price — not a real service offer. |
+| conceptualEffort | Estimasi kerja konseptual — bukan waktu penyelesaian demo. | Conceptual assessment estimate — not a demo completion time. |
 
 The footer and form in both languages display the original Indonesian statement verbatim. The EN locale also displays the English translation; mark the original block with `lang="id"`. On EN pages, prioritize a readable translation without hiding the original in a tooltip or accordion. Place illustration labels near finding tables/lists and report details, not only in the footer.
 
@@ -98,6 +102,8 @@ Ticket format: `DEMO-` followed by 8 uppercase hexadecimal characters, generated
 
 The dataset is not derived from inputs. Status transitions, guide-topic selection, and layout do not alter canonical content. Reset/restore events clear client state; no server deletion process exists because the application stores nothing there.
 
+Package selection also leaves the dataset unchanged: every package accesses all five canonical findings. Separate package-planning state may hold a selected ID and optional fit answers in temporary memory; clear it on submission/reset/confirmed language change/reload/restore. It does not extend session fields or appear on success. Retest allowances describe the fictional offering; demo progress does not carry out retesting or change the source remediation statuses.
+
 ## 8. Form copy and messages
 
 | Purpose | Indonesian | English |
@@ -118,13 +124,23 @@ Trim values only for name/needs validation and outer URL whitespace. Do not impl
 
 ## 9. Guide and AI terminology
 
-The final personality has not been chosen. V1 uses structured topics and local responses, labeled “Pendamping simulasi / Simulation guide.” If AI terminology is used in the brand narrative, explain that the interaction is scripted, does not analyze websites, and does not call an AI model.
+V1 uses structured topics and local responses, labeled “Pendamping simulasi / Simulation guide.” If AI terminology is used in the brand narrative, explain that the interaction is scripted, does not analyze websites, and does not call an AI model. The four package-character personalities and attribute directions are approved in Service Packages; exact dialogue/voice and final artwork remain open.
 
 Example ID response: “Aku bisa membantu membaca lima temuan contoh ini. Pilih temuan untuk melihat penjelasannya.”
 
 Example EN response: “I can help you understand these five sample findings. Choose a finding to see its explanation.”
 
 Displayed skills refer to explanation topics, not scanner capabilities. Do not use messages claiming to have found vulnerabilities on the visitor's website.
+
+### Package, consultation, and remediation copy
+
+Keep SCOUT, WARDEN, NEXUS, and ATLAS stable in both locales; translate subtitles, suitability, scope, exclusions, outputs, retest terms, and help. The complete draft numerical source is Service Packages section 6, pending owner review. Store prices as integer IDR amounts, scope ceilings as structured numbers, and effort/retest terms separately; localize display without changing the values or converting currencies. Published copy follows the reviewed baseline and keeps the illustrative-price and conceptual-effort labels near the relevant figures. Do not describe the fictional figures as market rates, guaranteed delivery times, or actual offers. An unsure-which-package route must remain available.
+
+Retest copy distinguishes cycle allowance, original-finding scope, and the request window measured from the initial report. It must not imply ongoing monitoring, new-feature coverage, or an automatic reset of the window. Scope counts do not represent test counts, a finding quota, or evidence of whole-system safety. All illustrative findings remain visible regardless of package.
+
+Free-consultation calls to action carry a nearby simulation label and lead only to local guidance or the existing request simulation. They do not book a meeting or send a message. About/FAQ content explains project purpose and service boundaries without fictional history, staff, clients, or credentials.
+
+Remediation explanations distinguish CELAHAN's represented assessment/guidance/retest work from fixes implemented by the application owner's developers. Report statuses remain illustrative source data, never evidence that the website repaired another application.
 
 ## 10. Privacy, metadata, and supporting content
 
