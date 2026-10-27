@@ -55,7 +55,7 @@ Define the applications, services, relationships, access, effort, and retest ter
 
 ## 4. Mascot family
 
-The owner's supplied Minecraft character is the visual starting point: preserve recognizable face, silhouette, and sand-toned identity while developing original CELAHAN artwork. Four variants form one team, with these approved character directions:
+The owner approved the revised compact-pet hero aesthetic in [Design Reference Lock](DESIGN_REFERENCE_LOCK.md). The Minecraft screenshot supplies color/motif inspiration only. The user explicitly rejected a Minecraft humanoid/skin interpretation. Four small original pets form one team, with these approved specialty/personality directions:
 
 | Character | Personality | Attribute direction |
 | --- | --- | --- |
@@ -64,7 +64,7 @@ The owner's supplied Minecraft character is the visual starting point: preserve 
 | NEXUS | Analytical and interested in connections | Node or connector motif |
 | ATLAS | Systematic and aware of the wider picture | Map or compass motif; slightly stronger silhouette |
 
-Attributes are design directions, not finished designs. Distinguish characters through name, pose, and attributes as well as any color variation. Keep the interface's amber accent coherent; the exact mascot palette remains open.
+Attributes are design directions, not finished designs. Each pet requires a different body silhouette and principal color; recolors or accessory swaps of the same body are insufficient. Share compact scale, facial simplicity, matte shading, and finish. Keep the warm near-black/ivory/sand interface coherent while allowing distinct artwork palettes. Exact individual pet forms/colors remain open for the lineup review, and the approved hero pet must not be silently replaced.
 
 Character skills describe the represented specialty and scripted explanation topics. They are not working AI or scanning capabilities. Visitors can understand and select every package without loading illustrations or opening a guide.
 
@@ -163,4 +163,4 @@ Package selection and optional fit answers are separate temporary planning state
 
 ## 8. Next review deliverables
 
-Review the concrete scope, pricing, effort, and retest assumptions in section 6. They are now complete enough for comparison and wireframe content, while remaining reviewable draft decisions. Next review low-fidelity desktop/mobile home and package-selection layouts with actual ID/EN text, followed by logo/mascot exploration and final screen design. Exact fit-question rules and final artwork remain separate decisions. Code and asset production start only when the owner requests their respective stage.
+Review the concrete scope, pricing, effort, and retest assumptions in section 6. They are complete enough for comparison/layout content, while remaining reviewable draft decisions. The revised desktop hero is now approved. Next review the distinct four-pet lineup and the remaining home/package-selection layouts, including a separately composed mobile experience and actual ID/EN text. Exact fit-question rules, logo, individual pet palettes, and final exports remain separate decisions. Additional asset work and code start when the owner requests their respective stage.
