@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
 Status: Complete draft for review; not authorization to implement  
-Version: 0.1 · October 27, 2026  
+Version: 0.3 · October 27, 2026  
 References: [Project Brief](PROJECT_BRIEF.md), [Decisions](DECISIONS.md)
 
 ## 1. Product goals
@@ -22,7 +22,7 @@ Proposed v1 priority: a clear demonstration experience for all visitors, with no
 
 ## 3. Decision and release levels
 
-- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, logo/mascot direction, video, and manual Git.
+- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, logo/mascot direction, four package concepts, visual reference roles, supporting-page direction, video, and manual Git with per-file English handoff messages. Detailed numerical package limits, fictional prices, effort, and retest conditions have been drafted for review; final assets remain open.
 - **Draft baseline:** concrete behavior proposed in this document for review and later implementation after approval. These details must not be represented as additional decisions already approved by the owner.
 - **Open:** visual, asset, and publication choices recorded in Decisions.
 
@@ -54,6 +54,12 @@ All requirements below target portfolio website v1. Draft behavior may be revise
 | FUN-12 | Privacy and custom 404 pages exist | Privacy matches actual behavior; unknown URLs provide a route home; hosting returns the correct HTTP 404 status |
 | FUN-13 | Navigation is consistent | All core pages are reachable, the active page is clear, back/forward works, and no placeholder links are published |
 | FUN-14 | The no-JavaScript state is safe | Informational content remains readable; forms cannot submit natively; explain that the demo requires JavaScript |
+| FUN-15 | Four premium packages can be explored | SCOUT, WARDEN, NEXUS, and ATLAS have named, keyboard/touch-operable selection and details covering suitability, quantified scope, exclusions, outputs, effort, and retest terms; prices are visibly illustrative, values come from shared package content, and text remains accessible without mascot assets |
+| FUN-16 | Package fit and consultation are explained | Provide an unsure-which-package path and explain mismatched scope; consultation CTAs are visibly simulated; no payment, communication, booking, or URL analysis occurs. Exact local-questionnaire rules remain a draft |
+| FUN-17 | Supporting information is useful and accurate | About explains the project/approach; concise FAQ covers scope, package fit, simulation, remediation, and no security guarantee; strengths describe the service model rather than fabricated achievements |
+| FUN-18 | Home follows the selected visual reference roles | Headline/description composition follows reference 1; a mascot/doorway scene replaces the block imagery; four-character package interaction follows reference 2; mobile, translation, reduced-motion, and performance requirements apply |
+
+The approved concepts and complete draft numerical/commercial baseline are detailed in [Service Packages](SERVICE_PACKAGES.md). Prices/caps/effort are fictional authored assumptions pending review, not market evidence or live offers. Reference roles are detailed in [Visual References](VISUAL_REFERENCES.md). These additions do not authorize code or asset production. Package selection never filters, rewrites, or claims provenance for the five canonical sample findings.
 
 ### Baseline form contract
 
@@ -112,6 +118,10 @@ Automated cross-page tours, report filtering/sorting, and a simple/technical exp
 - **AC-05:** Given direct loading or refreshing of the success page without a session, show that the session is unavailable and offer to start a demo or view the report; do not generate a new ticket automatically.
 - **AC-06:** Given a 320 px viewport and English content, the page and all functionality remain readable without horizontal page scrolling or overlapping controls.
 - **AC-07:** Given disabled JavaScript, informational pages remain useful and the form cannot submit natively.
+- **AC-08:** Given any of the four packages, its detail view identifies suitability, inclusions, exclusions, deliverables, and retest terms in ID/EN, with equivalent keyboard/mobile access and text fallback.
+- **AC-09:** Given an uncertain or unsuitable package choice, explain the scope limitation and offer simulated consultation; never imply purchase, legal permission, or a guarantee of comprehensive security.
+- **AC-10:** Given a package selection or consultation action, no data is transmitted or persisted, the report remains the same five illustrative findings, and reset/language/reload handling covers all temporary selection/fit state.
+- **AC-11:** Given either locale, shared package numbers retain their meaning: IDR starting prices, scope ceilings, origin/role/route/API counting, conceptual effort, and retest cycles/windows are consistent. Labels explain fictional pricing and effort, complex/exceeded scope offers consultation, and no countdown/payment or complete-security guarantee is implied.
 
 ## 10. Dependencies and validation
 
