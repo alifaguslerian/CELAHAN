@@ -1,7 +1,7 @@
 # CELAHAN — Approved Hero Reference and Design Continuity
 
-Status: Desktop hero approved; four v1 pet concepts and shared rules generated for review; complete pages/mobile remain to be designed  
-Updated: October 27, 2026  
+Status: Hero preserved; other desktop visual directions accepted; package-cluster revision for review; mobile pending  
+Updated: October 28, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
 
 ## 1. Approved master
@@ -46,14 +46,14 @@ The Minecraft screenshot supplies color/motif inspiration only. It is not a prod
 | Batch | Deliverables for review | Status |
 | --- | --- | --- |
 | A. Shared identity | Palette/type/component direction and four pet forms with clearly distinct shapes/colors | Hero pet aesthetic approved; four PNG candidates and Shared Visual System drafted for review |
-| B. Home | Complete homepage sections plus a separately composed mobile hero/home; use the approved desktop hero unchanged as the target | Desktop hero only approved |
-| C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Not designed |
-| D. Simulation journey | Request form, validation/success, status stages, report and finding details | Not designed |
-| E. Supporting experience | About, privacy, custom 404, menu, FAQ, language/reset confirmation, and guide states | Not designed |
+| B. Home | Complete homepage sections plus a separately composed mobile hero/home; use the approved desktop hero unchanged as the target | Desktop hero remains approved; six additional home-section frames generated for review; mobile pending |
+| C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Desktop detail/comparison/process frames generated for review; mobile pending |
+| D. Simulation journey | Request form, validation/success, status stages, report and finding details | Desktop frames and EN form/report variants generated for review; mobile pending |
+| E. Supporting experience | About, privacy, custom 404, menu, FAQ, language/reset confirmation, and guide states | Desktop About/privacy/404/FAQ/dialog/guide frames generated for review; mobile/menu pending |
 
-Each batch includes desktop and mobile compositions and checks actual Indonesian/English content. Produce readable page/section references rather than one tiny all-site montage. Reusable error/control states may share a component specification instead of requiring a separate generated image for every combination. Screen images are proposals until reviewed; image generation does not prove interaction, translation, accessibility, or responsive behavior.
+The full design scope includes desktop and mobile compositions and actual Indonesian/English content. On October 28 the owner explicitly requested the complete desktop pass first, with mobile later; that instruction supersedes the earlier paired-production sequence. Produce readable page/section references rather than one tiny all-site montage. Reusable error/control states may share a component specification instead of requiring a separate generated image for every combination. Screen images are proposals until reviewed; image generation does not prove interaction, translation, accessibility, or responsive behavior.
 
-The owner asked whether the whole site should be designed first. These batches are the recommended sequence, not evidence that all screen images or their production have already been completed. Start with the four-pet lineup/shared visual rules, then the complete home/mobile pair before expanding to the remaining pages.
+The [Desktop Design Gallery](DESKTOP_DESIGNS.md) now maps all 24 selected desktop frames, the preserved hero, and six superseded iterations. Frames cover the main ID journey and two EN copy-fit checks; not every locale/state combination has a separate raster. The owner has now accepted the other 23 desktop visual directions and requested only the frame 02 cluster revision. That revision awaits review; future implementation should simplify redundant copy without dropping mandatory labels. Mobile and final identity/runtime exports remain separate work.
 
 ## 5. Implementation fidelity review
 
