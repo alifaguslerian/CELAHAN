@@ -39,6 +39,9 @@ Updated: October 28, 2026. This document distinguishes owner instructions, propo
 | DEC-24 | Homepage packages use a tight four-pet cluster, no text below, names above on hover/focus, and name/service/price only after activation | Explicit owner revision on October 28; keyboard/touch retain equivalent access, and price labels move with the revealed price |
 | DEC-25 | Accept the other desktop visual directions; defer repetitive/unnecessary copy cleanup to implementation | Owner explicitly requested only this image revision now; required concept, illustrative-data, fictional-price, permission, and state-loss labels remain in relevant contexts |
 | DEC-26 | Complete mobile UI/UX reference generation before subdividing the implementation plan; keep later packages coherent and moderately sized, and verify manual commit commands against actual files/changes | Explicit owner request; 27 mobile frames generated for review, subdivision/application work deferred, filesystem fingerprints and content review used without Git access |
+| DEC-27 | Explore CELAHAN logo directions now, independently of mascot and application implementation | Explicit owner request; three raster directions generated for selection, without replacing accepted UI references or claiming final exports |
+| DEC-28 | Use Open Threshold (logo option 02) as CELAHAN's approved logo direction | Explicit owner selection; preserve its reference, remove unselected drafts, and prepare final vectors/exports without reopening alternative directions |
+| DEC-29 | Keep code/files clean, minimize dependencies and duplicate/dead material, prioritize security/privacy/performance, and deliver commit handoffs only in chat | Explicit standing owner request; no unsafe shortcuts or unverified security claims, maintain ignore rules, check references before cleanup, and preserve selected source/data |
 
 ## 3. Proposed baselines for review
 
@@ -63,6 +66,7 @@ Updated: October 28, 2026. This document distinguishes owner instructions, propo
 | DRAFT-17 | Review the four saved v1 pets and Shared Visual System as the next design baseline | SCOUT is proposed as the hero-related sand pet; WARDEN is sage/wedge, NEXUS mineral-blue/crescent, ATLAS terracotta/low-dome; exact colors/forms/tokens are authored proposals rather than new owner approvals |
 | DRAFT-18 | Use the 24 selected desktop references and page assembly in Desktop Design Gallery as the first review baseline | Includes ID pages/states and two EN copy-fit checks; six earlier desktop iterations are explicitly superseded; a separate 27-frame mobile baseline is now generated for review, and source text/behavior contracts override generated lettering |
 | DRAFT-19 | Use the 27 mobile-web viewports and assembly/interaction contracts in Mobile Design Gallery as the review baseline | Covers ID pages/states plus EN form and all five EN findings across scroll segments; not every package/finding/locale combination has a unique raster, and real responsiveness/accessibility remain untested |
+| DRAFT-20 | Initial three-option logo review, resolved by DEC-28 | Open Threshold is selected; discarded options are removed, while editable vectors/small-size checks/usage rights remain pending |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
 
@@ -70,7 +74,7 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 
 | ID | Question | Needed before | Safe interim approach |
 | --- | --- | --- | --- |
-| OPEN-01 | Review of the four generated pet concepts/individual palettes/identity mapping; final logo, exports, and asset rights | Final identity production (P1) | Review Mascot Guidelines and preserve the approved hero; the four candidates are not owner-approved final characters |
+| OPEN-01 | Final pet production/mapping, approved-logo vector/export quality, and asset rights | Final identity production (P1) | Use approved Open Threshold Logo Guidelines and existing Mascot Guidelines; preserve selected references and validate final exports |
 | OPEN-02 | Review the revised package cluster, mobile layouts, exact licensed fonts/tokens, and motion details | Relevant design/final asset work (P2) | Desktop visual directions and frame 02 revision are accepted; review the 27 mobile references and verify actual responsive/accessibility behavior after implementation |
 | OPEN-03 | Hosting account, project/domain name, repository publication, and license | Relevant publication (P8) | Do not create accounts, purchase a domain, or assign a license |
 | OPEN-04 | Video duration, aspect ratio, music, narration, and primary language | Video production (P9) | Prepare an initial storyboard without treating duration as a lecturer requirement |
@@ -99,5 +103,7 @@ Automated cross-page tours, report filtering/sorting, a plain-language/technical
 | October 28, 2026 | Owner requested full desktop design before mobile. Generated 24 selected horizontal references plus five retained superseded iterations, preserved the approved hero, recorded prompts/fingerprints and page assembly, and refreshed the complete manual commit handoff; no application or Git operations |
 | October 28, 2026 | Owner accepted the other desktop visuals and requested only a tight, caption-free package cluster with hover/focus names and click-revealed details. Saved frame 02 revision; future implementation trims redundant copy while retaining mandatory labels. No other screen regenerated |
 | October 28, 2026 | Owner accepted the cluster and requested mobile generation before moderately sized implementation packages. Produced 27 selected portrait references plus two retained iterations, documented scroll/touch/bilingual coverage, and refreshed verified per-file manual commands; no application work, plan subdivision, or Git operations |
+| October 28, 2026 | Owner requested the logo. Generated three distinct raster directions plus a targeted monochrome-specimen correction, recorded prompts/sources and selection limits, and refreshed verified per-file commands; no final logo chosen or website reference replaced |
+| October 28, 2026 | Owner selected Open Threshold and required clean code, file hygiene, security/performance, and chat-only per-file handoffs. Moved the selected reference unchanged, removed obsolete drafts and handoff artifact, minimized manifests, added ignore rules, and updated standing agent requirements; no application code or Git operations |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
