@@ -9,7 +9,9 @@
 4. The relevant subject documents before changing design, content, architecture, or implementation.
 5. `docs/design/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
 6. `docs/design/VISUAL_SYSTEM.md` and `docs/design/MASCOT_GUIDELINES.md` for the shared review baseline and current character concepts.
-7. `docs/design/DESKTOP_DESIGNS.md` for selected desktop frames, source-copy overrides, and superseded iterations. The owner requested desktop design first, with mobile later. The owner accepted the other desktop visual directions; only the revised frame 02 package cluster awaits review. Do not substitute new frames for the approved hero.
+7. `docs/design/DESKTOP_DESIGNS.md` for selected desktop frames, source-copy overrides, and superseded iterations. The owner requested desktop design first, with mobile later. The owner accepted all selected desktop visual directions, including revised frame 02. Do not substitute new frames for the approved hero.
+
+8. `docs/design/MOBILE_DESIGNS.md` for 27 portrait mobile-web references, scroll assembly, touch/keyboard rules, and content overrides. New mobile images require review.
 
 ## Authorization and work stage
 
@@ -17,6 +19,7 @@
 - Approval of an idea does not automatically authorize asset production or implementation.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
 - Update related documents when requirements change. Do not leave contradictory decisions across files.
+- Complete mobile reference review before subdividing the implementation plan. Future delivery packages should have coherent, moderately sized usable outcomes, rather than one phase per tiny component/file. Do not start that subdivision or application work merely because visual references exist.
 - Work in small phases with clear deliverables and checks. Avoid features unrelated to an established need.
 
 ## Git is entirely manual
@@ -29,6 +32,7 @@ The project owner prohibits agents from touching Git in any way.
 - Agents may edit project files and inspect them with ordinary filesystem tools.
 - Report changed files and checks actually performed. The project owner reviews, stages, commits, and pushes manually.
 - Suggested commit messages must be in English. Never execute them.
+- For current-update handoffs, compare actual filesystem fingerprints before/after the task, review each file's content changes, and pair its precise path with an English commit message that describes those changes. Manual command examples must cover only verified current additions/modifications; distinguish historical moved paths and unchanged inventory. Never infer Git tracking/staging status from file hashes.
 - Give a separate suggested commit message for each file in the handoff. The owner commits files individually. If including files from an earlier update, label that scope and do not claim to know which files are still uncommitted.
 - When the owner requests complete coverage, inventory all current project files and include earlier paths for moved documents. Clearly pair a tracked old-path removal with the current-path addition/change in one logical-file commit. Do not restrict the handoff to the latest update or treat the message count as Git status.
 
