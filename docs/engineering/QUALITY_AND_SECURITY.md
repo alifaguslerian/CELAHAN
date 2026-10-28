@@ -124,3 +124,11 @@ When application testing begins, create `docs/validation/YYYY-MM-DD-check-type.m
 Release gate: no simulation/privacy violations; critical flows and both languages pass; no accessibility blockers; build/lint/typecheck pass; relevant dependency issues addressed; performance targets evaluated; metadata/404/headers checked on hosting; privacy copy matches configuration.
 
 Status when this document was written: **all application tests remain unrun**. Documentation and reference-file checks may be recorded separately without marking T-01 through T-15 as passed.
+
+## 11. Code and asset hygiene
+
+The owner's standing quality requirements apply to every implementation package. Remove verified unused code/imports/dependencies, abandoned experiments, duplicate logic, and obsolete assets; check framework-discovered/dynamic references before deletion. Keep files organized by responsibility and share content/domain logic across viewports/locales. Avoid speculative abstractions and insecure shortcuts.
+
+Review changed data flows for unsafe HTML/script execution, input-derived navigation/requests, private-data persistence, and overly permissive configuration. Follow existing simulation boundaries and verify relevant dependency risks. Keep client JavaScript/font/image costs within the measured targets; informational content should remain static where practical, and design-source boards must not become runtime payloads. Clean up long-lived effects/listeners.
+
+Ignore local credentials, private keys, dependencies, generated output, logs/caches, hosting state, and temporary handoffs. An ignore rule does not sanitize already tracked material. Review actual files before manual publication. Commit messages and command suggestions belong in chat, not source comments or repository artifacts. At this documentation-only stage there is no dead application code to remove and no runtime security/performance result to claim.
