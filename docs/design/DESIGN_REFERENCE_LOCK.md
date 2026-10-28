@@ -1,6 +1,6 @@
 # CELAHAN — Approved Hero Reference and Design Continuity
 
-Status: Hero preserved; other desktop visual directions accepted; package-cluster revision for review; mobile pending  
+Status: Desktop visual directions accepted and preserved; 27 mobile-web references generated for review  
 Updated: October 28, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
 
@@ -46,14 +46,16 @@ The Minecraft screenshot supplies color/motif inspiration only. It is not a prod
 | Batch | Deliverables for review | Status |
 | --- | --- | --- |
 | A. Shared identity | Palette/type/component direction and four pet forms with clearly distinct shapes/colors | Hero pet aesthetic approved; four PNG candidates and Shared Visual System drafted for review |
-| B. Home | Complete homepage sections plus a separately composed mobile hero/home; use the approved desktop hero unchanged as the target | Desktop hero remains approved; six additional home-section frames generated for review; mobile pending |
-| C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Desktop detail/comparison/process frames generated for review; mobile pending |
-| D. Simulation journey | Request form, validation/success, status stages, report and finding details | Desktop frames and EN form/report variants generated for review; mobile pending |
-| E. Supporting experience | About, privacy, custom 404, menu, FAQ, language/reset confirmation, and guide states | Desktop About/privacy/404/FAQ/dialog/guide frames generated for review; mobile/menu pending |
+| B. Home | Complete homepage sections plus a separately composed mobile hero/home; use the approved desktop hero unchanged as the target | Desktop hero remains approved; six additional home-section frames generated for review; corresponding mobile references generated for review |
+| C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Desktop detail/comparison/process frames generated for review; corresponding mobile references generated for review |
+| D. Simulation journey | Request form, validation/success, status stages, report and finding details | Desktop frames and EN form/report variants generated for review; corresponding mobile references generated for review |
+| E. Supporting experience | About, privacy, custom 404, menu, FAQ, language/reset confirmation, and guide states | Desktop About/privacy/404/FAQ/dialog/guide frames generated for review; mobile/menu references generated for review |
 
 The full design scope includes desktop and mobile compositions and actual Indonesian/English content. On October 28 the owner explicitly requested the complete desktop pass first, with mobile later; that instruction supersedes the earlier paired-production sequence. Produce readable page/section references rather than one tiny all-site montage. Reusable error/control states may share a component specification instead of requiring a separate generated image for every combination. Screen images are proposals until reviewed; image generation does not prove interaction, translation, accessibility, or responsive behavior.
 
-The [Desktop Design Gallery](DESKTOP_DESIGNS.md) now maps all 24 selected desktop frames, the preserved hero, and six superseded iterations. Frames cover the main ID journey and two EN copy-fit checks; not every locale/state combination has a separate raster. The owner has now accepted the other 23 desktop visual directions and requested only the frame 02 cluster revision. That revision awaits review; future implementation should simplify redundant copy without dropping mandatory labels. Mobile and final identity/runtime exports remain separate work.
+The [Desktop Design Gallery](DESKTOP_DESIGNS.md) now maps all 24 selected desktop frames, the preserved hero, and six superseded iterations. Frames cover the main ID journey and two EN copy-fit checks; not every locale/state combination has a separate raster. The owner has now accepted the other 23 desktop visual directions and requested only the frame 02 cluster revision. That revision was subsequently accepted. The [27-frame mobile pass](MOBILE_DESIGNS.md) is now generated for review. Future implementation should simplify redundant copy without dropping mandatory labels; final identity/runtime exports and real verification remain separate work.
+
+Current mobile production adds viewport/scroll compositions, not browser evidence. The immutable desktop hero and every earlier PNG remain unchanged. Refer to the mobile gallery for per-frame mapping and source-copy overrides.
 
 ## 5. Implementation fidelity review
 
