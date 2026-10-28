@@ -1,0 +1,36 @@
+{
+  "project": "CELAHAN",
+  "date": "2026-10-28",
+  "scope": "Owner-approved Open Threshold logo reference; editable and optimized runtime exports remain pending.",
+  "status": "owner_approved_direction_pending_production_exports",
+  "commonPrompt": "Design one original CELAHAN logo-concept presentation, flat vector-like artwork, crisp edges and carefully balanced optical proportions. Brand: web-application security-assessment concept for a university/portfolio website; professional, precise, approachable enough to coexist with small pet mascots. Palette only warm near-black #0C0D0B, ivory #F3F0E8, sand #C9BA8C. Main background almost-black. The supplied website image is a STYLE/PALETTE reference only: do not copy its headline, scenery, mascot, CTA, or generic header lettering.\nCreate ONE coherent direction per image. Dominant large horizontal lockup in the upper/middle area, symbol at left and exact uppercase wordmark 'CELAHAN' at right when that direction includes a symbol. Beneath, two comfortably separated small monochrome studies: ink artwork on a plain ivory rectangle and ivory artwork on ink. These are specimens of the SAME concept, not extra logo directions. Balanced generous clear space, straightforward front-on 2D graphic presentation. No photographic mockups, perspective, embossed metal, glow, gradients, shadows, textures, 3D, tiny decorative annotation, slogan, trademark/registration sign, fake certification seal, padlock, shield, hooded hacker, bug, skull, crosshair, circuit-board clipart, or copied recognizable brand. Only the name CELAHAN may appear as text. Do not add badges or branding explanations. The logo must remain structurally meaningful in a single flat color, with robust open negative spaces and no fragile hairlines. Output one horizontal landscape concept sheet.",
+  "frames": [
+    {
+      "id": "02",
+      "key": "open-threshold",
+      "title": "Open Threshold",
+      "brief": "Create a distinctive architectural symbol based on a dark doorway/threshold, abstracted into a compact flat mark: a sand arch-shaped outer mass with an offset tall narrow open negative-space passage cut from top/inside toward the lower edge, and a single short offset base/threshold element. Use large clean planar shapes with one deliberate gap; no perspective, door handle, physical scene, bricks, light beam or stairs illustration. The shape should feel like a defined scope and a way through it, not a shield, rounded app icon, location pin, ordinary letter C, or crypto token. Pair with a refined uppercase sans CELAHAN wordmark with generous breathing room. Main sand symbol and ivory wordmark. Lower monochrome specimens preserve the exact arch/aperture geometry. This must be structurally different from an angular C monogram.",
+      "refs": [
+        "design/references/home-hero-desktop-approved-v1.png"
+      ],
+      "status": "owner_approved_direction",
+      "asset": "design/brand/approved/open-threshold-reference-v1.png",
+      "promptPrefixRef": "commonPrompt",
+      "promptSuffix": "\n\nDIRECTION 02 — Open Threshold\nCreate a distinctive architectural symbol based on a dark doorway/threshold, abstracted into a compact flat mark: a sand arch-shaped outer mass with an offset tall narrow open negative-space passage cut from top/inside toward the lower edge, and a single short offset base/threshold element. Use large clean planar shapes with one deliberate gap; no perspective, door handle, physical scene, bricks, light beam or stairs illustration. The shape should feel like a defined scope and a way through it, not a shield, rounded app icon, location pin, ordinary letter C, or crypto token. Pair with a refined uppercase sans CELAHAN wordmark with generous breathing room. Main sand symbol and ivory wordmark. Lower monochrome specimens preserve the exact arch/aperture geometry. This must be structurally different from an angular C monogram.",
+      "sourceFile": "exec-83185095-42cc-4f5b-be9d-9fa094c275dc.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1169161,
+      "sha256": "09a88eddbaf43fa2422b5349f526fcc161215494645dce364e55c836756f14f0"
+    }
+  ],
+  "production": {
+    "method": "Built-in imagegen",
+    "approvedDirection": "Open Threshold",
+    "approvedOn": "2026-10-28",
+    "approval": "Selected by the owner; do not reopen alternatives without a new request.",
+    "formats": "Approved raster reference only; no final vector or favicon claim."
+  },
+  "retentionPolicy": "Keep selected references and source provenance. Obsolete image files and internal commit snapshots were removed at the owner request.",
+  "promptRecord": "Reconstruct an initial tool prompt as commonPrompt + frame.promptSuffix when promptPrefixRef is commonPrompt. Revision prompts remain exact."
+}
