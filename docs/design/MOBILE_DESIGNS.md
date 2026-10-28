@@ -8,9 +8,9 @@ References: [Desktop gallery](DESKTOP_DESIGNS.md), [Design lock](DESIGN_REFERENC
 
 ## Review status
 
-The owner requested mobile UI/UX before subdividing the implementation plan. This batch supplies 27 selected portrait frames and retains two superseded iterations. The desktop visual directions, including the revised tight package cluster, are accepted and preserved. New mobile frames are proposals until reviewed; they are not a running website or evidence of functional accessibility/responsiveness.
+The owner requested mobile UI/UX before subdividing the implementation plan. This batch supplies 27 selected portrait frames; obsolete intermediate images have been removed. The desktop visual directions, including the revised tight package cluster, are accepted and preserved. New mobile frames are proposals until reviewed; they are not a running website or evidence of functional accessibility/responsiveness.
 
-Built-in imagegen produced each viewport separately. Borderless mobile-web views maximize readable content and avoid implying a native application. Exact [prompts, references, source filenames, dimensions, byte sizes, and SHA-256 values](../../design/mobile/v1/manifest.json) are preserved. The manifest also stores a 63-file pre-task fingerprint baseline used to identify this update's actual file changes. No Git metadata was read. Prompts cannot reproduce the source deterministically.
+Built-in imagegen produced each viewport separately. Borderless mobile-web views maximize readable content and avoid implying a native application. Exact [prompts, references, source filenames, dimensions, byte sizes, and SHA-256 values](../../design/mobile/v1/manifest.json) are preserved. Internal pre-task fingerprint snapshots have been removed from repository metadata. Initial prompts are reconstructed as commonPrompt plus a frame's promptSuffix; exact revisions and retired input fingerprints preserve source provenance. Prompts cannot reproduce the source deterministically.
 
 ## Page assembly and navigation
 
@@ -165,12 +165,6 @@ ID pages and three EN form/report frames are represented; other EN pages reuse t
 
 ![Mobile 27: Mobile home illustrative report preview](../../design/mobile/v1/27-home-report-preview.png)
 
-## Superseded iterations
-
-| Frame | Retained initial image | Selected revision |
-| --- | --- | --- |
-| 04 | [04-home-faq-footer.png](../../design/mobile/v1/04-home-faq-footer.png) | [04-home-faq-footer-r2.png](../../design/mobile/v1/04-home-faq-footer-r2.png) |
-| 19 | [19-guide-open.png](../../design/mobile/v1/19-guide-open.png) | [19-guide-open-r2.png](../../design/mobile/v1/19-guide-open-r2.png) |
 
 ## Next stage
 
