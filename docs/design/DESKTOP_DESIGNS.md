@@ -10,7 +10,7 @@ References: [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYST
 
 These are raster design proposals, not an implemented website or evidence that interactions work. The owner accepted the other 23 desktop visual directions on October 28 and requested a revision only to the homepage package selector (02). The owner subsequently accepted the revised cluster and closed desktop reference exploration. This acceptance covers visual direction, not final font licenses, commercial terms, or implemented behavior. No application dependencies, backend, or deployment were added.
 
-The batch contains **24 selected horizontal frames**, plus the **one unchanged approved hero**. Six superseded iteration PNGs are retained for provenance and are not implementation targets. All selected new frames are 1,672 × 941 pixels. The [generation manifest](../../design/desktop/v1/manifest.json) records per-frame briefs, reference paths, exact prompts/revision prompts, selected-file dimensions, sizes, SHA-256 fingerprints, and generated source paths. Machine-local source paths are provenance, not required runtime assets; project-relative files are the portable copies. Prompts cannot deterministically recreate the images.
+The batch contains **24 selected horizontal frames**, plus the **one unchanged approved hero**. Obsolete iteration PNGs have been removed; only the selected visual targets remain. All selected new frames are 1,672 × 941 pixels. The [generation manifest](../../design/desktop/v1/manifest.json) records per-frame briefs, reference paths, exact prompts/revision prompts, selected-file dimensions, sizes, SHA-256 fingerprints, and generated source filenames. Initial prompts are reconstructed from the manifest's commonPrompt and each frame's promptSuffix; revision prompts remain exact. Retired input fingerprints preserve provenance without keeping obsolete PNGs or personal machine paths. Prompts cannot deterministically recreate the images.
 
 ## Page assembly
 
@@ -216,18 +216,6 @@ The main visual language is Indonesian. Frames 22–23 check longer English form
 
 The [27-frame mobile design pass](MOBILE_DESIGNS.md) now covers mobile menu, touch layouts, forms, report disclosures, and guide sheets. Virtual-keyboard behavior and rendered interaction still require implementation tests. Shared functionality and ID/EN parity remain requirements; desktop-first asset production does not authorize a desktop-only application.
 
-## Retained superseded iterations
-
-These files remain historical evidence. Use the selected revisions shown above, not these initial versions.
-
-| Frame | Superseded file | Selected correction |
-| --- | --- | --- |
-| 02 | [02-home-packages.png](../../design/desktop/v1/02-home-packages.png) | [02-home-packages-r2.png](../../design/desktop/v1/02-home-packages-r2.png) |
-| 04 | [04-home-report-preview.png](../../design/desktop/v1/04-home-report-preview.png) | [04-home-report-preview-r2.png](../../design/desktop/v1/04-home-report-preview-r2.png) |
-| 10 | [10-request-form.png](../../design/desktop/v1/10-request-form.png) | [10-request-form-r2.png](../../design/desktop/v1/10-request-form-r2.png) |
-| 15 | [15-report-ready.png](../../design/desktop/v1/15-report-ready.png) | [15-report-ready-r2.png](../../design/desktop/v1/15-report-ready-r2.png) |
-| 22 | [22-request-form-en.png](../../design/desktop/v1/22-request-form-en.png) | [22-request-form-en-r2.png](../../design/desktop/v1/22-request-form-en-r2.png) |
-| 24 | [24-report-no-session.png](../../design/desktop/v1/24-report-no-session.png) | [24-report-no-session-r2.png](../../design/desktop/v1/24-report-no-session-r2.png) |
 
 ## Next review
 
