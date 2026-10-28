@@ -1,7 +1,7 @@
 # CELAHAN Documentation
 
 Status: Product planning and visual exploration; application implementation has not started  
-Updated: October 27, 2026
+Updated: October 28, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
 
@@ -20,12 +20,13 @@ This index groups the English project documentation by purpose. Required Indones
 | Document | Purpose |
 | --- | --- |
 | [Design Reference Lock](design/DESIGN_REFERENCE_LOCK.md) | Approved hero PNG, checksum, visual invariants, and screen batches |
+| [Desktop Design Gallery](design/DESKTOP_DESIGNS.md) | 24 selected desktop frames, preserved hero, page assembly, and implementation caveats |
 | [Design Direction](design/DESIGN_DIRECTION.md) | Responsive composition, accessibility, identity, and motion |
 | [Visual References](design/VISUAL_REFERENCES.md) | Original inspiration and its relationship to the approved target |
 | [Shared Visual System](design/VISUAL_SYSTEM.md) | Draft color tokens, typography roles, spacing, component states, and contrast calculations |
 | [Mascot Guidelines](design/MASCOT_GUIDELINES.md) | Four generated pet concepts, shape/palette rules, source records, and prompts |
 
-The saved hero is approved. The four new pet concepts and exact numerical visual tokens are review proposals. Neither status implies that full pages, mobile screens, or final runtime exports have been approved.
+The saved hero is preserved. The owner accepted the other 23 desktop visual directions and requested only the homepage package-cluster revision, now available for review. Six superseded desktop iterations are retained. Final tokens/fonts/assets and package terms have separate review status; mobile composition and implementation remain pending. Visual acceptance is not proof of working interactions.
 
 ## Engineering
 
@@ -59,7 +60,9 @@ Historical reports preserve what was checked at that time. Relative links may be
 | [Packages and visual direction](validation/2026-10-27-package-and-visual-direction.md) | Approved package/reference synchronization |
 | [Package details](validation/2026-10-27-package-details.md) | Quantitative scope/pricing/retest documentation |
 | [Mascots and documentation organization](validation/2026-10-27-mascots-and-docs.md) | Four source concepts, preserved hero, new rules, and moved-link validation |
+| [Desktop designs](validation/2026-10-28-desktop-designs.md) | Initial 24-frame batch, five then-retained iterations, and checks at that point |
+| [Package-cluster revision](validation/2026-10-28-package-cluster.md) | One revised frame, other desktop visual acceptance, interaction notes, and refreshed handoff checks |
 
 ## Artifact locations
 
-The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. These are source/review artifacts, not an existing application or an optimized runtime asset set.
+The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. `design/desktop/v1/` contains the new desktop PNGs and generation manifest. These are source/review artifacts, not an existing application or an optimized runtime asset set.
