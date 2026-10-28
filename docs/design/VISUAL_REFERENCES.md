@@ -1,10 +1,12 @@
 # CELAHAN — Visual Reference Synthesis
 
-Status: Revised desktop hero approved and saved; supporting references retained; complete pages/mobile still pending  
-Updated: October 27, 2026  
+Status: Revised desktop hero approved and saved; supporting references retained; 24 additional desktop references generated for review; mobile pending  
+Updated: October 28, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Decisions](../planning/DECISIONS.md)
 
 The [Design Reference Lock](DESIGN_REFERENCE_LOCK.md) and its preserved PNG now take precedence over these original inspiration screenshots. The owner approved the revised compact-pet/dim-doorway image and explicitly requested faithful future implementation.
+
+Current page/state proposals are in [Desktop Design Gallery](DESKTOP_DESIGNS.md). They remain under review and do not replace the approved hero.
 
 ## 1. Reference roles
 
