@@ -9,6 +9,7 @@
 4. The relevant subject documents before changing design, content, architecture, or implementation.
 5. `docs/design/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
 6. `docs/design/VISUAL_SYSTEM.md` and `docs/design/MASCOT_GUIDELINES.md` for the shared review baseline and current character concepts.
+7. `docs/design/DESKTOP_DESIGNS.md` for selected desktop frames, source-copy overrides, and superseded iterations. The owner requested desktop design first, with mobile later. The owner accepted the other desktop visual directions; only the revised frame 02 package cluster awaits review. Do not substitute new frames for the approved hero.
 
 ## Authorization and work stage
 
@@ -51,6 +52,8 @@ The project owner prohibits agents from touching Git in any way.
 - Preserve the approved hero reference in `design/references/home-hero-desktop-approved-v1.png`. Do not overwrite it or silently substitute a regenerated design. Compare future desktop implementation against the saved image and record reviewed changes.
 - Mascots are small compact pets. Minecraft informs color/motif only; do not reproduce a humanoid skin. The four package pets must have different body silhouettes and principal colors, rather than the same body with different accessories.
 - Follow the approved subdued lighting and warm near-black/ivory/sand/olive appearance. A brilliant portal or a default monospace hero would contradict the approved image. See the design lock for approved composition and open choices.
+- The homepage package selector is a tight cluster with no captions/prices underneath. Show only the corresponding name above on hover/focus; activation reveals the name, service, and fictional price. Keep semantic names, visible focus, separate hit areas, and equivalent touch access.
+- During implementation, trim repetitive cross-page explanations and unnecessary copy. Retain exact required footer/form disclaimers and contextual illustrative-data, fictional-price, permission, error, and state-loss information. Do not regenerate other accepted screens for copy cleanup now.
 - Account for accessibility, reduced motion, performance, security, and privacy during design.
 - Explain the reason for every dependency. Do not install a package merely because it is available or popular.
 - Do not claim a successful build, lint run, browser test, audit, or deployment without actual results. Documentation checks are not application tests.
