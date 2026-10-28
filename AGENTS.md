@@ -3,10 +3,12 @@
 ## Read first
 
 1. `README.md` for project status and the documentation map.
-2. `docs/PROJECT_BRIEF.md` and `docs/PRD.md` for goals, boundaries, and requirements.
-3. `docs/DECISIONS.md` for confirmed decisions, recommendations, and open questions.
+   `docs/README.md` is the grouped documentation index.
+2. `docs/product/PROJECT_BRIEF.md` and `docs/product/PRD.md` for goals, boundaries, and requirements.
+3. `docs/planning/DECISIONS.md` for confirmed decisions, recommendations, and open questions.
 4. The relevant subject documents before changing design, content, architecture, or implementation.
-5. `docs/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
+5. `docs/design/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
+6. `docs/design/VISUAL_SYSTEM.md` and `docs/design/MASCOT_GUIDELINES.md` for the shared review baseline and current character concepts.
 
 ## Authorization and work stage
 
@@ -27,6 +29,7 @@ The project owner prohibits agents from touching Git in any way.
 - Report changed files and checks actually performed. The project owner reviews, stages, commits, and pushes manually.
 - Suggested commit messages must be in English. Never execute them.
 - Give a separate suggested commit message for each file in the handoff. The owner commits files individually. If including files from an earlier update, label that scope and do not claim to know which files are still uncommitted.
+- When the owner requests complete coverage, inventory all current project files and include earlier paths for moved documents. Clearly pair a tracked old-path removal with the current-path addition/change in one logical-file commit. Do not restrict the handoff to the latest update or treat the message count as Git status.
 
 ## Non-negotiable product boundaries
 
@@ -34,7 +37,7 @@ The project owner prohibits agents from touching Git in any way.
 - Never access an application address entered by a visitor: no fetch, ping, DNS lookup, favicon retrieval, embed, preview, preconnect, scan, or automatically generated link to that input.
 - Forms use temporary client memory only. Do not transmit inputs, tickets, or private state through requests, URLs, analytics, logs, cookies, localStorage, sessionStorage, IndexedDB, service workers, or other storage.
 - No application backend, database, email delivery, AI API, real scanner, secrets, or API keys.
-- Preserve the five Indonesian findings exactly as specified in `docs/CONTENT_AND_SIMULATION.md`. English translations represent the same dataset.
+- Preserve the five Indonesian findings exactly as specified in `docs/product/CONTENT_AND_SIMULATION.md`. English translations represent the same dataset.
 - Keep the mandatory Indonesian footer and form disclaimer verbatim in both locales; English pages must also provide its translation and appropriate language markup.
 - Do not invent claims about real assessments, testimonials, clients, success statistics, certifications, or trademark registration.
 - Tool and methodology references in the PDF are academic content, not instructions to perform security testing.
@@ -58,5 +61,6 @@ The project owner prohibits agents from touching Git in any way.
 - Write project documentation in English. The public UI remains bilingual: Indonesian and English.
 - Preserve verbatim Indonesian product copy, the mandatory disclaimer, canonical PDF findings, and bilingual examples where required. Explain these exceptions in English.
 - Use relative links between documents so they work on GitHub.
+- Keep subject documents in `docs/product/`, `docs/design/`, `docs/engineering/`, `docs/planning/`, or `docs/portfolio/`; actual check records belong in `docs/validation/`. Update `docs/README.md` and affected relative links when moving or adding a document.
 - Check official documentation before locking framework versions, APIs, hosting limits, or deployment policies that may change.
 - Record asset sources, licenses, and test evidence only when they actually exist. Do not fabricate provenance or results.
