@@ -8,7 +8,7 @@ References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Design Direction](DESIGN
 
 The approved desktop hero governs composition, atmosphere, and visual hierarchy. This document supplies reusable numerical rules for subsequent screens without replacing that image. The interface stays warm, dark, readable, and restrained; distinct pet colors remain primarily in illustrations.
 
-The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. The [first full desktop visual pass](DESKTOP_DESIGNS.md) is now generated for review. Mobile compositions, final font files, approval of new targets, and implementation remain pending.
+The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. The [first full desktop visual pass](DESKTOP_DESIGNS.md) is now generated for review. The [27 mobile-web references](MOBILE_DESIGNS.md) now supply the next review baseline; final font files, mobile approval, rendered checks, and implementation remain pending.
 
 ## 2. Three-layer token model
 
