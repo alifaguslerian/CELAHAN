@@ -1,6 +1,6 @@
 # CELAHAN — Design Direction
 
-Status: Revised desktop hero approved and preserved; four pet concepts/shared rules drafted; complete pages/mobile pending · October 27, 2026  
+Status: Hero preserved; other desktop directions accepted; package-cluster revision for review; mobile pending · October 28, 2026  
 References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Design Reference Lock](DESIGN_REFERENCE_LOCK.md)
 
 ## 1. Character and principles
@@ -91,6 +91,8 @@ One owner-approved hero image now exists and is preserved in the project. Review
 - The guide does not repeatedly open on its own. Its trigger and close button are easy to find; dismissal applies for the active session.
 
 ## 9. Screen inventory for review
+
+Current desktop output is mapped in [Desktop Design Gallery](DESKTOP_DESIGNS.md): 24 selected section/page/state references plus the unchanged approved hero. The owner requested desktop first and mobile later. The owner accepted the other desktop visual directions and requested only a tight homepage package cluster: names above on hover/focus, name/service/price after activation, no captions below. Future implementation reduces unnecessary repetition without removing required labels; generated lettering does not override canonical source copy. Mobile compositions, final fonts, and interaction verification remain pending.
 
 Prepare desktop and mobile presentations for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
 
