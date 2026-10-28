@@ -12,7 +12,7 @@ The Indonesian statement above is the mandatory original product disclaimer.
 
 **Stage: desktop and mobile visual references — October 28, 2026.**
 
-The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged and governed by the Design Reference Lock. Four distinct pet concepts, shared visual rules, and **24 desktop page/section/state references** are now available for review. The hero remains preserved. The owner accepted the desktop visual directions, including the revised homepage package cluster. Six superseded desktop iterations are retained and marked in the gallery. Final fonts/assets, numerical tokens, and detailed package terms retain their separate review status. A separate set of **27 portrait mobile-web references** is now generated for review, with two superseded mobile iterations retained. The owner requested completion of mobile references before subdividing the implementation plan into coherent, moderately sized packages. Final logo/runtime exports, application implementation/tests, video, and deployment do not yet exist. This repository can be published as an explicitly labeled planning/design baseline.
+The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged and governed by the Design Reference Lock. Four distinct pet concepts, shared visual rules, and **24 desktop page/section/state references** are now available for review. The hero remains preserved. The owner accepted the desktop visual directions, including the revised homepage package cluster. Only selected desktop references are retained; obsolete iterations were removed at the owner's request. Final fonts/assets, numerical tokens, and detailed package terms retain their separate review status. A separate set of **27 portrait mobile-web references** is now generated for review, with obsolete mobile iterations removed after review. The owner requested completion of mobile references before subdividing the implementation plan into coherent, moderately sized packages. The owner selected Open Threshold as the logo direction. Final vector/runtime exports, application implementation/tests, video, and deployment remain pending. This repository can be published as an explicitly labeled planning/design baseline.
 
 According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
 
@@ -43,6 +43,7 @@ Use the [grouped documentation index](docs/README.md) for product, design, engin
 | [Content and Simulation](docs/product/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
 | [Design Direction](docs/design/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
 | [Design Reference Lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
+| [Logo Guidelines](docs/design/LOGO_GUIDELINES.md) | Owner-approved Open Threshold reference and pending production-export checks |
 | [Mobile Design Gallery](docs/design/MOBILE_DESIGNS.md) | 27 mobile-web viewports, scroll assembly, touch flows, and review limits |
 | [Desktop Design Gallery](docs/design/DESKTOP_DESIGNS.md) | Selected desktop references, page assembly, state coverage, and implementation caveats |
 | [Shared Visual System](docs/design/VISUAL_SYSTEM.md) | Proposed tokens, typography roles, spacing, component states, and checked color pairs |
@@ -78,20 +79,23 @@ Completed checks: [documentation review on October 27, 2026](docs/validation/202
 
 Approved package/reference direction: [package and visual direction review](docs/validation/2026-10-27-package-and-visual-direction.md).
 
-Detailed scope/pricing baseline and per-file handoff: [package-detail documentation review](docs/validation/2026-10-27-package-details.md).
+Detailed scope/pricing review: [package-detail documentation review](docs/validation/2026-10-27-package-details.md).
 
 **All Git operations are performed manually by the project owner. Agents do not run Git or modify repositories through APIs.** Unimplemented files and checks that have not been run must remain explicitly identified.
 
-The owner commits files individually. Handoffs provide one English commit-message suggestion per file; they do not claim which files are currently uncommitted.
+The owner commits files individually. Per-file commit suggestions are delivered in chat only, with correct paths and descriptions of actual changes.
 
-Current mobile output: [mobile gallery](docs/design/MOBILE_DESIGNS.md) and [mobile design validation](docs/validation/2026-10-28-mobile-designs.md). The commit handoff distinguishes actual additions/modifications using pre-task file fingerprints and provides manual per-file command pairs.
+Current mobile output: [mobile gallery](docs/design/MOBILE_DESIGNS.md) and [mobile design validation](docs/validation/2026-10-28-mobile-designs.md). Internal commit inventories and fingerprint snapshots are not retained in this repository.
 
 Current desktop output: [desktop gallery](docs/design/DESKTOP_DESIGNS.md) and [October 28 asset/document validation](docs/validation/2026-10-28-desktop-designs.md). Raster review is not application testing.
 
-Current handoff: [complete file inventory, move-path pairings, and per-file commit messages](docs/planning/COMMIT_HANDOFF.md).
 
 ## References and assets
 
 Content source: `CELAHAN_Perancangan_Layanan_Final (1).pdf`, Chapters III–IV. The source PDF is not included; the necessary illustrative data is recorded in the documentation. Team names, personal details, and the complete academic document are not automatically published.
 
 No project license has been selected. A public repository must not be treated as a grant of reuse rights. Record the sources and usage rights of the logo, fonts, mascot, music, and other assets when they are created or selected.
+
+## Repository hygiene
+
+The project excludes local environment secrets, private keys, dependencies, generated builds, caches, test output, hosting state, and temporary handoff notes through `.gitignore`. An example environment file, if later needed, must contain placeholders only. Keep selected design sources under `design/`, and prepare separate optimized runtime assets; do not ship presentation boards or unused drafts in the website. Clean-code, security/privacy, and performance requirements are recorded in AGENTS and Quality and Security.
