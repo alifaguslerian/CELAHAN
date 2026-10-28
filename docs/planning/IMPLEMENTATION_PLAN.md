@@ -27,7 +27,7 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 | --- | --- | --- | --- |
 | P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
 | P1 | Brand identity and core assets | P0 + owner's visual choices | Hero pet aesthetic approved; four v1 pet PNGs generated for review; final logo/exports pending |
-| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Hero preserved; other 23 desktop directions accepted; package-cluster revision for review; mobile/final assets pending |
+| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Desktop directions accepted/preserved; 27 mobile references generated for review; final fonts/assets and implementation pending |
 | P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
 | P4 | Informational pages and content | P2 + P3 | Not started |
 | P5 | Form, session, status, and report | P3 + content contracts; P2 styling | Not started |
@@ -35,6 +35,8 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 | P7 | Validation and fixes | P4–P6 | Not started |
 | P8 | Deployment and handoff | P7 + confirmed account/publication choices | Not started |
 | P9 | Video and case study | Sufficiently stable UI; P8 for the final URL | Not started |
+
+The owner requested mobile references before any further implementation-plan subdivision. The current P0–P9 phase structure is retained in this update; no application foundation or finer work packages were created.
 
 Current production sequence: preserve the approved desktop hero → shared visual rules and four distinct pets → complete desktop home, service-discovery, simulation, and supporting-screen design pass → owner review → dedicated mobile compositions → final assets and implementation foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Design Reference Lock records proposed screen batches. Flow/wireframe review remains useful for unreviewed screens without reopening the already-approved hero. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
 
@@ -80,12 +82,14 @@ Planned files: Design Direction, User Flows, Content, and design artifacts in `d
 - [x] Record owner approval of the revised desktop hero image; this does not complete the homepage or mobile UI.
 - [x] Produce six home sections, service detail/comparison, process, form/error/success, three status stages, finding detail, About/privacy/404, language dialog, guide, direct report, and EN form/report references; preserve the approved hero unchanged.
 - [x] Owner accepted the other desktop visual directions; regenerate only the requested homepage package cluster.
-- [ ] Owner reviews the revised clustered selector; final fonts/tokens/assets and mobile remain pending.
+- [x] Owner accepted the revised clustered selector and closed desktop reference exploration.
+- [ ] Owner reviews the 27 generated mobile references; final fonts/tokens/assets remain separate work.
 - [ ] During implementation, trim redundant cross-page copy while retaining required disclosures and task-critical guidance.
-- [ ] Produce dedicated mobile compositions after the desktop design review, as requested.
+- [x] Produce 27 dedicated portrait mobile-web references, including menu, touch package browsing, process scroll segments, form/errors/success, status/report/details, guide/dialog, support pages, and English form/report.
+- [ ] After mobile review, subdivide implementation into coherent, moderately sized packages with usable outcomes and relevant checks. Do not fragment the plan into a separate phase for every small component/file.
 - [ ] Review the package comparison, uncertain/mismatched fit, simulated consultation entry, About, and FAQ; distinguish the authored numerical baseline from owner-approved concepts.
 - [ ] Review the no-mascot journey, direct report access, and language/reset guards.
-- [ ] Create desktop/mobile compositions using the five findings and actual ID/EN copy.
+- [x] Generate desktop/mobile references using the five findings, with English form/report copy-fit variants; other locale/state combinations reuse demonstrated components and still require review.
 - [x] Draft shared palette, typography roles, spacing, and component-state rules; calculate five proposed solid-color contrast pairs.
 - [ ] Review visual tokens and select licensed font families; check actual rendered component contrast and approved-hero fidelity.
 - [ ] Review the mobile menu, virtual keyboard, finding disclosures, and assistance dialog.
