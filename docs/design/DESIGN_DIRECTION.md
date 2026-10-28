@@ -73,13 +73,13 @@ Inputs have labels, guidance, character limits where relevant, and errors connec
 
 ## 7. Logo and mascot
 
-Planned logo deliverables: a primary wordmark, a compact symbol if needed for the favicon, a monochrome version, small-size guidance, and clear-space rules. The name must be readable and the identity must work without the mascot. The final form requires owner review.
+Planned logo deliverables: a primary wordmark, a compact symbol if needed for the favicon, a monochrome version, small-size guidance, and clear-space rules. The name must be readable and the identity must work without the mascot. The owner selected [Open Threshold](LOGO_GUIDELINES.md) as the logo direction. Preserve its arch/threshold geometry and wordmark; discarded alternatives have been removed. The approved reference is raster source, and editable vector/runtime exports and small-size checks remain pending.
 
 Planned mascot deliverables: neutral, introducing, explaining, directing attention, and finished poses. Expressions represent guidance, not proof that a scanner is working. Choose a simple form recognizable at small sizes; do not require 3D assets or a heavy animation runtime.
 
 The approved working names are SCOUT, WARDEN, NEXUS, and ATLAS, with personalities/attribute directions defined in Service Packages. The Minecraft screenshot informs colors/motifs; Avara informs friendly iconic character language and grouped selection. The approved hero shows a compact pet at a dim doorway above stairs. Each pet must have its own distinct body silhouette and principal color; preserve that individual identity across its appearances rather than making all four bodies identical.
 
-One owner-approved hero image now exists and is preserved in the project. Review the four-character lineup, individual palettes, voice, logo form, and usage contexts before final asset production. Record sources, export formats, production process, and usage rights as assets are produced. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. Complete pages, mobile designs, the final logo, and final mascot exports have not been produced.
+One owner-approved hero image now exists and is preserved in the project. Review the four-character lineup, individual palettes, voice, logo form, and usage contexts before final asset production. Record sources, export formats, production process, and usage rights as assets are produced. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. Desktop/mobile references now exist, and Open Threshold is the approved logo direction. The final logo, optimized runtime assets, and final mascot exports remain pending.
 
 ## 8. Motion and assistance
 
