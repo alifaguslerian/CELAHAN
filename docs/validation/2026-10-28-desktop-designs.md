@@ -3,7 +3,7 @@
 Date: October 28, 2026  
 Scope: Desktop raster designs and documentation; no application implementation
 
-References: [Gallery](../design/DESKTOP_DESIGNS.md), [Manifest](../../design/desktop/v1/manifest.json), [Design lock](../design/DESIGN_REFERENCE_LOCK.md), [Commit handoff](../planning/COMMIT_HANDOFF.md)
+References: [Gallery](../design/DESKTOP_DESIGNS.md), [Manifest](../../design/desktop/v1/manifest.json), [Design lock](../design/DESIGN_REFERENCE_LOCK.md)
 
 ## Authorized work and outputs
 
