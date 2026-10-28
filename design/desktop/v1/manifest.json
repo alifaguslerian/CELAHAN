@@ -65,7 +65,7 @@
           "outputAsset": "design/desktop/v1/02-home-packages-r2.png"
         }
       ],
-      "ownerReview": "Revised at owner's request; this new cluster reference awaits review.",
+      "ownerReview": "Owner accepted the revised clustered selector before requesting the mobile design pass.",
       "interaction": "Idle hides all captions. Hover/focus shows only the corresponding name above its pet. Activation reveals the selected name, service/scope and fictional price in the detail view."
     },
     {
@@ -609,12 +609,12 @@
     "method": "Built-in image generation; one horizontal reference per section/state.",
     "selectedFrames": 24,
     "retainedSupersededIterations": 6,
-    "approval": "Approved hero preserved. Owner accepted the other 23 desktop visual directions on October 28 and requested a revision only to frame 02. Frame 02's new cluster image awaits review. Acceptance does not approve final fonts, unreviewed commercial terms, or functional implementation.",
+    "approval": "Approved hero preserved. All current selected desktop visual directions, including revised frame 02, accepted by owner. Implementation copy may be refined; final fonts, commercial terms, exports and behavior remain separate work.",
     "mobile": "Deferred by owner until after desktop design.",
     "application": "Not implemented; no application tests performed."
   },
   "sharedAdditionalConstraints": "Use only the warm neutral/ivory/sand interface palette for severity and remediation labels. Keep status chips monochrome or subtly sand-outlined with explicit text; do not introduce red, orange, green or blue UI badges. Distinct pet colors are allowed only in pet artwork. On functional request/status/report/privacy/dialog screens, do not render stairs, a portal, or decorative mascot scenes unless the specific frame requests a small character. Prioritize usable interface structure and readable text.",
-  "status": "other_desktop_visuals_accepted_package_cluster_revised_for_review",
+  "status": "desktop_visual_direction_accepted",
   "sourceDirectory": "C:/Users/user/.codex/generated_images/01a16266-fda5-7571-aead-82d20c3044fd",
   "ownerReview": {
     "date": "2026-10-28",
@@ -644,6 +644,7 @@
       "24"
     ],
     "revisionFrame": "02",
-    "implementationCopy": "Reduce redundant cross-page explanations and unnecessary copy while preserving required footer/form and illustrative-data labels."
+    "implementationCopy": "Reduce redundant cross-page explanations and unnecessary copy while preserving required footer/form and illustrative-data labels.",
+    "clusterAccepted": "The owner accepted the revised cluster and closed desktop-reference exploration before requesting mobile designs."
   }
 }
