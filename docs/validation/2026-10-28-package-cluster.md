@@ -3,7 +3,7 @@
 Date: October 28, 2026  
 Scope: One desktop image revision and related interaction/implementation notes
 
-References: [Gallery](../design/DESKTOP_DESIGNS.md), [Manifest](../../design/desktop/v1/manifest.json), [User flows](../product/USER_FLOWS.md), [Decisions](../planning/DECISIONS.md), [Commit handoff](../planning/COMMIT_HANDOFF.md)
+References: [Gallery](../design/DESKTOP_DESIGNS.md), [Manifest](../../design/desktop/v1/manifest.json), [User flows](../product/USER_FLOWS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Owner request and approval scope
 
