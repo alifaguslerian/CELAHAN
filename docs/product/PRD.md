@@ -1,8 +1,10 @@
 # CELAHAN — Product Requirements Document
 
 Status: Complete draft for review; not authorization to implement  
-Version: 0.5 · October 27, 2026  
+Version: 0.6 · October 28, 2026  
 References: [Project Brief](PROJECT_BRIEF.md), [Decisions](../planning/DECISIONS.md)
+
+Current visual evidence: [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). The owner accepted the other desktop visual directions and requested only the homepage package-cluster revision. Its new raster awaits review; visual acceptance is not implemented acceptance criteria. The owner requested desktop design first and mobile afterward; mobile and bilingual requirements remain unchanged.
 
 ## 1. Product goals
 
