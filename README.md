@@ -12,7 +12,7 @@ The Indonesian statement above is the mandatory original product disclaimer.
 
 **Stage: documentation and visual design — October 27, 2026.**
 
-The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged in the project and governed by the Design Reference Lock. The four package pets must be small and distinct in shape and principal color. Detailed package caps, illustrative prices, effort, and retest conditions are drafted for review. Complete pages/mobile screens, the final logo and four-character export set, technical implementation, application test results, video, and deployment do not yet exist. This repository can be published as a planning/design baseline, with that status clearly stated.
+The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged in the project and governed by the Design Reference Lock. Four distinct small pet concepts and a shared visual-system baseline have now been produced for review. These new concepts, numerical visual tokens, and detailed package terms are not yet owner-approved final designs. Complete pages/mobile screens, the final logo and runtime export set, technical implementation, application test results, video, and deployment do not yet exist. This repository can be published as a planning/design baseline, with that status clearly stated.
 
 According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
 
@@ -32,23 +32,27 @@ Entered application addresses are never accessed. Forms do not transmit data or 
 
 ## Documentation map
 
+Use the [grouped documentation index](docs/README.md) for product, design, engineering, planning, portfolio, and validation records.
+
 | Document | Contents |
 | --- | --- |
 | [Agent Instructions](AGENTS.md) | Authorization boundaries, manual Git, and working rules |
-| [Project Brief](docs/PROJECT_BRIEF.md) | Goals, context, audiences, and project boundaries |
-| [PRD](docs/PRD.md) | Requirements, release priorities, and acceptance criteria |
-| [User Flows](docs/USER_FLOWS.md) | Navigation, forms, status, reset, language switching, and error states |
-| [Content and Simulation](docs/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
-| [Design Direction](docs/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
-| [Design Reference Lock](docs/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
-| [Visual References](docs/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
-| [Service Packages](docs/SERVICE_PACKAGES.md) | Approved concepts, mascot roles, detailed draft scope/prices, counting rules, deliverables, and retest conditions |
-| [Architecture](docs/ARCHITECTURE.md) | System boundaries, routing, state, structure, and dependencies |
-| [Quality and Security](docs/QUALITY_AND_SECURITY.md) | Testing criteria, performance, accessibility, and security |
-| [Implementation Plan](docs/IMPLEMENTATION_PLAN.md) | Small phases, deliverables, dependencies, and review points |
-| [Decisions](docs/DECISIONS.md) | Confirmed decisions, recommendations, and open questions |
-| [Promo Video Brief](docs/PROMO_VIDEO_BRIEF.md) | Video goals, initial storyboard, and claim boundaries |
-| [Release and Portfolio](docs/RELEASE_AND_PORTFOLIO.md) | Prototype submission, publication, and case study evidence |
+| [Project Brief](docs/product/PROJECT_BRIEF.md) | Goals, context, audiences, and project boundaries |
+| [PRD](docs/product/PRD.md) | Requirements, release priorities, and acceptance criteria |
+| [User Flows](docs/product/USER_FLOWS.md) | Navigation, forms, status, reset, language switching, and error states |
+| [Content and Simulation](docs/product/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
+| [Design Direction](docs/design/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
+| [Design Reference Lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
+| [Shared Visual System](docs/design/VISUAL_SYSTEM.md) | Proposed tokens, typography roles, spacing, component states, and checked color pairs |
+| [Mascot Guidelines](docs/design/MASCOT_GUIDELINES.md) | Four pet concepts, shape/palette distinctions, PNG records, and prompts |
+| [Visual References](docs/design/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
+| [Service Packages](docs/product/SERVICE_PACKAGES.md) | Approved concepts, mascot roles, detailed draft scope/prices, counting rules, deliverables, and retest conditions |
+| [Architecture](docs/engineering/ARCHITECTURE.md) | System boundaries, routing, state, structure, and dependencies |
+| [Quality and Security](docs/engineering/QUALITY_AND_SECURITY.md) | Testing criteria, performance, accessibility, and security |
+| [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md) | Small phases, deliverables, dependencies, and review points |
+| [Decisions](docs/planning/DECISIONS.md) | Confirmed decisions, recommendations, and open questions |
+| [Promo Video Brief](docs/portfolio/PROMO_VIDEO_BRIEF.md) | Video goals, initial storyboard, and claim boundaries |
+| [Release and Portfolio](docs/portfolio/RELEASE_AND_PORTFOLIO.md) | Prototype submission, publication, and case study evidence |
 
 Suggested reading order: Project Brief → PRD → User Flows and Content → Design and Architecture → Quality → Implementation Plan. Consult Decisions when a choice is still under review.
 
@@ -66,7 +70,7 @@ Once the application foundation is authorized and completed, update this README 
 
 ## Progress tracking
 
-Phase status is recorded in [Implementation Plan](docs/IMPLEMENTATION_PLAN.md), decisions in [Decisions](docs/DECISIONS.md), and future verification results will follow the format in [Quality and Security](docs/QUALITY_AND_SECURITY.md).
+Phase status is recorded in [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md), decisions in [Decisions](docs/planning/DECISIONS.md), and future verification results will follow the format in [Quality and Security](docs/engineering/QUALITY_AND_SECURITY.md).
 
 Completed checks: [documentation review on October 27, 2026](docs/validation/2026-10-27-documentation.md). These are not application test results.
 
@@ -77,6 +81,8 @@ Detailed scope/pricing baseline and per-file handoff: [package-detail documentat
 **All Git operations are performed manually by the project owner. Agents do not run Git or modify repositories through APIs.** Unimplemented files and checks that have not been run must remain explicitly identified.
 
 The owner commits files individually. Handoffs provide one English commit-message suggestion per file; they do not claim which files are currently uncommitted.
+
+Current handoff: [complete file inventory, move-path pairings, and per-file commit messages](docs/planning/COMMIT_HANDOFF.md).
 
 ## References and assets
 
