@@ -20,6 +20,7 @@ This index groups the English project documentation by purpose. Required Indones
 | Document | Purpose |
 | --- | --- |
 | [Design Reference Lock](design/DESIGN_REFERENCE_LOCK.md) | Approved hero PNG, checksum, visual invariants, and screen batches |
+| [Logo Guidelines](design/LOGO_GUIDELINES.md) | Approved Open Threshold identity reference and production requirements |
 | [Mobile Design Gallery](design/MOBILE_DESIGNS.md) | 27 portrait mobile-web references, scroll/touch flow, and source-content overrides |
 | [Desktop Design Gallery](design/DESKTOP_DESIGNS.md) | 24 selected desktop frames, preserved hero, page assembly, and implementation caveats |
 | [Design Direction](design/DESIGN_DIRECTION.md) | Responsive composition, accessibility, identity, and motion |
@@ -27,7 +28,7 @@ This index groups the English project documentation by purpose. Required Indones
 | [Shared Visual System](design/VISUAL_SYSTEM.md) | Draft color tokens, typography roles, spacing, component states, and contrast calculations |
 | [Mascot Guidelines](design/MASCOT_GUIDELINES.md) | Four generated pet concepts, shape/palette rules, source records, and prompts |
 
-The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with two retained superseded mobile iterations. Six superseded desktop iterations are retained. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Visual acceptance is not proof of working interactions.
+The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Visual acceptance is not proof of working interactions.
 
 ## Engineering
 
@@ -42,7 +43,6 @@ The saved hero is preserved. All selected desktop visual directions, including t
 | --- | --- |
 | [Implementation Plan](planning/IMPLEMENTATION_PLAN.md) | Small phases, dependencies, actual progress, and planned checks |
 | [Decisions](planning/DECISIONS.md) | Confirmed choices, authored baselines, open decisions, and history |
-| [Commit Handoff](planning/COMMIT_HANDOFF.md) | Complete current-file inventory, paired former paths for moved documents, and one English message per logical file |
 
 ## Portfolio
 
@@ -53,7 +53,7 @@ The saved hero is preserved. All selected desktop visual directions, including t
 
 ## Validation records
 
-Historical reports preserve what was checked at that time. Relative links may be updated when documents move; historical counts and outcomes are not rewritten as new application results.
+Historical reports preserve what was checked at that time. Later authorized cleanup removed obsolete image drafts and repository commit handoffs; original counts describe those earlier checkpoints, not the current inventory. Links follow current retained artifacts. Historical outcomes are not new application results.
 
 | Record | Scope |
 | --- | --- |
@@ -62,9 +62,12 @@ Historical reports preserve what was checked at that time. Relative links may be
 | [Package details](validation/2026-10-27-package-details.md) | Quantitative scope/pricing/retest documentation |
 | [Mascots and documentation organization](validation/2026-10-27-mascots-and-docs.md) | Four source concepts, preserved hero, new rules, and moved-link validation |
 | [Desktop designs](validation/2026-10-28-desktop-designs.md) | Initial 24-frame batch, five then-retained iterations, and checks at that point |
-| [Package-cluster revision](validation/2026-10-28-package-cluster.md) | One revised frame, other desktop visual acceptance, interaction notes, and refreshed handoff checks |
-| [Mobile designs](validation/2026-10-28-mobile-designs.md) | Mobile images, preserved desktop assets, source fingerprints, current-change inventory, and manual command checks |
+| [Package-cluster revision](validation/2026-10-28-package-cluster.md) | One revised frame, other desktop visual acceptance, interaction notes, and historical file checks |
+| [Mobile designs](validation/2026-10-28-mobile-designs.md) | Mobile images, preserved desktop assets, source fingerprints, and document checks |
+| [Logo concepts](validation/2026-10-28-logo-concepts.md) | Three selected concepts, one retained iteration, and asset preservation |
 
 ## Artifact locations
 
 The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. `design/desktop/v1/` contains the desktop PNGs/manifest; `design/mobile/v1/` contains portrait mobile references and their manifest. These are source/review artifacts, not an existing application or an optimized runtime asset set.
+
+`design/brand/approved/` contains the owner-approved Open Threshold reference; `design/brand/manifest.json` records its source. Discarded alternatives are removed. Final vector/runtime assets are still pending.
