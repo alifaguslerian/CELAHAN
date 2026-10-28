@@ -26,7 +26,7 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 | Phase | Deliverable | Dependencies | Status |
 | --- | --- | --- | --- |
 | P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
-| P1 | Brand identity and core assets | P0 + owner's visual choices | Hero pet aesthetic approved; four v1 pet PNGs generated for review; final logo/exports pending |
+| P1 | Brand identity and core assets | P0 + owner's visual choices | Open Threshold logo direction selected; pet concepts and approved UI references retained; final exports pending |
 | P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Desktop directions accepted/preserved; 27 mobile references generated for review; final fonts/assets and implementation pending |
 | P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
 | P4 | Informational pages and content | P2 + P3 | Not started |
@@ -63,8 +63,10 @@ Files/assets: `docs/design/DESIGN_DIRECTION.md`, `docs/design/VISUAL_SYSTEM.md`,
 - [x] Record owner-selected visual reference roles and the four package-character directions in Visual References and Service Packages.
 - [x] Preserve the approved hero pet aesthetic as a source reference in Design Reference Lock; final isolated character exports are still pending.
 - [ ] Finalize brand messaging, logo direction, mascot proportions/palette, and the exact artwork treatment.
-- [ ] Create logo options after asset-production authorization; evaluate small-size and monochrome readability.
-- [ ] Select one direction and produce the required wordmark/symbol.
+- [x] Generate three initial logo directions at the owner's request, with dark/light and monochrome presentation specimens; retain one corrected wordmark iteration.
+- [x] Owner selected Open Threshold and closed logo-direction exploration; discarded alternatives were removed.
+- [ ] Refine/vectorize the approved direction and check actual small-size/monochrome exports. Concept-sheet specimens are not pixel-size tests.
+- [ ] Produce editable and optimized wordmark/symbol assets from the approved Open Threshold reference.
 - [x] Generate four compact pet concepts with distinct body silhouettes/principal colors and record prompts/source fingerprints; refine WARDEN's outline to improve distinction.
 - [ ] Owner reviews the four candidates and proposed character-to-package mapping.
 - [ ] Produce the reviewed final characters and minimum guide/hero poses; preserve the approved hero and keep source concepts separate from runtime exports.
@@ -72,7 +74,6 @@ Files/assets: `docs/design/DESIGN_DIRECTION.md`, `docs/design/VISUAL_SYSTEM.md`,
 
 Verification: the logo is readable in the mobile header/favicon; the mascot is recognizable at guide size; inspect personal metadata and SVG scripts. Decorative assets do not require unit tests.
 
-Suggested manual commit handoff: `design: establish CELAHAN brand assets`.
 
 ## 5. P2 — UX/UI
 
@@ -95,7 +96,7 @@ Planned files: Design Direction, User Flows, Content, and design artifacts in `d
 - [ ] Review the mobile menu, virtual keyboard, finding disclosures, and assistance dialog.
 - [ ] Review reduced motion and long text before finalizing the design.
 
-Verification: cover the Design Direction screen inventory, equivalent mobile functionality, and clear concept labels. Handoff: `design: define bilingual desktop and mobile flows`.
+Verification: cover the Design Direction screen inventory, equivalent mobile functionality, and clear concept labels.
 
 ## 6. P3 — Technical foundation
 
@@ -111,7 +112,6 @@ Planned files: `package.json`, lockfile, Next/TypeScript/ESLint configuration, r
 
 Interfaces: `Locale`, `PageKey`, `routeFor`, `getDictionary`, and the provider specified in Architecture. Verification: build/lint/typecheck, route inventory, locale metadata, static-preview deep links, and the no-JavaScript shell. Do not build further features on a failing routing foundation.
 
-Handoff: `chore: scaffold bilingual static application`.
 
 ## 7. P4 — Informational pages, one unit at a time
 
@@ -124,7 +124,6 @@ Files: `src/app/[locale]/page.tsx`, dictionaries, and only the hero/summary comp
 - [ ] Apply desktop/mobile layouts and both languages.
 - [ ] Check keyboard use, long text, the 320 px viewport, and initial asset load.
 
-Handoff: `feat: add bilingual home page`.
 
 ### P4.2 Services and Process
 
@@ -136,7 +135,6 @@ Files: `services/page.tsx`, `process/page.tsx`, local stage/package content, and
 - [ ] Implement the eight stages and conceptual outputs in ID/EN.
 - [ ] Check semantic order and a mobile timeline without mandatory horizontal scrolling.
 
-Handoff: `feat: explain service scope and process`.
 
 ### P4.3 Supporting pages
 
@@ -147,7 +145,6 @@ Files: `about/page.tsx`, `privacy/page.tsx`, the P3-selected 404 template, share
 - [ ] Apply a custom 404 and home links for both languages.
 - [ ] Check footer links, titles/descriptions, canonicals/alternates, and noindex on demo routes.
 
-Handoff: `feat: add privacy and custom error pages`.
 
 ## 8. P5 — Core simulation
 
@@ -160,7 +157,6 @@ Files: `features/request/`, `request/page.tsx`, `tests/unit/request-validation.t
 - [ ] Build ID/EN fields/errors and error focus; prevent native submission when JavaScript is disabled.
 - [ ] Check valid/invalid submission on desktop/mobile, with network interception installed before the browser test starts.
 
-Handoff: `feat: add safe client-only request form`.
 
 ### P5.2 Ticket, success, and status
 
@@ -171,7 +167,6 @@ Files: `features/simulation/`, `request/received/page.tsx`, status section in `r
 - [ ] Implement success, no-session, manual status, reset, and cancel/confirm language switching.
 - [ ] Check refresh, new tabs, back/forward, bfcache restore, and the absence of data in URLs/storage/logs.
 
-Handoff: `feat: add deterministic demo lifecycle`.
 
 ### P5.3 Report
 
@@ -183,7 +178,6 @@ Files: `content/findings.ts`, `features/report/`, `report/page.tsx`, `tests/unit
 - [ ] Check direct report access without a form, illustration labels, complete fields, and keyboard access to details/assistance.
 - [ ] Verify that each package selection still exposes the same five findings and never implies repairs or URL-derived results.
 
-Handoff: `feat: present illustrative findings across devices`.
 
 ### P5.4 Package fit and simulated consultation
 
@@ -194,7 +188,6 @@ Files: `features/packages/`, local dictionaries, shared temporary planning state
 - [ ] Cover planning state in reset/language/navigation behavior and clear it on submission; retain the existing success/session fields.
 - [ ] Run T-13 in both locales and mobile/desktop; no target request, communication, purchase, booking, persistence, or dataset variation.
 
-Handoff: `feat: connect package guidance to the request simulation`.
 
 Prototype milestone: once these units work, the owner can assess academic submission with clearly stated limitations. This does not remove P6–P9 from the portfolio plan.
 
@@ -207,7 +200,6 @@ Files: `features/companion/`, mascot assets, dictionaries, motion styles, `tests
 - [ ] Apply focus return, Escape, close behavior, reduced motion, and text fallback when assets fail.
 - [ ] Load assistance assets when needed; check bundle size and keyboard/scroll conflicts.
 
-Handoff: `feat: add optional simulation guide`.
 
 ## 10. P7 — Quality and fixes
 
@@ -220,7 +212,6 @@ Files: necessary security/build configuration, tests, and `docs/validation/` for
 - [ ] Check screen reader/keyboard, ID/EN, mobile/desktop, and physical devices if available.
 - [ ] Fix blockers; rerun tests related to the changes, then run final build/lint/typecheck.
 
-Handoff: `test: verify privacy accessibility and performance`, or separate meaningful fix commits chosen by the owner.
 
 ## 11. P8 — Deployment
 
@@ -233,7 +224,6 @@ Files: hosting configuration, README, final privacy copy, metadata origin, valid
 - [ ] Update privacy copy based on verified hosting behavior.
 - [ ] Record the deployment version, hosting/owner rollback procedure, and open issues.
 
-Handoff: `docs: record verified portfolio deployment`.
 
 ## 12. P9 — Video and case study
 
@@ -245,10 +235,9 @@ Files: Promo Video Brief, video sources separate from the website runtime, and c
 - [ ] Review concept/illustration labels, licenses, readability, and whether the video accurately represents website capabilities.
 - [ ] Write the case study covering the problem, contributions, decisions, trade-offs, evidence, and limitations.
 
-Handoff: `docs: add CELAHAN portfolio case study`.
 
 ## 13. Updating progress
 
 Check off a step only after it is completed. Record actual results in validation reports rather than marking every phase done after one build. When a unit is ready, report changes and limitations to the owner for review/manual commit. Agents perform no Git step in any phase.
 
-Provide a separate English commit-message suggestion for each file. If the handoff also includes an earlier update, identify that scope and let the owner skip files already committed; never inspect Git to determine pending files.
+Provide a separate English commit-message suggestion for each file in chat only; do not save message/command handoff artifacts in the repository. If the handoff also includes an earlier update, identify that scope and let the owner skip files already committed; never inspect Git to determine pending files.
