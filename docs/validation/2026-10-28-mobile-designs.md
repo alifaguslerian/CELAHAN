@@ -3,7 +3,7 @@
 Date: October 28, 2026  
 Scope: Mobile image references, documentation, and verified manual commit handoff
 
-References: [Mobile gallery](../design/MOBILE_DESIGNS.md), [Mobile manifest](../../design/mobile/v1/manifest.json), [Desktop gallery](../design/DESKTOP_DESIGNS.md), [Commit handoff](../planning/COMMIT_HANDOFF.md)
+References: [Mobile gallery](../design/MOBILE_DESIGNS.md), [Mobile manifest](../../design/mobile/v1/manifest.json), [Desktop gallery](../design/DESKTOP_DESIGNS.md)
 
 ## Authorized work and output
 
