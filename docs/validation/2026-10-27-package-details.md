@@ -3,7 +3,7 @@
 Date: October 27, 2026  
 Scope: Package-detail documentation and per-file commit handoff preference
 
-References: [Service Packages](../SERVICE_PACKAGES.md), [Decisions](../DECISIONS.md), [Quality](../QUALITY_AND_SECURITY.md), [Agent Instructions](../../AGENTS.md)
+References: [Service Packages](../product/SERVICE_PACKAGES.md), [Decisions](../planning/DECISIONS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Agent Instructions](../../AGENTS.md)
 
 ## Request and status
 
