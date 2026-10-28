@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
 Status: Phase plan for review; documentation and requested image-based design exploration are active; application implementation has not started  
-Updated: October 27, 2026
+Updated: October 28, 2026
 
 **Goal:** complete a bilingual concept website with dedicated mobile/desktop UI, a strong identity, safe simulation, quality evidence, and portfolio publication.
 
@@ -15,7 +15,7 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 
 - Never transmit, access, log, or persist entered data/URLs.
 - Preserve the five canonical findings and mandatory labels.
-- Develop mobile and ID/EN support from the beginning, not after desktop completion.
+- Keep mobile and ID/EN requirements in shared content/domain design from the beginning. Visual asset production follows the owner's latest instruction: desktop first, then mobile. Do not release a desktop-only application.
 - Mascot assistance is optional and must not obstruct core functionality.
 - Explain additional dependencies; verify versions and production behavior.
 - Do not report checks that have not run.
@@ -27,7 +27,7 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 | --- | --- | --- | --- |
 | P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
 | P1 | Brand identity and core assets | P0 + owner's visual choices | Hero pet aesthetic approved; four v1 pet PNGs generated for review; final logo/exports pending |
-| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Revised desktop hero approved and preserved; full pages/mobile pending |
+| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Hero preserved; other 23 desktop directions accepted; package-cluster revision for review; mobile/final assets pending |
 | P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
 | P4 | Informational pages and content | P2 + P3 | Not started |
 | P5 | Form, session, status, and report | P3 + content contracts; P2 styling | Not started |
@@ -36,7 +36,7 @@ For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently revie
 | P8 | Deployment and handoff | P7 + confirmed account/publication choices | Not started |
 | P9 | Video and case study | Sufficiently stable UI; P8 for the final URL | Not started |
 
-Current production sequence: preserve the approved desktop hero → shared visual rules and four distinct pets → complete home/mobile → service-discovery, simulation, and supporting-screen designs → final assets and implementation foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Design Reference Lock records proposed screen batches. Flow/wireframe review remains useful for unreviewed screens without reopening the already-approved hero. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
+Current production sequence: preserve the approved desktop hero → shared visual rules and four distinct pets → complete desktop home, service-discovery, simulation, and supporting-screen design pass → owner review → dedicated mobile compositions → final assets and implementation foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Design Reference Lock records proposed screen batches. Flow/wireframe review remains useful for unreviewed screens without reopening the already-approved hero. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
 
 The academic prototype may be handed over once P4/P5 sufficiently demonstrate the flow and simulation boundaries. Do not call it the final portfolio website while assets, validation, or deployment remain unfinished. No calendar duration is imposed; development may continue after coursework submission.
 
@@ -76,9 +76,13 @@ Suggested manual commit handoff: `design: establish CELAHAN brand assets`.
 
 Planned files: Design Direction, User Flows, Content, and design artifacts in `design/` if needed.
 
-- [ ] Wireframe all core pages and error/success states.
+- [x] Generate the first desktop visual pass across all planned pages and important error/success/dialog states; see [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). This is not final approval or a runnable prototype.
 - [x] Record owner approval of the revised desktop hero image; this does not complete the homepage or mobile UI.
-- [ ] Review the distinct four-pet lineup/shared visual rules, then remaining home sections, mobile home, and four-package group/detail states using the preserved desktop hero as the target.
+- [x] Produce six home sections, service detail/comparison, process, form/error/success, three status stages, finding detail, About/privacy/404, language dialog, guide, direct report, and EN form/report references; preserve the approved hero unchanged.
+- [x] Owner accepted the other desktop visual directions; regenerate only the requested homepage package cluster.
+- [ ] Owner reviews the revised clustered selector; final fonts/tokens/assets and mobile remain pending.
+- [ ] During implementation, trim redundant cross-page copy while retaining required disclosures and task-critical guidance.
+- [ ] Produce dedicated mobile compositions after the desktop design review, as requested.
 - [ ] Review the package comparison, uncertain/mismatched fit, simulated consultation entry, About, and FAQ; distinguish the authored numerical baseline from owner-approved concepts.
 - [ ] Review the no-mascot journey, direct report access, and language/reset guards.
 - [ ] Create desktop/mobile compositions using the five findings and actual ID/EN copy.
