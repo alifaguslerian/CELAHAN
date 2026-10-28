@@ -1,6 +1,6 @@
 # CELAHAN — Visual Reference Synthesis
 
-Status: Revised desktop hero approved and saved; supporting references retained; 24 additional desktop references generated for review; mobile pending  
+Status: Revised desktop hero approved and saved; supporting references retained; desktop visual directions accepted; mobile references generated for review  
 Updated: October 28, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Decisions](../planning/DECISIONS.md)
 
@@ -67,4 +67,4 @@ Keep essential copy as HTML rather than baking it into an image. Use responsive 
 
 Before asset production: review brand message, logo direction, character proportions, palette, and production references/rights. Before final UI: review desktop/mobile wireframes, actual ID/EN copy, selected-package details, consultation entry, report preview, and long-content states. Numerical package scope, illustrative prices, effort, and retest conditions now have a complete draft in Service Packages section 6; use it as review content rather than leaving empty pricing placeholders or claiming these figures are approved market rates.
 
-The four v1 pet candidates and shared-rule draft are now recorded in [Mascot Guidelines](MASCOT_GUIDELINES.md) and [Shared Visual System](VISUAL_SYSTEM.md). After owner review, the proposed next sequence is complete home sections and a separately composed mobile version, followed by the remaining screen batches in Design Reference Lock. The existing desktop hero remains the approved target rather than an invitation to generate a different one. Approval of this hero does not mean complete homepage/mobile designs or every future screen have been approved.
+The four v1 pet candidates and shared-rule draft are now recorded in [Mascot Guidelines](MASCOT_GUIDELINES.md) and [Shared Visual System](VISUAL_SYSTEM.md). The [desktop](DESKTOP_DESIGNS.md) and [27-frame mobile](MOBILE_DESIGNS.md) galleries now record the page/state references; desktop direction is accepted and mobile remains for review. The existing desktop hero remains the approved target rather than an invitation to generate a different one. Approval of this hero does not mean complete homepage/mobile designs or every future screen have been approved.
