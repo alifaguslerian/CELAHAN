@@ -1,6 +1,6 @@
 # CELAHAN — Decision Log
 
-Updated: October 27, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. All entries below come from the conversation or documentation planning, not application test results.
+Updated: October 28, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. All entries below come from the conversation or documentation planning, not application test results.
 
 ## 1. Decision statuses
 
@@ -35,6 +35,9 @@ Updated: October 27, 2026. This document distinguishes owner instructions, propo
 | DEC-20 | Preserve the owner-approved revised desktop hero as the implementation visual target | The owner approved the small-pet/dim-doorway image and requested it be saved and followed closely; see Design Reference Lock and the unchanged reference PNG |
 | DEC-21 | Four package mascots are small compact pets with distinct body silhouettes and principal colors | Explicit owner correction/approval; the Minecraft source informs colors/motifs only, and identical bodies with accessory/color swaps are insufficient |
 | DEC-22 | Generate the four pet forms/shared visual rules and organize all project Markdown under subject-based docs folders | Explicit owner request; root README/AGENTS remain entry points, relative links are updated, Git stays manual, and generated concepts remain review proposals |
+| DEC-23 | Produce the complete desktop website design first, with mobile compositions afterward | Explicit owner request on October 28; authorizes desktop image/design documentation, not application code, installation, Git, or deployment |
+| DEC-24 | Homepage packages use a tight four-pet cluster, no text below, names above on hover/focus, and name/service/price only after activation | Explicit owner revision on October 28; keyboard/touch retain equivalent access, and price labels move with the revealed price |
+| DEC-25 | Accept the other desktop visual directions; defer repetitive/unnecessary copy cleanup to implementation | Owner explicitly requested only this image revision now; required concept, illustrative-data, fictional-price, permission, and state-loss labels remain in relevant contexts |
 
 ## 3. Proposed baselines for review
 
@@ -55,8 +58,9 @@ Updated: October 27, 2026. This document distinguishes owner instructions, propo
 | DRAFT-13 | Keep package/fit state separate from the request draft and clear it on submission/reset/language change/reload | Preserves the existing ticket-only success/session contract without data serialization |
 | DRAFT-14 | Reuse Services and Request for package-fit guidance and simulated consultation; add an About route and contextual FAQ | Keeps the approved supporting information navigable without adding live booking/chat/payment flows |
 | DRAFT-15 | Use the complete package-detail matrix and policies in Service Packages section 6 as the review baseline | Supplies scope caps, fictional starting prices, effort, counting rules, walkthroughs, and retest conditions for wireframes; authored at the owner's request, without claiming market validation or owner approval of each number |
-| DRAFT-16 | Design the shared four-pet family, then complete home/mobile, service-discovery, simulation, and supporting-screen batches before implementation | Answers the owner's sequencing question; each batch follows the saved hero and actual ID/EN copy, while reusable states can share component specifications |
+| DRAFT-16 | Design the shared four-pet family and all page/state batches before implementation; DEC-23 now orders desktop first, mobile afterward | Supersedes the earlier paired home/mobile production sequence; all batches follow the saved hero and actual ID/EN content, while reusable states share component specifications |
 | DRAFT-17 | Review the four saved v1 pets and Shared Visual System as the next design baseline | SCOUT is proposed as the hero-related sand pet; WARDEN is sage/wedge, NEXUS mineral-blue/crescent, ATLAS terracotta/low-dome; exact colors/forms/tokens are authored proposals rather than new owner approvals |
+| DRAFT-18 | Use the 24 selected desktop references and page assembly in Desktop Design Gallery as the first review baseline | Includes ID pages/states and two EN copy-fit checks; five earlier iterations are explicitly superseded, mobile remains pending, and source text/behavior contracts override generated lettering |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
 
@@ -65,7 +69,7 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 | ID | Question | Needed before | Safe interim approach |
 | --- | --- | --- | --- |
 | OPEN-01 | Review of the four generated pet concepts/individual palettes/identity mapping; final logo, exports, and asset rights | Final identity production (P1) | Review Mascot Guidelines and preserve the approved hero; the four candidates are not owner-approved final characters |
-| OPEN-02 | Complete-page/mobile layouts, exact licensed fonts, review of proposed tokens/states, and motion details | Relevant design approval (P2) | Use the approved hero and the new Shared Visual System draft; review responsive/accessibility changes explicitly |
+| OPEN-02 | Review the revised package cluster, mobile layouts, exact licensed fonts/tokens, and motion details | Relevant design/final asset work (P2) | Other desktop visual directions are accepted; review frame 02 revision, then design mobile and verify actual responsive/accessibility behavior |
 | OPEN-03 | Hosting account, project/domain name, repository publication, and license | Relevant publication (P8) | Do not create accounts, purchase a domain, or assign a license |
 | OPEN-04 | Video duration, aspect ratio, music, narration, and primary language | Video production (P9) | Prepare an initial storyboard without treating duration as a lecturer requirement |
 | OPEN-05 | Physical devices/browsers available for checks | Validation (P7) | Plan emulation and record limitations; do not claim physical-device testing |
@@ -90,5 +94,7 @@ Automated cross-page tours, report filtering/sorting, a plain-language/technical
 | October 27, 2026 | Owner requested complete package details and per-file commit-message handoffs; wrote the scope/pricing/effort/retest draft baseline and synchronized affected documents; no implementation or Git operations |
 | October 27, 2026 | Generated/revised a hero preview at the owner's request; owner approved the compact pet and subdued doorway, requested preservation and four distinct small pets; copied the selected PNG unchanged into the project and recorded the reference lock and proposed remaining-screen batches |
 | October 27, 2026 | Generated four pet concepts plus one WARDEN shape refinement, saved selected PNGs, drafted shared visual rules, moved 14 subject documents into grouped folders, and added an index/per-file handoff; no implementation or Git operations |
+| October 28, 2026 | Owner requested full desktop design before mobile. Generated 24 selected horizontal references plus five retained superseded iterations, preserved the approved hero, recorded prompts/fingerprints and page assembly, and refreshed the complete manual commit handoff; no application or Git operations |
+| October 28, 2026 | Owner accepted the other desktop visuals and requested only a tight, caption-free package cluster with hover/focus names and click-revealed details. Saved frame 02 revision; future implementation trims redundant copy while retaining mandatory labels. No other screen regenerated |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
