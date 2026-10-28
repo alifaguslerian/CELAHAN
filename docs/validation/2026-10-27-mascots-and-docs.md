@@ -3,7 +3,7 @@
 Date: October 27, 2026  
 Scope: Four pet concepts, shared visual rules, and grouped Markdown documentation
 
-References: [Index](../README.md), [Mascots](../design/MASCOT_GUIDELINES.md), [Visual System](../design/VISUAL_SYSTEM.md), [Approved Hero](../design/DESIGN_REFERENCE_LOCK.md), [Commit Handoff](../planning/COMMIT_HANDOFF.md)
+References: [Index](../README.md), [Mascots](../design/MASCOT_GUIDELINES.md), [Visual System](../design/VISUAL_SYSTEM.md), [Approved Hero](../design/DESIGN_REFERENCE_LOCK.md)
 
 ## Authorized work and actual output
 
