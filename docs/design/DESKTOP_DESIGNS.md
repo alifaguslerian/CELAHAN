@@ -1,14 +1,14 @@
 # CELAHAN — Desktop Design Review v1
 
-Status: Other desktop visual directions accepted; package-cluster revision generated for review; approved hero preserved  
+Status: All selected desktop visual directions accepted; approved hero preserved; mobile references generated separately  
 Date: October 28, 2026  
-Scope: Desktop first, as explicitly requested. Mobile compositions follow in a separate stage.
+Scope: Desktop references. The subsequent [mobile set](MOBILE_DESIGNS.md) is now generated for review.
 
 References: [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [User flows](../product/USER_FLOWS.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [Service packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-desktop-designs.md)
 
 ## Review status and authority
 
-These are raster design proposals, not an implemented website or evidence that interactions work. The owner accepted the other 23 desktop visual directions on October 28 and requested a revision only to the homepage package selector (02). The revised cluster image awaits review. This acceptance covers visual direction, not final font licenses, commercial terms, or implemented behavior. No application dependencies, backend, or deployment were added.
+These are raster design proposals, not an implemented website or evidence that interactions work. The owner accepted the other 23 desktop visual directions on October 28 and requested a revision only to the homepage package selector (02). The owner subsequently accepted the revised cluster and closed desktop reference exploration. This acceptance covers visual direction, not final font licenses, commercial terms, or implemented behavior. No application dependencies, backend, or deployment were added.
 
 The batch contains **24 selected horizontal frames**, plus the **one unchanged approved hero**. Six superseded iteration PNGs are retained for provenance and are not implementation targets. All selected new frames are 1,672 × 941 pixels. The [generation manifest](../../design/desktop/v1/manifest.json) records per-frame briefs, reference paths, exact prompts/revision prompts, selected-file dimensions, sizes, SHA-256 fingerprints, and generated source paths. Machine-local source paths are provenance, not required runtime assets; project-relative files are the portable copies. Prompts cannot deterministically recreate the images.
 
@@ -190,7 +190,7 @@ Direct report access without a session: no ticket, active stepper, personalized 
 - Activate: click, Enter, or Space opens the selected detail view. Show its name, service, scope, and fictional price there, with the price-illustration note next to the amount. Keep the existing content limits and no-guarantee wording where relevant.
 - Return: a labeled back/close action restores the cluster and focus to its trigger. Package browsing keeps the existing temporary planning-state lifecycle.
 - Accessibility: use real labeled buttons with distinct non-overlapping hit areas even if artwork overlaps. The hidden visual caption does not remove the accessible name. Visible focus must identify the current pet. If artwork fails, expose readable fallback names. No extra keyboard-only step is needed to open details.
-- Touch: tapping opens the same details directly; hover is never required. Dedicated mobile composition remains later work.
+- Touch: tapping opens the same details directly; hover is never required. Dedicated mobile composition is now represented in [Mobile Design Gallery](MOBILE_DESIGNS.md).
 
 ## Shared implementation contract
 
@@ -214,7 +214,7 @@ This is the complete first desktop visual pass across the planned pages and impo
 
 The main visual language is Indonesian. Frames 22–23 check longer English form/report text; they do not establish that every English page has been rendered. Translations elsewhere remain required. The Privacy rail correction above and exact disclaimer/source-copy overrides apply before implementation, regardless of generated lettering. Avoid fixed viewport heights or shrinking body text just to fit these frames.
 
-Mobile menu, touch layouts, mobile forms/keyboard, report disclosures, and guide sheets are intentionally deferred to the next requested design stage. Shared functionality and ID/EN parity remain requirements; desktop-first asset production does not authorize a desktop-only application.
+The [27-frame mobile design pass](MOBILE_DESIGNS.md) now covers mobile menu, touch layouts, forms, report disclosures, and guide sheets. Virtual-keyboard behavior and rendered interaction still require implementation tests. Shared functionality and ID/EN parity remain requirements; desktop-first asset production does not authorize a desktop-only application.
 
 ## Retained superseded iterations
 
@@ -231,5 +231,5 @@ These files remain historical evidence. Use the selected revisions shown above, 
 
 ## Next review
 
-The other desktop visual directions are accepted. Review only the revised package cluster at this stage; apply the requested copy cleanup later during implementation and record further owner changes explicitly. Then design mobile compositions, finalize licensed typography/identity and optimized exports, and obtain implementation authorization. This design batch does not authorize installing Next.js, writing application code, or deploying.
+All selected desktop visual directions, including the revised cluster, are accepted. Review the new mobile references next, then subdivide the implementation plan into coherent delivery packages. Final licensed typography/identity, optimized exports, implementation authorization, and real verification remain open. No Next.js installation, application code, or deployment was authorized by producing this design batch.
 
