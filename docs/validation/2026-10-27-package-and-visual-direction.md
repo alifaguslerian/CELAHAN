@@ -10,7 +10,7 @@ Scope: Documentation only; no application, asset production, or deployment work
 - Synchronized the brief, PRD, flows, design, architecture, content, quality matrix, implementation plan, decision log, and README.
 - Preserved open decisions on numerical scope caps, illustrative prices, retest conditions, fit rules, and final artwork.
 
-Primary records: [Service Packages](../SERVICE_PACKAGES.md), [Visual References](../VISUAL_REFERENCES.md), and [Decisions](../DECISIONS.md).
+Primary records: [Service Packages](../product/SERVICE_PACKAGES.md), [Visual References](../design/VISUAL_REFERENCES.md), and [Decisions](../planning/DECISIONS.md).
 
 ## Checks actually performed
 
