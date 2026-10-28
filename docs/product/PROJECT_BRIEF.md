@@ -2,7 +2,7 @@
 
 Status: Initial brief, package concepts, and revised desktop hero approved; remaining screens and detailed planning remain under review  
 Updated: October 28, 2026  
-Stage: Documentation and desktop visual design; application implementation has not started
+Stage: Desktop references accepted; mobile visual references generated for review; application implementation has not started
 
 ## 1. Project overview
 
@@ -100,7 +100,7 @@ The mobile experience is designed specifically for small devices, including navi
 
 The logo must work independently. The four package mascots use SCOUT, WARDEN, NEXUS, and ATLAS as working names, with the approved specialty/personality directions in Service Packages. All are small compact pets with different body shapes and principal colors. The Minecraft reference informs colors/motifs only; the owner rejected a humanoid skin interpretation. The revised hero pet aesthetic is approved. Four v1 character concepts and a shared visual-system draft now exist for review; individual design approval, final logo/exports, and implementation remain open.
 
-The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied stairway/doorway scene. A generated revision with an original pet and subdued lighting was then explicitly approved. The saved revision takes precedence over the older bright-doorway screenshot. Supporting references remain in [Visual References](../design/VISUAL_REFERENCES.md). A [24-frame desktop design pass](../design/DESKTOP_DESIGNS.md) now covers the planned pages and important states for review. The owner requested desktop first, with mobile next. Exact licensed fonts, new page approvals, mobile composition, and rendered interaction/accessibility checks remain open.
+The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied stairway/doorway scene. A generated revision with an original pet and subdued lighting was then explicitly approved. The saved revision takes precedence over the older bright-doorway screenshot. Supporting references remain in [Visual References](../design/VISUAL_REFERENCES.md). A [24-frame desktop design pass](../design/DESKTOP_DESIGNS.md) now covers the planned pages and important states for review. The desktop directions and revised cluster are accepted; the subsequent [27-frame mobile pass](../design/MOBILE_DESIGNS.md) is generated for review. Exact licensed fonts, mobile approval, final assets, and rendered interaction/accessibility checks remain open.
 
 The mascot must not dominate product decisions. Navigation, forms, reports, and core information must remain usable without its guidance. Animation and assistance must account for accessibility, mobile devices, and performance.
 
