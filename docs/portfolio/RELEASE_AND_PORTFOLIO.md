@@ -25,7 +25,6 @@ Before the owner commits/pushes manually:
 - Ensure plans and phase statuses reflect actual work.
 - Choose repository visibility and a reuse license if desired; no license is selected automatically.
 
-Suggested initial commit message: `docs: establish CELAHAN product and delivery baseline`.
 
 This is only a message suggestion. Agents do not execute Git commands, stage files, create repositories, or push through APIs. Agents cannot report branch/commit status because they do not inspect Git. The owner selects files and performs all these steps manually.
 
