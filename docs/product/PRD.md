@@ -1,10 +1,10 @@
 # CELAHAN — Product Requirements Document
 
 Status: Complete draft for review; not authorization to implement  
-Version: 0.6 · October 28, 2026  
+Version: 0.7 · October 28, 2026  
 References: [Project Brief](PROJECT_BRIEF.md), [Decisions](../planning/DECISIONS.md)
 
-Current visual evidence: [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). The owner accepted the other desktop visual directions and requested only the homepage package-cluster revision. Its new raster awaits review; visual acceptance is not implemented acceptance criteria. The owner requested desktop design first and mobile afterward; mobile and bilingual requirements remain unchanged.
+Current visual evidence: [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). The owner accepted the other desktop visual directions and requested only the homepage package-cluster revision. The cluster was subsequently accepted. The [27 mobile references](../design/MOBILE_DESIGNS.md) are now generated for review; visual acceptance is not implemented acceptance criteria. The owner requested desktop design first and mobile afterward; mobile and bilingual requirements remain unchanged.
 
 ## 1. Product goals
 
@@ -24,7 +24,7 @@ Proposed v1 priority: a clear demonstration experience for all visitors, with no
 
 ## 3. Decision and release levels
 
-- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, the preserved revised desktop hero, the requirement for four distinct compact pets, package concepts, supporting-page direction, video, and manual Git with per-file English handoff messages. Four pet concepts/shared visual rules and detailed package terms are drafted for review; generating these candidates does not approve their individual designs. Complete pages/mobile and the final asset set remain open.
+- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, the preserved revised desktop hero, the requirement for four distinct compact pets, package concepts, supporting-page direction, video, and manual Git with per-file English handoff messages. Four pet concepts/shared visual rules and detailed package terms are drafted for review; generating these candidates does not approve their individual designs. Desktop visual directions are accepted and 27 mobile references now await review; the final asset set and real implementation/validation remain open.
 - **Draft baseline:** concrete behavior proposed in this document for review and later implementation after approval. These details must not be represented as additional decisions already approved by the owner.
 - **Open:** visual, asset, and publication choices recorded in Decisions.
 
