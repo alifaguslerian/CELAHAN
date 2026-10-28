@@ -1,14 +1,14 @@
 # CELAHAN — Shared Visual System
 
 Status: Concrete review baseline derived from the approved hero; not implemented CSS or a completed accessibility audit  
-Updated: October 27, 2026  
+Updated: October 28, 2026  
 References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Design Direction](DESIGN_DIRECTION.md), [Mascot Family](MASCOT_GUIDELINES.md), [Quality](../engineering/QUALITY_AND_SECURITY.md)
 
 ## 1. Visual authority
 
 The approved desktop hero governs composition, atmosphere, and visual hierarchy. This document supplies reusable numerical rules for subsequent screens without replacing that image. The interface stays warm, dark, readable, and restrained; distinct pet colors remain primarily in illustrations.
 
-The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. Full home/mobile designs, final font files, and the implementation remain pending.
+The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. The [first full desktop visual pass](DESKTOP_DESIGNS.md) is now generated for review. Mobile compositions, final font files, approval of new targets, and implementation remain pending.
 
 ## 2. Three-layer token model
 
@@ -78,7 +78,7 @@ Keep primary pointer targets at least 44 × 44 CSS px. Start with an 8 px contro
 | --- | --- | --- | --- |
 | Primary action | Sand fill, ink label | Light sand hover, deep sand pressed | Separate visible focus outline; disabled semantics and readable label |
 | Secondary action | Ivory text and explicit link/button treatment | Underline or neutral surface change | Visible focus; no color-only affordance |
-| Package selector | Named control, neutral surface, optional pet artwork | Sand boundary plus visible selected text/indicator | Expose selected state semantically; keyboard/touch support and text fallback |
+| Package selector | Home: tight pet cluster, no visible captions/prices below; semantic named buttons | Name appears above the hovered/focused pet; activation reveals detail/name/service/price | Visible focus; separate hit areas despite overlapping art; direct touch/keyboard activation; readable artwork fallback. Services keeps its accepted detail layout |
 | Input / textarea | Charcoal surface, field border, visible label | Keep boundary readable | Focus outline; associated localized error text and invalid state; preserve input values |
 | Disclosure / report detail | Visible title and clear expansion action | Expanded state changes layout predictably | Keyboard operation, connected labels/content, no hover-only fields |
 | Dialog / mobile sheet | Bounded charcoal surface, title, clear close action | Stable content layout | Focus management, Escape, return focus, and visible cancel/continue |
