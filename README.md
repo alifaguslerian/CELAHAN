@@ -10,9 +10,9 @@ The Indonesian statement above is the mandatory original product disclaimer.
 
 ## Project status
 
-**Stage: documentation and visual design — October 27, 2026.**
+**Stage: documentation and desktop visual design — October 28, 2026.**
 
-The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged in the project and governed by the Design Reference Lock. Four distinct small pet concepts and a shared visual-system baseline have now been produced for review. These new concepts, numerical visual tokens, and detailed package terms are not yet owner-approved final designs. Complete pages/mobile screens, the final logo and runtime export set, technical implementation, application test results, video, and deployment do not yet exist. This repository can be published as a planning/design baseline, with that status clearly stated.
+The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged and governed by the Design Reference Lock. Four distinct pet concepts, shared visual rules, and **24 desktop page/section/state references** are now available for review. The hero remains preserved. The owner accepted the other 23 desktop visual directions and requested only the homepage package-cluster revision, now saved for review. Six superseded desktop iterations are retained and marked in the gallery. Final fonts/assets, numerical tokens, and detailed package terms retain their separate review status. Mobile compositions follow separately, as requested. Final logo/runtime exports, application implementation/tests, video, and deployment do not yet exist. This repository can be published as an explicitly labeled planning/design baseline.
 
 According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
 
@@ -43,6 +43,7 @@ Use the [grouped documentation index](docs/README.md) for product, design, engin
 | [Content and Simulation](docs/product/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
 | [Design Direction](docs/design/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
 | [Design Reference Lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
+| [Desktop Design Gallery](docs/design/DESKTOP_DESIGNS.md) | Selected desktop references, page assembly, state coverage, and implementation caveats |
 | [Shared Visual System](docs/design/VISUAL_SYSTEM.md) | Proposed tokens, typography roles, spacing, component states, and checked color pairs |
 | [Mascot Guidelines](docs/design/MASCOT_GUIDELINES.md) | Four pet concepts, shape/palette distinctions, PNG records, and prompts |
 | [Visual References](docs/design/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
@@ -81,6 +82,8 @@ Detailed scope/pricing baseline and per-file handoff: [package-detail documentat
 **All Git operations are performed manually by the project owner. Agents do not run Git or modify repositories through APIs.** Unimplemented files and checks that have not been run must remain explicitly identified.
 
 The owner commits files individually. Handoffs provide one English commit-message suggestion per file; they do not claim which files are currently uncommitted.
+
+Current desktop output: [desktop gallery](docs/design/DESKTOP_DESIGNS.md) and [October 28 asset/document validation](docs/validation/2026-10-28-desktop-designs.md). Raster review is not application testing.
 
 Current handoff: [complete file inventory, move-path pairings, and per-file commit messages](docs/planning/COMMIT_HANDOFF.md).
 
