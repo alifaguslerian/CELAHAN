@@ -11,7 +11,7 @@ Updated: October 29, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-37 revise the portal scope. Earlier entries remain decision history; superseded clauses below must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation. Earlier entries remain decision history; superseded clauses below must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -48,17 +48,20 @@ Current precedence: DEC-30 through DEC-37 revise the portal scope. Earlier entri
 | DEC-31 | Intake covers reactive, preventive and unsure/mixed needs, contact and consultation schedule requests | Owner requested name/company/website/problem, contact and requested timing; no automatic compromise or appointment confirmation |
 | DEC-32 | Differentiate prospect consultation from project-linked customer support and retest tickets | Owner requested different contents and admin priorities; project association is trusted server data, not a user-selected status |
 | DEC-33 | Provide private project reports and user/admin ticket interaction | Owner requires authorized customers to see their reports; server verifies exact resource relationships; all assessments/reports remain illustrative |
-| DEC-34 | Limit support and temporary discount to at most three months from first service use | Owner explicitly capped the period; overrides earlier 30/60-day windows; exact activation/date mechanics remain draft |
+| DEC-34 | Limit support and temporary discount to at most three months | Owner capped the period; overrides old 30/60-day windows; first private report publication is confirmed as the trigger in DEC-39 |
 | DEC-35 | Do not offer code repair; the website owner's programmer implements fixes | Explicit owner correction; support means guidance/retest, not a warranty covering all damage |
 | DEC-36 | Keep the portal functional while security work remains concept/illustration | Owner accepted the distinction in discussion; no target request or real service launch is authorized |
 | DEC-37 | Revise Markdown first for the portal scope | Explicit owner authorization on October 29; no app installation/code, image generation, provider setup, messaging, Git or deployment |
+| DEC-38 | Use Better Auth open-source library in Next.js with Neon Free PostgreSQL | Owner explicitly approved subject to free usage; no paid upgrade/add-on, managed-auth setup, provider provisioning or implementation authorized |
+| DEC-39 | Start maximum three-month support at the first private project report publication | Explicit owner reply; signup/project activation/sample views/first reading do not start it, later report versions never reset it; calendar/cycle mechanics remain reviewable |
+| DEC-40 | Defer permanent domain, registrar and DNS choice; permit a later replacement | Owner requested flexibility and approved continuing flow documentation; domain identity does not block current planning/isolated development, but public auth email still requires approved delivery setup |
 
 ## 3. Proposed baselines for review
 
 | ID | Proposal | Rationale and consequences |
 | --- | --- | --- |
 | DRAFT-01 | Superseded: static-export-only/client-memory application | DEC-30 requires a server-capable backend, authentication and real database |
-| DRAFT-02 | `/id/` and `/en/` URLs with shared page slugs | Explicit, testable page equivalents; Indonesian default, no automatic detection or cookies |
+| DRAFT-02 | `/id/` and `/en/` URLs with shared page slugs | Explicit page equivalents and Indonesian default; locale stays in the path while necessary auth cookies follow the selected solution |
 | DRAFT-03 | Superseded: locale change resets saved records | Current baseline preserves saved data/session; warn only about unsaved edits |
 | DRAFT-04 | Superseded: refresh-empty disposable ticket/session provider | Database records persist; local drafts may be temporary; logout/session controls follow selected auth |
 | DRAFT-05 | Superseded for private projects: user-driven demo status controls | Admin controls illustrative project progress with audit history |
@@ -77,14 +80,15 @@ Current precedence: DEC-30 through DEC-37 revise the portal scope. Earlier entri
 | DRAFT-18 | Use the 24 selected desktop references and page assembly in Desktop Design Gallery as the first review baseline | Includes ID pages/states and two EN copy-fit checks; six earlier desktop iterations are explicitly superseded; a separate 27-frame mobile baseline is now generated for review, and source text/behavior contracts override generated lettering |
 | DRAFT-19 | Use the 27 mobile-web viewports and assembly/interaction contracts in Mobile Design Gallery as the review baseline | Covers ID pages/states plus EN form and all five EN findings across scroll segments; not every package/finding/locale combination has a unique raster, and real responsiveness/accessibility remain untested |
 | DRAFT-20 | Initial three-option logo review, resolved by DEC-28 | Open Threshold is selected; discarded options are removed, while editable vectors/small-size checks/usage rights remain pending | 
-| DRAFT-21 | Server-capable Next.js, established auth solution, relational database and server-only authorized data access | Replaces DRAFT-01; provider/adapter/versions remain open |
+| DRAFT-21 | Server-capable Next.js and server-only authorized data access; provider choice resolved by DEC-38 | Better Auth library + Neon Free selected; adapter/migrations/versions/transport remain open |
 | DRAFT-22 | Public sample separate from authenticated tickets/projects/reports; saved records survive locale/reload | Public evaluation remains easy; private records never use anonymous share links |
 | DRAFT-23 | Operations state machines, single project owner, shared messages and separate internal notes | Concrete baseline in Service Operations and Data and Access; team access deferred |
-| DRAFT-24 | Explicit admin first-service activation; three calendar months in Asia/Jakarta with month-end clamping and exclusive expiry | Proposed interpretation of “first use”; timely requests remain reviewable later, no automatic reset |
+| DRAFT-24 | Activation-based start superseded by DEC-39; proposed three-calendar-month Asia/Jakarta/month-end/exclusive-expiry mechanics | Trigger is first private report publication; calendar/cycle details remain reviewable, timely requests remain reviewable later |
 | DRAFT-25 | Temporary discount applies to scoped follow-up security review rather than code maintenance | Fits DEC-35; final eligible work, percentage and cutoff need owner confirmation |
 | DRAFT-26 | Login required for submissions; chosen enrollment/verification/recovery; controlled admin provisioning | Prevents anonymous ticket-link access; do not silently choose public signup or a provider |
 | DRAFT-27 | V1 private reports use all five illustrative source findings in versioned snapshots with separate follow-up outcomes | No URL-derived findings; publish/withdraw requires admin authorization; public sample unchanged |
 | DRAFT-28 | Synthetic-only project demonstration until personal-data/provider/retention/abuse policy is approved | Real auth identity is still personal data; no “we store nothing” privacy claims |
+| DRAFT-29 | Account/user/admin navigation and screen-state baseline in Portal UX Specification | Proposes email/password, verification gating and admin authenticator flow; defines adaptive dashboards, ticket/internal-note separation, report/support actions and mobile states; owner review remains pending |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
 
@@ -94,18 +98,18 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 | --- | --- | --- | --- |
 | OPEN-01 | Final pet production/mapping, approved-logo vector/export quality, and asset rights | Final identity production (P1) | Use approved Open Threshold Logo Guidelines and existing Mascot Guidelines; preserve selected references and validate final exports |
 | OPEN-02 | Review the revised package cluster, mobile layouts, exact licensed fonts/tokens, and motion details | Relevant design/final asset work (P2) | Desktop visual directions and frame 02 revision are accepted; review the 27 mobile references and verify actual responsive/accessibility behavior after implementation |
-| OPEN-03 | Hosting account, project/domain name, repository publication, and license | Relevant publication (P8) | Do not create accounts, purchase a domain, or assign a license |
+| OPEN-03 | Hosting/project/domain setup, repository publication and project license | Relevant public email/deployment setup (P8) | Permanent domain/registrar/DNS choice deferred by DEC-40; existing .my.id is optional, do not request details as a planning prerequisite or purchase/configure now |
 | OPEN-04 | Video duration, aspect ratio, music, narration, and primary language | Video production (P9) | Prepare an initial storyboard without treating duration as a lecturer requirement |
 | OPEN-05 | Physical devices/browsers available for checks | Validation (P7) | Plan emulation and record limitations; do not claim physical-device testing |
 | OPEN-06 | Identity/team details or profile links allowed for publication | Final public content | Omit unapproved personal identity/contact information |
 | OPEN-07 | Owner review of the completed numerical caps, effort, retest conditions, and illustrative prices | Final package copy and pricing | Review DRAFT-15 in Service Packages section 6; do not present these authored assumptions as researched rates, live offers, guarantees, or approved commercial terms |
 | OPEN-08 | Exact package-fit questions/rules and selected-panel interaction | UX/UI approval (P2) | Offer a clear unsure-which-package path; treat any questionnaire as local scripted guidance | 
-| OPEN-09 | Auth/database provider, runtime/adapter/transport, pooling and current hosting costs/limits | P3 foundation | Keep provider-neutral contracts; verify official docs before selecting/provisioning |
-| OPEN-10 | Exact first-service activation event, three-calendar-month boundary and cycle reservations | Benefit implementation in P6 | Review DRAFT-24; no benefit calculator or silent expiry extension yet |
+| OPEN-09 | Remaining versions/runtime/adapter/migrations/transport/pooling and free-plan compatibility | P3 foundation | Auth/database choice resolved by DEC-38; verify official docs and no-cost limits before provisioning; no paid upgrade authorized |
+| OPEN-10 | Calendar/timezone boundary and cycle reservation mechanics | Benefit implementation in P6 | First private report publication trigger resolved by DEC-39; review DRAFT-24 calculations and concurrent-publication/cycle tests |
 | OPEN-11 | Discount name, eligible follow-up work, percentage and request/approval cutoff | Public offer copy / benefit decisions | DRAFT-25 is a proposal; no invented rate or billing |
-| OPEN-12 | Enrollment, verification/recovery delivery, admin provisioning and session policy | Authentication / any real identity collection | Controlled synthetic demonstration until the chosen identity policy is approved |
+| OPEN-12 | Better Auth enrollment/verification/second-factor policy, recovery delivery and admin provisioning | Auth policy before affected implementation; delivery before public registration | Review DRAFT-29 screen baseline; permanent domain can be selected later, isolated tests do not prove public email delivery |
 | OPEN-13 | Retention/deletion, hosting/database regions/processors, backups and privacy contact | Public data intake / deployment | Do not invent retention periods or treat three-month support as deletion |
-| OPEN-14 | New login/user/admin/ticket/project/report/support desktop/mobile UX | Relevant P2 review and implementation | Existing public identity stays; old no-storage/reset raster behavior is historical |
+| OPEN-14 | Review new account/user/admin/ticket/project/report/support desktop/mobile UX | Relevant P2 review and implementation | Textual Portal UX Specification drafted; no new screen images or authored auth policies approved; old no-storage/reset raster behavior is historical |
 
 The deadline and rubric are not blocking questions at present: the owner has stated that there is no fixed constraint and a prototype is sufficient for submission. If lecturer requirements change, revise the academic milestone without removing the portfolio goal.
 
@@ -130,5 +134,7 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 28, 2026 | Owner requested the logo. Generated three distinct raster directions plus a targeted monochrome-specimen correction, recorded prompts/sources and selection limits, and refreshed verified per-file commands; no final logo chosen or website reference replaced |
 | October 28, 2026 | Owner selected Open Threshold and required clean code, file hygiene, security/performance, and chat-only per-file handoffs. Moved the selected reference unchanged, removed obsolete drafts and handoff artifact, minimized manifests, added ignore rules, and updated standing agent requirements; no application code or Git operations |
 | October 29, 2026 | Owner approved revising the concept into a functional authenticated/database-backed service portal with consultation categories, user/admin tickets, private illustrative reports and three-month benefits; reconfirmed no code repair. Revised Markdown and marked prior static-only rules superseded; assets preserved, no application/Git/provider operations |
+| October 29, 2026 | Owner selected Better Auth + Neon Free, confirmed first private report publication as support start, and clarified an existing .my.id domain is available. Synchronized current specifications; email/DNS setup, versions, calendar/cycle details and actual implementation remain pending |
+| October 29, 2026 | Owner deferred permanent domain/DNS details and approved continuing account/portal flow planning. Added textual Portal UX Specification and synchronized navigation, draft auth policies, phase-specific delivery gates and documentation links. No new images, application/provider/DNS operations or Git |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
