@@ -1,6 +1,6 @@
 # CELAHAN — Promotional Video Brief
 
-Status: Draft production direction; no visual storyboard, video assets, or render exists · October 27, 2026  
+Status: Draft production direction; no visual storyboard, video assets, or render exists · October 29, 2026  
 References: [Project Brief](../product/PROJECT_BRIEF.md), [Design Direction](../design/DESIGN_DIRECTION.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
 
 ## 1. Purpose
@@ -13,11 +13,11 @@ The owner states that the lecturer requires a promotional video, but no duration
 
 The primary audiences are lecturers and portfolio reviewers; general viewers should also understand the context without reading project documentation.
 
-Core message: CELAHAN demonstrates a structured, permission-based web security assessment service with readable reports. Every website interaction is simulated. The video must not claim that the product has discovered vulnerabilities on real websites.
+Core message: CELAHAN demonstrates a structured, permission-based web security assessment service with readable reports. Authentication, persistent consultation tickets, user/admin replies and private-report authorization are planned to function. Assessments, findings and retests remain illustrative. The video must distinguish these layers and never claim vulnerabilities were discovered on real websites.
 
 ## 3. Visual direction
 
-Cinematic motion graphics using the dark/amber identity, strong typography, carefully framed interfaces, and a pace that supports reading. Use motion to show the flow, status transitions, and relationships within report details. Avoid random-code montages or terminal effects resembling real attack operations.
+Cinematic motion graphics using the approved warm near-black/ivory/sand identity, strong typography, carefully framed interfaces, and a pace that supports reading. Use motion to show the flow, status transitions, and relationships within report details. Avoid random-code montages or terminal effects resembling real attack operations.
 
 The logo builds recognition; the mascot guides selected moments. Desktop and mobile UI demonstrations must still receive adequate attention. Show implemented features; clearly label concept footage that is not functional yet as a prototype.
 
@@ -30,8 +30,8 @@ Scene timing will be determined after the final format is agreed; it is not a cu
 | 1. Opening | CELAHAN logo and project context | Introduce the identity | A readable concept label appears from the start |
 | 2. Problem | A question about understanding application risk | Establish the service context | No unsourced threat statistics or market-research claims |
 | 3. Process | Scope/permission followed by the eight stages | Show the service structure | Stages represent a conceptual model |
-| 4. Interaction | Sample form data, demo ticket, controlled status | Demonstrate the product experience | Simulation labels remain visible; no real targets |
-| 5. Results | One finding in detail and a five-finding summary | Demonstrate report readability | Illustrative data, not results derived from form input |
+| 4. Interaction | Synthetic user login, consultation, persisted ticket, admin reply and schedule decision | Demonstrate working backend/user-admin journey | Only show implemented behavior; no personal data or target access |
+| 5. Results | Authorized private report, one illustrative finding and bounded follow-up | Demonstrate report readability and access isolation | Findings are illustrative; no input-derived results or code-repair claim |
 | 6. Cross-device experience | Desktop/mobile and ID/EN switching | Showcase frontend/design quality | Show behavior that actually exists |
 | 7. Closing | Identity, invitation to try the demo, disclaimer | Offer a next action | Use a final link only after deployment exists |
 
@@ -46,6 +46,7 @@ Primary text must not be too small or disappear too quickly. Provide captions an
 - Final logo and mascot assets with editable sources.
 - Recorded or rendered UI from a reviewed version, covering ID/EN and mobile/desktop.
 - The same illustrative dataset and copy used on the website.
+- Isolated synthetic user/admin accounts, approved screen capture and redacted/private-data-free footage; never expose provider secrets, passwords, internal incident notes or a reusable admin session.
 - Opening/closing copy, shot list, storyboard, and animatic.
 - Licensed audio if used, captions, and a transcript.
 
