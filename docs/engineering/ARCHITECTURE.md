@@ -1,175 +1,139 @@
 # CELAHAN — Architecture
 
-Status: Technical baseline for review and foundation-stage verification; not implemented  
-Updated: October 27, 2026  
-References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Content](../product/CONTENT_AND_SIMULATION.md)
+Status: Proposed server-backed portal architecture; provider/version decisions remain open; not implemented  
+Updated: October 29, 2026  
+References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
 
-Next.js App Router and TypeScript are the owner's specified stack. The proposed baseline is static export (`output: 'export'`), with local content rendered at build time and limited client-side interactions. There is no application backend, API, database, Server Action, or server-side collection of user inputs at runtime.
+Next.js App Router and TypeScript remain required. A server-capable application and relational database replace the earlier static-export-only baseline. Public content can still be prerendered where appropriate. Private operations must execute through an authenticated server boundary.
 
 ```mermaid
 flowchart LR
-  A[Local ID and EN content and illustrative data] --> B[Next.js build]
-  B --> C[Static HTML CSS JavaScript and assets]
-  C --> D[Vercel static hosting]
-  D --> E[Visitor browser]
-  E --> F[Temporary form and session memory]
-  F --> G[Demo status and five fixed findings]
+  P[Public browser] --> W[Public pages and immutable sample]
+  U[Signed-in user or admin] --> S[Next.js server boundary]
+  A[Selected auth solution] --> S
+  S --> Z[Session validation and object authorization]
+  Z --> V[Domain validation and transactions]
+  V --> D[(Private relational database)]
+  V --> R[Minimal authorized response]
+  R --> U
 ```
 
-Entered URLs have no path from the client validator to the network. Normal hosting requests contain only public routes/assets. Using React Server Components at build time does not imply an application server receiving inputs at runtime. Official documentation describes static export and its build output. [Next.js static exports](https://nextjs.org/docs/app/guides/static-exports)
+There is deliberately no edge to a submitted website, scanner, AI service, public file bucket, payment provider or outbound contact channel. Database/auth infrastructure are permitted; input-derived target requests remain forbidden.
 
-## 2. Routing and locales
+## 2. Technology decisions and sources
 
-- Build `/id/` and `/en/` prefixes statically; page slugs follow User Flows.
-- Locales and pages form an allowlist. Never use user input to construct route paths or module names.
-- The locale root layout outputs the correct `html lang` before JavaScript runs.
-- ID/EN dictionaries share keys/types. Informational content is rendered at build time; client components receive only the strings they need.
-- No language-detection middleware/proxy, cookies, or translation API. Hosting redirects `/` to `/id/`, with an HTML entry page containing links for static-preview fallback.
-- Language switching uses equivalent routes and full navigation after the reset guard. This intentionally creates a new provider and does not transfer session data.
+Vercel remains the hosting target, not a claim that every needed service is free. Select compatible stable framework/runtime versions, auth library/provider, relational database, database adapter/migration tool, pooling and deployment configuration before coding. Verify current limits, regional availability, cost/sleep/quota behavior and noncommercial terms. Do not provision anything during documentation work.
 
-The locale-segment and dictionary approach follows App Router support; locale routes can be pregenerated. [Next.js internationalization](https://nextjs.org/docs/app/guides/internationalization)
+Prefer an established maintained authentication solution over custom cryptography. Authentication does not replace authorization. Keep a server-only data-access layer that returns minimal authorized fields. The design follows [Next.js authentication](https://nextjs.org/docs/app/guides/authentication) and [Next.js data security](https://nextjs.org/docs/app/guides/data-security), checked October 29, 2026. These sources guide architecture, not a version compatibility guarantee.
 
-### Foundation risks that must be verified
+Provider-specific SDKs, schema validators and test runners require a recorded reason before installation. No package, lockfile, runtime or application exists yet.
 
-Locale root layouts, the entry page, custom global 404 handling, and static export must be tested together on the selected Next.js version. Global 404 handling has its own convention; the referenced documentation marks `global-not-found` as experimental. Do not enable it without a decision and build verification. [Next.js not-found](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
+## 3. Request path
 
-P3 must produce a custom `/404.html` served with HTTP 404 for unknown paths. If the framework convention is incompatible with static export, use a static 404 fallback generated from a local template during the build and tested on hosting, then record the concrete choice in Decisions. Do not solve this by adding server state, an unbounded runtime catch-all, or a site-wide SPA fallback returning HTTP 200.
+Each protected operation follows: validate request origin/CSRF protections where applicable → validate session → check role and resource relationship → validate allowlisted fields → execute scoped query/transaction → emit minimal result and safe audit event.
 
-## 3. Planned structure
+Server Actions and/or Route Handlers are transport options to choose during foundation work. Treat either as directly callable endpoints. Hiding a button or protecting a layout is insufficient. Do not duplicate authorization in unrelated UI components; reuse domain checks at the data boundary and test every transport.
 
-The structure below is a plan, not a list of existing files. Final root-layout/404 organization depends on P3 verification.
+Never trust body-supplied actor, role, owner, customer status, priority, report publication state or benefit dates. A client-provided project ID is a request to access a resource, not proof of ownership. Bound searches/pagination and use parameterized queries through the selected adapter.
+
+Mutation retries use actor/action-scoped idempotency records, payload hashes and unique constraints. Enforce report publication, support reservations and schedule changes transactionally, with optimistic concurrency/version checks where appropriate.
+
+## 4. Authentication and sessions
+
+The selected solution owns credential handling, sessions and recovery. Proposed browser boundary: secure, HttpOnly authentication cookies with reviewed SameSite, scope, expiry and revocation behavior; production HTTPS. No auth tokens or credentials in localStorage, public environment variables or URLs.
+
+If passwords are selected, use the chosen solution's supported password hashing and recovery flow; never store plaintext or implement a homegrown hash. Verification/recovery delivery and enrollment must be settled before public registration. No shared administrator credentials or public admin signup. Require stronger admin authentication/re-authentication using capabilities verified for the chosen provider.
+
+Rate-limit login/recovery and data mutations using server-side controls that work across server instances. Session logout/revocation and disabled-account checks must affect private operations immediately according to the reviewed session policy. Exact timeout/rate values are decisions, not fabricated defaults.
+
+Use provider-supported CSRF/origin protections plus endpoint-specific tests; SameSite alone is not a universal defense. Never disable security checks to make cross-origin requests work. See [OWASP session management](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) and [CSRF prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html).
+
+## 5. Domain and persistence
+
+[Data and Access](DATA_AND_ACCESS.md) owns entities, relationships, access matrix and transactional invariants. [Service Operations](../product/SERVICE_OPERATIONS.md) owns ticket/project/report/support rules. Avoid independently redefining statuses and expiry calculations in UI code.
+
+Separate account identity, customer/project relationship, ticket state, project stage, report publication, source finding status and retest outcome. A three-month benefit is not a database retention policy.
+
+Public sample data stays local and immutable. Private illustrative report snapshots persist in the database and preserve provenance. Users submit change assertions; admin review events do not overwrite canonical findings or immutable published versions.
+
+## 6. Planned structure
+
+This is a responsibility map, not authorization to create empty folders or final filenames.
 
 ```text
 src/
   app/
     [locale]/
-      layout.tsx
-      page.tsx
-      services/page.tsx
-      about/page.tsx
-      process/page.tsx
-      request/page.tsx
-      request/received/page.tsx
-      report/page.tsx
-      privacy/page.tsx
-      not-found.tsx
-    (entry)/
-      layout.tsx
-      page.tsx
+      (public)/        # Home, services, process, about, sample, privacy
+      (account)/       # Chosen login/enrollment/recovery screens
+      (portal)/        # User dashboard, tickets, projects, private reports
+      admin/           # Admin workspace; server checks on every operation
+    api/               # Only Route Handlers actually selected
   components/
-    layout/             # Header, footer, menu, language switch
-    ui/                 # Button, field, dialog, disclosure
+    layout/            # Shared public/portal shells and locale controls
+    ui/                # Small accessible reusable primitives
   features/
-    packages/           # Named selection, detail panel, local fit guidance
-    request/            # Form, validator, error messages
-    simulation/         # Provider, reducer, ticket, status
-    report/             # Table, mobile list, detail
-    companion/          # Guide topics, panel, mascot presentation
-  content/
-    packages.ts         # Approved package IDs and structured scope/outputs
-    findings.ts         # Canonical domain data and stable IDs
-    id.ts               # Indonesian copy and explanations
-    en.ts               # English copy and explanations
-  lib/
-    i18n.ts             # Locale, dictionary, page-key mapping
+    consultations/     # Conditional intake and scheduling
+    tickets/           # User/admin conversation and ticket actions
+    projects/          # Scope, relationship and project stages
+    reports/           # Public sample and private version presentation
+    support/           # Eligibility and bounded retest requests
+    packages/          # Public package selection and detail
+    companion/         # Optional local scripted guide
+  server/
+    auth/              # Provider integration and trusted session context
+    data/              # Authorized queries, DTOs and persistence adapter
+    domain/            # Validated transitions, support policy, transactions
+    audit/             # Minimal privileged-action metadata
+  content/             # Shared package definitions, canonical findings, ID/EN
+  lib/                 # Locale/routes and genuinely shared pure utilities
   styles/
-    tokens.css
-    globals.css
-public/
-  brand/
-  mascot/
-  fonts/
-scripts/                # Only build helpers that are actually needed
+database/              # Reviewed schema, migrations and synthetic-only seeds
 tests/
   unit/
+  integration/
   e2e/
+public/                # Optimized public brand/pet/font assets only
 ```
 
-Do not create empty API, database, auth, or backend-schema directories. Mobile/desktop UI shares domain logic. Separate components only where presentation genuinely differs, such as tables and mobile lists.
+Route groups do not change public URLs or enforce access. Private reports never belong under public/. Keep provider keys and server modules out of client imports. Schema/migrations may be versioned; database dumps, credentials and real personal fixtures may not.
 
-## 4. Data and function contracts
+## 7. Routing, locales and browser state
 
-These contracts describe interfaces for later implementation; they are not runnable application code.
+Use allowlisted id/en prefixes with shared typed dictionaries and correct server-rendered html language. Resource paths may contain opaque internal IDs after authorization; they never contain input website/contact/message values.
 
-| Contract | Definition |
-| --- | --- |
-| `Locale` | `id` or `en` |
-| `PageKey` | `home`, `services`, `about`, `process`, `request`, `received`, `report`, `privacy` |
-| `PackageId` | `scout`, `warden`, `nexus`, `atlas`; stable across locales |
-| `PackageDefinition` | Shared ID, suitability, inclusions/exclusions, deliverables, `illustrativeStartingPriceIdr` as an integer, structured `scopeCaps`, `effortWorkingDays` range, walkthrough allowance, `retestPolicy` for cycles/window/basis, and localized copy keys; use the reviewed Service Packages section 6 baseline |
-| `PackagePlanningState` | Selected `PackageId` or none and optional local fit answers; separate from `RequestDraft` and `DemoSession`; exact fit rules remain under review |
-| `RequestDraft` | `name: string`, `applicationUrl: string`, `needs: string`, `authorized: boolean` |
-| `ValidationErrors` | Maps field names to stable error codes rather than mixed-language text |
-| `Stage` | `awaiting_permission`, `testing`, `report_ready` |
-| `DemoSession` | `ticket: string`, `stage: Stage`, `source: 'illustration'`; or `null` for no session |
-| `Finding` | `id`, `order`, `owaspCategory`, `locationKey`, `score: number`, `severity`, `remediationStatus` |
-| `FindingCopy` | Localized title, location label, explanation, and remediation guidance |
-| `validateRequest(draft)` | Returns structured errors; a pure function without I/O |
-| `createDemoTicket()` | Generates `DEMO-XXXXXXXX` on the client; never called during rendering/build |
-| `reduceDemo(session, event)` | Applies permitted transitions; inapplicable events leave state unchanged |
-| `routeFor(locale, pageKey)` | Generates a public route from the allowlist; does not accept user-entered URLs |
-| `getDictionary(locale)` | Selects typed local content; makes no translation request |
+Saved records survive locale changes, reload and new tabs. Language switching does not need the retired reset-demo confirmation. Warn only before discarding unsaved edits. Browser state contains ephemeral drafts/panel selections; no persistent private browser cache/offline storage. Public language choice may remain in the path.
 
-Separate finding remediation status (`fixed`/`not_fixed`) from session stage. Do not recalculate scores. Enums and IDs are not translated; presentation strings are.
+Logout/account switch must clear client query/router state and revalidate restored private documents. No browser-cache strategy can replace server authorization; test Back, multi-tab and cross-account transitions.
 
-Package values come from one static definition set shared by comparison and selected-detail views. Currency formatting remains IDR in both locales. Keep `origin`, UI route family, API operation/group, role pair, application, and business-flow limits distinct. Retest windows use the initial report as their conceptual basis; the demo creates no real report timestamp, expiry calculator, booking, work countdown, or billing state. Package metadata and effort assumptions are fictional content, not an executable assessment schedule.
+## 8. Caching, metadata and privacy
 
-## 5. State and lifecycle
+Private pages/responses use a verified no-shared-cache strategy, with Cache-Control private, no-store where appropriate. Do not statically generate private routes, use shared data caches keyed only by report ID, or serialize full database rows into client props. Test the selected framework's HTML, data and RSC responses, CDN behavior and back/forward restoration.
 
-Place the client provider in the locale layout that persists during internal navigation. It manages the draft and session; the form mounts only on the request page. A valid submission generates a ticket, clears the draft, and navigates to the success page on the client.
+Public pages/sample may be cached independently. Private routes and auth screens use noindex and stay out of sitemaps/social previews. Robots/noindex are not access controls. No personalized metadata or private Open Graph images.
 
-Draft package-state extension: the same provider manages separate temporary package-selection/fit state. A nonempty selection/fit state activates existing draft reset/language guards. Clear it on successful submission, reset, confirmed language change, reload, and restored-document handling. Do not add it to `DemoSession`, success output, route parameters, storage, or server props. Package definitions are public static content; visitor selections and fit answers are private temporary state. No choice changes the five findings or triggers URL analysis, payment, booking, or a real recommendation service.
+Logs/audit events contain minimal metadata, never session tokens, contact contents, website inputs, problem narratives or report bodies. Infrastructure request logs must be reviewed; sanitize/redact allowed resource identifiers where needed. Observability is not permission to export private content.
 
-Do not serialize session data into server props, URLs, cookies, logs, storage, or caches. SessionStorage is prohibited even though it is tab-scoped. Language preference resides in the path; assistance preferences remain in memory.
+## 9. No target access
 
-Reloading creates an empty provider. Restoring a document from the back-forward cache must clear sensitive state, for example through a `pageshow` lifecycle check for restored documents. Disable native form autofill as a retention-reduction measure, but do not claim full control over browser autofill, history, or internal memory.
+Validate website syntax as text only, on both client and server. Never resolve DNS, fetch a page, inspect a favicon, embed a preview, validate availability or construct input-derived href/src/CSS URLs. Store escaped text only in the authorized database.
 
-Distinguish client-not-ready from no-session state so server-rendered HTML does not fabricate tickets or progress. Generate randomness only on submission. Protect against double submission with a synchronous handler guard before navigation.
+Tests intercept before page load and before server egress; cover external, localhost/private-network, metadata-like and same-origin targets without allowing requests to reach them. Database/auth traffic follows a fixed configuration allowlist. The fact that server networking exists does not permit target networking.
 
-## 6. Forms without a transmission path
+## 10. Hosting, secrets and operational gates
 
-- Render the form without an active native submission path; keep submission disabled until hydration is ready and provide a `noscript` explanation.
-- Prevent default behavior before validation. No `action`, Server Action, fetch, or alternate request.
-- Apply CSP `form-action 'none'` as an additional hosting-side protection; do not rely on the header alone.
-- To prevent fallback GET submission from carrying data, do not add serializable native `name` attributes where unnecessary; use `id` for labels and explicit state. Test Enter and disabled JavaScript against production output.
-- Never place the application address in `href`, `src`, style URLs, backgrounds, favicons, iframes, or resource attributes.
-- Treat all inputs as plain text; do not use `dangerouslySetInnerHTML`, unrestricted HTML in Markdown, or dynamic code evaluation.
+Secrets are allowed only in approved local/hosting secret storage after provisioning is authorized. Never commit them, display values in docs, prefix secrets for client exposure, or include them in browser bundles. An example environment file may contain variable names and safe placeholders only when the provider is chosen.
 
-## 7. Dependencies and assets
+Use separate development/test/preview/production credentials and databases. Preview builds must not read production private data. Run reviewed migrations through controlled credentials; application credentials use least privilege. Pooling, backups, restore tests, retention and deletion propagation must be defined before public data intake.
 
-| Need | Baseline | Rationale |
-| --- | --- | --- |
-| Framework | Next.js, React, React DOM | Requested stack |
-| Types/lint | TypeScript, React/Node types, ESLint, and compatible Next configuration | Static checks |
-| Styling | Custom CSS/CSS Modules; Tailwind optional if selected | The design does not require a large component library |
-| State and validation | React state/reducer + local validator | Small form; no additional state/form/schema library needed yet |
-| i18n | Typed dictionaries and route allowlist | Two languages and a limited page set; no runtime translation service needed |
-| Browser tests | Playwright as a proposed development dependency | End-to-end checks for network, storage, navigation, mobile, and languages |
-| Unit tests | Vitest as a proposed development dependency | Critical validator/reducer behavior can be tested without UI |
-| Accessibility | Manual checks; development-only axe-core if needed | Helps identify DOM issues without replacing human review |
+Planned scripts: dev, lint, typecheck, test, test:integration, test:e2e, build, start, plus selected migration tooling. These commands do not exist yet. Build success does not imply lint ran, database authorization passed or deployment is secure.
 
-Versions are not selected in this document. During P3, check supported stable releases, select compatible versions, explain added packages, and record the lockfile and runtime. Local fonts/assets avoid third-party requests during visits. Choose an animation library only if the design requires capabilities beyond CSS.
+Headers/CSP must accommodate real first-party forms/auth, unlike the retired form-action none design. Derive form-action, connect-src and allowed callbacks from the chosen architecture; use exact necessary origins, not broad wildcards. Verify hydration, cookies, CSRF, 404 and private caching on the production deployment.
 
-## 8. Build, hosting, and metadata
+## 11. Open gates and limits
 
-Planned script contract: `npm run dev`, `npm run lint` (explicit ESLint), `npm run typecheck`, `npm run test`, `npm run test:e2e`, `npm run build`, and `npm run preview` for static output. These scripts do not exist yet; update the README once they do. Do not assume the build runs lint automatically.
+Before foundation: select provider/runtime/transport, enrollment, recovery and admin provisioning. Before benefit code: approve activation event, date semantics and cycle rules. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before visual implementation: review missing portal/admin screens while preserving the approved public direction.
 
-The target static output is `out/`, with consistent trailing slashes. Runtime image optimization is unnecessary; optimize assets before building or use a loader compatible with static output. Sitemap/metadata origin is public configuration, not a secret; finalize the domain before publication.
-
-Configure static-hosting headers and redirects in Vercel rather than relying on Next server configuration that does not apply to static output. [Vercel project configuration](https://vercel.com/docs/project-configuration)
-
-Check locale canonicals/alternates and `html lang` in generated HTML. Success and demo-report routes use `noindex`; the sitemap contains only informational routes intended for publication. Tickets and inputs must not appear in metadata, build artifacts, or social previews.
-
-## 9. Risks and follow-up decisions
-
-| Risk | Response |
-| --- | --- |
-| Locale/404 layouts are incompatible with the selected version | P3 verifies the build and HTTP 404 behavior before feature expansion; record the fallback choice |
-| CSP blocks hydration or is too permissive | Derive it from production output; hash actual inline scripts where necessary; do not add `unsafe-eval` to hide errors |
-| Cross-language state preservation requires serialization | Use the baseline confirmation-and-reset flow, not storage |
-| The mascot increases bundle size | Lazy-load assistance and noncritical assets; limit motion; keep core features independent |
-| Hosting enables analytics/injection outside application code | Audit configuration and production network behavior before making privacy claims |
-
-Technical sources were checked on October 27, 2026. This document records a design and its verification points, not a compatibility guarantee for an application that has not been built.
+No source inspection, diagram or documentation check is an application security or performance test. See Quality for executable acceptance expectations.
