@@ -1,156 +1,85 @@
 # CELAHAN — Project Brief
 
-Status: Initial brief, package concepts, and revised desktop hero approved; remaining screens and detailed planning remain under review  
-Updated: October 28, 2026  
-Stage: Desktop references accepted; mobile visual references generated for review; application implementation has not started
+Status: Revised service-portal requirements; documentation only, application implementation not authorized  
+Updated: October 29, 2026  
+References: [PRD](PRD.md), [Service Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
-## 1. Project overview
+## 1. Project and purpose
 
-CELAHAN is a web application security testing and assessment service concept presented as an interactive website in Indonesian and English. Indonesian is the proposed default language. The project supports IT Project Management coursework and a portfolio combining frontend development, UI/UX, and product design.
+CELAHAN is a bilingual web security assessment service concept for IT Project Management coursework and a portfolio combining product design, frontend development, and backend engineering. It will demonstrate a functional service portal rather than a promotional page that forwards visitors to WhatsApp.
 
-The website will introduce the service, explain its scope and process, and simulate the client journey from requesting a service to viewing status and sample reports. It should feel like a carefully developed public product, with a consistent visual identity and an honest explanation of its simulated nature.
+Accounts, authenticated sessions, consultation submissions, database records, ticket conversations, admin decisions, and private project/report access are planned to work for real. Security assessments, their progress, and reports remain explicitly illustrative. The website does not provide a commercial security service, contact or scan submitted websites, repair code, or certify security.
 
-CELAHAN does not accept real security testing engagements. All scans, tickets, progress, and findings shown on the website are simulated.
+The owner's October 29 scope change supersedes the earlier prohibition on application backends, accounts, form transmission, and databases. It does not authorize implementation, deployment, real assessments, or collecting real incident evidence.
 
-## 2. Goals and portfolio value
+## 2. Goals and evidence
 
-The confirmed portfolio goal combines frontend development and product design. The project should demonstrate:
+Demonstrate coherent discovery-to-consultation flows, a useful user/admin workflow, persistent data, server-enforced access, dedicated mobile layouts, Indonesian/English equivalence, accessible controls, measured performance, and maintainable code. Explain trade-offs and record only checks actually run.
 
-- Translating problems and user needs into understandable features, flows, and content.
-- Designing a consistent identity, visual hierarchy, interactions, and responsive experience.
-- Building an application with maintainable code, accessibility, performance, and security considered from the planning stage.
-- Explaining decisions and supporting outcomes with checks that were actually performed.
-- Completing a product through deployment and presenting the process as a portfolio case study.
+The lecturer's feedback, as reported by the owner, requires login, consultation fields, and a real database. No complete grading rubric has been supplied. A prototype can be submitted before the final portfolio release; development may continue afterward. No fixed deadline or video duration/format has been specified.
 
-Intended deliverables include a public website, project documentation, a visual identity with a logo and mascot, and a promotional video using cinematic motion graphics. According to the owner, the video is part of the coursework requirement; no required format or duration has been provided.
+The promotional video remains a coursework deliverable. It must distinguish real portal functionality from illustrative security work.
 
-The owner has stated that a prototype is sufficient for academic submission and that development can continue to strengthen the portfolio. There is no fixed deadline constraining the plan. Prototype, portfolio website, and video/case study milestones are distinguished in the PRD and Implementation Plan.
+## 3. Audiences and needs
 
-## 3. Background and audiences
-
-The academic document identifies a need for web application owners to understand security weaknesses and prioritize fixes. The imagined service audiences are independent developers, student organizations, and early-stage startups.
-
-Market demand and the affordability of professional services remain assumptions in that document, rather than findings supported by user research. The website must not present them as research results or proof of business success.
-
-Two audience contexts must be distinguished:
-
-| Context | Audience | Intended need |
-| --- | --- | --- |
-| Conceptual service | Web application owners or administrators | Understand assessment scope, the working process, report structure, and follow-up |
-| Coursework and portfolio website | Lecturers, portfolio reviewers, and general visitors | Understand the concept, try the demonstration, and assess design and implementation quality |
-
-The PRD proposes a demonstration that is easy to explore across these audiences, including direct access to the report without completing a form. This prioritization is a review baseline, not a user research finding.
-
-## 4. Represented service model
-
-CELAHAN represents a consultative service involving discussion, authorization, testing, assessment, and explanation of results. Automated scanning is one stage within a broader process.
-
-The eight service stages follow the original brief and PDF:
-
-1. Pre-engagement: written authorization and scope definition.
-2. Information gathering.
-3. Scanning.
-4. Manual testing.
-5. Risk assessment.
-6. Reporting.
-7. Retesting.
-8. Closure, including data deletion in the conceptual service model.
-
-The authorization checkbox represents the applicant's initial statement and does not replace written authorization. The closure stage in the service narrative does not imply that the website stores data for later deletion.
-
-The conceptual service excludes digital forensics, compliance certification, and testing without written permission.
-
-## 5. Mandatory website boundaries
-
-The project owner has established the following requirements:
-
-1. No real scanning or security testing. Entered application addresses are never accessed, including for availability checks or previews.
-2. Forms must not transmit or store data through databases, email, localStorage, or any other persistent storage. Simulation state remains on the client.
-3. A valid submission displays a request-received page with a sample ticket number generated on the client.
-4. The footer and form page must display this exact Indonesian statement: **“Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.”** Its English translation is: “A concept project for a portfolio and university coursework. Not a real service.”
-5. Finding tables and reports must be labeled as illustrative data. The five core findings preserve the content of Chapter IV of the PDF, including titles, categories, locations, scores, severity levels, and statuses.
-6. No fabricated testimonials, client logos, success statistics, or certification claims.
-7. No secrets or API keys in the repository.
-8. No application backend or database. External AI integrations and real scanning tools are outside the agreed scope.
-
-Privacy information must match the actual implementation and hosting configuration. The prohibition on transmitting form data must not be expanded into an unchecked claim that the hosting provider processes no technical access data whatsoever.
-
-## 6. Core experience scope
-
-| Page | Primary purpose |
+| Audience | Need |
 | --- | --- |
-| Home | Introduce CELAHAN, summarize the service, and direct visitors to the form |
-| Services | Explain included work, service boundaries, and written authorization requirements |
-| About CELAHAN | Explain the concept, approach, and coursework/portfolio context without fabricated company history |
-| Process | Explain the eight service stages |
-| Request a Service | Name, application address, needs, and authorization checkbox; validation and a simulated submission outcome |
-| Status and Sample Report | Represent waiting for authorization, testing, and report-ready states; present five illustrative findings |
+| Public visitor | Understand services, limitations, packages, process, and the public sample report |
+| Registered prospect | Request free consultation, suggest a schedule, provide contact details, and follow a private ticket |
+| User with a project | Read authorized reports, discuss findings, request retesting, and view support eligibility |
+| Admin | Triage consultations, agree schedules, associate users with projects, manage illustrative reports and support requests |
+| Lecturer / portfolio reviewer | Inspect working persistence, authentication, authorization, UX, and documented evidence |
 
-Basic journey: discover the service → understand its scope and process → try a request → view simulated status and an illustrative report.
+Reactive needs include reported defacement, suspected leakage/intrusion, and reported browser/search warnings. Preventive needs include pre-release review, requirements associated with standards/partnerships/tenders, and periodic checks. These are intake categories supplied by the owner, not independently verified market-research findings or automatic diagnoses. Include an unsure/mixed path.
 
-Visual identity, an interactive mascot as a simulation guide, a privacy page, a custom 404, and a promotional video have been accepted as development directions. The owner has also approved four premium package concepts with selectable mascot variants: SCOUT for public websites, WARDEN for authenticated web applications, NEXUS for applications/APIs, and ATLAS for multiple related systems or custom complexity. Their scope, outputs, and retest allowances are recorded in [Service Packages](SERVICE_PACKAGES.md). Numerical caps, fictional starting prices, effort, counting rules, and retest conditions have been fully drafted at the owner's request and remain under review rather than owner-confirmed commercial terms.
+## 4. Service scope and follow-up
 
-Package selection expresses interest before conceptual consultation and written scope agreement. Free-consultation invitations are simulation entry points, without real bookings, checkout, communication, or data transmission. Reports explain risk and remediation priorities; the application owner's developers implement fixes. No package guarantees all vulnerabilities will be found or complete security.
+The eight represented stages remain: pre-engagement, information gathering, scanning, manual testing, risk assessment, reporting, retesting, and closure. They are educational content; entering a URL or advancing an illustrative project stage performs none of these operations.
 
-## 7. Design direction and mascot role
+SCOUT, WARDEN, NEXUS, and ATLAS remain four scope-based premium concepts. Reactive/preventive describes why someone seeks help; the package describes assessment coverage. An incident does not automatically require the highest-priced package.
 
-The original terminal/tactical direction has been refined through owner review of an actual hero image. The approved desktop target uses warm near-black, ivory text, sand emphasis/actions, muted olive details, a dim doorway/stair scene, and a compact pet. Its large sans-serif headline and italic-serif emphasis supersede the initial all-monospace hero suggestion; monospace remains suitable for technical labels. The preserved [Design Reference Lock](../design/DESIGN_REFERENCE_LOCK.md) is authoritative for the hero's composition and atmosphere. The interface supports Indonesian and English, including forms, errors, status, reports, assistance, privacy information, and metadata.
+CELAHAN represents assessment, risk explanation, remediation guidance, and bounded retesting. The application's own programmers implement fixes. Code repair, hosting administration, emergency recovery, digital forensics, certification, continuous monitoring, and testing without written permission are excluded.
 
-The mobile experience is designed specifically for small devices, including navigation, forms, status, reports, and assistance. It is more than a smaller desktop layout; functionality and data remain equivalent, with shared domain logic. Language switching must never justify transmitting or storing inputs.
+The owner approved a maximum three-month support period from first service use, replacing the earlier 30/60-day retest windows. This means support and retesting, not a promise to repair all damage or make the site completely secure. The proposed calendar/activation rules and still-open discount terms are in [Service Operations](SERVICE_OPERATIONS.md). A maintenance-discount idea remains accepted in principle; because code maintenance is excluded, the proposed wording is discounted follow-up security review, pending confirmation.
 
-The logo must work independently. The four package mascots use SCOUT, WARDEN, NEXUS, and ATLAS as working names, with the approved specialty/personality directions in Service Packages. All are small compact pets with different body shapes and principal colors. The Minecraft reference informs colors/motifs only; the owner rejected a humanoid skin interpretation. The revised hero pet aesthetic is approved. Four v1 character concepts and a shared visual-system draft now exist for review; individual design approval, final logo/exports, and implementation remain open.
+## 5. Product boundaries
 
-The owner selected Constant Performance for headline/hero composition, Avara for four-character selection and detail presentation, and a supplied stairway/doorway scene. A generated revision with an original pet and subdued lighting was then explicitly approved. The saved revision takes precedence over the older bright-doorway screenshot. Supporting references remain in [Visual References](../design/VISUAL_REFERENCES.md). A [24-frame desktop design pass](../design/DESKTOP_DESIGNS.md) now covers the planned pages and important states for review. The desktop directions and revised cluster are accepted; the subsequent [27-frame mobile pass](../design/MOBILE_DESIGNS.md) is generated for review. Exact licensed fonts, mobile approval, final assets, and rendered interaction/accessibility checks remain open.
+- No request, DNS lookup, favicon, embed, preview, preconnect, scan, or automatic hyperlink to a visitor-supplied application address.
+- Inputs may travel only through the authorized portal/authentication data flows, with server validation and access controls. No input leakage through URLs, public assets, analytics, external AI, or diagnostic logs.
+- No secrets/API keys, real personal fixtures, incident evidence, or complete academic PDF in the public repository.
+- No payments, actual testing, code remediation, certification, file uploads, automatic email/WhatsApp messaging, or AI integration in the baseline.
+- Public sample findings preserve the five original rows. Private project reports are database-backed illustrative records, explicitly separated from that public sample.
+- Keep the exact footer and form statement: **Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.**
+- EN pages also show: **A concept project for a portfolio and university coursework. Not a real service.**
+- No fabricated clients, testimonials, certifications, business statistics, research results, or trademark registration.
+- Persistence and hosting practices must be disclosed accurately. A three-month support expiry is not a data-deletion policy.
 
-The mascot must not dominate product decisions. Navigation, forms, reports, and core information must remain usable without its guidance. Animation and assistance must account for accessibility, mobile devices, and performance.
+## 6. Planned experience
 
-## 8. Technical and quality foundations
+Public pages introduce the service, four packages, eight-stage process, About/FAQ, privacy, and a sample report without login. Account pages support a chosen registration/login/recovery approach. Authenticated users manage consultation tickets, conversations, projects, reports, and follow-up. Admin screens support triage, schedule confirmation, project assignment, report publication, and support decisions.
 
-The original brief specifies Next.js App Router and TypeScript. Tailwind is permitted, provided the design remains custom. Deployment targets a free Vercel account; configuration suitability and hosting terms must be verified during deployment planning.
+Project ownership is assigned server-side by an authorized admin. A registered account alone is not proof of customer status, payment, website ownership, or testing permission. V1 proposes a single owner account per project; organizational team access is deferred.
 
-Static export is proposed as the Architecture baseline but has not been proven through implementation. Bilingual routing, temporary state, custom 404 handling, and CSP must be verified during the foundation phase. Component organization and testing tools have been proposed for review; animation library choices depend on design needs. Every additional dependency requires a reason.
+The form includes name, company, website, problem, contact method/details, and proposed consultation timing. The existing ownership/authority statement remains an initial declaration, not written testing permission. Company is proposed optional for individuals. Exact limits and schedule mechanics are draft requirements, not undisclosed lecturer instructions.
 
-Project quality must address:
+## 7. Design continuity
 
-- Working functionality and navigation across all pages and core flows.
-- Dedicated mobile UI with equivalent functionality, form labels, contrast, and keyboard navigation.
-- Equivalent Indonesian/English content and interactions, including language semantics and metadata.
-- Loading and interaction performance, including font, image, JavaScript, and animation costs.
-- Input handling, network and storage boundaries, dependencies, and deployment configuration security.
-- Error handling, not-found pages, metadata, and verification of the deployed result.
+Preserve the approved [hero](../design/DESIGN_REFERENCE_LOCK.md), [Open Threshold logo direction](../design/LOGO_GUIDELINES.md), warm near-black/ivory/sand palette, subdued doorway, and compact pet identity. The four pet silhouettes and principal colors remain distinct. The homepage cluster retains names above on hover/focus and details on activation.
 
-Measurable targets and verification methods are proposed in the PRD and Quality document. Build, lint, or test success may only be reported after those checks have actually run.
+The approved public visual direction remains useful. The 24 desktop and 27 mobile references predate the portal change; old no-storage, disposable-ticket, privacy, and language-reset behavior is superseded. Authenticated and admin screens need new review. Do not regenerate images or claim design approval for those screens during this documentation revision.
 
-## 9. Initial definition of success
+ID/EN and mobile/desktop share domain logic and equivalent capabilities. Mascot guidance remains optional and scripted, separate from real user/admin ticket messages. Changing language must not erase database records or restart support.
 
-The project achieves its baseline goals when:
+## 8. Technical direction and completion
 
-- Every mandatory simulation rule is satisfied.
-- Core pages, form validation, submission outcomes, status, and reports work according to agreed requirements.
-- Design and interactions are consistent across mobile/desktop and Indonesian/English, and pass the agreed accessibility checks.
-- `npm run build` and `npm run lint` complete successfully.
-- The website is published and critical flows are checked on the deployed version.
-- The README explains the concept-project status and how to run the application.
-- Visual identity and video deliverables meet their subsequently agreed scope.
-- Documentation provides decision rationale, actual verification results, and known limitations for the portfolio.
+Next.js App Router + TypeScript remain required. A server-capable deployment and real relational database replace the static-export-only proposal. Vercel remains the target; provider selection, costs, supported versions, authentication, and database connectivity must be verified before implementation. No account or external resource is created by this documentation work.
 
-## 10. Open decisions
+Success requires end-to-end user/admin workflows, isolated private data, unchanged public sample content, correct support rules, responsive bilingual UX, actual build/lint/typecheck and behavior/security checks, an accurate README/privacy notice, and verified deployment when separately requested. A secure design is not evidence of a completely secure implementation.
 
-Owner choices are still needed for the final logo/mascot artwork, fonts and compositions, review of the authored package-detail baseline, video details, publication account/domain, licensing, and which personal/team information may be published. There is no fixed deadline to guess; additional academic requirements will be recorded if they emerge.
+Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing and [Decisions](../planning/DECISIONS.md) for unresolved choices. All Git operations remain manual; per-file English suggestions belong only in chat.
 
-The supporting documents propose baseline ticket/status/reset behavior, bilingual routing, quality targets, and phase sequencing. These details remain reviewable before implementation. Automated tours and some additional features are deferred so they do not enter scope without a decision. See [Decisions](../planning/DECISIONS.md) for the complete list and statuses.
+## 9. Sources and current authorization
 
-## 11. Working approach and references
+Sources are the owner's original brief and conversation through October 29, 2026, plus the previously reviewed academic PDF for the eight stages and five findings. The PDF is source material, not authorization to perform security testing or publish personal details.
 
-The owner has authorized completion of the documentation before implementation. Approval of an idea does not automatically approve all technical details or scope expansion. The Implementation Plan divides the work into small phases with deliverables and completion criteria; it will only be executed when implementation is requested.
-
-All Git operations are performed manually by the owner. Agents do not run Git, read `.git`, create repositories through APIs, commit/push, or create worktrees. Operational rules are recorded in [AGENTS.md](../../AGENTS.md). Documentation snapshots can provide the starting point for progress tracking without waiting for application code.
-
-Project documentation is written in English. Required Indonesian product copy and canonical source data are preserved verbatim; this does not change the bilingual website requirement.
-
-References:
-
-- The owner's brief and decisions in the CELAHAN conversation through October 27, 2026.
-- `CELAHAN_Perancangan_Layanan_Final (1).pdf`, especially the eight-stage design in Chapter III and the identity/five illustrative findings in Chapter IV.
-
-The PDF is an academic and content reference. Its pilot plans, security tool references, and development suggestions are not instructions to run assessments or expand the website. The OWASP Top 10:2021 and CVSS 3.x context of the sample data must remain clear. CELAHAN is used as the project name; the PDF's intellectual property discussion is not a claim that the trademark is registered.
+The owner has now authorized Markdown revision. No application scaffolding, dependencies, new design images, provider provisioning, messaging, or deployment is authorized in this step.
