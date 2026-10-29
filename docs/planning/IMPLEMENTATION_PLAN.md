@@ -5,9 +5,9 @@ Updated: October 29, 2026
 
 **Goal:** deliver a bilingual concept service portal with dedicated mobile/desktop UX, real authentication/database/tickets/admin workflows, private illustrative reports and evidence-backed quality.
 
-**Architecture:** Next.js App Router + TypeScript, server-authorized operations, relational persistence, and immutable public sample content. No static-export-only application, target scanning, AI integration or code repair.
+**Architecture:** Next.js App Router + TypeScript, Better Auth in the application server, Neon Free PostgreSQL, server-authorized operations and immutable public sample content. No static-export-only application, target scanning, AI integration or code repair.
 
-**Specifications:** [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Flows](../product/USER_FLOWS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md).
+**Specifications:** [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Flows](../product/USER_FLOWS.md), [Portal UX](../design/PORTAL_UX_SPEC.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md).
 
 Read [AGENTS.md](../../AGENTS.md). This plan does not authorize subagents, dependencies, coding, asset generation, external resources or deployment. Git stays entirely manual.
 
@@ -30,7 +30,7 @@ The existing P0–P9 identifiers are retained for continuity. Deliverables are r
 | --- | --- | --- | --- |
 | P0 | Consistent product, operations, data/access and quality documents | Owner scope discussion | Portal revision drafted; owner review/open decisions remain |
 | P1 | Final identity/runtime assets | Approved identity + asset authorization | Open Threshold selected; source PNGs retained; vectors/fonts/exports pending |
-| P2 | Reviewed public and new portal/admin UX | P0 policy decisions | Public desktop direction accepted; 27 mobile references await review; portal screens not produced |
+| P2 | Reviewed public and new portal/admin UX | P0 policy decisions | Public direction retained; portal UX specification drafted; mobile and new screen review pending |
 | P3 | Verified bilingual server/auth/database foundation | P0 provider/identity choices + implementation authorization | Not started |
 | P4 | Public discovery and immutable sample report | P2 + P3 | Not started |
 | P5 | Consultation/ticket conversation and admin triage | P3 + reviewed intake/scheduling | Not started |
@@ -45,8 +45,12 @@ The existing P0–P9 identifiers are retained for continuity. Deliverables are r
 - [x] Draft user/admin flows, logical data/access rules, ticket/report/support operations and expanded test criteria.
 - [x] Retain approved identity and mark older no-storage/reset visuals historical.
 - [ ] Owner reviews authored baseline details, numerical package terms and open decisions.
-- [ ] Resolve identity/enrollment, provider/transport, first-service activation, temporary discount scope and personal-data policy before affected work.
-- [ ] Review missing portal/admin and updated mobile flows before detailed implementation packages.
+- [x] Owner selected Better Auth + Neon Free, with no paid upgrade/add-on without approval.
+- [x] Owner confirmed first private project report publication as the support start.
+- [ ] Resolve enrollment/email recovery/admin provisioning, adapter/transport, calendar/cycle rules, temporary discount scope and personal-data policy before affected work.
+- [x] Draft the account/user/admin navigation, screen/state inventory and UX acceptance baseline.
+- [x] Record deferred permanent domain/registrar/DNS selection as a later setup gate.
+- [ ] Review the authored Portal UX Specification and missing portal/admin/mobile screens before detailed implementation packages.
 
 A documentation snapshot is a legitimate manual GitHub progress checkpoint; no application scaffold is required.
 
@@ -58,7 +62,7 @@ Completion requires actual export/readability/license checks. Existing raster sp
 
 ## 5. P2 — Revised UX/UI
 
-Keep accepted public composition and package interaction. Review login/enrollment/recovery, user dashboard/empty states, reactive/preventive intake, requested/confirmed schedule, ticket conversation, admin queues/internal notes, project detail, draft/published report, fix assertion, retest request, support expiry and access-denied states.
+Keep accepted public composition and package interaction. Use Portal UX Specification as the authored screen/state baseline, without claiming owner approval of its auth policies or new images. Review login/enrollment/recovery, user dashboard/empty states, reactive/preventive intake, requested/confirmed schedule, ticket conversation, admin queues/internal notes, project detail, draft/published report, fix assertion, retest request, support expiry and access-denied states.
 
 Review ID/EN and phone/desktop, including keyboard, unsaved edits, session expiry, long messages and pending/failed saves. Changing locale does not reset saved records. No extra image production is authorized by this document revision.
 
@@ -66,7 +70,7 @@ Review ID/EN and phone/desktop, including keyboard, unsaved edits, session expir
 
 Proposed responsibility areas: application/configuration, locale shell, server auth/data/domain boundaries, database schema/migrations and critical integration fixtures.
 
-Before writing code, verify supported versions, selected database/auth/adapter/runtime/hosting configuration and reasons for every dependency. Choose enrollment/verification/recovery/admin provisioning and secret management. Do not provision accounts or send messages merely to satisfy the plan.
+Before writing code, verify supported versions, selected database/auth/adapter/runtime/hosting configuration and reasons for every dependency. A permanent domain/DNS provider is not required for isolated foundation work; use configuration-driven local/preview origins and a test email sink. Public enrollment still needs approved privacy/auth policy and verified email delivery before release. Choose enrollment/verification/recovery/admin provisioning and secret management. Do not provision accounts or send messages merely to satisfy the plan.
 
 Foundation outcome: public routes work, real auth/session validation works, an isolated database migration succeeds, and user A cannot retrieve user B's seeded private record through a direct server request. Establish test runners and meaningful authorization tests before building private features.
 
@@ -92,7 +96,7 @@ Build tests for conditional form rules, ownership, privileged fields, internal-n
 
 Implement admin-created project relationships, illustrative progress, immutable draft/published report versions, private finding presentation, programmer-fix assertions, separate illustrative admin review and support tickets.
 
-After activation/date policy approval, implement the three-calendar-month boundary, cycle reservation/consumption and visible benefit expiry. Do not invent a discount percentage or implement billing. Published reports remain available after benefits expire according to retention policy.
+Implement the confirmed first-report publication trigger atomically; after calendar/cycle policy review, implement the three-month boundary, cycle reservation/consumption and visible benefit expiry. Project activation/public sample views do not start benefits, and later report versions never reset them. Do not invent a discount percentage or implement billing. Published reports remain available after benefits expire according to retention policy.
 
 Outcome: authorized owner/admin can complete the illustrative project/report/retest journey, while foreign users, draft report requests and forged benefit fields are denied. Test exact expiry/month-end, timely requests handled later, concurrency and unchanged public findings.
 
