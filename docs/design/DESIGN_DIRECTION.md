@@ -1,7 +1,13 @@
 # CELAHAN — Design Direction
 
-Status: Desktop directions accepted; 27 mobile-web references generated for review · October 28, 2026  
+Status: Desktop directions accepted; 27 mobile-web references generated for review · October 29, 2026  
 References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Design Reference Lock](DESIGN_REFERENCE_LOCK.md)
+
+## October 29 portal scope update
+
+The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
+
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
 
 ## 1. Character and principles
 
@@ -37,7 +43,10 @@ The concrete authored token/state baseline is now in [Shared Visual System](VISU
 | About | Readable project context, approach, and portfolio purpose | Single reading column; no fictional team or company history |
 | Process | Numbered list/timeline with stage outputs | Vertical timeline; all eight stages readable without horizontal dragging |
 | Form | Main form with a guidance panel; controlled input widths | Single column; guidance close to inputs; CTA stays in the flow and clear of the keyboard |
-| Success | Demo ticket as the focal point with next actions | Ticket can wrap; simulation explanation and CTA are immediately visible |
+| Saved request | Durable reference and pending admin/schedule state | Clear saved outcome, wrapping reference, next action |
+| User portal | Own ticket/project summaries and published reports | Stacked task-focused summaries and compact conversation |
+| Admin workspace | Reviewed queues, internal notes, explicit privileged actions | Priority/context before details; usable forms rather than a shrunken table |
+| Private report/support | Authorized project/version and benefit dates | Expandable findings and clear support/expiry state |
 | Status/report | Compact stepper, semantic table, finding details | Compact/vertical status and an expandable finding list with field labels |
 | Privacy | Reading column with headings and an accurate update date | Single column, plain language, no wide tables |
 | 404 | Identity, short message, home links in both languages | Immediately readable message/actions; illustration is optional |
@@ -94,9 +103,11 @@ One owner-approved hero image now exists and is preserved in the project. Review
 
 Current desktop output is mapped in [Desktop Design Gallery](DESKTOP_DESIGNS.md): 24 selected section/page/state references plus the unchanged approved hero. The owner requested desktop first and mobile later. The owner accepted the other desktop visual directions and requested only a tight homepage package cluster: names above on hover/focus, name/service/price after activation, no captions below. Future implementation reduces unnecessary repetition without removing required labels; generated lettering does not override canonical source copy. The [mobile design gallery](MOBILE_DESIGNS.md) now contains 27 portrait references with readable scroll segments. Mobile approval, final fonts, and actual interaction verification remain pending.
 
-Prepare desktop and mobile presentations for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
+Retain/review public presentation patterns for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
 
-Also cover the four-character group, each selected package, package comparison, uncertain/mismatched package guidance, the simulated consultation entry, FAQ, and About. Use the complete draft price/cap/effort/retest content from Service Packages section 6 for review; final UI follows the reviewed version. Review absent/failed mascot artwork, long localized IDR prices, simultaneous caps, ATLAS custom-estimate wording, and the same finding dataset under every package selection. Fictional-price and conceptual-effort labels remain close to their values, including on mobile.
+Add desktop/mobile account login/enrollment/recovery, user/admin dashboard, initial and follow-up ticket forms, shared messages/internal notes, requested/confirmed scheduling, private draft/published report, expiry, session failure and denied-access states. Locale switching preserves saved data; only unsaved edits need a warning.
+
+Also cover the four-character group, each selected package, package comparison, uncertain/mismatched package guidance, the authenticated consultation entry, FAQ, and About. Use the complete draft price/cap/effort/retest content from Service Packages section 6 for review; final UI follows the reviewed version. Review absent/failed mascot artwork, long localized IDR prices, simultaneous caps, ATLAS custom-estimate wording, and the same finding dataset under every package selection. Fictional-price and conceptual-effort labels remain close to their values, including on mobile.
 
 Review both languages. Not every combination requires a separate mockup if its components and behavior have already been demonstrated; still cover important combinations during testing.
 
