@@ -1,6 +1,6 @@
 # CELAHAN — Architecture
 
-Status: Proposed server-backed portal architecture; provider/version decisions remain open; not implemented  
+Status: Better Auth + Neon Free selected; integration/version decisions remain open; not implemented  
 Updated: October 29, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
@@ -12,10 +12,10 @@ Next.js App Router and TypeScript remain required. A server-capable application 
 flowchart LR
   P[Public browser] --> W[Public pages and immutable sample]
   U[Signed-in user or admin] --> S[Next.js server boundary]
-  A[Selected auth solution] --> S
+  A[Better Auth in application server] --> S
   S --> Z[Session validation and object authorization]
   Z --> V[Domain validation and transactions]
-  V --> D[(Private relational database)]
+  V --> D[(Neon Free PostgreSQL)]
   V --> R[Minimal authorized response]
   R --> U
 ```
@@ -24,7 +24,13 @@ There is deliberately no edge to a submitted website, scanner, AI service, publi
 
 ## 2. Technology decisions and sources
 
-Vercel remains the hosting target, not a claim that every needed service is free. Select compatible stable framework/runtime versions, auth library/provider, relational database, database adapter/migration tool, pooling and deployment configuration before coding. Verify current limits, regional availability, cost/sleep/quota behavior and noncommercial terms. Do not provision anything during documentation work.
+The owner selected Better Auth's open-source library running in CELAHAN's Next.js server and Neon Free PostgreSQL. Vercel remains the hosting target. No paid plan/add-on or automatic upgrade is authorized. Select compatible stable framework/auth/runtime versions, a database adapter/migration tool, pooling and deployment configuration before coding. Verify limits, regions, quota/idle behavior and hosting terms; do not provision anything during documentation work.
+
+Checked October 29, 2026: Better Auth core is [MIT-licensed](https://github.com/better-auth/better-auth/blob/main/LICENSE.md); [Neon Free](https://neon.com/pricing) lists 1 GB storage and 100 CU-hours per project/month with idle scale-to-zero. This selection uses Neon for PostgreSQL and Better Auth in the application server; no managed-auth service is being configured. Quotas and cold-start performance require actual monitoring/testing. Core software availability does not make email/domain/hosting usage unlimited or permanently free.
+
+Permanent domain/registrar/DNS selection is explicitly deferred. The existing .my.id domain is one possible choice; the owner may choose another later. Do not require its name/DNS provider for current planning or isolated development. Keep deployment base URL, trusted auth origins/callbacks and sender identity configuration-driven. Changing them later requires reviewed cookie/redirect/email tests, not sharing sessions across domains automatically.
+
+Use local development/a reviewed deployment subdomain and isolated email testing while no public email domain is selected. Real public verification/recovery delivery requires an approved sender/provider and verified configuration; test email sinks do not prove deliverability. Resend remains only a candidate whose [domain requirements](https://resend.com/docs/dashboard/domains/introduction) need review. No purchase, DNS change, provider setup or email dispatch is authorized.
 
 Prefer an established maintained authentication solution over custom cryptography. Authentication does not replace authorization. Keep a server-only data-access layer that returns minimal authorized fields. The design follows [Next.js authentication](https://nextjs.org/docs/app/guides/authentication) and [Next.js data security](https://nextjs.org/docs/app/guides/data-security), checked October 29, 2026. These sources guide architecture, not a version compatibility guarantee.
 
@@ -42,9 +48,9 @@ Mutation retries use actor/action-scoped idempotency records, payload hashes and
 
 ## 4. Authentication and sessions
 
-The selected solution owns credential handling, sessions and recovery. Proposed browser boundary: secure, HttpOnly authentication cookies with reviewed SameSite, scope, expiry and revocation behavior; production HTTPS. No auth tokens or credentials in localStorage, public environment variables or URLs.
+Better Auth owns credential/session/recovery logic in the application server; its supported schema persists in Neon. Proposed browser boundary: secure, HttpOnly authentication cookies with reviewed SameSite, scope, expiry and revocation behavior; production HTTPS. No auth tokens or credentials in localStorage, public environment variables or URLs.
 
-If passwords are selected, use the chosen solution's supported password hashing and recovery flow; never store plaintext or implement a homegrown hash. Verification/recovery delivery and enrollment must be settled before public registration. No shared administrator credentials or public admin signup. Require stronger admin authentication/re-authentication using capabilities verified for the chosen provider.
+If passwords are selected, use Better Auth's supported password hashing and recovery flow; never store plaintext or implement a homegrown hash. Verification/recovery delivery and enrollment must be settled before public registration. No shared administrator credentials or public admin signup. Require stronger admin authentication/re-authentication using capabilities verified for the chosen provider.
 
 Rate-limit login/recovery and data mutations using server-side controls that work across server instances. Session logout/revocation and disabled-account checks must affect private operations immediately according to the reviewed session policy. Exact timeout/rate values are decisions, not fabricated defaults.
 
@@ -54,7 +60,7 @@ Use provider-supported CSRF/origin protections plus endpoint-specific tests; Sam
 
 [Data and Access](DATA_AND_ACCESS.md) owns entities, relationships, access matrix and transactional invariants. [Service Operations](../product/SERVICE_OPERATIONS.md) owns ticket/project/report/support rules. Avoid independently redefining statuses and expiry calculations in UI code.
 
-Separate account identity, customer/project relationship, ticket state, project stage, report publication, source finding status and retest outcome. A three-month benefit is not a database retention policy.
+Separate account identity, customer/project relationship, ticket state, project stage, report publication, support start, source finding status and retest outcome. The first private project report publication atomically sets support_started_at and expiry once; project activation is separate. Later versions/withdrawal/republication cannot restart the benefit. A three-month benefit is not a database retention policy.
 
 Public sample data stays local and immutable. Private illustrative report snapshots persist in the database and preserve provenance. Users submit change assertions; admin review events do not overwrite canonical findings or immutable published versions.
 
@@ -134,6 +140,6 @@ Headers/CSP must accommodate real first-party forms/auth, unlike the retired for
 
 ## 11. Open gates and limits
 
-Before foundation: select provider/runtime/transport, enrollment, recovery and admin provisioning. Before benefit code: approve activation event, date semantics and cycle rules. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before visual implementation: review missing portal/admin screens while preserving the approved public direction.
+Before foundation: select the remaining adapter/runtime/transport, enrollment, email recovery and admin provisioning details for Better Auth + Neon Free. Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and missing portal/admin screens while preserving the approved public direction. Domain identity remains a later public-email/deployment gate, not a flow-design prerequisite.
 
 No source inspection, diagram or documentation check is an application security or performance test. See Quality for executable acceptance expectations.
