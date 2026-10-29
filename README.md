@@ -1,101 +1,82 @@
 # CELAHAN
 
-A web application security assessment service concept for IT Project Management coursework and a **frontend development + product design** portfolio.
+A bilingual web security assessment service concept for university coursework and a portfolio combining product design, frontend development and backend engineering.
 
-> A concept project for a portfolio and university coursework. Not a real service.
->
 > Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.
+>
+> A concept project for a portfolio and university coursework. Not a real service.
 
-The Indonesian statement above is the mandatory original product disclaimer.
+## Status — October 29, 2026
 
-## Project status
+**Documentation and design stage. No runnable application, backend, database or deployment has been created.**
 
-**Stage: desktop and mobile visual references — October 28, 2026.**
+The owner approved expanding the planned website into a functional service portal after lecturer feedback: real login, a real database, reactive/preventive consultation intake, user/admin tickets and conversation, requested consultation schedules, private illustrative project reports and three-month follow-up benefits.
 
-The initial Project Brief, four-package concept, and revised desktop hero visual have been approved. The approved hero is saved unchanged and governed by the Design Reference Lock. Four distinct pet concepts, shared visual rules, and **24 desktop page/section/state references** are now available for review. The hero remains preserved. The owner accepted the desktop visual directions, including the revised homepage package cluster. Only selected desktop references are retained; obsolete iterations were removed at the owner's request. Final fonts/assets, numerical tokens, and detailed package terms retain their separate review status. A separate set of **27 portrait mobile-web references** is now generated for review, with obsolete mobile iterations removed after review. The owner requested completion of mobile references before subdividing the implementation plan into coherent, moderately sized packages. The owner selected Open Threshold as the logo direction. Final vector/runtime exports, application implementation/tests, video, and deployment remain pending. This repository can be published as an explicitly labeled planning/design baseline.
+This replaces the earlier client-only/no-storage architecture. It does not authorize real scanning, code repair, account/provider provisioning or application implementation in this documentation step.
 
-According to the project owner, a prototype is sufficient for coursework submission. Development can continue afterward to strengthen the portfolio; no fixed deadline or required video duration/format has been provided.
+The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. Portal/admin screens and revised form/privacy behavior need review; older no-storage/reset lettering is historical. Final vectors/fonts/runtime assets remain pending.
 
 ## Planned experience
 
-- Home, services/packages, an eight-stage process, a simulated consultation/request form, status/sample reports, and supporting project information.
-- Four premium package concepts: SCOUT, WARDEN, NEXUS, and ATLAS, represented by a coherent mascot family; complete draft scope, fictional starting prices, and retest terms are recorded for review.
-- Dedicated mobile and desktop UI with equivalent functionality.
-- Indonesian and English across pages, forms, reports, navigation, and system messages.
-- An approved warm near-black/ivory/sand hero with subtle olive details, a dim doorway, and a compact pet; four selectable package mascots with distinct shapes/colors, a logo, and an optional guide.
-- Privacy information, a custom 404 page, accessibility, performance checks, and deployment security.
-- A promotional video and process documentation for coursework and the portfolio.
+- Public home, services/packages, eight-stage process, About/FAQ, privacy, custom 404 and public sample report.
+- Real authentication and authenticated consultation with name, company, website, problem, contact and proposed schedule.
+- Reactive, preventive and unsure/mixed needs; user-reported symptoms are not automatic diagnoses.
+- Separate prospect consultation and project-linked support/retest/follow-up tickets.
+- User dashboard, in-app user/admin replies, admin triage, separate internal notes and explicit schedule confirmation.
+- Trusted project association and server-enforced access to published private illustrative reports.
+- Bounded support for at most three months from first service use; temporary discount details remain open.
+- Dedicated phone/desktop UI and Indonesian/English functionality using shared domain rules.
+- Promotional video and case study after working functionality can be recorded honestly.
 
-## Simulation boundaries
+## Functional portal and illustration boundary
 
-Entered application addresses are never accessed. Forms do not transmit data or store it persistently. Tickets are generated on the client, status is simulated, and reports use five illustrative findings from the academic document. There is no scanner integration, external AI, application backend, or database.
+Accounts, database storage, ticket messages and admin publication will work. Security assessments, progress and findings remain illustrative. The system never visits a submitted website, including DNS, favicons, previews, scans or automatic target links.
 
-## Documentation map
+The public sample preserves the five original academic findings. Private report snapshots are explicitly illustrative and accessible only to authorized project owners/admins. They are never generated by analyzing input.
 
-Use the [grouped documentation index](docs/README.md) for product, design, engineering, planning, portfolio, and validation records.
+The website owner's programmers implement fixes. CELAHAN does not offer code maintenance/repair, emergency recovery, forensics, certification, continuous monitoring, real testing, payments, uploads, external AI or automatic service email/WhatsApp delivery. Provider authentication verification/recovery delivery is a separate decision before enrollment.
 
-| Document | Contents |
+Persistent collection requires truthful privacy/enrollment/retention/provider policies before public intake. Synthetic project fixtures do not make real account identities nonpersonal. Secrets and private database dumps never belong in the repository.
+
+## Documentation
+
+Start with the [grouped index](docs/README.md).
+
+| Document | Responsibility |
 | --- | --- |
-| [Agent Instructions](AGENTS.md) | Authorization boundaries, manual Git, and working rules |
-| [Project Brief](docs/product/PROJECT_BRIEF.md) | Goals, context, audiences, and project boundaries |
-| [PRD](docs/product/PRD.md) | Requirements, release priorities, and acceptance criteria |
-| [User Flows](docs/product/USER_FLOWS.md) | Navigation, forms, status, reset, language switching, and error states |
-| [Content and Simulation](docs/product/CONTENT_AND_SIMULATION.md) | Canonical data, translations, core copy, and demo state |
-| [Design Direction](docs/design/DESIGN_DIRECTION.md) | Desktop, mobile, bilingual design, identity, and motion |
-| [Design Reference Lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved approved hero, checksum, visual invariants, character corrections, and proposed screen-design batches |
-| [Logo Guidelines](docs/design/LOGO_GUIDELINES.md) | Owner-approved Open Threshold reference and pending production-export checks |
-| [Mobile Design Gallery](docs/design/MOBILE_DESIGNS.md) | 27 mobile-web viewports, scroll assembly, touch flows, and review limits |
-| [Desktop Design Gallery](docs/design/DESKTOP_DESIGNS.md) | Selected desktop references, page assembly, state coverage, and implementation caveats |
-| [Shared Visual System](docs/design/VISUAL_SYSTEM.md) | Proposed tokens, typography roles, spacing, component states, and checked color pairs |
-| [Mascot Guidelines](docs/design/MASCOT_GUIDELINES.md) | Four pet concepts, shape/palette distinctions, PNG records, and prompts |
-| [Visual References](docs/design/VISUAL_REFERENCES.md) | Owner-selected hero composition, doorway scene, package interaction, and character source |
-| [Service Packages](docs/product/SERVICE_PACKAGES.md) | Approved concepts, mascot roles, detailed draft scope/prices, counting rules, deliverables, and retest conditions |
-| [Architecture](docs/engineering/ARCHITECTURE.md) | System boundaries, routing, state, structure, and dependencies |
-| [Quality and Security](docs/engineering/QUALITY_AND_SECURITY.md) | Testing criteria, performance, accessibility, and security |
-| [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md) | Small phases, deliverables, dependencies, and review points |
-| [Decisions](docs/planning/DECISIONS.md) | Confirmed decisions, recommendations, and open questions |
-| [Promo Video Brief](docs/portfolio/PROMO_VIDEO_BRIEF.md) | Video goals, initial storyboard, and claim boundaries |
-| [Release and Portfolio](docs/portfolio/RELEASE_AND_PORTFOLIO.md) | Prototype submission, publication, and case study evidence |
+| [Agent instructions](AGENTS.md) | Scope, no-target-access, quality, documentation-only authorization and entirely manual Git |
+| [Project brief](docs/product/PROJECT_BRIEF.md) | Goals, revised scope, audiences and milestones |
+| [PRD](docs/product/PRD.md) | Functional requirements and acceptance scenarios |
+| [Service operations](docs/product/SERVICE_OPERATIONS.md) | Ticket/project/report lifecycle, scheduling, triage and three-month support |
+| [User/admin flows](docs/product/USER_FLOWS.md) | Public, account, dashboard and private-resource journeys |
+| [Content and illustration](docs/product/CONTENT_AND_SIMULATION.md) | Canonical findings, translations and truthful portal copy |
+| [Service packages](docs/product/SERVICE_PACKAGES.md) | Four scope concepts and reviewable numerical terms |
+| [Architecture](docs/engineering/ARCHITECTURE.md) | Server/auth/database boundaries and planned organization |
+| [Data and access](docs/engineering/DATA_AND_ACCESS.md) | Logical entities, ownership, authorization and transactions |
+| [Quality/security](docs/engineering/QUALITY_AND_SECURITY.md) | Planned behavior, security, accessibility and performance checks |
+| [Implementation plan](docs/planning/IMPLEMENTATION_PLAN.md) | Broad phases, dependencies and actual status |
+| [Decisions](docs/planning/DECISIONS.md) | Confirmed changes, superseded rules and unresolved choices |
+| [Design reference lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved hero and visual continuity |
+| [Logo guidelines](docs/design/LOGO_GUIDELINES.md) | Approved Open Threshold direction and pending production exports |
+| [Release/portfolio](docs/portfolio/RELEASE_AND_PORTFOLIO.md) | Publication, operational gates and evidence |
+| [Video brief](docs/portfolio/PROMO_VIDEO_BRIEF.md) | Storyboard and capability boundaries |
 
-Suggested reading order: Project Brief → PRD → User Flows and Content → Design and Architecture → Quality → Implementation Plan. Consult Decisions when a choice is still under review.
+All project Markdown is English. Exact Indonesian source findings/disclaimers and bilingual UI examples remain intentionally preserved.
 
-Project documentation is written in English. Required Indonesian product copy and source findings remain verbatim where necessary; the planned website remains bilingual.
+## Technology and running
 
-## Intended technology
+Required stack: Next.js App Router + TypeScript with a custom design. A server-capable deployment and real relational database replace static-export-only plans. Vercel remains the hosting target. Authentication/database providers, versions, deployment limits/costs and migration tooling are not selected or provisioned.
 
-Next.js App Router and TypeScript, with a custom design. The hosting target is a free Vercel account. Static export details and dependency versions are technical proposals that must be verified during the foundation phase.
+There is no package.json, dependency installation, executable application or valid npm command to run yet. Read the documents directly. Add setup/environment/migration/seed/dev/lint/typecheck/build/test instructions only when the application foundation actually exists; never include real secret values.
 
-## Running the project
+## Current review gates
 
-There is currently no `package.json` or runnable application. No installation is needed to read this documentation.
+Before affected implementation: select auth/enrollment/recovery/admin provisioning, database/runtime/transport, first-service activation/date rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Numerical package details and mobile/final assets retain their review status.
 
-Once the application foundation is authorized and completed, update this README with the Node.js version, installation steps, and actual commands for development, linting, type checking, building, testing, and previewing production output. Planned commands are not evidence that the application already exists.
+No fixed deadline or required video format has been supplied. Prototype submission and portfolio completion are separate milestones; a prototype is not proof that final security/performance/deployment checks passed.
 
-## Progress tracking
+## Publication and progress
 
-Phase status is recorded in [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md), decisions in [Decisions](docs/planning/DECISIONS.md), and future verification results will follow the format in [Quality and Security](docs/engineering/QUALITY_AND_SECURITY.md).
+The owner performs every Git operation manually. Agents do not run Git, inspect .git, or use repository APIs. Per-file English commit suggestions appear in chat only.
 
-Completed checks: [documentation review on October 27, 2026](docs/validation/2026-10-27-documentation.md). These are not application test results.
-
-Approved package/reference direction: [package and visual direction review](docs/validation/2026-10-27-package-and-visual-direction.md).
-
-Detailed scope/pricing review: [package-detail documentation review](docs/validation/2026-10-27-package-details.md).
-
-**All Git operations are performed manually by the project owner. Agents do not run Git or modify repositories through APIs.** Unimplemented files and checks that have not been run must remain explicitly identified.
-
-The owner commits files individually. Per-file commit suggestions are delivered in chat only, with correct paths and descriptions of actual changes.
-
-Current mobile output: [mobile gallery](docs/design/MOBILE_DESIGNS.md) and [mobile design validation](docs/validation/2026-10-28-mobile-designs.md). Internal commit inventories and fingerprint snapshots are not retained in this repository.
-
-Current desktop output: [desktop gallery](docs/design/DESKTOP_DESIGNS.md) and [October 28 asset/document validation](docs/validation/2026-10-28-desktop-designs.md). Raster review is not application testing.
-
-
-## References and assets
-
-Content source: `CELAHAN_Perancangan_Layanan_Final (1).pdf`, Chapters III–IV. The source PDF is not included; the necessary illustrative data is recorded in the documentation. Team names, personal details, and the complete academic document are not automatically published.
-
-No project license has been selected. A public repository must not be treated as a grant of reuse rights. Record the sources and usage rights of the logo, fonts, mascot, music, and other assets when they are created or selected.
-
-## Repository hygiene
-
-The project excludes local environment secrets, private keys, dependencies, generated builds, caches, test output, hosting state, and temporary handoff notes through `.gitignore`. An example environment file, if later needed, must contain placeholders only. Keep selected design sources under `design/`, and prepare separate optimized runtime assets; do not ship presentation boards or unused drafts in the website. Clean-code, security/privacy, and performance requirements are recorded in AGENTS and Quality and Security.
+This is a planning/design snapshot suitable for manual progress tracking after owner review. See [validation history](docs/README.md#validation-records) for checks that actually ran. Historical reports describe their original baseline; no application build, lint, database, security or performance test has passed merely because these documents exist.
