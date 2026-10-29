@@ -24,7 +24,7 @@ The public visual direction remains: approved dim-doorway hero, Open Threshold l
 - Separate prospect consultation and project-linked support/retest/follow-up tickets.
 - User dashboard, in-app user/admin replies, admin triage, separate internal notes and explicit schedule confirmation.
 - Trusted project association and server-enforced access to published private illustrative reports.
-- Bounded support for at most three months from first service use; temporary discount details remain open.
+- Bounded support for at most three months from the first private project report publication; later report versions never restart it. Temporary discount details remain open.
 - Dedicated phone/desktop UI and Indonesian/English functionality using shared domain rules.
 - Promotional video and case study after working functionality can be recorded honestly.
 
@@ -49,6 +49,7 @@ Start with the [grouped index](docs/README.md).
 | [PRD](docs/product/PRD.md) | Functional requirements and acceptance scenarios |
 | [Service operations](docs/product/SERVICE_OPERATIONS.md) | Ticket/project/report lifecycle, scheduling, triage and three-month support |
 | [User/admin flows](docs/product/USER_FLOWS.md) | Public, account, dashboard and private-resource journeys |
+| [Portal UX specification](docs/design/PORTAL_UX_SPEC.md) | Draft account/navigation/dashboard/ticket/report screens, states and review criteria |
 | [Content and illustration](docs/product/CONTENT_AND_SIMULATION.md) | Canonical findings, translations and truthful portal copy |
 | [Service packages](docs/product/SERVICE_PACKAGES.md) | Four scope concepts and reviewable numerical terms |
 | [Architecture](docs/engineering/ARCHITECTURE.md) | Server/auth/database boundaries and planned organization |
@@ -65,13 +66,15 @@ All project Markdown is English. Exact Indonesian source findings/disclaimers an
 
 ## Technology and running
 
-Required stack: Next.js App Router + TypeScript with a custom design. A server-capable deployment and real relational database replace static-export-only plans. Vercel remains the hosting target. Authentication/database providers, versions, deployment limits/costs and migration tooling are not selected or provisioned.
+Required stack: Next.js App Router + TypeScript with a custom design. The owner selected the Better Auth open-source library in the Next.js server and Neon Free PostgreSQL. Vercel remains the hosting target. No paid upgrade or add-on is authorized. Versions, adapter/migration tooling, pooling, current quotas and deployment compatibility remain to be verified; no provider account/database has been provisioned.
+
+The Better Auth core is [MIT-licensed](https://github.com/better-auth/better-auth/blob/main/LICENSE.md). Neon Free currently lists 1 GB storage and 100 CU-hours per project/month; these are dated planning facts, not an unlimited/free-forever or performance guarantee. See [Neon pricing](https://neon.com/pricing), checked October 29, 2026. Email delivery is a separate unselected service. The owner has an existing .my.id domain but may choose another later. Permanent domain/registrar/DNS details are deferred, not prerequisites for current planning or isolated development. Origin/callback/sender settings remain configurable; public email delivery still requires reviewed setup. No domain is purchased/configured.
 
 There is no package.json, dependency installation, executable application or valid npm command to run yet. Read the documents directly. Add setup/environment/migration/seed/dev/lint/typecheck/build/test instructions only when the application foundation actually exists; never include real secret values.
 
 ## Current review gates
 
-Before affected implementation: select auth/enrollment/recovery/admin provisioning, database/runtime/transport, first-service activation/date rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Numerical package details and mobile/final assets retain their review status.
+Before affected implementation: review enrollment/recovery/admin provisioning, database adapter/runtime/transport, support calendar/cycle rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Auth/database selection and the first-report support trigger are confirmed. The account/user/admin UX baseline is drafted in Portal UX Specification; it is not a new approved image set. Email provider/domain/DNS become a gate before real public verification/recovery email, not before flow design. Numerical package details and mobile/final assets retain their review status.
 
 No fixed deadline or required video format has been supplied. Prototype submission and portfolio completion are separate milestones; a prototype is not proof that final security/performance/deployment checks passed.
 
