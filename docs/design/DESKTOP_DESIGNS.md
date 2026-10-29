@@ -6,13 +6,19 @@ Scope: Desktop references. The subsequent [mobile set](MOBILE_DESIGNS.md) is now
 
 References: [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [User flows](../product/USER_FLOWS.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [Service packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-desktop-designs.md)
 
+## October 29 portal scope update
+
+The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
+
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
+
 ## Review status and authority
 
 These are raster design proposals, not an implemented website or evidence that interactions work. The owner accepted the other 23 desktop visual directions on October 28 and requested a revision only to the homepage package selector (02). The owner subsequently accepted the revised cluster and closed desktop reference exploration. This acceptance covers visual direction, not final font licenses, commercial terms, or implemented behavior. No application dependencies, backend, or deployment were added.
 
 The batch contains **24 selected horizontal frames**, plus the **one unchanged approved hero**. Obsolete iteration PNGs have been removed; only the selected visual targets remain. All selected new frames are 1,672 × 941 pixels. The [generation manifest](../../design/desktop/v1/manifest.json) records per-frame briefs, reference paths, exact prompts/revision prompts, selected-file dimensions, sizes, SHA-256 fingerprints, and generated source filenames. Initial prompts are reconstructed from the manifest's commonPrompt and each frame's promptSuffix; revision prompts remain exact. Retired input fingerprints preserve provenance without keeping obsolete PNGs or personal machine paths. Prompts cannot deterministically recreate the images.
 
-## Page assembly
+## Historical frame assembly and retained composition
 
 | Page / interaction | Reference sequence | Scope |
 | --- | --- | --- |
@@ -20,8 +26,8 @@ The batch contains **24 selected horizontal frames**, plus the **one unchanged a
 | Services | 07 → 08 | Package detail template, comparison, and fit guidance |
 | Process | 09 | Complete eight-stage conceptual flow |
 | Request | 10, 11 | Empty/default form and validation state |
-| Success | 12 | Client-generated demonstration ticket |
-| Status | 13 → 14 → 15 | Three manual simulation stages |
+| Success | 12 | Historical sample-ticket composition; implement a persisted server ticket instead |
+| Status | 13 → 14 → 15 | Historical illustrative stages; private progress is admin-controlled |
 | Finding details | 16 | F02 example; same component for the other four findings |
 | About | 17 | Project purpose and approach |
 | Privacy | 18 | Privacy and simulation reading page |
@@ -71,7 +77,7 @@ Contextual FAQ. The expanded answer explains simulation; a real implementation n
 
 ## 06 — Consultation invitation and footer
 
-A simulated free-consultation invitation and the shared footer. The action opens Request; it does not schedule or send a consultation.
+Retain invitation/footer composition. Current action enters authenticated consultation intake and saves a real portal request; a proposed schedule awaits admin confirmation. Replace the raster's obsolete unsent-request wording.
 
 ![Desktop 06: Consultation invitation and footer](../../design/desktop/v1/06-home-consultation-footer.png)
 
@@ -83,19 +89,19 @@ WARDEN selected as the detailed template. SCOUT, NEXUS, and ATLAS reuse this str
 
 ## 08 — Package comparison and boundaries
 
-Package comparison and fit guidance. Caps apply simultaneously. An unsure/over-scope visitor can choose the simulated consultation path without purchasing or upgrading.
+Package comparison and fit guidance. Caps apply simultaneously. An unsure/over-scope visitor can request consultation without purchasing or upgrading.
 
 ![Desktop 08: Package comparison and boundaries](../../design/desktop/v1/08-services-comparison.png)
 
 ## 09 — Full eight-stage process
 
-All eight conceptual stages in reading order, including written scope/authorization and closure/data removal. The demo itself neither conducts a scan nor receives assessment data.
+All eight conceptual stages in reading order, including written scope/authorization and closure/data removal. The portal never scans or collects incident evidence; account/consultation/ticket data is persisted under the revised privacy policy.
 
 ![Desktop 09: Full eight-stage process](../../design/desktop/v1/09-process-eight-stages.png)
 
 ## 10 — Request and consultation form
 
-Corrected request form. Inputs stay in temporary browser memory; ticket creation and stage changes are local. The right column must never imply a staff response or real review.
+Historical form layout only. Redesign field content for name/company/website/problem, reactive/preventive/unsure intake, contact and proposed schedule. Submission is authenticated and server-validated; tickets persist. Actual in-app admin replies are supported without claiming a security assessment occurred.
 
 ![Desktop 10: Request and consultation form](../../design/desktop/v1/10-request-form-r2.png)
 
@@ -107,25 +113,25 @@ Validation example: missing name, malformed address, insufficient needs, and unc
 
 ## 12 — Simulated request received
 
-Successful simulation with an example ticket. A real implementation generates its own client-side ticket; the pictured ticket is not a durable identifier or a server record. Clear submitted name, address, needs, and package-planning state.
+Retain success hierarchy, but replace disposable-ticket copy with an authorized saved-ticket detail. Server generates the reference only after persistence. Refresh retrieves the record; no second ticket is created.
 
 ![Desktop 12: Simulated request received](../../design/desktop/v1/12-request-success.png)
 
 ## 13 — Waiting for simulated authorization
 
-Awaiting authorization state. The explicit demo control advances a simulation; it does not constitute written authorization or start a job.
+Historical stage composition. Replace visitor advance controls with authorized admin-driven illustrative project progress. The authority checkbox still does not replace written permission.
 
 ![Desktop 13: Waiting for simulated authorization](../../design/desktop/v1/13-status-awaiting.png)
 
 ## 14 — Simulated testing stage
 
-Testing simulation state. Manual transitions only, with a clear simulation notice. No scanner, fabricated percentage, ETA, polling, or background activity.
+Historical assessment-stage composition. Private progress is changed by authorized admins and labeled illustrative. No scanner, fabricated percentage or target activity.
 
 ![Desktop 14: Simulated testing stage](../../design/desktop/v1/14-status-testing.png)
 
 ## 15 — Ready report with five canonical findings
 
-Corrected report-ready state. Five canonical rows, three exact status stages, no invented completion dates, and no clipboard/export capability implied by the ticket.
+Retain five-row report presentation. Public sample is separate from private published project versions; project stages follow current Operations. Publication time is real portal metadata, not a fabricated assessment-completion time. No public share/download capability is implied.
 
 ![Desktop 15: Ready report with five canonical findings](../../design/desktop/v1/15-report-ready-r2.png)
 
@@ -143,7 +149,7 @@ Project purpose, approach, and joint frontend/product-design portfolio focus. No
 
 ## 18 — Accurate privacy reading page
 
-Privacy content and editorial layout. Implementation correction: the left rail must link to the five actual sections on this page (browser inputs, no address access, temporary session, visit information, project), not the unrelated eight-item rail generated in this image. Publish an actual update date and deployment-specific hosting explanation only when verified.
+Retain editorial layout only. Replace obsolete no-collection/temporary-session content with actual account/contact/ticket collection, purposes/access, necessary auth cookies/providers, retention/deletion/backups and no-target-access policy. The sidebar must link to the final actual sections. Do not publish unresolved retention/provider claims as facts.
 
 ![Desktop 18: Accurate privacy reading page](../../design/desktop/v1/18-privacy.png)
 
@@ -155,7 +161,7 @@ Custom 404 composition with NEXUS as supporting artwork. Keep home/services navi
 
 ## 20 — Language change and session reset confirmation
 
-Language-change confirmation when draft/session state exists. Cancel/close keeps the current locale and state; confirmation clears state before changing locale. Reuse the dialog treatment for a separately worded reset action. Initial focus, focus containment, Escape, and focus restoration require implementation testing.
+Dialog geometry reference only. Current locale switching preserves saved records/session. Warn only before discarding unsaved edits; cancel retains them. No destructive reset of tickets/projects/support. Focus containment/Escape/restoration still require implementation tests.
 
 ![Desktop 20: Language change and session reset confirmation](../../design/desktop/v1/20-language-reset-dialog.png)
 
@@ -188,7 +194,7 @@ Direct report access without a session: no ticket, active stepper, personalized 
 - Idle: all four pets are closely grouped, with no caption or price below. There is no default opened package.
 - Hover/focus: show one corresponding name above the pet; leave hides the name unless focus remains. Reserve label space so the group does not jump.
 - Activate: click, Enter, or Space opens the selected detail view. Show its name, service, scope, and fictional price there, with the price-illustration note next to the amount. Keep the existing content limits and no-guarantee wording where relevant.
-- Return: a labeled back/close action restores the cluster and focus to its trigger. Package browsing keeps the existing temporary planning-state lifecycle.
+- Return: a labeled back/close action restores the cluster and focus to its trigger. Unsent package browsing remains local; explicit consultation submission can persist interest. Locale changes do not delete saved records.
 - Accessibility: use real labeled buttons with distinct non-overlapping hit areas even if artwork overlaps. The hidden visual caption does not remove the accessible name. Visible focus must identify the current pet. If artwork fails, expose readable fallback names. No extra keyboard-only step is needed to open details.
 - Touch: tapping opens the same details directly; hover is never required. Dedicated mobile composition is now represented in [Mobile Design Gallery](MOBILE_DESIGNS.md).
 
@@ -200,13 +206,13 @@ Direct report access without a session: no ticket, active stepper, personalized 
 - Report routes are inert data text, not links to a visitor's host. Any finding interaction opens a local disclosure keyed by finding ID. Never access an entered address, including validation previews, favicons, preconnect, DNS, or a generated clickable target.
 - Package selection never filters or personalizes the illustrative report. Prices and scope numbers are authored fictional review terms; include a nearby fictional-price label and scope exclusions. Do not imply checkout, payment, guaranteed coverage, or all vulnerabilities found.
 - Forms must include the original disclaimer near the form and in the footer. In both locales retain exactly: `Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.` English also uses: `A concept project for a portfolio and university coursework. Not a real service.`
-- No server submission, persistence, analytics, real authorization record, booking, external AI, file upload, automatic remediation, or report export. Refresh/reset/confirmed locale change discards temporary state. Use example data and avoid credentials or sensitive information.
+- Authenticated server submission, persistence, user/admin conversation and schedule requests are required. No target testing, external AI, uploads, automatic remediation, payments or report export. Preserve records on refresh/locale changes, protect private reports and internal notes, and use approved synthetic project data.
 - Guide controls are optional. A labeled opener, close action, and equivalent report access must remain usable without mascot artwork. Do not gate navigation or report details behind the guide.
 - Raster focus outlines, labels, and reading order are proposals. Keyboard behavior, dialog focus, contrast in actual components, zoom/reflow, error announcements, reduced motion, loading/failure states, and performance require browser tests after implementation.
 
 ## Implementation copy cleanup — owner instruction
 
-The owner requested no more image revisions to the other desktop screens. During implementation, remove repetitive cross-page explanations and unnecessary filler; give each page a clear purpose and link to fuller information where helpful. Do not reproduce every generated sentence mechanically. Keep the exact mandatory footer/form disclaimer, illustrative report labels, fictional-price labels beside displayed prices, scope limits, permission caveats, form guidance/errors, and state-loss explanations where they matter. Concision must not imply real scans, personalized reports, submissions, or guarantees. This cleanup is future implementation work, not a reason to regenerate the accepted screens now.
+The owner requested no more image revisions to the other desktop screens. During implementation, remove repetitive cross-page explanations and unnecessary filler; give each page a clear purpose and link to fuller information where helpful. Do not reproduce every generated sentence mechanically. Keep the exact mandatory footer/form disclaimer, illustrative report labels, fictional-price labels beside displayed prices, scope limits, permission caveats, form guidance/errors, and privacy/unsaved-edit explanations where they matter. Be truthful about real portal submissions and private illustrative reports; do not imply real scans or security guarantees. This cleanup is future implementation work, not a reason to regenerate the accepted screens now.
 
 ## Coverage limits and review notes
 
@@ -219,5 +225,5 @@ The [27-frame mobile design pass](MOBILE_DESIGNS.md) now covers mobile menu, tou
 
 ## Next review
 
-All selected desktop visual directions, including the revised cluster, are accepted. Review the new mobile references next, then subdivide the implementation plan into coherent delivery packages. Final licensed typography/identity, optimized exports, implementation authorization, and real verification remain open. No Next.js installation, application code, or deployment was authorized by producing this design batch.
+Public desktop visual direction, including the revised cluster, is accepted. Review mobile references and missing portal/admin flows before detailed implementation packages. Final licensed typography/identity, optimized exports, implementation authorization, and real verification remain open. No Next.js installation, application code, or deployment was authorized by producing this design batch.
 
