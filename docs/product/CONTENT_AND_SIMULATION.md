@@ -1,35 +1,36 @@
-# CELAHAN — Content and Simulation Contracts
+# CELAHAN — Content and Illustration Contracts
 
-Status: Draft baseline for review · October 27, 2026  
-References: [PRD](PRD.md), [User Flows](USER_FLOWS.md), [Service Packages](SERVICE_PACKAGES.md)
+Status: Revised portal copy baseline; canonical academic findings preserved  
+Updated: October 29, 2026  
+References: [PRD](PRD.md), [Flows](USER_FLOWS.md), [Operations](SERVICE_OPERATIONS.md), [Packages](SERVICE_PACKAGES.md)
 
-## 1. Source and editorial rules
+## 1. Editorial and provenance rules
 
-The canonical five findings come from Chapter IV, section 4.3 of `CELAHAN_Perancangan_Layanan_Final (1).pdf`, read during project discovery. The dataset is fictional and does not come from testing a real application.
+The five findings come from Chapter IV, section 4.3 of the previously reviewed academic PDF. They are fictional, not derived from a submitted website. Preserve original Indonesian titles/categories/locations/scores/severity/status and equivalent EN content. Source categories refer to OWASP Top 10:2021 and scores to the PDF's CVSS 3.x context, not a new calculation or evidence.
 
-The Indonesian titles, categories, locations, scores, severity levels, and statuses below must not be changed during copy polishing. Translations and supplementary explanations are website content and must be distinguished from PDF quotations. Categories refer to OWASP Top 10:2021; sample scores follow the PDF's discussion of CVSS 3.x, not a recalculation or verified calculator output.
+Accounts, saved requests, ticket messages and admin publication will be real portal functionality. Security assessments, findings and retest outcomes remain illustrative. Never describe a saved request as unsent or claim that the user's website was tested, repaired, certified or made completely secure.
 
-Tone: clear, calm, professional, and understandable. Avoid promises such as “100% secure,” “all vulnerabilities found,” “certified AI,” or “scan completed” without simulation context. The mascot must not claim to perform network assessments.
+Documentation is English; exact Indonesian source findings and bilingual UI examples intentionally remain. Use calm, precise language. No fictional testimonials, client logos, staff history, certifications, trademark registration or business statistics.
 
-The owner explicitly accepted the no-complete-security/no-all-vulnerabilities guarantee boundary. SCOUT, WARDEN, NEXUS, and ATLAS are approved premium package concepts and working names, with definitions in Service Packages. Premium copy describes scope clarity, appropriate examination, readable reports, and follow-up rather than fabricated achievements.
-
-This document is written in English. Indonesian source findings and UI copy are intentionally preserved in the tables because the website remains bilingual and the source dataset must remain verbatim.
-
-## 2. Required disclaimers and labels
+## 2. Required copy and labels
 
 | Key | Indonesian | English |
 | --- | --- | --- |
 | conceptDisclaimer | Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan. | A concept project for a portfolio and university coursework. Not a real service. |
-| simulationBadge | Mode simulasi | Simulation mode |
+| portalContext | Akun dan tiket tersimpan di sistem. Pengujian dan laporan menggunakan data ilustrasi. | Accounts and tickets are saved in the system. Assessments and reports use illustrative data. |
 | reportLabel | Data ilustrasi — bukan hasil pengujian nyata. | Illustrative data — not the results of a real security assessment. |
 | reportContext | Contoh laporan ini tidak terhubung ke aplikasi Anda. | This sample report is not connected to your application. |
-| noSubmission | Tidak ada permintaan yang dikirim. | No request has been sent. |
+| privateReportContext | Laporan ilustrasi untuk demonstrasi proyek. Bukan hasil pemeriksaan website Anda. | An illustrative report for the project demonstration. Not the results of testing your website. |
+| requestSaved | Permintaan tersimpan. Jadwal menunggu konfirmasi admin. | Request saved. The schedule awaits admin confirmation. |
 | noScan | Tidak ada pemindaian atau akses ke alamat aplikasi. | No scan is performed and the application address is not accessed. |
-| temporaryState | Sesi demo hanya sementara dan akan hilang saat halaman dimuat ulang. | This demo session is temporary and will be lost when the page is reloaded. |
 | illustrativePrice | Harga ilustrasi — bukan penawaran layanan nyata. | Illustrative price — not a real service offer. |
-| conceptualEffort | Estimasi kerja konseptual — bukan waktu penyelesaian demo. | Conceptual assessment estimate — not a demo completion time. |
+| conceptualEffort | Estimasi kerja konseptual — bukan waktu penyelesaian sistem. | Conceptual assessment estimate — not a system completion time. |
+| supportTerm | Dukungan pascaasesmen maksimal tiga bulan sesuai cakupan proyek. | Post-assessment support for up to three months within the project's scope. |
+| programmerFixes | Perbaikan kode dikerjakan programmer pemilik website. | Code fixes are implemented by the website owner's programmers. |
 
-The footer and form in both languages display the original Indonesian statement verbatim. The EN locale also displays the English translation; mark the original block with `lang="id"`. On EN pages, prioritize a readable translation without hiding the original in a tooltip or accordion. Place illustration labels near finding tables/lists and report details, not only in the footer.
+Footer and form in both locales retain the original Indonesian disclaimer verbatim. EN also includes its translation; mark the original with lang=id. Put illustration labels next to public/private findings and review outcomes, not only in the footer.
+
+Retire current-use copy claiming no data is sent/stored, disposable tickets, cookie-free authentication, or language changes deleting records. Historical raster lettering is not the current content contract.
 
 ## 3. Five canonical findings
 
@@ -43,7 +44,7 @@ The footer and form in both languages display the original Indonesian statement 
 
 Permitted summary: **5 illustrative findings; High 2, Medium 2, Low 1; not fixed 3, fixed 2.** If Critical is displayed, its value is 0 and it remains explicitly part of the illustrative dataset. Do not place these counts in the hero as company-performance statistics.
 
-V1 always orders findings F-01 through F-05. IDs do not change with language or viewport. Store scores numerically as `8.1`, `7.5`, `5.3`, `4.3`, and `3.7`, then format them to one decimal place for the locale.
+The public sample and v1 illustrative report snapshots order findings F-01 through F-05. IDs do not change with language or viewport. Store scores numerically as `8.1`, `7.5`, `5.3`, `4.3`, and `3.7`, then format them to one decimal place for the locale.
 
 ## 4. English dataset translation
 
@@ -84,70 +85,60 @@ These explanations do not promise a complete fix for a real application. Applyin
 | 7 | Uji ulang / Retesting | Catatan status temuan / Finding status notes |
 | 8 | Penutupan / Closure | Serah terima dan penghapusan data / Handover and data deletion |
 
-The eight stages describe the PDF's service model. The demo's three statuses are a simplification: `awaiting_permission` represents stage 1, `testing` stages 2–5, and `report_ready` stage 6. Stages 7–8 remain explained on Process; opening the demo report does not imply they have been performed.
+The eight stages describe the PDF's service model, not automatic portal operations. Private project stage changes are admin-controlled and explicitly illustrative. Closure's represented assessment-data deletion must not be confused with actual portal retention/deletion policy. Opening a report proves no assessment or retest took place.
 
-## 7. Simulation states and events
+## 7. Public sample and private project records
 
-Session state contains `ticket`, `stage`, and `source: "illustration"`. It contains no identity, URL, needs, testing evidence, or fabricated work timestamps. The form draft is separate and cleared after successful submission.
+The public sample is immutable local content with no identity, target-derived analysis or ticket. Every package exposes the same five rows. Private report snapshots are separately persisted under an authorized project; copying the sample into a project must retain illustrative provenance and every canonical source field.
 
-| Initial state | Event | Next state | Effect |
-| --- | --- | --- | --- |
-| `none` | `SUBMIT_VALID` | `awaiting_permission` | Generate a demo ticket; clear the draft |
-| `awaiting_permission` | `SIMULATE_PERMISSION` | `testing` | Change the stage; no network activity |
-| `testing` | `SHOW_SAMPLE_RESULTS` | `report_ready` | Direct attention to the report already available locally |
-| Any state | `RESET_CONFIRMED` | `none` | Clear draft/session/assistance |
-| Any state | Inapplicable event | Unchanged | Do not skip stages or generate a new ticket |
+Published snapshots are immutable. User-reported programmer changes and admin illustrative review outcomes are separate follow-up records. Neither rewrites the public sample or proves a real fix. Real timestamps may describe portal submission/publication only, never fabricated testing execution.
 
-Ticket format: `DEMO-` followed by 8 uppercase hexadecimal characters, generated using browser randomness. It is a sample identifier without a global uniqueness guarantee and cannot be retrieved after the session is lost. It is not a secret, authentication token, or real engagement identifier.
+Durable ticket references are generated and uniqued by the server. They are locators, not bearer secrets; no “DEMO-XXXXXXXX disappears on refresh” contract remains. Exact display format is a technical choice before implementation.
 
-The dataset is not derived from inputs. Status transitions, guide-topic selection, and layout do not alter canonical content. Reset/restore events clear client state; no server deletion process exists because the application stores nothing there.
-
-Package selection also leaves the dataset unchanged: every package accesses all five canonical findings. Separate package-planning state may hold a selected ID and optional fit answers in temporary memory; clear it on submission/reset/confirmed language change/reload/restore. It does not extend session fields or appear on success. Retest allowances describe the fictional offering; demo progress does not carry out retesting or change the source remediation statuses.
-
-## 8. Form copy and messages
+## 8. Consultation and follow-up copy
 
 | Purpose | Indonesian | English |
 | --- | --- | --- |
-| Guidance | Gunakan data contoh. Jangan masukkan kredensial, token, atau informasi sensitif. | Use sample data. Do not enter credentials, tokens, or sensitive information. |
+| Guidance | Gunakan data contoh untuk demonstrasi. Jangan masukkan kredensial, token, atau bukti insiden sensitif. | Use sample data for the demonstration. Do not enter credentials, tokens, or sensitive incident evidence. |
+| Reactive | Ada insiden atau indikasi serangan | An incident or suspected attack |
+| Preventive | Pencegahan atau persiapan rilis | Prevention or release preparation |
+| Unsure | Belum yakin atau kebutuhan campuran | Unsure or mixed needs |
+| Company | Perusahaan atau organisasi (opsional untuk individu) | Company or organization (optional for individuals) |
 | Checkbox | Saya pemilik atau berwenang memberi izin pengujian. | I own the application or am authorized to grant testing permission. |
-| Permission note | Pernyataan ini merupakan bagian simulasi dan tidak menggantikan persetujuan tertulis. | This statement is part of the simulation and does not replace written authorization. |
-| Submit | Buat permintaan simulasi | Create a simulated request |
-| Invalid name | Isi nama sepanjang 2–80 karakter. | Enter a name between 2 and 80 characters. |
-| Invalid URL | Gunakan URL http atau https tanpa kredensial, query, atau fragment; maksimal 2.048 karakter. | Use an http or https URL without credentials, a query, or a fragment; maximum 2,048 characters. |
-| Invalid needs | Jelaskan kebutuhan dalam 10–1.000 karakter. | Describe your needs in 10–1,000 characters. |
-| Unchecked authorization | Centang pernyataan kewenangan untuk melanjutkan simulasi. | Check the authorization statement to continue the simulation. |
-| Missing session | Sesi demo tidak tersedia. Mulai lagi atau lihat contoh laporan. | No demo session is available. Start again or view the sample report. |
-| Reset | Hapus sesi demo dan mulai lagi? | Clear the demo session and start again? |
-| Language switch | Ganti bahasa akan memulai ulang demo dan menghapus isian sementara. | Switching languages will restart the demo and clear temporary entries. |
+| Permission note | Pernyataan ini tidak menggantikan persetujuan tertulis. Tidak ada pengujian website yang dilakukan di proyek ini. | This statement does not replace written authorization. This project performs no website testing. |
+| Submit | Kirim permintaan konsultasi | Submit consultation request |
+| Pending slot | Jadwal diajukan, belum dikonfirmasi. | Requested time, not yet confirmed. |
+| Shared reply | Balasan untuk pengguna | Reply to the user |
+| Internal note | Catatan internal — hanya admin | Internal note — admin only |
+| Fix assertion | Perbaikan dilaporkan pengguna; belum diverifikasi. | Fix reported by the user; not yet verified. |
+| Retest outcome | Hasil uji ulang ilustrasi | Illustrative retest outcome |
+| Expired benefit | Masa dukungan berakhir. Laporan proyek tetap dapat diakses sesuai kebijakan penyimpanan. | Support has ended. Project reports remain accessible under the retention policy. |
+| Lost login | Sesi masuk berakhir. Masuk kembali untuk membuka data Anda. | Your login session has expired. Sign in again to access your data. |
+| Unsaved edits | Perubahan belum disimpan. Tinggalkan halaman? | Changes have not been saved. Leave this page? |
+| Save failure | Belum berhasil disimpan. Periksa koneksi dan coba lagi. | Not saved yet. Check your connection and try again. |
 
-Trim values only for name/needs validation and outer URL whitespace. Do not imply that input has been “cleaned of attacks”; render it as plain text using the framework's default escaping. Parse URLs locally only. Do not turn schemes other than http/https into clickable links.
+Exact field limits/error codes follow PRD; validations must be equivalent on client and server. Describe reported defacement/leakage/warnings as allegations until reviewed. No automatic compromise, blacklist or compliance conclusion.
 
-## 9. Guide and AI terminology
+Follow-up forms reference authorized project/finding records and do not ask users to re-enter all initial data. The support term is not an all-damage warranty. Discount percentage and final follow-up-review wording remain open; no made-up savings claim.
 
-V1 uses structured topics and local responses, labeled “Pendamping simulasi / Simulation guide.” If AI terminology is used in the brand narrative, explain that the interaction is scripted, does not analyze websites, and does not call an AI model. The four package-character personalities and attribute directions are approved in Service Packages; exact dialogue/voice and final artwork remain open.
+## 9. Guide, packages and messages
 
-Example ID response: “Aku bisa membantu membaca lima temuan contoh ini. Pilih temuan untuk melihat penjelasannya.”
+The mascot uses local structured responses and no AI/free-text assistant. Human user/admin ticket messages are functional private conversations and must not be confused with the scripted guide.
 
-Example EN response: “I can help you understand these five sample findings. Choose a finding to see its explanation.”
+Example ID: “Aku bisa membantu membaca lima temuan contoh ini. Pilih temuan untuk melihat penjelasannya.”
 
-Displayed skills refer to explanation topics, not scanner capabilities. Do not use messages claiming to have found vulnerabilities on the visitor's website.
+Example EN: “I can help you understand these five sample findings. Choose a finding to see its explanation.”
 
-### Package, consultation, and remediation copy
+Keep SCOUT/WARDEN/NEXUS/ATLAS stable in both locales. Package scope/prices/effort/cycles come from the reviewed shared definitions, with illustration labels. Three-month support replaces old 30/60-day wording. No finding quotas, all-vulnerability guarantees, automatic repairs or forced upgrades.
 
-Keep SCOUT, WARDEN, NEXUS, and ATLAS stable in both locales; translate subtitles, suitability, scope, exclusions, outputs, retest terms, and help. The complete draft numerical source is Service Packages section 6, pending owner review. Store prices as integer IDR amounts, scope ceilings as structured numbers, and effort/retest terms separately; localize display without changing the values or converting currencies. Published copy follows the reviewed baseline and keeps the illustrative-price and conceptual-effort labels near the relevant figures. Do not describe the fictional figures as market rates, guaranteed delivery times, or actual offers. An unsure-which-package route must remain available.
+## 10. Privacy and metadata
 
-Retest copy distinguishes cycle allowance, original-finding scope, and the request window measured from the initial report. It must not imply ongoing monitoring, new-feature coverage, or an automatic reset of the window. Scope counts do not represent test counts, a finding quota, or evidence of whole-system safety. All illustrative findings remain visible regardless of package.
+Public privacy copy must explain actual identity/contact/problem collection, purposes, user/admin access, authentication cookies, providers/regions, retention/deletion, backup handling and contact process after those choices are approved. No “we store nothing” statement remains. Support expiry is separate from retention.
 
-Free-consultation calls to action carry a nearby simulation label and lead only to local guidance or the existing request simulation. They do not book a meeting or send a message. About/FAQ content explains project purpose and service boundaries without fictional history, staff, clients, or credentials.
+Use synthetic project data until real-data intake is explicitly approved, and recognize that real registration identity is personal data too. No complete academic PDF or personal/team details enter public content without authorization.
 
-Remediation explanations distinguish CELAHAN's represented assessment/guidance/retest work from fixes implemented by the application owner's developers. Report statuses remain illustrative source data, never evidence that the website repaired another application.
+Public informational/sample pages can have localized metadata. Authenticated/auth/admin routes are noindex and excluded from sitemap/public previews, without treating that as security. Use generic private page titles; no contact details, project names or report findings in social previews/logged URL text.
 
-## 10. Privacy, metadata, and supporting content
+## 11. Review
 
-Privacy information explains concept status, temporary inputs, no form transmission, reset/refresh behavior, URL-based language preference, and the absence of application analytics. Write the hosting technical-data explanation after checking the provider configuration. Do not invent retention periods, legal grounds, company addresses, support emails, or privacy officers.
-
-Titles and descriptions differ by page and locale and appropriately identify the concept context. Success and demo status/report pages use `noindex`; informational pages may be indexed after publication. Do not add fabricated review/rating structured data. Social previews, alt text, 404 content, and accessibility labels also require translation.
-
-## 11. Content review
-
-Before implementing final content, check ID/EN equivalence, canonical fields, stage order, prohibited claims, and terminology readability. Complete marketing copy and public privacy text are finalized in P4 within these boundaries. Referencing the PDF does not automatically authorize publication of personal/team information or the complete academic file.
+Check both locales, exact canonical fields, eight stages, real persistence wording, unverified-incident language, no-code-repair scope, three-month benefits and illustration labels. Actual privacy copy waits for approved operational/provider policies. No application test or security result is claimed by this document.
