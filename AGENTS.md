@@ -14,6 +14,7 @@
 
 8. `docs/design/MOBILE_DESIGNS.md` for 27 portrait mobile-web references, scroll assembly, touch/keyboard rules, and content overrides. New mobile images require review.
 9. `docs/design/LOGO_GUIDELINES.md` for the owner-approved Open Threshold logo reference and production-export requirements. Use this direction; do not reopen discarded alternatives without an owner request.
+10. `docs/design/PORTAL_UX_SPEC.md` for the drafted account/user/admin screen inventory and interaction states. It does not approve the proposed enrollment/second-factor policies or authorize new images/code.
 
 ## Authorization and work stage
 
@@ -47,7 +48,9 @@ The project owner prohibits agents from touching Git in any way.
 - Enforce server-side session, role and per-object ownership/publication checks on every protected query/action. A hidden button, opaque ID, customer label or known ticket number is never authorization.
 - Keep admin notes and report drafts out of user payloads. Derive customer rights from trusted project association; never accept client role/owner/priority/expiry flags.
 - The application owner's programmers implement code fixes. No code remediation/maintenance, emergency recovery, forensics, certification, monitoring, real testing, payment, uploads or automatic service/contact messaging.
-- Support is bounded to at most three months from first service use. Exact activation/calendar rules are reviewable proposals; do not reset benefits on tickets, locale changes or report publication. Old 30/60-day request windows are superseded.
+- The owner selected the Better Auth open-source library running in CELAHAN's Next.js server and Neon Free PostgreSQL, with no paid upgrade/add-on without explicit approval. Versions, adapter, quotas and deployment compatibility still require verification; no provider provisioning is authorized yet.
+- Support is bounded to at most three months from the first private project report publication, as explicitly approved by the owner. Project activation and public sample views do not start it. Later publications, tickets, locale changes and retests never reset it. Calendar/timezone/cycle mechanics remain reviewable; old activation-based and 30/60-day proposals are superseded.
+- Permanent domain, registrar and DNS selection are deferred and replaceable. Do not ask for domain details as a prerequisite for current planning or isolated development. Use configuration-driven origins/callbacks/sender settings; actual public verification/reset email still needs separately approved delivery/domain setup. Do not purchase/configure a domain now.
 - The accepted temporary discount needs final eligible-service wording and rate. Proposed scope is follow-up security review, not code maintenance. Never invent a percentage or billing behavior.
 - Preserve the five original findings exactly in the public sample and v1 illustrative snapshots. Separate user assertions/admin illustrative follow-up events from immutable source fields and published versions.
 - Preserve the exact Indonesian footer/form disclaimer in both locales; EN also supplies its translation. Disclose actual persistent account/ticket data rather than repeating obsolete no-storage claims.
