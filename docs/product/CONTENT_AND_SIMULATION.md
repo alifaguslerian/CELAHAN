@@ -25,7 +25,7 @@ Documentation is English; exact Indonesian source findings and bilingual UI exam
 | noScan | Tidak ada pemindaian atau akses ke alamat aplikasi. | No scan is performed and the application address is not accessed. |
 | illustrativePrice | Harga ilustrasi — bukan penawaran layanan nyata. | Illustrative price — not a real service offer. |
 | conceptualEffort | Estimasi kerja konseptual — bukan waktu penyelesaian sistem. | Conceptual assessment estimate — not a system completion time. |
-| supportTerm | Dukungan pascaasesmen maksimal tiga bulan sesuai cakupan proyek. | Post-assessment support for up to three months within the project's scope. |
+| supportTerm | Dukungan pascaasesmen maksimal tiga bulan sejak laporan proyek pertama diterbitkan, sesuai cakupan proyek. | Post-assessment support for up to three months from the first project report publication, within the project's scope. |
 | programmerFixes | Perbaikan kode dikerjakan programmer pemilik website. | Code fixes are implemented by the website owner's programmers. |
 
 Footer and form in both locales retain the original Indonesian disclaimer verbatim. EN also includes its translation; mark the original with lang=id. Put illustration labels next to public/private findings and review outcomes, not only in the footer.
