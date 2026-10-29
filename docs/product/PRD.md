@@ -1,132 +1,135 @@
 # CELAHAN — Product Requirements Document
 
-Status: Complete draft for review; not authorization to implement  
-Version: 0.7 · October 28, 2026  
-References: [Project Brief](PROJECT_BRIEF.md), [Decisions](../planning/DECISIONS.md)
+Status: Portal scope approved in principle; detailed behavior below is a review baseline, not implementation authorization  
+Version: 1.0 planning revision · October 29, 2026  
+References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
-Current visual evidence: [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). The owner accepted the other desktop visual directions and requested only the homepage package-cluster revision. The cluster was subsequently accepted. The [27 mobile references](../design/MOBILE_DESIGNS.md) are now generated for review; visual acceptance is not implemented acceptance criteria. The owner requested desktop design first and mobile afterward; mobile and bilingual requirements remain unchanged.
+## 1. Product outcome and approval
 
-## 1. Product goals
+Build a bilingual concept service portal with working login, a real database, consultation tickets, user/admin workflows, private illustrative project reports, and bounded follow-up. Public service discovery and the approved identity remain important.
 
-Deliver a security-service concept website that visitors can understand, explore, and assess as a frontend development and product design portfolio. Visitors should understand the authorization-based process, try a request without transmitting data, and read an illustrative report.
+Confirmed by the owner: reactive/preventive intake; name/company/website/problem fields; contact and requested consultation schedule; prospects distinguished from users with projects; different initial/follow-up tickets; private reports; maximum three-month support and temporary discount; no code repair; documentation before implementation.
 
-Success is measured through usable flows, design quality, implementation evidence, and clear simulation boundaries. Sales figures, client counts, scanner accuracy, and real vulnerability counts are not project metrics.
+Proposed details below include exact states/limits, single-owner projects, registration mechanics, scheduling semantics, and support activation. These remain reviewable. Do not label them all owner-approved merely because this draft exists.
 
-## 2. Audiences and primary tasks
+## 2. Functional requirements
 
-| Audience | Primary task | Expected outcome |
+Existing FUN identifiers are revised in place for the new scope. Historical validation records describe the prior baseline, not current results.
+
+| ID | Requirement | Acceptance |
 | --- | --- | --- |
-| Lecturers/academic reviewers | Assess how the service concept has been translated into a prototype | The process, boundaries, and report can be demonstrated |
-| Portfolio reviewers | Assess design and frontend quality | Flows are usable; decisions and development evidence are available |
-| Visitors resembling prospective clients | Understand the service and report | Understand scope, permission, finding structure, and follow-up |
+| FUN-01 | Public home and discovery | Approved hero, honest concept context, package/form/sample-report actions; no fabricated achievements |
+| FUN-02 | Services and limitations | Assessment/guidance/retest scope, no code repair/forensics/certification, written permission explained |
+| FUN-03 | Eight-stage process | Canonical order, clear illustrative assessment stages, usable vertical mobile flow |
+| FUN-04 | Consultation intake | Name, company, website, problem, contact, proposed schedule, authority statement; visible labels |
+| FUN-05 | Trusted validation | Server validates all writes; client validation assists UX; structured localized errors |
+| FUN-06 | Persistent ticket creation | Authenticated submission creates one owned record and server-generated reference; refresh retrieves it |
+| FUN-07 | Ticket workflow | User/admin discussion, requested/confirmed scheduling, explicit states, separate internal notes |
+| FUN-08 | Project workflow | Admin creates/assigns a project, records scope/package and illustrative stage; user cannot self-assign |
+| FUN-09 | Public sample report | Accessible without login; same five canonical rows regardless of URL/package |
+| FUN-10 | Private project report | Authorized owner/admin only; draft/published versions; all findings explicitly illustrative |
+| FUN-11 | Optional mascot guide | Scripted local explanations; no AI or website analysis; independent of ticket conversations |
+| FUN-12 | Safe errors and 404 | Localized failure states without raw URLs, secrets, private resource existence, or misleading success |
+| FUN-13 | Public/supporting content | About, FAQ, privacy, boundaries, localized metadata and working navigation |
+| FUN-14 | Honest loading/failure | Public content useful without JS; no unsafe GET fallback, duplicate write, or fake success after failure |
+| FUN-15 | Four premium packages | Shared scope/prices/outputs, accessible tight pet cluster, details on activation, no checkout |
+| FUN-16 | Fit and consultation | Unsure/mixed path, no forced upgrade, submission does not equal scope or appointment approval |
+| FUN-17 | Follow-up support | Project-linked guidance/retest requests, eligibility visible, no warranty of all damage |
+| FUN-18 | Visual continuity | Saved hero/logo identity, distinct pets, reviewed responsive differences |
+| FUN-19 | Real authentication | Chosen registration, login, logout, recovery, verified identity/session policy; no UI-only authentication |
+| FUN-20 | Reactive/preventive logic | Category and specific reasons plus narrative; allegations remain unverified until reviewed |
+| FUN-21 | User dashboard | Own consultations, messages, projects, published reports and support dates; scoped queries only |
+| FUN-22 | Admin workspace | Triage queues, reviewed priority, schedule decisions, project assignment, report publication, internal notes |
+| FUN-23 | Customer relationship | Derived from server-owned project association/history, never a signup checkbox or client flag |
+| FUN-24 | Three-month benefits | Stored activation/expiry, calendar-month policy, bounded retests and temporary follow-up-review discount |
+| FUN-25 | Retest lifecycle | User reports a fix; admin records illustrative review outcome; immutable published report history |
+| FUN-26 | Privacy operations | Accurate collection/retention notice, deletion process and access controls approved before public intake |
 
-Proposed v1 priority: a clear demonstration experience for all visitors, with no requirement to complete a form before viewing the report. Prospective clients provide the simulation context, not a real business acquisition target.
+## 3. Intake and field baseline
 
-## 3. Decision and release levels
-
-- **Confirmed:** goals, mandatory boundaries, core stack, bilingual support, mobile UI, the preserved revised desktop hero, the requirement for four distinct compact pets, package concepts, supporting-page direction, video, and manual Git with per-file English handoff messages. Four pet concepts/shared visual rules and detailed package terms are drafted for review; generating these candidates does not approve their individual designs. Desktop visual directions are accepted and 27 mobile references now await review; the final asset set and real implementation/validation remain open.
-- **Draft baseline:** concrete behavior proposed in this document for review and later implementation after approval. These details must not be represented as additional decisions already approved by the owner.
-- **Open:** visual, asset, and publication choices recorded in Decisions.
-
-| Milestone | Scope |
+| Field | Proposed rule |
 | --- | --- |
-| Academic prototype | All simulation boundaries; five core pages and a success state; demonstrable flow; correct sample findings; reviewable bilingual and mobile experiences. Clearly labeled temporary identity is acceptable; public deployment is not required |
-| Portfolio website v1 | All mandatory requirements below, final identity, a limited optional guide, privacy/404 pages, testing, and verified deployment |
-| Complete portfolio package | Website v1, a final promotional video, and a case study supported by process evidence |
+| Name | Required, trimmed 2–80 characters; support Unicode |
+| Company | Optional for individuals; at most 120 characters |
+| Website | Required, at most 2,048 characters; parse locally/server-side as text; http/https, host required, no credentials/query/fragment |
+| Need | Required `reactive`, `preventive`, or `unsure_mixed`; at least one matching reason or other explanation |
+| Problem | Required, 10–3,000 characters; no secrets/evidence uploads |
+| Contact | Account email may be selected; otherwise a supported email or phone contact is required; no automatic contact verification claim |
+| Preferred schedule | Up to three future options with a supported IANA timezone; an explicit “discuss timing” option |
+| Authority statement | Required initial ownership/authority declaration; not legal testing permission |
 
-The prototype is an internal milestone based on the owner's explanation, not a claim of compliance with an undisclosed lecturer rubric. No fixed deadline or required video format has been provided.
+Exact authentication identity, email verification/recovery delivery, phone formatting and enrollment policy remain decisions before collection. Authentication delivery, if selected, is separately reviewed infrastructure; it is not automatic consultation or support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
 
-## 4. Functional requirements
+Reactive reasons: reported defacement, suspected data leakage/intrusion, reported malicious-site/blacklist warning, other. Preventive: pre-release third-party review, standards/partnership/tender requirements, periodic check, other. Neither reason confirms compromise, blacklist status, or compliance.
 
-All requirements below target portfolio website v1. Draft behavior may be revised through Decisions before implementation.
+## 4. Roles and persistent behavior
 
-| ID | Requirement | Acceptance criteria |
-| --- | --- | --- |
-| FUN-01 | Home explains the concept's identity and purpose | Includes a hero, service summary, request CTA, report access, and a concept label before visitors start the demo |
-| FUN-02 | Services explains scope and exclusions | Covers web applications, written permission, scope, exclusion of forensics/certification, and no testing without permission |
-| FUN-03 | Process presents eight stages | Order and meaning match Content; mobile visitors can read the flow without a mandatory horizontal timeline |
-| FUN-04 | The form contains the four original inputs | Name, application address, needs, authorization checkbox; persistent visible labels and errors near their inputs |
-| FUN-05 | Validation is local | Empty/invalid inputs prevent submission and produce localized errors; no address requests or lookups |
-| FUN-06 | Submission produces a simulated success page | A `DEMO-` ticket is generated once per valid submission; the page explains that nothing was sent and offers a status CTA |
-| FUN-07 | Status demonstrates three states | Waiting for authorization → testing → report ready; transitions use explicit demo controls, not real work |
-| FUN-08 | The report contains five illustrative findings | All canonical fields are available; details are readable; categories, scores, and remediation statuses are not changed by inputs or demo controls |
-| FUN-09 | The report is directly accessible | Without a session, show the sample report and illustration label; do not fabricate a ticket implying an active request |
-| FUN-10 | The demo can be reset | Resetting an active session requires confirmation, clears memory state, and returns to no-session mode; cancellation preserves state |
-| FUN-11 | An optional mascot guide is available | Open/close assistance, select predefined topics, and read deterministic explanations; no free-text chat or AI API |
-| FUN-12 | Privacy and custom 404 pages exist | Privacy matches actual behavior; unknown URLs provide a route home; hosting returns the correct HTTP 404 status |
-| FUN-13 | Navigation is consistent | All core pages are reachable, the active page is clear, back/forward works, and no placeholder links are published |
-| FUN-14 | The no-JavaScript state is safe | Informational content remains readable; forms cannot submit natively; explain that the demo requires JavaScript |
-| FUN-15 | Four premium packages can be explored | SCOUT, WARDEN, NEXUS, and ATLAS have named, keyboard/touch-operable selection and details covering suitability, quantified scope, exclusions, outputs, effort, and retest terms; prices are visibly illustrative, values come from shared package content, and text remains accessible without mascot assets |
-| FUN-16 | Package fit and consultation are explained | Provide an unsure-which-package path and explain mismatched scope; consultation CTAs are visibly simulated; no payment, communication, booking, or URL analysis occurs. Exact local-questionnaire rules remain a draft |
-| FUN-17 | Supporting information is useful and accurate | About explains the project/approach; concise FAQ covers scope, package fit, simulation, remediation, and no security guarantee; strengths describe the service model rather than fabricated achievements |
-| FUN-18 | Home follows the approved saved desktop hero | Preserve its headline hierarchy, warm dark/ivory/sand appearance, compact pet, dim doorway/stairs, description/CTA placement, and atmosphere; compare actual implementation screenshots against Design Reference Lock; four package pets have different body silhouettes and principal colors; mobile, translation, reduced-motion, and performance requirements apply |
+Public visitors browse informational pages and the public sample. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
 
-The approved concepts and complete draft numerical/commercial baseline are detailed in [Service Packages](SERVICE_PACKAGES.md). Prices/caps/effort are fictional authored assumptions pending review, not market evidence or live offers. Supporting reference roles are detailed in [Visual References](../design/VISUAL_REFERENCES.md); the approved generated hero and its preservation/fidelity rules are in [Design Reference Lock](../design/DESIGN_REFERENCE_LOCK.md). Documentation and design approval do not authorize application implementation or deployment. Additional image work follows the owner's requested stage. Package selection never filters, rewrites, or claims provenance for the five canonical sample findings.
+Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Admin validates need, priority, timing, scope, and eligibility. In-app replies are real database writes; optional contact details support separately authorized manual follow-up, not automatic WhatsApp/email delivery.
 
-### Baseline form contract
+Refresh, new tabs and locale navigation do not delete stored tickets or reports. Unsaved drafts can be discarded only after an appropriate warning. Logout revokes the session and clears private UI caches, not database records. Language change never resets service activation.
 
-Name: 2–80 Unicode characters after trimming; do not restrict names to Latin letters. Address: up to 2,048 characters, an absolute `http:` or `https:` URL with a host and without a username/password, query, or fragment. Needs: 10–1,000 characters after trimming. The checkbox must be selected. Count characters as Unicode code points consistently across validators, counters, and tests.
+## 5. Support and reports
 
-The address guidance requests an example such as `https://contoh.invalid`, not credentials or sensitive links. Do not validate host existence. Messages and examples are specified in [Content](CONTENT_AND_SIMULATION.md).
+Three calendar months maximum from first service activation is the proposed interpretation of the owner's “first use,” with an explicit date visible to the user. Exact activation event needs review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Package cycle allowances remain one/one/one/two as a draft.
 
-## 5. Mobile and bilingual requirements
+The maintenance-discount concept is narrowed to a proposed follow-up security review because code maintenance is excluded. Percentage, eligible work, approval cutoff, and commercial display need confirmation; do not invent a rate or apply a charge.
 
-| ID | Requirement | Acceptance criteria |
-| --- | --- | --- |
-| MOB-01 | Mobile UI is deliberately designed | Mobile designs cover every page, menu, form error, success state, report, and assistance panel; they are more than scaled-down desktop layouts |
-| MOB-02 | Functionality is equivalent across sizes | All finding fields and actions remain available on mobile; nothing depends on hover or undisclosed gestures |
-| MOB-03 | Touch interactions are comfortable | Primary targets are at least 44×44 CSS px as a project target; the virtual keyboard does not obscure essential inputs/actions; no page overflow at 320 px |
-| MOB-04 | Report layout adapts | Desktop uses a table; mobile uses a labeled finding list with expandable details; both share the dataset and order |
-| LNG-01 | Full `id` and `en` support | Navigation, body copy, forms, validation, status, assistance, privacy, 404, titles/descriptions, and accessibility labels exist in both languages |
-| LNG-02 | Language selection is explicit | A “Bahasa Indonesia / English” control opens the equivalent page; the URL carries the language preference, without cookies/localStorage |
-| LNG-03 | Inputs/sessions are not transferred through URLs | Switching languages with a draft/session requires reset confirmation; cancel keeps the current language and state |
-| LNG-04 | Translation does not change the dataset | Finding IDs, locations, OWASP categories, severity, numeric values, and status meanings remain equivalent; scores use `8,1` in ID and `8.1` in EN |
-| LNG-05 | Language semantics are correct | `html lang`, screen-reader labels, metadata, and locale alternates match; the mandatory Indonesian statement on EN pages uses `lang="id"` |
+Public sample content is immutable. Private illustrative reports are associated with one project, have draft/published versions, and cannot be generated from a submitted URL. V1 proposes copying all five source findings into a clearly labeled illustrative report snapshot. Follow-up comments/review outcomes do not rewrite the public source dataset. Reporting a fix and verifying it are separate actions.
 
-The mandatory Indonesian disclaimer remains present in the English locale. Its English translation appears alongside the original in the footer and form to preserve the initial rule. This is a conservative draft baseline, not an implicit reinterpretation of that mandatory requirement.
+## 6. Language, mobile, accessibility and performance
 
-## 6. Nonfunctional quality requirements
+| ID | Requirement |
+| --- | --- |
+| LNG-01 | ID/EN informational, authentication, dashboard, ticket, report, error, and privacy UI |
+| LNG-02 | Typed shared content/IDs; original finding fields preserved and equivalent translations |
+| LNG-03 | Equivalent locale navigation preserves saved records/session; warn only about unsaved edits |
+| LNG-04 | Correct html language, localized metadata/dates/decimal formatting, no flags-only selector |
+| LNG-05 | User messages are not automatically translated; no content sent to a translation service |
+| MOB-01 | Dedicated phone composition with shared domain rules |
+| MOB-02 | Readable at 320 px; no page overflow; localized text/zoom/landscape covered |
+| MOB-03 | Touch/keyboard equivalents; 44 px primary targets; no hover dependency |
+| MOB-04 | Forms, conversation, private findings and admin decisions usable with keyboard open |
+| QLT-01 | WCAG-oriented labels, contrast, focus, dialog/error and reduced-motion checks |
+| QLT-02 | Actual build/lint/typecheck plus meaningful domain/integration/E2E checks |
+| QLT-03 | Server-side object authorization, secure sessions, CSRF controls, input validation and private caching |
+| QLT-04 | Measured route/media/JS/database performance; proposed budgets in Quality |
+| QLT-05 | Verified deployed routes, HTTP status, headers, privacy and provider configuration |
+| QLT-06 | Side-by-side visual fidelity review; source PNG preservation is not browser evidence |
+| QLT-07 | Migration, isolation, audit, backup/deletion procedures and tests before public intake |
 
-| ID | Requirement | Acceptance evidence |
-| --- | --- | --- |
-| QLT-01 | Accessibility is part of design | Keyboard, focus, contrast, zoom/reflow, screen reader, error, and reduced-motion checks follow Quality |
-| QLT-02 | Performance has a defined budget | Record lab results and asset sizes against Quality targets; fix failures or document an approved exception |
-| QLT-03 | Security and privacy boundaries are demonstrated | Network/storage inspection shows no input leakage; no secrets, APIs, databases, or scanners |
-| QLT-04 | Implementation is reproducible | Record runtime versions and the lockfile after installation; pass build, lint, typecheck, and critical tests |
-| QLT-05 | Publication is verified | Check the public URL, deep-link refresh, both languages, 404 behavior, headers, and demo flows after deployment |
-| QLT-06 | Identity and assets have a documented basis | The logo works without the mascot; record sources/usage rights for fonts, images, audio, and mascot assets; no trademark-registration claim |
+## 7. Acceptance scenarios
 
-## 7. Hard boundaries
+| ID | Scenario and expected result |
+| --- | --- |
+| AC-01 | Invalid consultation is rejected server-side with localized errors and no partial ticket |
+| AC-02 | Valid authenticated submission persists one ticket; retries with the same idempotency key return the same result |
+| AC-03 | Any entered website remains inert text; selecting any package does not alter the public five findings |
+| AC-04 | Switching locale preserves saved tickets/project rights/support dates; unsaved edits receive a discard warning |
+| AC-05 | Refresh/deep link retrieves an authorized ticket; logout requires login; unknown/foreign resources disclose no private content |
+| AC-06 | ID/EN user and admin flows work at 320 px, zoom and keyboard with no page overflow |
+| AC-07 | JS/network failure cannot submit data via URL, falsely confirm success, or duplicate writes |
+| AC-08 | Four packages expose the same reviewed caps/prices/outputs with keyboard/touch/artwork fallback |
+| AC-09 | Unsuitable package or urgent reactive need goes to reviewed scoping/triage, never forced sale or automatic diagnosis |
+| AC-10 | Unauthenticated user and user B cannot read/mutate user A's ticket, messages, project or report through any endpoint |
+| AC-11 | All locale/package views preserve IDR values, scope meanings, illustration labels and support terms |
+| AC-12 | Crafted role/owner/project/status fields cannot grant customer/admin access or edit another account's records |
+| AC-13 | Admin confirms a proposed slot explicitly; user sees requested versus confirmed times in the chosen timezone |
+| AC-14 | Internal notes and draft/withdrawn reports are absent from user responses, HTML and shared caches |
+| AC-15 | Support start/end use the reviewed three-month calculation; exact expiry rejects new benefit use, not past reports |
+| AC-16 | Eligible request submitted before expiry remains reviewable afterward; ticket creation cannot extend support or consume a cycle repeatedly |
+| AC-17 | User “fix reported” cannot become “verified” without an authorized illustrative admin review; public findings remain unchanged |
+| AC-18 | Login/logout/recovery, revocation, CSRF, rate limits and isolated account caches pass provider-specific tests |
+| AC-19 | Retention/deletion workflow follows the chosen policy, including conversations, reports, audit records and backups |
+| AC-20 | Private report version publication is authorized/atomic, labeled illustrative, and readable only by its owner and authorized admin |
 
-- No real scans or requests to entered addresses, including addresses on the website's own origin.
-- No form data/tickets in URLs, requests, logs, analytics, persistent storage, or automatic clipboard writes.
-- State exists only in active memory; refresh, a new tab, and confirmed language switching start empty. Reset clears application state, not forensic traces in browser memory.
-- No API routes, Server Actions, email delivery, databases, user accounts, payments, permission-document uploads, or external AI integrations.
-- Finding counts represent illustrative data only; no scanner-performance or client-count claims.
-- Footer/form include the exact original disclaimer from the brief.
+## 8. Milestones and exclusions
 
-## 8. Outside the first release
+Academic prototype: real authentication/database and a complete user consultation → admin response → user retrieval flow; demonstrate private report isolation with two users. Supporting incomplete UI must be labeled. This is the owner's planning milestone, not an assertion that the lecturer has approved a detailed rubric.
 
-Free-text chat, voice conversations, AI models, an admin dashboard, login, stored tickets, domain ownership verification, real scanning/pilots, website-generated PDF reports, light mode, automatic sound effects, PWA/offline caching, and visitor analytics.
+Portfolio v1: complete approved portal flows, identity, ID/EN/mobile UX, quality evidence, deployment and truthful privacy information. Video/case study follows stable functionality.
 
-Automated cross-page tours, report filtering/sorting, and a simple/technical explanation toggle are future candidates. V1 can provide a plain-language summary and expandable technical details. Moving a candidate into v1 requires updates to the documents and plan.
+Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, provider, retention, discount, and final asset choices remain open in Decisions.
 
-## 9. Core acceptance scenarios
-
-- **AC-01:** Given invalid input, submission stays on the form, errors are readable in the active language, input is not transmitted, and focus moves to the first invalid field.
-- **AC-02:** Given a valid form, submission generates one demo ticket, clears form values, opens the success page, and allows the status to progress to report ready.
-- **AC-03:** Given any syntactically valid URL, the demo returns the same five findings and makes no attempt to access that URL.
-- **AC-04:** Given an active draft/session, language switching prompts for confirmation; cancel changes nothing, while confirmation resets the state and opens the equivalent page in the target language.
-- **AC-05:** Given direct loading or refreshing of the success page without a session, show that the session is unavailable and offer to start a demo or view the report; do not generate a new ticket automatically.
-- **AC-06:** Given a 320 px viewport and English content, the page and all functionality remain readable without horizontal page scrolling or overlapping controls.
-- **AC-07:** Given disabled JavaScript, informational pages remain useful and the form cannot submit natively.
-- **AC-08:** Given any of the four packages, its detail view identifies suitability, inclusions, exclusions, deliverables, and retest terms in ID/EN, with equivalent keyboard/mobile access and text fallback.
-- **AC-09:** Given an uncertain or unsuitable package choice, explain the scope limitation and offer simulated consultation; never imply purchase, legal permission, or a guarantee of comprehensive security.
-- **AC-10:** Given a package selection or consultation action, no data is transmitted or persisted, the report remains the same five illustrative findings, and reset/language/reload handling covers all temporary selection/fit state.
-- **AC-11:** Given either locale, shared package numbers retain their meaning: IDR starting prices, scope ceilings, origin/role/route/API counting, conceptual effort, and retest cycles/windows are consistent. Labels explain fictional pricing and effort, complex/exceeded scope offers consultation, and no countdown/payment or complete-security guarantee is implied.
-
-## 10. Dependencies and validation
-
-Data comes from the PDF and local copy; there are no external runtime data sources. Final visual identity requires owner choices. Publication requires the owner's hosting account and a review of applicable terms at deployment time. Video work must not block validation of website functionality.
-
-The test matrix is in [Quality and Security](../engineering/QUALITY_AND_SECURITY.md). Work sequencing and milestone status are in [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md). This document does not assert that any acceptance criterion has passed.
+No acceptance scenario has been run in an application. This revision authorizes documentation only.
