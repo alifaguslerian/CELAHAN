@@ -29,11 +29,12 @@ The October 29 owner-approved revision requires real authentication/database per
 | [Mobile Design Gallery](design/MOBILE_DESIGNS.md) | 27 portrait mobile-web references, scroll/touch flow, and source-content overrides |
 | [Desktop Design Gallery](design/DESKTOP_DESIGNS.md) | 24 selected desktop frames, preserved hero, page assembly, and implementation caveats |
 | [Design Direction](design/DESIGN_DIRECTION.md) | Responsive composition, accessibility, identity, and motion |
+| [Portal UX Specification](design/PORTAL_UX_SPEC.md) | Draft account/user/admin screen composition, navigation, states and acceptance cases |
 | [Visual References](design/VISUAL_REFERENCES.md) | Original inspiration and its relationship to the approved target |
 | [Shared Visual System](design/VISUAL_SYSTEM.md) | Draft color tokens, typography roles, spacing, component states, and contrast calculations |
 | [Mascot Guidelines](design/MASCOT_GUIDELINES.md) | Four generated pet concepts, shape/palette rules, source records, and prompts |
 
-The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Galleries now distinguish historical no-storage/locale-reset behavior from current portal requirements. New account/user/admin screens have not been generated or approved. Visual acceptance is not proof of working interactions.
+The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Galleries now distinguish historical no-storage/locale-reset behavior from current portal requirements. New account/user/admin screens have not been generated or approved. Their textual UX specification now supplies the review baseline; permanent domain/DNS selection is deferred until the relevant email/deployment setup. Visual acceptance is not proof of working interactions.
 
 ## Engineering
 
@@ -63,6 +64,7 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 | Record | Scope |
 | --- | --- |
+| [Account and portal UX](validation/2026-10-29-portal-ux.md) | Draft screen/state specification, deferred domain policy and documentation/preservation checks |
 | [Portal documentation revision](validation/2026-10-29-portal-documentation.md) | Current authenticated/database scope, operations/access rules and preservation/document checks |
 | [Initial documentation](validation/2026-10-27-documentation.md) | Original documentation and English translation review |
 | [Packages and visual direction](validation/2026-10-27-package-and-visual-direction.md) | Approved package/reference synchronization |
