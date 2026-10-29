@@ -1,84 +1,104 @@
 # CELAHAN — Quality, Security, and Validation
 
-Status: Verification plan; no application test results exist yet · October 27, 2026  
-References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Release](../portfolio/RELEASE_AND_PORTFOLIO.md)
+Status: Revised verification plan; no application tests have run  
+Updated: October 29, 2026  
+References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Data and Access](DATA_AND_ACCESS.md), [Operations](../product/SERVICE_OPERATIONS.md)
 
-## 1. Evidence principles
+## 1. Evidence and scope
 
-Each result records its environment, date, reviewed application version, steps, outcome, and limitations. Agents do not read Git to identify revisions; use an available build identifier or a revision supplied by the owner. Do not claim success based solely on a design or source inspection.
+Record environment/date/build identifier, actual steps/commands, result, safe evidence and limitations. Do not use Git to discover revisions; the owner may supply an identifier. Documentation, source inspection, build, browser behavior, security tests and deployment evidence are distinct.
 
-Complete documentation, a successful build, passing browser tests, and verified deployment are separate milestones. No single check proves that an application is completely secure or accessible.
+The portal now transmits and stores authorized account/ticket/project data. The old “no network/storage at all” check is retired. Verify intended authenticated flows plus absence of target access, leaks and cross-account exposure. Assessments/retests remain illustrative; no result proves a website completely secure.
 
-## 2. Functional and regression matrix
+## 2. Functional and security matrix
 
-| Test ID | Requirement | Minimum scenario | Recorded evidence |
-| --- | --- | --- | --- |
-| T-01 | FUN-01–03, FUN-13 | All links, CTAs, eight-stage order, keyboard navigation | Routes and screenshots/browser results |
-| T-02 | FUN-04–05 | Empty input, length boundaries ±1, whitespace, Unicode names, invalid URLs, unchecked authorization | Validator and form results in both languages |
-| T-03 | FUN-06 | Valid submission, Enter, double click, success, cleared draft | One ticket; no personal data in HTML/status/URL |
-| T-04 | FUN-07–10 | Valid/invalid transitions, direct report, cancel/confirm reset, new submission | State order and unchanged dataset |
-| T-05 | FUN-06, LNG-03 | Success/report refresh, new tab, back/forward, bfcache restore | Empty or retained session according to the contract |
-| T-06 | LNG-01–05 | All ID/EN routes, switching with/without a draft, cancel/confirm, metadata | Equivalent copy, language, routes, and reset behavior |
-| T-07 | MOB-01–04 | 320, 360, 390, 768, 1,024, 1,440 px; portrait/landscape | No page overflow or missing data |
-| T-08 | FUN-11, QLT-01 | Guide open/close, dialog focus, Escape, reduced motion, failed assets | Core functionality remains available |
-| T-09 | FUN-12, QLT-05 | Unknown URLs and deep-link refresh on hosting | Actual HTTP status and UI, not screenshots alone |
-| T-10 | FUN-14 | JavaScript disabled before loading; form Enter/click | No native GET/POST carrying input; information remains readable |
-| T-11 | QLT-03 | Network/storage before and after every action | Inputs/tickets are not transmitted or persisted |
-| T-12 | QLT-02, QLT-04 | Build/lint/typecheck, unit/E2E, asset sizes, lab measurements | Actual command output and measurement reports |
-| T-13 | FUN-15–18, AC-08–10 | All four package details; keyboard/touch; missing artwork; uncertain/mismatched fit; simulated consultation; lifecycle clearing | Complete localized scope/outputs, no purchase/booking/network activity, and unchanged five-finding dataset |
-| T-14 | FUN-15–16, AC-11 | Compare all package views/locales against the reviewed numerical source; inspect counting/effort/retest copy, custom scope, and labels | Same IDR values and scope meanings; explicit fictional-price/effort labels; correct initial-report window basis; no unlimited-scope, automatic repair, delivery guarantee, billing, or work countdown |
-| T-15 | FUN-18, QLT-06 | Compare actual desktop hero browser capture against the preserved approved PNG; review mobile reflow and four pet silhouettes/colors | Side-by-side evidence for typography, scene placement, subdued lighting, palette, CTA, spacing, and pet identity; reviewed explanations for responsive/accessibility differences; no Minecraft humanoid or brilliant portal |
+Existing T identifiers now describe the revised portal baseline. Historical test plans/reports retain their original scope.
 
-Run critical E2E tests against the static production build, not only the development server. Unit tests focus on the validator, reducer, route/locale mapping, and dataset consistency; avoid tests that merely mirror markup without checking behavior.
-
-## 3. Fixtures and checks without accessing targets
-
-Use synthetic data: the name “Demo Visitor,” needs such as “Review access controls in a sample application,” and the URL `https://contoh.invalid`. The application and test procedure must never actually access the example host.
-
-Validator cases include `javascript:`, `data:`, other schemes, a missing host, credentials, query/fragment, overly long URLs, Unicode, and valid `http/https` syntax. For network boundaries, also test an address on the known website origin so protection does not rely solely on CSP blocking external targets.
-
-Install browser interception before loading the page: block and record every request outside the preview/production origin and permitted public resources. Also compare same-origin requests against the route/asset baseline; no request may match the exact path supplied as input. Do not deliberately allow target requests to run merely to prove they occurred.
-
-Inspect query/path, application-controlled headers, request bodies, console/logs, storage, and resulting HTML. Use synthetic canary strings to detect leakage. Remove or sanitize HAR files/screenshots before sharing; never use real personal data as fixtures.
-
-## 4. Application security boundaries
-
-| Area | Risk | Control and verification |
+| Test | Coverage | Minimum scenario / evidence |
 | --- | --- | --- |
-| Entered URL | Automatic target access or leakage through previews/favicons | Parse only; never pass it to resource/link APIs; network tests cover external and same-origin addresses |
-| Form | Native submission before hydration/with JS disabled | Keep submission disabled until ready; prevent default; no action; CSP form-action none; T-10 |
-| Rendering | Input becomes HTML/script | Plain-text escaping; no eval/HTML injection; XSS fixtures appear as text or fail format validation |
-| State | Data leaves through URLs/storage/logs | Memory state, lifecycle reset, network/storage inspection, canaries |
-| Dependencies | Vulnerabilities in selected packages | Use supported stable versions; perform actual dependency audits and review relevant advisories before release |
-| Assets | Hidden scripts/metadata or unclear licenses | Review SVGs/images/fonts; remove external scripts and unnecessary personal metadata; record sources |
-| Hosting | Ineffective headers or enabled analytics/injection | Inspect production responses and account configuration; source configuration alone is insufficient |
-| Repository | Secrets, personal information, temporary output | Review files before handoff; exclude tokens, secret environment files, personal test data, and unapproved complete academic files |
+| T-01 | FUN-01–03, 13 | Public links, eight-stage order, concept context, no fabricated claims |
+| T-02 | FUN-04–05, 20 | Server/client field boundaries, Unicode, reactive/preventive/unsure reasons, contacts/slots, authority declaration |
+| T-03 | FUN-06, AC-01–02 | Atomic valid submission, Enter/double click/retry, one owned ticket, actual failure with no partial write |
+| T-04 | FUN-07–08 | Actor-validated ticket/project transitions, invalid/stale state rejected |
+| T-05 | AC-04–05 | Saved records after refresh/new tab/locale change; expired login and unsaved-edit warning |
+| T-06 | LNG-01–05 | ID/EN routes/copy/dates/errors; no message translation or saved-data reset |
+| T-07 | MOB-01–04, AC-06 | 320/360/390/768/1024/1440 px, zoom/landscape, user and admin forms/tickets/reports |
+| T-08 | FUN-11, QLT-01 | Optional guide, keyboard/focus/Escape, reduced motion, failed artwork |
+| T-09 | FUN-12, QLT-05 | Deployed deep links, real HTTP 404 and generic private denial without enumeration |
+| T-10 | FUN-14, AC-07 | JS disabled/unhydrated, failed network/database, no input GET fallback or fake success |
+| T-11 | QLT-03, AC-03 | Target URL never contacted client/server; intended data only to approved auth/app/database destinations |
+| T-12 | QLT-02, 04 | Actual lint/typecheck/build, meaningful tests, measured assets/JS/query behavior |
+| T-13 | FUN-15–16 | All packages and unsure path in ID/EN, keyboard/touch fallback, same public five findings |
+| T-14 | AC-11 | Shared fictional IDR/caps/effort/cycles, three-month wording; no obsolete 30/60-day window |
+| T-15 | FUN-18, QLT-06 | Browser hero vs preserved PNG, approved logo direction, distinct pet silhouettes/colors |
+| T-16 | FUN-19, AC-18 | Chosen signup/verification/login/recovery/logout, generic errors and server-wide rate limits |
+| T-17 | AC-10, 12 | Two-user/admin object and nested-ID read/write/list/count isolation; no mass-assigned privileges |
+| T-18 | FUN-07, AC-14 | Shared replies visible only to ticket owner/admin; internal notes absent from user HTML/JSON/RSC |
+| T-19 | AC-13 | Proposed vs confirmed schedule, UTC/IANA conversion, past/invalid/conflicting/stale confirmation |
+| T-20 | FUN-23 | Admin-only project creation/association; forged customer flag/email/website never grants rights |
+| T-21 | FUN-10, AC-14, 20 | Draft/published/withdrawn versions; atomic publication, immutable snapshots and project isolation |
+| T-22 | FUN-24, AC-15 | Month-end/leap-year/UTC conversion/exact expiry, client clock tampering, no reset by tickets/locales |
+| T-23 | AC-16 | Timely request reviewed after expiry; concurrent reservation/retry cannot exceed cycle allowance |
+| T-24 | FUN-25, AC-17 | User assertion separate from illustrative admin review; source dataset unchanged |
+| T-25 | QLT-03, AC-18 | Direct endpoint auth, CSRF/origin, XSS plain text, parameterized SQL, least-privilege credentials |
+| T-26 | AC-10, 14, 18 | Cross-account CDN/HTML/data/RSC/cache isolation; logout/account-switch/Back/bfcache |
+| T-27 | FUN-26, QLT-07, AC-19 | Approved retention/deletion and backup restore; audit metadata redaction, preview/production isolation |
+| T-28 | FUN-22, QLT-03 | Controlled admin provisioning, revoked admin/disabled account, privileged actions and redacted audit |
+| T-29 | AC-02, 16, 20 | Idempotency payload mismatch, transaction rollback, duplicate message, concurrent publication |
+| T-30 | FUN-24, 26 | No invented discount, code-maintenance promise, actual assessment claim or false no-storage privacy text |
 
-There is no third-party penetration-testing target. Project review concerns authorized CELAHAN source/deployment; pentesting/scanning tools are not product feature requirements.
+Run integration/E2E against a production-mode application with an isolated test database, not only mocks or a development server. No test in this table is marked passed. Dataset/validator/access-policy/date/transition units are meaningful; avoid tests that merely mirror markup.
 
-## 5. Headers and CSP
+## 3. Safe fixtures and no-target-access verification
 
-Target production responses:
+Use synthetic users A/B, an admin and disabled/revoked identities, separate projects, message canaries and illustrative reports. Use website text such as https://contoh.invalid without contacting that host. Never use real personal data or passwords in committed fixtures.
 
-- `X-Content-Type-Options: nosniff`.
-- `Referrer-Policy: no-referrer`.
-- `Permissions-Policy` disables camera, microphone, and geolocation because the product does not use them.
-- CSP restricts scripts/resources to application needs: baseline directives include `object-src 'none'`, `base-uri 'none'`, `frame-ancestors 'none'`, `form-action 'none'`, and `connect-src 'self'`.
-- `X-Frame-Options: DENY` may accompany `frame-ancestors`; their configuration must be consistent.
-- Check HTTPS and hosting-provided HSTS; do not add preload/subdomain policies without checking ownership and impact.
+Validate URL schemes, host, length, credentials/query/fragment, Unicode and unsupported forms. Network tests also cover localhost/private ranges, cloud metadata-like addresses and a known same-origin path. Install browser interception before load and server egress interception before executing mutations. Block requests rather than allowing targets to be contacted as proof.
 
-Construct the complete policy once build output is known. Next.js inline bootstrap scripts need a static-export-compatible approach, such as script hashes regenerated from artifacts on each build. Do not copy sample hashes or use a fixed nonce. If inline styles are necessary, limit exceptions to the relevant style directive and document the reason; do not automatically weaken script policy.
+Distinguish expected first-party consultation POSTs and fixed auth/database traffic from input-derived requests. Stored website text may appear in the authorized request body/database/detail DTO; it must never become a resource URL, preview, navigation link or diagnostic dump.
 
-Test hydration, navigation, assistance, forms, and locales with CSP active. `connect-src 'self'` is a protective layer, not permission to request same-origin input addresses. Verify headers on HTML, nested routes, and hosted 404 responses. [Vercel configuration](https://vercel.com/docs/project-configuration/vercel-json)
+Inspect authorized and unauthorized JSON, HTML, RSC, response headers, metadata, browser storage, CDN caches and logs. Verify canaries do not appear in another account or public output. Sanitize HAR files, screenshots and fixtures before publication.
 
-## 6. Privacy and data
+## 4. Security controls and threat cases
 
-- No analytics, tracking pixels, session replay, third-party chat, remote fonts, video embeds, or CSP reporting endpoints receiving data.
-- The application creates no cookies/localStorage/sessionStorage/IndexedDB/service workers for inputs, tickets, locales, or assistance preferences.
-- Hosting/browser static asset caches must not contain user input; distinguish them from demo state.
-- Hosting may still process technical access data. Privacy information must describe verified practices/configuration without promising that nobody collects any data.
-- The form requests sample data and does not collect email/phone numbers or permission-document uploads.
-- Do not display a fictional cookie banner if the application uses no nonessential cookies. If hosting configuration changes data practices, update requirements and copy before release.
+| Boundary | Required controls / checks |
+| --- | --- |
+| Authentication | Maintained solution, credential protection, secure recovery/verification, approved session lifecycle, rate limits and stronger admin access |
+| Authorization | Deny by default; check actor-role-resource relationship on every server read/write and nested record |
+| Database | Scoped parameterized queries, foreign keys, least privilege, transactional invariants, isolated environments |
+| Mutations | Server validation, CSRF/origin protection, action-scoped idempotency, state/concurrency checks |
+| Private reports | Project owner/admin only; publication filter; no anonymous links or public object storage |
+| Input rendering | Escaped plain text; no unsafe HTML/eval, target links, resource attributes or raw error reflection |
+| Privilege escalation | No public admin signup; ignore/reject owner/role/priority/expiry fields outside trusted operations |
+| Retest benefits | Server-time calculation and atomic reservations; no client-clock reliance or duplicate consumption |
+| Logging | Minimal privileged-action metadata; no passwords/tokens/contact/problem/report body dumps |
+| Cache | Verified private/no-store handling; no cross-account HTML/data/CDN/browser cache exposure |
+| Deployment | Server secrets isolated, HTTPS, controlled migrations, preview data separate, backups/restore/deletion reviewed |
+
+Security guidance checked October 29, 2026: [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), [session management](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html), [CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html), [Next.js data security](https://nextjs.org/docs/app/guides/data-security). These are control proposals, not an audit certification.
+
+No third-party target testing is authorized. Any later security review concerns the explicitly authorized CELAHAN source/deployment/test environment.
+
+## 5. Headers, cookies and transport
+
+Require production HTTPS; HttpOnly/Secure/session scope/SameSite settings follow the reviewed auth solution. Test expiry, revocation, multi-tab behavior and cookie clearing. Tokens do not belong in localStorage or URLs.
+
+Proposed headers: X-Content-Type-Options nosniff, Referrer-Policy no-referrer, restrictive Permissions-Policy, and a tested CSP including object-src none, base-uri none and frame-ancestors none. Configure HSTS only after HTTPS/domain suitability is verified.
+
+The previous form-action none rule conflicts with real form submission. Restrict form-action/connect-src to exact required first-party/auth destinations after provider selection. Use framework/provider CSRF protections and negative tests; SameSite alone is insufficient. Derive script policy from production output rather than adding unsafe-eval or broad wildcard exemptions.
+
+Private responses need verified cache controls on HTML/data/RSC and hosting layers. Check callbacks and redirects against an internal/configuration allowlist. No open redirect or target-input destination.
+
+## 6. Privacy and operational safety
+
+- Disclose actual account/contact/company/website/problem/message collection and purposes.
+- Authentication cookies are permitted necessary infrastructure; no false cookie-free claim.
+- Keep unsaved private drafts in memory; no analytics, third-party chat/translation, service-worker private caches or marketing cookies in baseline.
+- Choose enrollment, verification/recovery delivery, provider regions/processors and deletion contact process before public intake.
+- Approve retention/deletion and backup expiry; support ending at three months does not erase history automatically.
+- Test backup restore, deletion propagation and sensitive log redaction using isolated synthetic data.
+- The portfolio uses synthetic project data; real registration identity remains personal data and still requires truthful policy.
+- Inspect hosting technical logs/configuration before final privacy copy; do not claim no provider processes technical access data.
 
 ## 7. Accessibility
 
@@ -94,7 +114,7 @@ The figures below are proposed project budgets, not measured results:
 
 | Measure | Baseline target | Evaluation |
 | --- | --- | --- |
-| LCP | ≤ 2.5 seconds in documented lab testing | Median of three cold loads for home, request, and report in each locale |
+| LCP | ≤ 2.5 seconds in documented lab testing | Median of three cold loads for home, consultation, dashboard and private report in each locale |
 | CLS | ≤ 0.1 | Measure loading and interactions; inspect intrinsic asset sizes and panels |
 | Interaction response | Target ≤ 200 ms for representative interactions | Record form, dialog, locale, and report-expansion traces; do not call a single trace field INP |
 | Lighthouse mobile | Performance ≥ 90 as a lab indicator | Record tool/version/throttling/environment; scores do not replace UX testing |
@@ -113,22 +133,20 @@ The four PNGs in `design/mascots/concepts/` are also source/review artifacts. Th
 
 ## 9. Devices and environments
 
-Minimum planned coverage: desktop Chromium, desktop Firefox, WebKit through a runner, mobile emulation at T-07 sizes, and real Android/iOS browsers if devices are available. A WebKit runner does not prove testing on an actual iPhone running Safari. Record at least one complete keyboard test and one screen-reader check.
+Plan Chromium/Firefox/WebKit, mobile emulation and real Android/iOS where available. A WebKit runner is not proof of testing on a real iPhone. Record full keyboard and screen-reader flows including login, consultation, messages, report and admin actions.
 
-Validate the local production build first, then smoke-test deployment using a project-owned hostname. Distinguish tool/environment failures from product failures. Do not fabricate results when a device or tool is unavailable.
+Tests use separate provider/test database configuration, controlled synthetic accounts and no production credentials. Report environment failures separately from product failures. Do not silently replace database authorization checks with mocks.
 
-## 10. Results format and release gate
+## 10. Results and release gate
 
-When application testing begins, create `docs/validation/YYYY-MM-DD-check-type.md` with scope, build/environment, steps/commands, actual outcomes, sanitized evidence, open issues, and follow-up decisions. These application-test reports have not been created during planning.
+Create dated validation records only for checks actually performed: scope, build/environment, steps, outcomes, sanitized evidence, issues and limitations. Documentation validation never marks application T-01 through T-30 passed.
 
-Release gate: no simulation/privacy violations; critical flows and both languages pass; no accessibility blockers; build/lint/typecheck pass; relevant dependency issues addressed; performance targets evaluated; metadata/404/headers checked on hosting; privacy copy matches configuration.
+Before release: complete critical user/admin flows, object isolation/session/CSRF/cache checks, database migrations and operational policy, accessible ID/EN/mobile behavior, unchanged sample dataset, measured performance, build/lint/typecheck and deployed privacy/header verification. Unresolved personal-data policy blocks public collection even when a preview demonstrates synthetic scenarios.
 
-Status when this document was written: **all application tests remain unrun**. Documentation and reference-file checks may be recorded separately without marking T-01 through T-15 as passed.
+## 11. Clean code and repository
 
-## 11. Code and asset hygiene
+Remove verified unused code/imports/dependencies/experiments and duplicate logic after checking framework/dynamic references. Share content/domain rules across viewports/locales. Keep files focused and assets optimized; no insecure shortcuts to bypass tests.
 
-The owner's standing quality requirements apply to every implementation package. Remove verified unused code/imports/dependencies, abandoned experiments, duplicate logic, and obsolete assets; check framework-discovered/dynamic references before deletion. Keep files organized by responsibility and share content/domain logic across viewports/locales. Avoid speculative abstractions and insecure shortcuts.
+Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Per-file commit suggestions stay in chat; Git is entirely manual.
 
-Review changed data flows for unsafe HTML/script execution, input-derived navigation/requests, private-data persistence, and overly permissive configuration. Follow existing simulation boundaries and verify relevant dependency risks. Keep client JavaScript/font/image costs within the measured targets; informational content should remain static where practical, and design-source boards must not become runtime payloads. Clean up long-lived effects/listeners.
-
-Ignore local credentials, private keys, dependencies, generated output, logs/caches, hosting state, and temporary handoffs. An ignore rule does not sanitize already tracked material. Review actual files before manual publication. Commit messages and command suggestions belong in chat, not source comments or repository artifacts. At this documentation-only stage there is no dead application code to remove and no runtime security/performance result to claim.
+Current state: documentation and design references only. No application build, runtime security, database integration, accessibility or performance result exists.
