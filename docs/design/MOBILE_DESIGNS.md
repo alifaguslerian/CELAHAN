@@ -6,13 +6,19 @@ Scope: Mobile-web pages, scroll segments, navigation, disclosures, and confirmat
 
 References: [Desktop gallery](DESKTOP_DESIGNS.md), [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [User flows](../product/USER_FLOWS.md), [Packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-mobile-designs.md)
 
+## October 29 portal scope update
+
+The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
+
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
+
 ## Review status
 
 The owner requested mobile UI/UX before subdividing the implementation plan. This batch supplies 27 selected portrait frames; obsolete intermediate images have been removed. The desktop visual directions, including the revised tight package cluster, are accepted and preserved. New mobile frames are proposals until reviewed; they are not a running website or evidence of functional accessibility/responsiveness.
 
 Built-in imagegen produced each viewport separately. Borderless mobile-web views maximize readable content and avoid implying a native application. Exact [prompts, references, source filenames, dimensions, byte sizes, and SHA-256 values](../../design/mobile/v1/manifest.json) are preserved. Internal pre-task fingerprint snapshots have been removed from repository metadata. Initial prompts are reconstructed as commonPrompt plus a frame's promptSuffix; exact revisions and retired input fingerprints preserve source provenance. Prompts cannot reproduce the source deterministically.
 
-## Page assembly and navigation
+## Historical frame assembly and navigation
 
 | Page / state | Frames | Relationship |
 | --- | --- | --- |
@@ -21,18 +27,18 @@ Built-in imagegen produced each viewport separately. Borderless mobile-web views
 | Package discovery | 03 → 06 → 07 | Tap a pet for details; comparison supports scope selection |
 | Process | 08 → 09 | One vertical eight-stage page, not two routes |
 | Request | 10, 11 | Default and invalid form states |
-| Request success | 12 | Local example ticket, cleared input data |
-| Demo status | 13 → 14 → 15 | Manual state transitions; third state reveals fixed sample report |
+| Request success | 12 | Historical success composition; replace with persisted server-ticket detail |
+| Demo status | 13 → 14 → 15 | Historical stage composition; private project changes are admin-controlled |
 | Report list | 15 → 16 | Five findings in one scrolling list, F01 through F05 |
 | Finding detail | 17 | F02 example; same disclosure pattern for each finding |
 | Direct report | 18 → 16 | Same list without a ticket or active stepper |
 | Optional guide | 19 | Structured-topic sheet over the report; ordinary report is its closed state |
 | About / Privacy / 404 | 20 / 21 / 22 | Supporting pages |
-| Locale confirmation | 23 | Confirm before clearing temporary state; cancel preserves it |
+| Locale confirmation | 23 | Dialog geometry only; warn about unsaved edits, never erase stored records |
 | English Request | 24 | Form text and bilingual disclaimer fit reference |
 | English report | 25 → 26 | Same five findings, routes, categories, and statuses |
 
-A header visible on a scrolled reference represents the shared shell, not another header inside page content. Do not duplicate introductions, tickets, disclaimers, or section headings at artificial screenshot boundaries. Any 'Berikutnya' treatment in Process scrolls to stage 5; it does not create a paginated service journey. The footer remains one shared page footer. Consultation opens the same simulated Request flow.
+A header visible on a scrolled reference represents the shared shell, not another header inside page content. Do not duplicate introductions, tickets, disclaimers, or section headings at artificial screenshot boundaries. Any 'Berikutnya' treatment in Process scrolls to stage 5; it does not create a paginated service journey. The footer remains one shared page footer. Consultation now enters authenticated intake with real persistence and requested/confirmed schedule semantics.
 
 ## Shared UX decisions and source-copy rules
 
@@ -42,10 +48,10 @@ A header visible on a scrolled reference represents the shared shell, not anothe
 - Every finding keeps its title, category, location, score, severity, and remediation status. The ID list spans 15–16 and the EN list spans 25–26. These scroll segments are not separate datasets. Summary: 5 illustrative findings, 2 High/2 Medium/1 Low, 3 not fixed/2 fixed.
 - Finding paths are inert monospace data, even where a raster underlines them. Never turn an input address or route into a host link, preview, favicon request, DNS lookup, scan, or preconnect. Detail controls open local content by finding ID.
 - The mandatory original footer/form line remains exactly: `Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.` English adds `A concept project for a portfolio and university coursework. Not a real service.` Illustrative-data labels stay near reports/details and fictional-price labels stay beside displayed prices.
-- Form content uses examples. Name/address/needs/permission and package-planning state clear after valid submission; only the temporary demo ticket/stage remain. No data is sent, persisted, logged, serialized into URLs, or supplied to an AI. There is no backend, booking, payment, email delivery, automatic repair, or durable request.
+- Revised forms use approved synthetic project data but save authorized requests in the real database. Include conditional need/reasons, company, contact and proposed timing. Refresh/locale changes retain records; private data does not enter URLs/logs/AI. No payments, external calendar, automatic contact delivery or repairs.
 - Menu, details, guide, and confirmation need labeled close/back controls, focus management, and state-independent access to the report. The guide uses four scripted topics and no free-text chat; background content becomes inert while a modal sheet is open.
-- Normal form helpers remain present in error states, including the written-authorization caveat even if raster 11 omits it. Use source validators: name 2–80 Unicode code points, needs 10–1,000, local HTTP(S) format checks and source URL restrictions. The checkbox does not establish real written permission.
-- About row arrows, if retained, link to existing Process, Report, and Privacy destinations; they are not empty controls. The guide opener remains labeled and optional on the ordinary report. A reset-only dialog reuses 23's geometry with distinct reset wording.
+- Normal form helpers remain present in error states, including the written-authorization caveat even if raster 11 omits it. Use the revised PRD's shared server/client limits and conditional field rules, not old raster limits. The checkbox does not establish real written permission.
+- About row arrows, if retained, link to existing Process, Report, and Privacy destinations; they are not empty controls. The guide opener remains labeled and optional on the ordinary report. Frame 23's geometry may support unsaved-edit confirmation; saved tickets/projects are never reset by changing language.
 
 ## Readability and implementation review limits
 
@@ -168,5 +174,5 @@ ID pages and three EN form/report frames are represented; other EN pages reuse t
 
 ## Next stage
 
-Review this mobile set, then subdivide the existing implementation plan into coherent, moderately sized delivery packages. Each future package should produce a usable outcome with relevant checks; avoid turning every tiny component or file into its own phase. This task does not perform that subdivision or authorize installing dependencies, writing application code, deploying, or operating Git.
+Review this mobile set and new account/portal/admin flows, then subdivide the revised broad phase plan into coherent, moderately sized delivery packages. Each future package should produce a usable outcome with relevant checks; avoid turning every tiny component or file into its own phase. This task does not perform that subdivision or authorize installing dependencies, writing application code, deploying, or operating Git.
 
