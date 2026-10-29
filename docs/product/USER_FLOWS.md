@@ -2,7 +2,7 @@
 
 Status: Revised portal flow baseline for review; not implemented  
 Updated: October 29, 2026  
-References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md)
+References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
 ## 1. Route map
 
@@ -12,7 +12,8 @@ Proposed routes use id/en locale prefixes and shared slugs. Public sample and pr
 | --- | --- | --- |
 | Public | /id/, /id/services/, /id/process/, /id/about/ | Discovery and process |
 | Public | /id/report/, /id/privacy/ | Public illustrative report and privacy |
-| Account | /id/login/, /id/register/, /id/account/recovery/ | Chosen authentication/enrollment flows |
+| Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Draft email/password verification/recovery pages; provider transport paths remain unselected |
+| Admin identity check | /id/account/two-factor/ | Draft authenticator challenge before admin access; no public admin signup |
 | Signed-in user | /id/request/ | Consultation form |
 | Signed-in user | /id/dashboard/, /id/tickets/, /id/tickets/[ticketId]/ | Own records and conversation |
 | Project owner | /id/projects/[projectId]/ | Authorized project and support information |
@@ -32,6 +33,8 @@ A public sample never displays personalized ticket or project identifiers. It al
 
 ## 3. Account entry
 
+The screen-level baseline is in Portal UX Specification. It proposes email/password registration, pending email verification, recovery/reset and mandatory admin authenticator flow for review. Exact policy/delivery remains open; this update does not create working accounts or send email.
+
 1. Choose login or the reviewed enrollment flow. No account is an admin by default.
 2. The selected provider/library authenticates and establishes a secure session.
 3. The server verifies the session before returning private data.
@@ -39,6 +42,14 @@ A public sample never displays personalized ticket or project identifiers. It al
 5. Account verification/recovery uses the chosen provider flow; exact enrollment/delivery must be decided before implementation.
 
 Failed login is generic and rate-limited. Logout revokes the relevant session, clears private client caches and returns to a public page. Browser Back must not reveal stale private data after logout/account switch. A stale form on an expired session asks for login without silently submitting, duplicating, or storing its contents in a URL.
+
+### User and admin navigation baseline
+
+User workspace: Overview, Tickets, Projects and Account. A new user's overview offers consultation and public sample access, without fictional records or a “become customer” switch. Existing users see only their own recent tickets, next actions and project/report/support summaries.
+
+Admin workspace: Queue, Projects and Account. Triage summaries lead to the shared-reply/private-note detail and project/report actions. Queue filters do not grant access; all server requests still enforce resource permissions. Admin using the user workspace sees their own user records there.
+
+Phone uses a labeled menu and stacked details, with no mandatory bottom bar or hover-only control. Permanent domain/DNS identity is deferred; it does not change these flows or require a domain purchase now.
 
 ## 4. Consultation submission
 
@@ -66,14 +77,14 @@ The user sees shared replies, explicit requested/confirmed scheduling and permit
 1. Admin reviews consultation and agreed scope.
 2. Admin creates a project with owner, package/scope snapshot and illustrative provenance.
 3. Server checks that any linked consultation belongs to that owner.
-4. Admin records the proposed first-service activation event and the server-calculated support expiry after the activation policy is reviewed.
+4. Admin records project activation separately. Support remains unstarted until the first private project report is published.
 5. User now sees that project and its support rights. They cannot select “already a customer” to gain access.
 
 Every project stage change is admin-controlled, audited and labeled illustrative. The three old user-controlled demo buttons are retired for private projects. A portal activity timestamp is not an assessment-execution timestamp.
 
 ## 7. Private reports and fixes
 
-Admin drafts an illustrative report for an authorized project using a canonical five-row snapshot, reviews it, and publishes a version. Users cannot read drafts or withdrawn versions. Publication is an atomic server operation.
+Admin drafts an illustrative report for an authorized project using a canonical five-row snapshot, reviews it, and publishes a version. Users cannot read drafts or withdrawn versions. Publication is an atomic server operation. The first private project publication also sets support_started_at/expiry once using the reviewed calendar policy; later versions never restart the period.
 
 The owner opens the private report from their project. All fields, limitations, original finding data and illustration labels are present in ID/EN. The private URL is never a public share link. Failed access reveals no title, counts, owner identity or findings.
 
@@ -85,7 +96,7 @@ From a project the owner can choose support, retest, or follow-up review. The fo
 
 Show start/expiry, remaining/reserved retest cycles, and discount terms only when approved. Timely requests remain reviewable after expiry. At expiry included benefits end, but published reports and ticket history remain available according to retention policy.
 
-New tickets, replies, locale changes and report publication do not reset dates. Extra scope, expired benefits or exhausted cycles produces a clear reviewed next step, never an automatic charge or blanket rejection of all communication.
+New tickets, replies, locale changes and later report versions do not reset dates. Extra scope, expired benefits or exhausted cycles produces a clear reviewed next step, never an automatic charge or blanket rejection of all communication.
 
 ## 9. Locale, draft and navigation lifecycle
 
