@@ -6,7 +6,7 @@ References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS
 
 ## 1. Scope and identity
 
-Use a real relational database with foreign keys, unique constraints, transactions and reviewed migrations. Exact provider/types/index syntax remain open. Public sample content is separate from private records.
+Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. Better Auth runs in the Next.js server. Adapter/types/index syntax and versions remain open; no database has been created. Public sample content is separate from private records.
 
 V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, package selection, ticket reference and payment claims are never ownership proofs.
 
@@ -16,9 +16,9 @@ Identity comes from the trusted session. Never accept role/owner/support fields 
 
 | Entity | Essential fields / relationship | Private-data handling |
 | --- | --- | --- |
-| Account / Profile | Trusted auth subject, role, display name, optional company, permitted contact fields, account state | Provider owns credentials; application never stores plaintext passwords |
+| Account / Profile | Trusted auth subject, role, display name, optional company, permitted contact fields, account state | Better Auth manages credential hashing/sessions; application never stores plaintext passwords |
 | Consultation | Owner account, name/company/contact snapshot, inert website, need type/reasons, problem, requested slots/timezone, declaration timestamp | Saved with an initial consultation ticket in one transaction |
-| Project | Owner account, originating consultation if any, scope/package snapshot, illustrative stage/source, first activation, support expiry, policy version, retest allowance | Owner/admin only; creation and association are privileged |
+| Project | Owner account, originating consultation if any, scope/package snapshot, illustrative stage/source, project activation, first private report publication reference, support_started_at, support expiry, policy version, retest allowance | Owner/admin only; creation and association are privileged |
 | Ticket | Owner account, kind, nullable project, nullable consultation, status, reviewed priority, created/updated/submitted times, concurrency version | Initial consultation may lack project; follow-up requires authorized project |
 | TicketMessage | Ticket, author, plain-text body, created time, idempotency reference | User/admin shared conversation; author comes from session |
 | InternalNote | Ticket/project, admin author, plain-text body, created time | Separate admin-only table/query/DTO; never serialized to users |
@@ -31,7 +31,7 @@ Identity comes from the trusted session. Never accept role/owner/support fields 
 | AuditEvent | Privileged actor/action, resource IDs, result, timestamp | Metadata only; restricted admin/system access, no content/token dumps |
 | IdempotencyRecord | Actor, operation, opaque key, payload hash, result reference, lifecycle | Scoped unique key; no raw request body copy |
 
-Auth sessions/verification/recovery records are provider-specific; model them after provider selection, not as custom placeholder token tables. A small implementation can combine logical entities where invariants remain clear; no speculative repository/service abstraction is required.
+Auth sessions/verification/recovery records follow the reviewed Better Auth version/adapter schema; do not invent custom placeholder token tables. A small implementation can combine logical entities where invariants remain clear; no speculative repository/service abstraction is required.
 
 ## 3. Constraints and indexes
 
@@ -40,9 +40,9 @@ Auth sessions/verification/recovery records are provider-specific; model them af
 - Consultation and initial ticket owners must match. A linked project is created for that consultation's owner.
 - Follow-up ticket ownership is checked against project ownership at creation; internal notes and history retain their original visibility on any reassignment.
 - Every report/version/finding relationship must stay within one project; validate composite relationships, not independent IDs in isolation.
-- Published report version is immutable; unique report/version number and report-version/finding key. Publication is atomic with all five snapshot rows.
+- Published report version is immutable; unique report/version number and report-version/finding key. Publication is atomic with all five snapshot rows and, on the project's first publication only, its support-start/expiry fields.
 - Retest acceptance reserves a distinct cycle only while eligibility/allowance permit it, under a transaction/lock or equivalent atomic constraint. A ticket cannot reserve multiple cycles on retry.
-- Store UTC instants plus the source IANA timezone needed for schedule/support interpretation. Support expiry cannot precede activation.
+- Store UTC instants plus the source IANA timezone needed for schedule/support interpretation. Support expiry cannot precede support_started_at; project activation alone cannot start benefits.
 - Index owned ticket/project lists, ticket message ordering, admin status/priority/age queues, report project/publication, and retest project/state. Bound page sizes and selected columns.
 - Use parameterized queries. Sort keys and filters are allowlisted; no user-derived SQL/table names or unrestricted wildcard search of all accounts.
 
@@ -87,11 +87,13 @@ Idempotent writes scope keys to actor and operation. A replay with a different p
 
 ## 6. Support and discount data
 
-Project activation stores a policy snapshot and server-calculated expiry. Proposed rule: add three calendar months at the same local time in Asia/Jakarta, clamp invalid day-of-month to month end, then convert to UTC. Exact first-service activation remains an open decision before implementation.
+The owner confirmed the first private project report publication as the support start. In that publication transaction, set support_started_at from trusted server time, record the first published version reference/policy snapshot, and compute expiry only when those fields are unset. Concurrent publication/retries must not produce multiple starts. Project activation and public sample views do not start support.
+
+Proposed calendar rule remains reviewable: add three calendar months at the same local time in Asia/Jakarta, clamp invalid day-of-month to month end, then store UTC expiry. This is not a default 90-day period. First view, corrections, withdrawal/republication, new versions and retests do not move the original start/expiry.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 
-The support flag is a computed view of dates, scope and cycles, not a user-editable boolean. Publication, locale change, ticket creation or resetting a UI does not extend benefits. Fixing erroneous activation data requires a privileged reasoned audit, not an untracked date edit.
+The support flag is a computed view of dates, scope and cycles, not a user-editable boolean. Publication, locale change, ticket creation or resetting a UI does not extend benefits. Correcting erroneous support-start metadata requires a privileged reasoned audit, not an untracked date edit or benefit extension.
 
 Do not add billing/coupon tables while percentage and discount mechanics are unapproved. Store no fabricated rate. The proposal is follow-up security review within the same period, not code maintenance.
 
