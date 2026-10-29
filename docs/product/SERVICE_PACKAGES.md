@@ -102,7 +102,7 @@ Every numerical scope entry is a ceiling within a written inventory, not an auto
 | Conceptual initial assessment/report effort | 3–5 working days | 5–8 working days | 8–12 working days | 12–20 working days after custom scoping |
 | Report walkthrough | 1 session, up to 45 minutes | 1 session, up to 60 minutes | 1 session, up to 90 minutes | 2 sessions, up to 60 minutes each |
 | Included retest cycles | 1 | 1 | 1 | 2 |
-| Maximum support / included-retest request period | Three calendar months from first service activation | Three calendar months from first service activation | Three calendar months from first service activation | Three calendar months from first service activation; shared by both cycles |
+| Maximum support / included-retest request period | Three calendar months from first private report publication | Three calendar months from first private report publication | Three calendar months from first private report publication | Three calendar months from first private report publication; shared by both cycles |
 
 Public/anonymous access relevant to the agreed scope is included separately from authenticated role counts. A role count never means that a package has examined every account, permission combination, or possible business scenario.
 
@@ -139,7 +139,7 @@ Use IDR in both locales; English does not imply currency conversion. Display loc
 
 - One cycle is one consolidated re-examination of the original reported findings submitted together after the developer's represented fixes. It does not reopen the entire application or create unlimited requests per finding.
 - Every original finding submitted for the cycle can be revisited without a count or severity quota. The original scope remains the boundary.
-- The maximum three-calendar-month period is based on first service activation, not the initial report. This supersedes the earlier 30/60-day baseline. Both ATLAS cycles share one expiry; a retest does not restart it. Exact activation and calendar mechanics remain proposed in Service Operations, not owner-confirmed technical details.
+- The maximum three-month period begins at first private project report publication, as confirmed by the owner. It supersedes the earlier activation-based and 30/60-day baselines. Both ATLAS cycles share one expiry; later versions/retests do not restart it. Calendar/cycle implementation mechanics remain proposed in Service Operations.
 - The user identifies original findings and describes their programmer's changes through a private persisted retest ticket. Admin reviews eligibility and reserves a cycle atomically. No credentials, proof uploads, actual retesting or automated scheduling occurs; all review outcomes remain explicitly illustrative.
 - New features, new origins, changed roles/architecture, extra environments, broad regression review, and requests beyond the allowance/window require a new scoped assessment. A new risk noticed while verifying a fix is documented; it is not withheld because it was absent from the original report.
 - Findings that remain unresolved or could not be verified are explained as such. A retest result never means the whole website is secure. The canonical demo remediation statuses are not changed by this policy or by simulated progress.
@@ -167,12 +167,12 @@ An explicit consultation submission stores the chosen interest with the ticket; 
 
 ## 8. Three-month follow-up and discount
 
-The owner approved a maximum three-month period from first service use, with no code repair. Support means original-finding guidance and the reviewed package's bounded retest allowance. It does not cover all future damage or imply complete security. Expiry ends benefits, not authorized report access; actual record retention is a separate policy.
+The owner approved a maximum three-month period from first private project report publication, with no code repair. Support means original-finding guidance and the reviewed package's bounded retest allowance. It does not cover all future damage or imply complete security. Expiry ends benefits, not authorized report access; actual record retention is a separate policy.
 
-Timely requests remain reviewable after expiry. A new ticket, retest, publication or language change does not reset the period. One/one/one/two cycles remain the draft allowance; accepting a request reserves a cycle, not every message or ticket creation.
+Timely requests remain reviewable after expiry. A new ticket, retest, later report version or language change does not reset the period. One/one/one/two cycles remain the draft allowance; accepting a request reserves a cycle, not every message or ticket creation.
 
 The owner's temporary maintenance-discount idea must be reconciled with the exclusion of code maintenance. Proposed wording: discounted follow-up security review within the same period. Percentage, eligible work and approval cutoff remain open. There is no billing implementation or invented discount rate.
 
 ## 9. Next review
 
-Review numerical caps/prices/effort/cycles, first-service activation, temporary discount scope and missing portal/admin screens before relevant implementation. Preserve approved Open Threshold/hero/cluster direction and existing source PNGs. Final exports/fonts and mobile review remain separate choices. Package content approval does not authorize code, external services or deployment.
+Review numerical caps/prices/effort/cycles, support calendar mechanics, temporary discount scope and missing portal/admin screens before relevant implementation. Preserve approved Open Threshold/hero/cluster direction and existing source PNGs. Final exports/fonts and mobile review remain separate choices. Package content approval does not authorize code, external services or deployment.
