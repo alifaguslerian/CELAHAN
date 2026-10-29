@@ -1,14 +1,14 @@
 # CELAHAN — Service Packages and Mascot Roles
 
 Status: Four-package concept approved; detailed scope, pricing, and delivery baseline drafted at the owner's request for review; final artwork remains open  
-Updated: October 27, 2026  
+Updated: October 29, 2026  
 References: [PRD](PRD.md), [Content](CONTENT_AND_SIMULATION.md), [Visual References](../design/VISUAL_REFERENCES.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Purpose and approval boundary
 
 The owner approved SCOUT, WARDEN, NEXUS, and ATLAS as four premium service concepts represented by four related mascots. Packages match application needs and assessment scope. Their names are the approved working names; final lettering, artwork, and character exports still require design review.
 
-These are fictional offerings within a portfolio simulation. The owner authorized completion of package details after approving the four concepts. The numerical assumptions below are agent-authored draft decisions for review, not amounts or deadlines explicitly supplied by the owner. This documentation work does not authorize implementation, asset generation, real engagements, payments, or external communication.
+These are fictional assessment offerings inside a functional service-portal concept. Accounts, database-backed consultation/tickets, admin decisions and private illustrative reports are now in scope. The numerical caps/prices/effort/cycle allowances below remain agent-authored draft decisions for review. The owner's maximum three-month support period supersedes earlier 30/60-day windows. See [Service Operations](SERVICE_OPERATIONS.md). This documentation work does not authorize application implementation, asset generation, real engagements, payments or outbound contact.
 
 Premium positioning comes from clear scope, relevant manual assessment, understandable reports, prioritization, and follow-up. Never promise discovery of every vulnerability, complete safety, a guaranteed finding count, or a security certification.
 
@@ -24,7 +24,7 @@ Every represented package includes:
 
 There is no finding quota or severity-based withholding of findings. Package choice controls scope and effort, not permission to report a serious issue. A smaller assessment must never be presented as an assessment of an entire larger system.
 
-The application owner's developers implement fixes. CELAHAN represents assessment, explanation, and retesting. Code repair, continuous monitoring, incident response, forensics, certification, and assessments of unapproved third parties are outside this offering.
+The owner reconfirmed that the application owner's programmers implement all code fixes. CELAHAN represents assessment, explanation, remediation guidance and bounded retesting. Code repair/maintenance, hosting administration, emergency recovery, continuous monitoring, incident response, forensics, certification and assessments of unapproved third parties remain excluded. A reactive consultation can record symptoms without promising those excluded services.
 
 ## 3. Package definitions
 
@@ -35,7 +35,7 @@ The application owner's developers implement fixes. CELAHAN represents assessmen
 | `nexus` / NEXUS | Application & API Assessment | An application with supporting APIs, multiple roles, and connected business flows | Relevant application checks plus API authentication/authorization, data access, state changes, and business-flow misuse | Application/API relationship map and cross-component risk scenarios | One cycle covering initial findings |
 | `atlas` / ATLAS | Multi-System Assessment | Multiple related applications/services or a complex custom scope requiring coordinated assessment | Risk-based scoping, agreed cross-system flows, trust boundaries, and combined prioritization | Per-application technical reports, consolidated risk summary, and coordinated remediation roadmap | Two cycles covering initial findings |
 
-These are conceptual deliverables, not existing files, evidence, downloads, or completed assessments. The website-generated PDF report feature remains deferred. A walkthrough does not mean that live meetings can be booked through this website.
+These are conceptual deliverables, not existing files, evidence, downloads, or completed assessments. The website-generated PDF report feature remains deferred. The portal accepts proposed consultation times; only an explicit admin decision confirms a time in the ticket. No external calendar reservation or automatic contact delivery is included.
 
 ### SCOUT boundaries
 
@@ -76,9 +76,9 @@ Approved direction: show four selectable characters and a detail panel containin
 
 Draft interaction baseline: clicking a named package control focuses that package's detail view; visible previous/next controls may supplement direct selection. Mobile must have explicit controls and readable details without hover or mandatory dragging. Opening a modal, if chosen during design, requires focus management and a clear close action.
 
-Package-fit guidance may ask about login, roles, APIs, transactions, and multiple applications using sample answers in temporary client memory. Exact questions and rules remain under review. Do not access the entered URL, infer its technology, call an AI, or claim that the recommendation validates scope. Explain mixed/uncertain cases rather than forcing a more expensive choice.
+Package-fit guidance may ask about login, roles, APIs, transactions and multiple applications. Exact questions/rules remain under review. Public browsing stays local; only an explicit authenticated consultation submission stores relevant selections. Reactive/preventive describes motivation, independently of package scope. Do not access the entered URL, infer its technology, call an AI or claim that a recommendation validates scope. Explain mixed/uncertain cases rather than forcing a more expensive choice.
 
-The initial package is an expression of interest, not a purchase or authorization. Final represented scope follows consultation and written agreement. There is no checkout, payment, email/chat delivery, or real booking. Free-consultation CTAs must identify the simulation near the action.
+The initial package is an expression of interest, not a purchase or testing authorization. Final represented scope follows consultation and written agreement. Free-consultation CTAs lead to the authenticated portal and disclose real database persistence within this concept project. In-app user/admin messages and schedule requests are functional; no checkout, payment, external calendar or automatic email/WhatsApp delivery is included.
 
 ## 6. Detailed scope and illustrative pricing baseline
 
@@ -102,7 +102,7 @@ Every numerical scope entry is a ceiling within a written inventory, not an auto
 | Conceptual initial assessment/report effort | 3–5 working days | 5–8 working days | 8–12 working days | 12–20 working days after custom scoping |
 | Report walkthrough | 1 session, up to 45 minutes | 1 session, up to 60 minutes | 1 session, up to 90 minutes | 2 sessions, up to 60 minutes each |
 | Included retest cycles | 1 | 1 | 1 | 2 |
-| Window for requesting included retests | 30 calendar days after the initial report | 30 calendar days after the initial report | 30 calendar days after the initial report | Both cycles requested within 60 calendar days after the initial report |
+| Maximum support / included-retest request period | Three calendar months from first service activation | Three calendar months from first service activation | Three calendar months from first service activation | Three calendar months from first service activation; shared by both cycles |
 
 Public/anonymous access relevant to the agreed scope is included separately from authenticated role counts. A role count never means that a package has examined every account, permission combination, or possible business scenario.
 
@@ -127,7 +127,7 @@ SCOUT adds the public-surface map. WARDEN adds the role/access matrix. NEXUS add
 
 ### 6.4 Effort and pricing policy
 
-The starting price represents one assessment engagement with the listed conceptual outputs and retest allowance, not a subscription or a charge per vulnerability. A custom estimate follows the written inventory when complexity requires it, including for an application below the numeric caps. No automatic surcharge, invoice, tax calculation, discount, recurring charge, checkout, or payment is implemented.
+The starting price represents one assessment engagement with the listed conceptual outputs and retest allowance, not a subscription or a charge per vulnerability. A custom estimate follows the written inventory when complexity requires it, including for an application below the numeric caps. No automatic surcharge, invoice, tax calculation, recurring charge, checkout or payment is included. A temporary follow-up discount is approved in principle, with eligible work, percentage and cutoff rules still under review; do not invent or calculate an unapproved discount.
 
 The effort range covers the conceptual initial examination and report after scope, authorization, access, and application readiness are established. It excludes consultation scheduling, developer repair time, retest scheduling/execution, access delays, and additional scope. It is not a service-level guarantee and must never drive a countdown or imply that actual work is underway in the demo.
 
@@ -139,8 +139,8 @@ Use IDR in both locales; English does not imply currency conversion. Display loc
 
 - One cycle is one consolidated re-examination of the original reported findings submitted together after the developer's represented fixes. It does not reopen the entire application or create unlimited requests per finding.
 - Every original finding submitted for the cycle can be revisited without a count or severity quota. The original scope remains the boundary.
-- The 30/60-day window governs the conceptual request, not a guaranteed completion time. ATLAS's two cycles share the same initial-report-based 60-day window; the first cycle does not restart it.
-- The fictional requester identifies which original findings were addressed and summarizes changes. The portfolio website does not upload proof, request credentials, accept a real retest request, schedule a session, or store this material.
+- The maximum three-calendar-month period is based on first service activation, not the initial report. This supersedes the earlier 30/60-day baseline. Both ATLAS cycles share one expiry; a retest does not restart it. Exact activation and calendar mechanics remain proposed in Service Operations, not owner-confirmed technical details.
+- The user identifies original findings and describes their programmer's changes through a private persisted retest ticket. Admin reviews eligibility and reserves a cycle atomically. No credentials, proof uploads, actual retesting or automated scheduling occurs; all review outcomes remain explicitly illustrative.
 - New features, new origins, changed roles/architecture, extra environments, broad regression review, and requests beyond the allowance/window require a new scoped assessment. A new risk noticed while verifying a fix is documented; it is not withheld because it was absent from the original report.
 - Findings that remain unresolved or could not be verified are explained as such. A retest result never means the whole website is secure. The canonical demo remediation statuses are not changed by this policy or by simulated progress.
 
@@ -155,14 +155,24 @@ Before a represented assessment, the parties agree on the inventory, purpose, wr
 | Transactional application with several roles and a substantial API | NEXUS, if within scope | Enumerate roles, operations, and business flows; third-party payment systems remain excluded |
 | Customer portal, internal dashboard, and related services | ATLAS custom scope | Shared dependencies, role pairs, and allowances are counted across the engagement |
 | One unusually complex application or any cap exceeded | Explicit custom scoping | A starting price is not a promise to assess an unbounded system |
-| Visitor cannot describe the architecture or only has a limited budget | Simulated consultation / unsure path | Explain uncertainty and any proposed partial scope without treating the website as fully assessed |
+| Visitor cannot describe the architecture or only has a limited budget | Consultation / unsure path | Explain uncertainty and any proposed partial scope without treating the website as fully assessed |
 
 ## 7. Report and data contract
 
-Every package accesses the same five canonical illustrative findings. Selection never changes scores, remediation statuses, finding visibility, or report provenance. Do not make a selected package appear to have assessed the visitor's application.
+The public sample remains the same five canonical findings for every package. A selected package never changes source scores/statuses or makes input-derived findings. Public sample access requires no account.
 
-Package selection and optional fit answers are separate temporary planning state. The draft baseline clears them on successful submission, reset, confirmed language change, reload, and restored-document handling. Success/session state retains only the existing demo ticket, stage, and illustration source. No selection or answers enter URLs, storage, requests, logs, or analytics.
+Private project reports are database-backed illustrative snapshots, restricted to the project owner and authorized admin. Their draft/publication/version rules are in [Service Operations](SERVICE_OPERATIONS.md). Do not expose private report records through the public sample page, public assets or anonymous links.
 
-## 8. Next review deliverables
+An explicit consultation submission stores the chosen interest with the ticket; saved records survive reload/locale changes. Optional unsent fit answers remain browser memory. Users cannot set project ownership, customer status, verified outcomes or support eligibility.
 
-Review the concrete scope, pricing, effort, and retest assumptions in section 6. They are complete enough for comparison/layout content, while remaining reviewable draft decisions. The revised desktop hero is now approved. Next review the distinct four-pet lineup and the remaining home/package-selection layouts, including a separately composed mobile experience and actual ID/EN text. Exact fit-question rules, logo, individual pet palettes, and final exports remain separate decisions. Additional asset work and code start when the owner requests their respective stage.
+## 8. Three-month follow-up and discount
+
+The owner approved a maximum three-month period from first service use, with no code repair. Support means original-finding guidance and the reviewed package's bounded retest allowance. It does not cover all future damage or imply complete security. Expiry ends benefits, not authorized report access; actual record retention is a separate policy.
+
+Timely requests remain reviewable after expiry. A new ticket, retest, publication or language change does not reset the period. One/one/one/two cycles remain the draft allowance; accepting a request reserves a cycle, not every message or ticket creation.
+
+The owner's temporary maintenance-discount idea must be reconciled with the exclusion of code maintenance. Proposed wording: discounted follow-up security review within the same period. Percentage, eligible work and approval cutoff remain open. There is no billing implementation or invented discount rate.
+
+## 9. Next review
+
+Review numerical caps/prices/effort/cycles, first-service activation, temporary discount scope and missing portal/admin screens before relevant implementation. Preserve approved Open Threshold/hero/cluster direction and existing source PNGs. Final exports/fonts and mobile review remain separate choices. Package content approval does not authorize code, external services or deployment.
