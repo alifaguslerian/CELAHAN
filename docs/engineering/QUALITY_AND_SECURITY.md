@@ -36,8 +36,8 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-18 | FUN-07, AC-14 | Shared replies visible only to ticket owner/admin; internal notes absent from user HTML/JSON/RSC |
 | T-19 | AC-13 | Proposed vs confirmed schedule, UTC/IANA conversion, past/invalid/conflicting/stale confirmation |
 | T-20 | FUN-23 | Admin-only project creation/association; forged customer flag/email/website never grants rights |
-| T-21 | FUN-10, AC-14, 20 | Draft/published/withdrawn versions; atomic publication, immutable snapshots and project isolation |
-| T-22 | FUN-24, AC-15 | Month-end/leap-year/UTC conversion/exact expiry, client clock tampering, no reset by tickets/locales |
+| T-21 | FUN-10, AC-14, 20 | Draft/published/withdrawn versions; atomic first-publication support start, immutable snapshots and project isolation |
+| T-22 | FUN-24, AC-15 | First private publication starts once; activation/sample/first-view do not; month-end/leap-year/UTC/exact expiry, clock tampering and no version/ticket/locale reset |
 | T-23 | AC-16 | Timely request reviewed after expiry; concurrent reservation/retry cannot exceed cycle allowance |
 | T-24 | FUN-25, AC-17 | User assertion separate from illustrative admin review; source dataset unchanged |
 | T-25 | QLT-03, AC-18 | Direct endpoint auth, CSRF/origin, XSS plain text, parameterized SQL, least-privilege credentials |
