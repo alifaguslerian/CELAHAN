@@ -1,9 +1,13 @@
 # CELAHAN Documentation
 
-Status: Product planning and visual exploration; application implementation has not started  
-Updated: October 28, 2026
+Status: Functional-portal requirements revision; application implementation has not started  
+Updated: October 29, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
+
+## Current scope
+
+The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behaviors are superseded. No application, provider setup or image generation is authorized by this documentation revision. Read Operations and Data and Access alongside the PRD.
 
 ## Product
 
@@ -11,8 +15,9 @@ This index groups the English project documentation by purpose. Required Indones
 | --- | --- |
 | [Project Brief](product/PROJECT_BRIEF.md) | Context, audiences, goals, and non-negotiable boundaries |
 | [PRD](product/PRD.md) | Requirements, acceptance scenarios, and release scope |
-| [User Flows](product/USER_FLOWS.md) | Navigation, package selection, requests, status, reports, and lifecycle |
-| [Content and Simulation](product/CONTENT_AND_SIMULATION.md) | Canonical five findings, translations, labels, and state contract |
+| [Service Operations](product/SERVICE_OPERATIONS.md) | Consultation/support tickets, triage, scheduling, projects, reports and benefit rules |
+| [User Flows](product/USER_FLOWS.md) | Public/account/user/admin journeys and persistent-data lifecycle |
+| [Content and Simulation](product/CONTENT_AND_SIMULATION.md) | Canonical five findings, translations, illustration labels and real-persistence copy |
 | [Service Packages](product/SERVICE_PACKAGES.md) | SCOUT/WARDEN/NEXUS/ATLAS concepts and detailed draft scope/pricing |
 
 ## Design
@@ -28,20 +33,21 @@ This index groups the English project documentation by purpose. Required Indones
 | [Shared Visual System](design/VISUAL_SYSTEM.md) | Draft color tokens, typography roles, spacing, component states, and contrast calculations |
 | [Mascot Guidelines](design/MASCOT_GUIDELINES.md) | Four generated pet concepts, shape/palette rules, source records, and prompts |
 
-The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Visual acceptance is not proof of working interactions.
+The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Galleries now distinguish historical no-storage/locale-reset behavior from current portal requirements. New account/user/admin screens have not been generated or approved. Visual acceptance is not proof of working interactions.
 
 ## Engineering
 
 | Document | Purpose |
 | --- | --- |
-| [Architecture](engineering/ARCHITECTURE.md) | Planned static/bilingual application boundaries and data contracts |
+| [Architecture](engineering/ARCHITECTURE.md) | Planned server-capable bilingual portal, auth/database and data-flow boundaries |
+| [Data and Access](engineering/DATA_AND_ACCESS.md) | Logical schema, object permissions, transactional invariants and privacy operations |
 | [Quality and Security](engineering/QUALITY_AND_SECURITY.md) | Functional, privacy, accessibility, performance, and fidelity verification |
 
 ## Planning
 
 | Document | Purpose |
 | --- | --- |
-| [Implementation Plan](planning/IMPLEMENTATION_PLAN.md) | Small phases, dependencies, actual progress, and planned checks |
+| [Implementation Plan](planning/IMPLEMENTATION_PLAN.md) | Revised broad P0–P9 phases, dependencies, review gates and actual progress |
 | [Decisions](planning/DECISIONS.md) | Confirmed choices, authored baselines, open decisions, and history |
 
 ## Portfolio
@@ -53,10 +59,11 @@ The saved hero is preserved. All selected desktop visual directions, including t
 
 ## Validation records
 
-Historical reports preserve what was checked at that time. Later authorized cleanup removed obsolete image drafts and repository commit handoffs; original counts describe those earlier checkpoints, not the current inventory. Links follow current retained artifacts. Historical outcomes are not new application results.
+The October 29 portal revision supersedes prior no-backend/no-storage acceptance rules. Historical reports preserve what was checked at that time. Later authorized cleanup removed obsolete image drafts and repository commit handoffs; original counts describe those earlier checkpoints, not the current inventory. Links follow current retained artifacts. Historical outcomes are not new application results.
 
 | Record | Scope |
 | --- | --- |
+| [Portal documentation revision](validation/2026-10-29-portal-documentation.md) | Current authenticated/database scope, operations/access rules and preservation/document checks |
 | [Initial documentation](validation/2026-10-27-documentation.md) | Original documentation and English translation review |
 | [Packages and visual direction](validation/2026-10-27-package-and-visual-direction.md) | Approved package/reference synchronization |
 | [Package details](validation/2026-10-27-package-details.md) | Quantitative scope/pricing/retest documentation |
