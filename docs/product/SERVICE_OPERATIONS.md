@@ -8,7 +8,7 @@ References: [PRD](PRD.md), [Packages](SERVICE_PACKAGES.md), [Data and Access](..
 
 Authentication, database persistence, messages, schedules, project associations and report publication will be functional. All assessments/retests are illustrative in the portfolio build. Admin timestamps record actual portal actions; they must not be presented as evidence that a website was tested or repaired.
 
-The owner approved reactive/preventive consultation, differentiated prospect/customer tickets, private reports, user/admin interaction, and a three-month benefit limit. State names, exact field limits, triage policy, activation mechanics, and discount interpretation below are authored implementation proposals. No real incident handling or outbound contact is authorized by this document.
+The owner approved reactive/preventive consultation, differentiated prospect/customer tickets, private reports, user/admin interaction, and a three-month benefit limit. State names, exact field limits, triage policy, calendar/cycle mechanics and discount interpretation below are authored implementation proposals. The owner confirmed first private project report publication as the support start. No real incident handling or outbound contact is authorized by this document.
 
 ## 2. Identity and customer relationship
 
@@ -92,17 +92,19 @@ A user may report that their programmer addressed a finding. This creates a foll
 
 ## 10. Three-month support baseline
 
-Confirmed: a maximum three-month period from first service use, limited benefits, and no code repair.
+Confirmed: a maximum three-month period starting at the first private project report publication, limited benefits, and no code repair. Project activation, signup, consultation, public sample viewing and the user's first report view do not start it.
 
-Proposed concrete rule: an admin explicitly activates the project's first service once scope is agreed; the server records service_started_at. The benefit period ends at the same local time three calendar months later in Asia/Jakarta, clamping to the last valid day where needed, then stores the UTC expiry. It is not 90 days by default. The exact activation milestone remains an owner review point before coding.
+On the first private report publication, the server atomically records support_started_at, the first published version reference and a policy snapshot with the report transaction. Concurrent/retried publication must set those values only once. This supersedes the previous proposal to begin support at project activation.
 
-Support belongs to the stated project/scope. It never restarts on login, language change, a new ticket, report publication, reply, retest or project closure. A distinct new engagement requires explicit new scoping; the original project's benefit cannot be reset by relabeling it. Expiry overrides cannot silently extend this maximum; corrections require authorized audit and review.
+Proposed calendar mechanics for review: end at the same local time three calendar months later in Asia/Jakarta, clamp an invalid day to month end, then store UTC expiry. This is not 90 days by default; exact boundary tests/cycle rules remain reviewable before implementation.
+
+Support belongs to the stated project/scope. It never restarts on login, language change, a new ticket, later report versions/withdrawal/republication, reply, retest or project closure. A distinct new engagement requires explicit new scoping; the original project's benefit cannot be reset by relabeling it. Expiry overrides cannot silently extend this maximum; corrections require authorized audit and review.
 
 Eligibility checks server time: submitted_at must be before support_expires_at. A request received in time remains reviewable after expiry, subject to scope and remaining allowance. Expiry does not revoke access to published reports/history. After expiry users may still ask questions or request a new review, but the system must show that included benefits have ended.
 
 Guidance covers original findings and remediation explanations. Retests cover a consolidated set of original findings after the owner's programmer's changes, using the package's reviewed cycle allowance. Do not decrement on every ticket or reply. Reserve a cycle atomically when admin accepts an eligible request; mark it completed once its illustrative review is finalized. Concurrent/retried acceptance cannot exceed the allowance. Cancellation releases a reservation only before completion, with an audit event.
 
-This policy supersedes initial-report-based 30/60-day request windows. The one/one/one/two cycle baseline remains draft. A delayed initial report must not trigger an invented expiry extension; activation/report timing is a review risk to resolve.
+This policy supersedes initial-report-based 30/60-day request windows. The one/one/one/two cycle baseline remains draft. A delayed first report leaves benefits unstarted until it is published. Corrections and later versions do not extend or restart the original expiry.
 
 ## 11. Discount and scope exclusions
 
