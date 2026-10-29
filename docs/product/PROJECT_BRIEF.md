@@ -40,7 +40,7 @@ SCOUT, WARDEN, NEXUS, and ATLAS remain four scope-based premium concepts. Reacti
 
 CELAHAN represents assessment, risk explanation, remediation guidance, and bounded retesting. The application's own programmers implement fixes. Code repair, hosting administration, emergency recovery, digital forensics, certification, continuous monitoring, and testing without written permission are excluded.
 
-The owner approved a maximum three-month support period from first service use, replacing the earlier 30/60-day retest windows. This means support and retesting, not a promise to repair all damage or make the site completely secure. The proposed calendar/activation rules and still-open discount terms are in [Service Operations](SERVICE_OPERATIONS.md). A maintenance-discount idea remains accepted in principle; because code maintenance is excluded, the proposed wording is discounted follow-up security review, pending confirmation.
+The owner approved a maximum three-month support period starting when the first private project report is published, replacing both the earlier 30/60-day windows and the proposed project-activation trigger. This means support and retesting, not a promise to repair all damage or make the site completely secure. The proposed calendar/cycle rules and still-open discount terms are in [Service Operations](SERVICE_OPERATIONS.md). A maintenance-discount idea remains accepted in principle; because code maintenance is excluded, the proposed wording is discounted follow-up security review, pending confirmation.
 
 ## 5. Product boundaries
 
@@ -66,13 +66,13 @@ The form includes name, company, website, problem, contact method/details, and p
 
 Preserve the approved [hero](../design/DESIGN_REFERENCE_LOCK.md), [Open Threshold logo direction](../design/LOGO_GUIDELINES.md), warm near-black/ivory/sand palette, subdued doorway, and compact pet identity. The four pet silhouettes and principal colors remain distinct. The homepage cluster retains names above on hover/focus and details on activation.
 
-The approved public visual direction remains useful. The 24 desktop and 27 mobile references predate the portal change; old no-storage, disposable-ticket, privacy, and language-reset behavior is superseded. Authenticated and admin screens need new review. Do not regenerate images or claim design approval for those screens during this documentation revision.
+The approved public visual direction remains useful. The 24 desktop and 27 mobile references predate the portal change; old no-storage, disposable-ticket, privacy, and language-reset behavior is superseded. Authenticated and admin screens need new review. The authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) now defines account/navigation/dashboard/ticket/report states for that review without producing new images. Do not regenerate images or claim design approval for those screens during this documentation revision.
 
 ID/EN and mobile/desktop share domain logic and equivalent capabilities. Mascot guidance remains optional and scripted, separate from real user/admin ticket messages. Changing language must not erase database records or restart support.
 
 ## 8. Technical direction and completion
 
-Next.js App Router + TypeScript remain required. A server-capable deployment and real relational database replace the static-export-only proposal. Vercel remains the target; provider selection, costs, supported versions, authentication, and database connectivity must be verified before implementation. No account or external resource is created by this documentation work.
+Next.js App Router + TypeScript remain required. The owner selected Better Auth's open-source library in the application server and Neon Free PostgreSQL, with no paid upgrade without explicit approval. A server-capable deployment replaces the static-export-only proposal. Vercel remains the target; versions, database adapter/pooling, quotas, email delivery and deployment compatibility still need verification. No account or external resource is created by this documentation work. The owner has an existing .my.id domain but may select another later. Permanent domain/registrar/DNS choice is deferred and must not block planning or isolated development. Configure deployment origins, trusted callbacks and email senders without hardcoding a permanent domain. Public email delivery remains gated by separately approved setup; no domain purchase is authorized.
 
 Success requires end-to-end user/admin workflows, isolated private data, unchanged public sample content, correct support rules, responsive bilingual UX, actual build/lint/typecheck and behavior/security checks, an accurate README/privacy notice, and verified deployment when separately requested. A secure design is not evidence of a completely secure implementation.
 
