@@ -1,10 +1,12 @@
 # CELAHAN — Visual Reference Synthesis
 
 Status: Revised desktop hero approved and saved; supporting references retained; desktop visual directions accepted; mobile references generated for review  
-Updated: October 28, 2026  
+Updated: October 29, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Decisions](../planning/DECISIONS.md)
 
 The [Design Reference Lock](DESIGN_REFERENCE_LOCK.md) and its preserved PNG now take precedence over these original inspiration screenshots. The owner approved the revised compact-pet/dim-doorway image and explicitly requested faithful future implementation.
+
+The portal scope now includes real authenticated persistence, consultation tickets, admin interaction and private illustrative reports. Earlier no-storage/reset behavior is superseded by [PRD](../product/PRD.md); preserved screenshots remain visual sources, not new portal approval.
 
 Current page/state proposals are in [Desktop Design Gallery](DESKTOP_DESIGNS.md). They remain under review and do not replace the approved hero.
 
@@ -36,7 +38,7 @@ Suggested homepage content order for wireframe review:
 3. Four package characters and a selected-package detail panel.
 4. Concrete service strengths and the permission-based process.
 5. Illustrative report preview with a direct route to all five findings.
-6. Simulated free-consultation invitation, concise FAQ, and footer.
+6. Free-consultation request invitation, concise FAQ, and footer.
 
 This order is a draft baseline, not a final screen layout or a requirement to give every item a separate section. Review content rhythm and hierarchy before high-fidelity design.
 
@@ -44,7 +46,7 @@ This order is a draft baseline, not a final screen layout or a requirement to gi
 
 The owner specifically requested four clickable mascot variants. A group view and a selected view must remain available. The selected view connects the visual character to a named package and readable details; character recognition cannot be the only navigation mechanism.
 
-Use [Service Packages](../product/SERVICE_PACKAGES.md) as the content source. Always show what a package does not cover alongside its benefits. Price and retest terms must not disappear behind decorative motion. No action implies purchase, checkout, a real consultation booking, or actual network analysis.
+Use [Service Packages](../product/SERVICE_PACKAGES.md) as the content source. Always show what a package does not cover alongside its benefits. Price and retest terms must not disappear behind decorative motion. No action implies purchase, checkout, automatic appointment confirmation or target analysis. An explicit authenticated consultation submission creates a real portal ticket; admin confirms any proposed schedule.
 
 ## 4. Mobile and accessible behavior
 
