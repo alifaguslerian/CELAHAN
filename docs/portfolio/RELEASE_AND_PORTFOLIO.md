@@ -1,81 +1,63 @@
 # CELAHAN — Release and Portfolio
 
-Status: Handoff and publication guide; no application or deployment exists · October 27, 2026  
-References: [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](../planning/DECISIONS.md)
+Status: Revised portal release plan; no application or deployment exists  
+Updated: October 29, 2026  
+References: [Plan](../planning/IMPLEMENTATION_PLAN.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](../planning/DECISIONS.md)
 
-## 1. Three handoff types
+## 1. Handoff levels
 
-| Handoff | Permitted statement | Statement not yet justified |
+| Milestone | Evidence required | Claims not justified by that milestone |
 | --- | --- | --- |
-| Initial documentation | Goals, requirements, design proposals, and phases are documented for review | The application runs or product tests have passed |
-| Academic prototype | Available flows can be demonstrated with their limitations | Identity, deployment, or final quality is complete if not yet verified |
-| Portfolio website | Features, publication, and quality supported by actual evidence | Security guarantees, real scan results, or unimplemented AI capabilities |
+| Documentation/design | Consistent requirements, known open decisions and preserved visual sources | Running auth/database or passed application checks |
+| Academic prototype | Actual login/database, consultation/admin/user retrieval and private-report isolation demo | Complete portfolio quality or lecturer approval of an undisclosed rubric |
+| Portfolio release | Reviewed identity/UX, implemented flows, operational/security/accessibility/performance evidence and deployment checks | Complete security, real assessment results or unimplemented AI/code repair |
 
-Prototype submission and portfolio development are separate milestones. Development may continue after submission; the owner has not set a fixed deadline at the time of writing.
+Prototype and final release are separate; no fixed deadline is invented. All assessments/reports remain illustrative even when account/ticket operations work.
 
-## 2. Documentation snapshot for GitHub
+## 2. Documentation publication checkpoint
 
-The initial snapshot only needs the README, AGENTS, and documents under `docs/`. Scaffolding and dependencies are not required to track planning progress.
+Review README, AGENTS and grouped documents for current scope, correct links, open decisions and honest progress. Preserve approved assets and source provenance. Exclude secrets, database dumps, real private data, provider credentials, temporary reports/caches and unapproved academic/personal content.
 
-Before the owner commits/pushes manually:
+The owner selects visibility/license and performs Git manually. Agents cannot report tracking/branch/commit status because they never inspect Git. Per-file suggestions appear only in chat, not repository artifacts.
 
-- Ensure the README states the documentation stage and distinguishes drafts from confirmed decisions.
-- Check that inter-document links work and do not point to private computer paths.
-- Review files for secrets, credentials, unapproved personal information, or a complete academic PDF included without permission.
-- Ensure plans and phase statuses reflect actual work.
-- Choose repository visibility and a reuse license if desired; no license is selected automatically.
+## 3. Prototype demonstration
 
+Use isolated synthetic accounts A/B plus an approved admin demonstration, never shared production admin credentials. Show login, reactive/preventive intake, saved ticket after refresh, admin reply/schedule confirmation, user retrieval and denial of another user's private report.
 
-This is only a message suggestion. Agents do not execute Git commands, stage files, create repositories, or push through APIs. Agents cannot report branch/commit status because they do not inspect Git. The owner selects files and performs all these steps manually.
+Clearly label illustrative findings and project stages. Explain what is incomplete, how to run the actual prototype, and why target scanning/code repair is excluded. Show mobile and ID/EN only to the extent actually implemented. Record sanitized evidence without exposing auth/provider secrets.
 
-## 3. Preparing the prototype submission
+## 4. Provider and privacy gates
 
-- Explain what works and which parts still use temporary identity assets.
-- Demonstrate one complete flow with synthetic data and direct report access.
-- Include authorization context, concept labels, and the five illustrative findings.
-- Show mobile UI and both languages according to their actual completion state; disclose anything unfinished.
-- Provide a README or brief instructions for trying the prototype without claiming compliance with a rubric that has not been supplied.
-- Use video materials according to the eventual submission requirements; the format remains open.
+Vercel remains the target; a server-backed deployment replaces static export. Verify selected hosting/auth/database terms, quotas, current costs, regions, connection/pooling behavior and noncommercial suitability before publication. Do not claim all required infrastructure is free before checking.
 
-## 4. Deployment preparation
+Choose enrollment/verification/recovery, admin provisioning, session/rate-limit policy, real-data intake rules, retention/deletion, backup expiry/restore and privacy contact. Real registration identity is personal data even if websites/tickets use sample scenarios. A concept disclaimer does not replace an accurate collection notice.
 
-The target is Vercel on the owner's free account. The referenced Hobby guidelines restrict usage to personal noncommercial purposes; recheck suitability at deployment time. Portfolio-concept status does not by itself prove compliance with every account term. [Vercel fair use](https://vercel.com/docs/limits/fair-use-guidelines)
+Provision resources or deploy only when separately requested. Keep provider secrets in protected local/hosting configuration, separate preview/test/production databases, and use least-privilege application credentials. Preview environments must not expose production records. No automatic service contact/calendar integration or real security service launch is implied.
 
-Before publication, choose the account/project/domain and verify static output, build scripts, required public configuration, headers, root redirects, 404 behavior, metadata origin, and analytics/preview settings. The application needs no API key. The owner manages hosting credentials outside the repository.
+## 5. Pre-release application checks
 
-If publication uses the GitHub–Vercel integration, the owner connects the repository and commits/pushes manually. Agents may perform only explicitly requested configuration/deployment actions and still must not run Git. Do not enable automatic publication or change accounts without the relevant authorization.
+Follow Quality T-01 through T-30 and record real outcomes. Verify actual build/lint/typecheck, selected database migrations and a tested restore/deletion policy. Critical gates include server object authorization, login/recovery/logout/revocation, CSRF, private caching, internal-note separation, report publication and support reservation/expiry.
 
-## 5. Post-deployment checks
+Review both locales and dedicated phone/admin experiences, keyboard/screen reader, visual fidelity, dependencies and measured performance. No scanner requests or uploaded incident evidence. Privacy and package copy must match three-month support and excluded code repair.
 
-- The public URL and HTTPS are accessible.
-- `/` opens the default language; every ID/EN deep link can be reloaded.
-- Unknown routes return HTTP 404 with the custom UI.
-- Concept labels, illustrative data, privacy information, and metadata are consistent.
-- Invalid/valid forms, tickets, status, reset, and language switching follow the contract without data leakage.
-- Network resources are limited to those required; security headers are correct in production responses.
-- Check mobile layout, keyboard use, reduced motion, and performance on the same deployed version.
+## 6. Deployment and smoke test
 
-Record results in `docs/validation/` when checks actually run. A provider's “deployment succeeded” result is not evidence that every UX or security requirement is satisfied.
+The owner chooses account/project/domain/publication route and commits/pushes manually. Agents may perform only requested deployment/configuration actions without Git or substitute repository APIs.
 
-## 6. Updates and recovery
+Verify deployed HTTPS/cookies, default locale/deep links, actual custom 404, generic foreign-resource denial, secret isolation, private HTML/data/RSC cache behavior, database connection and safe errors.
 
-Before updating the public version, run checks relevant to the change and retain evidence identifying the reviewed build. Use hosting previews where available and appropriate to the configuration.
+Repeat a synthetic user consultation → admin response → user retrieval → private report path, including a second account denial and logout/account-switch checks. Confirm pending versus confirmed schedule, support dates and illustrative labels. Keep private/auth/admin routes out of public metadata/sitemaps, without relying on noindex for security.
 
-If a problem occurs, the owner can restore a previous deployment through hosting mechanisms or their own manual Git operations. The agent explains the issue and required file changes but does not perform a Git rollback. After recovery, repeat the public-URL smoke test and record the outcome.
+A provider's deployment-success result is not proof of functional/security correctness. Record environment/build/date and sanitized evidence in validation docs.
 
-## 7. Portfolio case study structure
+## 7. Recovery and operations
 
-1. Coursework context and the combined frontend/product design goal.
-2. The problem and audience assumptions, distinguished from research actually performed.
-3. Accurate individual/team roles and contributions.
-4. Scope, simulation boundaries, and reasons for not connecting to real targets.
-5. Development of flows, wireframes, visual system, logo, and mascot.
-6. Mobile/desktop, bilingual, state, architecture, and performance decisions with trade-offs.
-7. Actual validation results, devices/environments, and fixes.
-8. Public demo, final video, limitations, and next steps.
+Document controlled migrations, backups and restore steps actually verified. Identify operational ownership and how users request data deletion. Support expiry must not silently delete reports; retention policy governs that separately.
 
-Do not fabricate user interviews, participant counts, audit scores, metric improvements, or testimonials. Before/after images must show work that actually exists. If AI/tools are used, accurately explain their role and the owner's contribution.
+For a bad release, the owner may restore hosting/database state through authorized operational procedures or their own Git actions. Application rollback must consider database compatibility. Retest critical flows after recovery; do not claim a restore drill ran unless it did.
 
-## 8. Development after v1
+## 8. Portfolio and promotional evidence
 
-Collect feedback manually if needed, without adding a new data-collection system to the website. Choose changes based on observed problems, update Decisions/PRD, and plan small units. Concept status and privacy boundaries continue to apply until the owner explicitly changes scope; publication does not turn CELAHAN into a real service.
+Explain coursework context, audience assumptions versus research, actual individual contributions, preserved visual references, and the change from client-only concept to functional authenticated portal. Demonstrate database relationships, access isolation, UX, support logic and measured results.
+
+No fabricated interviews, client claims, metrics, assessments, certifications or before/after improvements. Video captures synthetic scenarios and distinguishes actual portal activity from illustrative security work. Development can continue after v1 through reviewed needs and updated documentation.
