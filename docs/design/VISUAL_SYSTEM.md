@@ -1,7 +1,7 @@
 # CELAHAN — Shared Visual System
 
 Status: Concrete review baseline derived from the approved hero; not implemented CSS or a completed accessibility audit  
-Updated: October 28, 2026  
+Updated: October 29, 2026  
 References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Design Direction](DESIGN_DIRECTION.md), [Mascot Family](MASCOT_GUIDELINES.md), [Quality](../engineering/QUALITY_AND_SECURITY.md)
 
 ## 1. Visual authority
@@ -84,6 +84,12 @@ Keep primary pointer targets at least 44 × 44 CSS px. Start with an 8 px contro
 | Dialog / mobile sheet | Bounded charcoal surface, title, clear close action | Stable content layout | Focus management, Escape, return focus, and visible cancel/continue |
 
 Error and risk meaning uses explicit text, ordering, and structure. High/Medium/Low and fixed/not-fixed labels stay readable without interpreting hue. Mascot body colors never replace severity labels. Do not publish fictitious success/loading animations that suggest network assessment or repair.
+
+### Portal states added October 29
+
+Reuse these tokens for account, user/admin dashboard, ticket conversation, schedule and private reports. Add explicit saving/saved/failed, empty, unauthorized/session-expired, draft/published, requested/confirmed and support-expired states. Status meaning uses text, never pet color alone.
+
+Internal notes need a clear admin-only label and distinct editor context; visibility must also be enforced server-side. Confirmation must name the privileged action. Do not reuse a “reset demo” action for changing language or deleting stored data. No new portal screen is approved by this token extension.
 
 ## 5. Illustration and motion
 
