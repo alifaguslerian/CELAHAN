@@ -1,8 +1,14 @@
 # CELAHAN — Approved Hero Reference and Design Continuity
 
 Status: Desktop visual directions accepted and preserved; 27 mobile-web references generated for review  
-Updated: October 28, 2026  
+Updated: October 29, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
+
+## October 29 portal scope update
+
+The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
+
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
 
 ## 1. Approved master
 
@@ -41,15 +47,16 @@ Family consistency comes from scale/proportions, facial simplicity, matte materi
 
 The Minecraft screenshot supplies color/motif inspiration only. It is not a production model, literal humanoid reference, or reason to create a Minecraft world. Distinct mascot artwork colors are permitted while the surrounding interface retains its warm dark/ivory/sand system. Essential selection and scope information remains available as text.
 
-## 4. Proposed screen-design batches
+## 4. Retained source batches and required portal review
 
 | Batch | Deliverables for review | Status |
 | --- | --- | --- |
 | A. Shared identity | Palette/type/component direction and four pet forms with clearly distinct shapes/colors | Hero pet aesthetic approved; four PNG candidates and Shared Visual System drafted for review |
 | B. Home | Complete homepage sections plus a separately composed mobile hero/home; use the approved desktop hero unchanged as the target | Desktop hero remains approved; six additional home-section frames generated for review; corresponding mobile references generated for review |
 | C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Desktop detail/comparison/process frames generated for review; corresponding mobile references generated for review |
-| D. Simulation journey | Request form, validation/success, status stages, report and finding details | Desktop frames and EN form/report variants generated for review; corresponding mobile references generated for review |
-| E. Supporting experience | About, privacy, custom 404, menu, FAQ, language/reset confirmation, and guide states | Desktop About/privacy/404/FAQ/dialog/guide frames generated for review; mobile/menu references generated for review |
+| D. Historical simulation journey | Prior form/success/status/report composition | Sources retained; disposable-ticket/no-storage/manual private-status behavior is superseded |
+| E. Supporting experience | About, privacy, 404, menus/FAQ/dialogs/guide | Composition retained; privacy/locale-reset copy requires portal update |
+| F. New portal | Accounts, user/admin dashboard, ticket conversation, scheduling, private reports/support | Requirements drafted October 29; no new images produced or approved |
 
 The full design scope includes desktop and mobile compositions and actual Indonesian/English content. On October 28 the owner explicitly requested the complete desktop pass first, with mobile later; that instruction supersedes the earlier paired-production sequence. Produce readable page/section references rather than one tiny all-site montage. Reusable error/control states may share a component specification instead of requiring a separate generated image for every combination. Screen images are proposals until reviewed; image generation does not prove interaction, translation, accessibility, or responsive behavior.
 
