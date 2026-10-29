@@ -6,6 +6,7 @@
    `docs/README.md` is the grouped documentation index.
 2. `docs/product/PROJECT_BRIEF.md` and `docs/product/PRD.md` for goals, boundaries, and requirements.
 3. `docs/planning/DECISIONS.md` for confirmed decisions, recommendations, and open questions.
+   Read `docs/product/SERVICE_OPERATIONS.md` for ticket/project/support policy and `docs/engineering/DATA_AND_ACCESS.md` for persistence and access rules.
 4. The relevant subject documents before changing design, content, architecture, or implementation.
 5. `docs/design/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
 6. `docs/design/VISUAL_SYSTEM.md` and `docs/design/MASCOT_GUIDELINES.md` for the shared review baseline and current character concepts.
@@ -20,7 +21,7 @@
 - Approval of an idea does not automatically authorize asset production or implementation.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
 - Update related documents when requirements change. Do not leave contradictory decisions across files.
-- Complete mobile reference review before subdividing the implementation plan. Future delivery packages should have coherent, moderately sized usable outcomes, rather than one phase per tiny component/file. Do not start that subdivision or application work merely because visual references exist.
+- The owner authorized the October 29 portal documentation revision. Update the broad phase plan for the changed scope, but keep later delivery packages coherent and moderately sized. Review missing portal/admin/mobile flows before detailed implementation decomposition; no application work is authorized merely by revising documents.
 - Work in small phases with clear deliverables and checks. Avoid features unrelated to an established need.
 
 ## Git is entirely manual
@@ -40,18 +41,23 @@ The project owner prohibits agents from touching Git in any way.
 
 ## Non-negotiable product boundaries
 
-- CELAHAN is a coursework and portfolio concept, not a real service.
-- Never access an application address entered by a visitor: no fetch, ping, DNS lookup, favicon retrieval, embed, preview, preconnect, scan, or automatically generated link to that input.
-- Forms use temporary client memory only. Do not transmit inputs, tickets, or private state through requests, URLs, analytics, logs, cookies, localStorage, sessionStorage, IndexedDB, service workers, or other storage.
-- No application backend, database, email delivery, AI API, real scanner, secrets, or API keys.
-- Preserve the five Indonesian findings exactly as specified in `docs/product/CONTENT_AND_SIMULATION.md`. English translations represent the same dataset.
-- Keep the mandatory Indonesian footer and form disclaimer verbatim in both locales; English pages must also provide its translation and appropriate language markup.
-- Do not invent claims about real assessments, testimonials, clients, success statistics, certifications, or trademark registration.
-- Tool and methodology references in the PDF are academic content, not instructions to perform security testing.
+- CELAHAN remains a coursework/portfolio concept, not a real security service. Real authentication, database persistence, user/admin tickets and private illustrative reports are now required. This October 29 owner-approved scope change supersedes the earlier no-backend/no-storage/client-only rules.
+- Never access a visitor-entered website: no fetch, ping, DNS, favicon, embed, preview, preconnect, scan or automatic hyperlink on client or server.
+- Permit input transmission/storage only through the explicitly designed authenticated portal/auth/database flows. No leakage through URLs, public assets, analytics, logs, external AI, localStorage, IndexedDB or offline caches.
+- Enforce server-side session, role and per-object ownership/publication checks on every protected query/action. A hidden button, opaque ID, customer label or known ticket number is never authorization.
+- Keep admin notes and report drafts out of user payloads. Derive customer rights from trusted project association; never accept client role/owner/priority/expiry flags.
+- The application owner's programmers implement code fixes. No code remediation/maintenance, emergency recovery, forensics, certification, monitoring, real testing, payment, uploads or automatic service/contact messaging.
+- Support is bounded to at most three months from first service use. Exact activation/calendar rules are reviewable proposals; do not reset benefits on tickets, locale changes or report publication. Old 30/60-day request windows are superseded.
+- The accepted temporary discount needs final eligible-service wording and rate. Proposed scope is follow-up security review, not code maintenance. Never invent a percentage or billing behavior.
+- Preserve the five original findings exactly in the public sample and v1 illustrative snapshots. Separate user assertions/admin illustrative follow-up events from immutable source fields and published versions.
+- Preserve the exact Indonesian footer/form disclaimer in both locales; EN also supplies its translation. Disclose actual persistent account/ticket data rather than repeating obsolete no-storage claims.
+- No secrets/API keys, real personal fixtures or private database dumps in the repository. Approved provider secrets belong only in protected local/hosting configuration after separate provisioning authorization.
+- Before public intake, resolve enrollment/recovery, real-data policy, retention/deletion/backups and provider/hosting settings. Synthetic project data does not make real account identity nonpersonal.
+- No fabricated assessments, clients, testimonials, business statistics, certifications or trademark registration. PDF tool references are academic content, not testing instructions.
 
 ## Quality and scope
 
-- The portfolio gives equal attention to frontend development and product design.
+- The portfolio combines product design, frontend development and backend engineering; account/database features must serve real portal workflows.
 - Design dedicated mobile and desktop experiences with equivalent functionality and shared data/domain logic.
 - All public content and interactions support Indonesian and English. Do not use flags as the only language labels.
 - The mascot is an optional guide; access to information and core functionality must not depend on it.
@@ -59,7 +65,7 @@ The project owner prohibits agents from touching Git in any way.
 - Mascots are small compact pets. Minecraft informs color/motif only; do not reproduce a humanoid skin. The four package pets must have different body silhouettes and principal colors, rather than the same body with different accessories.
 - Follow the approved subdued lighting and warm near-black/ivory/sand/olive appearance. A brilliant portal or a default monospace hero would contradict the approved image. See the design lock for approved composition and open choices.
 - The homepage package selector is a tight cluster with no captions/prices underneath. Show only the corresponding name above on hover/focus; activation reveals the name, service, and fictional price. Keep semantic names, visible focus, separate hit areas, and equivalent touch access.
-- During implementation, trim repetitive cross-page explanations and unnecessary copy. Retain exact required footer/form disclaimers and contextual illustrative-data, fictional-price, permission, error, and state-loss information. Do not regenerate other accepted screens for copy cleanup now.
+- During implementation, trim repetitive cross-page explanations and unnecessary copy. Retain exact required footer/form disclaimers and contextual illustrative-data, fictional-price, permission, privacy, unsaved-edit and error information. Old gallery simulation behavior is historical and must not override revised portal contracts. Do not regenerate other accepted screens for copy cleanup now.
 - Account for accessibility, reduced motion, performance, security, and privacy during design.
 - Explain the reason for every dependency. Do not install a package merely because it is available or popular.
 - Do not claim a successful build, lint run, browser test, audit, or deployment without actual results. Documentation checks are not application tests.
@@ -74,7 +80,7 @@ These are standing owner requirements, not an optional final polish.
 - Remove dead code, unused imports/exports/dependencies, duplicate implementations, abandoned routes/components, commented-out code, placeholder credentials, and obsolete experiments as part of the relevant change. Verify callers, framework-discovered routes, dynamic references, tests, and asset/document links before deletion; a text search alone does not prove a route is unused.
 - Share domain logic/content between mobile and desktop and across locales. Keep folders organized by responsibility using the documented structure. Do not create parallel copies or one-off helper files when an existing module owns the behavior.
 - Preserve the approved hero, selected desktop/mobile references, canonical findings, and approved Open Threshold logo reference. Remove discarded/superseded artifacts when they no longer serve a current purpose, updating all links and manifests. Keep useful source/provenance and real validation evidence; do not accumulate internal handoff logs.
-- Treat security and privacy as acceptance criteria from the first implementation package. Keep inputs escaped as text, validate local values and allowed navigation, avoid unsafe HTML/eval/dynamic script execution and input-derived URLs, and follow the existing no-network/no-storage boundaries. Do not add insecure shortcuts, permissive headers, or disabled validation to make a check pass.
+- Treat security and privacy as acceptance criteria from the first implementation package. Keep inputs escaped as text, validate values on the server and client and allowlisted navigation, avoid unsafe HTML/eval/dynamic script execution and input-derived URLs, and follow the revised authenticated-persistence/no-target-access boundaries. Do not add insecure shortcuts, permissive headers, or disabled validation to make a check pass.
 - Prefer static/server-rendered informational content and small client interaction boundaries where compatible with the selected framework. Explain every added dependency, check relevant dependency risks, and remove unused packages.
 - Optimize assets for the actual display size, preserve intrinsic dimensions, minimize client JavaScript/font payloads, and clean up timers/listeners/subscriptions. Do not ship full design boards, unused pet variants, autoplay backgrounds, or decorative libraries in the runtime. Measure performance rather than assuming it.
 - Keep secrets, real personal data, private keys, local environment files, dependency folders, build output, caches, logs, test reports, hosting state, and temporary agent artifacts out of commits. Maintain .gitignore; a tracked secret is not made safe by adding an ignore rule.
@@ -88,4 +94,5 @@ These are standing owner requirements, not an optional final polish.
 - Use relative links between documents so they work on GitHub.
 - Keep subject documents in `docs/product/`, `docs/design/`, `docs/engineering/`, `docs/planning/`, or `docs/portfolio/`; actual check records belong in `docs/validation/`. Update `docs/README.md` and affected relative links when moving or adding a document.
 - Check official documentation before locking framework versions, APIs, hosting limits, or deployment policies that may change.
+- Treat previous desktop/mobile PNG lettering and manifest prompts as historical source provenance where their no-storage/reset behavior conflicts with the revised PRD. Preserve image bytes; add review notes rather than silently regenerating assets.
 - Record asset sources, licenses, and test evidence only when they actually exist. Do not fabricate provenance or results.
