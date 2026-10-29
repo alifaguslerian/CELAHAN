@@ -1,243 +1,125 @@
 # CELAHAN — Implementation Plan
 
-Status: Phase plan for review; documentation and requested image-based design exploration are active; application implementation has not started  
-Updated: October 28, 2026
+Status: Broad phase plan revised for the portal; documentation only, no implementation authorization  
+Updated: October 29, 2026
 
-**Goal:** complete a bilingual concept website with dedicated mobile/desktop UI, a strong identity, safe simulation, quality evidence, and portfolio publication.
+**Goal:** deliver a bilingual concept service portal with dedicated mobile/desktop UX, real authentication/database/tickets/admin workflows, private illustrative reports and evidence-backed quality.
 
-**Architecture:** Next.js App Router + TypeScript, local content, and a proposed static export; demo state exists only in client memory. No backend, database, real scanning, or AI API.
+**Architecture:** Next.js App Router + TypeScript, server-authorized operations, relational persistence, and immutable public sample content. No static-export-only application, target scanning, AI integration or code repair.
 
-**Specifications:** [PRD](../product/PRD.md), [Architecture](../engineering/ARCHITECTURE.md), [User Flows](../product/USER_FLOWS.md), [Content](../product/CONTENT_AND_SIMULATION.md), [Quality](../engineering/QUALITY_AND_SECURITY.md).
+**Specifications:** [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Flows](../product/USER_FLOWS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md).
 
-For implementers: read [AGENTS.md](../../AGENTS.md). Work in independently reviewable units; use an available plan-execution workflow after implementation is authorized. This document does not itself authorize subagents, installation, asset production, or deployment. All Git operations remain the owner's responsibility.
+Read [AGENTS.md](../../AGENTS.md). This plan does not authorize subagents, dependencies, coding, asset generation, external resources or deployment. Git stays entirely manual.
 
-## 1. Global constraints
+## 1. Global constraints and current scope
 
-- Never transmit, access, log, or persist entered data/URLs.
-- Preserve the five canonical findings and mandatory labels.
-- Keep mobile and ID/EN requirements in shared content/domain design from the beginning. Visual asset production follows the owner's latest instruction: desktop first, then mobile. Do not release a desktop-only application.
-- Mascot assistance is optional and must not obstruct core functionality.
-- Explain additional dependencies; verify versions and production behavior.
-- Do not report checks that have not run.
-- Do not run any Git operation, use substitute APIs, or read `.git`.
+- Permit only intended authenticated first-party/auth/database data flows; never access an entered website.
+- Real portal persistence does not make assessments/reports real. Preserve the five source findings and concept/illustration labels.
+- Per-object authorization is required for every private read/write, including reports and internal notes.
+- The owner's programmers implement fixes. Support is guidance and bounded retesting for at most three months; discount details remain reviewable.
+- ID/EN and phone/desktop share domain rules; mascot assistance stays optional and local.
+- Preserve approved hero, logo direction, distinct pets and tight package cluster.
+- No secret/real-data dumps in the repository; explain dependencies and report only actual checks.
+- No Git commands, .git reads or substitute repository APIs. Per-file messages belong in chat only.
 
-## 2. Phase status
+## 2. Phases and status
 
-| Phase | Deliverable | Dependencies | Status |
+The existing P0–P9 identifiers are retained for continuity. Deliverables are revised for the new scope; this is not a component-by-component task breakdown. Detailed coherent work packages follow review of unresolved policies and new portal/mobile UX.
+
+| Phase | Deliverable | Dependencies | Actual status |
 | --- | --- | --- | --- |
-| P0 | Documentation baseline | Brief and conversation | Updated with approved package/reference concepts; remaining baselines under review |
-| P1 | Brand identity and core assets | P0 + owner's visual choices | Open Threshold logo direction selected; pet concepts and approved UI references retained; final exports pending |
-| P2 | Mobile/desktop UX/UI designs | P0; P1 direction for final visuals | Desktop directions accepted/preserved; 27 mobile references generated for review; final fonts/assets and implementation pending |
-| P3 | Verified bilingual technical foundation | Accepted P0 + implementation authorization | Not started |
-| P4 | Informational pages and content | P2 + P3 | Not started |
-| P5 | Form, session, status, and report | P3 + content contracts; P2 styling | Not started |
-| P6 | Guide and motion | P1 + P4/P5 | Not started |
-| P7 | Validation and fixes | P4–P6 | Not started |
-| P8 | Deployment and handoff | P7 + confirmed account/publication choices | Not started |
-| P9 | Video and case study | Sufficiently stable UI; P8 for the final URL | Not started |
+| P0 | Consistent product, operations, data/access and quality documents | Owner scope discussion | Portal revision drafted; owner review/open decisions remain |
+| P1 | Final identity/runtime assets | Approved identity + asset authorization | Open Threshold selected; source PNGs retained; vectors/fonts/exports pending |
+| P2 | Reviewed public and new portal/admin UX | P0 policy decisions | Public desktop direction accepted; 27 mobile references await review; portal screens not produced |
+| P3 | Verified bilingual server/auth/database foundation | P0 provider/identity choices + implementation authorization | Not started |
+| P4 | Public discovery and immutable sample report | P2 + P3 | Not started |
+| P5 | Consultation/ticket conversation and admin triage | P3 + reviewed intake/scheduling | Not started |
+| P6 | Projects, private reports and bounded support | P3/P5 + support/report policy | Not started |
+| P7 | Integrated security/quality checks and fixes | P4–P6 | Not started |
+| P8 | Authorized deployment and operational handoff | P7 + provider/privacy/publication choices | Not started |
+| P9 | Promotional video and case study | Stable actual UI/evidence | Brief only; production not started |
 
-The owner requested mobile references before any further implementation-plan subdivision. The current P0–P9 phase structure is retained in this update; no application foundation or finer work packages were created.
+## 3. P0 — Documentation and policy review
 
-Current production sequence: preserve the approved desktop hero → shared visual rules and four distinct pets → complete desktop home, service-discovery, simulation, and supporting-screen design pass → owner review → dedicated mobile compositions → final assets and implementation foundation → pages → simulation → guide/motion → validation → deployment → final portfolio materials. Design Reference Lock records proposed screen batches. Flow/wireframe review remains useful for unreviewed screens without reopening the already-approved hero. Video storyboarding may start once the visual direction is stable; final recording waits for accurate UI.
+- [x] Record the owner-approved service-portal scope and superseded client-only rules.
+- [x] Draft user/admin flows, logical data/access rules, ticket/report/support operations and expanded test criteria.
+- [x] Retain approved identity and mark older no-storage/reset visuals historical.
+- [ ] Owner reviews authored baseline details, numerical package terms and open decisions.
+- [ ] Resolve identity/enrollment, provider/transport, first-service activation, temporary discount scope and personal-data policy before affected work.
+- [ ] Review missing portal/admin and updated mobile flows before detailed implementation packages.
 
-The academic prototype may be handed over once P4/P5 sufficiently demonstrate the flow and simulation boundaries. Do not call it the final portfolio website while assets, validation, or deployment remain unfinished. No calendar duration is imposed; development may continue after coursework submission.
+A documentation snapshot is a legitimate manual GitHub progress checkpoint; no application scaffold is required.
 
-## 3. P0 — Documentation
+## 4. P1 — Final identity
 
-- [x] Summarize the combined frontend + product design goal.
-- [x] Write requirements, flows, data, design, architecture, quality, release, and video documents.
-- [x] Include mobile UI, ID/EN, the Git prohibition, and academic/portfolio milestones.
-- [x] Record the approved four-package concepts, character directions, hero references, and no-complete-security guarantee boundary.
-- [x] Save the owner-approved revised desktop hero unchanged and record the corrected pet/lighting direction and fidelity rules.
-- [ ] Owner reviews draft baselines and open decisions.
-- [ ] Record review decisions without treating recommendations as automatic approvals.
-- [x] Write a complete draft of numerical package scope, fictional starting prices, counting rules, conceptual effort, and retest conditions.
-- [ ] Owner reviews the numerical package baseline before final package copy and production implementation.
+Retain approved hero and Open Threshold source; do not reopen discarded logo options. Review final pet mapping, licensed fonts, genuine editable logo vectors, transparent/monochrome/small-size exports and optimized artwork. Keep source boards out of public runtime assets.
 
-Deliverable: a readable documentation snapshot for GitHub. Application code is not required yet.
+Completion requires actual export/readability/license checks. Existing raster specimens and calculated color ratios do not prove rendered accessibility or final production readiness.
 
-## 4. P1 — Identity
+## 5. P2 — Revised UX/UI
 
-Files/assets: `docs/design/DESIGN_DIRECTION.md`, `docs/design/VISUAL_SYSTEM.md`, `docs/design/MASCOT_GUIDELINES.md`, `docs/planning/DECISIONS.md`, and current source PNGs in `design/mascots/concepts/`. Future editable sources and optimized exports may use `assets/source/`, `public/brand/`, and `public/mascot/` when produced; those runtime exports do not exist yet.
+Keep accepted public composition and package interaction. Review login/enrollment/recovery, user dashboard/empty states, reactive/preventive intake, requested/confirmed schedule, ticket conversation, admin queues/internal notes, project detail, draft/published report, fix assertion, retest request, support expiry and access-denied states.
 
-- [x] Record owner-selected visual reference roles and the four package-character directions in Visual References and Service Packages.
-- [x] Preserve the approved hero pet aesthetic as a source reference in Design Reference Lock; final isolated character exports are still pending.
-- [ ] Finalize brand messaging, logo direction, mascot proportions/palette, and the exact artwork treatment.
-- [x] Generate three initial logo directions at the owner's request, with dark/light and monochrome presentation specimens; retain one corrected wordmark iteration.
-- [x] Owner selected Open Threshold and closed logo-direction exploration; discarded alternatives were removed.
-- [ ] Refine/vectorize the approved direction and check actual small-size/monochrome exports. Concept-sheet specimens are not pixel-size tests.
-- [ ] Produce editable and optimized wordmark/symbol assets from the approved Open Threshold reference.
-- [x] Generate four compact pet concepts with distinct body silhouettes/principal colors and record prompts/source fingerprints; refine WARDEN's outline to improve distinction.
-- [ ] Owner reviews the four candidates and proposed character-to-package mapping.
-- [ ] Produce the reviewed final characters and minimum guide/hero poses; preserve the approved hero and keep source concepts separate from runtime exports.
-- [ ] Record process, sources, licenses, and export formats; do not include heavy raw assets in the runtime.
+Review ID/EN and phone/desktop, including keyboard, unsaved edits, session expiry, long messages and pending/failed saves. Changing locale does not reset saved records. No extra image production is authorized by this document revision.
 
-Verification: the logo is readable in the mobile header/favicon; the mascot is recognizable at guide size; inspect personal metadata and SVG scripts. Decorative assets do not require unit tests.
+## 6. P3 — Authenticated technical foundation
 
+Proposed responsibility areas: application/configuration, locale shell, server auth/data/domain boundaries, database schema/migrations and critical integration fixtures.
 
-## 5. P2 — UX/UI
+Before writing code, verify supported versions, selected database/auth/adapter/runtime/hosting configuration and reasons for every dependency. Choose enrollment/verification/recovery/admin provisioning and secret management. Do not provision accounts or send messages merely to satisfy the plan.
 
-Planned files: Design Direction, User Flows, Content, and design artifacts in `design/` if needed.
+Foundation outcome: public routes work, real auth/session validation works, an isolated database migration succeeds, and user A cannot retrieve user B's seeded private record through a direct server request. Establish test runners and meaningful authorization tests before building private features.
 
-- [x] Generate the first desktop visual pass across all planned pages and important error/success/dialog states; see [Desktop Design Gallery](../design/DESKTOP_DESIGNS.md). This is not final approval or a runnable prototype.
-- [x] Record owner approval of the revised desktop hero image; this does not complete the homepage or mobile UI.
-- [x] Produce six home sections, service detail/comparison, process, form/error/success, three status stages, finding detail, About/privacy/404, language dialog, guide, direct report, and EN form/report references; preserve the approved hero unchanged.
-- [x] Owner accepted the other desktop visual directions; regenerate only the requested homepage package cluster.
-- [x] Owner accepted the revised clustered selector and closed desktop reference exploration.
-- [ ] Owner reviews the 27 generated mobile references; final fonts/tokens/assets remain separate work.
-- [ ] During implementation, trim redundant cross-page copy while retaining required disclosures and task-critical guidance.
-- [x] Produce 27 dedicated portrait mobile-web references, including menu, touch package browsing, process scroll segments, form/errors/success, status/report/details, guide/dialog, support pages, and English form/report.
-- [ ] After mobile review, subdivide implementation into coherent, moderately sized packages with usable outcomes and relevant checks. Do not fragment the plan into a separate phase for every small component/file.
-- [ ] Review the package comparison, uncertain/mismatched fit, simulated consultation entry, About, and FAQ; distinguish the authored numerical baseline from owner-approved concepts.
-- [ ] Review the no-mascot journey, direct report access, and language/reset guards.
-- [x] Generate desktop/mobile references using the five findings, with English form/report copy-fit variants; other locale/state combinations reuse demonstrated components and still require review.
-- [x] Draft shared palette, typography roles, spacing, and component-state rules; calculate five proposed solid-color contrast pairs.
-- [ ] Review visual tokens and select licensed font families; check actual rendered component contrast and approved-hero fidelity.
-- [ ] Review the mobile menu, virtual keyboard, finding disclosures, and assistance dialog.
-- [ ] Review reduced motion and long text before finalizing the design.
+Actual scripts should include dev/lint/typecheck/build/start and applicable unit/integration/E2E/migration commands. Add README instructions only after commands exist. Verify HTTP 404, locales, server secrets, CSRF strategy and private caching. Reject the retired static-only deployment setup.
 
-Verification: cover the Design Direction screen inventory, equivalent mobile functionality, and clear concept labels.
+## 7. P4 — Public experience
 
-## 6. P3 — Technical foundation
+Implement home, services/packages, process, About/FAQ, privacy framework, custom 404 and public sample report, using reviewed copy/assets. Preserve hero fidelity and the accessible tight pet cluster.
 
-Planned files: `package.json`, lockfile, Next/TypeScript/ESLint configuration, routes/layouts in `src/app/`, `src/lib/i18n.ts`, dictionaries, styles, and hosting configuration.
+Outcome: all four package paths and the public sample are useful without login, with five exact findings, equivalent ID/EN/mobile content and no target requests. Optional local guide/motion can be included only where it supports these tasks, with text fallback and measured asset cost.
 
-- [ ] After implementation authorization, verify stable versions and runtime compatibility, then explain installed dependencies.
-- [ ] Create dev, lint, typecheck, build, and preview scripts; add unit/E2E runners when behavioral tests begin.
-- [ ] Build ID/EN route skeletons with correct `html lang` and metadata; do not fill them with fabricated product claims.
-- [ ] Verify static export, the `/` entry, deep links, and custom HTTP 404 behavior; resolve the framework/fallback choice in Decisions.
-- [ ] Build the header/footer/menu/language shell and CSS tokens; include mandatory labels in both locales.
-- [ ] Add an empty session provider per locale and the language-switch guard, without storage; include separate package-planning state covered by the same lifecycle guards.
-- [ ] Update the README with commands that actually exist.
+Final privacy text depends on operational choices; placeholder policy is not sufficient for public account/data intake.
 
-Interfaces: `Locale`, `PageKey`, `routeFor`, `getDictionary`, and the provider specified in Architecture. Verification: build/lint/typecheck, route inventory, locale metadata, static-preview deep links, and the no-JavaScript shell. Do not build further features on a failing routing foundation.
+## 8. P5 — Consultation and ticket operations
 
+Implement conditional intake, server validation, persistence, scoped idempotency, user ticket history/detail, in-app replies and admin triage. Proposed schedule becomes confirmed only through admin action. Internal notes are a separate protected resource.
 
-## 7. P4 — Informational pages, one unit at a time
+Outcome: a user submits a synthetic consultation, admin responds/confirms timing, and the user retrieves the same saved conversation after refresh/login. A second account cannot read or modify it. Failed/retried writes do not duplicate tickets/messages or claim success.
 
-### P4.1 Home
+Build tests for conditional form rules, ownership, privileged fields, internal-note leakage, scheduling and concurrent writes as part of this phase.
 
-Files: `src/app/[locale]/page.tsx`, dictionaries, and only the hero/summary components actually needed.
+## 9. P6 — Projects, reports and support
 
-- [ ] Implement the hero, concept label, form CTA, and report link.
-- [ ] Apply the selected headline/description composition and doorway/mascot scene; include named package selection and direct textual detail access.
-- [ ] Apply desktop/mobile layouts and both languages.
-- [ ] Check keyboard use, long text, the 320 px viewport, and initial asset load.
+Implement admin-created project relationships, illustrative progress, immutable draft/published report versions, private finding presentation, programmer-fix assertions, separate illustrative admin review and support tickets.
 
+After activation/date policy approval, implement the three-calendar-month boundary, cycle reservation/consumption and visible benefit expiry. Do not invent a discount percentage or implement billing. Published reports remain available after benefits expire according to retention policy.
 
-### P4.2 Services and Process
+Outcome: authorized owner/admin can complete the illustrative project/report/retest journey, while foreign users, draft report requests and forged benefit fields are denied. Test exact expiry/month-end, timely requests handled later, concurrency and unchanged public findings.
 
-Files: `services/page.tsx`, `process/page.tsx`, local stage/package content, and `features/packages/` where needed.
+Academic prototype checkpoint: demonstrate real auth/database, consultation/admin/user retrieval and private-report isolation with synthetic data. Clearly disclose incomplete features and illustrative security work; lecturer acceptance of a specific rubric is not assumed.
 
-- [ ] Write scope and exclusions with clear written-authorization requirements.
-- [ ] Present SCOUT, WARDEN, NEXUS, and ATLAS from shared reviewed content with suitability, quantified scope, exclusions, outputs, effort, retest terms, and visibly illustrative prices; no checkout or finding quotas.
-- [ ] Implement the package group/detail presentation with named controls and a missing-artwork fallback; optional guided matching follows P5.4.
-- [ ] Implement the eight stages and conceptual outputs in ID/EN.
-- [ ] Check semantic order and a mobile timeline without mandatory horizontal scrolling.
+## 10. P7 — Verification and cleanup
 
+Run Quality T-01 through T-30 with isolated test data, including direct endpoint access, SQL/XSS/CSRF/session/cache boundaries, two-user isolation, state/concurrency, retention/deletion/backups and revoked admin access.
 
-### P4.3 Supporting pages
+Check ID/EN/mobile/keyboard/screen reader, approved visual fidelity, actual 404/metadata/headers, dependency risks and measured performance. Remove verified dead/duplicate code and optimize observed bottlenecks. Run final build/lint/typecheck and relevant regression checks after fixes. Record actual evidence and environment limitations; no blanket security guarantee.
 
-Files: `about/page.tsx`, `privacy/page.tsx`, the P3-selected 404 template, shared FAQ content, and metadata/sitemap as needed.
+## 11. P8 — Deployment and operations
 
-- [ ] Implement privacy copy matching application behavior; retain hosting review as a release gate.
-- [ ] Add accurate project/about content, service strengths, and a concise scope/package/remediation FAQ without fabricated business claims.
-- [ ] Apply a custom 404 and home links for both languages.
-- [ ] Check footer links, titles/descriptions, canonicals/alternates, and noindex on demo routes.
+Owner selects/authorizes accounts/project/domain and publication. Verify current hosting/database/auth terms, quotas, environment separation, migration/secret configuration, backup/restore and deletion/retention policy. Real identity intake cannot proceed with unresolved privacy/enrollment rules.
 
+Owner commits/pushes manually. Agents deploy/configure only when separately requested, without Git operations. Verify production login/user/admin/ticket/report/support flows, access isolation, HTTPS/cookies/cache/headers and locale/deep-link behavior on the deployed build.
 
-## 8. P5 — Core simulation
-
-### P5.1 Validator and form
-
-Files: `features/request/`, `request/page.tsx`, `tests/unit/request-validation.test.ts`, `tests/e2e/request.spec.ts`.
-
-- [ ] Write validator tests for PRD boundaries, Unicode, URL/scheme handling, query/credentials, and the checkbox before implementing the logic.
-- [ ] Run the tests, then implement `validateRequest` as a pure function.
-- [ ] Build ID/EN fields/errors and error focus; prevent native submission when JavaScript is disabled.
-- [ ] Check valid/invalid submission on desktop/mobile, with network interception installed before the browser test starts.
-
-
-### P5.2 Ticket, success, and status
-
-Files: `features/simulation/`, `request/received/page.tsx`, status section in `report/page.tsx`, `tests/unit/simulation.test.ts`, `tests/e2e/simulation.spec.ts`.
-
-- [ ] Write reducer tests for every transition, invalid events, reset, and the illustration source.
-- [ ] Implement `createDemoTicket` on submission, the double-submit guard, and draft clearing.
-- [ ] Implement success, no-session, manual status, reset, and cancel/confirm language switching.
-- [ ] Check refresh, new tabs, back/forward, bfcache restore, and the absence of data in URLs/storage/logs.
-
-
-### P5.3 Report
-
-Files: `content/findings.ts`, `features/report/`, `report/page.tsx`, `tests/unit/findings.test.ts`, `tests/e2e/report.spec.ts`.
-
-- [ ] Add the five canonical rows and translation mappings using stable IDs.
-- [ ] Test dataset values/statuses/order and ID/EN decimal formatting.
-- [ ] Implement the desktop table, mobile list, and details from the same dataset.
-- [ ] Check direct report access without a form, illustration labels, complete fields, and keyboard access to details/assistance.
-- [ ] Verify that each package selection still exposes the same five findings and never implies repairs or URL-derived results.
-
-
-### P5.4 Package fit and simulated consultation
-
-Files: `features/packages/`, local dictionaries, shared temporary planning state, and focused browser/logic checks as needed.
-
-- [ ] Review exact fit questions/rules before implementing them; permit uncertainty and mixed requirements rather than forcing an upgrade.
-- [ ] Connect package/unsure/free-consultation actions to local guidance and the existing request form, with visible simulation labels.
-- [ ] Cover planning state in reset/language/navigation behavior and clear it on submission; retain the existing success/session fields.
-- [ ] Run T-13 in both locales and mobile/desktop; no target request, communication, purchase, booking, persistence, or dataset variation.
-
-
-Prototype milestone: once these units work, the owner can assess academic submission with clearly stated limitations. This does not remove P6–P9 from the portfolio plan.
-
-## 9. P6 — Guide and motion
-
-Files: `features/companion/`, mascot assets, dictionaries, motion styles, `tests/e2e/companion.spec.ts`.
-
-- [ ] Add local topics/responses referring to the report, scope, and risk.
-- [ ] Implement optional desktop assistance and a mobile sheet/dialog; no free-text chat.
-- [ ] Apply focus return, Escape, close behavior, reduced motion, and text fallback when assets fail.
-- [ ] Load assistance assets when needed; check bundle size and keyboard/scroll conflicts.
-
-
-## 10. P7 — Quality and fixes
-
-Files: necessary security/build configuration, tests, and `docs/validation/` for actual results.
-
-- [ ] Run T-01 through T-15 and record outcomes/environment limitations.
-- [ ] Construct CSP/headers for the build output, then test hydration and functionality with the policy active.
-- [ ] Audit dependencies, external resources, storage, canary leakage, and public files.
-- [ ] Measure performance using the Quality procedure; optimize based on observed issues.
-- [ ] Check screen reader/keyboard, ID/EN, mobile/desktop, and physical devices if available.
-- [ ] Fix blockers; rerun tests related to the changes, then run final build/lint/typecheck.
-
-
-## 11. P8 — Deployment
-
-Files: hosting configuration, README, final privacy copy, metadata origin, validation/release notes.
-
-- [ ] Owner selects the account, project identity, domain, and publication route.
-- [ ] Verify free-hosting terms and the selected production configuration.
-- [ ] Owner commits/pushes manually; deployment happens only when requested, without agent Git operations.
-- [ ] Check the deployed URL, HTTPS, deep links, actual 404 status, headers, locales, network, and forms.
-- [ ] Update privacy copy based on verified hosting behavior.
-- [ ] Record the deployment version, hosting/owner rollback procedure, and open issues.
-
+Record recovery procedure, operational ownership, limitations and safe demo instructions. No shared public admin credential or production customer data in previews.
 
 ## 12. P9 — Video and case study
 
-Files: Promo Video Brief, video sources separate from the website runtime, and case study material in `docs/portfolio/` when created.
+Agree on format/duration/language/audio rights; no fixed deadline is invented. Storyboard the functional portal, role separation and illustrative reports. Use synthetic accounts and sanitized footage; exclude secrets, admin provisioning and personal provider screens.
 
-- [ ] Agree on duration/aspect ratio/narration/music using the video brief; add new lecturer requirements if provided.
-- [ ] Prepare the storyboard and animatic using identity/UI that actually exists.
-- [ ] Record the demo with synthetic data, then edit motion/captions/audio.
-- [ ] Review concept/illustration labels, licenses, readability, and whether the video accurately represents website capabilities.
-- [ ] Write the case study covering the problem, contributions, decisions, trade-offs, evidence, and limitations.
+Explain both design and backend engineering contributions with actual results. Final recording follows stable implemented UI; mockups are labeled concept footage. Keep large video sources outside the website runtime.
 
+## 13. Progress and review
 
-## 13. Updating progress
+Only mark work complete with corresponding evidence. The current revision completes drafted documents, not application phases or owner approval of every proposal. Phase-specific implementation packages should produce reviewable end-to-end outcomes rather than one task per file/control.
 
-Check off a step only after it is completed. Record actual results in validation reports rather than marking every phase done after one build. When a unit is ready, report changes and limitations to the owner for review/manual commit. Agents perform no Git step in any phase.
-
-Provide a separate English commit-message suggestion for each file in chat only; do not save message/command handoff artifacts in the repository. If the handoff also includes an earlier update, identify that scope and let the owner skip files already committed; never inspect Git to determine pending files.
+Report actual changed files/checks/limits. Deliver one English commit suggestion per changed file in chat; never create a repository handoff inventory or infer Git tracking status.
