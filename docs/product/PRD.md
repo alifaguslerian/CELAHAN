@@ -10,7 +10,7 @@ Build a bilingual concept service portal with working login, a real database, co
 
 Confirmed by the owner: reactive/preventive intake; name/company/website/problem fields; contact and requested consultation schedule; prospects distinguished from users with projects; different initial/follow-up tickets; private reports; maximum three-month support and temporary discount; no code repair; documentation before implementation.
 
-Proposed details below include exact states/limits, single-owner projects, registration mechanics, scheduling semantics, and support activation. These remain reviewable. Do not label them all owner-approved merely because this draft exists.
+The owner also selected Better Auth in the Next.js server with Neon Free PostgreSQL and confirmed the first private project report publication as the support start. Permanent domain/DNS selection is deferred and must not block current planning or isolated development. Proposed details below include exact states/limits, single-owner projects, registration mechanics, scheduling semantics and calendar/cycle mechanics. These remain reviewable. Do not label them all owner-approved merely because this draft exists.
 
 ## 2. Functional requirements
 
@@ -41,7 +41,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-21 | User dashboard | Own consultations, messages, projects, published reports and support dates; scoped queries only |
 | FUN-22 | Admin workspace | Triage queues, reviewed priority, schedule decisions, project assignment, report publication, internal notes |
 | FUN-23 | Customer relationship | Derived from server-owned project association/history, never a signup checkbox or client flag |
-| FUN-24 | Three-month benefits | Stored activation/expiry, calendar-month policy, bounded retests and temporary follow-up-review discount |
+| FUN-24 | Three-month benefits | Start at first private project report publication; stored start/expiry, reviewed calendar/cycle rules and temporary follow-up-review discount |
 | FUN-25 | Retest lifecycle | User reports a fix; admin records illustrative review outcome; immutable published report history |
 | FUN-26 | Privacy operations | Accurate collection/retention notice, deletion process and access controls approved before public intake |
 
@@ -58,7 +58,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | Preferred schedule | Up to three future options with a supported IANA timezone; an explicit “discuss timing” option |
 | Authority statement | Required initial ownership/authority declaration; not legal testing permission |
 
-Exact authentication identity, email verification/recovery delivery, phone formatting and enrollment policy remain decisions before collection. Authentication delivery, if selected, is separately reviewed infrastructure; it is not automatic consultation or support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
+The authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) proposes email/password enrollment, verification before private submission/access and admin TOTP. These are review baselines, not owner-confirmed methods or installed integrations. Exact authentication policy, email verification/recovery delivery and phone formatting remain decisions before public collection. Authentication delivery, if selected, is separately reviewed infrastructure; it is not automatic consultation or support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
 
 Reactive reasons: reported defacement, suspected data leakage/intrusion, reported malicious-site/blacklist warning, other. Preventive: pre-release third-party review, standards/partnership/tender requirements, periodic check, other. Neither reason confirms compromise, blacklist status, or compliance.
 
@@ -68,11 +68,11 @@ Public visitors browse informational pages and the public sample. A user logs in
 
 Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Admin validates need, priority, timing, scope, and eligibility. In-app replies are real database writes; optional contact details support separately authorized manual follow-up, not automatic WhatsApp/email delivery.
 
-Refresh, new tabs and locale navigation do not delete stored tickets or reports. Unsaved drafts can be discarded only after an appropriate warning. Logout revokes the session and clears private UI caches, not database records. Language change never resets service activation.
+Refresh, new tabs and locale navigation do not delete stored tickets or reports. Unsaved drafts can be discarded only after an appropriate warning. Logout revokes the session and clears private UI caches, not database records. Language change never resets support dates.
 
 ## 5. Support and reports
 
-Three calendar months maximum from first service activation is the proposed interpretation of the owner's “first use,” with an explicit date visible to the user. Exact activation event needs review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Package cycle allowances remain one/one/one/two as a draft.
+The owner confirmed a maximum three-month period from the first private project report publication, with start/expiry visible to the user. Project activation, public sample views and the user's first report view do not start it; later report versions do not reset it. Exact calendar/timezone boundary rules still require review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Package cycle allowances remain one/one/one/two as a draft.
 
 The maintenance-discount concept is narrowed to a proposed follow-up security review because code maintenance is excluded. Percentage, eligible work, approval cutoff, and commercial display need confirmation; do not invent a rate or apply a charge.
 
@@ -117,7 +117,7 @@ Public sample content is immutable. Private illustrative reports are associated 
 | AC-12 | Crafted role/owner/project/status fields cannot grant customer/admin access or edit another account's records |
 | AC-13 | Admin confirms a proposed slot explicitly; user sees requested versus confirmed times in the chosen timezone |
 | AC-14 | Internal notes and draft/withdrawn reports are absent from user responses, HTML and shared caches |
-| AC-15 | Support start/end use the reviewed three-month calculation; exact expiry rejects new benefit use, not past reports |
+| AC-15 | First private report publication atomically starts support once; project activation/sample views/later versions do not start or reset it; exact expiry ends new benefit use, not report access |
 | AC-16 | Eligible request submitted before expiry remains reviewable afterward; ticket creation cannot extend support or consume a cycle repeatedly |
 | AC-17 | User “fix reported” cannot become “verified” without an authorized illustrative admin review; public findings remain unchanged |
 | AC-18 | Login/logout/recovery, revocation, CSRF, rate limits and isolated account caches pass provider-specific tests |
@@ -130,6 +130,6 @@ Academic prototype: real authentication/database and a complete user consultatio
 
 Portfolio v1: complete approved portal flows, identity, ID/EN/mobile UX, quality evidence, deployment and truthful privacy information. Video/case study follows stable functionality.
 
-Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, provider, retention, discount, and final asset choices remain open in Decisions.
+Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, email provider, database adapter/runtime settings, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
 
 No acceptance scenario has been run in an application. This revision authorizes documentation only.
