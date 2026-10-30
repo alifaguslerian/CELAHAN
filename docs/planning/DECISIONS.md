@@ -1,6 +1,6 @@
 # CELAHAN — Decision Log
 
-Updated: October 29, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. All entries below come from the conversation or documentation planning, not application test results.
+Updated: October 30, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. All entries below come from the conversation or documentation planning, not application test results.
 
 ## 1. Decision statuses
 
@@ -11,7 +11,7 @@ Updated: October 29, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation. Earlier entries remain decision history; superseded clauses below must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. Earlier entries remain decision history; superseded clauses below must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -55,6 +55,10 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-38 | Use Better Auth open-source library in Next.js with Neon Free PostgreSQL | Owner explicitly approved subject to free usage; no paid upgrade/add-on, managed-auth setup, provider provisioning or implementation authorized |
 | DEC-39 | Start maximum three-month support at the first private project report publication | Explicit owner reply; signup/project activation/sample views/first reading do not start it, later report versions never reset it; calendar/cycle mechanics remain reviewable |
 | DEC-40 | Defer permanent domain, registrar and DNS choice; permit a later replacement | Owner requested flexibility and approved continuing flow documentation; domain identity does not block current planning/isolated development, but public auth email still requires approved delivery setup |
+| DEC-41 | Produce the next missing account/user/admin desktop references | Owner approved continuing to the next portal design stage; authorization covers images/design documents, not implementation or provider operations |
+| DEC-42 | Do not generate existing parts again | Explicit owner correction during the desktop pass; preserve existing public/home/package/form/report/404/English references and logo/pet sources, adapting source copy later |
+| DEC-43 | Keep accounts, tickets and report/progress inside the existing website/header | Owner rejected the separate dashboard/sidebar and return-to-site control; ordinary login/signup or avatar beside ID/EN, Tiket only after login and personal Laporan & Progres only for trusted project owners; prior ticket distinctions remain |
+| DEC-44 | Remove the unsuitable portal batch and correct its documentation | Owner explicitly requested deletion; remove the 18 rejected PNGs, manifest and gallery, preserve accepted sources, generate no replacements and perform no Git operation |
 
 ## 3. Proposed baselines for review
 
@@ -88,7 +92,8 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DRAFT-26 | Login required for submissions; chosen enrollment/verification/recovery; controlled admin provisioning | Prevents anonymous ticket-link access; do not silently choose public signup or a provider |
 | DRAFT-27 | V1 private reports use all five illustrative source findings in versioned snapshots with separate follow-up outcomes | No URL-derived findings; publish/withdraw requires admin authorization; public sample unchanged |
 | DRAFT-28 | Synthetic-only project demonstration until personal-data/provider/retention/abuse policy is approved | Real auth identity is still personal data; no “we store nothing” privacy claims |
-| DRAFT-29 | Account/user/admin navigation and screen-state baseline in Portal UX Specification | Proposes email/password, verification gating and admin authenticator flow; defines adaptive dashboards, ticket/internal-note separation, report/support actions and mobile states; owner review remains pending |
+| DRAFT-29 | Revised account/task baseline in Account and Service UX | Separate dashboard/sidebar navigation superseded by DEC-43; proposed auth verification/second-factor policy remains reviewable and is not approved by drawing screens |
+| DRAFT-30 | Rejected: 18-frame separate portal desktop baseline | Owner rejected the presentation; assets/gallery/manifest removed under DEC-44. Existing public form/report references remain; do not use this batch for implementation |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
 
@@ -109,7 +114,7 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 | OPEN-11 | Discount name, eligible follow-up work, percentage and request/approval cutoff | Public offer copy / benefit decisions | DRAFT-25 is a proposal; no invented rate or billing |
 | OPEN-12 | Better Auth enrollment/verification/second-factor policy, recovery delivery and admin provisioning | Auth policy before affected implementation; delivery before public registration | Review DRAFT-29 screen baseline; permanent domain can be selected later, isolated tests do not prove public email delivery |
 | OPEN-13 | Retention/deletion, hosting/database regions/processors, backups and privacy contact | Public data intake / deployment | Do not invent retention periods or treat three-month support as deletion |
-| OPEN-14 | Review new account/user/admin/ticket/project/report/support desktop/mobile UX | Relevant P2 review and implementation | Textual Portal UX Specification drafted; no new screen images or authored auth policies approved; old no-storage/reset raster behavior is historical |
+| OPEN-14 | Review integrated-site account/ticket/report components in desktop/mobile | Relevant P2 review and implementation | Shared header/navigation confirmed by DEC-43; review detailed components/auth policies without reopening the rejected dashboard/sidebar or starting another image batch |
 
 The deadline and rubric are not blocking questions at present: the owner has stated that there is no fixed constraint and a prototype is sufficient for submission. If lecturer requirements change, revise the academic milestone without removing the portfolio goal.
 
@@ -136,5 +141,7 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 29, 2026 | Owner approved revising the concept into a functional authenticated/database-backed service portal with consultation categories, user/admin tickets, private illustrative reports and three-month benefits; reconfirmed no code repair. Revised Markdown and marked prior static-only rules superseded; assets preserved, no application/Git/provider operations |
 | October 29, 2026 | Owner selected Better Auth + Neon Free, confirmed first private report publication as support start, and clarified an existing .my.id domain is available. Synchronized current specifications; email/DNS setup, versions, calendar/cycle details and actual implementation remain pending |
 | October 29, 2026 | Owner deferred permanent domain/DNS details and approved continuing account/portal flow planning. Added textual Portal UX Specification and synchronized navigation, draft auth policies, phase-specific delivery gates and documentation links. No new images, application/provider/DNS operations or Git |
+| October 30, 2026 | Owner authorized the next desktop portal design pass and explicitly prohibited regenerating existing parts. Generated 18 new account/user/admin frames, retained prior image/manifests unchanged and documented reuse/copy corrections. New visual review and portal phone views remain pending; no application/provider/Git work |
+| October 30, 2026 | Owner rejected the separate dashboard/sidebar portal and requested removal. Confirmed ordinary accounts/avatar beside ID/EN, tickets after login and report/progress only for owned projects within the same website. Removed rejected assets/gallery/manifest, corrected current requirements/architecture/UX and preserved accepted sources; no replacement images, application work or Git |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
