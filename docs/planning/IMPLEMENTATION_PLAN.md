@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Status: Broad phase plan revised for the portal; documentation only, no implementation authorization  
-Updated: October 29, 2026
+Status: Broad plan corrected to integrated-site accounts/tickets/reports; rejected portal images removed; no implementation authorization  
+Updated: October 30, 2026
 
 **Goal:** deliver a bilingual concept service portal with dedicated mobile/desktop UX, real authentication/database/tickets/admin workflows, private illustrative reports and evidence-backed quality.
 
@@ -30,7 +30,7 @@ The existing P0–P9 identifiers are retained for continuity. Deliverables are r
 | --- | --- | --- | --- |
 | P0 | Consistent product, operations, data/access and quality documents | Owner scope discussion | Portal revision drafted; owner review/open decisions remain |
 | P1 | Final identity/runtime assets | Approved identity + asset authorization | Open Threshold selected; source PNGs retained; vectors/fonts/exports pending |
-| P2 | Reviewed public and new portal/admin UX | P0 policy decisions | Public direction retained; portal UX specification drafted; mobile and new screen review pending |
+| P2 | Reviewed shared-site account/ticket/report integration | P0 policy decisions | Separate portal batch rejected/removed; preserve public direction, integrate conditional header/tasks and review component details |
 | P3 | Verified bilingual server/auth/database foundation | P0 provider/identity choices + implementation authorization | Not started |
 | P4 | Public discovery and immutable sample report | P2 + P3 | Not started |
 | P5 | Consultation/ticket conversation and admin triage | P3 + reviewed intake/scheduling | Not started |
@@ -62,7 +62,13 @@ Completion requires actual export/readability/license checks. Existing raster sp
 
 ## 5. P2 — Revised UX/UI
 
-Keep accepted public composition and package interaction. Use Portal UX Specification as the authored screen/state baseline, without claiming owner approval of its auth policies or new images. Review login/enrollment/recovery, user dashboard/empty states, reactive/preventive intake, requested/confirmed schedule, ticket conversation, admin queues/internal notes, project detail, draft/published report, fix assertion, retest request, support expiry and access-denied states.
+Keep accepted public composition and package interaction. Follow [integrated account/ticket/report UX](../design/PORTAL_UX_SPEC.md): ordinary login/signup and avatar beside ID/EN, Tiket after login and Laporan & Progres for owned projects. Reuse existing form/report composition; retain distinct initial/project support tickets and same-site authorized admin actions. No customer dashboard/sidebar, mandatory overview or return-to-site control.
+
+- [x] Record rejection and remove the unsuitable 18-image portal batch, manifest and gallery.
+- [x] Preserve existing public/brand/mascot/desktop/mobile image sources without regeneration.
+- [x] Record the owner-confirmed shared-header and conditional account/ticket/report direction.
+- [ ] Review necessary desktop/mobile component details within the existing site; no replacement image batch is authorized.
+- [ ] After relevant review, define moderately sized implementation packages with end-to-end outcomes.
 
 Review ID/EN and phone/desktop, including keyboard, unsaved edits, session expiry, long messages and pending/failed saves. Changing locale does not reset saved records. No extra image production is authorized by this document revision.
 
