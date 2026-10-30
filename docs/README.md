@@ -1,13 +1,15 @@
 # CELAHAN Documentation
 
-Status: Functional-portal requirements revision; application implementation has not started  
-Updated: October 29, 2026
+Status: Integrated-site account/ticket/report correction; rejected portal batch removed; no implementation  
+Updated: October 30, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
 
 ## Current scope
 
 The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behaviors are superseded. No application, provider setup or image generation is authorized by this documentation revision. Read Operations and Data and Access alongside the PRD.
+
+The owner rejected the separate dashboard/sidebar portal direction on October 30 and requested removal of unsuitable material. The 18-image batch, manifest and gallery are removed. Ordinary login/signup and the signed-in avatar belong beside ID/EN; Tiket appears after login and Laporan & Progres appears for authorized project owners, all within the same website.
 
 ## Product
 
@@ -29,12 +31,12 @@ The October 29 owner-approved revision requires real authentication/database per
 | [Mobile Design Gallery](design/MOBILE_DESIGNS.md) | 27 portrait mobile-web references, scroll/touch flow, and source-content overrides |
 | [Desktop Design Gallery](design/DESKTOP_DESIGNS.md) | 24 selected desktop frames, preserved hero, page assembly, and implementation caveats |
 | [Design Direction](design/DESIGN_DIRECTION.md) | Responsive composition, accessibility, identity, and motion |
-| [Portal UX Specification](design/PORTAL_UX_SPEC.md) | Draft account/user/admin screen composition, navigation, states and acceptance cases |
+| [Portal UX Specification](design/PORTAL_UX_SPEC.md) | Integrated shared-header account/ticket/report states and acceptance cases |
 | [Visual References](design/VISUAL_REFERENCES.md) | Original inspiration and its relationship to the approved target |
 | [Shared Visual System](design/VISUAL_SYSTEM.md) | Draft color tokens, typography roles, spacing, component states, and contrast calculations |
 | [Mascot Guidelines](design/MASCOT_GUIDELINES.md) | Four generated pet concepts, shape/palette rules, source records, and prompts |
 
-The saved hero is preserved. All selected desktop visual directions, including the revised homepage package cluster, are accepted. The 27 mobile references are now available for review, with only selected reference images retained. Obsolete desktop/mobile iterations have been removed. Final tokens/fonts/assets and package terms have separate review status; mobile review and application implementation remain pending. Galleries now distinguish historical no-storage/locale-reset behavior from current portal requirements. New account/user/admin screens have not been generated or approved. Their textual UX specification now supplies the review baseline; permanent domain/DNS selection is deferred until the relevant email/deployment setup. Visual acceptance is not proof of working interactions.
+The saved hero, accepted public desktop directions and 27 earlier mobile references are preserved. The rejected separate-portal batch is not a visual target. Current [account/ticket/report UX](design/PORTAL_UX_SPEC.md) reuses the shared site header and existing form/report references. Final tokens/fonts/assets, mobile review and relevant auth/privacy details retain their review status. Historical no-storage/reset lettering does not override current persistent behavior.
 
 ## Engineering
 
@@ -64,6 +66,7 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 | Record | Scope |
 | --- | --- |
+| [Portal design correction](validation/2026-10-30-portal-desktop-designs.md) | Historical generation checks, owner rejection, integrated-site correction and rejected-asset removal checks |
 | [Account and portal UX](validation/2026-10-29-portal-ux.md) | Draft screen/state specification, deferred domain policy and documentation/preservation checks |
 | [Portal documentation revision](validation/2026-10-29-portal-documentation.md) | Current authenticated/database scope, operations/access rules and preservation/document checks |
 | [Initial documentation](validation/2026-10-27-documentation.md) | Original documentation and English translation review |
@@ -78,5 +81,7 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 ## Artifact locations
 
 The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. `design/desktop/v1/` contains the desktop PNGs/manifest; `design/mobile/v1/` contains portrait mobile references and their manifest. These are source/review artifacts, not an existing application or an optimized runtime asset set.
+
+The rejected `design/portal/desktop/v1/` batch and its gallery are removed. Existing public form/report compositions remain the reference for same-site task content.
 
 `design/brand/approved/` contains the owner-approved Open Threshold reference; `design/brand/manifest.json` records its source. Discarded alternatives are removed. Final vector/runtime assets are still pending.
