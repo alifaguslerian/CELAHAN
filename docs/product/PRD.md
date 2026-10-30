@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
 Status: Portal scope approved in principle; detailed behavior below is a review baseline, not implementation authorization  
-Version: 1.0 planning revision · October 29, 2026  
+Version: 1.1 integrated-site revision · October 30, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Product outcome and approval
@@ -38,8 +38,8 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-18 | Visual continuity | Saved hero/logo identity, distinct pets, reviewed responsive differences |
 | FUN-19 | Real authentication | Chosen registration, login, logout, recovery, verified identity/session policy; no UI-only authentication |
 | FUN-20 | Reactive/preventive logic | Category and specific reasons plus narrative; allegations remain unverified until reviewed |
-| FUN-21 | User dashboard | Own consultations, messages, projects, published reports and support dates; scoped queries only |
-| FUN-22 | Admin workspace | Triage queues, reviewed priority, schedule decisions, project assignment, report publication, internal notes |
+| FUN-21 | Integrated account/ticket/report access | Shared header with avatar/login/signup beside ID/EN; no guest ticket entry, Tiket after login, Laporan & Progres only for authorized projects; no separate dashboard/sidebar shell |
+| FUN-22 | Admin management | Authorized triage, priority, scheduling, project assignment, report publication and internal notes in shared-site task content |
 | FUN-23 | Customer relationship | Derived from server-owned project association/history, never a signup checkbox or client flag |
 | FUN-24 | Three-month benefits | Start at first private project report publication; stored start/expiry, reviewed calendar/cycle rules and temporary follow-up-review discount |
 | FUN-25 | Retest lifecycle | User reports a fix; admin records illustrative review outcome; immutable published report history |
@@ -64,7 +64,7 @@ Reactive reasons: reported defacement, suspected data leakage/intrusion, reporte
 
 ## 4. Roles and persistent behavior
 
-Public visitors browse informational pages and the public sample. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
+Public visitors browse informational pages and the public sample. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
 
 Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Admin validates need, priority, timing, scope, and eligibility. In-app replies are real database writes; optional contact details support separately authorized manual follow-up, not automatic WhatsApp/email delivery.
 
@@ -82,7 +82,7 @@ Public sample content is immutable. Private illustrative reports are associated 
 
 | ID | Requirement |
 | --- | --- |
-| LNG-01 | ID/EN informational, authentication, dashboard, ticket, report, error, and privacy UI |
+| LNG-01 | ID/EN informational, authentication, account-menu, ticket, report, error and privacy UI |
 | LNG-02 | Typed shared content/IDs; original finding fields preserved and equivalent translations |
 | LNG-03 | Equivalent locale navigation preserves saved records/session; warn only about unsaved edits |
 | LNG-04 | Correct html language, localized metadata/dates/decimal formatting, no flags-only selector |
@@ -108,7 +108,7 @@ Public sample content is immutable. Private illustrative reports are associated 
 | AC-03 | Any entered website remains inert text; selecting any package does not alter the public five findings |
 | AC-04 | Switching locale preserves saved tickets/project rights/support dates; unsaved edits receive a discard warning |
 | AC-05 | Refresh/deep link retrieves an authorized ticket; logout requires login; unknown/foreign resources disclose no private content |
-| AC-06 | ID/EN user and admin flows work at 320 px, zoom and keyboard with no page overflow |
+| AC-06 | ID/EN shared-site navigation and user/admin tasks work at 320 px, zoom and keyboard; guest/prospect/project-owner menu states are correct without a separate dashboard |
 | AC-07 | JS/network failure cannot submit data via URL, falsely confirm success, or duplicate writes |
 | AC-08 | Four packages expose the same reviewed caps/prices/outputs with keyboard/touch/artwork fallback |
 | AC-09 | Unsuitable package or urgent reactive need goes to reviewed scoping/triage, never forced sale or automatic diagnosis |
