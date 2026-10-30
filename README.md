@@ -80,6 +80,6 @@ No fixed deadline or required video format has been supplied. Prototype submissi
 
 ## Publication and progress
 
-The owner performs every Git operation manually. Agents do not run Git, inspect .git, or use repository APIs. Per-file English commit suggestions appear in chat only.
+The owner performs Git operations manually unless a specific operation is explicitly requested. The agent decides when a reviewed, coherent change is ready for a commit checkpoint and supplies English suggestions in chat only. Related files belong together; independent purposes remain separate. Do not generate a commit message for every file edit or response. See [Agent instructions](AGENTS.md) for review and verification criteria.
 
 This is a planning/design snapshot suitable for manual progress tracking after owner review. See [validation history](docs/README.md#validation-records) for checks that actually ran. Historical reports describe their original baseline; no application build, lint, database, security or performance test has passed merely because these documents exist.

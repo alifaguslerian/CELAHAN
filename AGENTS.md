@@ -37,10 +37,13 @@ The project owner prohibits agents from touching Git in any way.
 - Agents may edit project files and inspect them with ordinary filesystem tools.
 - Report changed files and checks actually performed. The project owner reviews, stages, commits, and pushes manually.
 - Suggested commit messages must be in English. Never execute them.
-- Deliver per-file commit messages and any manual command examples in chat only. Do not save commit handoff inventories, messages, commands, or agent fingerprint snapshots in repository files, source comments, configuration, or generated project artifacts.
+- Deliver checkpoint-based English commit suggestions and any requested manual command examples in chat only. Do not save commit handoff inventories, messages, commands, or agent fingerprint snapshots in repository files, source comments, configuration, or generated project artifacts.
 - Keep temporary before/after fingerprints outside the repository. Review actual changed content and paths before suggesting messages; include deleted paths and pair a rename's old/new paths as one logical-file change. Never infer Git tracking/staging status from file hashes.
-- Give a separate suggested commit message for each file in the handoff. The owner commits files individually. If including files from an earlier update, label that scope and do not claim to know which files are still uncommitted.
-- When the owner requests complete coverage, inventory all current project files and include earlier paths for moved documents. Clearly pair a tracked old-path removal with the current-path addition/change in one logical-file commit. Do not restrict the handoff to the latest update or treat the message count as Git status.
+- The agent decides when a change merits a commit checkpoint. Do not generate a message after every file edit or response. Wait until a coherent change has a clear purpose, a reviewable outcome, and the relevant checks have actually run. Report incomplete or blocked checks honestly; do not describe an unverified feature as complete.
+- Group related files, tests, documentation, assets, renames and deletions needed for one purpose into one commit. Separate independent purposes into different commits. Do not split by file count or combine all unrelated work into a single commit. A single-file commit is appropriate when that file is the complete coherent change.
+- Before proposing a checkpoint, review its actual scope for correctness, security/privacy, unnecessary material and unrelated edits. Identify the included paths, explain the checkpoint's purpose and report verification performed. If work is still partial, defer the suggestion rather than inventing progress commits.
+- This policy supersedes the earlier one-message-per-file rule. If the owner requests complete coverage, account for all pending changes and moved/deleted paths within coherent groups; completeness does not mean one commit per file. Never infer Git tracking/staging status from file hashes.
+- Checkpoint judgment and commit suggestions do not authorize Git execution. The owner still stages, commits and pushes manually unless they explicitly request a specific Git operation. Do not repeatedly ask the owner to decide routine commit grouping.
 
 ## Non-negotiable product boundaries
 

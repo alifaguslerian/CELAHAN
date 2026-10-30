@@ -132,4 +132,4 @@ Explain both design and backend engineering contributions with actual results. F
 
 Only mark work complete with corresponding evidence. The current revision completes drafted documents, not application phases or owner approval of every proposal. Phase-specific implementation packages should produce reviewable end-to-end outcomes rather than one task per file/control.
 
-Report actual changed files/checks/limits. Deliver one English commit suggestion per changed file in chat; never create a repository handoff inventory or infer Git tracking status.
+Report actual changed files/checks/limits. The agent decides when a reviewed change is a meaningful commit checkpoint, using the criteria in [Agent instructions](../../AGENTS.md). Group related implementation, tests, documentation and assets by purpose; separate independent work and defer suggestions while a group is unfinished. Provide English messages only at those checkpoints, in chat, with included paths and actual verification. This replaces per-file suggestions; never create a repository handoff inventory or infer Git tracking status. Checkpoint judgment does not authorize Git execution.

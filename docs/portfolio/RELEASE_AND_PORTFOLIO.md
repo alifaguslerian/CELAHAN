@@ -18,7 +18,7 @@ Prototype and final release are separate; no fixed deadline is invented. All ass
 
 Review README, AGENTS and grouped documents for current scope, correct links, open decisions and honest progress. Preserve approved assets and source provenance. Exclude secrets, database dumps, real private data, provider credentials, temporary reports/caches and unapproved academic/personal content.
 
-The owner selects visibility/license and performs Git manually. Agents cannot report tracking/branch/commit status because they never inspect Git. Per-file suggestions appear only in chat, not repository artifacts.
+The owner selects visibility/license and performs Git manually unless a specific operation is explicitly requested. The agent identifies commit-worthy checkpoints after reviewing the actual change and running relevant checks, grouping related files by purpose and separating independent work. English suggestions appear only at those checkpoints, in chat; unfinished work does not trigger an automatic handoff. Report Git status only when its inspection was explicitly requested and actually performed; never infer tracking or commit state from filesystem checks.
 
 ## 3. Prototype demonstration
 

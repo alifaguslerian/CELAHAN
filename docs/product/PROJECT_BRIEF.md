@@ -76,7 +76,7 @@ Next.js App Router + TypeScript remain required. The owner selected Better Auth'
 
 Success requires end-to-end user/admin workflows, isolated private data, unchanged public sample content, correct support rules, responsive bilingual UX, actual build/lint/typecheck and behavior/security checks, an accurate README/privacy notice, and verified deployment when separately requested. A secure design is not evidence of a completely secure implementation.
 
-Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing and [Decisions](../planning/DECISIONS.md) for unresolved choices. All Git operations remain manual; per-file English suggestions belong only in chat.
+Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing and [Decisions](../planning/DECISIONS.md) for unresolved choices. The agent identifies reviewed, coherent commit checkpoints, grouping related files by purpose and deferring suggestions for unfinished work. English suggestions belong only in chat; Git execution remains manual unless explicitly requested.
 
 ## 9. Sources and current authorization
 

@@ -11,7 +11,7 @@ Updated: October 30, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. Earlier entries remain decision history; superseded clauses below must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. Earlier entries remain decision history; superseded clauses below must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -33,7 +33,7 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-16 | No promise of finding every vulnerability or making a website completely secure; represent assessment, guidance, and bounded retesting | Owner explicitly accepted the guarantee limitation and package model; fixes are implemented by the application owner's developers |
 | DEC-17 | Use the selected hero, package-interaction, and character reference roles | Owner selected Constant Performance text composition, Avara four-character selection, a supplied doorway scene, and their Minecraft skin; see Visual References |
 | DEC-18 | Include About, strengths, FAQ and free-consultation invitations | Consultation now submits real portal records under DEC-30/31; assessments remain illustrative |
-| DEC-19 | Provide one English commit-message suggestion per file; the owner commits files individually | Explicit owner request; agents still perform no Git or repository API operations |
+| DEC-19 | Superseded by DEC-45: one English commit-message suggestion per file | Historical owner request; current policy groups reviewed changes by purpose at meaningful checkpoints, with suggestions in chat |
 | DEC-20 | Preserve the owner-approved revised desktop hero as the implementation visual target | The owner approved the small-pet/dim-doorway image and requested it be saved and followed closely; see Design Reference Lock and the unchanged reference PNG |
 | DEC-21 | Four package mascots are small compact pets with distinct body silhouettes and principal colors | Explicit owner correction/approval; the Minecraft source informs colors/motifs only, and identical bodies with accessory/color swaps are insufficient |
 | DEC-22 | Generate the four pet forms/shared visual rules and organize all project Markdown under subject-based docs folders | Explicit owner request; root README/AGENTS remain entry points, relative links are updated, Git stays manual, and generated concepts remain review proposals |
@@ -59,6 +59,7 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-42 | Do not generate existing parts again | Explicit owner correction during the desktop pass; preserve existing public/home/package/form/report/404/English references and logo/pet sources, adapting source copy later |
 | DEC-43 | Keep accounts, tickets and report/progress inside the existing website/header | Owner rejected the separate dashboard/sidebar and return-to-site control; ordinary login/signup or avatar beside ID/EN, Tiket only after login and personal Laporan & Progres only for trusted project owners; prior ticket distinctions remain |
 | DEC-44 | Remove the unsuitable portal batch and correct its documentation | Owner explicitly requested deletion; remove the 18 rejected PNGs, manifest and gallery, preserve accepted sources, generate no replacements and perform no Git operation |
+| DEC-45 | The agent judges meaningful commit checkpoints after review and relevant checks, grouping related files by purpose | Owner explicitly replaced per-file/per-edit handoffs; separate independent work, defer unfinished groups, keep English suggestions in chat and Git execution manual unless specifically requested |
 
 ## 3. Proposed baselines for review
 
@@ -143,5 +144,6 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 29, 2026 | Owner deferred permanent domain/DNS details and approved continuing account/portal flow planning. Added textual Portal UX Specification and synchronized navigation, draft auth policies, phase-specific delivery gates and documentation links. No new images, application/provider/DNS operations or Git |
 | October 30, 2026 | Owner authorized the next desktop portal design pass and explicitly prohibited regenerating existing parts. Generated 18 new account/user/admin frames, retained prior image/manifests unchanged and documented reuse/copy corrections. New visual review and portal phone views remain pending; no application/provider/Git work |
 | October 30, 2026 | Owner rejected the separate dashboard/sidebar portal and requested removal. Confirmed ordinary accounts/avatar beside ID/EN, tickets after login and report/progress only for owned projects within the same website. Removed rejected assets/gallery/manifest, corrected current requirements/architecture/UX and preserved accepted sources; no replacement images, application work or Git |
+| October 30, 2026 | Owner replaced per-file commit suggestions with agent-judged reviewed checkpoints. Group related files by purpose, separate independent work and withhold suggestions for incomplete changes. Updated standing instructions and related planning/publication guidance; no Git execution |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
