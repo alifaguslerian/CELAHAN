@@ -66,19 +66,20 @@ Public sample data stays local and immutable. Private illustrative report snapsh
 
 ## 6. Planned structure
 
-This is a responsibility map, not authorization to create empty folders or final filenames.
+This is a responsibility map, not authorization to create empty folders or final filenames. Route groups may organize access boundaries but must not create a separate portal layout. Header capabilities come from the current server session/project relationship; every protected request still performs its own authorization.
 
 ```text
 src/
   app/
     [locale]/
+      layout.tsx       # Shared site header/footer, ID/EN and account controls
       (public)/        # Home, services, process, about, sample, privacy
-      (account)/       # Chosen login/enrollment/recovery screens
-      (portal)/        # User dashboard, tickets, projects, private reports
-      admin/           # Admin workspace; server checks on every operation
+      (account)/       # Ordinary auth/profile tasks within the shared layout
+      (authenticated)/ # Tickets, progress, private reports; no dashboard shell
+      admin/           # Authorized task content in the same site layout
     api/               # Only Route Handlers actually selected
   components/
-    layout/            # Shared public/portal shells and locale controls
+    layout/            # One header/footer and conditional account/navigation controls
     ui/                # Small accessible reusable primitives
   features/
     consultations/     # Conditional intake and scheduling
