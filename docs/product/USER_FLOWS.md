@@ -1,12 +1,12 @@
 # CELAHAN — User and Admin Flows
 
 Status: Revised portal flow baseline for review; not implemented  
-Updated: October 29, 2026  
+Updated: October 30, 2026  
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
 ## 1. Route map
 
-Proposed routes use id/en locale prefixes and shared slugs. Public sample and private project reports are deliberately separate. Resource IDs are opaque locators, not authentication secrets. No names, contacts, website inputs, message text, session tokens or arbitrary return URLs enter route parameters.
+Proposed routes use id/en locale prefixes and shared slugs within the same website/header. There is no mandatory customer dashboard or separate portal shell. Public sample and private project reports are deliberately separate. Resource IDs are opaque locators, not authentication secrets. No names, contacts, website inputs, message text, session tokens or arbitrary return URLs enter route parameters.
 
 | Audience | ID example | Purpose |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ Proposed routes use id/en locale prefixes and shared slugs. Public sample and pr
 | Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Draft email/password verification/recovery pages; provider transport paths remain unselected |
 | Admin identity check | /id/account/two-factor/ | Draft authenticator challenge before admin access; no public admin signup |
 | Signed-in user | /id/request/ | Consultation form |
-| Signed-in user | /id/dashboard/, /id/tickets/, /id/tickets/[ticketId]/ | Own records and conversation |
+| Signed-in user | /id/tickets/, /id/tickets/[ticketId]/, /id/account/ | Own tickets/conversation and profile within the shared website |
 | Project owner | /id/projects/[projectId]/ | Authorized project and support information |
 | Project owner | /id/projects/[projectId]/reports/[reportId]/ | Published illustrative report |
 | Admin | /id/admin/, /id/admin/tickets/[ticketId]/ | Triage and protected internal notes |
@@ -38,16 +38,16 @@ The screen-level baseline is in Portal UX Specification. It proposes email/passw
 1. Choose login or the reviewed enrollment flow. No account is an admin by default.
 2. The selected provider/library authenticates and establishes a secure session.
 3. The server verifies the session before returning private data.
-4. A post-login destination is selected from approved internal routes, never an arbitrary URL.
+4. Continue within the same website: return to the permitted current destination or original safe internal task, never a forced dashboard or arbitrary external URL.
 5. Account verification/recovery uses the chosen provider flow; exact enrollment/delivery must be decided before implementation.
 
 Failed login is generic and rate-limited. Logout revokes the relevant session, clears private client caches and returns to a public page. Browser Back must not reveal stale private data after logout/account switch. A stale form on an expired session asks for login without silently submitting, duplicating, or storing its contents in a URL.
 
 ### User and admin navigation baseline
 
-User workspace: Overview, Tickets, Projects and Account. A new user's overview offers consultation and public sample access, without fictional records or a “become customer” switch. Existing users see only their own recent tickets, next actions and project/report/support summaries.
+The existing header retains public navigation and ID/EN. Beside ID/EN show Log in / Sign up to guests; after login replace these with the user's avatar/account menu (initials fallback). Guests have no ticket navigation. Signed-in users see Tiket for initial consultations and own conversations. Only users with a server-authorized project see Laporan & Progres, including progress while awaiting the first report. Public Contoh Laporan remains separate and ungated.
 
-Admin workspace: Queue, Projects and Account. Triage summaries lead to the shared-reply/private-note detail and project/report actions. Queue filters do not grant access; all server requests still enforce resource permissions. Admin using the user workspace sees their own user records there.
+Admin management entry is restricted to authorized admins and opens task content within the same site/header. Triage leads to shared replies, separate internal notes, project scope and report publication. No replacement sidebar, separate customer overview or Kembali ke situs/Back to site control. Every server operation still enforces exact resource permissions.
 
 Phone uses a labeled menu and stacked details, with no mandatory bottom bar or hover-only control. Permanent domain/DNS identity is deferred; it does not change these flows or require a domain purchase now.
 
@@ -86,7 +86,7 @@ Every project stage change is admin-controlled, audited and labeled illustrative
 
 Admin drafts an illustrative report for an authorized project using a canonical five-row snapshot, reviews it, and publishes a version. Users cannot read drafts or withdrawn versions. Publication is an atomic server operation. The first private project publication also sets support_started_at/expiry once using the reviewed calendar policy; later versions never restart the period.
 
-The owner opens the private report from their project. All fields, limitations, original finding data and illustration labels are present in ID/EN. The private URL is never a public share link. Failed access reveals no title, counts, owner identity or findings.
+The owner opens Laporan & Progres from the site navigation and selects an owned project if needed. Before publication this destination shows illustrative progress and an awaiting-report state without exposing drafts. After publication it opens the authorized private report in the same site. All fields, limitations, original finding data and illustration labels are present in ID/EN. The private URL is never a public share link. Failed access reveals no title, counts, owner identity or findings.
 
 The user may report programmer changes against a published finding. They cannot directly set a verified outcome. A retest request references the finding and change description, not uploaded proof or credentials. Admin records a separate explicitly illustrative review event; the original public sample and published version remain unchanged.
 
@@ -120,7 +120,7 @@ Drafts remain in memory in v1; no localStorage/IndexedDB/offline copies of priva
 
 Optional guide topics remain local scripted content: scope, risk, sample findings and retesting. Guide interaction is distinct from authenticated ticket messaging. Text fallback, close/Escape/focus return, mobile keyboard handling and reduced motion remain required.
 
-Handle empty dashboards, pending consultation, no project, no published report, expired support, denied access, expired session, stale concurrent update and failed save explicitly. Do not echo raw target addresses or sensitive errors in 404 pages. No generic “scan failed” message may imply a scanner exists.
+Handle an empty ticket list, pending consultation, awaiting report, expired support, denied access, expired session, stale concurrent update and failed save within the relevant same-site task. Do not add an empty customer dashboard or report navigation for users without projects. Do not echo raw target addresses or sensitive errors in 404 pages. No generic “scan failed” message may imply a scanner exists.
 
 ## 11. Verification
 
