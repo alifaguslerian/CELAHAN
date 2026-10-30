@@ -54,14 +54,14 @@ Auth sessions/verification/recovery records follow the reviewed Better Auth vers
 | --- | --- | --- | --- | --- |
 | Public content and immutable sample | Read | Read | Read | Read |
 | Create consultation ticket | Login required | Own submission | Own submission | Own submission or reviewed admin workflow |
-| Read ticket/shared messages | Deny | Deny | Own ticket only | Authorized workspace |
-| Reply | Deny | Deny | Own open/reviewable ticket | Authorized workspace |
+| Read ticket/shared messages | Deny | Deny | Own ticket only | Authorized admin |
+| Reply | Deny | Deny | Own open/reviewable ticket | Authorized admin |
 | Set priority/status/confirm schedule | Deny | Deny | Request only where allowed | Validate and audit |
 | Internal notes | Deny | Deny | Deny, including payloads | Read/write authorized notes |
 | Create/assign/activate project | Deny | Deny | Deny | Validate and audit |
-| Read project/support details | Deny | Deny | Own project | Authorized workspace |
-| Read draft/withdrawn report | Deny | Deny | Deny | Authorized workspace |
-| Read published private report | Deny | Deny | Own project/report/version | Authorized workspace |
+| Read project/support details | Deny | Deny | Own project | Authorized admin |
+| Read draft/withdrawn report | Deny | Deny | Deny | Authorized admin |
+| Read published private report | Deny | Deny | Own project/report/version | Authorized admin |
 | Publish/correct/withdraw report | Deny | Deny | Deny | Validate and audit |
 | Assert programmer fix / request retest | Deny | Deny | Own published finding/project | Review request |
 | Record illustrative verified outcome / reserve cycle | Deny | Deny | Deny | Validate eligibility and audit |
