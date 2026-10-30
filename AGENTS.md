@@ -14,12 +14,14 @@
 
 8. `docs/design/MOBILE_DESIGNS.md` for 27 portrait mobile-web references, scroll assembly, touch/keyboard rules, and content overrides. New mobile images require review.
 9. `docs/design/LOGO_GUIDELINES.md` for the owner-approved Open Threshold logo reference and production-export requirements. Use this direction; do not reopen discarded alternatives without an owner request.
-10. `docs/design/PORTAL_UX_SPEC.md` for the drafted account/user/admin screen inventory and interaction states. It does not approve the proposed enrollment/second-factor policies or authorize new images/code.
+10. `docs/design/PORTAL_UX_SPEC.md` for the corrected integrated-site account/ticket/report navigation. The owner rejected the separate dashboard/sidebar shell and its 18-image batch. Account controls belong beside ID/EN; tickets appear after login and personal report/progress access requires a trusted project association.
+
 
 ## Authorization and work stage
 
 - The current stage is documentation and requested image-based design exploration. The revised desktop hero has been approved and saved in the project. Produce additional design assets only for stages/screens the owner requests; do not install dependencies, write application code, or deploy until implementation is requested.
 - Approval of an idea does not automatically authorize asset production or implementation.
+- The owner rejected the October 30 separate portal designs and explicitly requested removal of unsuitable material. Remove the rejected batch/gallery/manifest and their current references. Keep accepted public/home/package/form/report/404/English references and brand/pet sources. This correction does not authorize replacement images, application code or provider setup.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
 - Update related documents when requirements change. Do not leave contradictory decisions across files.
 - The owner authorized the October 29 portal documentation revision. Update the broad phase plan for the changed scope, but keep later delivery packages coherent and moderately sized. Review missing portal/admin/mobile flows before detailed implementation decomposition; no application work is authorized merely by revising documents.
@@ -62,6 +64,7 @@ The project owner prohibits agents from touching Git in any way.
 
 - The portfolio combines product design, frontend development and backend engineering; account/database features must serve real portal workflows.
 - Design dedicated mobile and desktop experiences with equivalent functionality and shared data/domain logic.
+- Keep one CELAHAN website with its existing shared header. Place ordinary login/signup or the signed-in avatar/account menu beside ID/EN. Hide ticket navigation from guests; show personal report/progress navigation only for users with authorized projects. Keep initial consultation versus project support/retest distinctions. Do not introduce a separate customer dashboard/sidebar, forced post-login overview or Kembali ke situs/Back to site control; admin task content uses the same site header.
 - All public content and interactions support Indonesian and English. Do not use flags as the only language labels.
 - The mascot is an optional guide; access to information and core functionality must not depend on it.
 - Preserve the approved hero reference in `design/references/home-hero-desktop-approved-v1.png`. Do not overwrite it or silently substitute a regenerated design. Compare future desktop implementation against the saved image and record reviewed changes.
