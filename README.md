@@ -6,7 +6,7 @@ A bilingual web security assessment service concept for university coursework an
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Status — October 29, 2026
+## Status — October 30, 2026
 
 **Documentation and design stage. No runnable application, backend, database or deployment has been created.**
 
@@ -14,7 +14,7 @@ The owner approved expanding the planned website into a functional service porta
 
 This replaces the earlier client-only/no-storage architecture. It does not authorize real scanning, code repair, account/provider provisioning or application implementation in this documentation step.
 
-The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. Portal/admin screens and revised form/privacy behavior need review; older no-storage/reset lettering is historical. Final vectors/fonts/runtime assets remain pending.
+The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. Final vectors/fonts/runtime assets remain pending.
 
 ## Planned experience
 
@@ -22,7 +22,7 @@ The public visual direction remains: approved dim-doorway hero, Open Threshold l
 - Real authentication and authenticated consultation with name, company, website, problem, contact and proposed schedule.
 - Reactive, preventive and unsure/mixed needs; user-reported symptoms are not automatic diagnoses.
 - Separate prospect consultation and project-linked support/retest/follow-up tickets.
-- User dashboard, in-app user/admin replies, admin triage, separate internal notes and explicit schedule confirmation.
+- One shared website header: login/signup or avatar beside ID/EN; Tiket after login and Laporan & Progres for authorized project owners.
 - Trusted project association and server-enforced access to published private illustrative reports.
 - Bounded support for at most three months from the first private project report publication; later report versions never restart it. Temporary discount details remain open.
 - Dedicated phone/desktop UI and Indonesian/English functionality using shared domain rules.
@@ -48,8 +48,8 @@ Start with the [grouped index](docs/README.md).
 | [Project brief](docs/product/PROJECT_BRIEF.md) | Goals, revised scope, audiences and milestones |
 | [PRD](docs/product/PRD.md) | Functional requirements and acceptance scenarios |
 | [Service operations](docs/product/SERVICE_OPERATIONS.md) | Ticket/project/report lifecycle, scheduling, triage and three-month support |
-| [User/admin flows](docs/product/USER_FLOWS.md) | Public, account, dashboard and private-resource journeys |
-| [Portal UX specification](docs/design/PORTAL_UX_SPEC.md) | Draft account/navigation/dashboard/ticket/report screens, states and review criteria |
+| [User/admin flows](docs/product/USER_FLOWS.md) | Public, account, ticket and private-resource journeys |
+| [Portal UX specification](docs/design/PORTAL_UX_SPEC.md) | Integrated header/account/ticket/report states and review criteria |
 | [Content and illustration](docs/product/CONTENT_AND_SIMULATION.md) | Canonical findings, translations and truthful portal copy |
 | [Service packages](docs/product/SERVICE_PACKAGES.md) | Four scope concepts and reviewable numerical terms |
 | [Architecture](docs/engineering/ARCHITECTURE.md) | Server/auth/database boundaries and planned organization |
@@ -74,7 +74,7 @@ There is no package.json, dependency installation, executable application or val
 
 ## Current review gates
 
-Before affected implementation: review enrollment/recovery/admin provisioning, database adapter/runtime/transport, support calendar/cycle rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Auth/database selection and the first-report support trigger are confirmed. The account/user/admin UX baseline is drafted in Portal UX Specification; it is not a new approved image set. Email provider/domain/DNS become a gate before real public verification/recovery email, not before flow design. Numerical package details and mobile/final assets retain their review status.
+Before affected implementation: review enrollment/recovery/admin provisioning, database adapter/runtime/transport, support calendar/cycle rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Auth/database selection and the first-report support trigger are confirmed. The integrated shared-site navigation is owner-confirmed in Portal UX Specification; detailed components and auth policies remain reviewable. The separate portal image batch was rejected and removed. Email provider/domain/DNS become a gate before real public verification/recovery email, not before flow design. Numerical package details and mobile/final assets retain their review status.
 
 No fixed deadline or required video format has been supplied. Prototype submission and portfolio completion are separate milestones; a prototype is not proof that final security/performance/deployment checks passed.
 
