@@ -31,11 +31,11 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-13 | FUN-15–16 | All packages and unsure path in ID/EN, keyboard/touch fallback, same public five findings |
 | T-14 | AC-11 | Shared fictional IDR/caps/effort/cycles, three-month wording; no obsolete 30/60-day window |
 | T-15 | FUN-18, QLT-06 | Browser hero vs preserved PNG, approved logo direction, distinct pet silhouettes/colors |
-| T-16 | FUN-19, AC-18 | Chosen signup/verification/login/recovery/logout, generic errors and server-wide rate limits |
+| T-16 | FUN-19, 21, AC-06, 18 | Signup/login/recovery/logout and reviewed gates; shared header beside ID/EN for guest/prospect/project owner/admin; no forced dashboard; hidden ticket/report entries cannot bypass server checks |
 | T-17 | AC-10, 12 | Two-user/admin object and nested-ID read/write/list/count isolation; no mass-assigned privileges |
 | T-18 | FUN-07, AC-14 | Shared replies visible only to ticket owner/admin; internal notes absent from user HTML/JSON/RSC |
 | T-19 | AC-13 | Proposed vs confirmed schedule, UTC/IANA conversion, past/invalid/conflicting/stale confirmation |
-| T-20 | FUN-23 | Admin-only project creation/association; forged customer flag/email/website never grants rights |
+| T-20 | FUN-21, 23 | Admin-only project association; forged customer flag/email/website cannot grant rights; report/progress entry follows trusted assignment/revocation and supports awaiting-first-report state |
 | T-21 | FUN-10, AC-14, 20 | Draft/published/withdrawn versions; atomic first-publication support start, immutable snapshots and project isolation |
 | T-22 | FUN-24, AC-15 | First private publication starts once; activation/sample/first-view do not; month-end/leap-year/UTC/exact expiry, clock tampering and no version/ticket/locale reset |
 | T-23 | AC-16 | Timely request reviewed after expiry; concurrent reservation/retry cannot exceed cycle allowance |
@@ -114,7 +114,7 @@ The figures below are proposed project budgets, not measured results:
 
 | Measure | Baseline target | Evaluation |
 | --- | --- | --- |
-| LCP | ≤ 2.5 seconds in documented lab testing | Median of three cold loads for home, consultation, dashboard and private report in each locale |
+| LCP | ≤ 2.5 seconds in documented lab testing | Median of three cold loads for home, consultation, tickets and private report in each locale |
 | CLS | ≤ 0.1 | Measure loading and interactions; inspect intrinsic asset sizes and panels |
 | Interaction response | Target ≤ 200 ms for representative interactions | Record form, dialog, locale, and report-expansion traces; do not call a single trace field INP |
 | Lighthouse mobile | Performance ≥ 90 as a lab indicator | Record tool/version/throttling/environment; scores do not replace UX testing |
