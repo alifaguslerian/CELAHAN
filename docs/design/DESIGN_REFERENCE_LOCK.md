@@ -1,14 +1,14 @@
 # CELAHAN — Approved Hero Reference and Design Continuity
 
-Status: Desktop visual directions accepted and preserved; 27 mobile-web references generated for review  
-Updated: October 29, 2026  
+Status: Accepted public references preserved; separate portal batch rejected and removed; integrated-site direction confirmed  
+Updated: October 30, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
 
 ## October 29 portal scope update
 
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
 
-Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): authenticated persistence, tickets, private illustrative reports and bounded support. The owner rejected the separate dashboard/sidebar portal batch; its images/gallery/manifest are removed. [Integrated account/ticket/report UX](PORTAL_UX_SPEC.md) keeps the existing header, account controls beside ID/EN, Tiket after login and Laporan & Progres for authorized project owners. Existing public PNGs/manifests remain unchanged; no replacements are generated.
 
 ## 1. Approved master
 
@@ -56,7 +56,7 @@ The Minecraft screenshot supplies color/motif inspiration only. It is not a prod
 | C. Service discovery | Services/packages overview, selected-package detail, comparison/fit guidance, and eight-stage process | Desktop detail/comparison/process frames generated for review; corresponding mobile references generated for review |
 | D. Historical simulation journey | Prior form/success/status/report composition | Sources retained; disposable-ticket/no-storage/manual private-status behavior is superseded |
 | E. Supporting experience | About, privacy, 404, menus/FAQ/dialogs/guide | Composition retained; privacy/locale-reset copy requires portal update |
-| F. New portal | Accounts, user/admin dashboard, ticket conversation, scheduling, private reports/support | Requirements drafted October 29; no new images produced or approved |
+| F. Integrated account/service tasks | Ordinary auth, profile beside ID/EN, conditional tickets, owned report/progress and same-site admin content | Separate 18-frame batch rejected/removed; reuse public form/report references without regeneration |
 
 The full design scope includes desktop and mobile compositions and actual Indonesian/English content. On October 28 the owner explicitly requested the complete desktop pass first, with mobile later; that instruction supersedes the earlier paired-production sequence. Produce readable page/section references rather than one tiny all-site montage. Reusable error/control states may share a component specification instead of requiring a separate generated image for every combination. Screen images are proposals until reviewed; image generation does not prove interaction, translation, accessibility, or responsive behavior.
 
