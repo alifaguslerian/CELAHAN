@@ -87,7 +87,7 @@ Error and risk meaning uses explicit text, ordering, and structure. High/Medium/
 
 ### Portal states added October 29
 
-Reuse these tokens for account, user/admin dashboard, ticket conversation, schedule and private reports. Add explicit saving/saved/failed, empty, unauthorized/session-expired, draft/published, requested/confirmed and support-expired states. Status meaning uses text, never pet color alone.
+Reuse these tokens in the existing site header, ordinary account forms, tickets, scheduling, owned report/progress and authorized admin content. The owner rejected a separate dashboard/sidebar shell; account controls sit beside ID/EN and private entries follow trusted login/project state. Add explicit saving/saved/failed, empty, unauthorized/session-expired, draft/published, requested/confirmed and support-expired states. Status meaning uses text, never pet color alone.
 
 Internal notes need a clear admin-only label and distinct editor context; visibility must also be enforced server-side. Confirmation must name the privileged action. Do not reuse a “reset demo” action for changing language or deleting stored data. No new portal screen is approved by this token extension.
 
