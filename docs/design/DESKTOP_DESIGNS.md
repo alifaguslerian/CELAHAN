@@ -10,7 +10,7 @@ References: [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYST
 
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
 
-Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): authenticated persistence, tickets, private illustrative reports and bounded support. The owner rejected the separate dashboard/sidebar portal batch; its images/gallery/manifest are removed. [Integrated account/ticket/report UX](PORTAL_UX_SPEC.md) keeps the existing header, account controls beside ID/EN, Tiket after login and Laporan & Progres for authorized project owners. Existing public PNGs/manifests remain unchanged; no replacements are generated.
 
 ## Review status and authority
 
