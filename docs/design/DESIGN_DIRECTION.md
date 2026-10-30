@@ -1,13 +1,13 @@
 # CELAHAN — Design Direction
 
-Status: Desktop directions accepted; 27 mobile-web references generated for review · October 29, 2026  
+Status: Accepted public direction preserved; same-site account/ticket/report integration confirmed · October 30, 2026  
 References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Design Reference Lock](DESIGN_REFERENCE_LOCK.md), [Portal UX Specification](PORTAL_UX_SPEC.md)
 
 ## October 29 portal scope update
 
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
 
-Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): real authenticated persistence, user/admin tickets, private project reports and three-month support. Public sample access remains unauthenticated. New account/portal/admin screens need desktop/mobile review; none are claimed as generated or approved. Existing PNGs/manifests are preserved unchanged.
+Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): authenticated persistence, tickets, private illustrative reports and bounded support. The owner rejected the separate dashboard/sidebar portal batch; its images/gallery/manifest are removed. [Integrated account/ticket/report UX](PORTAL_UX_SPEC.md) keeps the existing header, account controls beside ID/EN, Tiket after login and Laporan & Progres for authorized project owners. Existing public PNGs/manifests remain unchanged; no replacements are generated.
 
 ## 1. Character and principles
 
@@ -44,8 +44,8 @@ The concrete authored token/state baseline is now in [Shared Visual System](VISU
 | Process | Numbered list/timeline with stage outputs | Vertical timeline; all eight stages readable without horizontal dragging |
 | Form | Main form with a guidance panel; controlled input widths | Single column; guidance close to inputs; CTA stays in the flow and clear of the keyboard |
 | Saved request | Durable reference and pending admin/schedule state | Clear saved outcome, wrapping reference, next action |
-| User portal | Own ticket/project summaries and published reports | Stacked task-focused summaries and compact conversation |
-| Admin workspace | Reviewed queues, internal notes, explicit privileged actions | Priority/context before details; usable forms rather than a shrunken table |
+| Tickets/account | Own list/conversation and focused account forms inside the existing site header | Same account/menu entry beside ID/EN; stacked task content |
+| Admin management | Restricted task content in the shared website header; separate notes and privileged actions | Same site/menu; readable priority/context/forms |
 | Private report/support | Authorized project/version and benefit dates | Expandable findings and clear support/expiry state |
 | Status/report | Compact stepper, semantic table, finding details | Compact/vertical status and an expandable finding list with field labels |
 | Privacy | Reading column with headings and an accurate update date | Single column, plain language, no wide tables |
@@ -105,7 +105,7 @@ Current desktop output is mapped in [Desktop Design Gallery](DESKTOP_DESIGNS.md)
 
 Retain/review public presentation patterns for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
 
-Add desktop/mobile account login/enrollment/recovery, user/admin dashboard, initial and follow-up ticket forms, shared messages/internal notes, requested/confirmed scheduling, private draft/published report, expiry, session failure and denied-access states. Locale switching preserves saved data; only unsaved edits need a warning.
+Integrate ordinary login/signup, avatar/account menu, authenticated tickets and eligible Laporan & Progres into the existing desktop/mobile website. Reuse initial/follow-up forms, shared messages, schedule states and report presentation. Admin management uses the same header. No separate user dashboard/sidebar, forced overview or return-to-site control. Locale changes preserve saved data.
 
 Also cover the four-character group, each selected package, package comparison, uncertain/mismatched package guidance, the authenticated consultation entry, FAQ, and About. Use the complete draft price/cap/effort/retest content from Service Packages section 6 for review; final UI follows the reviewed version. Review absent/failed mascot artwork, long localized IDR prices, simultaneous caps, ATLAS custom-estimate wording, and the same finding dataset under every package selection. Fictional-price and conceptual-effort labels remain close to their values, including on mobile.
 
@@ -113,7 +113,7 @@ Review both languages. Not every combination requires a separate mockup if its c
 
 ### Account and portal screen baseline
 
-[Portal UX Specification](PORTAL_UX_SPEC.md) now defines proposed account forms, user/admin navigation, adaptive overview, conditional consultation, shared-reply/internal-note separation, project reports, publication confirmation and empty/error/expired states. Review those textual contracts before producing requested desktop/phone references. No new screen image is approved or generated by this document update.
+[Portal UX Specification](PORTAL_UX_SPEC.md) records the owner-confirmed integrated-site direction and conditional account/ticket/report navigation. The rejected 18-image portal batch is removed. Detailed auth policy, component behavior and rendered mobile/accessibility checks remain reviewable; no replacement asset batch is authorized.
 
 Permanent domain/DNS choice is deferred. Use neutral brand identity and configuration-driven deployment/sender details in future implementation; do not invent a domain or a contact email in a mockup.
 
