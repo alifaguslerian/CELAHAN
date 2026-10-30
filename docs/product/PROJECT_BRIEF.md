@@ -56,7 +56,7 @@ The owner approved a maximum three-month support period starting when the first 
 
 ## 6. Planned experience
 
-Public pages introduce the service, four packages, eight-stage process, About/FAQ, privacy, and a sample report without login. Account pages support a chosen registration/login/recovery approach. Authenticated users manage consultation tickets, conversations, projects, reports, and follow-up. Admin screens support triage, schedule confirmation, project assignment, report publication, and support decisions.
+Public pages introduce the service, four packages, eight-stage process, About/FAQ, privacy and a sample report without login. The existing header places ordinary login/signup or the signed-in avatar beside ID/EN. Tiket appears after login; Laporan & Progres appears only for users with trusted project associations. Users read conversations, progress, reports and follow-up within the same website. Admin management content uses the same header with server-authorized actions, not a separate portal/sidebar shell.
 
 Project ownership is assigned server-side by an authorized admin. A registered account alone is not proof of customer status, payment, website ownership, or testing permission. V1 proposes a single owner account per project; organizational team access is deferred.
 
@@ -66,7 +66,7 @@ The form includes name, company, website, problem, contact method/details, and p
 
 Preserve the approved [hero](../design/DESIGN_REFERENCE_LOCK.md), [Open Threshold logo direction](../design/LOGO_GUIDELINES.md), warm near-black/ivory/sand palette, subdued doorway, and compact pet identity. The four pet silhouettes and principal colors remain distinct. The homepage cluster retains names above on hover/focus and details on activation.
 
-The approved public visual direction remains useful. The 24 desktop and 27 mobile references predate the portal change; old no-storage, disposable-ticket, privacy, and language-reset behavior is superseded. Authenticated and admin screens need new review. The authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) now defines account/navigation/dashboard/ticket/report states for that review without producing new images. Do not regenerate images or claim design approval for those screens during this documentation revision.
+The approved public visual direction remains useful. The 24 desktop and 27 mobile references are preserved; old no-storage, disposable-ticket, privacy and language-reset behavior is superseded. The owner rejected the separate dashboard/sidebar portal batch and requested cleanup. The corrected [account/ticket/report UX](../design/PORTAL_UX_SPEC.md) integrates ordinary accounts and conditional navigation into the same website. No replacement image generation or application work is authorized by this correction.
 
 ID/EN and mobile/desktop share domain logic and equivalent capabilities. Mascot guidance remains optional and scripted, separate from real user/admin ticket messages. Changing language must not erase database records or restart support.
 
