@@ -14,6 +14,11 @@ test('language switching keeps the supported destination and public anchor', () 
   assert.equal(localeHref('/id/', 'en', '#about'), '/en/#about');
   assert.equal(localeHref('/en/login/', 'id'), '/id/login/');
   assert.equal(localeHref('/id/register', 'en'), '/en/register/');
+  assert.equal(localeHref('/id/account/', 'en'), '/en/account/');
+  assert.equal(localeHref('/en/account/recovery/', 'id'), '/id/account/recovery/');
+  assert.equal(localeHref('/id/projects/', 'en'), '/en/projects/');
+  assert.equal(localeHref('/id/login/', 'en', '', 'account'), '/en/login/?next=account');
+  assert.equal(localeHref('/id/login/', 'en', '', 'https://foreign.invalid/'), '/en/login/');
 });
 
 test('language switching cannot copy external destinations or private input', () => {

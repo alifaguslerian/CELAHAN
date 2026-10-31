@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { AccountNotice } from '@/components/layout/account-notice';
+import { AccountPage } from '@/components/account/account-page';
 import { shell } from '@/content/shell';
 import { isLocale } from '@/lib/routing';
 
@@ -13,5 +13,5 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Login({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <AccountNotice locale={locale} mode="login" />;
+  return <AccountPage locale={locale} mode="login" />;
 }

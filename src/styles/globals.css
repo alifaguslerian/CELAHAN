@@ -16,10 +16,10 @@
 html { scroll-padding-top: 2rem; }
 body { margin: 0; background: var(--ink); color: var(--ivory); font: 1rem/1.6 var(--reading); }
 a { color: inherit; text-underline-offset: .25em; }
-button { font: inherit; color: inherit; }
+button, input { font: inherit; color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; border-radius: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; border-radius: 3px; }
 p, h1, h2 { margin: 0; overflow-wrap: break-word; }
 main:focus { outline: none; }
 main { min-height: 55vh; }
@@ -63,6 +63,31 @@ h1 em { font-family: var(--emphasis); font-weight: 400; color: var(--sand); line
 .account-page h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); max-width: 22ch; }
 .account-page > p:not(.eyebrow) { margin-top: 2rem; max-width: 58ch; }
 .account-page .primary-action { margin-top: 2.5rem; }
+.account-form { max-width: 32rem; margin-top: 2rem; }
+.account-form fieldset { display: grid; gap: 1.5rem; border: 0; margin: 0; padding: 0; min-width: 0; }
+.account-form label { display: grid; gap: .5rem; }
+.account-form input { width: 100%; min-width: 0; min-height: 48px; background: var(--surface); border: 1px solid var(--border); border-radius: .5rem; padding: .7rem .9rem; }
+.account-form .primary-action { border: 0; margin-top: .5rem; justify-content: center; }
+.account-form button:disabled { opacity: .7; cursor: wait; }
+.password-field { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .5rem; }
+.password-field input { flex: 1 1 12rem; }
+.password-field button, .text-button { min-height: 44px; border: 1px solid var(--border); border-radius: .5rem; background: transparent; padding: .5rem .8rem; }
+.field-help { color: var(--muted); font-size: .9rem; margin-top: .5rem; }
+.form-status { min-height: 1.6rem; margin-block: 1rem; max-width: 58ch; }
+.account-navigation { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 1.5rem; }
+.account-navigation a { display: inline-flex; align-items: center; min-height: 44px; }
+.account-form .checkbox-label { display: flex; align-items: center; gap: .75rem; }
+.checkbox-label input { width: 1.25rem; min-height: 1.25rem; }
+.auth-secrets { display: grid; gap: 1rem; padding-block: 1rem; border-block: 1px solid var(--border); overflow-wrap: anywhere; }
+.auth-secrets h2 { font-size: 1.25rem; }
+.auth-secrets ul { padding-left: 1.5rem; }
+.account-menu { position: relative; }
+.account-menu summary { display: grid; place-items: center; cursor: pointer; width: 44px; min-height: 44px; border: 1px solid var(--border); border-radius: 50%; list-style: none; }
+.account-menu summary::-webkit-details-marker { display: none; }
+.account-menu-panel { display: grid; position: absolute; top: calc(100% + .5rem); right: 0; min-width: 12rem; max-width: 80vw; padding: .7rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--surface); }
+.account-menu-panel button { background: transparent; border: 0; min-height: 44px; text-align: left; padding: .5rem .65rem; }
+.account-menu-panel a { justify-content: flex-start; }
+.account-menu-panel p { font-size: .9rem; }
 
 @media (max-width: 79rem) {
   .site-header, main, .site-footer { width: calc(100% - 4rem); }
