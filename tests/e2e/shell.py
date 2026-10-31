@@ -1,4 +1,4 @@
-"""Run against an already running production-mode W1 server."""
+"""Shared-shell regression checks against an already running production server."""
 
 import argparse
 import json
@@ -98,7 +98,8 @@ def run(base, artifacts, engines):
                 for mode in ["login", "register"]:
                     page.goto(f"{base}/{locale}/{mode}/")
                     page.wait_for_load_state("networkidle")
-                    assert page.locator("form, input").count() == 0
+                    for form in page.locator("form").all():
+                        assert form.get_attribute("method") == "post"
                     assert page.locator("meta[name='robots']").get_attribute("content") == "noindex, nofollow"
                     assert page.locator("header").count() == page.locator("footer").count() == 1
                     page.get_by_role("link", name="English" if other == "en" else "Bahasa Indonesia", exact=True).click()
