@@ -1,0 +1,51 @@
+import type { Locale } from '@/lib/routing';
+
+export const disclaimer = {
+  id: 'Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.',
+  en: 'A concept project for a portfolio and university coursework. Not a real service.',
+};
+
+export const shell = {
+  id: {
+    title: 'CELAHAN — Kenali celah. Pahami risiko.',
+    description: 'Konsep penilaian keamanan aplikasi web untuk portofolio dan tugas kuliah. Tidak melakukan pengujian website.',
+    skip: 'Lewati ke konten', home: 'Beranda', about: 'Tentang konsep', boundaries: 'Batasan',
+    language: 'Bahasa', menu: 'Menu', close: 'Tutup menu', navigation: 'Navigasi utama',
+    login: 'Masuk', register: 'Daftar',
+    eyebrow: 'Penilaian keamanan aplikasi web',
+    heading: ['Kenali celah.', 'Pahami risiko.', 'Perkuat aplikasimu.'],
+    intro: 'Cakupan yang jelas. Temuan yang diprioritaskan. Panduan perbaikan yang bisa dipahami.',
+    action: 'Pahami konsepnya',
+    aboutTitle: 'Risiko yang dipahami. Langkah yang terarah.',
+    aboutBody: 'CELAHAN memperkenalkan konsep asesmen keamanan: menyepakati cakupan, menjelaskan risiko, dan memberi panduan bagi programmer pemilik website.',
+    aboutNote: 'Situs ini sedang dikembangkan. Akses akun, konsultasi, dan laporan proyek belum tersedia.',
+    boundariesTitle: 'Pahami batasannya.',
+    boundariesBody: 'Pengujian dan laporan menggunakan ilustrasi. CELAHAN tidak mengakses website yang dimasukkan, memperbaiki kode, atau menjamin keamanan menyeluruh.',
+    boundariesNote: 'Tidak ada pengumpulan data akun atau permintaan konsultasi pada halaman ini.',
+    footerNavigation: 'Navigasi footer',
+    accountTitle: 'Akses akun belum tersedia.',
+    accountBody: 'Pendaftaran dan masuk akun belum dibuka. Halaman ini tidak meminta kredensial dan tidak menyimpan data akun.',
+    back: 'Kembali ke beranda',
+  },
+  en: {
+    title: 'CELAHAN — Recognize gaps. Understand risk.',
+    description: 'A web security assessment concept for a portfolio and university coursework. No website testing is performed.',
+    skip: 'Skip to content', home: 'Home', about: 'About the concept', boundaries: 'Limitations',
+    language: 'Language', menu: 'Menu', close: 'Close menu', navigation: 'Main navigation',
+    login: 'Log in', register: 'Sign up',
+    eyebrow: 'Web application security assessment',
+    heading: ['Recognize gaps.', 'Understand risk.', 'Strengthen your application.'],
+    intro: 'A clear scope. Prioritized findings. Guidance your developers can understand.',
+    action: 'Explore the concept',
+    aboutTitle: 'Understand the risk. See the next step.',
+    aboutBody: 'CELAHAN introduces an assessment concept: agree on scope, explain risk, and provide guidance for the website owner’s programmers.',
+    aboutNote: 'This site is in development. Accounts, consultations, and project reports are not yet available.',
+    boundariesTitle: 'Understand the limitations.',
+    boundariesBody: 'Assessments and reports use illustrative content. CELAHAN does not access submitted websites, repair code, or guarantee complete security.',
+    boundariesNote: 'This page does not collect account data or consultation requests.',
+    footerNavigation: 'Footer navigation',
+    accountTitle: 'Account access is not yet available.',
+    accountBody: 'Registration and login are not open yet. This page does not request credentials or store account data.',
+    back: 'Back to home',
+  },
+} satisfies Record<Locale, Record<string, string | string[]>>;
