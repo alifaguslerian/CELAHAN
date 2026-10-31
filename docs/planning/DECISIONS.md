@@ -1,6 +1,6 @@
 # CELAHAN — Decision Log
 
-Updated: October 30, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. All entries below come from the conversation or documentation planning, not application test results.
+Updated: October 31, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. Decisions are not application test results; validation records contain actual evidence.
 
 ## 1. Decision statuses
 
@@ -11,7 +11,7 @@ Updated: October 30, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 authorizes W1 only after the analysis review. Earlier entries remain decision history; superseded clauses below must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 records W1 authorization; DEC-47–48 subsequently authorize isolated W2 and its reviewed identity policy. Earlier entries remain history; superseded clauses must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -61,6 +61,8 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-44 | Remove the unsuitable portal batch and correct its documentation | Owner explicitly requested deletion; remove the 18 rejected PNGs, manifest and gallery, preserve accepted sources, generate no replacements and perform no Git operation |
 | DEC-45 | The agent judges meaningful commit checkpoints after review and relevant checks, grouping related files by purpose | Owner explicitly replaced per-file/per-edit handoffs; separate independent work, defer unfinished groups, keep English suggestions in chat and Git execution manual unless specifically requested |
 | DEC-46 | Implement and verify W1 only after the approved project analysis | Explicit October 30 authorization: reconcile the two gate/commit wording inconsistencies first, verify tooling and explain dependencies, build the shared bilingual foundation without regenerating references; no W2, provider provisioning, deployment or Git |
+| DEC-47 | Implement and verify W2, with the isolated database path delegated to the implementer | October 31 owner instruction and follow-up; dedicated Neon Free test project selected, no public enrollment, paid upgrade, external email, deployment, Git or later-package authorization |
+| DEC-48 | Allowlisted synthetic enrollment, mandatory email verification, local email-capture recovery, controlled local admin provisioning and mandatory admin TOTP for W2 | Owner explicitly approved these test policies; public identity intake and real verification/recovery delivery retain separate gates |
 
 ## 3. Proposed baselines for review
 
@@ -91,10 +93,10 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DRAFT-23 | Operations state machines, single project owner, shared messages and separate internal notes | Concrete baseline in Service Operations and Data and Access; team access deferred |
 | DRAFT-24 | Activation-based start superseded by DEC-39; proposed three-calendar-month Asia/Jakarta/month-end/exclusive-expiry mechanics | Trigger is first private report publication; calendar/cycle details remain reviewable, timely requests remain reviewable later |
 | DRAFT-25 | Temporary discount applies to scoped follow-up security review rather than code maintenance | Fits DEC-35; final eligible work, percentage and cutoff need owner confirmation |
-| DRAFT-26 | Login required for submissions; chosen enrollment/verification/recovery; controlled admin provisioning | Prevents anonymous ticket-link access; do not silently choose public signup or a provider |
+| DRAFT-26 | Login required for submissions; controlled enrollment/admin provisioning | DEC-48 approves isolated W2 identity policy; public enrollment/delivery remain gated |
 | DRAFT-27 | V1 private reports use all five illustrative source findings in versioned snapshots with separate follow-up outcomes | No URL-derived findings; publish/withdraw requires admin authorization; public sample unchanged |
 | DRAFT-28 | Synthetic-only project demonstration until personal-data/provider/retention/abuse policy is approved | Real auth identity is still personal data; no “we store nothing” privacy claims |
-| DRAFT-29 | Revised account/task baseline in Account and Service UX | Separate dashboard/sidebar navigation superseded by DEC-43; proposed auth verification/second-factor policy remains reviewable and is not approved by drawing screens |
+| DRAFT-29 | Revised account/task baseline in Account and Service UX | DEC-43 supersedes the separate shell; DEC-48 approves isolated verification/TOTP policy. Public delivery and later workflow details retain their review status |
 | DRAFT-30 | Rejected: 18-frame separate portal desktop baseline | Owner rejected the presentation; assets/gallery/manifest removed under DEC-44. Existing public form/report references remain; do not use this batch for implementation |
 
 Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
@@ -111,10 +113,10 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 | OPEN-06 | Identity/team details or profile links allowed for publication | Final public content | Omit unapproved personal identity/contact information |
 | OPEN-07 | Owner review of the completed numerical caps, effort, retest conditions, and illustrative prices | Final package copy and pricing | Review DRAFT-15 in Service Packages section 6; do not present these authored assumptions as researched rates, live offers, guarantees, or approved commercial terms |
 | OPEN-08 | Exact package-fit questions/rules and selected-panel interaction | UX/UI approval (P2) | Offer a clear unsure-which-package path; treat any questionnaire as local scripted guidance | 
-| OPEN-09 | Remaining auth/database adapter/migrations/transport/pooling and free-plan compatibility | W2 integration | W1 framework/runtime/lint choices are recorded in README and its evidence; Better Auth + Neon selection is resolved by DEC-38. Verify the remaining official provider/version facts before integration or provisioning; no paid upgrade authorized |
+| OPEN-09 | Remaining deployed runtime/pooling/hosting compatibility | Deployment | W2 selected Better Auth 1.7.14, built-in PostgreSQL adapter, pg 8.23.1, direct migration/pooled runtime connections and versioned SQL; actual isolated database checks do not prove deployed behavior; no paid upgrade authorized |
 | OPEN-10 | Calendar/timezone boundary and cycle reservation mechanics | Benefit implementation in P6 | First private report publication trigger resolved by DEC-39; review DRAFT-24 calculations and concurrent-publication/cycle tests |
 | OPEN-11 | Discount name, eligible follow-up work, percentage and request/approval cutoff | Public offer copy / benefit decisions | DRAFT-25 is a proposal; no invented rate or billing |
-| OPEN-12 | Better Auth enrollment/verification/second-factor policy, recovery delivery and admin provisioning | Auth policy before affected implementation; delivery before public registration | Review DRAFT-29 screen baseline; permanent domain can be selected later, isolated tests do not prove public email delivery |
+| OPEN-12 | Public enrollment, production recovery/delivery and operational admin recovery | Before public registration | DEC-48 resolves isolated W2 policy. Local OTP capture and synthetic TOTP tests do not prove public email delivery or a production admin-recovery procedure; permanent domain can be selected later |
 | OPEN-13 | Retention/deletion, hosting/database regions/processors, backups and privacy contact | Public data intake / deployment | Do not invent retention periods or treat three-month support as deletion |
 | OPEN-14 | Review integrated-site account/ticket/report components in desktop/mobile | Relevant P2 review and implementation | Shared header/navigation confirmed by DEC-43; review detailed components/auth policies without reopening the rejected dashboard/sidebar or starting another image batch |
 
@@ -147,5 +149,6 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 30, 2026 | Owner rejected the separate dashboard/sidebar portal and requested removal. Confirmed ordinary accounts/avatar beside ID/EN, tickets after login and report/progress only for owned projects within the same website. Removed rejected assets/gallery/manifest, corrected current requirements/architecture/UX and preserved accepted sources; no replacement images, application work or Git |
 | October 30, 2026 | Owner replaced per-file commit suggestions with agent-judged reviewed checkpoints. Group related files by purpose, separate independent work and withhold suggestions for incomplete changes. Updated standing instructions and related planning/publication guidance; no Git execution |
 | October 30, 2026 | Owner approved the project analysis and authorized W1 only. Reconciled Architecture/Quality gate and checkpoint wording, verified tooling, implemented the local bilingual shared shell and recorded scoped checks. Approved references remain unchanged; no W2 auth/database integration, provider setup, deployment or Git |
+| October 31, 2026 | Owner authorized W2, approved its synthetic enrollment/verification/local recovery/admin-TOTP policy and delegated isolated database setup. Implemented Better Auth + dedicated Neon Free identity/ownership, shared account navigation and scoped checks. Public enrollment, real email, later packages and deployment remain gated; no Git or image generation |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.

@@ -1,7 +1,7 @@
 # CELAHAN — Architecture
 
-Status: W1 public foundation implemented; Better Auth + Neon integration remains unstarted  
-Updated: October 30, 2026  
+Status: W1 and isolated W2 Better Auth + Neon integration checked locally; public release remains gated  
+Updated: October 31, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
@@ -30,11 +30,11 @@ Checked October 29, 2026: Better Auth core is [MIT-licensed](https://github.com/
 
 Permanent domain/registrar/DNS selection is explicitly deferred. The existing .my.id domain is one possible choice; the owner may choose another later. Do not require its name/DNS provider for current planning or isolated development. Keep deployment base URL, trusted auth origins/callbacks and sender identity configuration-driven. Changing them later requires reviewed cookie/redirect/email tests, not sharing sessions across domains automatically.
 
-Use local development/a reviewed deployment subdomain and isolated email testing while no public email domain is selected. Real public verification/recovery delivery requires an approved sender/provider and verified configuration; test email sinks do not prove deliverability. Resend remains only a candidate whose [domain requirements](https://resend.com/docs/dashboard/domains/introduction) need review. No purchase, DNS change, provider setup or email dispatch is authorized.
+Use isolated local email testing while no public email domain is selected. W2 permits a dedicated Neon Free database and loopback OTP sink under DEC-47–48. Real public verification/recovery delivery requires an approved sender/provider and verified configuration; test capture does not prove deliverability. Resend remains only a candidate whose [domain requirements](https://resend.com/docs/dashboard/domains/introduction) need review. No purchase, DNS change, external email or other provider service is authorized.
 
 Prefer an established maintained authentication solution over custom cryptography. Authentication does not replace authorization. Keep a server-only data-access layer that returns minimal authorized fields. The design follows [Next.js authentication](https://nextjs.org/docs/app/guides/authentication) and [Next.js data security](https://nextjs.org/docs/app/guides/data-security), checked October 29, 2026. These sources guide architecture, not a version compatibility guarantee.
 
-Provider-specific SDKs, schema validators and test runners require a recorded reason before installation. W1 now has a package/lockfile, the Next.js server-capable foundation and a small interactive shared header. Exact tooling and dependency reasons are in the root [README](../../README.md#dependency-and-asset-choices). No auth/database integration or provider SDK is installed. The full responsibility map below is still planned; W1 creates only the files its public shell uses.
+Dependency reasons are in the root [README](../../README.md#dependency-and-asset-choices). W2 adds Better Auth 1.7.14, pg 8.23.1, development-only pg types and server-only. The built-in PostgreSQL/Kysely adapter generates reviewed identity SQL; versioned SQL runs through a small hash-checked transactional runner. No ORM, managed Neon Auth, paid add-on or additional provider SDK is installed. The responsibility map below still includes later unimplemented workflows.
 
 ## 3. Request path
 
@@ -135,7 +135,7 @@ Secrets are allowed only in approved local/hosting secret storage after provisio
 
 Use separate development/test/preview/production credentials and databases. Preview builds must not read production private data. Run reviewed migrations through controlled credentials; application credentials use least privilege. Pooling, backups, restore tests, retention and deletion propagation must be defined before public data intake.
 
-W1 scripts are dev, lint, typecheck, test, build and start, with an optional Python Playwright browser harness documented in README. Database integration/migration/seed scripts do not exist. Later test commands should be introduced only with their actual features. Build success does not imply lint ran, database authorization passed or deployment is secure.
+W1 scripts remain dev, lint, typecheck, test, build and start. W2 adds isolated migration, runtime-role preparation, controlled admin, mailbox and integration-test scripts; no public seed credentials exist. Build/start never migrate or provision resources. Build success does not imply database authorization passed or deployment is secure.
 
 Headers/CSP must accommodate real first-party forms/auth, unlike the retired form-action none design. Derive form-action, connect-src and allowed callbacks from the chosen architecture; use exact necessary origins, not broad wildcards. Verify hydration, cookies, CSRF, 404 and private caching on the production deployment.
 
@@ -144,3 +144,17 @@ Headers/CSP must accommodate real first-party forms/auth, unlike the retired for
 Before W1 foundation: verify compatible framework/runtime/tooling versions, dependency reasons, locale/layout structure and a licensed local font or reviewed fallback. Before W2 authentication/database integration: review Better Auth + Neon Free adapter/migrations/transport/pooling, enrollment, verification/recovery, controlled admin provisioning and separately authorized isolated database access. These W2 decisions do not block the W1 public shell. Follow the package-specific entry gates in [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md). Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before relevant visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and integrated desktop/mobile components while preserving the approved public direction. Domain identity remains a later public-email/deployment gate, not a W1 or flow-design prerequisite.
 
 No source inspection, diagram or documentation check is an application security or performance test. See Quality for executable acceptance expectations.
+
+## 12. Implemented isolated W2 boundary
+
+The owner approved synthetic-only enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access. Implementation choices: 15–128-character passwords, eight-hour database sessions, 30-minute refresh threshold, ten-minute sensitive-session freshness, five-minute hashed six-digit email OTPs and no session-data cookie cache. TOTP and encrypted backup codes use Better Auth; only protected setup returns the material needed for enrollment. OTPs/codes are submitted in JSON bodies, never page URLs. Recovery revokes old sessions. Provider/hosting production recovery and retention remain separate decisions.
+
+The dedicated Neon Free PostgreSQL 17 project is in Singapore. Runtime uses a four-connection pooled DML role; migrations and local admin procedures use a direct owner connection loaded from separate ignored `.env.database.local`. Next.js loads only `.env.local`, which contains no owner credential. TLS uses `sslmode=verify-full`. No role/schema privilege or project-assignment write is granted to the runtime account. Public enrollment is additionally blocked by loopback-only configuration, the `celahan_w2` database requirement and an explicit synthetic-email allowlist.
+
+The auth transport exposes only reviewed JSON POST operations, requires exact Origin/Host, bounds bodies, rejects unknown fields and filters credential/session tokens from responses. It supplies the fixed loopback identity to the database rate limiter, discarding incoming proxy/IP headers. This is suitable only for the current local test boundary; trusted public proxy handling must be reviewed before hosting. Profile changes have a separate database-backed rate limit. CSRF/origin checks remain enabled and Better Auth telemetry is explicitly disabled.
+
+The local sink stores OTPs only in bounded process memory, expires them after five minutes and requires a bearer secret. A request-scoped delivery signal compensates for Better Auth suppressing callback delivery errors; failed capture returns a generic failed-delivery response. No external email or production deliverability is claimed.
+
+Every account/private query reads the database session, active/verified identity and current role/project association. The shared header receives only minimal display/capability fields. Local grant/revoke/disable operations audit metadata and revoke sessions; an admin must enroll TOTP before a role grant and sign in again afterward. Public and private site pages now render per request with private/no-store handling because the header is personalized. Full-page transitions on login/logout and bfcache/focus revalidation prevent reuse across account changes; browser evidence covers the actual tested paths only.
+
+`project_access` is the minimal ownership association needed to test capabilities and an owned resource; it does not implement project activation, reports or support. Ticket/project/admin destinations honestly state that their workflows are pending. No dashboard/sidebar, ticket conversation, report draft, support calendar or W3 public-site implementation is included.

@@ -1,7 +1,7 @@
 # CELAHAN Implementation Plan
 
-Status: W1 implemented and checked locally; W2–W6 not started or authorized  
-Updated: October 30, 2026
+Status: W1 and isolated W2 checked locally with recorded limits; W3–W6 not started or authorized  
+Updated: October 31, 2026
 
 **Goal:** deliver one bilingual CELAHAN website with the approved identity, dedicated phone/desktop composition, real authentication/database/ticket operations, protected illustrative reports and measured quality.
 
@@ -11,7 +11,7 @@ Updated: October 30, 2026
 
 ## 1. Authorization and how to use this plan
 
-The owner first authorized detailing this file, then explicitly authorized W1 only on October 30 after reviewing the project analysis. W1 covers the two documentation corrections, tooling/dependency review, local application foundation and its checks. This does not authorize W2–W6, new reference images, provider accounts/resources, domain/DNS/email changes, deployment, subagents or Git operations. Execute only the package authorized; a completed package never grants permission for the next.
+The owner authorized W1 on October 30 and W2 on October 31. For W2 the owner approved allowlisted synthetic enrollment, mandatory email verification, locally captured recovery email, controlled local admin provisioning and mandatory admin TOTP, and delegated the isolated database choice. The implementer selected a dedicated Neon Free test project. Authorization covers that isolated setup and W2 implementation/checks only. W3–W6, replacement reference images, public enrollment, real email/domain/DNS setup, paid services, deployment, subagents and Git operations remain unauthorized. A completed package never grants permission for the next.
 
 Work in the existing project. Do not create another plan directory, duplicate specifications, speculative source folders or a worktree. Future application paths below are proposed responsibilities, not files already created. Confirm exact names against the selected framework before creating only the files needed by the current package.
 
@@ -26,7 +26,7 @@ Retain P0–P9 from earlier documents. W1–W6 below are execution-sized package
 | P0 | Product, policy, access and planning | Review at the relevant W1–W6 entry gate | Requirements drafted; phase-specific choices remain open |
 | P1 | Final identity/runtime assets | Minimum needed in W1/W3; completion before W6 release | Minimal solid SVG symbol and system-font fallback used in W1; full production identity still pending |
 | P2 | Integrated desktop/mobile UX | Shared shell in W1; feature integration in W2–W5 | W1 shared guest shell checked; accepted references preserved; separate dashboard batch remains removed |
-| P3 | Server-capable bilingual/auth/database foundation | W1 and W2 | W1 local public foundation checked; W2 auth/database not started |
+| P3 | Server-capable bilingual/auth/database foundation | W1 and W2 | W1 and isolated W2 checked; public enrollment/deployment remain gated |
 | P4 | Public discovery and immutable sample | W3 | Not started |
 | P5 | Consultation, conversation and admin triage | W4 | Not started |
 | P6 | Projects, private reports and bounded support | W5 | Not started |
@@ -97,22 +97,24 @@ Permanent domain/registrar/DNS identity is deferred and replaceable. It does not
 
 **Entry:** W1 checked; review OPEN-09/12 and required privacy safeguards for test identities. Select adapter/migration tooling and obtain separately authorized isolated database access. Use synthetic accounts; public enrollment remains closed until delivery/privacy release gates are met.
 
+October 31 entry review: the owner approved the isolated identity policy and delegated database setup. Better Auth 1.7.14 + pg 8.23.1 use the built-in PostgreSQL adapter, versioned generated SQL and a dedicated Neon Free project in Singapore. Email verification/recovery use hashed six-digit OTPs delivered only to a bearer-protected loopback sink; no auth links/tokens enter page URLs. Passwords are 15–128 characters; database sessions last eight hours with no cookie-data cache. These mechanism/timeout choices are implementation decisions under the approved test policy. Public enrollment, live delivery and deployment remain closed.
+
 **Proposed responsibility paths:** `src/server/auth/`, `src/server/data/`, selected auth transport handlers, shared header/account components, locale account routes, `database/` for required migrations/synthetic seeds, `tests/integration/` and relevant E2E fixtures. Add environment templates with variable names/descriptions, never working secret values.
 
-- [ ] Verify the selected Better Auth/Neon adapter/runtime configuration and migrate only the identity/profile schema and relationship structures needed by this package.
-- [ ] Implement server-only configuration, secure session handling, controlled admin provisioning and reviewed verification/recovery/second-factor behavior.
-- [ ] Implement ordinary login/signup/logout/profile forms in the shared site, using safe internal post-login return routes and no public role/customer selector.
-- [ ] Integrate the shared header's guest, authenticated-user and project-owner capability rules. Use trusted project relationships; never infer rights from hidden controls or a client flag.
-- [ ] Define minimal authorized query/action boundaries for identity and owned resources. Scope list/count/detail results and deny private requests independently of layout checks.
-- [ ] Add server-appropriate origin/CSRF/rate-limit controls and generic auth errors; keep tokens, passwords and recovery links out of logs and URLs.
-- [ ] Use isolated email capture/provider test facilities for recovery/verification checks; represent delivery failures truthfully and never claim production email works from a mock.
-- [ ] Run real database/session and account-isolation tests, including disabled/revoked admin behavior and logout/account-switch cache boundaries.
+- [x] Verify the selected Better Auth/Neon adapter/runtime configuration and migrate only the identity/profile schema and relationship structures needed by this package.
+- [x] Implement server-only configuration, secure session handling, controlled admin provisioning and reviewed verification/recovery/second-factor behavior.
+- [x] Implement ordinary login/signup/logout/profile forms in the shared site, using safe internal post-login return routes and no public role/customer selector.
+- [x] Integrate the shared header's guest, authenticated-user and project-owner capability rules. Use trusted project relationships; never infer rights from hidden controls or a client flag.
+- [x] Define minimal authorized query/action boundaries for identity and owned resources. Scope list/count/detail results and deny private requests independently of layout checks.
+- [x] Add server-appropriate origin/CSRF/rate-limit controls and generic auth errors; keep tokens, passwords and recovery links out of logs and URLs.
+- [x] Use isolated email capture/provider test facilities for recovery/verification checks; represent delivery failures truthfully and never claim production email works from a mock.
+- [x] Run real database/session and account-isolation tests, including disabled/revoked admin behavior and logout/account-switch cache boundaries.
 
 **Boundary:** ticket and report workflows are completed by W4/W5; header capability contracts alone do not prove those routes work. Do not ship fake customer records, selectable admin mode, public seeded admin credentials or a second managed-auth service.
 
 **Exit checks:** synthetic account survives refresh/login; logout/revocation blocks protected actions; signup cannot self-assign role/ownership; user A cannot retrieve user B's protected test resource; verification/recovery/admin gates behave as reviewed; ID/EN/phone account controls work. Record real migration and delivery-test scope.
 
-**Relevant Quality checks:** T-05, T-16, T-17, T-20, T-25, T-26 and T-28 as applicable to the implemented boundary. Recheck actual project/report integration in W5.
+**Relevant Quality checks:** scoped portions of T-05, T-16, T-17, T-20, T-25, T-26 and T-28 are recorded in [W2 validation](../validation/2026-10-31-w2-accounts.md). Eight unit tests, 206 database/API assertions, negative delivery and Chromium account/shared-shell checks passed. This does not complete later ticket/report integration, production delivery/hosting or comprehensive accessibility/cache/security review. Recheck actual project/report integration in W5.
 
 ## 7. W3: Public website and approved visual experience
 
@@ -210,7 +212,7 @@ Package completion and commits are different decisions. The agent decides when a
 
 Before proposing a checkpoint, inspect the actual scope, check for unrelated/unsafe/unused material and run the relevant verification. Include intended paths, purpose, actual results and remaining limits in chat. If the change is partial, defer the suggestion. No commit messages/commands or persistent commit inventories belong in this document.
 
-For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1 is implemented with scoped local evidence and explicit limitations; W2–W6 remain not started and not authorized.
+For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1 and isolated W2 have scoped local evidence and explicit limitations. W3–W6 remain unstarted and unauthorized.
 
 ## 12. Academic prototype, video and immediate next step
 
@@ -218,4 +220,4 @@ For each authorized package, update its actual status only after implementation 
 
 **P9:** use stable actual functionality for the promotional video/case study after the website work is ready to record. Review format/duration/language/audio rights through [Video Brief](../portfolio/PROMO_VIDEO_BRIEF.md) and [Release and Portfolio](../portfolio/RELEASE_AND_PORTFOLIO.md). Mockups are concept footage; exclude provider secrets, private identities and admin provisioning from recordings.
 
-**Next boundary:** the owner reviews W1 and its evidence. W2 requires separate authorization plus its identity/privacy/isolated-database entry decisions. Do not begin W2, provision providers or deploy merely because W1 is complete.
+**Next boundary:** the owner reviews isolated W2 and its evidence. W3 requires separate authorization and its relevant asset/package-copy entry review. Public enrollment, further provider services and deployment remain independently gated; completing W2 does not authorize them.

@@ -2,13 +2,13 @@
 title: CELAHAN Integrated Account and Service UX
 version: 0.3
 date_created: 2026-10-29
-last_updated: 2026-10-30
+last_updated: 2026-10-31
 tags: [design, accounts, navigation, tickets, reports]
 ---
 
 # CELAHAN Account, Ticket and Report UX
 
-Status: Owner-directed integrated navigation; W1 guest shell implemented, auth/private behavior remains a review baseline.  
+Status: Integrated shared navigation and isolated W2 account behavior implemented; ticket/report/admin workflows remain a review baseline.  
 References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Design Lock](DESIGN_REFERENCE_LOCK.md)
 
 ## 1. Direction and boundaries
@@ -19,7 +19,7 @@ Keep the accepted homepage, Open Threshold logo, four distinct pets and package 
 
 Working authentication/database storage, conditional consultation, owned tickets/messages, admin operations and private illustrative reports remain required. The owner selected Better Auth + Neon Free. Support still starts once at first private project report publication and lasts at most three months. No real target requests, code repair, payment, uploads, external AI or automatic service messaging are added.
 
-The shared-site direction is confirmed. Detailed enrollment/verification/admin second-factor policy, recovery delivery, support-calendar/cycle mechanics and exact component/route choices remain reviewable. A permanent domain/DNS choice is deferred until relevant setup.
+The shared-site direction is confirmed. DEC-48 approves synthetic-only W2 enrollment, mandatory email verification, local-capture recovery and controlled TOTP-protected admin provisioning. Public enrollment/delivery and operational recovery remain open, as do support-calendar/cycle mechanics. Permanent domain/DNS choice is deferred until relevant setup.
 
 ## 2. Account and navigation states
 
@@ -61,7 +61,7 @@ The public Contoh Laporan / Sample Report remains accessible to guests and users
 
 Proposed signup uses name, email and password; defer company/contact details until consultation requires them. No admin/customer role selector. Login uses labeled email/password fields, a clear submit action and signup/recovery links. Preserve password-manager autofill, paste, labeled show/hide controls, useful validation and safe error messages.
 
-The earlier verification-before-private-write and admin-authenticator proposals are security-policy questions, not reasons to draw six mandatory account screens or impose a new customer interface. If selected, verification/recovery/challenge states stay in the same site context. No public admin signup, token display or email-delivery success without an actual successful integration.
+DEC-48 approves verification before private access and controlled admin TOTP for the isolated test build. Verification/recovery/challenge states remain focused tasks in the same site context. Setup material appears only during the protected authenticator enrollment flow; session/recovery tokens are not displayed. No public admin signup or email-delivery success is shown without actual local capture. Production policy and delivery remain gated.
 
 Login return destinations come from a safe internal allowlist. Logout/session expiry clears private UI/cache state and revalidates every resource; it does not delete database records or force the user into a different site. Necessary security gates still apply even when a navigation button is hidden.
 
@@ -139,6 +139,6 @@ These are planned checks, not passed tests. Map them to [Quality](../engineering
 
 ## 10. Current status and next boundary
 
-The original correction performed documentation and rejected-asset cleanup only. The owner subsequently authorized W1's public shell on October 30; its account links lead to honest unavailable notices with no credentials or writes. W2 account/private behavior, provider provisioning, DNS/email configuration, deployment and replacement reference images remain outside that authorization. Git remains entirely manual.
+The owner authorized W1 on October 30 and W2 on October 31. Ordinary ID/EN account forms now replace W1's unavailable notices when isolated configuration is enabled; guests still receive honest unavailable content otherwise. Session/project-derived shared navigation is implemented, with explicit pending task notices instead of ticket/report/admin workflows. W2 uses a dedicated Neon Free test database and local email capture. W3–W6, public enrollment, real email/domain/DNS setup, deployment and replacement images remain gated. Git remains entirely manual.
 
 The [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) now defines W1–W6. Review component details at the relevant package gates within the confirmed integrated-site direction. Preserve approved public imagery and reuse existing form/report references instead of another mass image-generation pass.

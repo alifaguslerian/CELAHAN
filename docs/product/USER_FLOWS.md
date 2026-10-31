@@ -1,7 +1,7 @@
 # CELAHAN — User and Admin Flows
 
-Status: W1 public shell implemented; account/private portal flows remain planned  
-Updated: October 30, 2026  
+Status: W1 shared shell and isolated W2 account flows implemented; ticket/report workflows remain planned  
+Updated: October 31, 2026  
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
 ## 1. Route map
@@ -33,7 +33,7 @@ A public sample never displays personalized ticket or project identifiers. It al
 
 ## 3. Account entry
 
-The screen-level baseline is in Portal UX Specification. It proposes email/password registration, pending email verification, recovery/reset and mandatory admin authenticator flow for review. Exact policy/delivery remains open; this update does not create working accounts or send email.
+The screen-level baseline is in Portal UX Specification. The owner approved email/password signup for allowlisted synthetic identities, mandatory verification, local-capture recovery/reset and controlled TOTP-protected admin access for W2. These account flows now use the isolated database; no external email or public enrollment is enabled. Public delivery/recovery procedures retain separate release gates.
 
 1. Choose login or the reviewed enrollment flow. No account is an admin by default.
 2. The selected provider/library authenticates and establishes a secure session.
@@ -124,4 +124,4 @@ Handle an empty ticket list, pending consultation, awaiting report, expired supp
 
 ## 11. Verification
 
-Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, mobile, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). Only W1's initial public/locale/menu/account-notice routes exist; their limited evidence is in [W1 validation](../validation/2026-10-30-w1-foundation.md). Account notices do not implement login/signup or any private portal flow.
+Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, mobile, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). W1 shared-site and isolated W2 account/minimal ownership checks do not establish later ticket/report/support workflows. Authenticated task destinations currently explain their pending status without fabricating private records.

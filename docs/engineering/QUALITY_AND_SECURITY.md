@@ -1,7 +1,7 @@
 # CELAHAN — Quality, Security, and Validation
 
-Status: W1 foundation checks recorded separately; full portal verification remains planned  
-Updated: October 30, 2026  
+Status: W1 and isolated W2 checks recorded with limits; full portal/release verification remains planned  
+Updated: October 31, 2026  
 References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Data and Access](DATA_AND_ACCESS.md), [Operations](../product/SERVICE_OPERATIONS.md)
 
 ## 1. Evidence and scope
@@ -149,4 +149,6 @@ Remove verified unused code/imports/dependencies/experiments and duplicate logic
 
 Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Following DEC-45 and [Agent Instructions](../../AGENTS.md), propose English commit suggestions in chat only after a coherent change has been reviewed and its relevant checks have run. Group related files by purpose, separate independent purposes and defer suggestions for unfinished work; do not require one suggestion per file or edit. Git is entirely manual.
 
-Current state: W1's local public foundation exists. See its dated validation record for actual build, routing, browser and resource checks and their limitations. Authentication/database integration, private-resource security, full accessibility/performance audits and deployment remain unimplemented or untested. Earlier validation records preserve their historical scope.
+Current state: W1's local public foundation and isolated W2 identity/ownership boundary exist. W2 integration and browser checks concern synthetic accounts on a local production-mode server backed by Neon; they do not establish ticket/report/support security, public enrollment, deployment or full accessibility/performance conformance. Earlier validation records preserve their historical scope.
+
+See [W2 validation](../validation/2026-10-31-w2-accounts.md) for actual commands, database/browser evidence, the remaining development-tooling advisory and unrun checks.

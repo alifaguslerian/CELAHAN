@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
-Status: W1 public foundation implemented; later portal packages not started or authorized  
-Updated: October 30, 2026  
+Status: W1 and isolated W2 accounts checked locally; W3–W6 not started or authorized  
+Updated: October 31, 2026  
 References: [PRD](PRD.md), [Service Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Project and purpose
@@ -72,7 +72,7 @@ ID/EN and mobile/desktop share domain logic and equivalent capabilities. Mascot 
 
 ## 8. Technical direction and completion
 
-Next.js App Router + TypeScript remain required. The owner selected Better Auth's open-source library in the application server and Neon Free PostgreSQL, with no paid upgrade without explicit approval. A server-capable deployment replaces the static-export-only proposal. Vercel remains the target; versions, database adapter/pooling, quotas, email delivery and deployment compatibility still need verification. No account or external resource is created by this documentation work. The owner has an existing .my.id domain but may select another later. Permanent domain/registrar/DNS choice is deferred and must not block planning or isolated development. Configure deployment origins, trusted callbacks and email senders without hardcoding a permanent domain. Public email delivery remains gated by separately approved setup; no domain purchase is authorized.
+Next.js App Router + TypeScript remain required. Better Auth runs in the application server with Neon Free PostgreSQL, with no paid upgrade without explicit approval. W2 selects the built-in PostgreSQL adapter, pg pooling and a dedicated isolated database; [Architecture](../engineering/ARCHITECTURE.md) records versions and actual implementation. Vercel remains an unprovisioned target; hosting/pooling compatibility, public email and release operations still require verification. Permanent domain/registrar/DNS choice is deferred and must not block isolated development. Origins and sender settings stay configurable; no domain purchase is authorized.
 
 Success requires end-to-end user/admin workflows, isolated private data, unchanged public sample content, correct support rules, responsive bilingual UX, actual build/lint/typecheck and behavior/security checks, an accurate README/privacy notice, and verified deployment when separately requested. A secure design is not evidence of a completely secure implementation.
 
@@ -82,4 +82,4 @@ Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing an
 
 Sources are the owner's original brief and conversation through October 29, 2026, plus the previously reviewed academic PDF for the eight stages and five findings. The PDF is source material, not authorization to perform security testing or publish personal details.
 
-The October 29 step authorized Markdown revision only. On October 30 the owner separately authorized W1: reconcile documented inconsistencies, verify tooling, explain dependencies, implement the initial shared bilingual shell and run its checks. No W2 auth/database work, new reference images, provider provisioning, messaging or deployment is authorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) and W1's validation record for actual status.
+The October 29 step authorized Markdown revision only, followed by W1 on October 30 and W2 on October 31. For W2 the owner approved isolated synthetic enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access, and delegated the test database choice. A dedicated Neon Free test project is used. W3–W6, replacement images, public enrollment, real email, paid services and deployment remain unauthorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for actual status.

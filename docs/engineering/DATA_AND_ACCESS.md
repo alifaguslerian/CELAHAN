@@ -1,12 +1,12 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: Logical schema and authorization baseline for review; no database created  
-Updated: October 29, 2026  
+Status: W2 identity and minimal ownership schema implemented in an isolated test database; later workflow schema remains planned  
+Updated: October 31, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
 
-Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. Better Auth runs in the Next.js server. Adapter/types/index syntax and versions remain open; no database has been created. Public sample content is separate from private records.
+Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the generated auth schema; `002-project-access.sql` adds only ownership association and privileged-operation audit metadata. Other logical entities below are planned, not implemented tables. Public sample content remains separate from private records.
 
 V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, package selection, ticket reference and payment claims are never ownership proofs.
 
@@ -117,4 +117,4 @@ Audit privileged changes using metadata and reason codes, not complete request/r
 
 Use two user accounts, an admin, a revoked admin/disabled user, two separate projects, draft/published/withdrawn reports, shared messages and internal notes. Attempt cross-account list/detail/mutation access with swapped IDs, crafted nested relationships, mass-assigned roles and expired sessions.
 
-Test concurrent duplicate submissions, cycle reservation races, publication failure rollback, ownership reassignment visibility, timezone/month-end/expiry boundaries and logout/cache isolation. Data-policy tests include chosen deletion/backup behavior. These are planned tests; no database or application is running.
+Test concurrent duplicate submissions, cycle reservation races, publication failure rollback, ownership reassignment visibility, timezone/month-end/expiry boundaries and logout/cache isolation. Data-policy tests include chosen deletion/backup behavior. W2 implements the isolated identity/ownership boundary only; ticket/report/support/deletion and backup tests remain future work. See [Architecture](ARCHITECTURE.md#12-implemented-isolated-w2-boundary) for the current schema, secret separation and transport decisions.

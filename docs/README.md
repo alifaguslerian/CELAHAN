@@ -1,13 +1,13 @@
 # CELAHAN Documentation
 
-Status: W1 local bilingual foundation checked with explicit limits; W2–W6 not started  
-Updated: October 30, 2026
+Status: W1 and isolated W2 checked locally with explicit limits; W3–W6 not started  
+Updated: October 31, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
 
 ## Current scope
 
-The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behaviors are superseded. The owner subsequently authorized W1 only on October 30. Its initial public shell exists; authentication/database integration and later features remain unstarted. Provider setup, deployment and reference-image regeneration are not authorized. Read Operations and Data and Access alongside the PRD.
+The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behavior is superseded. The owner authorized W1 on October 30 and isolated W2 on October 31, including its reviewed synthetic identity policy and delegated database setup. The shared shell and isolated account/minimal ownership boundary exist. W3–W6, other provider services, public enrollment, external email, deployment and reference regeneration remain unauthorized. Read Operations and Data and Access alongside the PRD.
 
 The owner rejected the separate dashboard/sidebar portal direction on October 30 and requested removal of unsuitable material. The 18-image batch, manifest and gallery are removed. Ordinary login/signup and the signed-in avatar belong beside ID/EN; Tiket appears after login and Laporan & Progres appears for authorized project owners, all within the same website.
 
@@ -66,6 +66,7 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 | Record | Scope |
 | --- | --- |
+| [W2 isolated accounts](validation/2026-10-31-w2-accounts.md) | Real Neon identity/session/ownership tests, bilingual account UI, local OTP capture and explicit release limits |
 | [W1 foundation](validation/2026-10-30-w1-foundation.md) | Tooling, local bilingual shell, browser/build checks, preservation and explicit limits |
 | [Portal design correction](validation/2026-10-30-portal-desktop-designs.md) | Historical generation checks, owner rejection, integrated-site correction and rejected-asset removal checks |
 | [Account and portal UX](validation/2026-10-29-portal-ux.md) | Draft screen/state specification, deferred domain policy and documentation/preservation checks |

@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
 Status: Portal scope approved in principle; detailed behavior below is a review baseline, not implementation authorization  
-Version: 1.1 integrated-site revision · October 30, 2026  
+Version: 1.2 isolated-identity revision · October 31, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Product outcome and approval
@@ -58,7 +58,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | Preferred schedule | Up to three future options with a supported IANA timezone; an explicit “discuss timing” option |
 | Authority statement | Required initial ownership/authority declaration; not legal testing permission |
 
-The authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) proposes email/password enrollment, verification before private submission/access and admin TOTP. These are review baselines, not owner-confirmed methods or installed integrations. Exact authentication policy, email verification/recovery delivery and phone formatting remain decisions before public collection. Authentication delivery, if selected, is separately reviewed infrastructure; it is not automatic consultation or support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
+The owner approved email/password enrollment restricted to allowlisted synthetic identities, mandatory email verification, locally captured recovery and controlled TOTP-protected admin provisioning for W2 on October 31. Better Auth provides hashed email OTP verification/recovery and TOTP/backup-code handling. Public enrollment, real email delivery, operational recovery and phone formatting remain decisions before public collection. Authentication delivery is separate from consultation/support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
 
 Reactive reasons: reported defacement, suspected data leakage/intrusion, reported malicious-site/blacklist warning, other. Preventive: pre-release third-party review, standards/partnership/tender requirements, periodic check, other. Neither reason confirms compromise, blacklist status, or compliance.
 
@@ -132,4 +132,4 @@ Portfolio v1: complete approved portal flows, identity, ID/EN/mobile UX, quality
 
 Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, email provider, database adapter/runtime settings, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
 
-The October 29 revision authorized documentation only; the owner subsequently authorized W1's local public foundation on October 30. Its limited checks are recorded in [W1 validation](../validation/2026-10-30-w1-foundation.md), without marking the full acceptance scenarios above complete. Authentication, persistence and private workflows remain later unstarted packages.
+The owner authorized W1 on October 30 and isolated W2 on October 31. The shared shell and database-backed identity/minimal ownership boundary exist locally. These limited package checks do not mark the full scenarios above complete: ticket, consultation, report and support workflows, public enrollment and deployment remain pending.
