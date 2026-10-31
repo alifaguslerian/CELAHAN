@@ -11,7 +11,7 @@ Updated: October 30, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. Earlier entries remain decision history; superseded clauses below must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 authorizes W1 only after the analysis review. Earlier entries remain decision history; superseded clauses below must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-07 | Logo, interactive guide mascot, privacy, custom 404, and promotional video | Direction approved; details remain open |
 | DEC-08 | UI/UX, system design, performance, and security are equally important; the mascot must not dominate | Owner's focus correction |
 | DEC-09 | Dedicated mobile UI and Indonesian–English support | Owner request |
-| DEC-10 | Complete documentation first; no implementation yet | Current authorization |
+| DEC-10 | Complete documentation before implementation; W1 subsequently authorized in DEC-46 | Original sequencing instruction; later packages remain gated |
 | DEC-11 | Agents must not touch Git; all commits/pushes are manual | Owner request; includes read-only Git and substitute APIs |
 | DEC-12 | No fixed deadline/video format; a prototype is sufficient for submission, and portfolio work may continue | Owner response on October 27, 2026 |
 | DEC-13 | Initial Project Brief approved | Owner approval; mobile/bilingual additions recorded as the latest revision |
@@ -60,6 +60,7 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-43 | Keep accounts, tickets and report/progress inside the existing website/header | Owner rejected the separate dashboard/sidebar and return-to-site control; ordinary login/signup or avatar beside ID/EN, Tiket only after login and personal Laporan & Progres only for trusted project owners; prior ticket distinctions remain |
 | DEC-44 | Remove the unsuitable portal batch and correct its documentation | Owner explicitly requested deletion; remove the 18 rejected PNGs, manifest and gallery, preserve accepted sources, generate no replacements and perform no Git operation |
 | DEC-45 | The agent judges meaningful commit checkpoints after review and relevant checks, grouping related files by purpose | Owner explicitly replaced per-file/per-edit handoffs; separate independent work, defer unfinished groups, keep English suggestions in chat and Git execution manual unless specifically requested |
+| DEC-46 | Implement and verify W1 only after the approved project analysis | Explicit October 30 authorization: reconcile the two gate/commit wording inconsistencies first, verify tooling and explain dependencies, build the shared bilingual foundation without regenerating references; no W2, provider provisioning, deployment or Git |
 
 ## 3. Proposed baselines for review
 
@@ -110,7 +111,7 @@ Draft baselines do not mean the owner has approved every technical detail. Docum
 | OPEN-06 | Identity/team details or profile links allowed for publication | Final public content | Omit unapproved personal identity/contact information |
 | OPEN-07 | Owner review of the completed numerical caps, effort, retest conditions, and illustrative prices | Final package copy and pricing | Review DRAFT-15 in Service Packages section 6; do not present these authored assumptions as researched rates, live offers, guarantees, or approved commercial terms |
 | OPEN-08 | Exact package-fit questions/rules and selected-panel interaction | UX/UI approval (P2) | Offer a clear unsure-which-package path; treat any questionnaire as local scripted guidance | 
-| OPEN-09 | Remaining versions/runtime/adapter/migrations/transport/pooling and free-plan compatibility | P3 foundation | Auth/database choice resolved by DEC-38; verify official docs and no-cost limits before provisioning; no paid upgrade authorized |
+| OPEN-09 | Remaining auth/database adapter/migrations/transport/pooling and free-plan compatibility | W2 integration | W1 framework/runtime/lint choices are recorded in README and its evidence; Better Auth + Neon selection is resolved by DEC-38. Verify the remaining official provider/version facts before integration or provisioning; no paid upgrade authorized |
 | OPEN-10 | Calendar/timezone boundary and cycle reservation mechanics | Benefit implementation in P6 | First private report publication trigger resolved by DEC-39; review DRAFT-24 calculations and concurrent-publication/cycle tests |
 | OPEN-11 | Discount name, eligible follow-up work, percentage and request/approval cutoff | Public offer copy / benefit decisions | DRAFT-25 is a proposal; no invented rate or billing |
 | OPEN-12 | Better Auth enrollment/verification/second-factor policy, recovery delivery and admin provisioning | Auth policy before affected implementation; delivery before public registration | Review DRAFT-29 screen baseline; permanent domain can be selected later, isolated tests do not prove public email delivery |
@@ -145,5 +146,6 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 30, 2026 | Owner authorized the next desktop portal design pass and explicitly prohibited regenerating existing parts. Generated 18 new account/user/admin frames, retained prior image/manifests unchanged and documented reuse/copy corrections. New visual review and portal phone views remain pending; no application/provider/Git work |
 | October 30, 2026 | Owner rejected the separate dashboard/sidebar portal and requested removal. Confirmed ordinary accounts/avatar beside ID/EN, tickets after login and report/progress only for owned projects within the same website. Removed rejected assets/gallery/manifest, corrected current requirements/architecture/UX and preserved accepted sources; no replacement images, application work or Git |
 | October 30, 2026 | Owner replaced per-file commit suggestions with agent-judged reviewed checkpoints. Group related files by purpose, separate independent work and withhold suggestions for incomplete changes. Updated standing instructions and related planning/publication guidance; no Git execution |
+| October 30, 2026 | Owner approved the project analysis and authorized W1 only. Reconciled Architecture/Quality gate and checkpoint wording, verified tooling, implemented the local bilingual shared shell and recorded scoped checks. Approved references remain unchanged; no W2 auth/database integration, provider setup, deployment or Git |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.

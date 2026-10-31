@@ -8,13 +8,13 @@ A bilingual web security assessment service concept for university coursework an
 
 ## Status — October 30, 2026
 
-**Documentation and design stage. No runnable application, backend, database or deployment has been created.**
+**W1 application foundation implemented and checked locally, with explicit browser/device limits. W2–W6 are not started. No authentication/database integration, provider provisioning or deployment.**
 
 The owner approved expanding the planned website into a functional service portal after lecturer feedback: real login, a real database, reactive/preventive consultation intake, user/admin tickets and conversation, requested consultation schedules, private illustrative project reports and three-month follow-up benefits.
 
-This replaces the earlier client-only/no-storage architecture. It does not authorize real scanning, code repair, account/provider provisioning or application implementation in this documentation step.
+This replaces the earlier client-only/no-storage architecture. On October 30 the owner explicitly authorized W1 only, including the shared site foundation. W2 authentication/database work, provider provisioning and deployment still require separate authorization. Real scanning and code repair remain excluded.
 
-The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. Final vectors/fonts/runtime assets remain pending.
+The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. W1 uses only a minimal SVG symbol and local system-font fallback; the complete production identity/font/artwork export set remains pending.
 
 ## Planned experience
 
@@ -70,7 +70,51 @@ Required stack: Next.js App Router + TypeScript with a custom design. The owner 
 
 The Better Auth core is [MIT-licensed](https://github.com/better-auth/better-auth/blob/main/LICENSE.md). Neon Free currently lists 1 GB storage and 100 CU-hours per project/month; these are dated planning facts, not an unlimited/free-forever or performance guarantee. See [Neon pricing](https://neon.com/pricing), checked October 29, 2026. Email delivery is a separate unselected service. The owner has an existing .my.id domain but may choose another later. Permanent domain/registrar/DNS details are deferred, not prerequisites for current planning or isolated development. Origin/callback/sender settings remain configurable; public email delivery still requires reviewed setup. No domain is purchased/configured.
 
-There is no package.json, dependency installation, executable application or valid npm command to run yet. Read the documents directly. Add setup/environment/migration/seed/dev/lint/typecheck/build/test instructions only when the application foundation actually exists; never include real secret values.
+W1 uses Next.js 16.4.3, React/React DOM 19.3.1, TypeScript 5.9.3, Node 26.10.0 and npm 12.0.2. The committed lockfile fixes the Node dependency graph. No auth/database package or secret is needed for W1. The application remains server-capable; informational pages are prerendered rather than configuring a static-only export.
+
+### Local setup and commands
+
+In PowerShell, from the project root:
+
+```powershell
+$env:NEXT_TELEMETRY_DISABLED = '1'
+npm ci --ignore-scripts
+npm run dev
+```
+
+Development binds to http://127.0.0.1:3000. `/` redirects to `/id/`; `/en/` is the equivalent English entry. The only current destinations are the initial public page and focused `/id/login/`, `/id/register/` notices, with EN equivalents. Account notices have no credential fields or writes. Public package/process/sample pages and functional accounts remain later packages. The initial page is a W1 foundation, not the completed approved hero or homepage.
+
+```powershell
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npm run start -- --port 3100
+```
+
+`typecheck` generates Next route types before running TypeScript. `build` and `start` are separate; `start` serves the existing production build on loopback. No migration, seed or database command exists yet. No environment file, provider resource, permanent domain or paid service is needed for these commands. Keep the telemetry opt-out set when running Next commands.
+
+### Browser checks
+
+Python 3.12 was used for the optional development-only browser harness. It is not an application runtime dependency. In a second PowerShell terminal, with the production server already running on port 3100:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m playwright install chromium firefox webkit
+.\.venv\Scripts\python.exe tests/e2e/shell.py --browsers chromium
+```
+
+The harness supports `--browsers chromium firefox webkit`, `--base` for a local HTTP origin and `--artifacts` for screenshots. Default artifacts go into ignored `test-results/w1/`; never publish unsanitized reports or screenshots containing private data. Requests outside the selected local origin are blocked before navigation. Browser installation can require network access and process-launch permissions; record unavailable engines honestly. Chromium completed the W1 suite in this environment. Firefox failed to launch; WebKit launched but its default headless keyboard traversal did not complete the suite. No cross-browser pass is claimed.
+
+### Dependency and asset choices
+
+- `next`, `react` and `react-dom`: required App Router framework, rendering and the small interactive header boundary.
+- `typescript` and the Node/React type packages: strict application and route checking, without an additional TS test runner.
+- `eslint`, `@eslint/js`, `@next/eslint-plugin-next`, `typescript-eslint`, `eslint-plugin-react-hooks`: JavaScript/TypeScript, Next Core Web Vitals and hooks checks. The official direct-plugin approach avoids the combined config's current ESLint 10 peer conflicts; no force/legacy-peer installation or disabled lint rules is used.
+- Python `playwright`: browser behavior, viewport, keyboard/touch, request isolation and resource measurements using its synchronous API; Node's built-in test runner handles the pure routing tests. No pytest or additional browser runner is required.
+
+Plain CSS and shared typed ID/EN content avoid UI, animation, CSS-framework and i18n dependencies. Arial/Helvetica and Georgia/Times are local system fallbacks, not redistributed font files or an exact final typeface match. `public/brand/open-threshold.svg` is a minimal editable solid-path symbol derived from the approved direction; the wordmark is HTML text. The full source sheet, hero, pets and design boards are not shipped. Final outlined lettering, small-size production review, font/artwork rights and the complete export set remain P1/W6 work. See [W1 evidence](docs/validation/2026-10-30-w1-foundation.md) for actual checks and limitations.
 
 ## Current review gates
 
@@ -82,4 +126,4 @@ No fixed deadline or required video format has been supplied. Prototype submissi
 
 The owner performs Git operations manually unless a specific operation is explicitly requested. The agent decides when a reviewed, coherent change is ready for a commit checkpoint and supplies English suggestions in chat only. Related files belong together; independent purposes remain separate. Do not generate a commit message for every file edit or response. See [Agent instructions](AGENTS.md) for review and verification criteria.
 
-This is a planning/design snapshot suitable for manual progress tracking after owner review. See [validation history](docs/README.md#validation-records) for checks that actually ran. Historical reports describe their original baseline; no application build, lint, database, security or performance test has passed merely because these documents exist.
+The broader product descriptions remain the intended portal scope. Only W1's initial public foundation is implemented. See [validation history](docs/README.md#validation-records) for actual checks. Historical reports retain their original baseline; W1 results do not establish authentication/database behavior, full homepage fidelity or deployment readiness.

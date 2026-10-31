@@ -8,7 +8,7 @@ tags: [design, accounts, navigation, tickets, reports]
 
 # CELAHAN Account, Ticket and Report UX
 
-Status: Owner-directed integrated website navigation; detailed auth and component behavior remains a review baseline. No implementation.  
+Status: Owner-directed integrated navigation; W1 guest shell implemented, auth/private behavior remains a review baseline.  
 References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Design Lock](DESIGN_REFERENCE_LOCK.md)
 
 ## 1. Direction and boundaries
@@ -139,6 +139,6 @@ These are planned checks, not passed tests. Map them to [Quality](../engineering
 
 ## 10. Current status and next boundary
 
-Only documentation and rejected-asset cleanup are performed here. No replacement image, application code, dependency installation, provider provisioning, DNS/email configuration or deployment is authorized. Git remains entirely manual.
+The original correction performed documentation and rejected-asset cleanup only. The owner subsequently authorized W1's public shell on October 30; its account links lead to honest unavailable notices with no credentials or writes. W2 account/private behavior, provider provisioning, DNS/email configuration, deployment and replacement reference images remain outside that authorization. Git remains entirely manual.
 
-Review component details within the confirmed integrated-site direction, then define coherent implementation packages when requested. Preserve approved public imagery and reuse existing form/report references instead of another mass image-generation pass.
+The [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) now defines W1–W6. Review component details at the relevant package gates within the confirmed integrated-site direction. Preserve approved public imagery and reuse existing form/report references instead of another mass image-generation pass.

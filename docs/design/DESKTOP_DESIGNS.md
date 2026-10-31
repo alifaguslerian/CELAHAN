@@ -225,5 +225,5 @@ The [27-frame mobile design pass](MOBILE_DESIGNS.md) now covers mobile menu, tou
 
 ## Next review
 
-Public desktop visual direction, including the revised cluster, is accepted. Review mobile references and missing portal/admin flows before detailed implementation packages. Final licensed typography/identity, optimized exports, implementation authorization, and real verification remain open. No Next.js installation, application code, or deployment was authorized by producing this design batch.
+Public desktop visual direction, including the revised cluster, is accepted. W1–W6 are now detailed in Implementation Plan, and the owner separately authorized W1's initial shared shell. Review mobile and integrated portal/admin components at the relevant package gates. Final licensed typography/identity and full optimized exports remain open. This historical design batch itself did not authorize application work or deployment; see [W1 validation](../validation/2026-10-30-w1-foundation.md) for the later limited foundation evidence.
 

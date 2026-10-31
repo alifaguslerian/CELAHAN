@@ -1,6 +1,6 @@
 # CELAHAN — User and Admin Flows
 
-Status: Revised portal flow baseline for review; not implemented  
+Status: W1 public shell implemented; account/private portal flows remain planned  
 Updated: October 30, 2026  
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
@@ -124,4 +124,4 @@ Handle an empty ticket list, pending consultation, awaiting report, expired supp
 
 ## 11. Verification
 
-Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, mobile, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). No application flow has been run yet.
+Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, mobile, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). Only W1's initial public/locale/menu/account-notice routes exist; their limited evidence is in [W1 validation](../validation/2026-10-30-w1-foundation.md). Account notices do not implement login/signup or any private portal flow.

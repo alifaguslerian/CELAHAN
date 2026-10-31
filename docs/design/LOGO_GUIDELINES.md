@@ -28,6 +28,6 @@ The lower specimens in the reference demonstrate dark/light one-color appearance
 - Store editable source and optimized runtime exports separately. Runtime files must contain only the necessary mark, not this entire presentation sheet.
 - Record final usage rights. Approval of a visual direction does not establish trademark registration, legal clearance, a font license, or a repository reuse license.
 
-No final vector, transparent runtime export, favicon test, or website integration is claimed in this document. The owner's direction is fixed; production quality checks remain.
+W1 adds a minimal solid editable SVG symbol in `public/brand/open-threshold.svg`, with a real HTML wordmark and the same symbol as the local favicon. It is a shell export derived from this approved direction, not the completed vector lockup/outlined-lettering/export set. W1 header screenshots were reviewed; dedicated 16/24/32px production checks, final usage-rights review and the remaining exports are still pending. The approved PNG is unchanged. See [W1 validation](../validation/2026-10-30-w1-foundation.md).
 
 

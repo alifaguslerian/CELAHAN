@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
-Status: Revised service-portal requirements; documentation only, application implementation not authorized  
-Updated: October 29, 2026  
+Status: W1 public foundation implemented; later portal packages not started or authorized  
+Updated: October 30, 2026  
 References: [PRD](PRD.md), [Service Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Project and purpose
@@ -82,4 +82,4 @@ Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing an
 
 Sources are the owner's original brief and conversation through October 29, 2026, plus the previously reviewed academic PDF for the eight stages and five findings. The PDF is source material, not authorization to perform security testing or publish personal details.
 
-The owner has now authorized Markdown revision. No application scaffolding, dependencies, new design images, provider provisioning, messaging, or deployment is authorized in this step.
+The October 29 step authorized Markdown revision only. On October 30 the owner separately authorized W1: reconcile documented inconsistencies, verify tooling, explain dependencies, implement the initial shared bilingual shell and run its checks. No W2 auth/database work, new reference images, provider provisioning, messaging or deployment is authorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) and W1's validation record for actual status.

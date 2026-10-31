@@ -1,7 +1,7 @@
 # CELAHAN — Architecture
 
-Status: Better Auth + Neon Free selected; integration/version decisions remain open; not implemented  
-Updated: October 29, 2026  
+Status: W1 public foundation implemented; Better Auth + Neon integration remains unstarted  
+Updated: October 30, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
@@ -34,7 +34,7 @@ Use local development/a reviewed deployment subdomain and isolated email testing
 
 Prefer an established maintained authentication solution over custom cryptography. Authentication does not replace authorization. Keep a server-only data-access layer that returns minimal authorized fields. The design follows [Next.js authentication](https://nextjs.org/docs/app/guides/authentication) and [Next.js data security](https://nextjs.org/docs/app/guides/data-security), checked October 29, 2026. These sources guide architecture, not a version compatibility guarantee.
 
-Provider-specific SDKs, schema validators and test runners require a recorded reason before installation. No package, lockfile, runtime or application exists yet.
+Provider-specific SDKs, schema validators and test runners require a recorded reason before installation. W1 now has a package/lockfile, the Next.js server-capable foundation and a small interactive shared header. Exact tooling and dependency reasons are in the root [README](../../README.md#dependency-and-asset-choices). No auth/database integration or provider SDK is installed. The full responsibility map below is still planned; W1 creates only the files its public shell uses.
 
 ## 3. Request path
 
@@ -135,12 +135,12 @@ Secrets are allowed only in approved local/hosting secret storage after provisio
 
 Use separate development/test/preview/production credentials and databases. Preview builds must not read production private data. Run reviewed migrations through controlled credentials; application credentials use least privilege. Pooling, backups, restore tests, retention and deletion propagation must be defined before public data intake.
 
-Planned scripts: dev, lint, typecheck, test, test:integration, test:e2e, build, start, plus selected migration tooling. These commands do not exist yet. Build success does not imply lint ran, database authorization passed or deployment is secure.
+W1 scripts are dev, lint, typecheck, test, build and start, with an optional Python Playwright browser harness documented in README. Database integration/migration/seed scripts do not exist. Later test commands should be introduced only with their actual features. Build success does not imply lint ran, database authorization passed or deployment is secure.
 
 Headers/CSP must accommodate real first-party forms/auth, unlike the retired form-action none design. Derive form-action, connect-src and allowed callbacks from the chosen architecture; use exact necessary origins, not broad wildcards. Verify hydration, cookies, CSRF, 404 and private caching on the production deployment.
 
 ## 11. Open gates and limits
 
-Before foundation: select the remaining adapter/runtime/transport, enrollment, email recovery and admin provisioning details for Better Auth + Neon Free. Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and missing portal/admin screens while preserving the approved public direction. Domain identity remains a later public-email/deployment gate, not a flow-design prerequisite.
+Before W1 foundation: verify compatible framework/runtime/tooling versions, dependency reasons, locale/layout structure and a licensed local font or reviewed fallback. Before W2 authentication/database integration: review Better Auth + Neon Free adapter/migrations/transport/pooling, enrollment, verification/recovery, controlled admin provisioning and separately authorized isolated database access. These W2 decisions do not block the W1 public shell. Follow the package-specific entry gates in [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md). Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before relevant visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and integrated desktop/mobile components while preserving the approved public direction. Domain identity remains a later public-email/deployment gate, not a W1 or flow-design prerequisite.
 
 No source inspection, diagram or documentation check is an application security or performance test. See Quality for executable acceptance expectations.

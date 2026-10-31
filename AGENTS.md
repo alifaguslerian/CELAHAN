@@ -19,7 +19,7 @@
 
 ## Authorization and work stage
 
-- The current stage is documentation and requested image-based design exploration. The revised desktop hero has been approved and saved in the project. Produce additional design assets only for stages/screens the owner requests; do not install dependencies, write application code, or deploy until implementation is requested.
+- On October 30 the owner authorized W1 only: reconcile the two documented gate/checkpoint inconsistencies, verify tooling, explain dependencies, implement and check the bilingual public foundation/shared shell. W2–W6, provider provisioning and deployment are not authorized. Preserve approved references without regeneration; prepare only the minimum runtime brand exports required by W1. Future packages still require explicit authorization.
 - Approval of an idea does not automatically authorize asset production or implementation.
 - The owner rejected the October 30 separate portal designs and explicitly requested removal of unsuitable material. Remove the rejected batch/gallery/manifest and their current references. Keep accepted public/home/package/form/report/404/English references and brand/pet sources. This correction does not authorize replacement images, application code or provider setup.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.

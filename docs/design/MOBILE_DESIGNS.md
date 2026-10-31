@@ -174,5 +174,5 @@ ID pages and three EN form/report frames are represented; other EN pages reuse t
 
 ## Next stage
 
-Review this mobile set and new account/portal/admin flows, then subdivide the revised broad phase plan into coherent, moderately sized delivery packages. Each future package should produce a usable outcome with relevant checks; avoid turning every tiny component or file into its own phase. This task does not perform that subdivision or authorize installing dependencies, writing application code, deploying, or operating Git.
+The [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) now defines coherent W1–W6 packages. The owner separately authorized W1's initial shared shell; review this mobile set and integrated account/admin components at the relevant later package gates. W1's rendered shell checks do not establish owner approval of all 27 source frames or complete the portal phone UX. This historical image task did not authorize application work, deployment or Git; see [W1 validation](../validation/2026-10-30-w1-foundation.md) for the later scoped evidence.
 

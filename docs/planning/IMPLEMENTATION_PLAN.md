@@ -1,6 +1,6 @@
 # CELAHAN Implementation Plan
 
-Status: Six implementation work packages drafted for owner review; documentation only. No application implementation authorized or started.  
+Status: W1 implemented and checked locally; W2–W6 not started or authorized  
 Updated: October 30, 2026
 
 **Goal:** deliver one bilingual CELAHAN website with the approved identity, dedicated phone/desktop composition, real authentication/database/ticket operations, protected illustrative reports and measured quality.
@@ -11,7 +11,7 @@ Updated: October 30, 2026
 
 ## 1. Authorization and how to use this plan
 
-The owner authorized detailing this existing file into moderately sized packages before implementation. This document does not authorize installation, application code, new image generation, provider accounts/resources, domain/DNS/email changes, deployment, subagents or Git operations. Review the plan first; execute only the package subsequently authorized.
+The owner first authorized detailing this file, then explicitly authorized W1 only on October 30 after reviewing the project analysis. W1 covers the two documentation corrections, tooling/dependency review, local application foundation and its checks. This does not authorize W2–W6, new reference images, provider accounts/resources, domain/DNS/email changes, deployment, subagents or Git operations. Execute only the package authorized; a completed package never grants permission for the next.
 
 Work in the existing project. Do not create another plan directory, duplicate specifications, speculative source folders or a worktree. Future application paths below are proposed responsibilities, not files already created. Confirm exact names against the selected framework before creating only the files needed by the current package.
 
@@ -24,13 +24,13 @@ Retain P0–P9 from earlier documents. W1–W6 below are execution-sized package
 | Phase | Responsibility | Execution mapping | Current status |
 | --- | --- | --- | --- |
 | P0 | Product, policy, access and planning | Review at the relevant W1–W6 entry gate | Requirements drafted; phase-specific choices remain open |
-| P1 | Final identity/runtime assets | Minimum needed in W1/W3; completion before W6 release | Open Threshold selected; vectors/fonts/exports require review |
-| P2 | Integrated desktop/mobile UX | Shared shell in W1; feature integration in W2–W5 | Public references retained; separate dashboard batch rejected/removed |
-| P3 | Server-capable bilingual/auth/database foundation | W1 and W2 | Not started |
+| P1 | Final identity/runtime assets | Minimum needed in W1/W3; completion before W6 release | Minimal solid SVG symbol and system-font fallback used in W1; full production identity still pending |
+| P2 | Integrated desktop/mobile UX | Shared shell in W1; feature integration in W2–W5 | W1 shared guest shell checked; accepted references preserved; separate dashboard batch remains removed |
+| P3 | Server-capable bilingual/auth/database foundation | W1 and W2 | W1 local public foundation checked; W2 auth/database not started |
 | P4 | Public discovery and immutable sample | W3 | Not started |
 | P5 | Consultation, conversation and admin triage | W4 | Not started |
 | P6 | Projects, private reports and bounded support | W5 | Not started |
-| P7 | Integrated verification and cleanup | Checks throughout; final W6 pass | Not started |
+| P7 | Integrated verification and cleanup | Checks throughout; final W6 pass | W1 checks recorded; full portal verification not started |
 | P8 | Authorized deployment and operational handoff | W6, after release gates and explicit authorization | Not started |
 | P9 | Promotional video and case study | After stable implemented flows; see section 12 | Brief only; production not started |
 
@@ -76,20 +76,20 @@ Permanent domain/registrar/DNS identity is deferred and replaceable. It does not
 
 **Proposed responsibility paths:** root package/configuration and lockfile; `src/app/[locale]/layout.tsx` and the initial public page; `src/components/layout/`; `src/content/` for ID/EN shell copy; `src/lib/` for locale/route validation; `src/styles/`; approved runtime assets in `public/`; setup instructions in the root README. See Architecture before finalizing route groups.
 
-- [ ] Verify compatible Next.js/React/TypeScript/runtime/lint tooling and explain every selected dependency; record the chosen commands and versions.
-- [ ] Create the minimal server-capable application in this project, preserving existing docs/design sources and ignore rules. Do not use static-export-only configuration.
-- [ ] Add ID/EN routing, Indonesian default, safe equivalent locale navigation, document language and localized metadata.
-- [ ] Establish shared color/type/spacing/focus foundations; use licensed local fonts or a reviewed local fallback, with no runtime font/CDN dependency added silently.
-- [ ] Build one shared responsive header/footer, accessible compact menu and skip link. Place ordinary account entry beside ID/EN according to Integrated UX.
-- [ ] Build the initial public page and navigation only as far as this foundation actually supports; do not claim the full homepage, real login or private feature flow is complete.
-- [ ] Prepare only the minimum authorized brand exports needed by this shell. Keep source boards out of runtime assets and preserve intrinsic image dimensions.
-- [ ] Add real dev/start/lint/typecheck/build commands and README running instructions; run them as applicable and review rendered desktop/phone shell behavior.
+- [x] Verify compatible Next.js/React/TypeScript/runtime/lint tooling and explain every selected dependency; record the chosen commands and versions.
+- [x] Create the minimal server-capable application in this project, preserving existing docs/design sources and ignore rules. Do not use static-export-only configuration.
+- [x] Add ID/EN routing, Indonesian default, safe equivalent locale navigation, document language and localized metadata.
+- [x] Establish shared color/type/spacing/focus foundations; use licensed local fonts or a reviewed local fallback, with no runtime font/CDN dependency added silently.
+- [x] Build one shared responsive header/footer, accessible compact menu and skip link. Place ordinary account entry beside ID/EN according to Integrated UX.
+- [x] Build the initial public page and navigation only as far as this foundation actually supports; do not claim the full homepage, real login or private feature flow is complete.
+- [x] Prepare only the minimum authorized brand exports needed by this shell. Keep source boards out of runtime assets and preserve intrinsic image dimensions.
+- [x] Add real dev/start/lint/typecheck/build commands and README running instructions; run them as applicable and review rendered desktop/phone shell behavior.
 
 **Boundary:** no provider provisioning, database/auth integration, consultation storage or report generation. Signed-in/customer header behavior is specified for W2, not faked with a public role switch. Do not publish incomplete feature navigation as a completed service.
 
 **Exit checks:** build/lint/typecheck pass with actual output; both locale roots render; locale/menu keyboard behavior works; layout reflows at 320 px and desktop without page overflow; footer disclaimer and language/account placement are correct. Compare visible branding to the accepted references. Record any unavailable browser/physical-device check honestly.
 
-**Relevant Quality checks:** foundation portions of T-01, T-06, T-07, T-09, T-12 and T-15. No application check is currently marked passed.
+**Relevant Quality checks:** foundation portions of T-01, T-06, T-07, T-09, T-12 and T-15 are documented in [W1 validation](../validation/2026-10-30-w1-foundation.md). Chromium passed the scoped production-build suite. Firefox launch and WebKit keyboard limitations are recorded, with physical-device/native-zoom/screen-reader and full performance audits still unavailable or unrun. This is not completion of the full hero, public site or any private flow.
 
 ## 6. W2: Real authentication, database and account navigation
 
@@ -210,7 +210,7 @@ Package completion and commits are different decisions. The agent decides when a
 
 Before proposing a checkpoint, inspect the actual scope, check for unrelated/unsafe/unused material and run the relevant verification. Include intended paths, purpose, actual results and remaining limits in chat. If the change is partial, defer the suggestion. No commit messages/commands or persistent commit inventories belong in this document.
 
-For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1–W6 are currently not started.
+For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1 is implemented with scoped local evidence and explicit limitations; W2–W6 remain not started and not authorized.
 
 ## 12. Academic prototype, video and immediate next step
 
@@ -218,4 +218,4 @@ For each authorized package, update its actual status only after implementation 
 
 **P9:** use stable actual functionality for the promotional video/case study after the website work is ready to record. Review format/duration/language/audio rights through [Video Brief](../portfolio/PROMO_VIDEO_BRIEF.md) and [Release and Portfolio](../portfolio/RELEASE_AND_PORTFOLIO.md). Mockups are concept footage; exclude provider secrets, private identities and admin provisioning from recordings.
 
-**Next after this planning step:** owner reviews this package sequence and authorizes W1. Then verify current tooling, settle only W1's necessary choices and build the foundation in the existing project. Do not start installation or code merely because this plan has been detailed.
+**Next boundary:** the owner reviews W1 and its evidence. W2 requires separate authorization plus its identity/privacy/isolated-database entry decisions. Do not begin W2, provision providers or deploy merely because W1 is complete.

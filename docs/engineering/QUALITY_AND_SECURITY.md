@@ -1,7 +1,7 @@
 # CELAHAN — Quality, Security, and Validation
 
-Status: Revised verification plan; no application tests have run  
-Updated: October 29, 2026  
+Status: W1 foundation checks recorded separately; full portal verification remains planned  
+Updated: October 30, 2026  
 References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Data and Access](DATA_AND_ACCESS.md), [Operations](../product/SERVICE_OPERATIONS.md)
 
 ## 1. Evidence and scope
@@ -47,7 +47,7 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-29 | AC-02, 16, 20 | Idempotency payload mismatch, transaction rollback, duplicate message, concurrent publication |
 | T-30 | FUN-24, 26 | No invented discount, code-maintenance promise, actual assessment claim or false no-storage privacy text |
 
-Run integration/E2E against a production-mode application with an isolated test database, not only mocks or a development server. No test in this table is marked passed. Dataset/validator/access-policy/date/transition units are meaningful; avoid tests that merely mirror markup.
+Run integration/E2E against a production-mode application with an isolated test database when the package introduces persistence, not only mocks or a development server. W1's public shell has no database integration. Its evidence covers foundation portions of T-01, T-06, T-07, T-09, T-12 and T-15 in [W1 validation](../validation/2026-10-30-w1-foundation.md); no full matrix test or private portal flow is marked passed by that record. Dataset/validator/access-policy/date/transition units are meaningful; avoid tests that merely mirror markup.
 
 ## 3. Safe fixtures and no-target-access verification
 
@@ -147,6 +147,6 @@ Before release: complete critical user/admin flows, object isolation/session/CSR
 
 Remove verified unused code/imports/dependencies/experiments and duplicate logic after checking framework/dynamic references. Share content/domain rules across viewports/locales. Keep files focused and assets optimized; no insecure shortcuts to bypass tests.
 
-Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Per-file commit suggestions stay in chat; Git is entirely manual.
+Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Following DEC-45 and [Agent Instructions](../../AGENTS.md), propose English commit suggestions in chat only after a coherent change has been reviewed and its relevant checks have run. Group related files by purpose, separate independent purposes and defer suggestions for unfinished work; do not require one suggestion per file or edit. Git is entirely manual.
 
-Current state: documentation and design references only. No application build, runtime security, database integration, accessibility or performance result exists.
+Current state: W1's local public foundation exists. See its dated validation record for actual build, routing, browser and resource checks and their limitations. Authentication/database integration, private-resource security, full accessibility/performance audits and deployment remain unimplemented or untested. Earlier validation records preserve their historical scope.

@@ -1,7 +1,7 @@
 # CELAHAN — Release and Portfolio
 
-Status: Revised portal release plan; no application or deployment exists  
-Updated: October 29, 2026  
+Status: W1 foundation exists locally; no portal release or deployment exists  
+Updated: October 30, 2026  
 References: [Plan](../planning/IMPLEMENTATION_PLAN.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Handoff levels
