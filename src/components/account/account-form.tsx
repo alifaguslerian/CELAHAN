@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { accountCopy } from '@/content/account';
 import { disclaimer } from '@/content/shell';
 import { safeReturnPath } from '@/lib/auth-policy';
 import type { Locale } from '@/lib/routing';
+import { localeHref, loginDestination } from '@/lib/routing';
 
 export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'twoFactor' | 'setup' | 'profile';
 const subscribe = () => () => {};
@@ -14,6 +15,8 @@ const subscribe = () => () => {};
 export function AccountForm({ locale, mode, available, profile }: { locale: Locale; mode: AccountMode; available: boolean; profile?: { name: string; email: string; twoFactorEnabled: boolean } }) {
   const copy = accountCopy[locale];
   const router = useRouter();
+  const search = useSearchParams();
+  const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'), search.get('package'));
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [view, setView] = useState(mode);
   const [email, setEmail] = useState(profile?.email ?? '');
@@ -64,8 +67,7 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
       dirty.current = false; setPassword(''); setOTP('');
       if (data.needsTwoFactor) { setView('twoFactor'); return; }
       if (view === 'login' || view === 'twoFactor') {
-        const next = new URL(window.location.href).searchParams.get('next');
-        window.location.assign(safeReturnPath(next === 'account' ? `/${locale}/account/` : undefined, locale)); return;
+        window.location.assign(safeReturnPath(loginDestination(search.get('next'), locale, search.get('package')), locale)); return;
       }
       if (view === 'register') { setView('verify'); setMessage(copy.sent); }
       if (view === 'recovery') { setView('reset'); setMessage(copy.sent); }
@@ -115,7 +117,7 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
       <noscript><p>{copy.needJS}</p></noscript>
       {view === 'profile' && <p>{profile?.twoFactorEnabled ? copy.enabled : <button className="text-button" onClick={() => setView('setup')}>{copy.enable}</button>}</p>}
       <nav className="account-navigation" aria-label={locale === 'id' ? 'Bantuan akun' : 'Account help'}>
-        <Link href={`/${locale}/login/`}>{copy.login}</Link><Link href={`/${locale}/register/`}>{copy.register}</Link><Link href={`/${locale}/account/recovery/`}>{copy.forgot}</Link><Link href={`/${locale}/account/verify-email/`}>{copy.verify}</Link>
+        <Link href={entryHref('login')}>{copy.login}</Link><Link href={entryHref('register')}>{copy.register}</Link><Link href={entryHref('account/recovery')}>{copy.forgot}</Link><Link href={entryHref('account/verify-email')}>{copy.verify}</Link>
       </nav>
     </>}
   </main>;

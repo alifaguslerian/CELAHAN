@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { shell } from '@/content/shell';
 import { localeHref, type Locale } from '@/lib/routing';
 import { Brand } from './brand';
@@ -12,6 +12,8 @@ export function Header({ locale, account }: { locale: Locale; account: { id: str
   const copy = shell[locale];
   const authCopy = accountCopy[locale];
   const pathname = usePathname();
+  const search = useSearchParams();
+  const entryHref = (mode: 'login' | 'register') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'), search.get('package'));
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -86,7 +88,7 @@ export function Header({ locale, account }: { locale: Locale; account: { id: str
                 aria-current={locale === language ? 'page' : undefined}
                 onClick={(event) => {
                   const current = new URL(window.location.href);
-                  event.currentTarget.href = localeHref(pathname, language, current.hash, current.searchParams.get('next'));
+                  event.currentTarget.href = localeHref(pathname, language, current.hash, current.searchParams.get('next'), current.searchParams.get('package'));
                   closeMenu();
                 }}>{language.toUpperCase()}</a>
             ))}
@@ -95,8 +97,8 @@ export function Header({ locale, account }: { locale: Locale; account: { id: str
             <summary aria-label={locale === 'id' ? 'Menu akun' : 'Account menu'}><span aria-hidden="true">{account.name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()}</span></summary>
             <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{authCopy.profile}</Link><button type="button" onClick={logout} disabled={logoutPending}>{logoutPending ? authCopy.saving : authCopy.logout}</button><p role="alert">{logoutError}</p></div>
           </details> : <nav className="account-links" aria-label={locale === 'id' ? 'Akun' : 'Account'}>
-            <Link href={`/${locale}/login/`} aria-current={pathname.replace(/\/$/, '') === `/${locale}/login` ? 'page' : undefined}>{copy.login}</Link>
-            <Link className="signup-link" href={`/${locale}/register/`} aria-current={pathname.replace(/\/$/, '') === `/${locale}/register` ? 'page' : undefined}>{copy.register}</Link>
+            <Link href={entryHref('login')} aria-current={pathname.replace(/\/$/, '') === `/${locale}/login` ? 'page' : undefined}>{copy.login}</Link>
+            <Link className="signup-link" href={entryHref('register')} aria-current={pathname.replace(/\/$/, '') === `/${locale}/register` ? 'page' : undefined}>{copy.register}</Link>
           </nav>}
           <button className="menu-trigger" type="button" ref={trigger} aria-expanded={open} aria-controls="site-navigation"
             onClick={() => setOpen(!open)}>
@@ -106,9 +108,9 @@ export function Header({ locale, account }: { locale: Locale; account: { id: str
         <div className={`navigation-panel${open ? ' is-open' : ''}`} id="site-navigation" ref={panel}
           onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget) && event.relatedTarget !== trigger.current) closeMenu(); }}>
           <nav aria-label={copy.navigation}>
-            <Link href={`/${locale}/`} onClick={closeMenu}>{copy.home}</Link>
-            <Link href={`/${locale}/#about`} onClick={closeMenu}>{copy.about}</Link>
-            <Link href={`/${locale}/#boundaries`} onClick={closeMenu}>{copy.boundaries}</Link>
+            <Link href={`/${locale}/services/`} onClick={closeMenu}>{copy.services}</Link>
+            <Link href={`/${locale}/process/`} onClick={closeMenu}>{copy.process}</Link>
+            <Link href={`/${locale}/report/`} onClick={closeMenu}>{copy.report}</Link>
             {account && <Link href={`/${locale}/tickets/`} prefetch={false} onClick={closeMenu}>{authCopy.tickets}</Link>}
             {account?.hasProjects && <Link href={`/${locale}/projects/`} prefetch={false} onClick={closeMenu}>{authCopy.projects}</Link>}
             {account?.admin && <Link href={`/${locale}/admin/`} prefetch={false} onClick={closeMenu}>{authCopy.admin}</Link>}

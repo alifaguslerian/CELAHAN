@@ -1,6 +1,8 @@
 """Production-mode W2 browser checks; use only isolated synthetic accounts."""
 
 import json
+import argparse
+import sys
 import base64
 import hashlib
 import hmac
@@ -12,10 +14,25 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
 
+def safe_failure(kind, _error, trace):
+    # Playwright's automatic ARIA snapshots can contain the OTP/password fields.
+    frames = []
+    while trace:
+        frames.append(f'{Path(trace.tb_frame.f_code.co_filename).name}:{trace.tb_lineno}')
+        trace = trace.tb_next
+    print(kind.__name__ + ': account browser check failed at ' + ' > '.join(frames), file=sys.stderr)
+
+
+sys.excepthook = safe_failure
+expect.set_options(timeout=20000)
 ROOT = Path(__file__).resolve().parents[2]
 ENV = dict(line.split('=', 1) for line in (ROOT / '.env.local').read_text().splitlines() if line and not line.startswith('#'))
 BASE = ENV['BETTER_AUTH_URL']
-EMAIL = 'disabled@example.invalid'
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--email', required=True, help='Fresh allowlisted synthetic identity; never resets another account.')
+args = parser.parse_args()
+EMAIL = args.email
+assert EMAIL.endswith('@example.invalid') and EMAIL in ENV['CELAHAN_TEST_EMAILS'].split(',')
 PASSWORD = secrets.token_urlsafe(24)
 ARTIFACTS = ROOT / 'test-results' / 'w2'
 ARTIFACTS.mkdir(parents=True, exist_ok=True)
@@ -79,7 +96,7 @@ with sync_playwright() as playwright:
     page.get_by_role('link', name='English', exact=True).click()
     page.wait_for_url(BASE + '/en/login/?next=account')
 
-    page.goto(BASE + '/en/register/')
+    page.goto(BASE + '/en/register/?next=request&package=warden')
     page.get_by_label('Name', exact=True).fill('Synthetic Browser')
     page.get_by_label('Email', exact=True).fill(EMAIL)
     page.get_by_label('Password', exact=True).fill(PASSWORD)
@@ -93,7 +110,15 @@ with sync_playwright() as playwright:
     expect(page.get_by_role('heading', name='Log in', exact=True)).to_be_visible()
     page.get_by_label('Password', exact=True).fill(PASSWORD)
     page.get_by_role('button', name='Continue', exact=True).click()
-    page.wait_for_url(BASE + '/en/')
+    page.wait_for_url(BASE + '/en/request/?package=warden')
+    assert page.locator('main form, main input').count() == 0
+    assert 'WARDEN' in page.locator('main').inner_text()
+    page.reload()
+    assert 'WARDEN' in page.locator('main').inner_text()
+    page.get_by_role('link', name='Bahasa Indonesia', exact=True).click()
+    page.wait_for_url(BASE + '/id/request/?package=warden')
+    page.get_by_role('link', name='English', exact=True).click()
+    page.wait_for_url(BASE + '/en/request/?package=warden')
     expect(page.get_by_label('Account menu', exact=True)).to_be_visible()
     assert context.cookies() and all(cookie['httpOnly'] for cookie in context.cookies())
     assert all(cookie['sameSite'] == 'Lax' for cookie in context.cookies())
