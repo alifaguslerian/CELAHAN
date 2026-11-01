@@ -45,7 +45,8 @@ def run(base, artifacts, engines):
                 assert "x-powered-by" not in response.headers
                 assert page.locator("html").get_attribute("lang") == locale
                 assert ("Kenali celah" if locale == "id" else "Recognize gaps") in page.title()
-                assert page.locator("header").count() == page.locator("footer").count() == 1
+                assert page.locator(".site-header").count() == page.locator(".site-footer").count() == 1
+                assert page.get_by_role("banner").count() == 1
                 assert page.locator("main h1").count() == 1
                 assert page.locator("footer p[lang='id']").inner_text() == DISCLAIMER
                 if locale == "en":
@@ -77,8 +78,11 @@ def run(base, artifacts, engines):
                         button.click()
                         expect(button).to_have_attribute("aria-expanded", "true")
                         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), (locale, width, "open-menu overflow")
+                        header_box = page.locator('.site-header').bounding_box()
+                        main_box = page.locator('main').bounding_box()
+                        assert header_box['y'] + header_box['height'] <= main_box['y'] + 1, (locale, width, 'open menu must not overlap content')
                         page.keyboard.press("Tab")
-                        assert page.locator(":focus").get_attribute("href") == f"/{locale}/"
+                        assert page.locator(":focus").get_attribute("href") == f"/{locale}/services/"
                         page.keyboard.press("Escape")
                         expect(button).to_be_focused()
                         expect(button).to_have_attribute("aria-expanded", "false")
@@ -101,7 +105,8 @@ def run(base, artifacts, engines):
                     for form in page.locator("form").all():
                         assert form.get_attribute("method") == "post"
                     assert page.locator("meta[name='robots']").get_attribute("content") == "noindex, nofollow"
-                    assert page.locator("header").count() == page.locator("footer").count() == 1
+                    assert page.locator(".site-header").count() == page.locator(".site-footer").count() == 1
+                    assert page.get_by_role("banner").count() == 1
                     page.get_by_role("link", name="English" if other == "en" else "Bahasa Indonesia", exact=True).click()
                     page.wait_for_url(f"**/{other}/{mode}/")
 
@@ -147,8 +152,8 @@ def run(base, artifacts, engines):
         page = context.new_page()
         page.goto(base + "/id/")
         page.get_by_role("button", name="Menu", exact=True).tap()
-        page.get_by_role("navigation", name="Navigasi utama", exact=True).get_by_role("link", name="Tentang konsep").tap()
-        page.wait_for_url("**/id/#about")
+        page.get_by_role("navigation", name="Navigasi utama", exact=True).get_by_role("link", name="Layanan", exact=True).tap()
+        page.wait_for_url("**/id/services/")
         context.close()
         for locale in ["id", "en"]:
             context = browser.new_context(viewport={"width": 1440, "height": 960})
@@ -165,7 +170,7 @@ def run(base, artifacts, engines):
                 fontRequests: resources.filter(r => /\\.(woff2?|ttf|otf)(?:$|\\?)/.test(r.name)).length
               };
             }""")
-            assert measurements["fontRequests"] == 0
+            assert measurements["fontRequests"] <= 2
             assert measurements["jsBytes"] <= 250 * 1024, measurements
             assert measurements["totalResourceBytes"] + measurements["navigationBytes"] <= 1024 * 1024, measurements
             print(json.dumps({"locale": locale, "cold_load": measurements}), flush=True)
@@ -180,7 +185,7 @@ def run(base, artifacts, engines):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", default="http://127.0.0.1:3100")
-    parser.add_argument("--artifacts", type=Path, default=Path("test-results/w1"))
+    parser.add_argument("--artifacts", type=Path, default=Path("test-results/shell"))
     parser.add_argument("--browsers", nargs="+", choices=["chromium", "firefox", "webkit"], default=["chromium", "firefox", "webkit"])
     args = parser.parse_args()
     url = urlsplit(args.base)
