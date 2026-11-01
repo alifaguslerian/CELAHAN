@@ -30,7 +30,9 @@ test('auth writes require an exact origin and bounded JSON without privileged fi
 test('post-login navigation rejects external, encoded and data-bearing destinations', () => {
   assert.ok(policy, 'auth policy must exist');
   assert.equal(policy.safeReturnPath('/en/account/', 'id'), '/en/account/');
-  for (const path of ['//evil.invalid', 'https://evil.invalid', '/id/account/?email=private', '/id/%2e%2e/admin/', '/id/account/#token', '/id/tickets/unknown/', '/id\\account/']) {
+  assert.equal(policy.safeReturnPath('/id/request/?package=scout', 'en'), '/id/request/?package=scout');
+  assert.equal(policy.safeReturnPath('/en/request/', 'id'), '/en/request/');
+  for (const path of ['//evil.invalid', 'https://evil.invalid', '/id/account/?email=private', '/id/%2e%2e/admin/', '/id/account/#token', '/id/tickets/unknown/', '/id\\account/', '/id/request/?package=unknown', '/id/request/?package=scout&owner=admin', '/id/request/?email=private']) {
     assert.equal(policy.safeReturnPath(path, 'id'), '/id/');
   }
 });
