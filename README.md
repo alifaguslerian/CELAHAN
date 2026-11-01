@@ -6,15 +6,17 @@ A bilingual web security assessment service concept for university coursework an
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Status — October 31, 2026
+## Status — November 1, 2026
 
-**W1 and isolated W2 checked locally with explicit limits. W3–W6 are not started. Public enrollment, real email delivery and deployment remain closed.**
+**W3 public discovery is complete within its authorized local scope and the reviewed interface is owner-accepted. W1 and isolated W2 were checked locally with explicit limits. W4–W6 are not started. Public enrollment, real email delivery and deployment remain closed.**
 
 The owner approved expanding the planned website into a functional service portal after lecturer feedback: real login, a real database, reactive/preventive consultation intake, user/admin tickets and conversation, requested consultation schedules, private illustrative project reports and three-month follow-up benefits.
 
-This replaces the earlier client-only/no-storage architecture. The owner authorized W1 on October 30 and W2 on October 31, approved the isolated identity policy and delegated the test database setup. A dedicated Neon Free test project is now used. Other provider services, public enrollment, external email, deployment and later packages remain gated. Real scanning and code repair remain excluded.
+This replaces the earlier client-only/no-storage architecture. The owner authorized W1 on October 30 and W2 on October 31, approved the isolated identity policy and delegated the test database setup. A dedicated Neon Free test project is now used. The owner authorized W3 on November 1 and deferred all numerical package terms. Other provider services, public enrollment, external email, deployment and W4–W6 remain gated. Real scanning and code repair remain excluded.
 
-The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. W1 uses only a minimal SVG symbol and local system-font fallback; the complete production identity/font/artwork export set remains pending.
+The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. W3 adds locally served Manrope/DM Serif Display fonts and optimized crops/transparent pet derivatives from accepted sources. The minimal SVG symbol remains; the complete production identity export set is still pending.
+
+The November 1 reference correction restores a deep-black background and a large continuous doorway/stair scene, overlays the transparent shared header, tightens the overview, and restores direct package-detail navigation with restrained pet hover/press feedback. The visible heading above the pet cluster and the hero-only disclaimer are removed; required footer/form disclaimers remain. The earlier warm-gradient/inline-summary revision was rejected. The owner accepted the reviewed local interface on November 1 and requested the W3 completion/checkpoint audit. Consultation intake, tickets/admin and owned private reports remain later work; this is not deployment or release approval. See [correction evidence](docs/validation/2026-11-01-w3-reference-correction.md).
 
 ## Planned experience
 
@@ -44,7 +46,7 @@ Start with the [grouped index](docs/README.md).
 
 | Document | Responsibility |
 | --- | --- |
-| [Agent instructions](AGENTS.md) | Scope, no-target-access, quality, documentation-only authorization and entirely manual Git |
+| [Agent instructions](AGENTS.md) | Scope, no-target-access, quality, package-scoped authorization and entirely manual Git |
 | [Project brief](docs/product/PROJECT_BRIEF.md) | Goals, revised scope, audiences and milestones |
 | [PRD](docs/product/PRD.md) | Functional requirements and acceptance scenarios |
 | [Service operations](docs/product/SERVICE_OPERATIONS.md) | Ticket/project/report lifecycle, scheduling, triage and three-month support |
@@ -82,7 +84,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Development binds to http://127.0.0.1:3000. `/` redirects to `/id/`; `/en/` is the equivalent English entry. The initial public page remains the W1 foundation, not the complete approved hero. Account routes now include login/signup, verification, recovery/reset, TOTP and own profile. Authenticated ticket/project/admin destinations explicitly explain that their workflows are pending W4/W5; no sample private records are fabricated. The shared header is server-rendered per request with current session/project capabilities, so public pages are no longer statically prerendered once this shell is personalized.
+Development binds to http://127.0.0.1:3000. `/` redirects to `/id/`; `/en/` is the equivalent English entry. Public home, four qualitative package details/comparison, eight-stage process, immutable five-finding sample, About, privacy and localized 404 are implemented. Prices, numerical caps, effort/day ranges and retest-cycle counts are withheld. Consultation links preserve only an enumerated package interest through login/signup; the authenticated destination states that intake is pending W4 and stores no request. Account routes now include login/signup, verification, recovery/reset, TOTP and own profile. Authenticated ticket/project/admin destinations explicitly explain that their workflows are pending W4/W5; no sample private records are fabricated. The shared header is server-rendered per request with current session/project capabilities, so public pages are no longer statically prerendered once this shell is personalized.
 
 ```powershell
 npm run lint
@@ -105,10 +107,10 @@ npm run mailbox
 # Separate terminals, after a successful build:
 npm run start -- --port 3100
 npm run test:integration
-.\.venv\Scripts\python.exe tests/e2e/accounts.py
+.\.venv\Scripts\python.exe tests/e2e/accounts.py --email fresh-allowlisted@example.invalid
 ```
 
-Run integration tests before the browser account suite. They reset only the allowlisted synthetic identities in the dedicated test database and refuse unknown identities; test passwords are generated in memory. Mailbox codes expire after five minutes; expired entries are purged on the next request and all entries disappear on exit. The bounded memory sink never logs codes and requires a bearer secret for delivery/inspection. Public deliverability is not tested. Forms require JavaScript; disabled server-rendered controls and POST-only fallback prevent credential leakage through GET URLs. See [W2 evidence](docs/validation/2026-10-31-w2-accounts.md) for checks and limits.
+The integration suite resets all allowlisted synthetic identities in the dedicated test database; running it also resets manually used test accounts. The browser suite instead requires a fresh synthetic email already added to the ignored local allowlist and does not reset other accounts. Restart both the local server and mailbox after allowlist changes. Test passwords are generated in memory. Mailbox codes expire after five minutes; expired entries are purged on the next request and all entries disappear on exit. The bounded memory sink never logs codes and requires a bearer secret for delivery/inspection. Public deliverability is not tested. Forms require JavaScript; disabled server-rendered controls and POST-only fallback prevent credential leakage through GET URLs. See [W2 evidence](docs/validation/2026-10-31-w2-accounts.md) for checks and limits.
 
 Reviewed SQL lives in `database/`. `npm run db:migrate` checks applied migration hashes and applies unapplied files in one locked transaction; repeating it is safe. The one-time `npm run db:prepare-test-role` creates a DML-only runtime role and writes its pooled URL only to ignored local configuration. It refuses to replace an existing role. Regenerating the initial identity schema uses `scripts/generate-auth-schema.mts` against an empty isolated database; it refuses to overwrite the saved SQL. Neither migration nor role preparation runs during build/start.
 
@@ -137,7 +139,7 @@ The harness supports `--browsers chromium firefox webkit`, `--base` for a local 
 - `pg` and development-only `@types/pg`: PostgreSQL pooling, parameterized application queries and typed integration/migration scripts. Better Auth's built-in adapter avoids a separate ORM and migration CLI dependency.
 - `server-only`: build-time protection against importing database/session modules into browser code.
 
-Plain CSS and shared typed ID/EN content avoid UI, animation, CSS-framework and i18n dependencies. Arial/Helvetica and Georgia/Times are local system fallbacks, not redistributed font files or an exact final typeface match. `public/brand/open-threshold.svg` is a minimal editable solid-path symbol derived from the approved direction; the wordmark is HTML text. The full source sheet, hero, pets and design boards are not shipped. Final outlined lettering, small-size production review, font/artwork rights and the complete export set remain P1/W6 work. See [W1 evidence](docs/validation/2026-10-30-w1-foundation.md) for actual checks and limitations.
+Plain CSS and shared typed ID/EN content avoid UI, animation, CSS-framework and i18n dependencies. W3 serves licensed local Manrope and DM Serif Display, with Arial/Helvetica and Georgia/Times as system fallbacks. `public/brand/open-threshold.svg` is a minimal editable solid-path symbol derived from the approved direction; the wordmark is HTML text. Full source sheets and design boards are not shipped; W3 uses only optimized scene crops and pet derivatives. Final outlined lettering, small-size production review, artwork usage-rights review and the complete identity export set remain P1/W6 work. Actual font licenses are included. See [W1 evidence](docs/validation/2026-10-30-w1-foundation.md) for actual checks and limitations.
 
 ## Current review gates
 
@@ -149,4 +151,14 @@ No fixed deadline or required video format has been supplied. Prototype submissi
 
 The owner performs Git operations manually unless a specific operation is explicitly requested. The agent decides when a reviewed, coherent change is ready for a commit checkpoint and supplies English suggestions in chat only. Related files belong together; independent purposes remain separate. Do not generate a commit message for every file edit or response. See [Agent instructions](AGENTS.md) for review and verification criteria.
 
-The broader product descriptions remain the intended portal scope. W1 and the isolated W2 account boundary exist locally; later public discovery, consultation/ticket/report workflows remain pending. See [validation history](docs/README.md#validation-records) for actual checks. Neither local account evidence nor a successful build establishes public enrollment, full homepage fidelity or deployment readiness.
+The broader product descriptions remain the intended portal scope. W1, the isolated W2 account boundary and W3 public discovery exist locally; consultation/ticket/private-report workflows remain pending. See [validation history](docs/README.md#validation-records) for actual checks. Neither local account evidence nor a successful build establishes public enrollment, full homepage fidelity or deployment readiness.
+
+### W3 public-site checks and artwork
+
+```powershell
+npm run assets:export
+.\.venv\Scripts\python.exe tests/e2e/shell.py --browsers chromium
+.\.venv\Scripts\python.exe tests/e2e/public-site.py
+```
+
+The browser scripts require a running production server at the local origin above and the previously installed local Playwright environment. Screenshots stay in ignored `test-results/`; they are not public assets. No target URLs are accepted by these scripts. `sharp` 0.35.5 is an explicit development dependency because reproducible cropping, alpha cleanup, resizing and WebP encoding are needed; no image-generation service, decorative runtime library or font CDN was added. Actual font licenses, source URLs, export geometry and reviewed adaptations are recorded in [Runtime assets](docs/design/RUNTIME_ASSETS.md). See [W3 evidence](docs/validation/2026-11-01-w3-public-site.md) for current results and limits.

@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
-Status: Portal scope approved in principle; detailed behavior below is a review baseline, not implementation authorization  
-Version: 1.2 isolated-identity revision · October 31, 2026  
+Status: W1/W2 checked and W3 local public scope complete; remaining portal behavior is a review baseline, not later-stage authorization  
+Version: 1.3 public-discovery checkpoint · November 1, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Product outcome and approval

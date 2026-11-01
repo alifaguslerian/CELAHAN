@@ -6,6 +6,10 @@ Scope: Desktop references. The subsequent [mobile set](MOBILE_DESIGNS.md) is now
 
 References: [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [User flows](../product/USER_FLOWS.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [Service packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-desktop-designs.md)
 
+**Current publication override — November 1 (DEC-50):** preserve all approved image bytes. Historical price/cap/effort/cycle lettering and instructions do not authorize publication. W3 shows qualitative package details only; all numerical package terms are deferred. See [runtime adaptations](RUNTIME_ASSETS.md) and [W3 evidence](../validation/2026-11-01-w3-public-site.md).
+
+**November 1 correction (DEC-52):** the owner rejected the tiny isolated doorway, warm background and inline pet summary. Restore a large connected doorway/stair scene over deep black, overlay the transparent shared header, tighten overview spacing and use stronger italic emphasis. Remove the visible pet-section heading and hero-only disclaimer. Hover/focus names remain above pets; activation opens full package details directly. Required footer/form disclaimers and numerical deferral remain. Source bytes are preserved. The owner accepted the reviewed local W3 interface on November 1; checkpoint preparation is permitted after review/checks, without W4 or publication authorization.
+
 ## October 29 portal scope update
 
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
@@ -65,7 +69,9 @@ An eight-stage preview linking to Process. Describe the conceptual service, whil
 
 ## 04 — Illustrative report preview
 
-An explicitly labeled excerpt: F02, F04, F03, in that order. This is three of the same five findings, not a new dataset. Use the neutral/sand revised badges.
+An explicitly labeled excerpt: F02, F04, F03, in that order. This is three of the same five findings, not a new dataset.
+
+**November 1 owner card-layout override:** use the supplied `Dasbor Laporan Keamanan Premium.png` only as an information-layout reference. Keep the page background plain near-black, with no imported gold curves, landscape, glow backdrop, fake tabs or separate dashboard shell. Place a compact introduction beside a panel containing three excerpt risk counters and three structured finding cards. The counters are derived from the displayed findings (one High, two Medium, zero Low), explicitly labeled as three of five findings rather than totals for the full report. Preserve exact source titles, categories, locations, scores and statuses. Card titles open their existing sample-report finding anchor; target locations remain inert text. Keep the illustrative-data disclosure and a full-report action visible. The complete collapsed preview fits tested laptop/desktop viewports; phone and enlarged-text layouts flow without clipping. The five-finding report page retains its existing native disclosures. Historical approved image bytes below are preserved; the supplied reference is not a new hero/master or authorization for artwork generation.
 
 ![Desktop 04: Illustrative report preview](../../design/desktop/v1/04-home-report-preview-r2.png)
 
@@ -83,11 +89,15 @@ Retain invitation/footer composition. Current action enters authenticated consul
 
 ## 07 — Selected WARDEN package
 
+**November 1 owner composition correction:** remove the generic heading, filled detail panel and stairs behind the selected pet. Make the selected pet large, with a much smaller four-pet selector centered beneath it. The adjacent narrower column contains the package name and one concise bilingual paragraph, including its key scope boundaries, followed by consultation/comparison links. Do not split this explanation into category rows or stretch it across the remaining page width. Keep the first section within tested laptop viewports without clipping; mobile and enlarged text flow naturally. A later owner refinement adds a faint pet-tinted CSS halo behind the selected mascot. The numerical-publication note and support terms remain in native expandable disclosures below the compact comparison. This supersedes the rejected compact-pet/categorized-text implementation; the approved source image below remains unchanged.
+
 WARDEN selected as the detailed template. SCOUT, NEXUS, and ATLAS reuse this structure with their own exact scope, suitability, exclusions, outputs, retest terms, and fictional prices from Service Packages. They do not require four different page architectures.
 
 ![Desktop 07: Selected WARDEN package](../../design/desktop/v1/07-services-selected.png)
 
 ## 08 — Package comparison and boundaries
+
+**November 1 reading-density override:** present four brief qualitative fit descriptions and two native expandable groups for scope/terms and support/remediation. Remove the separate standards essay, repeated deliverable rows, standalone unsure block and repeated consultation invitation. Keep one short shared-standard introduction. The first section already supplies the consultation action; its safe authenticated destination remains unchanged. In the default closed state, the comparison and footer should be readable together in the next desktop/laptop viewport; expanded information and mobile content may flow. Required disclaimers, written-permission rules, deferred numerical terms and the first-private-publication support clock remain accessible. Preserve the source image below as historical design evidence.
 
 Package comparison and fit guidance. Caps apply simultaneously. An unsure/over-scope visitor can request consultation without purchasing or upgrading.
 

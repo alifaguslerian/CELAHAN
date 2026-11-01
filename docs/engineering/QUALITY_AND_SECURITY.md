@@ -29,7 +29,7 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-11 | QLT-03, AC-03 | Target URL never contacted client/server; intended data only to approved auth/app/database destinations |
 | T-12 | QLT-02, 04 | Actual lint/typecheck/build, meaningful tests, measured assets/JS/query behavior |
 | T-13 | FUN-15–16 | All packages and unsure path in ID/EN, keyboard/touch fallback, same public five findings |
-| T-14 | AC-11 | Shared fictional IDR/caps/effort/cycles, three-month wording; no obsolete 30/60-day window |
+| T-14 | AC-11 | Under DEC-50, W3 omits all numerical package terms; retain the independently approved three-month support rule, with no obsolete 30/60-day window. Published numerical terms require later owner approval |
 | T-15 | FUN-18, QLT-06 | Browser hero vs preserved PNG, approved logo direction, distinct pet silhouettes/colors |
 | T-16 | FUN-19, 21, AC-06, 18 | Signup/login/recovery/logout and reviewed gates; shared header beside ID/EN for guest/prospect/project owner/admin; no forced dashboard; hidden ticket/report entries cannot bypass server checks |
 | T-17 | AC-10, 12 | Two-user/admin object and nested-ID read/write/list/count isolation; no mass-assigned privileges |
@@ -127,7 +127,7 @@ Field Core Web Vitals are evaluated across visitor distributions; LCP/INP/CLS ta
 
 If a budget is missed, identify the responsible resource/interaction, optimize, and measure again. Exceptions must record cost, rationale, and owner approval; never silently lower a target.
 
-The approved PNG in [Design Reference Lock](../design/DESIGN_REFERENCE_LOCK.md) is preserved source evidence, not a runtime-size exception. Extract/produce appropriate isolated, optimized assets while keeping text and controls in HTML, then compare the implemented result with the saved target. The source-file checksum only verifies preservation; T-15 requires actual implementation screenshots and remains unrun until the application exists.
+The approved PNG in [Design Reference Lock](../design/DESIGN_REFERENCE_LOCK.md) is preserved source evidence, not a runtime-size exception. Extract/produce appropriate isolated, optimized assets while keeping text and controls in HTML, then compare the implemented result with the saved target. The source-file checksum only verifies preservation. W3 compared actual desktop/phone screenshots against the retained sources and the owner accepted the reviewed local implementation. This is scoped T-15 evidence; physical-device, complete accessibility and release checks remain unverified.
 
 The four PNGs in `design/mascots/concepts/` are also source/review artifacts. Their dimensions, hashes, and sampled transparency checks are recorded in [Mascot Guidelines](../design/MASCOT_GUIDELINES.md). The five calculated proposed color ratios in [Shared Visual System](../design/VISUAL_SYSTEM.md) are arithmetic checks, not an audit of rendered pages or every state.
 
@@ -149,6 +149,6 @@ Remove verified unused code/imports/dependencies/experiments and duplicate logic
 
 Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Following DEC-45 and [Agent Instructions](../../AGENTS.md), propose English commit suggestions in chat only after a coherent change has been reviewed and its relevant checks have run. Group related files by purpose, separate independent purposes and defer suggestions for unfinished work; do not require one suggestion per file or edit. Git is entirely manual.
 
-Current state: W1's local public foundation and isolated W2 identity/ownership boundary exist. W2 integration and browser checks concern synthetic accounts on a local production-mode server backed by Neon; they do not establish ticket/report/support security, public enrollment, deployment or full accessibility/performance conformance. Earlier validation records preserve their historical scope.
+Current state: W1's shared foundation, isolated W2 identity/ownership and W3 public discovery exist. [W3 validation](../validation/2026-11-01-w3-public-site.md) records scoped public reflow/interaction/egress and local performance checks; W4–W6 remain unstarted. W2 integration and browser checks concern synthetic accounts on a local production-mode server backed by Neon; they do not establish ticket/report/support security, public enrollment, deployment or full accessibility/performance conformance. Earlier validation records preserve their historical scope.
 
 See [W2 validation](../validation/2026-10-31-w2-accounts.md) for actual commands, database/browser evidence, the remaining development-tooling advisory and unrun checks.

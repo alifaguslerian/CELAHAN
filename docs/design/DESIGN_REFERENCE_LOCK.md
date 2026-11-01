@@ -1,7 +1,7 @@
 # CELAHAN — Approved Hero Reference and Design Continuity
 
 Status: Accepted public references preserved; separate portal batch rejected and removed; integrated-site direction confirmed  
-Updated: October 30, 2026  
+Updated: November 1, 2026  
 References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md)
 
 ## October 29 portal scope update
@@ -9,6 +9,10 @@ References: [Design Direction](DESIGN_DIRECTION.md), [Visual References](VISUAL_
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
 
 Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): authenticated persistence, tickets, private illustrative reports and bounded support. The owner rejected the separate dashboard/sidebar portal batch; its images/gallery/manifest are removed. [Integrated account/ticket/report UX](PORTAL_UX_SPEC.md) keeps the existing header, account controls beside ID/EN, Tiket after login and Laporan & Progres for authorized project owners. Existing public PNGs/manifests remain unchanged; no replacements are generated.
+
+## November 1 implementation revision request
+
+DEC-52 supersedes the rejected first DEC-51 implementation. Restore deep black and the approved large, coherent doorway/stair composition reaching the hero bottom. Overlay the shared header without a separate background band; keep navigation near ID/EN and account controls. Tighten the overview and align its artwork toward the page edge. Remove the visible heading above the pet cluster and restore native navigation to full package details, with restrained hover/focus/press feedback. Remove the hero-only disclaimer, preserving required footer/form wording. The approved source PNG, subdued lighting, compact pets and integrated access model remain unchanged. The owner accepted the reviewed local W3 implementation on November 1 (DEC-53). This acceptance covers the reviewed implementation direction, not a replacement raster master or full device/release certification. The subsequent owner follow-up is limited to making the gate stone frame clearer and its curved top complete. Use source-derived masking and restrained local stone contrast; do not introduce a bright portal or redesign other page elements.
 
 ## 1. Approved master
 

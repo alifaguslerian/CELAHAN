@@ -19,7 +19,8 @@
 
 ## Authorization and work stage
 
-- W1 was authorized on October 30 and checked locally. On October 31 the owner authorized W2, approved allowlisted synthetic enrollment, mandatory email verification, local email-capture recovery, controlled local admin provisioning and mandatory admin TOTP, and delegated the isolated database choice. The implementation uses a dedicated Neon Free test project; this permits only that isolated database setup, not other provider services, public enrollment, external email, paid upgrades or deployment. W3–W6 still require explicit authorization. Preserve approved references without regeneration.
+- W1 and isolated W2 were authorized and checked locally. On November 1 the owner authorized W3 public-site implementation using the approved references and W2 shared account shell. All numerical package terms are explicitly deferred: do not display prices, numeric caps, effort estimates or retest-cycle counts. Qualitative scope and the previously confirmed maximum three-month support rule remain. W4–W6, further provider provisioning, public enrollment, external email, paid upgrades and deployment remain unauthorized. Preserve source image bytes; create only required optimized runtime derivatives without image regeneration.
+- The November 1 W3 correction (DEC-52) supersedes the rejected first revision: restore deep black, retain a large coherent doorway/stair scene reaching the hero bottom, overlay the transparent shared header without a separate band, tighten the overview, remove the visible package-cluster heading, and restore direct package-detail navigation. Keep restrained pet hover/focus/press feedback. Remove the concept disclaimer from the hero only; preserve required footer/form disclaimers. Source references and safety boundaries remain unchanged. The owner accepted the reviewed local W3 interface on November 1 and requested a completion/checkpoint audit. Checkpoint suggestions may follow actual review and checks; this does not authorize W4 or publication.
 - Approval of an idea does not automatically authorize asset production or implementation.
 - The owner rejected the October 30 separate portal designs and explicitly requested removal of unsuitable material. Remove the rejected batch/gallery/manifest and their current references. Keep accepted public/home/package/form/report/404/English references and brand/pet sources. This correction does not authorize replacement images, application code or provider setup.
 - New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
@@ -29,9 +30,9 @@
 
 ## Git is entirely manual
 
-The project owner prohibits agents from touching Git in any way.
+Git is prohibited by default. A specific later owner request may authorize only the named operation. On November 1 the owner explicitly requested read-only `git status` for checkpoint preparation; staging, commits, pushes and other Git operations remain manual.
 
-- Do not run any Git command, including `status`, `diff`, `log`, `init`, `add`, `commit`, `push`, `pull`, `fetch`, `checkout`, `reset`, or worktree creation.
+- Without a specific explicit owner request, do not run any Git command, including `status`, `diff`, `log`, `init`, `add`, `commit`, `push`, `pull`, `fetch`, `checkout`, `reset`, or worktree creation. An exception for one command does not authorize another.
 - Do not use GitHub APIs or other tools to create or modify repositories, branches, commits, pull requests, or pushes as a substitute for Git.
 - Do not read or modify the contents of `.git`.
 - Agents may edit project files and inspect them with ordinary filesystem tools.
@@ -73,7 +74,7 @@ The project owner prohibits agents from touching Git in any way.
 - Preserve the approved hero reference in `design/references/home-hero-desktop-approved-v1.png`. Do not overwrite it or silently substitute a regenerated design. Compare future desktop implementation against the saved image and record reviewed changes.
 - Mascots are small compact pets. Minecraft informs color/motif only; do not reproduce a humanoid skin. The four package pets must have different body silhouettes and principal colors, rather than the same body with different accessories.
 - Follow the approved subdued lighting and warm near-black/ivory/sand/olive appearance. A brilliant portal or a default monospace hero would contradict the approved image. See the design lock for approved composition and open choices.
-- The homepage package selector is a tight cluster with no captions/prices underneath. Show only the corresponding name above on hover/focus; activation reveals the name, service, and fictional price. Keep semantic names, visible focus, separate hit areas, and equivalent touch access.
+- The homepage package selector is a tight cluster with no captions/prices underneath. Show only the corresponding name above on hover/focus; activation opens the selected package name and qualitative scope. All numerical package terms, including fictional prices, remain deferred by DEC-50. Keep semantic names, visible focus, separate hit areas, and equivalent touch access.
 - During implementation, trim repetitive cross-page explanations and unnecessary copy. Retain exact required footer/form disclaimers and contextual illustrative-data, fictional-price, permission, privacy, unsaved-edit and error information. Old gallery simulation behavior is historical and must not override revised portal contracts. Do not regenerate other accepted screens for copy cleanup now.
 - Account for accessibility, reduced motion, performance, security, and privacy during design.
 - Explain the reason for every dependency. Do not install a package merely because it is available or popular.

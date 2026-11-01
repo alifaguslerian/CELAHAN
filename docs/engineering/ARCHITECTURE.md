@@ -1,7 +1,7 @@
 # CELAHAN — Architecture
 
-Status: W1 and isolated W2 Better Auth + Neon integration checked locally; public release remains gated  
-Updated: October 31, 2026  
+Status: W1/W2 checked and W3 local public scope complete; reviewed interface owner-accepted; public release remains gated  
+Updated: November 1, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
@@ -157,4 +157,10 @@ The local sink stores OTPs only in bounded process memory, expires them after fi
 
 Every account/private query reads the database session, active/verified identity and current role/project association. The shared header receives only minimal display/capability fields. Local grant/revoke/disable operations audit metadata and revoke sessions; an admin must enroll TOTP before a role grant and sign in again afterward. Public and private site pages now render per request with private/no-store handling because the header is personalized. Full-page transitions on login/logout and bfcache/focus revalidation prevent reuse across account changes; browser evidence covers the actual tested paths only.
 
-`project_access` is the minimal ownership association needed to test capabilities and an owned resource; it does not implement project activation, reports or support. Ticket/project/admin destinations honestly state that their workflows are pending. No dashboard/sidebar, ticket conversation, report draft, support calendar or W3 public-site implementation is included.
+`project_access` is the minimal ownership association needed to test capabilities and an owned resource; it does not implement project activation, reports or support. Ticket/project/admin destinations honestly state that their workflows are pending. This W2 boundary itself includes no dashboard/sidebar, ticket conversation, report draft or support calendar. W3 subsequently adds public discovery and safe consultation intent; it does not extend the database schema.
+
+## 13. Implemented W3 public discovery
+
+Public locale routes share the existing session-aware header/footer. Server-rendered content lives in `src/content/`; packages and the five canonical findings have focused shared contracts. Native links and details disclosures support public reading without JavaScript. Client behavior is limited to the existing header/account form, small image-error fallback and localized not-found boundary. The package cluster is server-rendered native links with CSS hover/focus/press feedback; activation navigates directly to full package details with or without JavaScript. The rejected inline-summary state and timer are removed. No target address input, target request, intake write, extra API or database migration was added.
+
+`/request/` requires a trusted session and redirects guests to locale login. Only `next=request|account` and a known package slug survive the return path; unknown/external/data-bearing destinations are discarded. This preserves interest through login/signup/verification/TOTP without storing a request. The authenticated pending page and ticket/project destinations do not claim later W4/W5 workflows exist. Source artwork stays under `design/`, runtime derivatives under `public/artwork/`, and licensed fonts under `public/fonts/`. See [W3 evidence](../validation/2026-11-01-w3-public-site.md).

@@ -1,14 +1,22 @@
 # CELAHAN — Shared Visual System
 
-Status: Concrete review baseline derived from the approved hero; not implemented CSS or a completed accessibility audit  
-Updated: October 29, 2026  
+Status: Review baseline with W3 runtime adaptation; scoped browser checks are not a complete accessibility audit  
+Updated: November 1, 2026  
 References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Design Direction](DESIGN_DIRECTION.md), [Mascot Family](MASCOT_GUIDELINES.md), [Quality](../engineering/QUALITY_AND_SECURITY.md)
 
 ## 1. Visual authority
 
 The approved desktop hero governs composition, atmosphere, and visual hierarchy. This document supplies reusable numerical rules for subsequent screens without replacing that image. The interface stays warm, dark, readable, and restrained; distinct pet colors remain primarily in illustrations.
 
-The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. The [first full desktop visual pass](DESKTOP_DESIGNS.md) is now generated for review. The [27 mobile-web references](MOBILE_DESIGNS.md) now supply the next review baseline; final font files, mobile approval, rendered checks, and implementation remain pending.
+The values below are authored design proposals for review, not claims of exact pixel sampling or owner approval of every number. All public UI supports Indonesian and English. The accepted [desktop directions](DESKTOP_DESIGNS.md) and [27 mobile-web references](MOBILE_DESIGNS.md) supply the visual baseline. W3 implements public screens and licensed local fonts with scoped rendered checks; remaining private workflows, final identity exports and full device/accessibility review are still pending.
+
+W3 implements the warm palette in `src/styles/globals.css`, locally served Manrope for reading/headlines and DM Serif Display italic for emphasis. These are licensed implementation choices, not claims that the raster sources identify those fonts. Source bytes remain unchanged. See [Runtime Assets](RUNTIME_ASSETS.md) and [W3 validation](../validation/2026-11-01-w3-public-site.md) for reviewed adaptations and measured limits.
+
+The November 1 correction (DEC-52) restores flat deep black and a large continuous doorway/stair scene reaching the hero bottom. The shared header overlays it transparently, with navigation beside ID/EN and account controls. The overview is tighter and its illustration reaches the left page edge. The pet cluster has no visible section heading or inline summary; native links open full package details. Manrope remains the reading/headline face; DM Serif Display italic replaces the thinner implementation emphasis face. Short transform/opacity feedback is disabled for reduced motion. Decorative dividers remain removed while input boundaries and focus outlines remain. The hero-only disclaimer is removed; required footer/form wording remains. The owner accepted the reviewed local W3 interface on November 1; full device/accessibility/release verification remains outside that acceptance. The later Services refinement adds only a faint static halo behind the selected pet, tinted to its sand/sage/blue/terracotta color. The page itself remains deep black. This is local CSS lighting, not an animated background or replacement artwork.
+
+The later homepage report-preview revision uses compact dark information cards over the unchanged plain near-black page. Local muted rose/sand/sage accents distinguish severity and status with text labels; the supplied report-card reference does not authorize decorative background curves or a separate dashboard. Preview counters describe the displayed excerpt only. The full report still uses its native disclosures and immutable source content.
+
+The owner also requested invisible viewport scrollbars. Root scrollbar styling hides the tracks without disabling native scrolling. Full-bleed hero alignment is centered against the viewport so horizontal overflow is prevented even when the shared content reaches its maximum width. Content, focus and keyboard navigation remain available.
 
 ## 2. Three-layer token model
 

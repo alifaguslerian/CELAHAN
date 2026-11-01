@@ -1,7 +1,7 @@
 # CELAHAN — Content and Illustration Contracts
 
 Status: Revised portal copy baseline; canonical academic findings preserved  
-Updated: October 29, 2026  
+Updated: November 1, 2026  
 References: [PRD](PRD.md), [Flows](USER_FLOWS.md), [Operations](SERVICE_OPERATIONS.md), [Packages](SERVICE_PACKAGES.md)
 
 ## 1. Editorial and provenance rules

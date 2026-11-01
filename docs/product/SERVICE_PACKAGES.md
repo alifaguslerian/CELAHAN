@@ -1,8 +1,10 @@
 # CELAHAN — Service Packages and Mascot Roles
 
 Status: Four-package concept approved; detailed scope, pricing, and delivery baseline drafted at the owner's request for review; final artwork remains open  
-Updated: October 29, 2026  
+Updated: November 1, 2026  
 References: [PRD](PRD.md), [Content](CONTENT_AND_SIMULATION.md), [Visual References](../design/VISUAL_REFERENCES.md), [Decisions](../planning/DECISIONS.md)
+
+**November 1 publication override (DEC-50):** the owner deferred all numerical package terms. Tables below remain historical review drafts, not approved public content. W3 publishes qualitative fit, focus, outputs and exclusions only: no prices, numerical caps, effort/day ranges, retest-cycle counts or discount rates. This does not change the separately confirmed maximum three-month support rule.
 
 ## 1. Purpose and approval boundary
 

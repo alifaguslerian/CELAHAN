@@ -1,13 +1,13 @@
 # CELAHAN Documentation
 
-Status: W1 and isolated W2 checked locally with explicit limits; W3–W6 not started  
-Updated: October 31, 2026
+Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started  
+Updated: November 1, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
 
 ## Current scope
 
-The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behavior is superseded. The owner authorized W1 on October 30 and isolated W2 on October 31, including its reviewed synthetic identity policy and delegated database setup. The shared shell and isolated account/minimal ownership boundary exist. W3–W6, other provider services, public enrollment, external email, deployment and reference regeneration remain unauthorized. Read Operations and Data and Access alongside the PRD.
+The October 29 owner-approved revision requires real authentication/database persistence, reactive/preventive consultation, user/admin tickets, private illustrative reports and maximum three-month support. Earlier static-only/no-storage/reset behavior is superseded. The owner authorized W1 on October 30 and isolated W2 on October 31, including its reviewed synthetic identity policy and delegated database setup. The shared shell and isolated account/minimal ownership boundary exist. W3 was authorized November 1 and implements public discovery with all numerical package terms deferred. W4–W6, other provider services, public enrollment, external email, deployment and reference regeneration remain unauthorized. Read Operations and Data and Access alongside the PRD.
 
 The owner rejected the separate dashboard/sidebar portal direction on October 30 and requested removal of unsuitable material. The 18-image batch, manifest and gallery are removed. Ordinary login/signup and the signed-in avatar belong beside ID/EN; Tiket appears after login and Laporan & Progres appears for authorized project owners, all within the same website.
 
@@ -27,6 +27,7 @@ The owner rejected the separate dashboard/sidebar portal direction on October 30
 | Document | Purpose |
 | --- | --- |
 | [Design Reference Lock](design/DESIGN_REFERENCE_LOCK.md) | Approved hero PNG, checksum, visual invariants, and screen batches |
+| [Runtime Assets](design/RUNTIME_ASSETS.md) | W3 artwork derivatives, local font provenance/licenses, reproduction and reviewed adaptations |
 | [Logo Guidelines](design/LOGO_GUIDELINES.md) | Approved Open Threshold identity reference and production requirements |
 | [Mobile Design Gallery](design/MOBILE_DESIGNS.md) | 27 portrait mobile-web references, scroll/touch flow, and source-content overrides |
 | [Desktop Design Gallery](design/DESKTOP_DESIGNS.md) | 24 selected desktop frames, preserved hero, page assembly, and implementation caveats |
@@ -66,6 +67,9 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 | Record | Scope |
 | --- | --- |
+| [W3 reference correction](validation/2026-11-01-w3-reference-correction.md) | Deep-black continuous hero scene, transparent header overlay, tighter overview and native pet-detail navigation; reviewed local interface owner-accepted; final scope/limits recorded |
+| [W3 first visual revision](validation/2026-11-01-w3-visual-revision.md) | Historical local checks; visual result rejected and superseded by the reference correction |
+| [W3 public website](validation/2026-11-01-w3-public-site.md) | Public routes, responsive/keyboard/touch/no-JS behavior, immutable sample, safe consultation intent and local performance limits |
 | [W2 isolated accounts](validation/2026-10-31-w2-accounts.md) | Real Neon identity/session/ownership tests, bilingual account UI, local OTP capture and explicit release limits |
 | [W1 foundation](validation/2026-10-30-w1-foundation.md) | Tooling, local bilingual shell, browser/build checks, preservation and explicit limits |
 | [Portal design correction](validation/2026-10-30-portal-desktop-designs.md) | Historical generation checks, owner rejection, integrated-site correction and rejected-asset removal checks |
@@ -82,8 +86,8 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 ## Artifact locations
 
-The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. `design/desktop/v1/` contains the desktop PNGs/manifest; `design/mobile/v1/` contains portrait mobile references and their manifest. These are source/review artifacts, not an existing application or an optimized runtime asset set.
+The documentation lives in `docs/`. Design source images remain outside it: `design/references/` contains the approved hero; `design/mascots/concepts/` contains the four v1 pet PNGs. `design/desktop/v1/` contains the desktop PNGs/manifest; `design/mobile/v1/` contains portrait mobile references and their manifest. These remain source/review artifacts. W3 exports only the required crops and pet derivatives to `public/artwork/`; full design boards are not runtime payloads.
 
 The rejected `design/portal/desktop/v1/` batch and its gallery are removed. Existing public form/report compositions remain the reference for same-site task content.
 
-`design/brand/approved/` contains the owner-approved Open Threshold reference; `design/brand/manifest.json` records its source. Discarded alternatives are removed. Final vector/runtime assets are still pending.
+`design/brand/approved/` contains the owner-approved Open Threshold reference; `design/brand/manifest.json` records its source. Discarded alternatives are removed. The minimal editable symbol is in `public/brand/`; remaining production identity exports are pending.

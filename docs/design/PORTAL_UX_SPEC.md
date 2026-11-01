@@ -1,8 +1,8 @@
 ---
 title: CELAHAN Integrated Account and Service UX
-version: 0.3
+version: 0.4
 date_created: 2026-10-29
-last_updated: 2026-10-31
+last_updated: 2026-11-01
 tags: [design, accounts, navigation, tickets, reports]
 ---
 
@@ -139,6 +139,6 @@ These are planned checks, not passed tests. Map them to [Quality](../engineering
 
 ## 10. Current status and next boundary
 
-The owner authorized W1 on October 30 and W2 on October 31. Ordinary ID/EN account forms now replace W1's unavailable notices when isolated configuration is enabled; guests still receive honest unavailable content otherwise. Session/project-derived shared navigation is implemented, with explicit pending task notices instead of ticket/report/admin workflows. W2 uses a dedicated Neon Free test database and local email capture. W3–W6, public enrollment, real email/domain/DNS setup, deployment and replacement images remain gated. Git remains entirely manual.
+The owner authorized W1 on October 30 and W2 on October 31. Ordinary ID/EN account forms now replace W1's unavailable notices when isolated configuration is enabled; guests still receive honest unavailable content otherwise. Session/project-derived shared navigation is implemented, with explicit pending task notices instead of ticket/report/admin workflows. W2 uses a dedicated Neon Free test database and local email capture. W3 public discovery and safe consultation intent are now implemented and locally checked; the owner accepted the reviewed interface on November 1. The authenticated consultation destination honestly remains pending and writes no request. W4–W6, public enrollment, real email/domain/DNS setup, deployment and replacement images remain gated. Git remains manual except for the specifically requested read-only status inventory.
 
 The [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) now defines W1–W6. Review component details at the relevant package gates within the confirmed integrated-site direction. Preserve approved public imagery and reuse existing form/report references instead of another mass image-generation pass.

@@ -1,17 +1,17 @@
 # CELAHAN Implementation Plan
 
-Status: W1 and isolated W2 checked locally with recorded limits; W3–W6 not started or authorized  
-Updated: October 31, 2026
+Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started or authorized  
+Updated: November 1, 2026
 
 **Goal:** deliver one bilingual CELAHAN website with the approved identity, dedicated phone/desktop composition, real authentication/database/ticket operations, protected illustrative reports and measured quality.
 
-**Architecture:** Next.js App Router + TypeScript, one shared site layout, Better Auth in the application server and Neon Free PostgreSQL. Public content can be prerendered; private operations use server-side session, role, ownership and publication checks. Versions, adapter and migrations remain implementation-stage choices requiring verification.
+**Architecture:** Next.js App Router + TypeScript, one shared site layout, Better Auth in the application server and Neon Free PostgreSQL. Public content can be prerendered; private operations use server-side session, role, ownership and publication checks. The local foundation uses the versioned Next.js/React stack in `package.json`, Better Auth 1.7.14, pg 8.23.1 and reviewed SQL migrations. Production hosting/runtime compatibility remains a later verification gate.
 
 **Specifications:** [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [User Flows](../product/USER_FLOWS.md), [Integrated Account and Service UX](../design/PORTAL_UX_SPEC.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md), [Agent Instructions](../../AGENTS.md).
 
 ## 1. Authorization and how to use this plan
 
-The owner authorized W1 on October 30 and W2 on October 31. For W2 the owner approved allowlisted synthetic enrollment, mandatory email verification, locally captured recovery email, controlled local admin provisioning and mandatory admin TOTP, and delegated the isolated database choice. The implementer selected a dedicated Neon Free test project. Authorization covers that isolated setup and W2 implementation/checks only. W3–W6, replacement reference images, public enrollment, real email/domain/DNS setup, paid services, deployment, subagents and Git operations remain unauthorized. A completed package never grants permission for the next.
+The owner authorized W1 on October 30 and W2 on October 31. For W2 the owner approved allowlisted synthetic enrollment, mandatory email verification, locally captured recovery email, controlled local admin provisioning and mandatory admin TOTP, and delegated the isolated database choice. The implementer selected a dedicated Neon Free test project. On November 1 the owner authorized W3 and deferred every numerical package term (DEC-49–50). W3 covers public discovery and safe consultation intent without intake persistence. W4–W6, replacement reference images, public enrollment, real email/domain/DNS setup, paid services, deployment, subagents and Git operations remain unauthorized unless specifically requested. The November 1 completion audit permits read-only `git status` only; staging/committing/pushing remain manual. A completed package never grants permission for the next.
 
 Work in the existing project. Do not create another plan directory, duplicate specifications, speculative source folders or a worktree. Future application paths below are proposed responsibilities, not files already created. Confirm exact names against the selected framework before creating only the files needed by the current package.
 
@@ -24,10 +24,10 @@ Retain P0–P9 from earlier documents. W1–W6 below are execution-sized package
 | Phase | Responsibility | Execution mapping | Current status |
 | --- | --- | --- | --- |
 | P0 | Product, policy, access and planning | Review at the relevant W1–W6 entry gate | Requirements drafted; phase-specific choices remain open |
-| P1 | Final identity/runtime assets | Minimum needed in W1/W3; completion before W6 release | Minimal solid SVG symbol and system-font fallback used in W1; full production identity still pending |
+| P1 | Final identity/runtime assets | Minimum needed in W1/W3; completion before W6 release | Minimal SVG symbol from W1; W3 local licensed fonts and optimized derivatives of approved artwork; remaining identity exports still pending |
 | P2 | Integrated desktop/mobile UX | Shared shell in W1; feature integration in W2–W5 | W1 shared guest shell checked; accepted references preserved; separate dashboard batch remains removed |
 | P3 | Server-capable bilingual/auth/database foundation | W1 and W2 | W1 and isolated W2 checked; public enrollment/deployment remain gated |
-| P4 | Public discovery and immutable sample | W3 | Not started |
+| P4 | Public discovery and immutable sample | W3 | Authorized local scope complete; reviewed interface owner-accepted; numerical terms deferred |
 | P5 | Consultation, conversation and admin triage | W4 | Not started |
 | P6 | Projects, private reports and bounded support | W5 | Not started |
 | P7 | Integrated verification and cleanup | Checks throughout; final W6 pass | W1 checks recorded; full portal verification not started |
@@ -59,7 +59,7 @@ Retain P0–P9 from earlier documents. W1–W6 below are execution-sized package
 | W1 setup | Compatible framework/runtime/tooling versions, dependency reasons, locale/layout structure and licensed font fallback | Before installing the foundation |
 | W1/W3 assets | Faithful usable logo export, permitted font/artwork use and the assets needed by the current screen | Before those assets are shipped in the runtime |
 | W2 identity/data | Enrollment/password/verification/recovery policy, controlled admin provisioning/second-factor policy, database adapter/migrations/transport and isolated database access | Before implementing those integrations |
-| W3 package copy | Review numerical caps, illustrative prices and fit rules; retain fictional-price labels and approved scope | Before displaying final package terms |
+| W3 package copy | Review numerical caps, illustrative prices and fit rules; retain fictional-price labels and approved scope | Before displaying final package terms; DEC-50 defers all numerical terms |
 | W4 intake | Review field/contact/schedule rules, ticket transitions, priorities and concurrency behavior | Before implementing affected writes |
 | W5 benefits | Review three-month calendar/timezone/month-end/expiry mechanics, cycle reservation and discount eligibility/rate | Before implementing affected benefit behavior; omit unapproved discount terms |
 | Public intake/release | Approved privacy/retention/deletion/backups, processors/regions/privacy contact, real verification/recovery email delivery and safe enrollment configuration | Before accepting real identities/data publicly |
@@ -120,24 +120,27 @@ October 31 entry review: the owner approved the isolated identity policy and del
 
 **Outcome:** complete public discovery with the accepted homepage, useful package selection, process/supporting pages and the unchanged public report sample.
 
-**Entry:** W1/W2 checked; review assets/rights, mobile references, package copy and optional fit rules before using them. Permanent domain identity is not required.
+**Entry:** authorized November 1; W1/W2 checked; review assets/rights, mobile references, package copy and optional fit rules before using them. Permanent domain identity is not required.
 
 **Proposed responsibility paths:** locale public routes; `src/features/packages/`, optional `src/features/companion/`, `src/features/reports/` for the public sample; shared `src/content/`; optimized assets in `public/`; meaningful public-route/UI tests.
 
-- [ ] Implement the homepage to the approved hero's hierarchy, dim lighting, compact pet and responsive composition; use content links to reduce repeated explanations.
-- [ ] Implement the tight four-pet package cluster: no captions/prices at rest, name above on hover/focus, details/illustrative price after activation and equivalent touch access.
-- [ ] Implement service/package detail, eight-stage process, About/FAQ and free-consultation invitations with source-faithful scope and limitations.
-- [ ] Implement the public sample and finding disclosures from the five exact canonical rows; retain all fields in both locales and phone/desktop presentation.
-- [ ] Implement privacy content matching known practices, custom not-found behavior, localized metadata and working public navigation. Keep unresolved privacy claims out of public intake.
-- [ ] Connect account/consultation navigation to the shared-site journey; unauthenticated consultation intent returns safely after login, without exposing tickets.
-- [ ] Integrate only useful reviewed motion/scripted guide behavior with text/reduced-motion/artwork-failure fallback; justify any added library.
-- [ ] Run source-content, package interaction, keyboard/touch, locale, route/status and no-target-request checks; review actual desktop/mobile screenshots against accepted references.
+- [x] Implement the homepage to the approved hero's hierarchy, dim lighting, compact pet and responsive composition; use content links to reduce repeated explanations.
+- [x] Implement the tight four-pet package cluster: no captions/prices at rest, name above on hover/focus, qualitative details after activation and equivalent touch access; all prices/caps/effort/cycle counts deferred by DEC-50.
+- [x] Implement service/package detail, eight-stage process, About/FAQ and free-consultation invitations with source-faithful scope and limitations.
+- [x] Implement the public sample and finding disclosures from the five exact canonical rows; retain all fields in both locales and phone/desktop presentation.
+- [x] Implement privacy content matching known practices, custom not-found behavior, localized metadata and working public navigation. Keep unresolved privacy claims out of public intake.
+- [x] Connect account/consultation navigation to the shared-site journey; unauthenticated consultation intent returns safely after login, without exposing tickets.
+- [x] Keep guidance usable through native text/disclosures and artwork-failure fallback. No optional animated/scripted companion or decorative library is needed in W3; reduced-motion behavior is checked.
+- [x] Run source-content, package interaction, keyboard/touch, locale, route/status and no-target-request checks; review actual desktop/mobile screenshots against accepted references.
 
 **Boundary:** no checkout, analytics, external AI, embedded promotional video, real scans, repeated image-generation batch or guaranteed-security claims. A privacy framework is not permission to open real-data intake before its release gate.
 
 **Exit checks:** all public routes and four package paths work in ID/EN; five source findings remain exact; public sample needs no account; 404 returns the correct HTTP behavior; no entered target is requested or linked; required labels remain readable; viewport/keyboard/reduced-motion behavior is reviewed.
 
 **Relevant Quality checks:** T-01, T-06–09, T-11 and T-13–15, plus public claim/copy portions of T-30.
+
+
+**Evidence:** [W3 public-site validation](../validation/2026-11-01-w3-public-site.md) and the [reference correction](../validation/2026-11-01-w3-reference-correction.md), which supersedes the rejected first visual revision. The owner accepted the reviewed local interface and requested checkpoint preparation on November 1 (DEC-53). W3 exit checks are satisfied for the recorded local scope; physical-device/cross-browser/accessibility/release limits remain explicit and W4 still needs authorization. The consultation destination is an honest authenticated pending page; no form, ticket or request record is created. Local tests do not establish public release readiness.
 
 ## 8. W4: Consultation, tickets and same-site admin operations
 
@@ -212,7 +215,7 @@ Package completion and commits are different decisions. The agent decides when a
 
 Before proposing a checkpoint, inspect the actual scope, check for unrelated/unsafe/unused material and run the relevant verification. Include intended paths, purpose, actual results and remaining limits in chat. If the change is partial, defer the suggestion. No commit messages/commands or persistent commit inventories belong in this document.
 
-For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1 and isolated W2 have scoped local evidence and explicit limitations. W3–W6 remain unstarted and unauthorized.
+For each authorized package, update its actual status only after implementation evidence exists. Documentation checks are not build, database, security, browser or deployment results. W1 and isolated W2 have scoped local evidence and explicit limitations. W3 has scoped local public-site evidence; W4–W6 remain unstarted and unauthorized.
 
 ## 12. Academic prototype, video and immediate next step
 
@@ -220,4 +223,4 @@ For each authorized package, update its actual status only after implementation 
 
 **P9:** use stable actual functionality for the promotional video/case study after the website work is ready to record. Review format/duration/language/audio rights through [Video Brief](../portfolio/PROMO_VIDEO_BRIEF.md) and [Release and Portfolio](../portfolio/RELEASE_AND_PORTFOLIO.md). Mockups are concept footage; exclude provider secrets, private identities and admin provisioning from recordings.
 
-**Next boundary:** the owner reviews isolated W2 and its evidence. W3 requires separate authorization and its relevant asset/package-copy entry review. Public enrollment, further provider services and deployment remain independently gated; completing W2 does not authorize them.
+**Next boundary:** the owner reviews W3 and its evidence. W4 requires separate authorization and its intake/operations entry review. Public enrollment, further provider services and deployment remain independently gated; completing W3 does not authorize them.

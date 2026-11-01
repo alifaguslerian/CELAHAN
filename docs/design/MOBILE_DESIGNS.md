@@ -6,6 +6,8 @@ Scope: Mobile-web pages, scroll segments, navigation, disclosures, and confirmat
 
 References: [Desktop gallery](DESKTOP_DESIGNS.md), [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [User flows](../product/USER_FLOWS.md), [Packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-mobile-designs.md)
 
+**Current publication override — November 1 (DEC-50):** preserve all approved image bytes. Historical price/cap/effort/cycle lettering and instructions do not authorize publication. W3 shows qualitative package details only; all numerical package terms are deferred. See [runtime adaptations](RUNTIME_ASSETS.md) and [W3 evidence](../validation/2026-11-01-w3-public-site.md).
+
 ## October 29 portal scope update
 
 The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
@@ -43,7 +45,7 @@ A header visible on a scrolled reference represents the shared shell, not anothe
 ## Shared UX decisions and source-copy rules
 
 - Keep the warm near-black/ivory/sand system, small matte pets, and sans/italic-serif hierarchy. Do not scale the entire desktop screenshot into a phone. Use real text and controls later, not these PNGs as full-page backgrounds.
-- The tight pet cluster has no idle captions or prices. Tap opens the selected detail directly. Accessible button names and keyboard focus remain available; separate hit areas must not overlap even if artwork does. Names above pets are for hover/focus where available, not a required first tap.
+- The tight pet cluster has no idle captions, prices or visible section heading. Under the November 1 DEC-52 correction, tap/Enter opens the selected full package detail directly, including without JavaScript. Native link names and visible keyboard focus remain; separate hit areas must not overlap even if artwork does. Names above pets appear on hover/focus where available, not as a required first tap. Preserve the dedicated mobile doorway/stair source and equivalent information access.
 - WARDEN illustrates the detail template. Other packages use their own complete source terms; comparison is a concise summary, not a replacement for suitability, exclusions, deliverables, retest conditions, or simultaneous-cap rules. No package changes the fixed illustrative report.
 - Every finding keeps its title, category, location, score, severity, and remediation status. The ID list spans 15–16 and the EN list spans 25–26. These scroll segments are not separate datasets. Summary: 5 illustrative findings, 2 High/2 Medium/1 Low, 3 not fixed/2 fixed.
 - Finding paths are inert monospace data, even where a raster underlines them. Never turn an input address or route into a host link, preview, favicon request, DNS lookup, scan, or preconnect. Detail controls open local content by finding ID.

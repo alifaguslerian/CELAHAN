@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
-Status: W1 and isolated W2 accounts checked locally; W3–W6 not started or authorized  
-Updated: October 31, 2026  
+Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started or authorized  
+Updated: November 1, 2026  
 References: [PRD](PRD.md), [Service Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Project and purpose
@@ -82,4 +82,4 @@ Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing an
 
 Sources are the owner's original brief and conversation through October 29, 2026, plus the previously reviewed academic PDF for the eight stages and five findings. The PDF is source material, not authorization to perform security testing or publish personal details.
 
-The October 29 step authorized Markdown revision only, followed by W1 on October 30 and W2 on October 31. For W2 the owner approved isolated synthetic enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access, and delegated the test database choice. A dedicated Neon Free test project is used. W3–W6, replacement images, public enrollment, real email, paid services and deployment remain unauthorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for actual status.
+The October 29 step authorized Markdown revision only, followed by W1 on October 30 and W2 on October 31. For W2 the owner approved isolated synthetic enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access, and delegated the test database choice. A dedicated Neon Free test project is used. W3 was authorized November 1; public discovery is implemented with all numerical package terms deferred (DEC-49–50). W4–W6, replacement images, public enrollment, real email, paid services and deployment remain unauthorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for actual status.

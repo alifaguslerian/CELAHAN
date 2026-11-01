@@ -1,6 +1,6 @@
 # CELAHAN — Decision Log
 
-Updated: October 31, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. Decisions are not application test results; validation records contain actual evidence.
+Updated: November 1, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. Decisions are not application test results; validation records contain actual evidence.
 
 ## 1. Decision statuses
 
@@ -11,7 +11,7 @@ Updated: October 31, 2026. This document distinguishes owner instructions, propo
 
 ## 2. Confirmed decisions
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 records W1 authorization; DEC-47–48 subsequently authorize isolated W2 and its reviewed identity policy. Earlier entries remain history; superseded clauses must not be implemented.
+Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 records W1 authorization; DEC-47–48 subsequently authorize isolated W2 and its reviewed identity policy. DEC-49–50 authorize W3 and defer numerical terms; DEC-51–52 record visual revisions; DEC-53 records owner acceptance and the bounded completion audit. Earlier entries remain history; superseded clauses must not be implemented.
 
 | ID | Decision | Basis |
 | --- | --- | --- |
@@ -63,6 +63,11 @@ Current precedence: DEC-30 through DEC-40 revise the portal scope and selected f
 | DEC-46 | Implement and verify W1 only after the approved project analysis | Explicit October 30 authorization: reconcile the two gate/commit wording inconsistencies first, verify tooling and explain dependencies, build the shared bilingual foundation without regenerating references; no W2, provider provisioning, deployment or Git |
 | DEC-47 | Implement and verify W2, with the isolated database path delegated to the implementer | October 31 owner instruction and follow-up; dedicated Neon Free test project selected, no public enrollment, paid upgrade, external email, deployment, Git or later-package authorization |
 | DEC-48 | Allowlisted synthetic enrollment, mandatory email verification, local email-capture recovery, controlled local admin provisioning and mandatory admin TOTP for W2 | Owner explicitly approved these test policies; public identity intake and real verification/recovery delivery retain separate gates |
+| DEC-49 | Implement and verify W3 public discovery in the existing shared website | Explicit November 1 authorization; preserve source references, W2 accounts and access boundaries; no W4–W6, provider expansion, deployment or Git |
+| DEC-50 | Defer all numerical package terms from W3 public copy | Owner selected deferral of prices, caps, effort and retest-cycle counts at the W3 entry review. Keep qualitative scope and the previously confirmed general support rule; retain draft numerical tables as historical proposals only |
+| DEC-51 | Revise W3 laptop proportions, navigation, editorial rhythm, background depth and pet interaction before proposing commits | November 1 owner feedback: reduce/lower hero elements, remove the extra foreground stairs, transparent right-aligned navigation, remove decorative separators and repetitive oversized section headings, add restrained hover/press and selected-copy transitions. Source references remain immutable; visual acceptance was pending at this check and subsequently recorded under DEC-53; W4 stays gated |
+| DEC-52 | Correct the rejected first W3 revision against the retained references | November 1 owner correction: deep black; large continuous doorway/stairs to the hero bottom; transparent shared-header overlay; tighter overview and stronger type; no visible pet-cluster heading or inline summary; native full-detail navigation with restrained pet feedback. Remove the concept disclaimer from the hero only, preserving required footer/form copy. Source images remain immutable. Acceptance was pending at this check and subsequently recorded under DEC-53; W4 stays gated |
+| DEC-53 | Accept the reviewed local W3 interface and prepare coherent manual commit checkpoints after final review | November 1 owner acceptance and completion-audit request; synchronize current documentation and inventory via specifically authorized read-only Git status. Staging/commits/pushes stay manual. Hide visible viewport scrollbars while retaining actual scrolling and prevent horizontal overflow. W4–W6 and public release remain unauthorized |
 
 ## 3. Proposed baselines for review
 
@@ -150,5 +155,7 @@ Automated cross-page tours, advanced report filtering/sorting, a plain-language/
 | October 30, 2026 | Owner replaced per-file commit suggestions with agent-judged reviewed checkpoints. Group related files by purpose, separate independent work and withhold suggestions for incomplete changes. Updated standing instructions and related planning/publication guidance; no Git execution |
 | October 30, 2026 | Owner approved the project analysis and authorized W1 only. Reconciled Architecture/Quality gate and checkpoint wording, verified tooling, implemented the local bilingual shared shell and recorded scoped checks. Approved references remain unchanged; no W2 auth/database integration, provider setup, deployment or Git |
 | October 31, 2026 | Owner authorized W2, approved its synthetic enrollment/verification/local recovery/admin-TOTP policy and delegated isolated database setup. Implemented Better Auth + dedicated Neon Free identity/ownership, shared account navigation and scoped checks. Public enrollment, real email, later packages and deployment remain gated; no Git or image generation |
+
+| November 1, 2026 | Owner authorized W3 and deferred all numerical package terms. Added the approved public visual experience, qualitative packages, unchanged sample and safe consultation intent through existing accounts. Recorded scoped local checks; W4–W6, provider expansion and deployment remain gated; no Git or new reference generation |
 
 Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
