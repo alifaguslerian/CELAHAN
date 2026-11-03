@@ -16,6 +16,8 @@ DEC-52 supersedes the rejected first DEC-51 implementation. Restore deep black a
 
 ## 1. Approved master
 
+**November 2 correction (DEC-57):** the owner rejected the new meshes and inline package view. Preserve the original raster character quality and the hero master. Add finite expression/gesture feedback and animate navigation into a separate package page; remove 360-degree controls and keep the layout compact. This supersedes DEC-56 and does not approve replacement artwork. Motion is pending owner review.
+
 ![Owner-approved desktop hero](../../design/references/home-hero-desktop-approved-v1.png)
 
 The owner explicitly approved the revised hero with the small pet and subdued doorway, and asked that future implementation stay visually faithful to it. This file is the primary visual target for the desktop hero. Earlier screenshots are supporting inspiration; the first generated Minecraft-humanoid/bright-portal preview was rejected and must not be used as the target.

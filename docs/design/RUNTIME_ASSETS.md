@@ -1,13 +1,13 @@
-# W3 Runtime Artwork and Fonts
+# W3 Runtime Artwork, Models and Fonts
 
 Status: Implemented locally and reviewed against accepted references; not a completed identity export set or legal clearance  
-Updated: November 1, 2026  
+Updated: November 2, 2026
 
 ## Source authority and adaptations
 
 The approved [hero](../../design/references/home-hero-desktop-approved-v1.png), selected desktop/mobile frames and four pet concepts remain unchanged. W3 generates no new reference or replacement image. `scripts/export-public-assets.mts` uses Sharp 0.35.5 to make only the runtime derivatives listed below. Run `npm run assets:export` from the project root; it overwrites those derivatives, never their sources.
 
-All headings, navigation, findings, disclaimers and controls are real HTML. No complete design board is shipped as a page. Under DEC-52 the desktop derivative preserves the doorway, pet and continuous foreground stairs from the approved scene in one coordinate space. A source-coordinate alpha envelope excludes baked navigation, headline, CTA and disclaimer lettering. The mobile source supplies its narrower composition. The owner removed the decorative stairs behind the Services pet; their unused standalone runtime derivative and export entry are removed. The hero retains its connected staircase. Reading text remains available when illustrations fail. No generated replacement artwork, scripted companion or decorative animation library is introduced.
+All headings, navigation, findings, disclaimers and controls are real HTML. No complete design board is shipped as a page. Under DEC-52 the desktop derivative preserves the doorway, pet and continuous foreground stairs from the approved scene in one coordinate space. A source-coordinate alpha envelope excludes baked navigation, headline, CTA and disclaimer lettering. The mobile source supplies its narrower composition. The owner removed the decorative stairs behind the Services pet; their unused standalone runtime derivative and export entry are removed. The hero retains its connected staircase. Reading text remains available when illustrations fail. The November 1 implementation introduced no generated replacement artwork, scripted companion or decorative animation library; the subsequently rejected November 2 renderer has been removed as described below.
 
 Manrope and DM Serif Display are implementation font choices for the accepted sans/italic hierarchy. They are not identified as the unknown fonts in the raster reference. Shared account controls beside ID/EN, responsive reflow and longer English text require adaptations from historical PNG lettering. Prices, caps, effort and cycle counts are omitted under DEC-50. Historical no-storage/reset/session-banner wording is superseded by the actual account/privacy contract. These are recorded implementation adaptations, not new owner approval of every rendered pixel.
 
@@ -27,7 +27,15 @@ Coordinates are source pixels, in left/top/width/height order. Other WebP scenes
 
 Scenes load from this origin; the hero uses a responsive picture source and high fetch priority. Pet images preserve intrinsic dimensions, load lazily unless above the fold, and retain semantic package links if unavailable. Hero/scene art is decorative. Fine source-edge artifacts can remain at extreme enlargement; review uses the actual smaller display sizes. Source manifests retain generated-image provenance. Visual acceptance does not establish trademark registration or broad reuse rights; final release/identity rights review remains pending.
 
-## Local fonts and actual licenses
+## November 2 pet motion correction
+
+The owner rejected the DEC-56 mesh reconstruction and inline homepage detail. DEC-57 restores the existing WebP character artwork and separate package-page navigation. The unused Three.js renderer/model/viewer modules and their obsolete test are removed, together with `three`, `@types/three` and their unneeded dependency subtree. No replacement motion dependency is added.
+
+`pet-motion.tsx` and its source-coordinate map animate the original artwork at runtime: finite eye/mouth/brow feedback, a localized smooth hand displacement, and accessory highlights. The hand effect deforms a small region of the unchanged image continuously; it does not cut a limb into a detached joint. The neutral displacement map is inline SVG markup, not regenerated mascot artwork. Ordinary images remain the no-JavaScript/loading/error fallback. Motion is optional and is stopped when offscreen, hidden, reduced-motion changes, or the component unmounts.
+
+Ordinary same-origin links open separate package pages. Destination CSS entry grows the left-side artwork over 420 ms; information follows with a 200 ms opacity/position transition after 180 ms. Reduced motion renders the final state immediately. This uses `@starting-style` and ordinary navigation; no snapshot-transition controller or extra navigation state remains. Source references: [CSS starting styles](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style), [SVG displacement](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap), [SVG animation control](https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimationElement/beginElement). All original PNGs and seven WebP derivatives are preserved. See [actual correction checks](../validation/2026-11-02-w3-pet-motion-correction.md). New motion remains pending owner review.
+
+## Local fonts and actual licenses (unchanged)
 
 Both unmodified Latin WOFF2 files are served locally with `font-display: swap`; there is no runtime Google request. The actual accompanying SIL Open Font License texts are included, rather than a claim inferred from a font name.
 

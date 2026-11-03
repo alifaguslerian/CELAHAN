@@ -1,7 +1,7 @@
 # CELAHAN — Mascot Family Guidelines
 
 Status: Four v1 concepts generated for owner review; the approved desktop hero remains unchanged  
-Updated: October 27, 2026  
+Updated: November 2, 2026
 References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Visual System](VISUAL_SYSTEM.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Direction and approval
@@ -11,6 +11,12 @@ The owner requested four small pet forms with genuinely different body silhouett
 SCOUT is the proposed package identity closest to the sand pet in the hero. The original hero PNG is immutable: a new package concept must not silently replace the character in that approved composition.
 
 ## 2. Concept set
+
+### November 2 motion correction
+
+The owner rejected the reconstructed 360-degree geometry, especially hands/feet and stiff motion, and clarified that package information belongs on its own page. DEC-57 supersedes DEC-56. The current runtime uses the original optimized raster art, preserving the detailed silhouette, tiny limbs, texture and lighting. Finite blink/smile/brow feedback, continuous localized hand movement and an accessory highlight provide an optional greeting. No full-rotation model or newly drawn limb remains.
+
+`pet-motion.tsx` and `pet-motion-data.ts` reference only existing artwork. The original image remains the idle/no-JavaScript/error view; no source pixels or files are rewritten. Native page transitions connect the compact cluster with each separate package page. Reduced motion removes decorative movement. The revised motion still awaits owner visual review; the approved hero remains unchanged.
 
 | Working name | Body silhouette | Proposed principal / detail colors | Distinguishing detail | Represented specialty |
 | --- | --- | --- | --- | --- |

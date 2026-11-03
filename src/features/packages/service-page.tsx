@@ -3,6 +3,7 @@ import { packages } from '@/content/packages';
 import { publicCopy } from '@/content/public';
 import { requestHref, type Locale, type PackageId } from '@/lib/routing';
 import { Pet } from './pet';
+import { PetMotion } from './pet-motion';
 
 export function ServicePage({ locale, selected }: { locale: Locale; selected: PackageId }) {
   const copy = publicCopy[locale];
@@ -10,8 +11,8 @@ export function ServicePage({ locale, selected }: { locale: Locale; selected: Pa
   return <main id="main-content" className="public-page services-page" tabIndex={-1}>
     <section className="service-detail" aria-labelledby="package-heading">
       <div className="service-stage">
-        <div className={`selected-pet selected-${item.id}`}><Pet id={item.id} eager /></div>
-        <nav className="package-tabs" aria-label={copy.explore}>{packages.map((pack) => <Link key={pack.id} href={`/${locale}/services/${pack.id}/`} aria-current={selected === pack.id ? 'page' : undefined}><Pet id={pack.id} /><span>{pack.name}</span></Link>)}</nav>
+        <div className={`selected-pet selected-${item.id}`}><button type="button" className="pet-greet" aria-label={`${locale === 'id' ? 'Sapa' : 'Greet'} ${item.name}`} title={`${locale === 'id' ? 'Sapa' : 'Greet'} ${item.name}`}><PetMotion id={item.id} entrance /></button></div>
+        <nav className="package-tabs" aria-label={copy.explore}>{packages.map((pack) => <a key={pack.id} href={`/${locale}/services/${pack.id}/`} aria-current={selected === pack.id ? 'page' : undefined}><Pet id={pack.id} /><span>{pack.name}</span></a>)}</nav>
       </div>
       <article className="package-sheet" aria-labelledby="package-heading">
         <h1 id="package-heading">{item.name}</h1>
