@@ -47,6 +47,19 @@ with sync_playwright() as p:
             for width in WIDTHS:
                 page.set_viewport_size({'width': width, 'height': 900})
                 no_overflow(page, (locale, path, width))
+            if path == 'about/':
+                assert page.locator('.about-principles, .about-pet, main img, main canvas').count() == 0
+                assert page.locator('.about-links a').count() == 2
+                assert page.locator('.about-links a').evaluate_all('links => links.map(a => a.pathname)') == [f'/{locale}/process/', f'/{locale}/report/']
+                assert len(page.locator('main').inner_text().split()) < 100
+                for width, height in [(1366, 640), (1366, 768), (1536, 704), (1920, 1080), (390, 844), (320, 740)]:
+                    page.set_viewport_size({'width': width, 'height': height})
+                    no_overflow(page, (locale, 'about', width))
+                    assert page.locator('.about-masthead h1 span').evaluate('el => getComputedStyle(el).display') == 'inline'
+                    page.screenshot(path=str(ARTIFACTS / f'{locale}-about-{width}-{height}.png'))
+                    if width >= 1366:
+                        footer = page.locator('.site-footer').bounding_box()
+                        assert footer['y'] + footer['height'] <= height + 1, (locale, width, height, footer, 'about first-screen fit')
             if path.startswith('services/'):
                 text = page.locator('main').inner_text()
                 assert not any(token in text for token in ['Rp', '25.000', '2.500', 'days', 'hari', '%'])
@@ -109,15 +122,17 @@ with sync_playwright() as p:
         page.goto(f'{BASE}/{locale}/')
         assert page.locator('.process-grid > li').count() == 8
         for package in PACKAGES:
-            link = page.locator(f'.pet-{package}')
+            pet = page.locator(f'.pet-{package}')
+            link = pet
             page.mouse.move(0, 0)
-            expect(link.locator('.pet-name')).to_be_hidden()
+            expect(pet.locator('.pet-name')).to_be_hidden()
             link.focus()
-            expect(link.locator('.pet-name')).to_be_visible()
+            expect(pet.locator('.pet-name')).to_be_visible()
             assert link.bounding_box()['width'] >= 44 and link.bounding_box()['height'] >= 44
             page.keyboard.press('Enter')
             page.wait_for_url(f'**/{locale}/services/{package}/')
             assert page.locator('#package-heading').inner_text() == package.upper()
+            assert page.locator('.inline-package-sheet, .pet-viewer, canvas').count() == 0
             page.goto(f'{BASE}/{locale}/')
         faq = page.locator('.faq-list details').first
         faq.locator('summary').focus()
@@ -188,6 +203,7 @@ with sync_playwright() as p:
     assert probe.locator('.pet-scout img').evaluate("el=>getComputedStyle(el).transform") == 'none'
     probe.keyboard.press('Enter')
     probe.wait_for_url('**/id/services/scout/')
+    assert probe.locator('.pet-motion').evaluate('el=>el.getAnimations({subtree:true}).length') == 0
     reduced.close()
 
     for locale in ['id', 'en']:
