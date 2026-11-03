@@ -32,9 +32,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <ul className="strengths">{text.strengths.map(([title, body], index) => <li key={title}><span className="editorial-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ul>
       </section>
       <section id="packages" className="home-packages" aria-labelledby="packages-heading"><h2 className="visually-hidden" id="packages-heading">{text.services}</h2><PackageCluster locale={locale} /></section>
-      <section id="process" className="home-process" aria-labelledby="process-heading"><div><SectionHeading lines={text.processHeading} id="process-heading" /><p className="scope-note">{text.processNote}</p><Link className="text-link" href={`/${locale}/process/`}>{text.allStages}<span aria-hidden="true">→</span></Link></div><ProcessSteps locale={locale} /></section>
+      <section id="process" className="home-process" aria-labelledby="process-heading"><div className="home-process-intro"><SectionHeading lines={text.processHeading} id="process-heading" /><div><p className="scope-note">{text.processNote}</p><Link className="text-link" href={`/${locale}/process/`}>{text.allStages}<span aria-hidden="true">→</span></Link></div></div><ProcessSteps locale={locale} /></section>
       <ReportPreview locale={locale} />
-      <section id="faq" className="home-faq" aria-labelledby="faq-heading"><h2 className="section-heading" id="faq-heading">{text.faq}</h2><FAQ locale={locale} /></section>
+      <section id="faq" className="home-faq" aria-labelledby="faq-heading"><div className="faq-intro"><p className="eyebrow">FAQ</p><h2 className="section-heading" id="faq-heading">{text.faq}</h2><p>{text.faqIntro}</p></div><FAQ locale={locale} /></section>
       <div id="boundaries"><ConsultationInvitation locale={locale} /></div>
     </main>
   );
