@@ -27,6 +27,8 @@
 - Update related documents when requirements change. Do not leave contradictory decisions across files.
 - The owner authorized the October 29 portal documentation revision. Update the broad phase plan for the changed scope, but keep later delivery packages coherent and moderately sized. Review missing portal/admin/mobile flows before detailed implementation decomposition; no application work is authorized merely by revising documents.
 - Work in small phases with clear deliverables and checks. Avoid features unrelated to an established need.
+- On November 2 the owner requested a focused W3 revision of the full Process page and the homepage process section, using two supplied card/flow references. Keep the black background and shared header, show all eight conceptual stages in one desktop viewport, and preserve readable mobile reflow and conceptual/privacy explanations. This does not authorize W4 or replacement source images.
+- The owner rejected the November 2 360-degree reconstruction and inline homepage detail (DEC-57, superseding DEC-56). Restore the existing raster character appearance, remove the mesh renderer and rotation controls, and animate expressions/gestures without changing the original hands, feet, silhouettes or source bytes. Homepage pet activation must navigate to its own package page, with the pet enlarging during that page transition. Keep the cluster and detail composition compact, native navigation/no-JavaScript access, reduced motion, and all shared-header/privacy boundaries. New motion still requires owner visual review; W4 and publication remain unauthorized.
 
 ## Git is entirely manual
 

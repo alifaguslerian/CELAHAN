@@ -1,7 +1,7 @@
 # CELAHAN Documentation
 
 Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started  
-Updated: November 1, 2026
+Updated: November 3, 2026
 
 This index groups the English project documentation by purpose. Required Indonesian source findings, product labels, and bilingual examples remain verbatim. Start with the product brief, then consult the approved hero and the relevant subject documents. [Agent instructions](../AGENTS.md) govern authorization and manual Git.
 
@@ -67,6 +67,11 @@ The October 29 portal revision supersedes prior no-backend/no-storage acceptance
 
 | Record | Scope |
 | --- | --- |
+| [W3 About editorial revision](validation/2026-11-03-w3-about.md) | Concise reference-led About composition, inline masthead punctuation, shared navigation and responsive layout; owner visual review pending |
+| [W3 pet motion correction](validation/2026-11-02-w3-pet-motion-correction.md) | Original artwork, finite expression/gesture feedback, separate-page transitions, compact layout and renderer removal; owner visual review pending |
+| [W3 homepage closing revision](validation/2026-11-03-w3-home-closing.md) | Latest numbered FAQ rows, smaller type, compact consultation panel and footer; bilingual/reflow/keyboard/no-JavaScript checks; owner visual review pending |
+| [W3 3D pet interaction](validation/2026-11-02-w3-pet-3d.md) | Historical technical checks; model appearance, motion and inline navigation rejected by owner and superseded by DEC-57 |
+| [W3 process layout revision](validation/2026-11-02-w3-process-layout.md) | Shared eight-stage cards on the homepage and Process page; desktop viewport fit, readable reflow, navigation and local regression checks; owner visual review pending |
 | [W3 reference correction](validation/2026-11-01-w3-reference-correction.md) | Deep-black continuous hero scene, transparent header overlay, tighter overview and native pet-detail navigation; reviewed local interface owner-accepted; final scope/limits recorded |
 | [W3 first visual revision](validation/2026-11-01-w3-visual-revision.md) | Historical local checks; visual result rejected and superseded by the reference correction |
 | [W3 public website](validation/2026-11-01-w3-public-site.md) | Public routes, responsive/keyboard/touch/no-JS behavior, immutable sample, safe consultation intent and local performance limits |

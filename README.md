@@ -6,9 +6,11 @@ A bilingual web security assessment service concept for university coursework an
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Status — November 1, 2026
+## Status — November 3, 2026
 
 **W3 public discovery is complete within its authorized local scope and the reviewed interface is owner-accepted. W1 and isolated W2 were checked locally with explicit limits. W4–W6 are not started. Public enrollment, real email delivery and deployment remain closed.**
+
+The owner requested compact process cards and later rejected the new 360-degree meshes and inline homepage package detail (DEC-57 supersedes DEC-56). The current correction restores original pet artwork, adds finite expression/gesture feedback, and animates native navigation into each separate package page. The new motion is pending owner visual review. See [process checks](docs/validation/2026-11-02-w3-process-layout.md) and [pet motion correction](docs/validation/2026-11-02-w3-pet-motion-correction.md).
 
 The owner approved expanding the planned website into a functional service portal after lecturer feedback: real login, a real database, reactive/preventive consultation intake, user/admin tickets and conversation, requested consultation schedules, private illustrative project reports and three-month follow-up benefits.
 
@@ -19,6 +21,10 @@ The public visual direction remains: approved dim-doorway hero, Open Threshold l
 The November 1 reference correction restores a deep-black background and a large continuous doorway/stair scene, overlays the transparent shared header, tightens the overview, and restores direct package-detail navigation with restrained pet hover/press feedback. The visible heading above the pet cluster and the hero-only disclaimer are removed; required footer/form disclaimers remain. The earlier warm-gradient/inline-summary revision was rejected. The owner accepted the reviewed local interface on November 1 and requested the W3 completion/checkpoint audit. Consultation intake, tickets/admin and owned private reports remain later work; this is not deployment or release approval. See [correction evidence](docs/validation/2026-11-01-w3-reference-correction.md).
 
 ## Planned experience
+
+The November 3 About revision follows the owner's editorial reference, replacing its mascot and repeated three-column explanations with a project masthead, one core message and concise truthful scope copy. The existing shared site header/footer and process/report links remain. Full-page continuity is the review baseline. See [About verification](docs/validation/2026-11-03-w3-about.md); owner visual acceptance is pending.
+
+The November 3 focused W3 revision refines the homepage FAQ, consultation panel and shared footer using the owner's latest reference. Numbered native question rows, smaller typography and compact panel/footer spacing preserve the current copy, gated consultation flow and exact disclaimer. The earlier bordered FAQ cards are superseded by DEC-59. No dependency or source image was added or regenerated. Owner visual review is pending; [local verification](docs/validation/2026-11-03-w3-home-closing.md) records the actual checks.
 
 - Public home, services/packages, eight-stage process, About/FAQ, privacy, custom 404 and public sample report.
 - Real authentication and authenticated consultation with name, company, website, problem, contact and proposed schedule.

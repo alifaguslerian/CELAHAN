@@ -24,6 +24,12 @@ The batch contains **24 selected horizontal frames**, plus the **one unchanged a
 
 ## Historical frame assembly and retained composition
 
+**November 3 About override (DEC-60):** the owner's new editorial reference supersedes the implemented mascot/three-column composition for About. The page now uses a CELAHAN masthead with its period on the same line, a concise two-column story, understated process/report links and one academic-project caption. Keep the shared site navigation/footer and actual working-account versus illustrative-assessment distinction. Review the complete page at laptop heights, not isolated section crops. Frame 17 remains unchanged as historical source; [current checks](../validation/2026-11-03-w3-about.md) record the revision and its limits.
+
+The November 3 follow-up further groups the footer identity/disclaimer opposite two-column navigation and gives the homepage pet cluster slightly more vertical breathing room. Pet size and horizontal grouping remain unchanged; no reference image is regenerated.
+
+**Latest November 3 closing-section adaptation (DEC-59):** the owner supplied a cleaner reference, then explicitly requested smaller type, panel/footer proportions and closer footer links. Numbered FAQ rows with fine separators replace DEC-58's outlined cards; all answers start closed. Consultation uses a compact quiet-border panel, a two-line sans-serif heading and the real availability note. The footer retains its five links, original disclaimer and accessible icon-only back-to-top link. Existing source frames 05/06 remain unchanged; their historical simulation-only wording does not replace current account/database copy. Visual review is pending. See [local checks](../validation/2026-11-03-w3-home-closing.md).
+
 | Page / interaction | Reference sequence | Scope |
 | --- | --- | --- |
 | Home | Approved hero → 01 → 02 → 03 → 04 → 05 → 06 | One page with separately readable sections |
@@ -57,6 +63,8 @@ Service overview and three concrete strengths. Keep claims about approach and ou
 
 ## 02 — Four package pets
 
+**November 2 correction (DEC-57, superseding DEC-56):** the owner rejected the reconstructed meshes, limb quality, stiff motion and inline detail. Restore the existing detailed raster pet appearance; hands and feet keep their original shape. Use finite eye, mouth, brow, hand and accessory feedback. Normal activation navigates to the separate package page, with a destination-page entrance growing the selected artwork into its left position; qualitative information follows on the right. Tighten cluster/section spacing and the detail composition. Remove rotation controls and the inline detail state. Keep native no-JavaScript/modified-click access, reduced motion, original assets and the shared header. New motion remains pending owner visual review; see [correction checks](../validation/2026-11-02-w3-pet-motion-correction.md).
+
 Four distinct pets form one tight, centered cluster, with touching/slightly overlapping silhouettes. This revised image shows WARDEN hovered. At rest, no names, service captions, prices, selected underline, or bottom fit/price strip appear. Hover or keyboard focus reveals only that pet's name above it. Clicking/Enter/Space reveals the selected name, service/scope, and fictional price using the existing detail-view pattern (07); no detail opens merely on hover. The revised interaction applies to this homepage section; do not regenerate the accepted Services screen.
 
 ![Desktop 02: Four package pets](../../design/desktop/v1/02-home-packages-r2.png)
@@ -64,6 +72,8 @@ Four distinct pets form one tight, centered cluster, with touching/slightly over
 ## 03 — Eight-stage process summary
 
 An eight-stage preview linking to Process. Describe the conceptual service, while the website only demonstrates its flow.
+
+November 2 runtime override (DEC-55): the owner requested revising this section together with the full Process page using two supplied card/flow references. A compact introductory row sits above eight numbered cards in a 4 × 2 desktop layout, with restrained sand borders and fine connectors on the unchanged black background. All eight stages remain visible together, in their original reading order. This implementation is pending owner visual review; the saved PNG remains historical visual evidence, unchanged.
 
 ![Desktop 03: Eight-stage process summary](../../design/desktop/v1/03-home-process.png)
 
@@ -106,6 +116,8 @@ Package comparison and fit guidance. Caps apply simultaneously. An unsure/over-s
 ## 09 — Full eight-stage process
 
 All eight conceptual stages in reading order, including written scope/authorization and closure/data removal. The portal never scans or collects incident evidence; account/consultation/ticket data is persisted under the revised privacy policy.
+
+November 2 runtime override (DEC-55): use the same numbered cards as the homepage, below a compact heading, introduction and conceptual-service notice. Keep the closure/account-retention distinction and sample-report link visible with the eight stages in one desktop viewport. Plain black, existing fonts, restrained sand borders and subtle card shading replace the sparse circle-number layout. The cards are informational, with no fake progress or clickable states. Tablets use two columns; phones use one readable column and natural scrolling. No new raster assets or dependencies are required. See the [local validation record](../validation/2026-11-02-w3-process-layout.md) for measured sizes and limits; visual acceptance of this revision remains pending.
 
 ![Desktop 09: Full eight-stage process](../../design/desktop/v1/09-process-eight-stages.png)
 

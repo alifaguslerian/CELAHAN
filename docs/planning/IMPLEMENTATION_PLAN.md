@@ -1,7 +1,7 @@
 # CELAHAN Implementation Plan
 
 Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started or authorized  
-Updated: November 1, 2026
+Updated: November 3, 2026
 
 **Goal:** deliver one bilingual CELAHAN website with the approved identity, dedicated phone/desktop composition, real authentication/database/ticket operations, protected illustrative reports and measured quality.
 
@@ -18,6 +18,8 @@ Work in the existing project. Do not create another plan directory, duplicate sp
 Each package has a coherent outcome, ordered tasks, boundaries and checks. A package can contain several reviewable steps without turning every file into its own milestone. Record actual results and stop at the authorized boundary. Do not treat later unchecked tasks as permission to continue.
 
 ## 2. Phase continuity and work-package order
+
+The November 3 FAQ, consultation invitation and shared-footer refinement (DEC-58) remains inside W3. It adds no intake persistence or provider behavior. The [local verification record](../validation/2026-11-03-w3-home-closing.md) covers the revised public composition; owner visual review is pending.
 
 Retain P0–P9 from earlier documents. W1–W6 below are execution-sized packages mapped onto those phases, not renamed phases.
 
@@ -117,6 +119,8 @@ October 31 entry review: the owner approved the isolated identity policy and del
 **Relevant Quality checks:** scoped portions of T-05, T-16, T-17, T-20, T-25, T-26 and T-28 are recorded in [W2 validation](../validation/2026-10-31-w2-accounts.md). Eight unit tests, 206 database/API assertions, negative delivery and Chromium account/shared-shell checks passed. This does not complete later ticket/report integration, production delivery/hosting or comprehensive accessibility/cache/security review. Recheck actual project/report integration in W5.
 
 ## 7. W3: Public website and approved visual experience
+
+**November 2 refinement:** DEC-55 adds compact shared process cards. The owner subsequently rejected DEC-56's mesh reconstruction/inline expansion; DEC-57 restores original character artwork, finite expression/gesture feedback and animated navigation into separate package pages. Local checks and pending owner visual review are recorded separately from the November 1 accepted interface. These refinements do not authorize W4 or publication.
 
 **Outcome:** complete public discovery with the accepted homepage, useful package selection, process/supporting pages and the unchanged public report sample.
 

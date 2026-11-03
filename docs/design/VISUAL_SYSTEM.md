@@ -1,10 +1,14 @@
 # CELAHAN — Shared Visual System
 
 Status: Review baseline with W3 runtime adaptation; scoped browser checks are not a complete accessibility audit  
-Updated: November 1, 2026  
+Updated: November 3, 2026
 References: [Approved Hero](DESIGN_REFERENCE_LOCK.md), [Design Direction](DESIGN_DIRECTION.md), [Mascot Family](MASCOT_GUIDELINES.md), [Quality](../engineering/QUALITY_AND_SECURITY.md)
 
 ## 1. Visual authority
+
+The November 3 About revision (DEC-60) uses the owner's editorial reference: one large project-name masthead, ivory message with sand serif emphasis, short truthful scope copy and two simple links. The original mascot/three-column body is removed from this page. Keep the period inline, reflow to one column on mobile and review the complete page with its existing shared header/footer. No new image, font, dependency or decorative animation is required. [Verification](../validation/2026-11-03-w3-about.md) distinguishes local checks from pending owner visual acceptance.
+
+The latest November 3 reference (DEC-59) supersedes DEC-58's bordered FAQ cards. Use numbered plain rows and fine bottom separators, all answers initially closed. The near-black canvas, existing fonts and sand palette remain. FAQ headings cap at 2.65rem, consultation headings at 2rem; the compact invitation uses a two-line sans-serif heading, quiet border and no bright light streak. Its actual availability note remains beside the action. Footer lettering/logo are smaller, with tight two-column navigation and an accessible circular back-to-top link. Fine-pointer desktop links use 32px row targets; touch/narrow layouts retain 44px targets. The 180ms plus/minus transition respects reduced motion. Native disclosures and links work without JavaScript. Owner visual review is pending; see [checks](../validation/2026-11-03-w3-home-closing.md).
 
 The approved desktop hero governs composition, atmosphere, and visual hierarchy. This document supplies reusable numerical rules for subsequent screens without replacing that image. The interface stays warm, dark, readable, and restrained; distinct pet colors remain primarily in illustrations.
 
@@ -17,6 +21,8 @@ The November 1 correction (DEC-52) restores flat deep black and a large continuo
 The later homepage report-preview revision uses compact dark information cards over the unchanged plain near-black page. Local muted rose/sand/sage accents distinguish severity and status with text labels; the supplied report-card reference does not authorize decorative background curves or a separate dashboard. Preview counters describe the displayed excerpt only. The full report still uses its native disclosures and immutable source content.
 
 The owner also requested invisible viewport scrollbars. Root scrollbar styling hides the tracks without disabling native scrolling. Full-bleed hero alignment is centered against the viewport so horizontal overflow is prevented even when the shared content reaches its maximum width. Content, focus and keyboard navigation remain available.
+
+November 2 correction (DEC-57): the owner rejected the reconstructed 360-degree pets and inline homepage detail. Restore the original character proportions, hands, feet, texture and matte lighting. A compact cluster links natively to separate package pages; a 420 ms destination-page entrance grows the selected pet into its left-side position, followed by a 200 ms information reveal after 180 ms. Keep the faint static halo, finite expression/gesture feedback and reduced-motion fallback. Remove the renderer and rotation controls. Original hero/source artwork remains unchanged, and motion awaits owner review.
 
 ## 2. Three-layer token model
 
@@ -108,5 +114,7 @@ The four pets share facial simplicity/material/scale while differing in silhouet
 Motion should clarify selection, expansion, or focus. Start at 120–240 ms for microinteractions and 180–300 ms for panels. Reduced motion removes decorative movement while keeping all actions. Avoid automatic audio, mandatory intro sequences, scroll hijacking, and repeated guide interruptions. No animation library is selected by this document.
 
 ## 6. Design review gate
+
+November 3 owner follow-up: group the footer brand and full disclaimer as one identity block, with compact two-column navigation and a distinct circular back-to-top affordance. The homepage package section gains 16–28px of top padding and 16–24px of additional bottom padding relative to the previous layout. This gives the original pet cluster modest breathing room while preserving its scale, tight horizontal grouping and native detail links. No source images or dependencies change.
 
 Review each new screen beside the approved hero, using actual ID/EN copy and desktop/mobile compositions. Check hierarchy, low-glare lighting, semantic controls, long text, focus/error states, named package selection, and correct simulation labels. Export source images separately from optimized runtime assets. Record actual results rather than treating this specification as a browser test.

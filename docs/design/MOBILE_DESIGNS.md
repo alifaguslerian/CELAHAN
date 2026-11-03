@@ -4,6 +4,12 @@ Status: 27 selected portrait references generated for owner review
 Date: October 28, 2026  
 Scope: Mobile-web pages, scroll segments, navigation, disclosures, and confirmation states
 
+**November 3 About override (DEC-60):** the new editorial composition stacks its message and short description on narrow screens. Scale the CELAHAN wordmark to fit without wrapping its period. Keep the two process/report links, truthful account/illustration context and shared header/footer; remove the earlier page-specific mascot and three explanatory columns. Mobile source PNGs stay unchanged. See [current verification](../validation/2026-11-03-w3-about.md).
+
+The November 3 follow-up places the complete disclaimer directly with the footer brand before the two-column navigation and back-to-top control. The pet cluster also receives modest additional top/bottom spacing without changing its artwork or touch targets.
+
+**Latest November 3 runtime adaptation (DEC-59):** numbered plain FAQ rows replace DEC-58's cards and start closed. On narrow screens the introduction stays above the questions, and the compact consultation panel places its action/availability note below smaller headings. Footer navigation uses tight two-column spacing, with the exact disclaimer beside the brand and an accessible circular back-to-top link beside navigation. Touch controls keep their 44px minimum. Local checks cover 320px and 390px widths in both locales, including no-JavaScript disclosure/navigation. Portrait source images remain unchanged; owner visual review is pending. See [evidence](../validation/2026-11-03-w3-home-closing.md).
+
 References: [Desktop gallery](DESKTOP_DESIGNS.md), [Design lock](DESIGN_REFERENCE_LOCK.md), [Visual system](VISUAL_SYSTEM.md), [Canonical content](../product/CONTENT_AND_SIMULATION.md), [User flows](../product/USER_FLOWS.md), [Packages](../product/SERVICE_PACKAGES.md), [Validation](../validation/2026-10-28-mobile-designs.md)
 
 **Current publication override — November 1 (DEC-50):** preserve all approved image bytes. Historical price/cap/effort/cycle lettering and instructions do not authorize publication. W3 shows qualitative package details only; all numerical package terms are deferred. See [runtime adaptations](RUNTIME_ASSETS.md) and [W3 evidence](../validation/2026-11-01-w3-public-site.md).
@@ -75,6 +81,8 @@ ID pages and three EN form/report frames are represented; other EN pages reuse t
 
 ### 03 — Mobile pet cluster
 
+November 2 correction (DEC-57): remove the rejected rotatable models and homepage expansion. Tapping a pet opens its own package page; the original character artwork supports finite expression/gesture feedback. Keep natural vertical scrolling, compact selectors, a labeled optional greeting action, reduced motion and ordinary no-JavaScript access. This source image remains unchanged. Motion review is pending.
+
 ![Mobile 03: Mobile pet cluster](../../design/mobile/v1/03-home-packages.png)
 
 ### 04 — Mobile FAQ and consultation footer
@@ -94,6 +102,8 @@ ID pages and three EN form/report frames are represented; other EN pages reuse t
 ![Mobile 07: Mobile package comparison](../../design/mobile/v1/07-services-comparison.png)
 
 ### 08 — Mobile process stages 1–4
+
+November 2 runtime adaptation (DEC-55): both public process presentations use the same eight-stage content and numbered cards, flowing in a single column on phones and two columns on tablets. The one-screen requirement applies to the tested desktop viewports; smaller screens and enlarged text retain natural scrolling, without clipping or hiding stages. The source images for 08–09 remain unchanged. See [process layout validation](../validation/2026-11-02-w3-process-layout.md); owner review of the new runtime treatment is pending.
 
 ![Mobile 08: Mobile process stages 1–4](../../design/mobile/v1/08-process-first.png)
 
