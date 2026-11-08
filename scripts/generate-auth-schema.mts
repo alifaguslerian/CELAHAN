@@ -2,9 +2,11 @@ import { Pool } from 'pg';
 import { getMigrations } from 'better-auth/db/migration';
 import { writeFile } from 'node:fs/promises';
 import { authOptions } from '../src/server/auth/options.ts';
+import { authEnvironment, isolatedOwnerDatabaseURL } from '../src/server/auth/environment.ts';
 
-if (!process.env.DATABASE_MIGRATION_URL) throw new Error('Isolated migration configuration is required');
-const pool = new Pool({ connectionString: process.env.DATABASE_MIGRATION_URL, max: 1 });
+const config = authEnvironment();
+if (!config) throw new Error('Isolated migration configuration is required');
+const pool = new Pool({ connectionString: isolatedOwnerDatabaseURL(config.databaseURL), max: 1 });
 try {
   const plan = await getMigrations(authOptions(pool));
   if (plan.unsafeChanges.length || plan.schemaProblems.length) throw new Error('Migration requires review');

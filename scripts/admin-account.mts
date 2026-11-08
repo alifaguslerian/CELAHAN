@@ -1,10 +1,10 @@
 import { Pool } from 'pg';
-import { authEnvironment } from '../src/server/auth/environment.ts';
+import { authEnvironment, isolatedOwnerDatabaseURL } from '../src/server/auth/environment.ts';
 
 const config = authEnvironment();
 const [action, email] = process.argv.slice(2);
-if (!config || !config.emails.includes(email) || !['grant_admin', 'revoke_admin', 'disable_account', 'enable_account'].includes(action) || !process.env.DATABASE_MIGRATION_URL) throw new Error('Use a reviewed action and an allowlisted synthetic email');
-const pool = new Pool({ connectionString: process.env.DATABASE_MIGRATION_URL, max: 1 });
+if (!config || !config.emails.includes(email) || !['grant_admin', 'revoke_admin', 'disable_account', 'enable_account'].includes(action)) throw new Error('Use a reviewed action and an allowlisted synthetic email');
+const pool = new Pool({ connectionString: isolatedOwnerDatabaseURL(config.databaseURL), max: 1 });
 try {
   const client = await pool.connect();
   try {

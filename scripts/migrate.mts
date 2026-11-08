@@ -1,10 +1,11 @@
 import { Pool, type PoolClient } from 'pg';
 import { readdir, readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { authEnvironment } from '../src/server/auth/environment.ts';
+import { authEnvironment, isolatedOwnerDatabaseURL } from '../src/server/auth/environment.ts';
 
-if (!authEnvironment() || !process.env.DATABASE_MIGRATION_URL) throw new Error('Isolated migration configuration required');
-const pool = new Pool({ connectionString: process.env.DATABASE_MIGRATION_URL, max: 1 });
+const config = authEnvironment();
+if (!config) throw new Error('Isolated migration configuration required');
+const pool = new Pool({ connectionString: isolatedOwnerDatabaseURL(config.databaseURL), max: 1 });
 let client: PoolClient | undefined;
 try {
   client = await pool.connect();

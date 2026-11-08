@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
 import { test } from 'node:test';
-import { authEnvironment } from '../../src/server/auth/environment.ts';
+import { authEnvironment, isolatedOwnerDatabaseURL } from '../../src/server/auth/environment.ts';
 
 const config = {
   CELAHAN_ISOLATED_AUTH: 'true', BETTER_AUTH_URL: 'http://127.0.0.1:3100',
@@ -23,6 +23,19 @@ test('isolated configuration rejects public origins, real identities and unverif
     { CELAHAN_TEST_EMAILS: 'someone@example.com' }, { BETTER_AUTH_SECRET: '' }, { CELAHAN_MAILBOX_SECRET: '' },
     { DATABASE_URL: config.DATABASE_URL.replace('verify-full', 'require') },
     { DATABASE_URL: config.DATABASE_URL.replace('/celahan_w2', '/production') },
+    { DATABASE_URL: config.DATABASE_URL + '&sslmode=disable' },
+    { DATABASE_URL: config.DATABASE_URL + '&host=other.invalid' },
+    { DATABASE_URL: config.DATABASE_URL + '&sslrootcert=local.pem' },
     { DATABASE_URL: 'not-a-database-url' },
   ]) assert.throws(() => authEnvironment({ ...config, ...change }));
+});
+
+test('owner tooling only accepts pooled or direct connections to the same isolated database', () => {
+  const owner = config.DATABASE_URL;
+  const runtime = owner.replace('ep-example.', 'ep-example-pooler.') + '&channel_binding=require';
+  assert.equal(isolatedOwnerDatabaseURL(runtime, owner), owner);
+  assert.throws(() => isolatedOwnerDatabaseURL(runtime, owner.replace('ep-example.', 'ep-other.')));
+  const pooledOwner = owner.replace('ep-example.', 'ep-example-pooler.');
+  assert.equal(isolatedOwnerDatabaseURL(runtime, pooledOwner), pooledOwner);
+  assert.throws(() => isolatedOwnerDatabaseURL(runtime, owner.replace('/celahan_w2', '/production')));
 });

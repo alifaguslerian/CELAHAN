@@ -1,10 +1,12 @@
 import { Pool, escapeLiteral } from 'pg';
 import { randomBytes } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
-import { authEnvironment } from '../src/server/auth/environment.ts';
+import { authEnvironment, isolatedOwnerDatabaseURL } from '../src/server/auth/environment.ts';
 
-if (!authEnvironment() || !process.env.DATABASE_MIGRATION_URL) throw new Error('Isolated configuration required');
-const pool = new Pool({ connectionString: process.env.DATABASE_MIGRATION_URL, max: 1 });
+const config = authEnvironment();
+if (!config) throw new Error('Isolated configuration required');
+const ownerURL = isolatedOwnerDatabaseURL(config.databaseURL);
+const pool = new Pool({ connectionString: ownerURL, max: 1 });
 try {
   const client = await pool.connect();
   try {
@@ -17,7 +19,7 @@ try {
     await client.query('GRANT SELECT, INSERT, UPDATE, DELETE ON "user", session, account, verification, "twoFactor", "rateLimit" TO celahan_app');
     await client.query('GRANT SELECT ON project_access TO celahan_app');
     await client.query('COMMIT');
-    const runtimeURL = new URL(process.env.DATABASE_MIGRATION_URL);
+    const runtimeURL = new URL(ownerURL);
     runtimeURL.username = 'celahan_app'; runtimeURL.password = password;
     runtimeURL.hostname = runtimeURL.hostname.replace(/(?<!-pooler)\.ap-southeast-1/, '-pooler.ap-southeast-1');
     const env = await readFile('.env.local', 'utf8');
