@@ -1,7 +1,15 @@
 import type { NextConfig } from 'next';
 
+const contentSecurityPolicy = [
+  "object-src 'none'", "base-uri 'none'", "frame-ancestors 'none'", "form-action 'self'",
+  "img-src 'self'", "font-src 'self'",
+  ...(process.env.NODE_ENV === 'production' ? ["connect-src 'self'"] : []),
+].join('; ');
+
 const config: NextConfig = {
   agentRules: false,
+  devIndicators: false,
+  images: { unoptimized: true },
   poweredByHeader: false,
   trailingSlash: true,
   async redirects() {
@@ -14,7 +22,7 @@ const config: NextConfig = {
         { key: 'X-Content-Type-Options', value: 'nosniff' },
         { key: 'Referrer-Policy', value: 'no-referrer' },
         { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-        { key: 'Content-Security-Policy', value: "object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'" },
+        { key: 'Content-Security-Policy', value: contentSecurityPolicy },
       ],
     }];
   },
