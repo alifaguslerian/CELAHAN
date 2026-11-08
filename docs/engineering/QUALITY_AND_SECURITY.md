@@ -1,14 +1,14 @@
 # CELAHAN — Quality, Security, and Validation
 
 Status: W1 and isolated W2 checks recorded with limits; full portal/release verification remains planned  
-Updated: October 31, 2026  
+Updated: November 6, 2026  
 References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Data and Access](DATA_AND_ACCESS.md), [Operations](../product/SERVICE_OPERATIONS.md)
 
 ## 1. Evidence and scope
 
 Record environment/date/build identifier, actual steps/commands, result, safe evidence and limitations. Do not use Git to discover revisions; the owner may supply an identifier. Documentation, source inspection, build, browser behavior, security tests and deployment evidence are distinct.
 
-The portal now transmits and stores authorized account/ticket/project data. The old “no network/storage at all” check is retired. Verify intended authenticated flows plus absence of target access, leaks and cross-account exposure. Assessments/retests remain illustrative; no result proves a website completely secure.
+The application transmits/stores authorized isolated account data; consultation/ticket/private-project writes remain planned. The old “no network/storage at all” check is retired. Verify intended authenticated flows plus absence of target access, leaks and cross-account exposure. Assessments/retests remain illustrative; no result proves a website completely secure.
 
 ## 2. Functional and security matrix
 
@@ -22,15 +22,15 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-04 | FUN-07–08 | Actor-validated ticket/project transitions, invalid/stale state rejected |
 | T-05 | AC-04–05 | Saved records after refresh/new tab/locale change; expired login and unsaved-edit warning |
 | T-06 | LNG-01–05 | ID/EN routes/copy/dates/errors; no message translation or saved-data reset |
-| T-07 | MOB-01–04, AC-06 | 320/360/390/768/1024/1440 px, zoom/landscape, user and admin forms/tickets/reports |
-| T-08 | FUN-11, QLT-01 | Optional guide, keyboard/focus/Escape, reduced motion, failed artwork |
+| T-07 | DES-01–02, AC-06 | Reviewed desktop widths, text enlargement, keyboard and user/admin task readability; dedicated phone scope deferred |
+| T-08 | FUN-11, QLT-01 | Future approved report help and public context/process/FAQ controls: keyboard/focus/Escape, disclosure states and reduced-motion handling; any material motion follows the selected Layers contract |
 | T-09 | FUN-12, QLT-05 | Deployed deep links, real HTTP 404 and generic private denial without enumeration |
 | T-10 | FUN-14, AC-07 | JS disabled/unhydrated, failed network/database, no input GET fallback or fake success |
 | T-11 | QLT-03, AC-03 | Target URL never contacted client/server; intended data only to approved auth/app/database destinations |
 | T-12 | QLT-02, 04 | Actual lint/typecheck/build, meaningful tests, measured assets/JS/query behavior |
-| T-13 | FUN-15–16 | All packages and unsure path in ID/EN, keyboard/touch fallback, same public five findings |
-| T-14 | AC-11 | Under DEC-50, W3 omits all numerical package terms; retain the independently approved three-month support rule, with no obsolete 30/60-day window. Published numerical terms require later owner approval |
-| T-15 | FUN-18, QLT-06 | Browser hero vs preserved PNG, approved logo direction, distinct pet silhouettes/colors |
+| T-13 | FUN-15–16 | Removed catalog/sample URLs return 404 in ID/EN; no retired content/links. Replacement service/report acceptance requires review |
+| T-14 | AC-11 | Under DEC-62, catalog names/scopes/terms are removed. No replacement offers/findings without review. Future support/access policy remains separately governed |
+| T-15 | FUN-18, QLT-06 | Compare actual Layers desktop to selected reference: hero, context, normal 4×2 process/detail, account, dark FAQ, type/palette and ID/EN. Check reduced motion/text enlargement separately. Layers validation records local results, not a release pass |
 | T-16 | FUN-19, 21, AC-06, 18 | Signup/login/recovery/logout and reviewed gates; shared header beside ID/EN for guest/prospect/project owner/admin; no forced dashboard; hidden ticket/report entries cannot bypass server checks |
 | T-17 | AC-10, 12 | Two-user/admin object and nested-ID read/write/list/count isolation; no mass-assigned privileges |
 | T-18 | FUN-07, AC-14 | Shared replies visible only to ticket owner/admin; internal notes absent from user HTML/JSON/RSC |
@@ -106,7 +106,7 @@ The design target is relevant WCAG 2.2 Level AA practices, verified manually and
 
 Project criteria: at least 4.5:1 contrast for normal text, 3:1 for large text, and 3:1 for relevant components/focus indicators. Do not communicate information through color alone. Provide landmarks, ordered headings, a skip link, input labels, associated errors, visible focus, and keyboard-dismissible dialogs. Announce dynamic status appropriately; do not reread an entire table after every minor change.
 
-Test 200% zoom, reflow at an equivalent 320 px width, enlarged text, reduced motion, and a screen reader. Primary 44×44 CSS px touch targets are a project comfort target, not a claim that every WCAG AA element requires that size. Mascot alt text reflects its function; decorative poses may be hidden from assistive technology when the assistance text already explains their meaning.
+Test keyboard/focus, enlarged text, contrast and screen-reader behavior at the reviewed desktop sizes. Dedicated narrow-screen acceptance is deferred by DEC-61. Primary 44×44 CSS px touch targets are a project comfort target, not a claim that every WCAG AA element requires that size. 
 
 ## 8. Performance
 
@@ -117,23 +117,21 @@ The figures below are proposed project budgets, not measured results:
 | LCP | ≤ 2.5 seconds in documented lab testing | Median of three cold loads for home, consultation, tickets and private report in each locale |
 | CLS | ≤ 0.1 | Measure loading and interactions; inspect intrinsic asset sizes and panels |
 | Interaction response | Target ≤ 200 ms for representative interactions | Record form, dialog, locale, and report-expansion traces; do not call a single trace field INP |
-| Lighthouse mobile | Performance ≥ 90 as a lab indicator | Record tool/version/throttling/environment; scores do not replace UX testing |
+| Lighthouse desktop | Performance ≥ 90 as a proposed lab indicator | Record tool/version/throttling/environment; scores do not replace UX testing |
 | Initial JS | ≤ 250 KiB compressed transfer per route | Measure all JS needed for the route, including the framework; optional assistance is not initially loaded |
 | Initial transfer | ≤ 1 MiB per route before interaction | Total initial resources, excluding user-initiated video |
 | Fonts | At most two families and ≤ 160 KiB initial transfer | Local/subset fonts where licensing permits |
-| Main media | Initial hero/illustration ≤ 250 KiB | Viewport-appropriate format/dimensions; no autoplay hero video |
+| Brand media | Only required optimized logo | No removed page imagery or autoplay background |
 
 Field Core Web Vitals are evaluated across visitor distributions; LCP/INP/CLS targets and the percentile concept come from [Web Vitals](https://web.dev/articles/vitals). A project without analytics collection does not yet have field p75 evidence. Report lab measurements as lab results, not proof of field compliance.
 
 If a budget is missed, identify the responsible resource/interaction, optimize, and measure again. Exceptions must record cost, rationale, and owner approval; never silently lower a target.
 
-The approved PNG in [Design Reference Lock](../design/DESIGN_REFERENCE_LOCK.md) is preserved source evidence, not a runtime-size exception. Extract/produce appropriate isolated, optimized assets while keeping text and controls in HTML, then compare the implemented result with the saved target. The source-file checksum only verifies preservation. W3 compared actual desktop/phone screenshots against the retained sources and the owner accepted the reviewed local implementation. This is scoped T-15 evidence; physical-device, complete accessibility and release checks remain unverified.
-
-The four PNGs in `design/mascots/concepts/` are also source/review artifacts. Their dimensions, hashes, and sampled transparency checks are recorded in [Mascot Guidelines](../design/MASCOT_GUIDELINES.md). The five calculated proposed color ratios in [Shared Visual System](../design/VISUAL_SYSTEM.md) are arithmetic checks, not an audit of rendered pages or every state.
+The November 6 baseline removes screen-reference images, character artwork, downloaded fonts, animation and dedicated phone presentation. Check actual desktop renders, native navigation/disclosures, no stale image requests, current content, retired-route absence and preserved account boundaries. Do not report former visual-fidelity evidence as acceptance of the reset.
 
 ## 9. Devices and environments
 
-Plan Chromium/Firefox/WebKit, mobile emulation and real Android/iOS where available. A WebKit runner is not proof of testing on a real iPhone. Record full keyboard and screen-reader flows including login, consultation, messages, report and admin actions.
+Plan Chromium/Firefox/WebKit desktop checks and record actual unavailable engines. Include keyboard and screen-reader flows for implemented tasks. Dedicated phone work needs a later scoped plan and review.
 
 Tests use separate provider/test database configuration, controlled synthetic accounts and no production credentials. Report environment failures separately from product failures. Do not silently replace database authorization checks with mocks.
 
@@ -141,7 +139,7 @@ Tests use separate provider/test database configuration, controlled synthetic ac
 
 Create dated validation records only for checks actually performed: scope, build/environment, steps, outcomes, sanitized evidence, issues and limitations. Documentation validation never marks application T-01 through T-30 passed.
 
-Before release: complete critical user/admin flows, object isolation/session/CSRF/cache checks, database migrations and operational policy, accessible ID/EN/mobile behavior, unchanged sample dataset, measured performance, build/lint/typecheck and deployed privacy/header verification. Unresolved personal-data policy blocks public collection even when a preview demonstrates synthetic scenarios.
+Before release: complete critical user/admin flows, object isolation/session/CSRF/cache checks, database migrations and operational policy, accessible ID/EN desktop behavior, reviewed future report content, measured performance, build/lint/typecheck and deployed privacy/header verification. Unresolved personal-data policy blocks public collection even when a preview demonstrates synthetic scenarios.
 
 ## 11. Clean code and repository
 
@@ -149,6 +147,6 @@ Remove verified unused code/imports/dependencies/experiments and duplicate logic
 
 Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Following DEC-45 and [Agent Instructions](../../AGENTS.md), propose English commit suggestions in chat only after a coherent change has been reviewed and its relevant checks have run. Group related files by purpose, separate independent purposes and defer suggestions for unfinished work; do not require one suggestion per file or edit. Git is entirely manual.
 
-Current state: W1's shared foundation, isolated W2 identity/ownership and W3 public discovery exist. [W3 validation](../validation/2026-11-01-w3-public-site.md) records scoped public reflow/interaction/egress and local performance checks; W4–W6 remain unstarted. W2 integration and browser checks concern synthetic accounts on a local production-mode server backed by Neon; they do not establish ticket/report/support security, public enrollment, deployment or full accessibility/performance conformance. Earlier validation records preserve their historical scope.
+Current state: W1's shared foundation, isolated W2 identity/ownership and W3 public discovery exist. Earlier visual-only W3 records were removed during the owner-authorized reset; W4–W6 remain unstarted. W2 integration and browser checks concern synthetic accounts on a local production-mode server backed by Neon; they do not establish ticket/report/support security, public enrollment, deployment or full accessibility/performance conformance. Earlier validation records preserve their historical scope.
 
 See [W2 validation](../validation/2026-10-31-w2-accounts.md) for actual commands, database/browser evidence, the remaining development-tooling advisory and unrun checks.

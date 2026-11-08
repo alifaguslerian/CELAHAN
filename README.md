@@ -1,88 +1,39 @@
 # CELAHAN
 
-A bilingual web security assessment service concept for university coursework and a portfolio combining product design, frontend development and backend engineering.
+A bilingual coursework and portfolio concept demonstrating product design, frontend development and backend engineering for a web security assessment portal.
 
 > Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Status — November 3, 2026
+## Current status — November 8, 2026
 
-**W3 public discovery is complete within its authorized local scope and the reviewed interface is owner-accepted. W1 and isolated W2 were checked locally with explicit limits. W4–W6 are not started. Public enrollment, real email delivery and deployment remain closed.**
+The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-The owner requested compact process cards and later rejected the new 360-degree meshes and inline homepage package detail (DEC-57 supersedes DEC-56). The current correction restores original pet artwork, adds finite expression/gesture feedback, and animates native navigation into each separate package page. The new motion is pending owner visual review. See [process checks](docs/validation/2026-11-02-w3-process-layout.md) and [pet motion correction](docs/validation/2026-11-02-w3-pet-motion-correction.md).
+W1 foundation and isolated W2 accounts exist. The remaining W3 public foundation is available; the former catalog/sample routes and their content have been removed. Earlier visual acceptance does not describe this reset. W4 consultation/tickets, W5 private reports/support and W6 release remain unstarted and unauthorized. Public enrollment, real email, additional providers and deployment remain closed.
 
-The owner approved expanding the planned website into a functional service portal after lecturer feedback: real login, a real database, reactive/preventive consultation intake, user/admin tickets and conversation, requested consultation schedules, private illustrative project reports and three-month follow-up benefits.
+Public pages now include home, eight conceptual stages, About/FAQ, privacy and custom 404. The previous service catalog, descriptions, findings section and public sample are removed; replacement content will be decided later. Retired catalog/sample URLs return 404. Account return intent carries only the known request/account task, without service-selection data. The authenticated request destination saves nothing; ticket/project/admin destinations remain protected pending-workflow notices.
 
-This replaces the earlier client-only/no-storage architecture. The owner authorized W1 on October 30 and W2 on October 31, approved the isolated identity policy and delegated the test database setup. A dedicated Neon Free test project is now used. The owner authorized W3 on November 1 and deferred all numerical package terms. Other provider services, public enrollment, external email, deployment and W4–W6 remain gated. Real scanning and code repair remain excluded.
-
-The public visual direction remains: approved dim-doorway hero, Open Threshold logo, four distinct compact pets and the tight package selector. Existing 24 desktop/27 mobile references are preserved. The owner rejected the separate dashboard/sidebar portal batch; its 18 images, manifest and gallery are removed. [Integrated account/ticket/report UX](docs/design/PORTAL_UX_SPEC.md) keeps ordinary login and avatar controls beside ID/EN, with conditional tickets and personal report/progress access in the same website. No replacement images are generated. W3 adds locally served Manrope/DM Serif Display fonts and optimized crops/transparent pet derivatives from accepted sources. The minimal SVG symbol remains; the complete production identity export set is still pending.
-
-The November 1 reference correction restores a deep-black background and a large continuous doorway/stair scene, overlays the transparent shared header, tightens the overview, and restores direct package-detail navigation with restrained pet hover/press feedback. The visible heading above the pet cluster and the hero-only disclaimer are removed; required footer/form disclaimers remain. The earlier warm-gradient/inline-summary revision was rejected. The owner accepted the reviewed local interface on November 1 and requested the W3 completion/checkpoint audit. Consultation intake, tickets/admin and owned private reports remain later work; this is not deployment or release approval. See [correction evidence](docs/validation/2026-11-01-w3-reference-correction.md).
-
-## Planned experience
-
-The November 3 About revision follows the owner's editorial reference, replacing its mascot and repeated three-column explanations with a project masthead, one core message and concise truthful scope copy. The existing shared site header/footer and process/report links remain. Full-page continuity is the review baseline. See [About verification](docs/validation/2026-11-03-w3-about.md); owner visual acceptance is pending.
-
-The November 3 focused W3 revision refines the homepage FAQ, consultation panel and shared footer using the owner's latest reference. Numbered native question rows, smaller typography and compact panel/footer spacing preserve the current copy, gated consultation flow and exact disclaimer. The earlier bordered FAQ cards are superseded by DEC-59. No dependency or source image was added or regenerated. Owner visual review is pending; [local verification](docs/validation/2026-11-03-w3-home-closing.md) records the actual checks.
-
-- Public home, services/packages, eight-stage process, About/FAQ, privacy, custom 404 and public sample report.
-- Real authentication and authenticated consultation with name, company, website, problem, contact and proposed schedule.
-- Reactive, preventive and unsure/mixed needs; user-reported symptoms are not automatic diagnoses.
-- Separate prospect consultation and project-linked support/retest/follow-up tickets.
-- One shared website header: login/signup or avatar beside ID/EN; Tiket after login and Laporan & Progres for authorized project owners.
-- Trusted project association and server-enforced access to published private illustrative reports.
-- Bounded support for at most three months from the first private project report publication; later report versions never restart it. Temporary discount details remain open.
-- Dedicated phone/desktop UI and Indonesian/English functionality using shared domain rules.
-- Promotional video and case study after working functionality can be recorded honestly.
-
-## Functional portal and illustration boundary
-
-Accounts, database storage, ticket messages and admin publication will work. Security assessments, progress and findings remain illustrative. The system never visits a submitted website, including DNS, favicons, previews, scans or automatic target links.
-
-The public sample preserves the five original academic findings. Private report snapshots are explicitly illustrative and accessible only to authorized project owners/admins. They are never generated by analyzing input.
-
-The website owner's programmers implement fixes. CELAHAN does not offer code maintenance/repair, emergency recovery, forensics, certification, continuous monitoring, real testing, payments, uploads, external AI or automatic service email/WhatsApp delivery. Provider authentication verification/recovery delivery is a separate decision before enrollment.
-
-Persistent collection requires truthful privacy/enrollment/retention/provider policies before public intake. Synthetic project fixtures do not make real account identities nonpersonal. Secrets and private database dumps never belong in the repository.
+Accounts and sessions use Better Auth in the Next.js server and a dedicated isolated Neon PostgreSQL test database. Assessments, findings and progress remain illustrative. Visitor-entered websites are never visited, resolved, scanned, previewed, embedded or automatically linked. Code fixes belong to the website owner's programmers.
 
 ## Documentation
 
-Start with the [grouped index](docs/README.md).
+Start with [the grouped index](docs/README.md), [Project Brief](docs/product/PROJECT_BRIEF.md), [PRD](docs/product/PRD.md), [Decisions](docs/planning/DECISIONS.md) and [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md). [Agent Instructions](AGENTS.md) govern scope, privacy and entirely manual Git. The [Aperture / Layers design lock](docs/design/DESIGN_DIRECTION.md) is the selected desktop visual authority, with implementation evidence recorded separately.
 
-| Document | Responsibility |
-| --- | --- |
-| [Agent instructions](AGENTS.md) | Scope, no-target-access, quality, package-scoped authorization and entirely manual Git |
-| [Project brief](docs/product/PROJECT_BRIEF.md) | Goals, revised scope, audiences and milestones |
-| [PRD](docs/product/PRD.md) | Functional requirements and acceptance scenarios |
-| [Service operations](docs/product/SERVICE_OPERATIONS.md) | Ticket/project/report lifecycle, scheduling, triage and three-month support |
-| [User/admin flows](docs/product/USER_FLOWS.md) | Public, account, ticket and private-resource journeys |
-| [Portal UX specification](docs/design/PORTAL_UX_SPEC.md) | Integrated header/account/ticket/report states and review criteria |
-| [Content and illustration](docs/product/CONTENT_AND_SIMULATION.md) | Canonical findings, translations and truthful portal copy |
-| [Service packages](docs/product/SERVICE_PACKAGES.md) | Four scope concepts and reviewable numerical terms |
-| [Architecture](docs/engineering/ARCHITECTURE.md) | Server/auth/database boundaries and planned organization |
-| [Data and access](docs/engineering/DATA_AND_ACCESS.md) | Logical entities, ownership, authorization and transactions |
-| [Quality/security](docs/engineering/QUALITY_AND_SECURITY.md) | Planned behavior, security, accessibility and performance checks |
-| [Implementation plan](docs/planning/IMPLEMENTATION_PLAN.md) | Broad phases, dependencies and actual status |
-| [Decisions](docs/planning/DECISIONS.md) | Confirmed changes, superseded rules and unresolved choices |
-| [Design reference lock](docs/design/DESIGN_REFERENCE_LOCK.md) | Preserved hero and visual continuity |
-| [Logo guidelines](docs/design/LOGO_GUIDELINES.md) | Approved Open Threshold direction and pending production exports |
-| [Release/portfolio](docs/portfolio/RELEASE_AND_PORTFOLIO.md) | Publication, operational gates and evidence |
-| [Video brief](docs/portfolio/PROMO_VIDEO_BRIEF.md) | Storyboard and capability boundaries |
+## Stack and dependencies
 
-All project Markdown is English. Exact Indonesian source findings/disclaimers and bilingual UI examples remain intentionally preserved.
+Pinned in package.json and package-lock.json: Next.js 16.4.5, React/React DOM 19.3.1, TypeScript 5.9.3, Better Auth 1.7.14 and pg 8.23.1. Node >=26.10.0 <27 and npm >=12 <13 are required. Vercel remains an unprovisioned hosting target.
 
-## Technology and running
+- Next.js/React: server-capable App Router rendering and focused client interactions.
+- Better Auth: password hashing, database sessions, hashed email OTP and TOTP/backup-code flows. No custom authentication cryptography or second managed-auth service.
+- pg: pooled, parameterized PostgreSQL access and controlled migration/admin scripts; no separate ORM.
+- server-only: build-time protection for server modules.
+- TypeScript/types and ESLint plugins: strict checking, Next and hooks lint rules.
+- Python Playwright: development-only browser checks; Node's built-in runner handles units. Python is not an application dependency.
 
-Required stack: Next.js App Router + TypeScript with a custom design. Better Auth 1.7.14 runs in the Next.js server with its built-in PostgreSQL adapter and pg 8.23.1. W2 uses a dedicated Neon Free PostgreSQL 17 test project in Singapore, direct migration credentials and a restricted pooled runtime role. Vercel remains the unprovisioned hosting target. No paid upgrade or add-on is authorized; deployed compatibility remains unverified.
+The desktop serves three WebP material assets totaling 91,626 bytes. Sources, prompts and hashes are recorded in design/desktop/material-manifest.json. Inter Latin WOFF2 is self-hosted with OFL and uses 48,256 bytes. See the [checkpoint audit](docs/validation/2026-11-08-checkpoint-audit.md) for measured desktop and security checks.
 
-The Better Auth core is [MIT-licensed](https://github.com/better-auth/better-auth/blob/main/LICENSE.md). Neon Free currently lists 1 GB storage and 100 CU-hours per project/month; these are dated planning facts, not an unlimited/free-forever or performance guarantee. See [Neon pricing](https://neon.com/pricing), checked October 29, 2026. Email delivery is a separate unselected service. The owner has an existing .my.id domain but may choose another later. Permanent domain/registrar/DNS details are deferred, not prerequisites for current planning or isolated development. Origin/callback/sender settings remain configurable; public email delivery still requires reviewed setup. No domain is purchased/configured.
-
-W1 uses Next.js 16.4.3, React/React DOM 19.3.1, TypeScript 5.9.3, Node 26.10.0 and npm 12.0.2. The committed lockfile fixes the Node dependency graph. No auth/database package or secret is needed for W1. The application remains server-capable; informational pages are prerendered rather than configuring a static-only export.
-
-### Local setup and commands
-
-In PowerShell, from the project root:
+## Local setup
 
 ```powershell
 $env:NEXT_TELEMETRY_DISABLED = '1'
@@ -90,7 +41,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Development binds to http://127.0.0.1:3000. `/` redirects to `/id/`; `/en/` is the equivalent English entry. Public home, four qualitative package details/comparison, eight-stage process, immutable five-finding sample, About, privacy and localized 404 are implemented. Prices, numerical caps, effort/day ranges and retest-cycle counts are withheld. Consultation links preserve only an enumerated package interest through login/signup; the authenticated destination states that intake is pending W4 and stores no request. Account routes now include login/signup, verification, recovery/reset, TOTP and own profile. Authenticated ticket/project/admin destinations explicitly explain that their workflows are pending W4/W5; no sample private records are fabricated. The shared header is server-rendered per request with current session/project capabilities, so public pages are no longer statically prerendered once this shell is personalized.
+Development binds to http://127.0.0.1:3000. Root redirects to /id/; /en/ is the English equivalent. Public pages use the same session-aware header and render per request; they are not static exports.
 
 ```powershell
 npm run lint
@@ -100,71 +51,43 @@ npm run build
 npm run start -- --port 3100
 ```
 
-`typecheck` generates Next route types before running TypeScript. `build` and `start` are separate; `start` serves the production build on loopback. Without `CELAHAN_ISOLATED_AUTH=true`, public pages still work and account services remain unavailable. Keep the telemetry opt-out set when running Next commands.
+Typecheck generates route types before TypeScript. Build/start never migrate or provision resources. Account services stay unavailable unless isolated auth is explicitly configured. Keep telemetry opt-out enabled.
 
-### Isolated W2 accounts
+## Isolated accounts
 
-The owner-approved test policy permits only explicitly allowlisted `@example.invalid` identities. Use the variable descriptions in `.env.example`; never commit or paste secret values into chat. Runtime settings belong in `.env.local`; the owner-only `DATABASE_MIGRATION_URL` belongs in separate ignored `.env.database.local`, which Next.js does not load. The existing configuration points only to `celahan_w2`. `BETTER_AUTH_URL` must match the local loopback port, currently http://127.0.0.1:3100; another server port does not authorize cross-origin auth calls.
+See variable names in [.env.example](.env.example), never working secret values in chat or source. Runtime configuration belongs in ignored .env.local. Owner-only DATABASE_MIGRATION_URL belongs in separate ignored .env.database.local, which Next.js does not load. Runtime uses a restricted pooled role. Owner tooling checks that both connection strings target the same isolated Neon endpoint and `celahan_w2` database with verified TLS. The owner endpoint can be direct or pooled.
 
-Start the bearer-protected local email sink in a separate terminal, then the production server and test suite:
+Only explicitly allowlisted @example.invalid accounts are accepted. BETTER_AUTH_URL must match the chosen loopback port. The bearer-protected local mailbox captures verification/recovery codes in bounded memory; no external email is sent. Codes expire after five minutes and disappear on exit.
 
 ```powershell
 npm run mailbox
-# Separate terminals, after a successful build:
+# In separate terminals, after building:
 npm run start -- --port 3100
 npm run test:integration
 .\.venv\Scripts\python.exe tests/e2e/accounts.py --email fresh-allowlisted@example.invalid
 ```
 
-The integration suite resets all allowlisted synthetic identities in the dedicated test database; running it also resets manually used test accounts. The browser suite instead requires a fresh synthetic email already added to the ignored local allowlist and does not reset other accounts. Restart both the local server and mailbox after allowlist changes. Test passwords are generated in memory. Mailbox codes expire after five minutes; expired entries are purged on the next request and all entries disappear on exit. The bounded memory sink never logs codes and requires a bearer secret for delivery/inspection. Public deliverability is not tested. Forms require JavaScript; disabled server-rendered controls and POST-only fallback prevent credential leakage through GET URLs. See [W2 evidence](docs/validation/2026-10-31-w2-accounts.md) for checks and limits.
+The integration suite resets all allowlisted synthetic identities and can reset manually used test accounts. Do not run it casually. The account browser suite needs a fresh, already allowlisted synthetic email and performs account writes. Restart mailbox/server after allowlist changes. Test passwords are generated in memory. Account forms require JavaScript; disabled server-rendered controls and POST-only fallback prevent credential leakage through GET URLs.
 
-Reviewed SQL lives in `database/`. `npm run db:migrate` checks applied migration hashes and applies unapplied files in one locked transaction; repeating it is safe. The one-time `npm run db:prepare-test-role` creates a DML-only runtime role and writes its pooled URL only to ignored local configuration. It refuses to replace an existing role. Regenerating the initial identity schema uses `scripts/generate-auth-schema.mts` against an empty isolated database; it refuses to overwrite the saved SQL. Neither migration nor role preparation runs during build/start.
+Reviewed SQL is in database/. npm run db:migrate applies hash-checked migrations in one locked transaction. npm run db:prepare-test-role is a one-time trusted procedure that refuses to replace an existing role. scripts/generate-auth-schema.mts refuses to overwrite saved initial SQL. Do not run these as part of a presentation reset.
 
-Admin status is granted only through `npm run account:admin -- grant_admin <allowlisted-synthetic-email>` after email verification and TOTP enrollment. The script also supports `revoke_admin`, `disable_account` and `enable_account`; each operation records metadata and revokes all existing sessions. No default admin, seeded password, public role switch, external avatar or upload exists. User/admin access is rechecked from the database independently of header visibility.
+Admin provisioning uses npm run account:admin -- grant_admin <allowlisted-synthetic-email> only after verification and TOTP enrollment. revoke_admin, disable_account and enable_account also revoke sessions and record metadata. No public role selector or default admin exists.
 
-### Browser checks
-
-Python 3.12 was used for the optional development-only browser harness. It is not an application runtime dependency. In a second PowerShell terminal, with the production server already running on port 3100:
+## Desktop browser checks
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe -m playwright install chromium firefox webkit
-.\.venv\Scripts\python.exe tests/e2e/shell.py --browsers chromium
+.\.venv\Scripts\python.exe -m playwright install chromium
+.\.venv\Scripts\python.exe tests/e2e/public-site.py --base http://127.0.0.1:3100
 ```
 
-The harness supports `--browsers chromium firefox webkit`, `--base` for a local HTTP origin and `--artifacts` for screenshots. Default artifacts go into ignored `test-results/w1/`; never publish unsanitized reports or screenshots containing private data. Requests outside the selected local origin are blocked before navigation. Browser installation can require network access and process-launch permissions; record unavailable engines honestly. Chromium completed the W1 suite in this environment. Firefox failed to launch; WebKit launched but its default headless keyboard traversal did not complete the suite. No cross-browser pass is claimed.
+Use a production server. Public/shared-shell checks perform no account writes and block outside-origin browser requests. Add --channel chrome to use an installed Chrome in an isolated headless test profile if Playwright's Chromium binary is unavailable. The additional Layers suite is .venv/Scripts/python.exe tests/e2e/layers.py --channel chrome. Screenshots remain in ignored test-results/. The [Layers validation](docs/validation/2026-11-06-layers-desktop.md) covers actual desktop interactions and local performance; phone, physical-device, screen-reader and deployment support are not established. Historical W1/W2 outcomes retain their original scope.
 
-### Dependency and asset choices
+## Remaining gates
 
-- `next`, `react` and `react-dom`: required App Router framework, rendering and the small interactive header boundary.
-- `typescript` and the Node/React type packages: strict application and route checking, without an additional TS test runner.
-- `eslint`, `@eslint/js`, `@next/eslint-plugin-next`, `typescript-eslint`, `eslint-plugin-react-hooks`: JavaScript/TypeScript, Next Core Web Vitals and hooks checks. The official direct-plugin approach avoids the combined config's current ESLint 10 peer conflicts; no force/legacy-peer installation or disabled lint rules is used.
-- Python `playwright`: browser behavior, viewport, keyboard/touch, request isolation and resource measurements using its synchronous API; Node's built-in test runner handles the pure routing tests. No pytest or additional browser runner is required.
-- `better-auth`: maintained credential hashing, database sessions, email OTP and authenticator/backup-code flows in the application server; no managed auth service or custom authentication cryptography.
-- `pg` and development-only `@types/pg`: PostgreSQL pooling, parameterized application queries and typed integration/migration scripts. Better Auth's built-in adapter avoids a separate ORM and migration CLI dependency.
-- `server-only`: build-time protection against importing database/session modules into browser code.
+Maximum three-month support starts once at first private project report publication. Activation, sample views, later versions/tickets/retests never restart it. Exact calendar/cycle mechanics remain reviewable. Service definitions, numerical terms and report content await new review; no replacement offer or finding dataset is published.
 
-Plain CSS and shared typed ID/EN content avoid UI, animation, CSS-framework and i18n dependencies. W3 serves licensed local Manrope and DM Serif Display, with Arial/Helvetica and Georgia/Times as system fallbacks. `public/brand/open-threshold.svg` is a minimal editable solid-path symbol derived from the approved direction; the wordmark is HTML text. Full source sheets and design boards are not shipped; W3 uses only optimized scene crops and pet derivatives. Final outlined lettering, small-size production review, artwork usage-rights review and the complete identity export set remain P1/W6 work. Actual font licenses are included. See [W1 evidence](docs/validation/2026-10-30-w1-foundation.md) for actual checks and limitations.
+Before public intake resolve enrollment/recovery/delivery, retention/deletion/backups, processors/regions, privacy contact and hosting. Synthetic projects do not make real account identities nonpersonal. No paid services or domain/DNS setup is authorized. Video/case-study production follows stable actual functionality; no deadline or video format is invented.
 
-## Current review gates
-
-Before affected implementation: review enrollment/recovery/admin provisioning, database adapter/runtime/transport, support calendar/cycle rules, discount eligibility/rate, privacy/retention/deletion/backups, and new portal/admin UX. Auth/database selection and the first-report support trigger are confirmed. The integrated shared-site navigation is owner-confirmed in Portal UX Specification; detailed components and auth policies remain reviewable. The separate portal image batch was rejected and removed. Email provider/domain/DNS become a gate before real public verification/recovery email, not before flow design. Numerical package details and mobile/final assets retain their review status.
-
-No fixed deadline or required video format has been supplied. Prototype submission and portfolio completion are separate milestones; a prototype is not proof that final security/performance/deployment checks passed.
-
-## Publication and progress
-
-The owner performs Git operations manually unless a specific operation is explicitly requested. The agent decides when a reviewed, coherent change is ready for a commit checkpoint and supplies English suggestions in chat only. Related files belong together; independent purposes remain separate. Do not generate a commit message for every file edit or response. See [Agent instructions](AGENTS.md) for review and verification criteria.
-
-The broader product descriptions remain the intended portal scope. W1, the isolated W2 account boundary and W3 public discovery exist locally; consultation/ticket/private-report workflows remain pending. See [validation history](docs/README.md#validation-records) for actual checks. Neither local account evidence nor a successful build establishes public enrollment, full homepage fidelity or deployment readiness.
-
-### W3 public-site checks and artwork
-
-```powershell
-npm run assets:export
-.\.venv\Scripts\python.exe tests/e2e/shell.py --browsers chromium
-.\.venv\Scripts\python.exe tests/e2e/public-site.py
-```
-
-The browser scripts require a running production server at the local origin above and the previously installed local Playwright environment. Screenshots stay in ignored `test-results/`; they are not public assets. No target URLs are accepted by these scripts. `sharp` 0.35.5 is an explicit development dependency because reproducible cropping, alpha cleanup, resizing and WebP encoding are needed; no image-generation service, decorative runtime library or font CDN was added. Actual font licenses, source URLs, export geometry and reviewed adaptations are recorded in [Runtime assets](docs/design/RUNTIME_ASSETS.md). See [W3 evidence](docs/validation/2026-11-01-w3-public-site.md) for current results and limits.
+Git is entirely manual unless a specific operation is requested. Reviewed checkpoint suggestions belong in chat, in English, with related files grouped by purpose.

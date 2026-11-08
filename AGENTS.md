@@ -2,110 +2,65 @@
 
 ## Read first
 
-1. `README.md` for project status and the documentation map.
-   `docs/README.md` is the grouped documentation index.
-2. `docs/product/PROJECT_BRIEF.md` and `docs/product/PRD.md` for goals, boundaries, and requirements.
-3. `docs/planning/DECISIONS.md` for confirmed decisions, recommendations, and open questions.
-   Read `docs/product/SERVICE_OPERATIONS.md` for ticket/project/support policy and `docs/engineering/DATA_AND_ACCESS.md` for persistence and access rules.
-4. The relevant subject documents before changing design, content, architecture, or implementation.
-5. `docs/design/DESIGN_REFERENCE_LOCK.md` and its saved approved image before any visual design or implementation work.
-6. `docs/design/VISUAL_SYSTEM.md` and `docs/design/MASCOT_GUIDELINES.md` for the shared review baseline and current character concepts.
-7. `docs/design/DESKTOP_DESIGNS.md` for selected desktop frames and source-copy overrides. The owner requested desktop design first, with mobile later. The owner accepted all selected desktop visual directions, including revised frame 02. Do not substitute new frames for the approved hero.
+1. README.md and docs/README.md for current status and document ownership.
+2. docs/product/PROJECT_BRIEF.md, PRD.md and SERVICE_OPERATIONS.md for scope and policy.
+3. docs/planning/DECISIONS.md and IMPLEMENTATION_PLAN.md for authority and entry gates.
+4. docs/engineering/DATA_AND_ACCESS.md and ARCHITECTURE.md for persistence/access.
+5. docs/design/DESIGN_DIRECTION.md, LOGO_GUIDELINES.md and PORTAL_UX_SPEC.md before presentation work.
+6. The relevant subject and validation documents before changing their behavior.
 
-8. `docs/design/MOBILE_DESIGNS.md` for 27 portrait mobile-web references, scroll assembly, touch/keyboard rules, and content overrides. New mobile images require review.
-9. `docs/design/LOGO_GUIDELINES.md` for the owner-approved Open Threshold logo reference and production-export requirements. Use this direction; do not reopen discarded alternatives without an owner request.
-10. `docs/design/PORTAL_UX_SPEC.md` for the corrected integrated-site account/ticket/report navigation. The owner rejected the separate dashboard/sidebar shell and its 18-image batch. Account controls belong beside ID/EN; tickets appear after login and personal report/progress access requires a trusted project association.
+## Current authorization
 
-
-## Authorization and work stage
-
-- W1 and isolated W2 were authorized and checked locally. On November 1 the owner authorized W3 public-site implementation using the approved references and W2 shared account shell. All numerical package terms are explicitly deferred: do not display prices, numeric caps, effort estimates or retest-cycle counts. Qualitative scope and the previously confirmed maximum three-month support rule remain. W4–W6, further provider provisioning, public enrollment, external email, paid upgrades and deployment remain unauthorized. Preserve source image bytes; create only required optimized runtime derivatives without image regeneration.
-- The November 1 W3 correction (DEC-52) supersedes the rejected first revision: restore deep black, retain a large coherent doorway/stair scene reaching the hero bottom, overlay the transparent shared header without a separate band, tighten the overview, remove the visible package-cluster heading, and restore direct package-detail navigation. Keep restrained pet hover/focus/press feedback. Remove the concept disclaimer from the hero only; preserve required footer/form disclaimers. Source references and safety boundaries remain unchanged. The owner accepted the reviewed local W3 interface on November 1 and requested a completion/checkpoint audit. Checkpoint suggestions may follow actual review and checks; this does not authorize W4 or publication.
-- Approval of an idea does not automatically authorize asset production or implementation.
-- The owner rejected the October 30 separate portal designs and explicitly requested removal of unsuitable material. Remove the rejected batch/gallery/manifest and their current references. Keep accepted public/home/package/form/report/404/English references and brand/pet sources. This correction does not authorize replacement images, application code or provider setup.
-- New documents are complete drafts for review. Distinguish the owner's requirements from design decisions proposed by the agent.
-- Update related documents when requirements change. Do not leave contradictory decisions across files.
-- The owner authorized the October 29 portal documentation revision. Update the broad phase plan for the changed scope, but keep later delivery packages coherent and moderately sized. Review missing portal/admin/mobile flows before detailed implementation decomposition; no application work is authorized merely by revising documents.
-- Work in small phases with clear deliverables and checks. Avoid features unrelated to an established need.
-- On November 2 the owner requested a focused W3 revision of the full Process page and the homepage process section, using two supplied card/flow references. Keep the black background and shared header, show all eight conceptual stages in one desktop viewport, and preserve readable mobile reflow and conceptual/privacy explanations. This does not authorize W4 or replacement source images.
-- The owner rejected the November 2 360-degree reconstruction and inline homepage detail (DEC-57, superseding DEC-56). Restore the existing raster character appearance, remove the mesh renderer and rotation controls, and animate expressions/gestures without changing the original hands, feet, silhouettes or source bytes. Homepage pet activation must navigate to its own package page, with the pet enlarging during that page transition. Keep the cluster and detail composition compact, native navigation/no-JavaScript access, reduced motion, and all shared-header/privacy boundaries. New motion still requires owner visual review; W4 and publication remain unauthorized.
+- On November 6 the owner removed all previous character assets/code/documentation, desktop/phone page-reference images/manifests and dedicated phone presentation. The interim plain baseline was subsequently replaced by the owner-authorized Layers desktop implementation (DEC-64). Earlier removed visual artifacts remain superseded; do not restore them or their interactions.
+- DEC-63 locks Layers and DEC-64 authorizes its desktop implementation. DEC-66 restores static artwork after the DEC-65 motion experiment. DEC-67 selects and authorizes Glacier Steel and the two desktop reading blocks. See docs/design/DESIGN_DIRECTION.md and docs/validation/2026-11-08-glacier-steel.md.
+- W1 and isolated W2 were authorized and checked locally. W3 public content/routes remain; former visual acceptance no longer describes the reset. W4 consultation/tickets/admin, W5 private reports/support and W6 release remain unstarted and unauthorized.
+- Further provider provisioning, public enrollment, external email, paid upgrades, domain/DNS operations and deployment remain unauthorized. Completing an authorized work unit never authorizes the next.
+- DEC-62 removes the former service catalog, descriptions and numerical drafts, plus the public findings dataset/preview and their implementation/documentation. Replacement service definitions and report content will be decided later. Do not restore them from prior concepts/history; no new names, services or findings are authorized. The independently confirmed maximum three-month future support/access rule remains separate from this content reset.
+- Update related documents when requirements change. New design/operating details are drafts unless the owner confirmed them. Work in small coherent behaviors with relevant checks. Do not delegate to subagents unless explicitly authorized.
 
 ## Git is entirely manual
 
-Git is prohibited by default. A specific later owner request may authorize only the named operation. On November 1 the owner explicitly requested read-only `git status` for checkpoint preparation; staging, commits, pushes and other Git operations remain manual.
+- No Git command is allowed without a specific explicit owner request, including status/diff/log/init/add/commit/push/pull/fetch/checkout/reset or worktree creation. The historical November 1 read-only status request never grants general permission. Do not inspect .git.
+- Do not substitute GitHub/repository APIs for manual operations. Ordinary filesystem reads/edits are permitted.
+- The owner reviews, stages, commits and pushes. Report actual changed/deleted paths and checks. Never infer tracking/staging from hashes.
+- English commit suggestions belong in chat only, after a coherent change has been reviewed and checked. Related source/tests/docs/assets/deletions belong together; independent purposes remain separate. No per-file/per-edit messages or manufactured commit counts.
+- Future checkpoints should be substantially smaller coherent behaviors where practical. Do not retroactively repartition earlier handoffs without a request.
+- Do not save commit inventories/messages/commands or agent fingerprint snapshots in the repository. Temporary fingerprints belong outside it. Pair old/new rename paths as one logical change. Defer checkpoint suggestions while work is incomplete.
 
-- Without a specific explicit owner request, do not run any Git command, including `status`, `diff`, `log`, `init`, `add`, `commit`, `push`, `pull`, `fetch`, `checkout`, `reset`, or worktree creation. An exception for one command does not authorize another.
-- Do not use GitHub APIs or other tools to create or modify repositories, branches, commits, pull requests, or pushes as a substitute for Git.
-- Do not read or modify the contents of `.git`.
-- Agents may edit project files and inspect them with ordinary filesystem tools.
-- Report changed files and checks actually performed. The project owner reviews, stages, commits, and pushes manually.
-- Suggested commit messages must be in English. Never execute them.
-- Deliver checkpoint-based English commit suggestions and any requested manual command examples in chat only. Do not save commit handoff inventories, messages, commands, or agent fingerprint snapshots in repository files, source comments, configuration, or generated project artifacts.
-- Keep temporary before/after fingerprints outside the repository. Review actual changed content and paths before suggesting messages; include deleted paths and pair a rename's old/new paths as one logical-file change. Never infer Git tracking/staging status from file hashes.
-- The agent decides when a change merits a commit checkpoint. Do not generate a message after every file edit or response. Wait until a coherent change has a clear purpose, a reviewable outcome, and the relevant checks have actually run. Report incomplete or blocked checks honestly; do not describe an unverified feature as complete.
-- Group related files, tests, documentation, assets, renames and deletions needed for one purpose into one commit. Separate independent purposes into different commits. Do not split by file count or combine all unrelated work into a single commit. A single-file commit is appropriate when that file is the complete coherent change.
-- For future work, prefer substantially smaller coherent checkpoints from the start. The owner welcomes a dozen or 20–30 commits when the scope naturally supports that granularity. Plan implementation around independently reviewable behaviors and their checks; retain substantive English messages and complete file coverage. Do not manufacture a count, split a working behavior into broken fragments, or retroactively repartition the accepted W3 handoff without a request.
-- Before proposing a checkpoint, review its actual scope for correctness, security/privacy, unnecessary material and unrelated edits. Identify the included paths, explain the checkpoint's purpose and report verification performed. If work is still partial, defer the suggestion rather than inventing progress commits.
-- This policy supersedes the earlier one-message-per-file rule. If the owner requests complete coverage, account for all pending changes and moved/deleted paths within coherent groups; completeness does not mean one commit per file. Never infer Git tracking/staging status from file hashes.
-- Checkpoint judgment and commit suggestions do not authorize Git execution. The owner still stages, commits and pushes manually unless they explicitly request a specific Git operation. Do not repeatedly ask the owner to decide routine commit grouping.
+## Product and privacy boundaries
 
-## Non-negotiable product boundaries
+- CELAHAN is a coursework/portfolio concept, not a real security service. Real accounts/database/tickets/private-report workflows are required; assessments/progress/retests remain illustrative.
+- Never access an entered website: no fetch, ping, DNS, favicon, embed, preview, preconnect, scan or automatic hyperlink. Validate/render its address as inert text only.
+- Transmit/store inputs only through authorized auth/portal/database flows. No private data in URLs, public assets, analytics, logs, external AI, localStorage, IndexedDB or offline caches.
+- Enforce server session, active/verified account, role, exact ownership and publication checks on every protected query/action. Hidden controls, opaque IDs, known references, company labels, email matches or client flags are never authorization.
+- Keep internal notes and report drafts/withdrawn versions absent from user HTML/JSON/RSC. Derive rights from trusted project association. Reject privileged client fields such as role/owner/priority/expiry.
+- Use the selected Better Auth 1.7.14 in Next.js and pg 8.23.1 with Neon Free PostgreSQL. The current dedicated isolated database, built-in PostgreSQL adapter, reviewed migrations and synthetic allowlist are not public enrollment permission. No paid service/add-on without approval.
+- Runtime secrets belong in ignored protected .env.local; owner migration credentials in separate ignored .env.database.local, never browser bundles or chat. Do not read/print secret values unnecessarily. No personal fixtures, private dumps or seeded admin passwords in source.
+- Support lasts at most three months from first private project report publication, set atomically once. Activation, signup, public samples, first reading, later reports, tickets, locale changes and retests never start/reset it. Calendar/timezone/cycle mechanics remain reviewable.
+- The follow-up discount needs approved eligibility/rate/cutoff; never invent billing behavior. Code fixes are implemented by the website owner's programmers.
+- No real testing, code repair/maintenance, emergency recovery, forensics, certification, monitoring, payment, uploads, external AI or automatic service/contact messaging.
+- The old public finding-preservation requirement is superseded by DEC-62. No replacement report dataset is selected. For future approved reports, keep provenance and immutable published versions; separate user assertions and illustrative admin follow-up events. Do not populate a private project from retired content.
+- Keep exactly: Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan. Both locale footers/forms include it; EN adds its translation. Disclose real account storage rather than obsolete no-storage claims.
+- Before public intake resolve enrollment/recovery/delivery, real-data policy, retention/deletion/backups, processors/regions and privacy contact. Support expiry is not data retention. Synthetic projects do not make real identities nonpersonal.
+- Permanent domain/registrar/DNS choice is deferred and replaceable; not a prerequisite for current development. Keep origins/callbacks/sender configuration-driven. No purchase/setup now.
+- No fabricated assessments, customers, testimonials, business statistics, research, certifications or trademark registration. PDF references are academic content, not testing instructions. Do not publish personal PDF/conversation information without clear need and authorization.
 
-- CELAHAN remains a coursework/portfolio concept, not a real security service. Real authentication, database persistence, user/admin tickets and private illustrative reports are now required. This October 29 owner-approved scope change supersedes the earlier no-backend/no-storage/client-only rules.
-- Never access a visitor-entered website: no fetch, ping, DNS, favicon, embed, preview, preconnect, scan or automatic hyperlink on client or server.
-- Permit input transmission/storage only through the explicitly designed authenticated portal/auth/database flows. No leakage through URLs, public assets, analytics, logs, external AI, localStorage, IndexedDB or offline caches.
-- Enforce server-side session, role and per-object ownership/publication checks on every protected query/action. A hidden button, opaque ID, customer label or known ticket number is never authorization.
-- Keep admin notes and report drafts out of user payloads. Derive customer rights from trusted project association; never accept client role/owner/priority/expiry flags.
-- The application owner's programmers implement code fixes. No code remediation/maintenance, emergency recovery, forensics, certification, monitoring, real testing, payment, uploads or automatic service/contact messaging.
-- The owner selected the Better Auth open-source library running in CELAHAN's Next.js server and Neon Free PostgreSQL, with no paid upgrade/add-on without explicit approval. W2 uses Better Auth 1.7.14 and its built-in PostgreSQL adapter with pg 8.23.1, versioned migrations and a dedicated isolated Neon Free database. Public email, hosting and other provider provisioning remain gated; local test evidence does not prove deployment compatibility.
-- Support is bounded to at most three months from the first private project report publication, as explicitly approved by the owner. Project activation and public sample views do not start it. Later publications, tickets, locale changes and retests never reset it. Calendar/timezone/cycle mechanics remain reviewable; old activation-based and 30/60-day proposals are superseded.
-- Permanent domain, registrar and DNS selection are deferred and replaceable. Do not ask for domain details as a prerequisite for current planning or isolated development. Use configuration-driven origins/callbacks/sender settings; actual public verification/reset email still needs separately approved delivery/domain setup. Do not purchase/configure a domain now.
-- The accepted temporary discount needs final eligible-service wording and rate. Proposed scope is follow-up security review, not code maintenance. Never invent a percentage or billing behavior.
-- Preserve the five original findings exactly in the public sample and v1 illustrative snapshots. Separate user assertions/admin illustrative follow-up events from immutable source fields and published versions.
-- Preserve the exact Indonesian footer/form disclaimer in both locales; EN also supplies its translation. Disclose actual persistent account/ticket data rather than repeating obsolete no-storage claims.
-- No secrets/API keys, real personal fixtures or private database dumps in the repository. Approved provider secrets belong only in protected local/hosting configuration after separate provisioning authorization.
-- Before public intake, resolve enrollment/recovery, real-data policy, retention/deletion/backups and provider/hosting settings. Synthetic project data does not make real account identity nonpersonal.
-- No fabricated assessments, clients, testimonials, business statistics, certifications or trademark registration. PDF tool references are academic content, not testing instructions.
+## Interface and engineering quality
 
-## Quality and scope
+- Keep one website/shared header. Ordinary account entry or signed-in initials menu belongs beside ID/EN. Tickets appear only after login; personal reports/progress only for trusted owners. Admin tasks use the same header. No separate dashboard/sidebar, forced overview or return-to-site control.
+- All public/account interactions remain Indonesian/English with shared domain/content logic and explicit language labels. Saved data/session survive locale changes; warn only about unsaved edits.
+- The desktop Layers homepage uses static material images and native controls. Preserve keyboard focus, contrast, stable layout and reduced-motion behavior for UI state transitions. Asset provenance is in design/desktop/material-manifest.json. Phone support remains deferred.
+- Build only authorized behavior. Use focused modules, explicit contracts, clear names and the simplest maintainable implementation. Avoid speculative folders/wrappers/feature flags and unrelated refactors.
+- Remove verified dead code/imports/exports/dependencies/experiments with the relevant change. Check framework routes, dynamic references, callers/tests and asset/document links before deletion; a text search alone is insufficient.
+- Escape input as text; no unsafe HTML/eval/dynamic script execution or input-derived resource URLs. Validate on server/client; allowlist navigation. Never disable security controls or add permissive headers to pass a test.
+- Prefer server-rendered information and small client boundaries. Explain every new dependency and verify relevant risks; no packages solely for decoration. Optimize actual payloads and clean up listeners/timers/subscriptions.
+- Keep secrets, local env files, dependency/build/cache output, logs, reports, hosting state and temporary artifacts ignored. Ignore rules do not sanitize previously published secrets.
+- Review actual changes for correctness/privacy/dead code/unrelated edits; run appropriate lint/typecheck/build/behavior/accessibility/performance checks. Report limits and failures honestly. Do not reset manually used synthetic accounts for presentation-only work.
+- Never claim a passed check or deployment without actual results, or a completely secure website. Documentation checks are not runtime tests.
 
-- The portfolio combines product design, frontend development and backend engineering; account/database features must serve real portal workflows.
-- Design dedicated mobile and desktop experiences with equivalent functionality and shared data/domain logic.
-- Keep one CELAHAN website with its existing shared header. Place ordinary login/signup or the signed-in avatar/account menu beside ID/EN. Hide ticket navigation from guests; show personal report/progress navigation only for users with authorized projects. Keep initial consultation versus project support/retest distinctions. Do not introduce a separate customer dashboard/sidebar, forced post-login overview or Kembali ke situs/Back to site control; admin task content uses the same site header.
-- All public content and interactions support Indonesian and English. Do not use flags as the only language labels.
-- The mascot is an optional guide; access to information and core functionality must not depend on it.
-- Preserve the approved hero reference in `design/references/home-hero-desktop-approved-v1.png`. Do not overwrite it or silently substitute a regenerated design. Compare future desktop implementation against the saved image and record reviewed changes.
-- Mascots are small compact pets. Minecraft informs color/motif only; do not reproduce a humanoid skin. The four package pets must have different body silhouettes and principal colors, rather than the same body with different accessories.
-- Follow the approved subdued lighting and warm near-black/ivory/sand/olive appearance. A brilliant portal or a default monospace hero would contradict the approved image. See the design lock for approved composition and open choices.
-- The homepage package selector is a tight cluster with no captions/prices underneath. Show only the corresponding name above on hover/focus; activation opens the selected package name and qualitative scope. All numerical package terms, including fictional prices, remain deferred by DEC-50. Keep semantic names, visible focus, separate hit areas, and equivalent touch access.
-- During implementation, trim repetitive cross-page explanations and unnecessary copy. Retain exact required footer/form disclaimers and contextual illustrative-data, fictional-price, permission, privacy, unsaved-edit and error information. Old gallery simulation behavior is historical and must not override revised portal contracts. Do not regenerate other accepted screens for copy cleanup now.
-- Account for accessibility, reduced motion, performance, security, and privacy during design.
-- Explain the reason for every dependency. Do not install a package merely because it is available or popular.
-- Do not claim a successful build, lint run, browser test, audit, or deployment without actual results. Documentation checks are not application tests.
-- Do not copy personal information from the PDF or conversation into a public repository without a clear need and authorization.
+## Documentation
 
-
-## Clean code, security, and repository hygiene
-
-These are standing owner requirements, not an optional final polish.
-
-- Build only the authorized behavior. Use clear names, focused modules, explicit data contracts, and the simplest maintainable design. Avoid speculative abstractions, unnecessary wrappers, premature feature flags, and dependency-heavy solutions.
-- Remove dead code, unused imports/exports/dependencies, duplicate implementations, abandoned routes/components, commented-out code, placeholder credentials, and obsolete experiments as part of the relevant change. Verify callers, framework-discovered routes, dynamic references, tests, and asset/document links before deletion; a text search alone does not prove a route is unused.
-- Share domain logic/content between mobile and desktop and across locales. Keep folders organized by responsibility using the documented structure. Do not create parallel copies or one-off helper files when an existing module owns the behavior.
-- Preserve the approved hero, selected desktop/mobile references, canonical findings, and approved Open Threshold logo reference. Remove discarded/superseded artifacts when they no longer serve a current purpose, updating all links and manifests. Keep useful source/provenance and real validation evidence; do not accumulate internal handoff logs.
-- Treat security and privacy as acceptance criteria from the first implementation package. Keep inputs escaped as text, validate values on the server and client and allowlisted navigation, avoid unsafe HTML/eval/dynamic script execution and input-derived URLs, and follow the revised authenticated-persistence/no-target-access boundaries. Do not add insecure shortcuts, permissive headers, or disabled validation to make a check pass.
-- Prefer static/server-rendered informational content and small client interaction boundaries where compatible with the selected framework. Explain every added dependency, check relevant dependency risks, and remove unused packages.
-- Optimize assets for the actual display size, preserve intrinsic dimensions, minimize client JavaScript/font payloads, and clean up timers/listeners/subscriptions. Do not ship full design boards, unused pet variants, autoplay backgrounds, or decorative libraries in the runtime. Measure performance rather than assuming it.
-- Keep secrets, real personal data, private keys, local environment files, dependency folders, build output, caches, logs, test reports, hosting state, and temporary agent artifacts out of commits. Maintain .gitignore; a tracked secret is not made safe by adding an ignore rule.
-- Before delivery, inspect the actual change for unused/unsafe code and unrelated files; run the relevant build/lint/typecheck, behavior, privacy, accessibility, and performance checks that the implemented change requires. Fix real issues and report limits honestly. No claim of a completely secure website or a passed check without evidence.
-- Existing documentation/design files are not application code. Until an application exists, do not claim that dead application code was removed or that runtime security/performance was tested.
-
-## Documentation and sources
-
-- Write project documentation in English. The public UI remains bilingual: Indonesian and English.
-- Preserve verbatim Indonesian product copy, the mandatory disclaimer, canonical PDF findings, and bilingual examples where required. Explain these exceptions in English.
-- Use relative links between documents so they work on GitHub.
-- Keep subject documents in `docs/product/`, `docs/design/`, `docs/engineering/`, `docs/planning/`, or `docs/portfolio/`; actual check records belong in `docs/validation/`. Update `docs/README.md` and affected relative links when moving or adding a document.
-- Check official documentation before locking framework versions, APIs, hosting limits, or deployment policies that may change.
-- Treat previous desktop/mobile PNG lettering and manifest prompts as historical source provenance where their no-storage/reset behavior conflicts with the revised PRD. Preserve image bytes; add review notes rather than silently regenerating assets.
-- Record asset sources, licenses, and test evidence only when they actually exist. Do not fabricate provenance or results.
+- Write project documents in English. Preserve the exact Indonesian disclaimer and required bilingual UI examples; report content awaits a new review.
+- Keep relative links valid. Subject docs belong in docs/product, design, engineering, planning or portfolio; real checks in docs/validation. Update docs/README.md when adding/removing documents.
+- Keep useful source provenance and real nonvisual validation evidence. Historical results describe their dates and scope, not the current reset. Remove superseded design material rather than maintaining contradictory requirements.
+- Check current official documentation before choosing framework versions/APIs/provider limits or deployment policy. Record only actual sources/licenses/results. No fabricated provenance or checks.

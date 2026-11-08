@@ -1,12 +1,12 @@
 # CELAHAN — Architecture
 
-Status: W1/W2 checked and W3 local public scope complete; reviewed interface owner-accepted; public release remains gated  
-Updated: November 1, 2026  
+Status: W1/W2 retained; Layers public desktop implemented locally; later workflows/release gated
+Updated: November 6, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
 
-Next.js App Router and TypeScript remain required. A server-capable application and relational database replace the earlier static-export-only baseline. Public content can still be prerendered where appropriate. Private operations must execute through an authenticated server boundary.
+Next.js App Router and TypeScript remain required. A server-capable application and relational database replace the earlier static-export-only baseline. Remaining public routes render within the shared session-aware shell. Private operations must execute through an authenticated server boundary.
 
 ```mermaid
 flowchart LR
@@ -34,7 +34,7 @@ Use isolated local email testing while no public email domain is selected. W2 pe
 
 Prefer an established maintained authentication solution over custom cryptography. Authentication does not replace authorization. Keep a server-only data-access layer that returns minimal authorized fields. The design follows [Next.js authentication](https://nextjs.org/docs/app/guides/authentication) and [Next.js data security](https://nextjs.org/docs/app/guides/data-security), checked October 29, 2026. These sources guide architecture, not a version compatibility guarantee.
 
-Dependency reasons are in the root [README](../../README.md#dependency-and-asset-choices). W2 adds Better Auth 1.7.14, pg 8.23.1, development-only pg types and server-only. The built-in PostgreSQL/Kysely adapter generates reviewed identity SQL; versioned SQL runs through a small hash-checked transactional runner. No ORM, managed Neon Auth, paid add-on or additional provider SDK is installed. The responsibility map below still includes later unimplemented workflows.
+Dependency reasons are in the root [README](../../README.md). W2 adds Better Auth 1.7.14, pg 8.23.1, development-only pg types and server-only. The built-in PostgreSQL/Kysely adapter generates reviewed identity SQL; versioned SQL runs through a small hash-checked transactional runner. No ORM, managed Neon Auth, paid add-on or additional provider SDK is installed. The responsibility map below still includes later unimplemented workflows.
 
 ## 3. Request path
 
@@ -62,7 +62,7 @@ Use provider-supported CSRF/origin protections plus endpoint-specific tests; Sam
 
 Separate account identity, customer/project relationship, ticket state, project stage, report publication, support start, source finding status and retest outcome. The first private project report publication atomically sets support_started_at and expiry once; project activation is separate. Later versions/withdrawal/republication cannot restart the benefit. A three-month benefit is not a database retention policy.
 
-Public sample data stays local and immutable. Private illustrative report snapshots persist in the database and preserve provenance. Users submit change assertions; admin review events do not overwrite canonical findings or immutable published versions.
+The previous public sample is removed. Future private report content requires new review/provenance and project-bound publication. Users submit change assertions; illustrative admin events must not overwrite future published versions.
 
 ## 6. Planned structure
 
@@ -85,16 +85,13 @@ src/
     consultations/     # Conditional intake and scheduling
     tickets/           # User/admin conversation and ticket actions
     projects/          # Scope, relationship and project stages
-    reports/           # Public sample and private version presentation
     support/           # Eligibility and bounded retest requests
-    packages/          # Public package selection and detail
-    companion/         # Optional local scripted guide
   server/
     auth/              # Provider integration and trusted session context
     data/              # Authorized queries, DTOs and persistence adapter
     domain/            # Validated transitions, support policy, transactions
     audit/             # Minimal privileged-action metadata
-  content/             # Shared package definitions, canonical findings, ID/EN
+  content/             # Current ID/EN copy; service/report definitions deferred
   lib/                 # Locale/routes and genuinely shared pure utilities
   styles/
 database/              # Reviewed schema, migrations and synthetic-only seeds
@@ -102,7 +99,7 @@ tests/
   unit/
   integration/
   e2e/
-public/                # Optimized public brand/pet/font assets only
+public/                # Retained public logo only; no retired page imagery
 ```
 
 Route groups do not change public URLs or enforce access. Private reports never belong under public/. Keep provider keys and server modules out of client imports. Schema/migrations may be versioned; database dumps, credentials and real personal fixtures may not.
@@ -119,7 +116,7 @@ Logout/account switch must clear client query/router state and revalidate restor
 
 Private pages/responses use a verified no-shared-cache strategy, with Cache-Control private, no-store where appropriate. Do not statically generate private routes, use shared data caches keyed only by report ID, or serialize full database rows into client props. Test the selected framework's HTML, data and RSC responses, CDN behavior and back/forward restoration.
 
-Public pages/sample may be cached independently. Private routes and auth screens use noindex and stay out of sitemaps/social previews. Robots/noindex are not access controls. No personalized metadata or private Open Graph images.
+Any future public data must be kept separate from authorized private records. Private routes and auth screens use noindex and stay out of sitemaps/social previews. Robots/noindex are not access controls. No personalized metadata or private Open Graph images.
 
 Logs/audit events contain minimal metadata, never session tokens, contact contents, website inputs, problem narratives or report bodies. Infrastructure request logs must be reviewed; sanitize/redact allowed resource identifiers where needed. Observability is not permission to export private content.
 
@@ -141,7 +138,7 @@ Headers/CSP must accommodate real first-party forms/auth, unlike the retired for
 
 ## 11. Open gates and limits
 
-Before W1 foundation: verify compatible framework/runtime/tooling versions, dependency reasons, locale/layout structure and a licensed local font or reviewed fallback. Before W2 authentication/database integration: review Better Auth + Neon Free adapter/migrations/transport/pooling, enrollment, verification/recovery, controlled admin provisioning and separately authorized isolated database access. These W2 decisions do not block the W1 public shell. Follow the package-specific entry gates in [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md). Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before relevant visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and integrated desktop/mobile components while preserving the approved public direction. Domain identity remains a later public-email/deployment gate, not a W1 or flow-design prerequisite.
+Before W1 foundation: verify compatible framework/runtime/tooling versions, dependency reasons, locale/layout structure and a licensed local font or reviewed fallback. Before W2 authentication/database integration: review Better Auth + Neon Free adapter/migrations/transport/pooling, enrollment, verification/recovery, controlled admin provisioning and separately authorized isolated database access. These W2 decisions do not block the W1 public shell. Follow the package-specific entry gates in [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md). Before benefit code: review date semantics/cycle rules; the first-report publication trigger is confirmed. Before public intake: approve personal-data policy, retention/deletion/backups, abuse controls and hosting terms. Before relevant visual implementation: review the authored [Portal UX Specification](../design/PORTAL_UX_SPEC.md) and integrated desktop task components under the new desktop design review; dedicated phone work is deferred. Domain identity remains a later public-email/deployment gate, not a W1 or flow-design prerequisite.
 
 No source inspection, diagram or documentation check is an application security or performance test. See Quality for executable acceptance expectations.
 
@@ -149,7 +146,7 @@ No source inspection, diagram or documentation check is an application security 
 
 The owner approved synthetic-only enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access. Implementation choices: 15–128-character passwords, eight-hour database sessions, 30-minute refresh threshold, ten-minute sensitive-session freshness, five-minute hashed six-digit email OTPs and no session-data cookie cache. TOTP and encrypted backup codes use Better Auth; only protected setup returns the material needed for enrollment. OTPs/codes are submitted in JSON bodies, never page URLs. Recovery revokes old sessions. Provider/hosting production recovery and retention remain separate decisions.
 
-The dedicated Neon Free PostgreSQL 17 project is in Singapore. Runtime uses a four-connection pooled DML role; migrations and local admin procedures use a direct owner connection loaded from separate ignored `.env.database.local`. Next.js loads only `.env.local`, which contains no owner credential. TLS uses `sslmode=verify-full`. No role/schema privilege or project-assignment write is granted to the runtime account. Public enrollment is additionally blocked by loopback-only configuration, the `celahan_w2` database requirement and an explicit synthetic-email allowlist.
+The dedicated Neon Free PostgreSQL 17 project is in Singapore. Runtime uses a four-connection pooled DML role. Migrations and local admin procedures load a separate owner credential from ignored `.env.database.local`. Owner tooling checks the runtime and owner URLs for the same Neon endpoint and `celahan_w2` database, allowing its pooled or direct hostname. Both require an unambiguous `sslmode=verify-full`. Next.js loads only `.env.local`, which contains no owner credential. The runtime account has no role or schema privilege and no project-assignment write. Loopback-only configuration and an explicit synthetic-email allowlist restrict enrollment.
 
 The auth transport exposes only reviewed JSON POST operations, requires exact Origin/Host, bounds bodies, rejects unknown fields and filters credential/session tokens from responses. It supplies the fixed loopback identity to the database rate limiter, discarding incoming proxy/IP headers. This is suitable only for the current local test boundary; trusted public proxy handling must be reviewed before hosting. Profile changes have a separate database-backed rate limit. CSRF/origin checks remain enabled and Better Auth telemetry is explicitly disabled.
 
@@ -159,8 +156,10 @@ Every account/private query reads the database session, active/verified identity
 
 `project_access` is the minimal ownership association needed to test capabilities and an owned resource; it does not implement project activation, reports or support. Ticket/project/admin destinations honestly state that their workflows are pending. This W2 boundary itself includes no dashboard/sidebar, ticket conversation, report draft or support calendar. W3 subsequently adds public discovery and safe consultation intent; it does not extend the database schema.
 
-## 13. Implemented W3 public discovery
+## 13. Current public content reset
 
-Public locale routes share the existing session-aware header/footer. Server-rendered content lives in `src/content/`; packages and the five canonical findings have focused shared contracts. Native links and details disclosures support public reading without JavaScript. Client behavior is limited to the existing header/account form, small image-error fallback and localized not-found boundary. The package cluster is server-rendered native links with CSS hover/focus/press feedback; activation navigates directly to full package details with or without JavaScript. The rejected inline-summary state and timer are removed. No target address input, target request, intake write, extra API or database migration was added.
+Public locale routes share the session-aware header/footer. Current typed content supplies the project introduction, conceptual stages, About/FAQ, privacy and not-found copy. Native links/disclosures retain public reading without JavaScript. Client boundaries remain the header, account forms and localized not-found view.
 
-`/request/` requires a trusted session and redirects guests to locale login. Only `next=request|account` and a known package slug survive the return path; unknown/external/data-bearing destinations are discarded. This preserves interest through login/signup/verification/TOTP without storing a request. The authenticated pending page and ticket/project destinations do not claim later W4/W5 workflows exist. Source artwork stays under `design/`, runtime derivatives under `public/artwork/`, and licensed fonts under `public/fonts/`. See [W3 evidence](../validation/2026-11-01-w3-public-site.md).
+DEC-62 removes the old catalog, definitions, report preview, public finding dataset, catalog/sample pages and service-selection return intent. Removed URLs return 404. No replacement service/report content has been selected. DEC-63 separately locks design 2, Aperture / Layers, for the desktop homepage; its future educational context/process interactions do not restore removed content or change data contracts.
+
+The request route requires a trusted session. The return intent accepts account or request, and pending destinations save no request. DEC-66 removes the material-motion client boundary. Layers renders its public text, native context/process/disclosure controls and static artwork on the server. Fonts and images use fixed first-party paths.

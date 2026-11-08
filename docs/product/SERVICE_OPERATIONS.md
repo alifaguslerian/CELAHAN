@@ -1,10 +1,12 @@
 # CELAHAN — Service Operations and Support
 
 Status: Owner-approved direction with explicit draft operating rules for review  
-Updated: October 29, 2026  
-References: [PRD](PRD.md), [Packages](SERVICE_PACKAGES.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
+Updated: November 6, 2026  
+References: [PRD](PRD.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Real portal, illustrative service
+
+DEC-62 removes the previous service catalog and public finding dataset. These operating rules describe future portal behavior, not a current offer or authority to restore removed content. Replacement scope/report content needs review before implementation.
 
 Authentication, database persistence, messages, schedules, project associations and report publication will be functional. All assessments/retests are illustrative in the portfolio build. Admin timestamps record actual portal actions; they must not be presented as evidence that a website was tested or repaired.
 
@@ -82,13 +84,13 @@ The eight PDF stages remain educational content. Closure explains disposal of re
 
 ## 9. Report lifecycle
 
-The public sample remains unauthenticated and immutable. A private report belongs to exactly one project and is retrieved only after server authorization.
+The previous public sample is removed. No replacement public content is selected. A future private report belongs to exactly one project and requires server authorization.
 
-V1 proposes an illustrative draft snapshot containing the same five canonical source findings, with the original source fields retained. Admin reviews and publishes a version; draft content is invisible to the user. Publication timestamps describe portal publication only. Package selection and entered website never derive findings.
+Future illustrative drafts require newly reviewed report content/provenance. No replacement dataset or fixed finding count is selected. Admin reviews and publishes a version; draft content is invisible to the user. Publication timestamps describe portal publication only. Service interest and entered website never derive findings.
 
 Published versions are immutable. Corrections create a new version with a change note; withdrawal removes user access while preserving authorized administrative history. Users see published versions only. Findings/paths render as inert text. PDF generation, uploads and public share links are deferred.
 
-A user may report that their programmer addressed a finding. This creates a follow-up assertion, not a verified status. An admin may add an explicitly illustrative review outcome: resolved_in_example, unresolved_in_example, or not_verified. Keep those events separate from the source dataset and report snapshot. No button performs a real retest.
+A user may report that their programmer addressed a finding. This creates a follow-up assertion, not a verified status. An admin may add an explicitly illustrative review outcome: resolved_in_example, unresolved_in_example, or not_verified. Keep those events separate from the reviewed report content and published version. No button performs a real retest.
 
 ## 10. Three-month support baseline
 
@@ -102,9 +104,9 @@ Support belongs to the stated project/scope. It never restarts on login, languag
 
 Eligibility checks server time: submitted_at must be before support_expires_at. A request received in time remains reviewable after expiry, subject to scope and remaining allowance. Expiry does not revoke access to published reports/history. After expiry users may still ask questions or request a new review, but the system must show that included benefits have ended.
 
-Guidance covers original findings and remediation explanations. Retests cover a consolidated set of original findings after the owner's programmer's changes, using the package's reviewed cycle allowance. Do not decrement on every ticket or reply. Reserve a cycle atomically when admin accepts an eligible request; mark it completed once its illustrative review is finalized. Concurrent/retried acceptance cannot exceed the allowance. Cancellation releases a reservation only before completion, with an audit event.
+Guidance covers original findings and remediation explanations. Retests cover a consolidated set of original findings after the owner's programmer's changes, using the separately reviewed cycle allowance. Do not decrement on every ticket or reply. Reserve a cycle atomically when admin accepts an eligible request; mark it completed once its illustrative review is finalized. Concurrent/retried acceptance cannot exceed the allowance. Cancellation releases a reservation only before completion, with an audit event.
 
-This policy supersedes initial-report-based 30/60-day request windows. The one/one/one/two cycle baseline remains draft. A delayed first report leaves benefits unstarted until it is published. Corrections and later versions do not extend or restart the original expiry.
+This policy supersedes initial-report-based 30/60-day request windows. The former catalog-specific cycle baseline is removed; future allowances require a new service decision. A delayed first report leaves benefits unstarted until it is published. Corrections and later versions do not extend or restart the original expiry.
 
 ## 11. Discount and scope exclusions
 

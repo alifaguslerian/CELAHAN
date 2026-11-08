@@ -1,7 +1,7 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1/W2 checked and W3 local public scope complete; remaining portal behavior is a review baseline, not later-stage authorization  
-Version: 1.3 public-discovery checkpoint · November 1, 2026  
+Status: W1/W2 implemented; W3 public foundation retained; catalog/sample content removed pending redefinition; W4–W6 pending
+Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Product outcome and approval
@@ -18,24 +18,24 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 
 | ID | Requirement | Acceptance |
 | --- | --- | --- |
-| FUN-01 | Public home and discovery | Approved hero, honest concept context, package/form/sample-report actions; no fabricated achievements |
+| FUN-01 | Public home and discovery | Layers desktop introduction, educational context/process interaction and current links; honest concept limits, no catalog/sample or fabricated achievements |
 | FUN-02 | Services and limitations | Assessment/guidance/retest scope, no code repair/forensics/certification, written permission explained |
-| FUN-03 | Eight-stage process | Canonical order, clear illustrative assessment stages, usable vertical mobile flow |
+| FUN-03 | Eight-stage process | Canonical order, clear illustrative assessment stages, readable ordered desktop presentation |
 | FUN-04 | Consultation intake | Name, company, website, problem, contact, proposed schedule, authority statement; visible labels |
 | FUN-05 | Trusted validation | Server validates all writes; client validation assists UX; structured localized errors |
 | FUN-06 | Persistent ticket creation | Authenticated submission creates one owned record and server-generated reference; refresh retrieves it |
 | FUN-07 | Ticket workflow | User/admin discussion, requested/confirmed scheduling, explicit states, separate internal notes |
-| FUN-08 | Project workflow | Admin creates/assigns a project, records scope/package and illustrative stage; user cannot self-assign |
-| FUN-09 | Public sample report | Accessible without login; same five canonical rows regardless of URL/package |
+| FUN-08 | Project workflow | Admin creates/assigns a project, records reviewed scope and illustrative stage; user cannot self-assign |
+| FUN-09 | Public sample report — deferred | Old dataset/page removed; replacement content and public presentation need new review |
 | FUN-10 | Private project report | Authorized owner/admin only; draft/published versions; all findings explicitly illustrative |
-| FUN-11 | Optional mascot guide | Scripted local explanations; no AI or website analysis; independent of ticket conversations |
+| FUN-11 | Future report-reading help — deferred | Review explanations alongside replacement report content; no AI or website analysis |
 | FUN-12 | Safe errors and 404 | Localized failure states without raw URLs, secrets, private resource existence, or misleading success |
 | FUN-13 | Public/supporting content | About, FAQ, privacy, boundaries, localized metadata and working navigation |
 | FUN-14 | Honest loading/failure | Public content useful without JS; no unsafe GET fallback, duplicate write, or fake success after failure |
-| FUN-15 | Four premium packages | Shared scope/prices/outputs, accessible tight pet cluster, details on activation, no checkout |
+| FUN-15 | Service catalog — deferred | Former names/scopes removed. Replacement service definitions/names/terms require owner review; no invented offers |
 | FUN-16 | Fit and consultation | Unsure/mixed path, no forced upgrade, submission does not equal scope or appointment approval |
 | FUN-17 | Follow-up support | Project-linked guidance/retest requests, eligibility visible, no warranty of all damage |
-| FUN-18 | Visual continuity | Saved hero/logo identity, distinct pets, reviewed responsive differences |
+| FUN-18 | Visual continuity | Design 2 Layers with retained Open Threshold, Glacier Steel and static material imagery under DEC-67, native interactions and reduced-motion support for control feedback |
 | FUN-19 | Real authentication | Chosen registration, login, logout, recovery, verified identity/session policy; no UI-only authentication |
 | FUN-20 | Reactive/preventive logic | Category and specific reasons plus narrative; allegations remain unverified until reviewed |
 | FUN-21 | Integrated account/ticket/report access | Shared header with avatar/login/signup beside ID/EN; no guest ticket entry, Tiket after login, Laporan & Progres only for authorized projects; no separate dashboard/sidebar shell |
@@ -64,7 +64,7 @@ Reactive reasons: reported defacement, suspected data leakage/intrusion, reporte
 
 ## 4. Roles and persistent behavior
 
-Public visitors browse informational pages and the public sample. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
+Public visitors browse the project introduction, conceptual process, About/FAQ and privacy. The catalog/public sample are removed pending replacement review. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
 
 Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Admin validates need, priority, timing, scope, and eligibility. In-app replies are real database writes; optional contact details support separately authorized manual follow-up, not automatic WhatsApp/email delivery.
 
@@ -72,13 +72,13 @@ Refresh, new tabs and locale navigation do not delete stored tickets or reports.
 
 ## 5. Support and reports
 
-The owner confirmed a maximum three-month period from the first private project report publication, with start/expiry visible to the user. Project activation, public sample views and the user's first report view do not start it; later report versions do not reset it. Exact calendar/timezone boundary rules still require review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Package cycle allowances remain one/one/one/two as a draft.
+The owner confirmed a maximum three-month period from the first private project report publication, with start/expiry visible to the user. Project activation, public sample views and the user's first report view do not start it; later report versions do not reset it. Exact calendar/timezone boundary rules still require review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Cycle allowances must be reviewed alongside replacement service definitions; no old catalog allowance is retained.
 
 The maintenance-discount concept is narrowed to a proposed follow-up security review because code maintenance is excluded. Percentage, eligible work, approval cutoff, and commercial display need confirmation; do not invent a rate or apply a charge.
 
-Public sample content is immutable. Private illustrative reports are associated with one project, have draft/published versions, and cannot be generated from a submitted URL. V1 proposes copying all five source findings into a clearly labeled illustrative report snapshot. Follow-up comments/review outcomes do not rewrite the public source dataset. Reporting a fix and verifying it are separate actions.
+The former public report dataset and preview are removed under DEC-62. No replacement finding count, title, category, score or status is approved. Future private illustrative reports remain project-bound/versioned, with review before publication; they cannot be generated from an entered website. Published history and separate follow-up assertions remain integrity requirements for future content.
 
-## 6. Language, mobile, accessibility and performance
+## 6. Language, desktop accessibility and performance
 
 | ID | Requirement |
 | --- | --- |
@@ -87,16 +87,14 @@ Public sample content is immutable. Private illustrative reports are associated 
 | LNG-03 | Equivalent locale navigation preserves saved records/session; warn only about unsaved edits |
 | LNG-04 | Correct html language, localized metadata/dates/decimal formatting, no flags-only selector |
 | LNG-05 | User messages are not automatically translated; no content sent to a translation service |
-| MOB-01 | Dedicated phone composition with shared domain rules |
-| MOB-02 | Readable at 320 px; no page overflow; localized text/zoom/landscape covered |
-| MOB-03 | Touch/keyboard equivalents; 44 px primary targets; no hover dependency |
-| MOB-04 | Forms, conversation, private findings and admin decisions usable with keyboard open |
+| DES-01 | Desktop-first temporary baseline; dedicated phone presentation removed/deferred by DEC-61 |
+| DES-02 | Readable ID/EN at documented desktop sizes, keyboard focus, text enlargement and safe error states |
 | QLT-01 | WCAG-oriented labels, contrast, focus, dialog/error and reduced-motion checks |
 | QLT-02 | Actual build/lint/typecheck plus meaningful domain/integration/E2E checks |
 | QLT-03 | Server-side object authorization, secure sessions, CSRF controls, input validation and private caching |
 | QLT-04 | Measured route/media/JS/database performance; proposed budgets in Quality |
 | QLT-05 | Verified deployed routes, HTTP status, headers, privacy and provider configuration |
-| QLT-06 | Side-by-side visual fidelity review; source PNG preservation is not browser evidence |
+| QLT-06 | Review the future desktop direction and actual rendered behavior; no retired screen-image fidelity claim |
 | QLT-07 | Migration, isolation, audit, backup/deletion procedures and tests before public intake |
 
 ## 7. Acceptance scenarios
@@ -105,21 +103,21 @@ Public sample content is immutable. Private illustrative reports are associated 
 | --- | --- |
 | AC-01 | Invalid consultation is rejected server-side with localized errors and no partial ticket |
 | AC-02 | Valid authenticated submission persists one ticket; retries with the same idempotency key return the same result |
-| AC-03 | Any entered website remains inert text; selecting any package does not alter the public five findings |
+| AC-03 | Any entered website remains inert text; no input-derived report or finding is generated |
 | AC-04 | Switching locale preserves saved tickets/project rights/support dates; unsaved edits receive a discard warning |
 | AC-05 | Refresh/deep link retrieves an authorized ticket; logout requires login; unknown/foreign resources disclose no private content |
-| AC-06 | ID/EN shared-site navigation and user/admin tasks work at 320 px, zoom and keyboard; guest/prospect/project-owner menu states are correct without a separate dashboard |
+| AC-06 | ID/EN shared-site navigation and user/admin tasks work at reviewed desktop widths, enlarged text and keyboard; guest/prospect/project-owner menu states are correct without a separate dashboard |
 | AC-07 | JS/network failure cannot submit data via URL, falsely confirm success, or duplicate writes |
-| AC-08 | Four packages expose the same reviewed caps/prices/outputs with keyboard/touch/artwork fallback |
-| AC-09 | Unsuitable package or urgent reactive need goes to reviewed scoping/triage, never forced sale or automatic diagnosis |
+| AC-08 | Retired catalog/sample destinations return 404 and are absent from current navigation; no replacement content is fabricated |
+| AC-09 | Uncertain scope or urgent reactive need requires reviewed triage; no forced sale or automatic diagnosis |
 | AC-10 | Unauthenticated user and user B cannot read/mutate user A's ticket, messages, project or report through any endpoint |
-| AC-11 | All locale/package views preserve IDR values, scope meanings, illustration labels and support terms |
+| AC-11 | Both locales truthfully disclose content redefinition and preserve account/privacy boundaries; no removed catalog/data resurfaces |
 | AC-12 | Crafted role/owner/project/status fields cannot grant customer/admin access or edit another account's records |
 | AC-13 | Admin confirms a proposed slot explicitly; user sees requested versus confirmed times in the chosen timezone |
 | AC-14 | Internal notes and draft/withdrawn reports are absent from user responses, HTML and shared caches |
 | AC-15 | First private report publication atomically starts support once; project activation/sample views/later versions do not start or reset it; exact expiry ends new benefit use, not report access |
 | AC-16 | Eligible request submitted before expiry remains reviewable afterward; ticket creation cannot extend support or consume a cycle repeatedly |
-| AC-17 | User “fix reported” cannot become “verified” without an authorized illustrative admin review; public findings remain unchanged |
+| AC-17 | User “fix reported” cannot become “verified” without an authorized illustrative admin review; future published versions remain immutable |
 | AC-18 | Login/logout/recovery, revocation, CSRF, rate limits and isolated account caches pass provider-specific tests |
 | AC-19 | Retention/deletion workflow follows the chosen policy, including conversations, reports, audit records and backups |
 | AC-20 | Private report version publication is authorized/atomic, labeled illustrative, and readable only by its owner and authorized admin |
@@ -128,8 +126,16 @@ Public sample content is immutable. Private illustrative reports are associated 
 
 Academic prototype: real authentication/database and a complete user consultation → admin response → user retrieval flow; demonstrate private report isolation with two users. Supporting incomplete UI must be labeled. This is the owner's planning milestone, not an assertion that the lecturer has approved a detailed rubric.
 
-Portfolio v1: complete approved portal flows, identity, ID/EN/mobile UX, quality evidence, deployment and truthful privacy information. Video/case study follows stable functionality.
+Portfolio v1: complete approved portal flows, identity, ID/EN desktop UX, quality evidence, deployment and truthful privacy information. Video/case study follows stable functionality.
 
 Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, email provider, database adapter/runtime settings, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
 
 The owner authorized W1 on October 30 and isolated W2 on October 31. The shared shell and database-backed identity/minimal ownership boundary exist locally. These limited package checks do not mark the full scenarios above complete: ticket, consultation, report and support workflows, public enrollment and deployment remain pending.
+
+## November 6 presentation reset
+
+The reset removed previous visual assets, galleries, characters and dedicated phone presentation. The owner then selected Layers (DEC-63) and explicitly authorized its desktop implementation and verification (DEC-64). [Design Direction](../design/DESIGN_DIRECTION.md) records the canonical image/contract and [validation](../validation/2026-11-06-layers-desktop.md) the actual local results. The homepage/shared shell now implement that direction; no phone support or later portal workflow is implied.
+
+## Service and report reset (DEC-62)
+
+The former catalog, its descriptions, public findings dataset/preview, and related routes/docs remain removed. Early concepts containing retired content cannot restore it. The newly selected Layers homepage contains educational context/process navigation and account entry, not replacement services or a sample report. Its selection does not decide future catalog/report content. Open Threshold remains; service/report decisions are required before those specific interfaces, independently of the desktop homepage design lock.

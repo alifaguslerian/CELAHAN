@@ -1,8 +1,10 @@
 # CELAHAN — W1 Foundation Validation
 
+> Historical evidence only. November 6, 2026: presentation-specific artifacts are retired. Remaining results describe the original date and do not establish the plain desktop reset or future phone support.
+
 Date: October 30, 2026  
 Scope: Authorized local W1 foundation only; no W2 integration, provider provisioning or deployment  
-References: [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md#5-w1-application-foundation-and-shared-site-shell), [Quality](../engineering/QUALITY_AND_SECURITY.md), [README](../../README.md)
+References: [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [README](../../README.md)
 
 ## 1. Delivered boundary
 
@@ -10,7 +12,7 @@ The owner reviewed the project analysis and explicitly authorized W1. Before app
 
 The server-capable Next.js foundation has an Indonesian-default redirect, `/id/` and `/en/`, shared header/footer, local solid SVG mark with HTML wordmark, shared bilingual copy, local system-font fallback, a compact disclosure navigation menu and skip link. Account links sit beside ID/EN and lead to ordinary same-site unavailable notices. These notices contain no credential form, authentication, account creation or storage. Guests have no ticket/project/report entry. Only working current destinations are linked.
 
-The initial page introduces the concept and its limits. It is not the complete approved hero/homepage. The doorway/pet illustration, packages, process, sample report and full public pages remain W3. Arial/Helvetica and Georgia/Times preserve the sans/italic-serif roles as reviewed local fallbacks; exact final typefaces are still open. The SVG is a minimal editable path export, not a wrapped raster or the complete final identity set. Source design boards are absent from `public/`.
+The initial page introduced the concept with system fonts and a minimal editable SVG symbol. Final identity exports remained incomplete. Its presentation is retired by the November 6 reset.
 
 The app has no auth/database SDK, consultation input, target URL field, API transport, provider configuration, secret, migration or seed. No W2/private-resource behavior is simulated.
 
@@ -45,7 +47,7 @@ The routing tests first produced the expected assertion failures for unsupported
 
 ## 4. Production browser evidence
 
-Final command: `.\.venv\Scripts\python.exe tests/e2e/shell.py --browsers chromium --artifacts <external-artifact-directory>`. The screenshot directory used for this session is outside the repository. The harness defaults to ignored `test-results/w1/` when no override is given.
+The historical Chromium shared-shell harness is retired. The current desktop suite is documented in README; it is not evidence of a new pass.
 
 Chromium 156.0.8078.4 completed the suite, exit 0:
 
@@ -60,7 +62,7 @@ Chromium 156.0.8078.4 completed the suite, exit 0:
 
 An early CSS-zoom check exposed header/footer rows that did not wrap at the available space. Flex wrapping was corrected and the final checks passed. Harness issues involving the changing Menu/Close label and asynchronous touch navigation were fixed by using the persistent disclosure relationship and waiting for navigation; they were not application success/failure claims.
 
-The ID/EN desktop and phone screenshots were opened and reviewed for W1's palette, headline hierarchy, local symbol, disclaimer, account/language order and reflow alongside the approved sources. The full dim-doorway/pet hero has not been implemented or compared as complete. The phone header uses two rows: brand/menu, then adjacent language/account controls, retaining the touch-size floor. Rows can wrap further under enlargement. No screenshot was inserted into design references or used as a replacement approval image.
+
 
 ## 5. Resource measurements and limits
 
@@ -75,12 +77,13 @@ These observations are below the proposed 250 KiB initial JS / 1 MiB initial res
 
 Firefox's installed headless executable failed to launch with `spawn UNKNOWN`. WebKit 27.2 launched, but its default headless keyboard traversal did not focus the initial link, including in an isolated probe. Neither engine completed the full suite. The harness keeps both engines selectable for a later rerun; it does not suppress those failures.
 
-No physical phone, native browser zoom, screen-reader session, complete WCAG audit, full hero pixel/fidelity audit, server egress interception, private cache/session/object-authorization test, database/email test or deployed smoke test has been performed. CSS zoom is explicitly not native zoom. Browser network checks on a public shell do not prove the future intake/server no-target boundary; repeat the required client/server tests when W4 adds inputs. The limited W1 CSP directives are not a complete release CSP audit.
+No physical phone, native browser zoom, screen-reader session, complete WCAG audit, server egress interception, private cache/session/object-authorization test, database/email test or deployed smoke test has been performed. CSS zoom is explicitly not native zoom. Browser network checks on a public shell do not prove the future intake/server no-target boundary; repeat the required client/server tests when W4 adds inputs. The limited W1 CSP directives are not a complete release CSP audit.
 
 ## 6. Preservation, hygiene and next boundary
 
-The 57 source PNGs and three design manifests were not edited. Current asset checks compare the 52 manifest-selected files plus the approved hero and four pets against their documented hash/size records. The five canonical source rows remain in Content and Illustration; the source document was not edited. Checks across 37 project Markdown files and 331 local file/heading links found no missing targets or anchors; code fences are balanced. The rejected portal directory remains absent. The only runtime brand source is the new small SVG symbol; no full design board, pet source sheet or unapproved reference was copied to the runtime.
 
 Generated dependency/build/type/browser artifacts are covered by ignore rules, including node_modules, .next, .venv, next-env.d.ts, tsbuildinfo and test-results. There is no claim about Git tracking/staging state. Source inspection checked focused responsibilities, unused imports/dependencies, unsafe HTML/eval/input-derived URLs and unneeded feature folders. Protected feature folders were not created speculatively.
 
 W1 is the scoped local foundation checkpoint. W2–W6 remain unstarted and require authorization. Before W2, review enrollment/verification/recovery/admin policy and the isolated auth/database integration gate; before public intake, resolve the real-data/retention/provider release policies. Full homepage assets/public functionality remain W3 and final identity/performance/accessibility/release work remains subject to later package checks. No Git command, provider operation, target request, image generation or deployment was performed.
+
+Content reset note: DEC-62 retires the previous catalog/report content and its preservation requirements. Historical passes are not approval of a replacement catalog, dataset or UI.

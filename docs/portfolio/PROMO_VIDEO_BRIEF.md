@@ -19,7 +19,7 @@ Core message: CELAHAN demonstrates a structured, permission-based web security a
 
 Cinematic motion graphics using the approved warm near-black/ivory/sand identity, strong typography, carefully framed interfaces, and a pace that supports reading. Use motion to show the flow, status transitions, and relationships within report details. Avoid random-code montages or terminal effects resembling real attack operations.
 
-The logo builds recognition; the mascot guides selected moments. Desktop and mobile UI demonstrations must still receive adequate attention. Show implemented features; clearly label concept footage that is not functional yet as a prototype.
+Use the retained logo and a reviewed future desktop interface. The current plain baseline is not final promotional artwork. Show implemented features; clearly label concept footage that is not functional yet as a prototype.
 
 ## 4. Initial text storyboard
 
@@ -32,7 +32,7 @@ Scene timing will be determined after the final format is agreed; it is not a cu
 | 3. Process | Scope/permission followed by the eight stages | Show the service structure | Stages represent a conceptual model |
 | 4. Interaction | Synthetic user login, consultation, persisted ticket, admin reply and schedule decision | Demonstrate working backend/user-admin journey | Only show implemented behavior; no personal data or target access |
 | 5. Results | Authorized private report, one illustrative finding and bounded follow-up | Demonstrate report readability and access isolation | Findings are illustrative; no input-derived results or code-repair claim |
-| 6. Cross-device experience | Desktop/mobile and ID/EN switching | Showcase frontend/design quality | Show behavior that actually exists |
+| 6. Desktop experience | Desktop tasks and ID/EN switching | Showcase actual frontend behavior | Do not imply dedicated phone support |
 | 7. Closing | Identity, invitation to try the demo, disclaimer | Offer a next action | Use a final link only after deployment exists |
 
 ## 5. Language and accessibility
@@ -43,9 +43,9 @@ Primary text must not be too small or disappear too quickly. Provide captions an
 
 ## 6. Production inputs
 
-- Final logo and mascot assets with editable sources.
-- Recorded or rendered UI from a reviewed version, covering ID/EN and mobile/desktop.
-- The same illustrative dataset and copy used on the website.
+- Final reviewed logo assets with editable sources.
+- Recorded or rendered UI from a reviewed version, covering the approved desktop ID/EN flows.
+- Newly reviewed report content and copy once a replacement exists; no retired dataset from earlier concepts.
 - Isolated synthetic user/admin accounts, approved screen capture and redacted/private-data-free footage; never expose provider secrets, passwords, internal incident notes or a reusable admin session.
 - Opening/closing copy, shot list, storyboard, and animatic.
 - Licensed audio if used, captions, and a transcript.
@@ -68,3 +68,7 @@ The video is complete when its message is understandable, it does not imply a re
 Keep video sources and large renders separate from the website bundle. The owner chooses storage/release assets for GitHub tracking; agents do not upload them or run Git. The repository may record the brief, asset manifest, and final links once they exist.
 
 V1 does not autoplay a hero video or embed a third-party player. If the completed video is linked later, use an explicit user action; player/integration choices are a separate change affecting performance and privacy.
+
+## November 6 content reset
+
+The former service catalog and public findings example are removed. Replacement content and UI are undecided. Do not record or implement the obsolete content shown in exploratory homepage concepts; use only newly reviewed actual functionality. Open Threshold remains.

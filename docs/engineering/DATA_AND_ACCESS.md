@@ -1,14 +1,14 @@
 # CELAHAN — Data Model and Access Rules
 
 Status: W2 identity and minimal ownership schema implemented in an isolated test database; later workflow schema remains planned  
-Updated: October 31, 2026  
+Updated: November 6, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
 
-Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the generated auth schema; `002-project-access.sql` adds only ownership association and privileged-operation audit metadata. Other logical entities below are planned, not implemented tables. Public sample content remains separate from private records.
+Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the generated auth schema; `002-project-access.sql` adds only ownership association and privileged-operation audit metadata. Other logical entities below are planned, not implemented tables. The previous public sample is removed; replacement report content awaits review. No report schema/data is introduced by this reset.
 
-V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, package selection, ticket reference and payment claims are never ownership proofs.
+V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, service interest, ticket reference and payment claims are never ownership proofs.
 
 Identity comes from the trusted session. Never accept role/owner/support fields by mass assignment. A private resource lookup must include the actor's authorized relationship, not fetch first and trust a UI check later. See [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
 
@@ -18,14 +18,14 @@ Identity comes from the trusted session. Never accept role/owner/support fields 
 | --- | --- | --- |
 | Account / Profile | Trusted auth subject, role, display name, optional company, permitted contact fields, account state | Better Auth manages credential hashing/sessions; application never stores plaintext passwords |
 | Consultation | Owner account, name/company/contact snapshot, inert website, need type/reasons, problem, requested slots/timezone, declaration timestamp | Saved with an initial consultation ticket in one transaction |
-| Project | Owner account, originating consultation if any, scope/package snapshot, illustrative stage/source, project activation, first private report publication reference, support_started_at, support expiry, policy version, retest allowance | Owner/admin only; creation and association are privileged |
+| Project | Owner account, originating consultation if any, reviewed scope snapshot, illustrative stage/source, project activation, first private report publication reference, support_started_at, support expiry, policy version, retest allowance | Owner/admin only; creation and association are privileged |
 | Ticket | Owner account, kind, nullable project, nullable consultation, status, reviewed priority, created/updated/submitted times, concurrency version | Initial consultation may lack project; follow-up requires authorized project |
 | TicketMessage | Ticket, author, plain-text body, created time, idempotency reference | User/admin shared conversation; author comes from session |
 | InternalNote | Ticket/project, admin author, plain-text body, created time | Separate admin-only table/query/DTO; never serialized to users |
 | ConsultationSchedule | Ticket, proposed options/timezone, confirmation state, selected instant, confirming admin, version | Proposal and confirmation distinct; no external calendar |
 | Report | Project, illustrative source, lifecycle, version identity, publication/withdrawal metadata | No public slug or anonymous share token |
-| ReportVersion / FindingSnapshot | Report, immutable version number, canonical finding key/order/fields, illustrative explanation, publication metadata | Complete five-row snapshot for v1; source text retained |
-| FindingFollowUp | Project, report version/finding, linked ticket, user change assertion, separate admin illustrative outcome | No overwrite of canonical source or published snapshot |
+| ReportVersion / FindingSnapshot | Report, immutable version number, reviewed finding key/order/fields, illustrative explanation, publication metadata | Content shape/count require review before W5; future published versions remain immutable |
+| FindingFollowUp | Project, report version/finding, linked ticket, user change assertion, separate admin illustrative outcome | No overwrite of a published version |
 | RetestCycle | Project, eligible ticket, reserved/completed/cancelled state, ordinal, reviewed findings, actor/timestamps | Unique reservation rules prevent allowance races |
 | TicketEvent / ProjectEvent | Resource, actor, state change, safe reason code, timestamp | Expose only authorized public-to-owner events |
 | AuditEvent | Privileged actor/action, resource IDs, result, timestamp | Metadata only; restricted admin/system access, no content/token dumps |
@@ -40,7 +40,7 @@ Auth sessions/verification/recovery records follow the reviewed Better Auth vers
 - Consultation and initial ticket owners must match. A linked project is created for that consultation's owner.
 - Follow-up ticket ownership is checked against project ownership at creation; internal notes and history retain their original visibility on any reassignment.
 - Every report/version/finding relationship must stay within one project; validate composite relationships, not independent IDs in isolation.
-- Published report version is immutable; unique report/version number and report-version/finding key. Publication is atomic with all five snapshot rows and, on the project's first publication only, its support-start/expiry fields.
+- Published report version is immutable; unique report/version number and report-version/finding key. Future publication is atomic with all reviewed version content and, on the project's first publication only, its support-start/expiry fields.
 - Retest acceptance reserves a distinct cycle only while eligibility/allowance permit it, under a transaction/lock or equivalent atomic constraint. A ticket cannot reserve multiple cycles on retry.
 - Store UTC instants plus the source IANA timezone needed for schedule/support interpretation. Support expiry cannot precede support_started_at; project activation alone cannot start benefits.
 - Index owned ticket/project lists, ticket message ordering, admin status/priority/age queues, report project/publication, and retest project/state. Bound page sizes and selected columns.
@@ -79,7 +79,7 @@ Ticket states: new → under_review; under_review ↔ awaiting_user; reviewed sc
 
 Project stages: scope_pending → awaiting_permission → assessment → reporting → support → closed, with reviewed cancellation. Stages represent an illustrative assessment, not target activity. No user status button can advance them.
 
-Report lifecycle: draft → published → withdrawn. Publishing a corrected version creates a new immutable version; old published history follows explicit visibility policy. It does not silently alter the original five findings. Draft creation is allowed only for the project's authorized admin workflow.
+Report lifecycle: draft → published → withdrawn. Publishing a corrected version creates a new immutable version; old published history follows explicit visibility policy. It does not silently alter an already published version. No retired dataset may be reused without a new content decision. Draft creation is allowed only for the project's authorized admin workflow.
 
 Retest lifecycle: requested ticket → accepted/reserved cycle → illustrative completion; decline/cancel records a reason. Only uncompleted reservations can be released. Count completed and reserved cycles against the allowance. An exhausted allowance yields a reviewed follow-up option without automatic billing.
 
@@ -117,4 +117,4 @@ Audit privileged changes using metadata and reason codes, not complete request/r
 
 Use two user accounts, an admin, a revoked admin/disabled user, two separate projects, draft/published/withdrawn reports, shared messages and internal notes. Attempt cross-account list/detail/mutation access with swapped IDs, crafted nested relationships, mass-assigned roles and expired sessions.
 
-Test concurrent duplicate submissions, cycle reservation races, publication failure rollback, ownership reassignment visibility, timezone/month-end/expiry boundaries and logout/cache isolation. Data-policy tests include chosen deletion/backup behavior. W2 implements the isolated identity/ownership boundary only; ticket/report/support/deletion and backup tests remain future work. See [Architecture](ARCHITECTURE.md#12-implemented-isolated-w2-boundary) for the current schema, secret separation and transport decisions.
+Test concurrent duplicate submissions, cycle reservation races, publication failure rollback, ownership reassignment visibility, timezone/month-end/expiry boundaries and logout/cache isolation. Data-policy tests include chosen deletion/backup behavior. W2 implements the isolated identity/ownership boundary only; ticket/report/support/deletion and backup tests remain future work. See [Architecture](ARCHITECTURE.md) for the current schema, secret separation and transport decisions.

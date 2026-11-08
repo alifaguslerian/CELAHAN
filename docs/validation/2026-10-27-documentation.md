@@ -1,5 +1,7 @@
 # Documentation Review — October 27, 2026
 
+> Historical evidence only. November 6, 2026: presentation-specific artifacts are retired. Remaining results describe the original date and do not establish the plain desktop reset or future phone support.
+
 ## Scope and environment
 
 Local checks covered 13 Markdown files: README, AGENTS, and 11 planning documents. Standard Python read the files; no Git commands or `.git` access were used. This report was added after the primary checks.
@@ -13,12 +15,11 @@ Local checks covered 13 Markdown files: README, AGENTS, and 11 planning document
 | Fenced code block pairs | No unclosed fences found |
 | TODO/TBD/FIXME placeholders | None found |
 | Encoding replacement characters | None found |
-| Five canonical rows | Exact match with the transcription of the previously read source data |
 | Indonesian disclaimer | Present verbatim in README, Project Brief, and the content source |
 | Limited credential/private-path patterns | No matches for the checked token/private-key/user-path patterns |
 | `package.json` | Absent, consistent with the documentation stage |
 
-Content review also aligned simulation boundaries, mobile UI, bilingual support, language-switch resets, draft decision statuses, the Git prohibition, and the separation of the academic prototype from the portfolio website.
+Content review also aligned simulation boundaries, earlier viewport scope, bilingual support, language-switch resets, draft decision statuses, the Git prohibition, and the separation of the academic prototype from the portfolio website.
 
 ## Limitations
 
@@ -32,7 +33,6 @@ The documentation is sufficient as an initial planning snapshot for the owner to
 
 ## English translation review — October 27, 2026
 
-All 14 Markdown files, including this report, were translated into English at the owner's request. The working documentation language rule and Decision Log were updated accordingly. Required Indonesian product copy, bilingual examples, and canonical source findings remain verbatim.
 
 Verification used a filesystem-content snapshot captured before translation, not Git:
 
@@ -40,9 +40,10 @@ Verification used a filesystem-content snapshot captured before translation, not
 - Existing heading counts and checklist completion states were preserved during translation.
 - No existing requirement, test, finding, or decision IDs were removed; DEC-14 records the documentation language decision.
 - No existing Markdown link targets were removed; all relative targets still exist.
-- The five canonical Indonesian finding rows match the previous version exactly.
 - The original Indonesian disclaimer remains present in the required source documents.
 - No unclosed code fences or encoding replacement characters were found.
 - Remaining Indonesian prose was reviewed and is limited to required product copy, source data, bilingual examples, and their quoted labels.
 
 The planned validation-report filename example was translated from an Indonesian descriptor to `docs/validation/YYYY-MM-DD-check-type.md`; no existing file was renamed. No application build or test was run, and no Git operation was performed. This section records the translation checks after the historical documentation checks above.
+
+Content reset note: DEC-62 retires the previous catalog/report content and its preservation requirements. Historical passes are not approval of a replacement catalog, dataset or UI.

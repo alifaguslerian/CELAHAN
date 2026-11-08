@@ -24,7 +24,7 @@ The owner selects visibility/license and performs Git manually unless a specific
 
 Use isolated synthetic accounts A/B plus an approved admin demonstration, never shared production admin credentials. Show login, reactive/preventive intake, saved ticket after refresh, admin reply/schedule confirmation, user retrieval and denial of another user's private report.
 
-Clearly label illustrative findings and project stages. Explain what is incomplete, how to run the actual prototype, and why target scanning/code repair is excluded. Show mobile and ID/EN only to the extent actually implemented. Record sanitized evidence without exposing auth/provider secrets.
+Clearly label illustrative findings and project stages. Explain what is incomplete, how to run the actual prototype, and why target scanning/code repair is excluded. Show implemented desktop ID/EN behavior; dedicated phone presentation is deferred. Record sanitized evidence without exposing auth/provider secrets.
 
 ## 4. Provider and privacy gates
 
@@ -38,7 +38,7 @@ Provision resources or deploy only when separately requested. Keep provider secr
 
 Follow Quality T-01 through T-30 and record real outcomes. Verify actual build/lint/typecheck, selected database migrations and a tested restore/deletion policy. Critical gates include server object authorization, login/recovery/logout/revocation, CSRF, private caching, internal-note separation, report publication and support reservation/expiry.
 
-Review both locales and dedicated phone/admin experiences, keyboard/screen reader, visual fidelity, dependencies and measured performance. No scanner requests or uploaded incident evidence. Privacy and package copy must match three-month support and excluded code repair.
+Review both locales and desktop/admin experiences, keyboard/screen reader, visual fidelity, dependencies and measured performance. No scanner requests or uploaded incident evidence. Privacy and package copy must match three-month support and excluded code repair.
 
 ## 6. Deployment and smoke test
 
@@ -61,3 +61,7 @@ For a bad release, the owner may restore hosting/database state through authoriz
 Explain coursework context, audience assumptions versus research, actual individual contributions, preserved visual references, and the change from client-only concept to functional authenticated portal. Demonstrate database relationships, access isolation, UX, support logic and measured results.
 
 No fabricated interviews, client claims, metrics, assessments, certifications or before/after improvements. Video captures synthetic scenarios and distinguishes actual portal activity from illustrative security work. Development can continue after v1 through reviewed needs and updated documentation.
+
+## November 6 content reset
+
+The former service catalog and public findings example are removed. Replacement content and UI are undecided. Do not record or implement the obsolete content shown in exploratory homepage concepts; use only newly reviewed actual functionality. Open Threshold remains.

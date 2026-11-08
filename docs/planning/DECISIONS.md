@@ -1,169 +1,73 @@
-# CELAHAN — Decision Log
+# CELAHAN — Decisions
 
-Updated: November 2, 2026. This document distinguishes owner instructions, proposed designs, and choices requiring input. Decisions are not application test results; validation records contain actual evidence.
+Updated: November 8, 2026
+References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
-## 1. Decision statuses
+## Current precedence
 
-- **Confirmed:** explicitly stated or approved by the project owner.
-- **Draft baseline:** a concrete recommendation that keeps the documents consistent; reviewable before implementation.
-- **Open:** no choice has been made; blocks only the relevant phase.
-- **Deferred:** a future candidate, not a v1 obligation.
+DEC-67 records the owner's selection and implementation request for 02 Glacier Steel. It also authorizes fitting the process into one desktop viewport and the account invitation and FAQ into the next, with both account action labels aligned. See [Glacier Steel validation](../validation/2026-11-08-glacier-steel.md).
 
-## 2. Confirmed decisions
+DEC-66 records the earlier November 8 instruction to restore static metal imagery and generate five recommendations with three-color gradients. See [static-material validation](../validation/2026-11-08-static-material.md).
 
-Current precedence: DEC-30 through DEC-40 revise the portal scope and selected foundation; DEC-41–42 record the earlier image pass; DEC-43–44 supersede its separate-portal presentation and require cleanup. DEC-45 replaces per-file commit suggestions with agent-judged coherent checkpoints. DEC-46 records W1 authorization; DEC-47–48 subsequently authorize isolated W2 and its reviewed identity policy. DEC-49–50 authorize W3 and defer numerical terms; DEC-51–52 record visual revisions; DEC-53 records owner acceptance and the bounded completion audit. DEC-57 supersedes the rejected DEC-56 mesh/inline implementation. Earlier entries remain history; superseded clauses must not be implemented.
+DEC-65 records the earlier material-motion experiment. DEC-66 supersedes it. See [historical material-motion validation](../validation/2026-11-06-material-motion.md).
 
-| ID | Decision | Basis |
+DEC-64 records the owner's subsequent explicit instruction to implement design 2 as faithfully as practical, including interactive animation, tests, visual/text corrections, performance/security checks and optimization. The desktop homepage/shared shell are implemented and checked locally; see [Layers validation](../validation/2026-11-06-layers-desktop.md). This authorizes no new service/report content, phone UX, W4/W5 writes, providers, public enrollment, deployment or Git.
+
+DEC-63 records the owner's selection of **design 2 — Aperture / Layers** from five complete desktop candidates. Its image and layout/palette/type/interaction/motion contract live in [Design Direction](../design/DESIGN_DIRECTION.md). It supersedes the earlier unselected status and other candidate recommendations. Selection initially authorized only locking the design; DEC-64 then authorized the desktop implementation.
+
+DEC-62 supersedes the old service catalog and public findings preservation requirement. The former names/scopes, findings section/dataset and associated routes/code/docs remain removed. The logo remains. Early concepts containing removed content are not authority to restore it; DEC-63 selects only the new Layers direction.
+
+DEC-61 records the owner's November 6 presentation reset. It supersedes all earlier character, scene, screen-reference, animation and dedicated phone-layout decisions. Obsolete visual galleries, source images, code, checks and their design records are removed. The numbered decisions retained below concern active product, access and authorization boundaries. Earlier presentation instructions must not be reconstructed from historical notes.
+
+## Confirmed decisions
+
+| ID | Decision | Consequence |
 | --- | --- | --- |
-| DEC-01 | A coursework and portfolio concept, not a real service | Original brief |
-| DEC-02 | Original no-scan/no-storage baseline; backend/account/form-persistence clauses superseded by DEC-30 | No target access and no repository secrets still apply; intended authenticated persistence is now required |
-| DEC-03 | Five core pages and five illustrative findings from the PDF | Original brief and PDF comparison |
-| DEC-04 | Frontend development and product design are joint portfolio goals | Explicit confirmation of option 3 |
-| DEC-05 | Next.js App Router + TypeScript; custom design; free Vercel target | Original brief; versions/configuration not selected |
-| DEC-06 | Initial dark terminal/tactical direction | Original brief; the approved hero in DEC-20 now refines the palette, hero typography, lighting, and control appearance; preserve technical clarity elsewhere |
-| DEC-07 | Logo, interactive guide mascot, privacy, custom 404, and promotional video | Direction approved; details remain open |
-| DEC-08 | UI/UX, system design, performance, and security are equally important; the mascot must not dominate | Owner's focus correction |
-| DEC-09 | Dedicated mobile UI and Indonesian–English support | Owner request |
-| DEC-10 | Complete documentation before implementation; W1 subsequently authorized in DEC-46 | Original sequencing instruction; later packages remain gated |
-| DEC-11 | Agents must not touch Git; all commits/pushes are manual | Owner request; includes read-only Git and substitute APIs |
-| DEC-12 | No fixed deadline/video format; a prototype is sufficient for submission, and portfolio work may continue | Owner response on October 27, 2026 |
-| DEC-13 | Initial Project Brief approved | Owner approval; mobile/bilingual additions recorded as the latest revision |
-| DEC-14 | Write all project Markdown documentation in English | Owner request on October 27, 2026; mandatory Indonesian product copy and canonical source data remain verbatim |
-| DEC-15 | Use SCOUT, WARDEN, NEXUS, and ATLAS as four premium package concepts and mascot working names | Owner approved the package proposal; suitability, outputs, scope boundaries, and one/one/one/two retest cycles follow Service Packages; numerical caps/prices/conditions are drafted for review and final artwork remains open |
-| DEC-16 | No promise of finding every vulnerability or making a website completely secure; represent assessment, guidance, and bounded retesting | Owner explicitly accepted the guarantee limitation and package model; fixes are implemented by the application owner's developers |
-| DEC-17 | Use the selected hero, package-interaction, and character reference roles | Owner selected Constant Performance text composition, Avara four-character selection, a supplied doorway scene, and their Minecraft skin; see Visual References |
-| DEC-18 | Include About, strengths, FAQ and free-consultation invitations | Consultation now submits real portal records under DEC-30/31; assessments remain illustrative |
-| DEC-19 | Superseded by DEC-45: one English commit-message suggestion per file | Historical owner request; current policy groups reviewed changes by purpose at meaningful checkpoints, with suggestions in chat |
-| DEC-20 | Preserve the owner-approved revised desktop hero as the implementation visual target | The owner approved the small-pet/dim-doorway image and requested it be saved and followed closely; see Design Reference Lock and the unchanged reference PNG |
-| DEC-21 | Four package mascots are small compact pets with distinct body silhouettes and principal colors | Explicit owner correction/approval; the Minecraft source informs colors/motifs only, and identical bodies with accessory/color swaps are insufficient |
-| DEC-22 | Generate the four pet forms/shared visual rules and organize all project Markdown under subject-based docs folders | Explicit owner request; root README/AGENTS remain entry points, relative links are updated, Git stays manual, and generated concepts remain review proposals |
-| DEC-23 | Produce the complete desktop website design first, with mobile compositions afterward | Explicit owner request on October 28; authorizes desktop image/design documentation, not application code, installation, Git, or deployment |
-| DEC-24 | Homepage packages use a tight four-pet cluster, no text below, names above on hover/focus, and name/service/price only after activation | Explicit owner revision on October 28; keyboard/touch retain equivalent access, and price labels move with the revealed price |
-| DEC-25 | Accept the other desktop visual directions; defer repetitive/unnecessary copy cleanup to implementation | Owner explicitly requested only this image revision now; required concept, illustrative-data, fictional-price, permission, and state-loss labels remain in relevant contexts |
-| DEC-26 | Complete mobile UI/UX reference generation before subdividing the implementation plan; keep later packages coherent and moderately sized, and verify manual commit commands against actual files/changes | Explicit owner request; 27 mobile frames generated for review, subdivision/application work deferred, filesystem fingerprints and content review used without Git access |
-| DEC-27 | Explore CELAHAN logo directions now, independently of mascot and application implementation | Explicit owner request; three raster directions generated for selection, without replacing accepted UI references or claiming final exports |
-| DEC-28 | Use Open Threshold (logo option 02) as CELAHAN's approved logo direction | Explicit owner selection; preserve its reference, remove unselected drafts, and prepare final vectors/exports without reopening alternative directions |
-| DEC-29 | Keep code/files clean, minimize dependencies and duplicate/dead material, prioritize security/privacy/performance, and deliver commit handoffs only in chat | Explicit standing owner request; no unsafe shortcuts or unverified security claims, maintain ignore rules, check references before cleanup, and preserve selected source/data | 
-| DEC-30 | Require functional login/user-admin portal, authenticated form transmission and a real database | Owner reported lecturer feedback and approved the portal direction; supersedes static-only/no-account/no-storage clauses, not the no-scan boundary |
-| DEC-31 | Intake covers reactive, preventive and unsure/mixed needs, contact and consultation schedule requests | Owner requested name/company/website/problem, contact and requested timing; no automatic compromise or appointment confirmation |
-| DEC-32 | Differentiate prospect consultation from project-linked customer support and retest tickets | Owner requested different contents and admin priorities; project association is trusted server data, not a user-selected status |
-| DEC-33 | Provide private project reports and user/admin ticket interaction | Owner requires authorized customers to see their reports; server verifies exact resource relationships; all assessments/reports remain illustrative |
-| DEC-34 | Limit support and temporary discount to at most three months | Owner capped the period; overrides old 30/60-day windows; first private report publication is confirmed as the trigger in DEC-39 |
-| DEC-35 | Do not offer code repair; the website owner's programmer implements fixes | Explicit owner correction; support means guidance/retest, not a warranty covering all damage |
-| DEC-36 | Keep the portal functional while security work remains concept/illustration | Owner accepted the distinction in discussion; no target request or real service launch is authorized |
-| DEC-37 | Revise Markdown first for the portal scope | Explicit owner authorization on October 29; no app installation/code, image generation, provider setup, messaging, Git or deployment |
-| DEC-38 | Use Better Auth open-source library in Next.js with Neon Free PostgreSQL | Owner explicitly approved subject to free usage; no paid upgrade/add-on, managed-auth setup, provider provisioning or implementation authorized |
-| DEC-39 | Start maximum three-month support at the first private project report publication | Explicit owner reply; signup/project activation/sample views/first reading do not start it, later report versions never reset it; calendar/cycle mechanics remain reviewable |
-| DEC-40 | Defer permanent domain, registrar and DNS choice; permit a later replacement | Owner requested flexibility and approved continuing flow documentation; domain identity does not block current planning/isolated development, but public auth email still requires approved delivery setup |
-| DEC-41 | Produce the next missing account/user/admin desktop references | Owner approved continuing to the next portal design stage; authorization covers images/design documents, not implementation or provider operations |
-| DEC-42 | Do not generate existing parts again | Explicit owner correction during the desktop pass; preserve existing public/home/package/form/report/404/English references and logo/pet sources, adapting source copy later |
-| DEC-43 | Keep accounts, tickets and report/progress inside the existing website/header | Owner rejected the separate dashboard/sidebar and return-to-site control; ordinary login/signup or avatar beside ID/EN, Tiket only after login and personal Laporan & Progres only for trusted project owners; prior ticket distinctions remain |
-| DEC-44 | Remove the unsuitable portal batch and correct its documentation | Owner explicitly requested deletion; remove the 18 rejected PNGs, manifest and gallery, preserve accepted sources, generate no replacements and perform no Git operation |
-| DEC-45 | The agent judges meaningful commit checkpoints after review and relevant checks, grouping related files by purpose | Owner explicitly replaced per-file/per-edit handoffs; separate independent work, defer unfinished groups, keep English suggestions in chat and Git execution manual unless specifically requested |
-| DEC-46 | Implement and verify W1 only after the approved project analysis | Explicit October 30 authorization: reconcile the two gate/commit wording inconsistencies first, verify tooling and explain dependencies, build the shared bilingual foundation without regenerating references; no W2, provider provisioning, deployment or Git |
-| DEC-47 | Implement and verify W2, with the isolated database path delegated to the implementer | October 31 owner instruction and follow-up; dedicated Neon Free test project selected, no public enrollment, paid upgrade, external email, deployment, Git or later-package authorization |
-| DEC-48 | Allowlisted synthetic enrollment, mandatory email verification, local email-capture recovery, controlled local admin provisioning and mandatory admin TOTP for W2 | Owner explicitly approved these test policies; public identity intake and real verification/recovery delivery retain separate gates |
-| DEC-49 | Implement and verify W3 public discovery in the existing shared website | Explicit November 1 authorization; preserve source references, W2 accounts and access boundaries; no W4–W6, provider expansion, deployment or Git |
-| DEC-50 | Defer all numerical package terms from W3 public copy | Owner selected deferral of prices, caps, effort and retest-cycle counts at the W3 entry review. Keep qualitative scope and the previously confirmed general support rule; retain draft numerical tables as historical proposals only |
-| DEC-51 | Revise W3 laptop proportions, navigation, editorial rhythm, background depth and pet interaction before proposing commits | November 1 owner feedback: reduce/lower hero elements, remove the extra foreground stairs, transparent right-aligned navigation, remove decorative separators and repetitive oversized section headings, add restrained hover/press and selected-copy transitions. Source references remain immutable; visual acceptance was pending at this check and subsequently recorded under DEC-53; W4 stays gated |
-| DEC-52 | Correct the rejected first W3 revision against the retained references | November 1 owner correction: deep black; large continuous doorway/stairs to the hero bottom; transparent shared-header overlay; tighter overview and stronger type; no visible pet-cluster heading or inline summary; native full-detail navigation with restrained pet feedback. Remove the concept disclaimer from the hero only, preserving required footer/form copy. Source images remain immutable. Acceptance was pending at this check and subsequently recorded under DEC-53; W4 stays gated |
-| DEC-53 | Accept the reviewed local W3 interface and prepare coherent manual commit checkpoints after final review | November 1 owner acceptance and completion-audit request; synchronize current documentation and inventory via specifically authorized read-only Git status. Staging/commits/pushes stay manual. Hide visible viewport scrollbars while retaining actual scrolling and prevent horizontal overflow. W4–W6 and public release remain unauthorized |
-| DEC-54 | Prefer finer-grained meaningful commit checkpoints for future work | November 1 owner follow-up: a dozen or 20–30 commits are welcome when supported by the scope. Keep the accepted purpose-based grouping and substantive English messages; plan smaller complete behaviors and checks from the outset rather than chasing a count. Git remains manual and W4 still requires explicit authorization |
-| DEC-55 | Revise both public process presentations before starting the next package | November 2 owner request: use the two supplied flow/card references to make the full Process page and homepage process section more engaging, simple and clean, with all eight stages readable in one desktop viewport. Keep the black background, conceptual limitations, shared navigation and readable mobile reflow. The implemented card treatment awaits owner visual review; source images are preserved, and W4 remains unauthorized |
-| DEC-56 | Add real rotatable pet models and animated inline package selection | November 2 owner request and explicit follow-up choice: create new 3D models with 360-degree rotation rather than limited raster perspective. Reconstruct the four distinct character identities; original images and hero remain unchanged. On homepage activation enlarge the selected pet on the left, then reveal package information on the right. This supersedes DEC-52's immediate-detail-navigation requirement for normal homepage activation only. Keep native detail links, return/focus restoration, reduced motion and non-WebGL/no-JavaScript access. This appearance, motion and inline navigation were subsequently rejected and superseded by DEC-57; W4, providers and deployment stay gated |
-| DEC-57 | Reject the reconstructed meshes and inline detail; restore source-art pets with expression motion and separate package-page navigation | November 2 explicit owner correction supersedes DEC-56. Remove 360-degree controls and unused renderer dependencies, preserve the original hands/feet and source bytes, animate the pet enlarging during entry to its own page, and tighten layout. New motion remains pending review; shared-header/privacy boundaries and W4/publication gates remain unchanged |
-| DEC-58 | Refine the homepage FAQ, consultation invitation and shared footer using the supplied November 3 reference | Owner authorized this focused W3 revision. Use compact question cards, restrained sand accents and a cohesive closing panel over the existing black background. Preserve bilingual answers, the exact disclaimer, consultation availability and shared navigation. Implementation awaits owner visual review; source images, W4 and release gates remain unchanged |
-| DEC-59 | Replace the FAQ card treatment with the owner's cleaner November 3 closing-section reference and reduce its overall scale | Supersedes DEC-58's bordered cards and initially open answer. Use numbered plain FAQ rows with thin separators, all answers initially closed, smaller headings, a compact consultation panel and compact footer navigation. Keep the full disclaimer, real availability note, black background and recently added pet spacing. The owner also requested closer footer link spacing; retain usable touch targets. Visual review remains pending; no W4 or release authorization |
-| DEC-60 | Redesign About as one concise editorial composition following the owner's supplied November 3 reference | Remove the mascot and repeated three-column explanations from this page. Use a large CELAHAN wordmark with its period inline, one main message, concise truthful account/illustration context and simple process/report links. Preserve the shared header/footer, bilingual content and original assets. Review full-page continuity rather than treating each section as an isolated image. Owner visual acceptance remains pending; W4 and publication remain gated |
+| DEC-30 | Functional login, database and user/admin portal are required | Earlier client-only/no-storage rules are superseded; assessments remain illustrative |
+| DEC-31 | Reactive, preventive and unsure/mixed intake with requested contact/timing | User symptoms are not diagnoses; proposed times are not confirmed appointments |
+| DEC-32 | Initial consultation and project-linked follow-up are distinct | Initial intake needs an account, not project ownership; support needs trusted association |
+| DEC-33 | Private project reports and user/admin conversation are required | Server checks exact ownership/publication; drafts/internal notes never enter user payloads |
+| DEC-34 | Support/temporary benefit lasts at most three months | Exact discount remains unapproved; no invented rate |
+| DEC-35 | Website owner's programmers implement code fixes | No code maintenance, emergency recovery, forensics or certification |
+| DEC-36 | Portal operations work; security work remains illustrative | No website access, DNS, scanning or automatic target links |
+| DEC-38 | Better Auth in Next.js with Neon Free PostgreSQL | No managed-auth replacement or paid upgrades without approval |
+| DEC-39 | Support starts once at first private project report publication | Activation, sample views, first reading, later versions/tickets/retests do not start/reset it |
+| DEC-40 | Permanent domain/registrar/DNS choice is deferred | Configurable origins; actual public email needs separately approved setup |
+| DEC-43 | Accounts/tickets/reports use one existing website/header | Account beside ID/EN; tickets after login, personal reports/progress only for trusted owners; no separate dashboard/sidebar |
+| DEC-45 | Reviewed purpose-based commit checkpoints | English suggestions in chat only; Git remains manual |
+| DEC-46 | W1 foundation authorized | Implemented locally; historical checks have explicit limits |
+| DEC-47 | Isolated W2 authorized with dedicated database setup | No public enrollment, external email, paid services or deployment |
+| DEC-48 | Synthetic allowlist, verified email, local recovery and controlled admin TOTP | Public identity/recovery policy remains gated |
+| DEC-49 | W3 public discovery authorized | Public content remains; former presentation acceptance is superseded by DEC-61 |
+| DEC-50 | All numerical package terms are deferred | Earlier numerical publication gate; the catalog is now removed by DEC-62. Independently confirmed three-month future support rule remains |
+| DEC-54 | Future checkpoints should be smaller coherent behaviors | Do not manufacture counts or split working behavior into incomplete fragments |
+| DEC-61 | Remove the previous visual system and use a plain desktop baseline | Explicit November 6 owner instruction authorizes removal of all character assets/code/docs, desktop/phone page-reference images/manifests and dedicated phone presentation. Account/data boundaries and Open Threshold remain; DEC-62 subsequently removes catalog/report content. New desktop visual design comes later; W4–W6 and publication remain gated |
 
-## 3. Proposed baselines for review
+| DEC-62 | Remove former catalog and public findings content before redefining services | Explicit owner follow-up: delete names/scopes, public report dataset/preview, catalog/sample routes, intent plumbing and related docs/tests. No replacement content or new UI implementation; retain Open Threshold and isolated account/data boundaries |
+| DEC-63 | Lock design 2, Aperture / Layers, before implementation | Owner selected candidate 2 and its layout/palette/type/interaction direction; other candidates are unselected. Coding was initially deferred, then authorized under DEC-64. New services/reports, phone work, W4–W6 and publication retain their separate gates |
+| DEC-64 | Implement and verify the locked Layers desktop design | Explicit owner instruction authorizes homepage/shared-shell coding, interactions/animation, visual/text review, testing and actual performance/security regression checks with optimization. Locally implemented; evidence in Layers validation. No later portal writes, retired content restoration, phone work, provisioning, publication or Git |
+| DEC-65 | Add pronounced material-image animation | Historical experiment superseded by DEC-66 |
+| DEC-66 | Restore static metal and review gradients | Remove the material motion and its cutouts. Generate five mockups with three gradient colors each for owner selection before applying a new palette or artwork |
+| DEC-67 | Apply 02 Glacier Steel and refine the desktop reading blocks | Use the selected three-color gradient and static steel-blue metal. Fit process and account/FAQ into separate desktop viewports with breathing room. Align the account and privacy labels |
 
+## Reviewable operating proposals
 
-| ID | Proposal | Rationale and consequences |
-| --- | --- | --- |
-| DRAFT-01 | Superseded: static-export-only/client-memory application | DEC-30 requires a server-capable backend, authentication and real database |
-| DRAFT-02 | `/id/` and `/en/` URLs with shared page slugs | Explicit page equivalents and Indonesian default; locale stays in the path while necessary auth cookies follow the selected solution |
-| DRAFT-03 | Superseded: locale change resets saved records | Current baseline preserves saved data/session; warn only about unsaved edits |
-| DRAFT-04 | Superseded: refresh-empty disposable ticket/session provider | Database records persist; local drafts may be temporary; logout/session controls follow selected auth |
-| DRAFT-05 | Superseded for private projects: user-driven demo status controls | Admin controls illustrative project progress with audit history |
-| DRAFT-06 | Direct access to the sample report | Portfolio evaluation does not require identity input |
-| DRAFT-07 | Desktop table and expandable mobile finding list | Equivalent content without forcing a wide table onto a small screen |
-| DRAFT-08 | Keep the original Indonesian statement in both locales, with a translation in EN | Preserves the verbatim mandatory disclaimer |
-| DRAFT-09 | Limited local guide topics; no AI/free-text mascot assistant | Authenticated human user/admin ticket messages are separately in scope |
-| DRAFT-10 | Local fonts/assets; no analytics, video embeds, or external scripts | Reduces requests, cost, and privacy complexity |
-| DRAFT-11 | Form limits and quality targets follow PRD/Quality | Provides measurable criteria; numeric limits are project choices, not research findings |
-| DRAFT-12 | Final identity before UI polishing; foundation features may use clearly marked placeholders | Avoids making all foundation work dependent on mascot production |
-| DRAFT-13 | Superseded: ticket-only session with no serialization | Explicit submission stores relevant interest; saved records survive locale/reload; unsent fit answers remain local |
-| DRAFT-14 | Revised: public discovery plus authenticated Request/tickets/admin workspace | Real in-app conversation and schedule requests; no payment, external calendar or automatic contact delivery |
-| DRAFT-15 | Use the complete package-detail matrix and policies in Service Packages section 6 as the review baseline | Supplies scope caps, fictional starting prices, effort, counting rules, walkthroughs, and retest conditions for wireframes; authored at the owner's request, without claiming market validation or owner approval of each number |
-| DRAFT-16 | Design the shared four-pet family and all page/state batches before implementation; DEC-23 now orders desktop first, mobile afterward | Supersedes the earlier paired home/mobile production sequence; all batches follow the saved hero and actual ID/EN content, while reusable states share component specifications |
-| DRAFT-17 | Review the four saved v1 pets and Shared Visual System as the next design baseline | SCOUT is proposed as the hero-related sand pet; WARDEN is sage/wedge, NEXUS mineral-blue/crescent, ATLAS terracotta/low-dome; exact colors/forms/tokens are authored proposals rather than new owner approvals |
-| DRAFT-18 | Use the 24 selected desktop references and page assembly in Desktop Design Gallery as the first review baseline | Includes ID pages/states and two EN copy-fit checks; six earlier desktop iterations are explicitly superseded; a separate 27-frame mobile baseline is now generated for review, and source text/behavior contracts override generated lettering |
-| DRAFT-19 | Use the 27 mobile-web viewports and assembly/interaction contracts in Mobile Design Gallery as the review baseline | Covers ID pages/states plus EN form and all five EN findings across scroll segments; not every package/finding/locale combination has a unique raster, and real responsiveness/accessibility remain untested |
-| DRAFT-20 | Initial three-option logo review, resolved by DEC-28 | Open Threshold is selected; discarded options are removed, while editable vectors/small-size checks/usage rights remain pending | 
-| DRAFT-21 | Server-capable Next.js and server-only authorized data access; provider choice resolved by DEC-38 | Better Auth library + Neon Free selected; adapter/migrations/versions/transport remain open |
-| DRAFT-22 | Public sample separate from authenticated tickets/projects/reports; saved records survive locale/reload | Public evaluation remains easy; private records never use anonymous share links |
-| DRAFT-23 | Operations state machines, single project owner, shared messages and separate internal notes | Concrete baseline in Service Operations and Data and Access; team access deferred |
-| DRAFT-24 | Activation-based start superseded by DEC-39; proposed three-calendar-month Asia/Jakarta/month-end/exclusive-expiry mechanics | Trigger is first private report publication; calendar/cycle details remain reviewable, timely requests remain reviewable later |
-| DRAFT-25 | Temporary discount applies to scoped follow-up security review rather than code maintenance | Fits DEC-35; final eligible work, percentage and cutoff need owner confirmation |
-| DRAFT-26 | Login required for submissions; controlled enrollment/admin provisioning | DEC-48 approves isolated W2 identity policy; public enrollment/delivery remain gated |
-| DRAFT-27 | V1 private reports use all five illustrative source findings in versioned snapshots with separate follow-up outcomes | No URL-derived findings; publish/withdraw requires admin authorization; public sample unchanged |
-| DRAFT-28 | Synthetic-only project demonstration until personal-data/provider/retention/abuse policy is approved | Real auth identity is still personal data; no “we store nothing” privacy claims |
-| DRAFT-29 | Revised account/task baseline in Account and Service UX | DEC-43 supersedes the separate shell; DEC-48 approves isolated verification/TOTP policy. Public delivery and later workflow details retain their review status |
-| DRAFT-30 | Rejected: 18-frame separate portal desktop baseline | Owner rejected the presentation; assets/gallery/manifest removed under DEC-44. Existing public form/report references remain; do not use this batch for implementation |
+V1 single project owner, ticket statuses, internal-note separation, requested/confirmed schedules, first-publication transaction, immutable future report versions with newly reviewed content, retest reservations/idempotency and three-calendar-month Asia/Jakarta/month-end calculations remain proposals in Operations/Data and Access where not explicitly confirmed. Do not present authored mechanics as owner decisions.
 
-Draft baselines do not mean the owner has approved every technical detail. Document review is the next decision point; confirmed rules do not require repeated approval.
+## Open gates
 
-## 4. Open decisions and when they are needed
-
-| ID | Question | Needed before | Safe interim approach |
-| --- | --- | --- | --- |
-| OPEN-01 | Final pet production/mapping, approved-logo vector/export quality, and asset rights | Final identity production (P1) | Use approved Open Threshold Logo Guidelines and existing Mascot Guidelines; preserve selected references and validate final exports |
-| OPEN-02 | Review the revised package cluster, mobile layouts, exact licensed fonts/tokens, and motion details | Relevant design/final asset work (P2) | Desktop visual directions and frame 02 revision are accepted; review the 27 mobile references and verify actual responsive/accessibility behavior after implementation |
-| OPEN-03 | Hosting/project/domain setup, repository publication and project license | Relevant public email/deployment setup (P8) | Permanent domain/registrar/DNS choice deferred by DEC-40; existing .my.id is optional, do not request details as a planning prerequisite or purchase/configure now |
-| OPEN-04 | Video duration, aspect ratio, music, narration, and primary language | Video production (P9) | Prepare an initial storyboard without treating duration as a lecturer requirement |
-| OPEN-05 | Physical devices/browsers available for checks | Validation (P7) | Plan emulation and record limitations; do not claim physical-device testing |
-| OPEN-06 | Identity/team details or profile links allowed for publication | Final public content | Omit unapproved personal identity/contact information |
-| OPEN-07 | Owner review of the completed numerical caps, effort, retest conditions, and illustrative prices | Final package copy and pricing | Review DRAFT-15 in Service Packages section 6; do not present these authored assumptions as researched rates, live offers, guarantees, or approved commercial terms |
-| OPEN-08 | Exact package-fit questions/rules and selected-panel interaction | UX/UI approval (P2) | Offer a clear unsure-which-package path; treat any questionnaire as local scripted guidance | 
-| OPEN-09 | Remaining deployed runtime/pooling/hosting compatibility | Deployment | W2 selected Better Auth 1.7.14, built-in PostgreSQL adapter, pg 8.23.1, direct migration/pooled runtime connections and versioned SQL; actual isolated database checks do not prove deployed behavior; no paid upgrade authorized |
-| OPEN-10 | Calendar/timezone boundary and cycle reservation mechanics | Benefit implementation in P6 | First private report publication trigger resolved by DEC-39; review DRAFT-24 calculations and concurrent-publication/cycle tests |
-| OPEN-11 | Discount name, eligible follow-up work, percentage and request/approval cutoff | Public offer copy / benefit decisions | DRAFT-25 is a proposal; no invented rate or billing |
-| OPEN-12 | Public enrollment, production recovery/delivery and operational admin recovery | Before public registration | DEC-48 resolves isolated W2 policy. Local OTP capture and synthetic TOTP tests do not prove public email delivery or a production admin-recovery procedure; permanent domain can be selected later |
-| OPEN-13 | Retention/deletion, hosting/database regions/processors, backups and privacy contact | Public data intake / deployment | Do not invent retention periods or treat three-month support as deletion |
-| OPEN-14 | Review integrated-site account/ticket/report components in desktop/mobile | Relevant P2 review and implementation | Shared header/navigation confirmed by DEC-43; review detailed components/auth policies without reopening the rejected dashboard/sidebar or starting another image batch |
-
-The deadline and rubric are not blocking questions at present: the owner has stated that there is no fixed constraint and a prototype is sufficient for submission. If lecturer requirements change, revise the academic milestone without removing the portfolio goal.
-
-## 5. Deferred development
-
-Automated cross-page tours, advanced report filtering/sorting, a plain-language/technical toggle, downloadable PDF reports, light mode, organizational teams, uploads, realtime chat infrastructure, billing, automated service/contact messaging and AI remain deferred. Provider authentication verification/recovery delivery remains OPEN-12. A backend is now required by DEC-30; real scanning, code repair, forensics and certification remain excluded.
-
-## 6. Documentation history
-
-| Date | Change |
+| Gate | Before |
 | --- | --- |
-| October 27, 2026 | First Project Brief draft; frontend + product design focus confirmed |
-| October 27, 2026 | Initial brief approved; documentation expanded, mobile/bilingual support added, Git made entirely manual, academic/portfolio milestones separated |
-| October 27, 2026 | Project Markdown documentation translated into English; documentation language rule updated; required Indonesian source/product content preserved |
-| October 27, 2026 | Owner approved four premium package/mascot concepts and visual reference roles; added Service Packages and Visual References, synchronized supporting-page, state, quality, and delivery plans; pricing and final design remain open |
-| October 27, 2026 | Owner requested complete package details and per-file commit-message handoffs; wrote the scope/pricing/effort/retest draft baseline and synchronized affected documents; no implementation or Git operations |
-| October 27, 2026 | Generated/revised a hero preview at the owner's request; owner approved the compact pet and subdued doorway, requested preservation and four distinct small pets; copied the selected PNG unchanged into the project and recorded the reference lock and proposed remaining-screen batches |
-| October 27, 2026 | Generated four pet concepts plus one WARDEN shape refinement, saved selected PNGs, drafted shared visual rules, moved 14 subject documents into grouped folders, and added an index/per-file handoff; no implementation or Git operations |
-| October 28, 2026 | Owner requested full desktop design before mobile. Generated 24 selected horizontal references plus five retained superseded iterations, preserved the approved hero, recorded prompts/fingerprints and page assembly, and refreshed the complete manual commit handoff; no application or Git operations |
-| October 28, 2026 | Owner accepted the other desktop visuals and requested only a tight, caption-free package cluster with hover/focus names and click-revealed details. Saved frame 02 revision; future implementation trims redundant copy while retaining mandatory labels. No other screen regenerated |
-| October 28, 2026 | Owner accepted the cluster and requested mobile generation before moderately sized implementation packages. Produced 27 selected portrait references plus two retained iterations, documented scroll/touch/bilingual coverage, and refreshed verified per-file manual commands; no application work, plan subdivision, or Git operations |
-| October 28, 2026 | Owner requested the logo. Generated three distinct raster directions plus a targeted monochrome-specimen correction, recorded prompts/sources and selection limits, and refreshed verified per-file commands; no final logo chosen or website reference replaced |
-| October 28, 2026 | Owner selected Open Threshold and required clean code, file hygiene, security/performance, and chat-only per-file handoffs. Moved the selected reference unchanged, removed obsolete drafts and handoff artifact, minimized manifests, added ignore rules, and updated standing agent requirements; no application code or Git operations |
-| October 29, 2026 | Owner approved revising the concept into a functional authenticated/database-backed service portal with consultation categories, user/admin tickets, private illustrative reports and three-month benefits; reconfirmed no code repair. Revised Markdown and marked prior static-only rules superseded; assets preserved, no application/Git/provider operations |
-| October 29, 2026 | Owner selected Better Auth + Neon Free, confirmed first private report publication as support start, and clarified an existing .my.id domain is available. Synchronized current specifications; email/DNS setup, versions, calendar/cycle details and actual implementation remain pending |
-| October 29, 2026 | Owner deferred permanent domain/DNS details and approved continuing account/portal flow planning. Added textual Portal UX Specification and synchronized navigation, draft auth policies, phase-specific delivery gates and documentation links. No new images, application/provider/DNS operations or Git |
-| October 30, 2026 | Owner authorized the next desktop portal design pass and explicitly prohibited regenerating existing parts. Generated 18 new account/user/admin frames, retained prior image/manifests unchanged and documented reuse/copy corrections. New visual review and portal phone views remain pending; no application/provider/Git work |
-| October 30, 2026 | Owner rejected the separate dashboard/sidebar portal and requested removal. Confirmed ordinary accounts/avatar beside ID/EN, tickets after login and report/progress only for owned projects within the same website. Removed rejected assets/gallery/manifest, corrected current requirements/architecture/UX and preserved accepted sources; no replacement images, application work or Git |
-| October 30, 2026 | Owner replaced per-file commit suggestions with agent-judged reviewed checkpoints. Group related files by purpose, separate independent work and withhold suggestions for incomplete changes. Updated standing instructions and related planning/publication guidance; no Git execution |
-| October 30, 2026 | Owner approved the project analysis and authorized W1 only. Reconciled Architecture/Quality gate and checkpoint wording, verified tooling, implemented the local bilingual shared shell and recorded scoped checks. Approved references remain unchanged; no W2 auth/database integration, provider setup, deployment or Git |
-| October 31, 2026 | Owner authorized W2, approved its synthetic enrollment/verification/local recovery/admin-TOTP policy and delegated isolated database setup. Implemented Better Auth + dedicated Neon Free identity/ownership, shared account navigation and scoped checks. Public enrollment, real email, later packages and deployment remain gated; no Git or image generation |
+| Further desktop changes preserve the selected Layers direction and relevant actual checks | The implementation unit is authorized/checked under DEC-64; significant new layouts or later workflows retain their own scope |
+| Logo production exports, small-size checks and rights | Final identity release |
+| Field/contact/schedule limits, ticket transitions and concurrency | W4 writes |
+| Three-month calendar/expiry/cycle mechanics | W5 benefit logic |
+| Replacement services, names, scope, report content and any numerical terms | Any new catalog/sample publication |
+| Discount eligibility/rate/cutoff | Any public offer |
+| Public enrollment, actual verification/recovery delivery and operational admin recovery | Public accounts |
+| Retention/deletion/backups, processors/regions and privacy contact | Public intake |
+| Hosting suitability, production credentials and explicit deployment permission | W6 publication |
+| Dedicated phone experience | A later separately reviewed design scope |
+| Video format/duration/language/audio rights | Video production |
 
-| November 1, 2026 | Owner authorized W3 and deferred all numerical package terms. Added the approved public visual experience, qualitative packages, unchanged sample and safe consultation intent through existing accounts. Recorded scoped local checks; W4–W6, provider expansion and deployment remain gated; no Git or new reference generation |
-
-Every new decision records the problem, choice, rationale, consequences, approval status, and documents requiring updates. Do not change “draft baseline” to “confirmed” merely because an agent has written it down.
+No fixed deadline or detailed lecturer-approved rubric is invented. Academic prototype and portfolio release remain separate milestones. Automated tours, advanced report filters, PDFs, teams, uploads, realtime chat, billing, automatic service messaging and AI remain outside v1. No Git operation is authorized by this document.

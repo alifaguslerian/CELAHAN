@@ -1,85 +1,40 @@
 # CELAHAN — Project Brief
 
-Status: W3 local public scope complete and reviewed interface owner-accepted; W1/W2 checked; W4–W6 not started or authorized  
-Updated: November 1, 2026  
-References: [PRD](PRD.md), [Service Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
+Updated: November 6, 2026
+Status: Real portal concept; Layers public desktop implemented and checked locally; W4–W6 pending
+References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
-## 1. Project and purpose
+## Purpose
 
-CELAHAN is a bilingual web security assessment service concept for IT Project Management coursework and a portfolio combining product design, frontend development, and backend engineering. It will demonstrate a functional service portal rather than a promotional page that forwards visitors to WhatsApp.
+A bilingual web security assessment portal concept for IT Project Management coursework and a portfolio covering product design, frontend and backend. Accounts, persistence, consultation, conversation and admin decisions are intended to work. Assessments/progress/findings/retests remain explicitly illustrative. CELAHAN never visits submitted websites or repairs their code.
 
-Accounts, authenticated sessions, consultation submissions, database records, ticket conversations, admin decisions, and private project/report access are planned to work for real. Security assessments, their progress, and reports remain explicitly illustrative. The website does not provide a commercial security service, contact or scan submitted websites, repair code, or certify security.
+The lecturer feedback reported by the owner asks for login, name/company/website/problem fields and a database. No full grading rubric, deadline or mandatory video format is supplied. Academic prototype and portfolio release are separate milestones. A promotional video is planned after stable functionality exists.
 
-The owner's October 29 scope change supersedes the earlier prohibition on application backends, accounts, form transmission, and databases. It does not authorize implementation, deployment, real assessments, or collecting real incident evidence.
+## Audiences
 
-## 2. Goals and evidence
+Public visitors understand the project and its limits; replacement service/report content requires later review. Registered prospects request consultation and follow private tickets. Trusted project owners read their published reports and request follow-up. Admins triage, confirm schedules, assign projects and publish illustrative versions. Reviewers inspect real persistence, access isolation and truthful evidence.
 
-Demonstrate coherent discovery-to-consultation flows, a useful user/admin workflow, persistent data, server-enforced access, dedicated mobile layouts, Indonesian/English equivalence, accessible controls, measured performance, and maintainable code. Explain trade-offs and record only checks actually run.
+Reactive/preventive/unsure needs describe motivations, not automatic diagnoses. The owner removed the previous service catalog and descriptions; replacement names/scope/terms will be decided later. No new catalog is selected.
 
-The lecturer's feedback, as reported by the owner, requires login, consultation fields, and a real database. No complete grading rubric has been supplied. A prototype can be submitted before the final portfolio release; development may continue afterward. No fixed deadline or video duration/format has been specified.
+## Experience and status
 
-The promotional video remains a coursework deliverable. It must distinguish real portal functionality from illustrative security work.
+One shared site header provides public navigation and account entry beside ID/EN. Tickets appear after login, personal report/progress only for trusted project owners. No separate customer dashboard/sidebar. Initial consultation is distinct from owned-project support/retest.
 
-## 3. Audiences and needs
+W1 shell and isolated W2 accounts/database exist. Public process, About and privacy pages are available. Request, ticket, project and admin workflows remain pending. Aperture / Layers uses Glacier Steel and static artwork under DEC-67, native context and process explorers, and shared account navigation. See [desktop design](../design/DESIGN_DIRECTION.md) and [local validation](../validation/2026-11-08-glacier-steel.md).
 
-| Audience | Need |
-| --- | --- |
-| Public visitor | Understand services, limitations, packages, process, and the public sample report |
-| Registered prospect | Request free consultation, suggest a schedule, provide contact details, and follow a private ticket |
-| User with a project | Read authorized reports, discuss findings, request retesting, and view support eligibility |
-| Admin | Triage consultations, agree schedules, associate users with projects, manage illustrative reports and support requests |
-| Lecturer / portfolio reviewer | Inspect working persistence, authentication, authorization, UX, and documented evidence |
+## Service boundaries
 
-Reactive needs include reported defacement, suspected leakage/intrusion, and reported browser/search warnings. Preventive needs include pre-release review, requirements associated with standards/partnerships/tenders, and periodic checks. These are intake categories supplied by the owner, not independently verified market-research findings or automatic diagnoses. Include an unsure/mixed path.
+- Authenticated intake collects name, optional company, inert website, need/reasons, problem, contact, proposed schedule/timezone and initial authority declaration.
+- The declaration is not written testing permission. Registration/selected package/company/email alone grants no project rights.
+- Maximum three-month support starts once at first private project report publication. Activation, samples, first reading, later versions/tickets/retests never start/reset it. Exact calendar/cycle mechanics remain reviewable.
+- Code fixes belong to the website owner's programmers. No actual testing, code maintenance, recovery, forensics, certification, monitoring, payment, uploads, AI or automatic service messaging.
+- The old public findings dataset/preview is removed. Replacement report content requires review. Future private versions require trusted ownership/publication checks; no retired content is copied into projects.
+- The temporary discount needs approved eligibility/rate/cutoff. No invented percentage or billing.
 
-## 4. Service scope and follow-up
+## Privacy and publication
 
-The eight represented stages remain: pre-engagement, information gathering, scanning, manual testing, risk assessment, reporting, retesting, and closure. They are educational content; entering a URL or advancing an illustrative project stage performs none of these operations.
+No target fetch/DNS/favicon/embed/preview/preconnect/scan or automatic target link. Inputs travel only through authorized auth/portal/database flows, never URLs/logs/analytics/public assets/AI or browser persistent storage. No secrets, real private fixtures or dumps in source.
 
-SCOUT, WARDEN, NEXUS, and ATLAS remain four scope-based premium concepts. Reactive/preventive describes why someone seeks help; the package describes assessment coverage. An incident does not automatically require the highest-priced package.
+Both locale footers/forms preserve: **Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.** EN adds its translation. No fabricated customers, testimonials, achievements, research or guarantees.
 
-CELAHAN represents assessment, risk explanation, remediation guidance, and bounded retesting. The application's own programmers implement fixes. Code repair, hosting administration, emergency recovery, digital forensics, certification, continuous monitoring, and testing without written permission are excluded.
-
-The owner approved a maximum three-month support period starting when the first private project report is published, replacing both the earlier 30/60-day windows and the proposed project-activation trigger. This means support and retesting, not a promise to repair all damage or make the site completely secure. The proposed calendar/cycle rules and still-open discount terms are in [Service Operations](SERVICE_OPERATIONS.md). A maintenance-discount idea remains accepted in principle; because code maintenance is excluded, the proposed wording is discounted follow-up security review, pending confirmation.
-
-## 5. Product boundaries
-
-- No request, DNS lookup, favicon, embed, preview, preconnect, scan, or automatic hyperlink to a visitor-supplied application address.
-- Inputs may travel only through the authorized portal/authentication data flows, with server validation and access controls. No input leakage through URLs, public assets, analytics, external AI, or diagnostic logs.
-- No secrets/API keys, real personal fixtures, incident evidence, or complete academic PDF in the public repository.
-- No payments, actual testing, code remediation, certification, file uploads, automatic email/WhatsApp messaging, or AI integration in the baseline.
-- Public sample findings preserve the five original rows. Private project reports are database-backed illustrative records, explicitly separated from that public sample.
-- Keep the exact footer and form statement: **Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.**
-- EN pages also show: **A concept project for a portfolio and university coursework. Not a real service.**
-- No fabricated clients, testimonials, certifications, business statistics, research results, or trademark registration.
-- Persistence and hosting practices must be disclosed accurately. A three-month support expiry is not a data-deletion policy.
-
-## 6. Planned experience
-
-Public pages introduce the service, four packages, eight-stage process, About/FAQ, privacy and a sample report without login. The existing header places ordinary login/signup or the signed-in avatar beside ID/EN. Tiket appears after login; Laporan & Progres appears only for users with trusted project associations. Users read conversations, progress, reports and follow-up within the same website. Admin management content uses the same header with server-authorized actions, not a separate portal/sidebar shell.
-
-Project ownership is assigned server-side by an authorized admin. A registered account alone is not proof of customer status, payment, website ownership, or testing permission. V1 proposes a single owner account per project; organizational team access is deferred.
-
-The form includes name, company, website, problem, contact method/details, and proposed consultation timing. The existing ownership/authority statement remains an initial declaration, not written testing permission. Company is proposed optional for individuals. Exact limits and schedule mechanics are draft requirements, not undisclosed lecturer instructions.
-
-## 7. Design continuity
-
-Preserve the approved [hero](../design/DESIGN_REFERENCE_LOCK.md), [Open Threshold logo direction](../design/LOGO_GUIDELINES.md), warm near-black/ivory/sand palette, subdued doorway, and compact pet identity. The four pet silhouettes and principal colors remain distinct. The homepage cluster retains names above on hover/focus and details on activation.
-
-The approved public visual direction remains useful. The 24 desktop and 27 mobile references are preserved; old no-storage, disposable-ticket, privacy and language-reset behavior is superseded. The owner rejected the separate dashboard/sidebar portal batch and requested cleanup. The corrected [account/ticket/report UX](../design/PORTAL_UX_SPEC.md) integrates ordinary accounts and conditional navigation into the same website. No replacement image generation or application work is authorized by this correction.
-
-ID/EN and mobile/desktop share domain logic and equivalent capabilities. Mascot guidance remains optional and scripted, separate from real user/admin ticket messages. Changing language must not erase database records or restart support.
-
-## 8. Technical direction and completion
-
-Next.js App Router + TypeScript remain required. Better Auth runs in the application server with Neon Free PostgreSQL, with no paid upgrade without explicit approval. W2 selects the built-in PostgreSQL adapter, pg pooling and a dedicated isolated database; [Architecture](../engineering/ARCHITECTURE.md) records versions and actual implementation. Vercel remains an unprovisioned target; hosting/pooling compatibility, public email and release operations still require verification. Permanent domain/registrar/DNS choice is deferred and must not block isolated development. Origins and sender settings stay configurable; no domain purchase is authorized.
-
-Success requires end-to-end user/admin workflows, isolated private data, unchanged public sample content, correct support rules, responsive bilingual UX, actual build/lint/typecheck and behavior/security checks, an accurate README/privacy notice, and verified deployment when separately requested. A secure design is not evidence of a completely secure implementation.
-
-Read [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for sequencing and [Decisions](../planning/DECISIONS.md) for unresolved choices. The agent identifies reviewed, coherent commit checkpoints, grouping related files by purpose and deferring suggestions for unfinished work. English suggestions belong only in chat; Git execution remains manual unless explicitly requested.
-
-## 9. Sources and current authorization
-
-Sources are the owner's original brief and conversation through October 29, 2026, plus the previously reviewed academic PDF for the eight stages and five findings. The PDF is source material, not authorization to perform security testing or publish personal details.
-
-The October 29 step authorized Markdown revision only, followed by W1 on October 30 and W2 on October 31. For W2 the owner approved isolated synthetic enrollment, mandatory email verification, locally captured recovery and controlled TOTP-protected admin access, and delegated the test database choice. A dedicated Neon Free test project is used. W3 was authorized November 1; public discovery is implemented with all numerical package terms deferred (DEC-49–50). W4–W6, replacement images, public enrollment, real email, paid services and deployment remain unauthorized. See [Implementation Plan](../planning/IMPLEMENTATION_PLAN.md) for actual status.
+Public intake needs approved enrollment/recovery/delivery, retention/deletion/backups, processors/regions and privacy contact. Three-month support is not retention. Domain choice is deferred; no provider/deployment operation is authorized by the reset. W4–W6 require separate authorization.

@@ -1,5 +1,7 @@
 # CELAHAN — Portal Documentation Revision Validation
 
+> Historical evidence only. November 6, 2026: presentation-specific artifacts are retired. Remaining results describe the original date and do not establish the plain desktop reset or future phone support.
+
 Date: October 29, 2026  
 Scope: Documentation revision only  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md)
@@ -19,7 +21,6 @@ Filesystem checks used PowerShell and an inline Python standard-library audit. N
 - Nonempty project Markdown, balanced fenced code blocks, consistent table columns/header rows and valid local file/heading links.
 - Continuous requirement groups: FUN-01–26, AC-01–20, LNG-01–05, MOB-01–04 and QLT-01–07.
 - Continuous planning/test groups: DEC-01–37, DRAFT-01–28, OPEN-01–14 and T-01–30.
-- All five original Indonesian finding rows retain exact title, category, location, decimal-comma score, severity and status. Both mandatory disclaimer strings remain in canonical content and README.
 - All 57 retained PNG SHA-256 values match the before-edit baseline. All three design manifest files are unchanged.
 - All 52 selected assets listed across the three manifests match their recorded SHA-256, byte size and PNG dimensions.
 - The eight pre-existing validation reports remain unchanged.
@@ -34,7 +35,7 @@ Reviewed the separation of public sample/private report; user role/customer rela
 
 The three-month maximum supersedes previous 30/60-day windows. No-code-repair scope is consistent with guidance/retest support. The proposed discount is follow-up security review, with final terms open. New tickets and locale changes cannot restart benefits.
 
-Gallery copy marks old state behavior historical and identifies missing account/user/admin/mobile screens. Approved public hero/cluster/logo identity remains in force without claiming new portal images exist.
+Previous presentation/gallery details are retired under the November 6 reset. Product persistence and access boundaries remain.
 
 ## 4. Unrelated local changes
 
@@ -45,3 +46,5 @@ An ordinary file-hash comparison detected a separate .gitignore change during th
 No npm build/lint/typecheck, browser behavior, auth/database integration, runtime security, accessibility, performance, backup/restore, deletion or deployment test was run. T-01 through T-30 remain plans, not passed tests.
 
 Review open product/provider/privacy/UX choices before affected implementation. No dependency, account, database, application source, new image, external message or deployment was created. Git was not used.
+
+Content reset note: DEC-62 retires the previous catalog/report content and its preservation requirements. Historical passes are not approval of a replacement catalog, dataset or UI.

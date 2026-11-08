@@ -1,7 +1,7 @@
 # CELAHAN — User and Admin Flows
 
 Status: W1 shared shell and isolated W2 account flows implemented; ticket/report workflows remain planned  
-Updated: October 31, 2026  
+Updated: November 6, 2026  
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
 ## 1. Route map
@@ -10,10 +10,10 @@ Proposed routes use id/en locale prefixes and shared slugs within the same websi
 
 | Audience | ID example | Purpose |
 | --- | --- | --- |
-| Public | /id/, /id/services/, /id/process/, /id/about/ | Discovery and process |
-| Public | /id/report/, /id/privacy/ | Public illustrative report and privacy |
-| Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Draft email/password verification/recovery pages; provider transport paths remain unselected |
-| Admin identity check | /id/account/two-factor/ | Draft authenticator challenge before admin access; no public admin signup |
+| Public | /id/, /id/process/, /id/about/ | Project introduction and conceptual process |
+| Public | /id/privacy/ | Actual account/privacy boundaries |
+| Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Isolated W2 email/password verification/recovery; no public delivery |
+| Admin identity check | /id/account/two-factor/ | Isolated authenticator challenge before admin access; no public admin signup |
 | Signed-in user | /id/request/ | Consultation form |
 | Signed-in user | /id/tickets/, /id/tickets/[ticketId]/, /id/account/ | Own tickets/conversation and profile within the shared website |
 | Project owner | /id/projects/[projectId]/ | Authorized project and support information |
@@ -23,13 +23,9 @@ Proposed routes use id/en locale prefixes and shared slugs within the same websi
 
 The /en/ equivalents provide the same permissions and data. Root redirects to /id/ without inspecting a visitor-supplied target. Unknown public routes return HTTP 404; private missing/foreign records receive a consistent generic response without exposing existence. Administrative navigation visibility is supplementary to server authorization.
 
-## 2. Public discovery and packages
+## 2. Public discovery
 
-Browse home, services, eight stages, About/FAQ, privacy and the public sample without an account. The four pets retain the accepted tight cluster, no text below at rest, names above on hover/focus, direct touch/keyboard activation, separate hit areas, and named artwork fallback.
-
-Details show reviewed scope, outputs, limitations and fictional prices. An unsure/mixed need can proceed to consultation without an arbitrary upgrade. Package interest is not a purchase, confirmed scope, legal permission or evidence that an assessment occurred.
-
-A public sample never displays personalized ticket or project identifiers. It always exposes the same five canonical findings. Opening a private project report follows a different authenticated path.
+Browse the project introduction, conceptual process, About/FAQ and privacy without an account. The previous catalog, descriptions, findings section/dataset and public sample page are removed under DEC-62; retired URLs return 404. New service definitions/report content are undecided. No replacement offer or report is fabricated.
 
 ## 3. Account entry
 
@@ -49,7 +45,7 @@ The existing header retains public navigation and ID/EN. Beside ID/EN show Log i
 
 Admin management entry is restricted to authorized admins and opens task content within the same site/header. Triage leads to shared replies, separate internal notes, project scope and report publication. No replacement sidebar, separate customer overview or Kembali ke situs/Back to site control. Every server operation still enforces exact resource permissions.
 
-Phone uses a labeled menu and stacked details, with no mandatory bottom bar or hover-only control. Permanent domain/DNS identity is deferred; it does not change these flows or require a domain purchase now.
+Dedicated phone presentation is removed/deferred. Desktop navigation remains visible. Permanent domain/DNS choice does not block current development.
 
 ## 4. Consultation submission
 
@@ -84,11 +80,11 @@ Every project stage change is admin-controlled, audited and labeled illustrative
 
 ## 7. Private reports and fixes
 
-Admin drafts an illustrative report for an authorized project using a canonical five-row snapshot, reviews it, and publishes a version. Users cannot read drafts or withdrawn versions. Publication is an atomic server operation. The first private project publication also sets support_started_at/expiry once using the reviewed calendar policy; later versions never restart the period.
+After new report content is reviewed, an admin can draft an illustrative project-bound report, review it and publish a version. No fixed dataset/count is currently selected. Users cannot read drafts or withdrawn versions. Publication is an atomic server operation. The first private project publication also sets support_started_at/expiry once using the reviewed calendar policy; later versions never restart the period.
 
 The owner opens Laporan & Progres from the site navigation and selects an owned project if needed. Before publication this destination shows illustrative progress and an awaiting-report state without exposing drafts. After publication it opens the authorized private report in the same site. All fields, limitations, original finding data and illustration labels are present in ID/EN. The private URL is never a public share link. Failed access reveals no title, counts, owner identity or findings.
 
-The user may report programmer changes against a published finding. They cannot directly set a verified outcome. A retest request references the finding and change description, not uploaded proof or credentials. Admin records a separate explicitly illustrative review event; the original public sample and published version remain unchanged.
+The user may report programmer changes against a published finding. They cannot directly set a verified outcome. A retest request references the finding and change description, not uploaded proof or credentials. Admin records a separate explicitly illustrative review event; future published versions remain immutable; retired sample content is not restored.
 
 ## 8. Support and follow-up
 
@@ -111,17 +107,17 @@ New tickets, replies, locale changes and later report versions do not reset date
 | Logout/account switch | Revoke/replace session, clear private UI state; server reauthorizes every request |
 | Back/forward restore | Revalidate session and private resources; never show another account's cached content |
 | Network/database failure | Honest retryable state and retained unsaved input; no fake success |
-| Public report direct load | Same nonpersonal canonical sample; no login required |
+| Retired public catalog/report load | HTTP 404 with current navigation; no old content or fabricated replacement |
 | Private report deep link | Server checks current account, project ownership and publication state |
 
 Drafts remain in memory in v1; no localStorage/IndexedDB/offline copies of private content. Durable records belong in the authorized database. Authentication cookies are necessary infrastructure, not a claim of a cookie-free application. Language does not translate user messages or alter domain IDs.
 
-## 10. Mascot and errors
+## 10. Report help and errors
 
-Optional guide topics remain local scripted content: scope, risk, sample findings and retesting. Guide interaction is distinct from authenticated ticket messaging. Text fallback, close/Escape/focus return, mobile keyboard handling and reduced motion remain required.
+Future report-reading help requires reviewed replacement content and remains distinct from authenticated conversation.
 
 Handle an empty ticket list, pending consultation, awaiting report, expired support, denied access, expired session, stale concurrent update and failed save within the relevant same-site task. Do not add an empty customer dashboard or report navigation for users without projects. Do not echo raw target addresses or sensitive errors in 404 pages. No generic “scan failed” message may imply a scanner exists.
 
 ## 11. Verification
 
-Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, mobile, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). W1 shared-site and isolated W2 account/minimal ownership checks do not establish later ticket/report/support workflows. Authenticated task destinations currently explain their pending status without fabricating private records.
+Exercise public browsing, two-user isolation, admin/user roles, category-specific intake, persistence, retries, conversation/internal-note separation, schedule confirmation, project assignment, report publication, support boundary dates, retest allowances, locales, desktop keyboard behavior, session expiry and logout caches. See [Quality](../engineering/QUALITY_AND_SECURITY.md). W1 shared-site and isolated W2 account/minimal ownership checks do not establish later ticket/report/support workflows. Authenticated task destinations currently explain their pending status without fabricating private records.
