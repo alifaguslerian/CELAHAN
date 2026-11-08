@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { accountCopy } from '@/content/account';
 import { disclaimer } from '@/content/shell';
-import { safeReturnPath } from '@/lib/auth-policy';
 import type { Locale } from '@/lib/routing';
 import { localeHref, loginDestination } from '@/lib/routing';
 
@@ -16,7 +15,7 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
   const copy = accountCopy[locale];
   const router = useRouter();
   const search = useSearchParams();
-  const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'), search.get('package'));
+  const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'));
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [view, setView] = useState(mode);
   const [email, setEmail] = useState(profile?.email ?? '');
@@ -67,7 +66,7 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
       dirty.current = false; setPassword(''); setOTP('');
       if (data.needsTwoFactor) { setView('twoFactor'); return; }
       if (view === 'login' || view === 'twoFactor') {
-        window.location.assign(safeReturnPath(loginDestination(search.get('next'), locale, search.get('package')), locale)); return;
+        window.location.assign(loginDestination(search.get('next'), locale)); return;
       }
       if (view === 'register') { setView('verify'); setMessage(copy.sent); }
       if (view === 'recovery') { setView('reset'); setMessage(copy.sent); }

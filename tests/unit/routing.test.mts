@@ -5,41 +5,40 @@ import { isLocale, localeHref, loginDestination, requestHref } from '../../src/l
 test('accepts only the two supported locale identifiers', () => {
   assert.equal(isLocale('id'), true);
   assert.equal(isLocale('en'), true);
-  for (const value of ['ID', 'fr', '', '../en', '__proto__']) {
-    assert.equal(isLocale(value), false);
-  }
+  for (const value of ['ID', 'fr', '', '../en', '__proto__']) assert.equal(isLocale(value), false);
 });
 
-test('language switching keeps the supported destination and public anchor', () => {
+test('language switching preserves current tasks and reviewed public anchors', () => {
   assert.equal(localeHref('/id/', 'en', '#about'), '/en/#about');
+  assert.equal(localeHref('/id/', 'en', '#process'), '/en/#process');
+  assert.equal(localeHref('/id/', 'en', '#context'), '/en/#context');
   assert.equal(localeHref('/en/login/', 'id'), '/id/login/');
   assert.equal(localeHref('/id/register', 'en'), '/en/register/');
   assert.equal(localeHref('/id/account/', 'en'), '/en/account/');
   assert.equal(localeHref('/en/account/recovery/', 'id'), '/id/account/recovery/');
   assert.equal(localeHref('/id/projects/', 'en'), '/en/projects/');
   assert.equal(localeHref('/id/login/', 'en', '', 'account'), '/en/login/?next=account');
-  assert.equal(localeHref('/id/login/', 'en', '', 'https://foreign.invalid/'), '/en/login/');
-  assert.equal(localeHref('/id/services/warden/', 'en'), '/en/services/warden/');
-  assert.equal(localeHref('/id/report/', 'en', '#finding-f-02'), '/en/report/#finding-f-02');
-  assert.equal(localeHref('/id/login/', 'en', '', 'request', 'warden'), '/en/login/?next=request&package=warden');
-  assert.equal(localeHref('/id/account/recovery/', 'en', '', 'request', 'warden'), '/en/account/recovery/?next=request&package=warden');
-  assert.equal(localeHref('/en/account/verify-email/', 'id', '', 'request', 'scout'), '/id/account/verify-email/?next=request&package=scout');
-  assert.equal(localeHref('/id/account/', 'en', '', 'request', 'warden'), '/en/account/');
+  assert.equal(localeHref('/id/login/', 'en', '', 'request'), '/en/login/?next=request');
+  assert.equal(localeHref('/id/account/recovery/', 'en', '', 'request'), '/en/account/recovery/?next=request');
+  assert.equal(localeHref('/en/account/verify-email/', 'id', '', 'request'), '/id/account/verify-email/?next=request');
+  assert.equal(localeHref('/id/account/', 'en', '', 'request'), '/en/account/');
 });
 
-test('language switching cannot copy external destinations or private input', () => {
-  for (const value of ['https://example.invalid/id/login', '//example.invalid/id/', '/id/login/?email=private', '/id/../admin', '/fr/login/', '/id/unknown/']) {
-    assert.equal(localeHref(value, 'en'), '/en/');
+test('language switching drops retired destinations, anchors and private query data', () => {
+  for (const path of ['/id/services/', '/en/report/', '/id/services/retired/', 'https://example.invalid/id/login', '//example.invalid/id/', '/id/login/?email=private', '/id/../admin', '/fr/login/', '/id/unknown/']) {
+    assert.equal(localeHref(path, 'en'), '/en/');
   }
-  assert.equal(localeHref('/id/', 'en', '#private-input'), '/en/');
+  for (const hash of ['#packages', '#report', '#finding-retired', '#private-input']) assert.equal(localeHref('/id/', 'en', hash), '/en/');
+  assert.equal(localeHref('/id/login/', 'en', '', 'https://foreign.invalid/'), '/en/login/');
 });
 
-test('consultation return destinations carry only enumerated package intent', () => {
-  assert.equal(requestHref('id', 'nexus'), '/id/request/?package=nexus');
-  assert.equal(loginDestination('request', 'en', 'atlas'), '/en/request/?package=atlas');
-  for (const input of ['https://visitor.invalid/', '../admin', 'warden&owner=admin', '', null, ['scout']]) {
-    assert.equal(requestHref('id', input), '/id/request/');
-    assert.equal(localeHref('/id/login/', 'en', '', 'request', input as string), '/en/login/?next=request');
-    assert.equal(loginDestination(input, 'en', 'scout'), '/en/');
+test('consultation return intent accepts only supported tasks without catalog data', () => {
+  assert.equal(requestHref('id'), '/id/request/');
+  assert.equal(requestHref('en'), '/en/request/');
+  assert.equal(loginDestination('request', 'en'), '/en/request/');
+  assert.equal(loginDestination('account', 'id'), '/id/account/');
+  for (const input of ['https://visitor.invalid/', '//visitor.invalid', '../admin', 'request&owner=admin', '/id/%2e%2e/admin/', '/id/account/?email=private', '', null, ['request']]) {
+    assert.equal(loginDestination(input, 'en'), '/en/');
+    assert.equal(localeHref('/id/login/', 'en', '', input as string), '/en/login/');
   }
 });

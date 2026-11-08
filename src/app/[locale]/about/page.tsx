@@ -21,7 +21,6 @@ export default async function About({ params }: { params: Promise<{ locale: stri
       <div className="about-description"><p>{copy.aboutBody}</p><p className="about-boundary">{copy.aboutReal}</p>
         <nav className="about-links" aria-label={copy.aboutExplore}>
           <Link className="text-link" href={`/${locale}/process/`}>{copy.allStages}<span aria-hidden="true">↗</span></Link>
-          <Link className="text-link" href={`/${locale}/report/`}>{copy.report}<span aria-hidden="true">→</span></Link>
         </nav>
       </div>
     </section>

@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-08",
+  "purpose": "Glacier Steel refinement of the Aperture / Layers desktop under DEC-67",
+  "generator": "Built-in image generation tool",
+  "reference": "glacier-steel-approved.png",
+  "derivation": "Static assets generated from the previous Layers crops and the selected Glacier Steel reference. Pillow 13.0.0 exports WebP at quality 78, method 6. The hero is cropped to the bottom of the plates and padded at the top with transparency. The other two assets use centered fit. The review mockup is not rendered on the site.",
+  "assets": [
+    {
+      "name": "layers-hero",
+      "source": "material-sources/layers-hero.png",
+      "tool_output": "exec-7a97fa7b-b518-4bc4-b057-0477cda4faa3.png",
+      "source_sha256": "f40daa49786a7a14b721ccbec70dd2e21b8eecfe8a073d24db9937e9eae3f9bd",
+      "export": "../../public/artwork/glacier-steel-hero.webp",
+      "width": 1600,
+      "height": 533,
+      "bytes": 39032,
+      "export_sha256": "a5ea4c1d670b0ce3c1e3c2e727ea39e7106f8231c0a289bbdd3ea3ffb3952065",
+      "mode": "RGBA"
+    },
+    {
+      "name": "aperture-detail",
+      "source": "material-sources/aperture-detail.png",
+      "tool_output": "exec-115f7f13-8e10-4bb0-9b70-85705df09832.png",
+      "source_sha256": "b465c8ddbd31549d733acad714f02e15bde7154c6b6557fb95682a72758b78d8",
+      "export": "../../public/artwork/glacier-steel-detail.webp",
+      "width": 1000,
+      "height": 333,
+      "bytes": 21130,
+      "export_sha256": "c5eb1a2181a8ee71161c86c310020e49190a2452b0ae42883951a3246c30133c",
+      "mode": "RGB"
+    },
+    {
+      "name": "layers-account",
+      "source": "material-sources/layers-account.png",
+      "tool_output": "exec-d14c6afd-0f30-490c-ae6e-c1824b8d91dd.png",
+      "source_sha256": "4fd98ee0a5ee90022b29066b29d4121b0e2ff7517ef669a3e2c29897d57f59b1",
+      "export": "../../public/artwork/glacier-steel-account.webp",
+      "width": 1000,
+      "height": 667,
+      "bytes": 31464,
+      "export_sha256": "cba1a64cdb00e465dc0e9e32a6fde8f695685f9d67e697b8cdf903837ec644d8",
+      "mode": "RGB"
+    }
+  ],
+  "font": {
+    "family": "Inter Variable",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2",
+    "license_source": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt",
+    "license": "SIL Open Font License 1.1",
+    "file": "../../public/fonts/InterVariable.woff2",
+    "bytes": 48256,
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "metadata_source": "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
+    "subset": "Latin; official Google Fonts variable weights100-900. Other scripts use the system fallback."
+  },
+  "generation_prompts": [
+    {
+      "key": "layers-hero",
+      "transparent": true,
+      "prompt": "Wide 3:1 canvas. Keep the exact input framing, silhouette rising from left to right and layer positions, including clear alpha all above the sheets. Match the selected Glacier Steel mockup's crisp machined chamfers and fine bead-brushed silver. Change the orange channel to a natural muted steel-blue anodized channel with real deep navy shadow and restrained cool blue highlight. Keep the rounded left panel edge and whole continuous sheet across the bottom. The screenshot reference is for material color and shape only. Output only the foreground metal cutout, with clean transparent alpha around all its outer edges. No backdrop, words, UI, logo, or text."
+    },
+    {
+      "key": "aperture-detail",
+      "transparent": false,
+      "prompt": "Keep the original tight 3:1 macro composition, long curved seam, direction and crop. Change the orange backing to matte anodized steel-blue and retain the smooth silver bevel, natural deep blue shadows and clean brushed grain. Cool polished Glacier Steel studio material. Fill the whole canvas, no writing, logos, UI or framing."
+    },
+    {
+      "key": "layers-account",
+      "transparent": false,
+      "prompt": "Keep original 3:2 macro crop of two overlapped brushed silver slabs, clear geometric triangular slit with softly machined corners. Change orange inner surface to clean muted steel-blue anodized material with a subtle pale-blue reflection, and change warm gray backdrop to cool light gray blue. Match Glacier Steel selected design. Fill entire frame. No words, logos, UI, glow or borders."
+    }
+  ],
+  "api_sources_checked": [
+    "https://nextjs.org/docs/app/api-reference/components/image",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::details-content"
+  ],
+  "reference_sha256": "dcc5589bd290075f34873da6600dd149561f2f26285fd15acb928dc67ecbbf91",
+  "reference_tool_output": "exec-b10a6bf1-c80a-4f1f-a5fa-27c65138fbec.png"
+}

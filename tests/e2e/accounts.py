@@ -72,15 +72,15 @@ with sync_playwright() as playwright:
             assert page.locator('header').count() == page.locator('footer').count() == 1
             assert page.locator('html').get_attribute('lang') == locale
             assert page.locator('header a[href*="/tickets/"]').count() == 0
-            for width in [320, 360, 390, 768, 1024, 1440]:
+            for width in [1024, 1366, 1920]:
                 page.set_viewport_size({'width': width, 'height': 960})
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (locale, route, width)
             page.evaluate("document.body.style.zoom = '200%'")
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (locale, route, 'zoom')
             page.evaluate("document.body.style.zoom = ''")
         page.goto(f'{BASE}/{locale}/login/')
-        page.set_viewport_size({'width': 390, 'height': 844})
-        page.screenshot(path=str(ARTIFACTS / f'{locale}-login-phone.png'), full_page=True)
+        page.set_viewport_size({'width': 1366, 'height': 768})
+        page.screenshot(path=str(ARTIFACTS / f'{locale}-login-desktop.png'), full_page=True)
 
     nojs = browser.new_context(java_script_enabled=False)
     nojs.route('**/*', guard)
@@ -93,10 +93,10 @@ with sync_playwright() as playwright:
     nojs.close()
 
     page.goto(BASE + '/id/login/?next=account')
-    page.get_by_role('link', name='English', exact=True).click()
+    page.get_by_role('link', name='EN — English', exact=True).click()
     page.wait_for_url(BASE + '/en/login/?next=account')
 
-    page.goto(BASE + '/en/register/?next=request&package=warden')
+    page.goto(BASE + '/en/register/?next=request')
     page.get_by_label('Name', exact=True).fill('Synthetic Browser')
     page.get_by_label('Email', exact=True).fill(EMAIL)
     page.get_by_label('Password', exact=True).fill(PASSWORD)
@@ -110,24 +110,21 @@ with sync_playwright() as playwright:
     expect(page.get_by_role('heading', name='Log in', exact=True)).to_be_visible()
     page.get_by_label('Password', exact=True).fill(PASSWORD)
     page.get_by_role('button', name='Continue', exact=True).click()
-    page.wait_for_url(BASE + '/en/request/?package=warden')
+    page.wait_for_url(BASE + '/en/request/')
     assert page.locator('main form, main input').count() == 0
-    assert 'WARDEN' in page.locator('main').inner_text()
+    assert 'Consultation submission is not open yet.' in page.locator('main').inner_text()
     page.reload()
-    assert 'WARDEN' in page.locator('main').inner_text()
-    page.get_by_role('link', name='Bahasa Indonesia', exact=True).click()
-    page.wait_for_url(BASE + '/id/request/?package=warden')
-    page.get_by_role('link', name='English', exact=True).click()
-    page.wait_for_url(BASE + '/en/request/?package=warden')
+    assert 'Consultation submission is not open yet.' in page.locator('main').inner_text()
+    page.get_by_role('link', name='ID — Bahasa Indonesia', exact=True).click()
+    page.wait_for_url(BASE + '/id/request/')
+    page.get_by_role('link', name='EN — English', exact=True).click()
+    page.wait_for_url(BASE + '/en/request/')
     expect(page.get_by_label('Account menu', exact=True)).to_be_visible()
     assert context.cookies() and all(cookie['httpOnly'] for cookie in context.cookies())
     assert all(cookie['sameSite'] == 'Lax' for cookie in context.cookies())
     assert not any('session_data' in cookie['name'] for cookie in context.cookies())
-    page.get_by_role('button', name='Menu', exact=True).click()
     expect(page.get_by_role('link', name='Tickets', exact=True)).to_be_visible()
     assert page.get_by_role('link', name='Reports & Progress', exact=True).count() == 0
-    page.keyboard.press('Escape')
-    expect(page.get_by_role('button', name='Menu', exact=True)).to_be_focused()
     page.get_by_label('Account menu', exact=True).click()
     page.keyboard.press('Escape')
     expect(page.get_by_label('Account menu', exact=True)).to_be_focused()
@@ -136,10 +133,10 @@ with sync_playwright() as playwright:
     expect(page.get_by_label('Name', exact=True)).to_have_value('Synthetic Browser')
     page.get_by_label('Name', exact=True).fill('Discarded Synthetic Name')
     page.once('dialog', lambda dialog: dialog.dismiss())
-    page.get_by_role('link', name='Bahasa Indonesia', exact=True).click()
+    page.get_by_role('link', name='ID — Bahasa Indonesia', exact=True).click()
     assert page.url == BASE + '/en/account/'
     page.once('dialog', lambda dialog: dialog.accept())
-    page.get_by_role('link', name='Bahasa Indonesia', exact=True).click()
+    page.get_by_role('link', name='ID — Bahasa Indonesia', exact=True).click()
     page.wait_for_url(BASE + '/id/account/')
     expect(page.get_by_label('Nama', exact=True)).to_have_value('Synthetic Browser')
     page.get_by_label('Nama', exact=True).fill('<script>synthetic-canary</script>')
@@ -148,10 +145,10 @@ with sync_playwright() as playwright:
     page.reload()
     expect(page.get_by_label('Nama', exact=True)).to_have_value('<script>synthetic-canary</script>')
     assert page.locator('script:not([src])').evaluate_all("nodes => nodes.every(node => !node.textContent.trim().startsWith('synthetic-canary'))")
-    for width in [320, 390, 768, 1440]:
+    for width in [1024, 1366, 1920]:
         page.set_viewport_size({'width': width, 'height': 960})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-    page.set_viewport_size({'width': 390, 'height': 844})
+    page.set_viewport_size({'width': 1366, 'height': 768})
     page.get_by_role('button', name='Siapkan autentikator', exact=True).click()
     page.get_by_label('Kata sandi', exact=True).fill(PASSWORD)
     page.get_by_role('button', name='Lanjutkan', exact=True).click()
@@ -187,6 +184,6 @@ with sync_playwright() as playwright:
         cold.close()
     assert not external, external
     assert not errors, errors
-    print(json.dumps({'result': 'PASS', 'locales': 2, 'widths': [320, 360, 390, 768, 1024, 1440], 'external_requests': len(external), 'page_errors': len(errors), 'cold_encoded_bytes': resources}))
+    print(json.dumps({'result': 'PASS', 'locales': 2, 'desktop_widths': [1024, 1366, 1920], 'external_requests': len(external), 'page_errors': len(errors), 'cold_encoded_bytes': resources}))
     context.close()
     browser.close()

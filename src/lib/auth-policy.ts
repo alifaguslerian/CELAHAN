@@ -1,5 +1,3 @@
-import { isPackageId, type Locale } from './routing.ts';
-
 export function allowedTestEmail(value: unknown, emails: readonly string[]): value is string {
   return typeof value === 'string' && /^[a-z0-9.+_-]+@example\.invalid$/i.test(value) && emails.includes(value.toLowerCase());
 }
@@ -36,9 +34,3 @@ export function validAuthBody(path: string, body: unknown): body is Record<strin
   return !('type' in values) || values.type === 'email-verification';
 }
 
-export function safeReturnPath(value: unknown, locale: Locale): string {
-  if (typeof value !== 'string') return `/${locale}/`;
-  if (/^\/(?:id|en)\/(?:account\/)?$/.test(value)) return value;
-  const request = /^\/(?:id|en)\/request\/(?:\?package=([a-z]+))?$/.exec(value);
-  return request && (!request[1] || isPackageId(request[1])) ? value : `/${locale}/`;
-}

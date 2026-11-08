@@ -1,124 +1,121 @@
-# CELAHAN — Design Direction
+# CELAHAN — Aperture / Layers Desktop Design Lock
 
-Status: Accepted public direction preserved; same-site account/ticket/report integration confirmed · October 30, 2026  
-References: [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md), [Visual References](VISUAL_REFERENCES.md), [Service Packages](../product/SERVICE_PACKAGES.md), [Design Reference Lock](DESIGN_REFERENCE_LOCK.md), [Portal UX Specification](PORTAL_UX_SPEC.md)
+Status: Layers desktop with the owner-selected Glacier Steel palette and static material imagery under DEC-67.
+Updated: November 8, 2026
+Authority: [DEC-63 and DEC-67](../planning/DECISIONS.md#confirmed-decisions)
+References: [PRD](../product/PRD.md), [Account UX](PORTAL_UX_SPEC.md), [Logo](LOGO_GUIDELINES.md), [Plan](../planning/IMPLEMENTATION_PLAN.md)
 
-## October 29 portal scope update
+## Approved reference and scope
 
-The approved public visual identity remains in force. These raster references and their manifest prompts predate the functional portal scope. Their no-storage, client-ticket, manual private-status and locale-reset wording is historical, not current behavior.
+The owner selected **design 2 — Aperture / Layers** from the five complete desktop homepage candidates generated on November 6. The instruction was to lock its layout, design, colors, typography, consistency, interactive visuals and animation intent before proceeding to implementation. This selection supersedes the earlier recommendation of candidate 1 or a combination with candidate 4. Use candidate 2 itself as the visual authority.
 
-Current behavior follows [PRD](../product/PRD.md), [User Flows](../product/USER_FLOWS.md) and [Service Operations](../product/SERVICE_OPERATIONS.md): authenticated persistence, tickets, private illustrative reports and bounded support. The owner rejected the separate dashboard/sidebar portal batch; its images/gallery/manifest are removed. [Integrated account/ticket/report UX](PORTAL_UX_SPEC.md) keeps the existing header, account controls beside ID/EN, Tiket after login and Laporan & Progres for authorized project owners. Existing public PNGs/manifests remain unchanged; no replacements are generated.
+![Owner-selected Aperture / Layers desktop homepage](../../design/desktop/aperture-layers-approved-v1.png)
 
-## 1. Character and principles
+Canonical reference: design/desktop/aperture-layers-approved-v1.png. This is an unchanged copy of the built-in image tool output exec-bf49b761-de1d-434e-95ac-785d5582383e.png, originally generated in the current Codex image session and delivered as 02-aperture-layers.png. It is a generated design reference, not a captured implemented website. The retained Open Threshold source was supplied as brand input. No third-party website screenshot was used as an image input; the prior Aperture concept was a supporting visual reference.
 
-A precise, calm, readable identity anchored to the approved hero in Design Reference Lock: warm near-black, ivory, sand emphasis, restrained olive details, low-glare cinematic depth, and a small original pet. Terminal/tactical clarity remains appropriate for technical information. Information density must be supported by hierarchy rather than small text. Simulation labels are part of the primary composition.
+SHA-256: e51fcc5025768e6a6161f0aa3a9dbbc84058661c256ee85b29c8c7480d182494.
+File size: 1,840,653 bytes. Keep the complete original; do not overwrite it with a cropped or recompressed export.
 
-The owner approved the generated hero revision after rejecting the humanoid Minecraft figure and excessive doorway brightness. Preserve the actual saved composition and appearance rather than reinterpreting the older inspiration. The hero uses large sans-serif lines and an italic-serif emphasis; font-family selection/licensing, exact implementation tokens, and rendering technology remain open. Four package pets must have distinct principal colors and body silhouettes, with shared illustration quality and compact scale.
+DEC-63 selected the desktop direction; the subsequent DEC-64 instruction authorized implementation, animation, tests and optimization. The public desktop homepage/shared shell now follow this contract; see [actual validation](../validation/2026-11-06-layers-desktop.md). No W4/W5 writes, replacement services/reports, phone implementation or deployment are authorized. Other candidates remain unselected exploration.
 
-Visual choices must support service discovery, form completion, report reading, or user orientation. Avoid terminal decoration implying real network activity, random code, fabricated performance figures, and distracting glitch effects.
+DEC-67 selects [02 Glacier Steel](../../design/desktop/glacier-steel-approved.png) for palette and metal. The original Layers reference remains the composition reference except for the owner-directed desktop spacing below.
 
-## 2. Initial visual system
+## Visual character
 
-| Element | Direction |
-| --- | --- |
-| Color | Warm near-black/charcoal surfaces, ivory text, sand emphasis/actions, muted olive details; distinct mascot colors stay within the artwork rather than recoloring the interface |
-| Severity | High/Medium/Low labels, text weight, and patterns/borders; do not add accent colors solely for badges |
-| Typography | Follow the approved large sans-serif hero and sand italic-serif emphasis; readable sans-serif body copy and restrained monospace technical/data labels; exact families still require selection |
-| Sizing | Main body text at least 16 CSS px as a baseline; secondary data may use 14 px if readable; do not restrict zoom |
-| Spacing | Proposed scale: 4, 8, 12, 16, 24, 32, 48, 64 px; apply consistently after prototyping |
-| Shape | Match the approved hero's modest rounded-rectangle CTA and precise layout; define other control geometry deliberately rather than forcing every surface into the same shape |
-| Icons | Only for clear functions; provide text for actions that are not universally recognizable |
-| Assets | Local fonts and images; set intrinsic dimensions to maintain layout stability |
+Satin aluminum sheets overlap above an anodized steel-blue inner layer. Compact typography, frost surfaces, graphite controls and a dark FAQ keep the material from competing with the content.
 
-The visual color/type direction is approved in the saved image; exact CSS tokens and licensed font families are not selected. Measure contrast for every implemented pairing before considering it ready. Image approval is not an accessibility audit result.
+## Page composition
 
-The concrete authored token/state baseline is now in [Shared Visual System](VISUAL_SYSTEM.md), including five calculated solid-color contrast pairs. Four current character concepts and their proposed individual palettes are in [Mascot Guidelines](MASCOT_GUIDELINES.md). These drafts supply review material without recording owner approval of every token or character.
+Preserve this order, hierarchy and component arrangement. Adapt actual heights to readable live content, desktop width and both locales rather than stretching the reference into a single background.
 
-## 3. Page composition
-
-| Page | Desktop | Mobile |
+| Area | Locked composition | Future behavior |
 | --- | --- | --- |
-| Home | Preserve the approved large left headline, central pet/dim-doorway scene, and right description/CTA; design the package selector, service summary, and illustrative report preview below | Recompose headline, explanation, actions, and bounded illustration with the same dim atmosphere; four named package controls and readable stacked details |
-| Services | Four-package comparison and selected details with suitability, scope, exclusions, outputs, retesting, and illustrative prices | Named selectors/list and stacked details; all scope boundaries remain visible without hover or dragging |
-| About | Readable project context, approach, and portfolio purpose | Single reading column; no fictional team or company history |
-| Process | Numbered list/timeline with stage outputs | Vertical timeline; all eight stages readable without horizontal dragging |
-| Form | Main form with a guidance panel; controlled input widths | Single column; guidance close to inputs; CTA stays in the flow and clear of the keyboard |
-| Saved request | Durable reference and pending admin/schedule state | Clear saved outcome, wrapping reference, next action |
-| Tickets/account | Own list/conversation and focused account forms inside the existing site header | Same account/menu entry beside ID/EN; stacked task content |
-| Admin management | Restricted task content in the shared website header; separate notes and privileged actions | Same site/menu; readable priority/context/forms |
-| Private report/support | Authorized project/version and benefit dates | Expandable findings and clear support/expiry state |
-| Status/report | Compact stepper, semantic table, finding details | Compact/vertical status and an expandable finding list with field labels |
-| Privacy | Reading column with headings and an accurate update date | Single column, plain language, no wide tables |
-| 404 | Identity, short message, home links in both languages | Immediately readable message/actions; illustration is optional |
+| Shared header | Transparent over the homepage gradient, with the public links grouped beside Open Threshold/CELAHAN and ID/EN and account entry on the right. Frost surface on interior pages | Native navigation and current session-derived account capabilities; do not add a separate dashboard or sidebar |
+| Hero | Centered concept label, two-line headline, short supporting copy, two actions and a wide static layered-metal photograph | Primary opens the public context explorer. Secondary links to the conceptual process. |
+| Context explorer | Left heading “Mulai dari konteks.”; larger right module with three equal horizontal choices above a shared explanation panel | “Ada kekhawatiran”, “Persiapan”, “Belum yakin”; show the last selected in the reference. Selection changes only educational guidance, with no intake submission or diagnosis |
+| Process explorer | Heading/subtitle, eight steps in a four-column by two-row grid, then one wide detail panel with text left and a material crop right | Exactly one selected stage. A steel-blue underline marks the selected control and the explanation updates in place |
+| Account invitation | Light three-part horizontal composition: heading/body left, account/privacy actions in the middle separated by a fine vertical rule, material crop right | Connect to real authorized account routes; disclose limited test access and pending consultation. No fabricated ticket or report preview |
+| FAQ | Graphite full-width band; large heading in a narrower left column; three line-separated question rows in the wider right column; first answer open in the reference | Accessible independent disclosures with visible plus/minus and clear keyboard focus |
+| Closing | Light centered “Pahami. Baru putuskan.” and one filled CTA with an aluminum/steel-blue crop from the lower-right | CTA returns to the public concept explorer |
+| Footer | Dark horizontal band; monochrome logo left, short navigation next, exact disclaimer right | Native links and full readable disclosure; EN adds its translation |
 
-Mobile UI is not a separate application or codebase. Content/domain logic remains shared; composition, navigation, density, and data presentation adapt to the screen's needs.
+Header public labels in the reference are Tentang, Pendekatan and Alur. They must point to actual existing pages or the corresponding homepage sections, including from supporting pages. Fragment destinations must account for the real header behavior. A sticky or hide-on-scroll header is not established by the image; use normal document flow unless subsequently justified.
 
-## 4. Responsive ranges
+On desktop, the process explorer occupies one viewport and the account invitation and FAQ share the next. Center each block's content vertically within its available space. Use a minimum height so longer content and open answers can expand the blocks in normal scroll flow. Center both account action labels on the same axis.
 
-- 320–767 CSS px: mobile composition, compact menu, finding list, and sheet/dialog assistance.
-- 768–1,023 CSS px: tablet/intermediate; compose according to available space rather than device-model detection.
-- 1,024 CSS px and above: desktop navigation and a table when content fits.
-- Avoid fixed section heights that clip translations, enlarged text, or form errors.
-- Breakpoints are CSS baselines; revise them when content testing demonstrates a need and record the reason.
+Do not replace the selected segmented context control with expanding image slices: that was an earlier generation prompt idea, not the chosen raster's actual interface. Likewise, keep this design's 4×2 process grid rather than importing another candidate's vertical rail.
 
-Respect device safe areas for controls near screen edges. Form inputs use at least 16 px text to preserve readability with the keyboard open. Pages remain usable in landscape and at 200% zoom; test reflow at the equivalent of a 320 px width.
+## Palette and material
 
-## 5. Navigation and controls
+Glacier Steel uses a continuous three-stop gradient from frost through ice blue to steel behind the homepage header and hero. Restrained tints from the same palette carry through the process, account invitation, FAQ and closing. The context surface and footer remain solid to separate the reading blocks.
 
-Desktop: logo, primary links, language switch, and request CTA. Mobile: logo, clearly labeled language control/menu, and navigation menu. Avoid persistent bottom navigation in v1 because the page count and form needs do not justify it.
+| Role | Working value | Use |
+| --- | --- | --- |
+| Frost | #F3F7F8 | Hero gradient start, header and main surface |
+| Ice blue | #C8DCE7 | Middle hero gradient stop |
+| Steel | #7897B2 | Hero gradient end and selected underlines |
+| Pale surface | #EAF0F4 | Context and account invitation |
+| Light reverse ink | #F8FAFB | Dark-section text and labels |
+| Main ink | #171F26 | Headings, body and filled controls |
+| Secondary ink | #40525F | Supporting copy |
+| Hairline | #C5D1D8 | Panel outlines and separators |
+| Steel ink | #2D5574 | Stage numerals and focus on light surfaces |
+| Dark surface | #212A32 | FAQ and footer |
 
-Primary action targets should be at least 44×44 CSS px as a project quality choice. Keyboard focus is visible, not clipped by overflow, and not hidden by panels or headers. Include a skip link to the main content. Mark the active control/page through more than color alone.
+Preserve brushed grain, natural plate edges and believable overlap in each static image. The hero, account and detail WebP exports and their source provenance are recorded in the [material manifest](../../design/desktop/material-manifest.json).
 
-Inputs have labels, guidance, character limits where relevant, and errors connected through accessibility attributes. Success must not be conveyed solely through an icon or animation. Confirmation dialogs have clear cancel/continue actions; destructive actions must not be an easily triggered accidental default.
+## Typography and spacing
 
-## 6. Bilingual design
+Select **Inter** as the implementation family: a single coherent sans-serif family, with display optical sizing where supported. This is a deliberate practical match to the approved raster's grotesk typography, not a claim that the generated pixels reveal an original font file.
 
-- Design with actual ID and EN strings from the wireframe stage, rather than adding EN after the layout is finished.
-- Use “Bahasa Indonesia / English” controls; do not rely on flags as primary labels.
-- Allow room for longer text without treating a fixed expansion percentage as a guarantee.
-- Do not embed essential text in images. The logo remains the same in both languages; translate a tagline if one is used.
-- Review score formatting, status labels, aria-labels, errors, and guide content together.
-- The EN footer/form contain the English disclaimer and the original Indonesian statement required by the brief. Both blocks remain readable and use correct language semantics.
+Inter uses SIL OFL 1.1, verified from the [official site](https://rsms.me/inter/) and [upstream license](https://github.com/rsms/inter/blob/master/LICENSE.txt). The implementation self-hosts an official Google Fonts Latin variable WOFF2 (48,256 bytes, weights100–900), with actual sources/hash in [the material manifest](../../design/desktop/material-manifest.json) and public/fonts/Inter-OFL.txt. Other scripts use system fallbacks. No runtime font CDN is contacted. The initially obtained complete font was replaced by the smaller Latin export.
 
-## 7. Logo and mascot
+Working desktop scale, to tune against the actual browser reference:
+- Hero: approximately 72–80 px at a 1440 px viewport, weight 800, line-height about 0.98–1.04, tracking around -0.045em.
+- Section headings: approximately 40–48 px, weight 700–800, tight but readable leading.
+- Detail headings: approximately 28–34 px, weight 700.
+- Body: 16–18 px, weight 400, line-height 1.45–1.6.
+- Navigation/control labels: 14–16 px, weight 500–600. Stage numbers share the same family and use tabular figures where useful.
+- Small disclosure copy: remain readable; do not shrink it merely to match raster proportions.
+- Keep a 12-column desktop alignment grid, a shared content width around 1280 px at 1440 px viewport width, and approximately 64–80 px outer margins.
+- Use a shared 8 px spacing rhythm with enough breathing room around each desktop reading block.
+- Primary buttons are graphite with off-white text, approximately 44–48 px high with a modest 6–8 px radius. Secondary actions are text links. Panels have fine borders and a similar small radius, not pill corners.
+- Retain the current approved logo geometry/wordmark identity; changing the body font does not redesign the logo.
 
-Planned logo deliverables: a primary wordmark, a compact symbol if needed for the favicon, a monochrome version, small-size guidance, and clear-space rules. The name must be readable and the identity must work without the mascot. The owner selected [Open Threshold](LOGO_GUIDELINES.md) as the logo direction. Preserve its arch/threshold geometry and wordmark; discarded alternatives have been removed. The approved reference is raster source, and editable vector/runtime exports and small-size checks remain pending.
+These numeric values are implementation starting points within the locked appearance, not owner assertions of exact measured source CSS. Live ID/EN text, enlargement and desktop widths must remain readable without clipping or forced identical line breaks.
 
-Planned mascot deliverables: neutral, introducing, explaining, directing attention, and finished poses. Expressions represent guidance, not proof that a scanner is working. Choose a simple form recognizable at small sizes; do not require 3D assets or a heavy animation runtime.
+## Interaction contract
 
-The approved working names are SCOUT, WARDEN, NEXUS, and ATLAS, with personalities/attribute directions defined in Service Packages. The Minecraft screenshot informs colors/motifs; Avara informs friendly iconic character language and grouped selection. The approved hero shows a compact pet at a dim doorway above stairs. Each pet must have its own distinct body silhouette and principal color; preserve that individual identity across its appearances rather than making all four bodies identical.
+DEC-66 restores still material images across the desktop homepage. The native controls below describe the public interactions.
 
-One owner-approved hero image now exists and is preserved in the project. Review the four-character lineup, individual palettes, voice, logo form, and usage contexts before final asset production. Record sources, export formats, production process, and usage rights as assets are produced. Package names, text, and controls remain fully useful if character assets fail or guidance is closed. Desktop/mobile references now exist, and Open Threshold is the approved logo direction. The final logo, optimized runtime assets, and final mascot exports remain pending.
+| Element | Behavior | Constraints |
+| --- | --- | --- |
+| Material images | Static hero, process, account and closing images | Use intact artwork with natural metal edges and a readable foreground |
+| Context choice | Selected tab fills dark and receives the steel-blue underline; related copy changes with a brief fade/small translation | One selection; preserve focus; selection is local ephemeral UI only. Reserve sufficient panel height to prevent distracting jumps |
+| Process stage | The active step uses the same selection treatment and one detail panel changes in place | Educational only, never “start testing”, fabricated scan logs, progress percentages or private-project state |
+| FAQ | Plus/minus changes with a modest expansion/collapse | Real disclosure semantics, keyboard operation, no hidden answer that remains focusable |
+| Buttons/links | Brief hover/focus/pressed feedback consistent across the page | Hover is never required to discover content; include visibly distinguishable keyboard focus |
+| Account/navigation | Normal native navigation and real existing account outcomes | Animation must not simulate successful login, ticket persistence or any unimplemented workflow |
 
-## 8. Motion and assistance
+Reduced motion applies to the existing control feedback. The context choices, process stages and disclosures are usable without JavaScript.
 
-- Motion explains state changes or relationships between sections.
-- Proposed microinteraction duration: 120–240 ms; panel transitions: 180–300 ms, tested to avoid delaying tasks.
-- Avoid continuous loops; decorative animation stops when offscreen or the tab is hidden.
-- `prefers-reduced-motion` removes nonessential movement without changing features or state order.
-- No automatic sound, mandatory intro sequence, or scroll hijacking.
-- The guide does not repeatedly open on its own. Its trigger and close button are easy to find; dismissal applies for the active session.
 
-## 9. Screen inventory for review
+## Content and access boundaries
 
-Current desktop output is mapped in [Desktop Design Gallery](DESKTOP_DESIGNS.md): 24 selected section/page/state references plus the unchanged approved hero. The owner requested desktop first and mobile later. The owner accepted the other desktop visual directions and requested only a tight homepage package cluster: names above on hover/focus, name/service/price after activation, no captions below. Future implementation reduces unnecessary repetition without removing required labels; generated lettering does not override canonical source copy. The [mobile design gallery](MOBILE_DESIGNS.md) now contains 27 portrait references with readable scroll segments. Mobile approval, final fonts, and actual interaction verification remain pending.
+- Preserve the exact Indonesian footer/form disclaimer: **Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.** EN adds its translation.
+- Public context guidance is not a new service catalog, consultation submission or automatic diagnosis.
+- Preserve the eight educational stages and their no-testing explanation. Do not restore retired service names, scopes, findings or report samples.
+- Keep the account entry beside ID/EN and retain the session/role/ownership contracts in Account UX. Tickets and reports are not public guest navigation.
+- User-entered websites remain inert text. No target visits, scans, DNS, embeds or input-derived resources.
+- New service/report content, phone design, W4/W5 operations and publication retain their separate scope gates.
+- Design 2 locks this desktop homepage and establishes shared visual tokens. It does not approve unseen account, admin, ticket or private-report layouts.
 
-Retain/review public presentation patterns for: home, services, process, empty form, form errors, success, all three status stages, report without a session, finding details, privacy, 404, mobile menu, language selection, reset/language confirmation, and open/closed assistance.
+## Implementation review
 
-Integrate ordinary login/signup, avatar/account menu, authenticated tickets and eligible Laporan & Progres into the existing desktop/mobile website. Reuse initial/follow-up forms, shared messages, schedule states and report presentation. Admin management uses the same header. No separate user dashboard/sidebar, forced overview or return-to-site control. Locale changes preserve saved data.
+Compare rendered desktop output to the reference: hierarchy, centered hero, lower metal layers, context, normal 4×2 process/detail, account area, dark FAQ, closing/footer and type/color consistency. At 200% text enlargement, component container queries reflow choices/stages to keep labels readable. This accessibility adjustment does not establish a dedicated phone experience.
 
-Also cover the four-character group, each selected package, package comparison, uncertain/mismatched package guidance, the authenticated consultation entry, FAQ, and About. Use the complete draft price/cap/effort/retest content from Service Packages section 6 for review; final UI follows the reviewed version. Review absent/failed mascot artwork, long localized IDR prices, simultaneous caps, ATLAS custom-estimate wording, and the same finding dataset under every package selection. Fictional-price and conceptual-effort labels remain close to their values, including on mobile.
+Verify ID/EN at relevant desktop widths including 1024, 1366, 1440 and 1920 px; keyboard/focus, selected/open states, reduced motion, enlarged text, navigation, no-JS public reading, image/font loading and measured payload/layout stability. Preserve isolated account checks and retired-route denial without resetting manually used synthetic accounts for visual work. A design lock is not a runtime accessibility, performance, security or deployment result.
 
-Review both languages. Not every combination requires a separate mockup if its components and behavior have already been demonstrated; still cover important combinations during testing.
+## Current record
 
-### Account and portal screen baseline
-
-[Portal UX Specification](PORTAL_UX_SPEC.md) records the owner-confirmed integrated-site direction and conditional account/ticket/report navigation. The rejected 18-image portal batch is removed. Detailed auth policy, component behavior and rendered mobile/accessibility checks remain reviewable; no replacement asset batch is authorized.
-
-Permanent domain/DNS choice is deferred. Use neutral brand identity and configuration-driven deployment/sender details in future implementation; do not invent a domain or a contact email in a mockup.
-
-## 10. Design review criteria
-
-Visitors can recognize concept status, find the CTA, understand scope, read risk, and leave assistance without spoken guidance. Test long content, long URLs, Unicode names, EN copy, zoom, keyboard use, and reduced motion. If user feedback is collected, record participant count and limitations; do not turn it into a claim of representative research.
-
-Accessibility and performance parameters are in [Quality and Security](../engineering/QUALITY_AND_SECURITY.md). This direction defines design requirements, not certification or test evidence.
+DEC-67 applies Glacier Steel and refines the desktop reading blocks. See [Glacier Steel validation](../validation/2026-11-08-glacier-steel.md) and the earlier [static-material restoration](../validation/2026-11-08-static-material.md).

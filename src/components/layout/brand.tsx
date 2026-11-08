@@ -5,7 +5,7 @@ import type { Locale } from '@/lib/routing';
 export function Brand({ locale }: { locale: Locale }) {
   return (
     <Link className="brand" href={`/${locale}/`} aria-label={`CELAHAN — ${locale === 'id' ? 'Beranda' : 'Home'}`}>
-      <Image src="/brand/open-threshold.svg" width={36} height={36} alt="" priority />
+      <Image src="/brand/open-threshold.svg" width={36} height={36} alt="" loading="eager" />
       <span>CELAHAN</span>
     </Link>
   );

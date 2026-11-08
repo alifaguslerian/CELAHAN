@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { shell } from '@/content/shell';
+import { accountCopy } from '@/content/account';
 import { isLocale } from '@/lib/routing';
 import { currentAccount } from '@/server/auth/session';
 import '@/styles/globals.css';
@@ -21,11 +22,16 @@ export default async function SiteLayout({ children, params }: Readonly<{ childr
   if (!isLocale(locale)) notFound();
   let account = null;
   try { account = await currentAccount(await headers()); } catch { /* Private failures render no account capabilities. */ }
+  const { tickets, projects, admin, profile, saving, logout, failed } = accountCopy[locale];
   return (
     <html lang={locale}>
+      <head><link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
       <body>
         <a className="skip-link" href="#main-content">{shell[locale].skip}</a>
-        <Header locale={locale} account={account ? { id: account.id, name: account.name, hasProjects: account.hasProjects, admin: account.admin } : null} />
+        <Header locale={locale} account={account ? {
+          id: account.id, name: account.name, hasProjects: account.hasProjects, admin: account.admin,
+          labels: { tickets, projects, admin, profile, saving, logout, failed },
+        } : null} />
         {children}
         <Footer locale={locale} />
       </body>
