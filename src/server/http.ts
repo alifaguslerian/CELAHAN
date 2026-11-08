@@ -5,6 +5,7 @@ export function privateJSON(body: unknown, status = 200, extra?: Headers) {
   headers.set('Cache-Control', 'private, no-store, max-age=0');
   headers.set('Pragma', 'no-cache');
   headers.set('Vary', 'Cookie');
+  headers.set('X-Robots-Tag', 'noindex, nofollow');
   return Response.json(body, { status, headers });
 }
 
