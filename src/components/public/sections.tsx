@@ -2,10 +2,6 @@ import { stages } from '@/content/public';
 import { homeCopy } from '@/content/home';
 import type { Locale } from '@/lib/routing';
 
-export function SectionHeading({ lines, id }: { lines: readonly [string, string]; id?: string }) {
-  return <h2 className="section-heading" id={id}><span>{lines[0]}</span>{' '}<em>{lines[1]}</em></h2>;
-}
-
 export function ProcessSteps({ locale, headingLevel = 'h3' }: { locale: Locale; headingLevel?: 'h2' | 'h3' }) {
   const Heading = headingLevel;
   return <ol className="process-grid">{stages.map((stage, index) => <li key={stage.id[0]} id={`stage-${index + 1}`}>
