@@ -1,49 +1,45 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { shell } from '@/content/shell';
+import { accountCopy } from '@/content/account';
 import { localeHref, type Locale } from '@/lib/routing';
 import { Brand } from './brand';
+import { useSiteAccount } from './site-account';
 
-type HeaderAccount = {
-  id: string;
-  name: string;
-  hasProjects: boolean;
-  admin: boolean;
-  labels: { tickets: string; projects: string; admin: string; profile: string; saving: string; logout: string; failed: string };
-};
-
-export function Header({ locale, account }: { locale: Locale; account: HeaderAccount | null }) {
+function AccountEntry({ locale, pathname, returnTo }: { locale: Locale; pathname: string; returnTo?: string | null }) {
   const copy = shell[locale];
+  return <nav className="account-links" aria-label={locale === 'id' ? 'Akun' : 'Account'}>
+    <Link href={localeHref(`/${locale}/login/`, locale, '', returnTo)} prefetch={false}
+      aria-current={pathname === `/${locale}/login` ? 'page' : undefined}>{copy.login}</Link>
+    <Link href={localeHref(`/${locale}/register/`, locale, '', returnTo)} prefetch={false}
+      className="signup-link" aria-current={pathname === `/${locale}/register` ? 'page' : undefined}>{copy.register}</Link>
+  </nav>;
+}
+
+function AccountEntryWithIntent({ locale, pathname }: { locale: Locale; pathname: string }) {
+  return <AccountEntry locale={locale} pathname={pathname} returnTo={useSearchParams().get('next')} />;
+}
+
+export function Header({ locale }: { locale: Locale }) {
+  const copy = shell[locale];
+  const labels = accountCopy[locale];
+  const { account } = useSiteAccount();
   const pathname = usePathname();
-  const search = useSearchParams();
-  const entryHref = (mode: 'login' | 'register') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'));
+  const path = pathname.replace(/\/$/, '');
   const accountMenu = useRef<HTMLDetailsElement>(null);
   const [logoutPending, setLogoutPending] = useState(false);
   const [logoutError, setLogoutError] = useState('');
 
   useEffect(() => {
-    const onRestore = (event: PageTransitionEvent) => { if (event.persisted) window.location.reload(); };
     const onOutside = (event: PointerEvent) => {
       if (event.target instanceof Node && !accountMenu.current?.contains(event.target)) accountMenu.current?.removeAttribute('open');
     };
-    const refreshAccount = async () => {
-      try {
-        const result = await fetch('/api/account/', { cache: 'no-store' });
-        if (result.status === 401 && account) window.location.reload();
-        if (result.ok) {
-          const current = (await result.json()).account;
-          if (!account || current.id !== account.id || current.name !== account.name || current.hasProjects !== account.hasProjects || current.admin !== account.admin) window.location.reload();
-        }
-      } catch { /* Server endpoints remain authoritative during a connection failure. */ }
-    };
-    window.addEventListener('pageshow', onRestore);
-    window.addEventListener('focus', refreshAccount);
     document.addEventListener('pointerdown', onOutside);
-    return () => { window.removeEventListener('pageshow', onRestore); window.removeEventListener('focus', refreshAccount); document.removeEventListener('pointerdown', onOutside); };
-  }, [account]);
+    return () => document.removeEventListener('pointerdown', onOutside);
+  }, []);
 
   async function logout() {
     if (!account) return;
@@ -52,7 +48,7 @@ export function Header({ locale, account }: { locale: Locale; account: HeaderAcc
       const response = await fetch('/api/auth/sign-out/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', cache: 'no-store' });
       if (!response.ok) throw new Error();
       window.location.replace(`/${locale}/`);
-    } catch { setLogoutError(account.labels.failed); setLogoutPending(false); }
+    } catch { setLogoutError(labels.failed); setLogoutPending(false); }
   }
 
   return (
@@ -66,11 +62,13 @@ export function Header({ locale, account }: { locale: Locale; account: HeaderAcc
         <div className="navigation-panel" id="site-navigation">
           <nav aria-label={copy.navigation}>
             <Link href={`/${locale}/about/`}>{copy.about}</Link>
-            <Link href={`/${locale}/#context`}>{locale === 'id' ? 'Pendekatan' : 'Approach'}</Link>
+            {path === `/${locale}`
+              ? <a href="#context">{locale === 'id' ? 'Pendekatan' : 'Approach'}</a>
+              : <Link href={`/${locale}/#context`}>{locale === 'id' ? 'Pendekatan' : 'Approach'}</Link>}
             <Link href={`/${locale}/process/`}>{copy.process}</Link>
-            {account && <Link href={`/${locale}/tickets/`} prefetch={false}>{account.labels.tickets}</Link>}
-            {account?.hasProjects && <Link href={`/${locale}/projects/`} prefetch={false}>{account.labels.projects}</Link>}
-            {account?.admin && <Link href={`/${locale}/admin/`} prefetch={false}>{account.labels.admin}</Link>}
+            {account && <Link href={`/${locale}/tickets/`} prefetch={false}>{labels.tickets}</Link>}
+            {account?.hasProjects && <Link href={`/${locale}/projects/`} prefetch={false}>{labels.projects}</Link>}
+            {account?.admin && <Link href={`/${locale}/admin/`} prefetch={false}>{labels.admin}</Link>}
           </nav>
         </div>
         <div className="header-controls">
@@ -87,11 +85,10 @@ export function Header({ locale, account }: { locale: Locale; account: HeaderAcc
           </nav>
           {account ? <details className="account-links account-menu" ref={accountMenu}>
             <summary aria-label={locale === 'id' ? 'Menu akun' : 'Account menu'}><span aria-hidden="true">{account.name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()}</span></summary>
-            <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{account.labels.profile}</Link><button type="button" onClick={logout} disabled={logoutPending}>{logoutPending ? account.labels.saving : account.labels.logout}</button><p role="alert">{logoutError}</p></div>
-          </details> : <nav className="account-links" aria-label={locale === 'id' ? 'Akun' : 'Account'}>
-            <Link href={entryHref('login')} prefetch={false} aria-current={pathname.replace(/\/$/, '') === `/${locale}/login` ? 'page' : undefined}>{copy.login}</Link>
-            <Link className="signup-link" href={entryHref('register')} prefetch={false} aria-current={pathname.replace(/\/$/, '') === `/${locale}/register` ? 'page' : undefined}>{copy.register}</Link>
-          </nav>}
+            <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{labels.profile}</Link><button type="button" onClick={logout} disabled={logoutPending}>{logoutPending ? labels.saving : labels.logout}</button><p role="alert">{logoutError}</p></div>
+          </details> : <Suspense fallback={<AccountEntry locale={locale} pathname={path} />}>
+            <AccountEntryWithIntent locale={locale} pathname={path} />
+          </Suspense>}
         </div>
       </div>
     </header>

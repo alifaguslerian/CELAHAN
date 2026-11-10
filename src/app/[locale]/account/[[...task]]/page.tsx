@@ -3,6 +3,7 @@ import { AccountPage } from '@/components/account/account-page';
 import type { AccountMode } from '@/components/account/account-form';
 import { isLocale } from '@/lib/routing';
 
+export const dynamic = 'force-dynamic';
 export const metadata = { robots: { index: false, follow: false } };
 
 export default async function Account({ params }: { params: Promise<{ locale: string; task?: string[] }> }) {

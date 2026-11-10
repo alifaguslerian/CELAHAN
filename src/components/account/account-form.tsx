@@ -1,19 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { accountCopy } from '@/content/account';
 import { disclaimer } from '@/content/shell';
 import type { Locale } from '@/lib/routing';
 import { localeHref, loginDestination } from '@/lib/routing';
+import { useSiteAccount } from '@/components/layout/site-account';
 
 export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'twoFactor' | 'setup' | 'profile';
 const subscribe = () => () => {};
 
 export function AccountForm({ locale, mode, available, profile }: { locale: Locale; mode: AccountMode; available: boolean; profile?: { name: string; email: string; twoFactorEnabled: boolean } }) {
   const copy = accountCopy[locale];
-  const router = useRouter();
+  const { refreshAccount } = useSiteAccount();
   const search = useSearchParams();
   const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'));
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
@@ -71,7 +72,7 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
       if (view === 'register') { setView('verify'); setMessage(copy.sent); }
       if (view === 'recovery') { setView('reset'); setMessage(copy.sent); }
       if (view === 'verify' || view === 'reset') { setView('login'); setMessage(view === 'verify' ? copy.verified : copy.resetDone); }
-      if (view === 'profile') { setMessage(copy.saved); router.refresh(); }
+      if (view === 'profile') { setMessage(copy.saved); void refreshAccount(); }
       if (view === 'setup' && !setup) {
         setSetup({ secret: new URL(data.totpURI).searchParams.get('secret') ?? '', codes: data.backupCodes });
       } else if (view === 'setup') window.location.assign(`/${locale}/account/`);

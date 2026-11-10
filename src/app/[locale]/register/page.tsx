@@ -4,6 +4,8 @@ import { AccountPage } from '@/components/account/account-page';
 import { shell } from '@/content/shell';
 import { isLocale } from '@/lib/routing';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();

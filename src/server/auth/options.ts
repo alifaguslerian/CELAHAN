@@ -14,10 +14,16 @@ export function authOptions(pool: Pool): BetterAuthOptions {
     logger: { disabled: true }, telemetry: { enabled: false },
     emailAndPassword: { enabled: true, minPasswordLength: 15, maxPasswordLength: 128, requireEmailVerification: true, autoSignIn: false, revokeSessionsOnPasswordReset: true },
     session: { expiresIn: 60 * 60 * 8, updateAge: 60 * 30, freshAge: 60 * 10, cookieCache: { enabled: false } },
-    advanced: { disableCSRFCheck: false, disableOriginCheck: false, ipAddress: { ipAddressHeaders: ['x-celahan-client-ip'] }, defaultCookieAttributes: { httpOnly: true, sameSite: 'lax', path: '/' } },
+    advanced: {
+      database: { joins: true },
+      disableCSRFCheck: false, disableOriginCheck: false,
+      ipAddress: { ipAddressHeaders: ['x-celahan-client-ip'] },
+      defaultCookieAttributes: { httpOnly: true, sameSite: 'lax', path: '/' },
+    },
     user: { additionalFields: {
-      role: { type: 'string', defaultValue: 'user', input: false, returned: false },
-      accountEnabled: { type: 'boolean', defaultValue: true, input: false, returned: false },
+      // The public auth route filters the response. Server session checks need these fields.
+      role: { type: 'string', defaultValue: 'user', input: false },
+      accountEnabled: { type: 'boolean', defaultValue: true, input: false },
     } },
     rateLimit: { enabled: true, storage: 'database', window: 60, max: 60,
       customRules: { '/sign-up/email': { window: 60, max: 5 }, '/sign-in/email': { window: 60, max: 10 } } },
