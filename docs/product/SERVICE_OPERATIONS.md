@@ -22,9 +22,9 @@ Admin provisioning must occur through a separately approved trusted procedure, n
 
 ## 3. Initial consultation
 
-Users may explore the form before login, but submission requires an authenticated account. Avoid persistent anonymous intake and anonymous ticket links in v1. Warn before navigation that loses unsaved entries.
+Guests can discover consultation from the public context explorer. Sign-in returns them to the form. An active verified account is required to create a ticket, and unsaved edits trigger a discard warning.
 
-Collect name, optional company, inert website text, need type and reasons, problem description, contact preference/details, suggested timing/timezone, and authority declaration. Use only synthetic data in the portfolio demonstration until a real-data intake policy has been approved.
+Collect name, optional company, inert website text, need, brief reason, description and authority declaration. DEC-68 uses the account and in-site replies as the contact channel. Time proposals become available after guidance. Use synthetic data in the isolated workflow.
 
 | Need | Suggested reasons | Interpretation |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ Reactive intake does not dispatch emergency responders, verify a blacklist, or o
 
 | Type | Eligibility | Required context | Outcome |
 | --- | --- | --- | --- |
-| Consultation | Any signed-in user | Initial intake and contact/schedule | Private conversation and admin decision |
+| Consultation | Active verified account | Initial intake | Private conversation, guidance or reasoned closure, and an optional discussion time |
 | Support | Owner of selected project | Project, question/issue, relevant finding if any, impact | Scope/benefit review and guidance |
 | Retest | Owner of selected project | Project, published report/version, selected finding references, description of programmer changes | Reviewed cycle request and illustrative outcome |
 | Follow-up review | Owner of selected project | Project, requested review scope and timing | Scoped request; possible temporary discount, never an automatic paid job |
@@ -51,12 +51,10 @@ Free-text messages are escaped plain text. No attachments, credentials, tokens, 
 
 | State | Meaning | Allowed action |
 | --- | --- | --- |
-| new | Submission saved, not yet reviewed | User adds context; admin begins triage |
-| under_review | Admin checking need/scope/eligibility | Admin replies or requests information |
-| awaiting_user | A response from the owner is required | Owner replies; returns to under_review |
-| scheduled | A consultation/review time was explicitly confirmed | Both see confirmed timing; admin can reschedule with explanation |
-| resolved | Admin has supplied an outcome | Owner can reply for review; no automatic benefit extension |
-| closed | Conversation concluded or declined with reason | Read-only; a new request can reference it subject to eligibility |
+| review | Submission or requested information awaits admin review | Owner may add context. Admin may reply, ask for information or supply guidance |
+| awaiting_owner | The admin requested information | Owner reply returns the ticket to review |
+| answered | Admin supplied guidance | Both can reply or propose a discussion time while it remains open |
+| closed | Admin closed the consultation with a shared reason | Both authorized views retain read-only history |
 
 A user may request cancellation; an admin closes it with a recorded reason. Admin-only priority, scheduling, resolution and closure are server-enforced. Replies, status changes and internal notes have separate permissions. Add pagination and refresh-after-action; no realtime websocket infrastructure is required.
 
@@ -64,9 +62,9 @@ A saved reply must show its actual timestamp and actor. Database failure produce
 
 ## 6. Scheduling and contact
 
-A proposed time is not a confirmed appointment. Offer up to three future slots and a timezone or an explicit “discuss timing” choice. Store accepted instants in UTC alongside the IANA timezone used for interpretation. Reject invalid/past values; detect conflicting or stale admin confirmations. Final slot/conflict rules require UX review.
+After guidance, either party can propose a single future time and time zone. A new proposal replaces the current unconfirmed proposal and preserves its history. Store UTC instants and the original IANA time zone. Reject invalid, ambiguous and past inputs, stale actions and exact-time collisions for the same requester or confirming admin across open tickets.
 
-Admin can confirm, propose another time, or decline with an explanation. Confirmation appears inside the ticket. No external calendar reservation, service email/SMS/WhatsApp dispatch, reminders or availability guarantee is implied. Provider authentication verification/recovery delivery is a separate reviewed infrastructure decision before enrollment. Selected contact details support separately authorized manual follow-up; masked display can reduce unnecessary exposure in queue lists.
+An admin can confirm an owner proposal. An admin proposal requires owner acceptance before admin confirmation. The confirmed time remains visible in the ticket and its history. Closure releases the open-ticket slot. The isolated workflow uses in-site communication and scheduling. Provider authentication delivery and external follow-up have separate gates.
 
 ## 7. Triage and priority
 

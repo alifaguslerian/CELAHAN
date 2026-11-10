@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { homeCopy } from '@/content/home';
 import { stages } from '@/content/public';
 import type { Locale } from '@/lib/routing';
+import { ConsultationLink } from './consultation-link';
 
 function ChoiceIcon({ index }: { index: number }) {
   return <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -35,7 +36,8 @@ export function ContextExplorer({ locale }: { locale: Locale }) {
           <label htmlFor={`context-choice-${index}`}><ChoiceIcon index={index} /><span>{label}</span></label>
         </div>)}</div>
         <div className="context-panels">{copy.choices.map(([label, title, body], index) => <div className="context-panel" id={`context-panel-${index}`} key={label} role="region" aria-label={label}>
-          <p><strong>{title}</strong> {body}</p><Link className="inline-link" href={`/${locale}/privacy/`}>{copy.limitations}</Link>
+          <p><strong>{title}</strong> {body}</p><div className="context-links"><Link className="inline-link" href={`/${locale}/privacy/`}>{copy.limitations}</Link>
+            <ConsultationLink locale={locale} label={copy.consultation} /></div>
         </div>)}</div>
       </fieldset>
     </div>

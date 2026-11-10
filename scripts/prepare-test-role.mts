@@ -18,6 +18,9 @@ try {
     await client.query('GRANT USAGE ON SCHEMA public TO celahan_app');
     await client.query('GRANT SELECT, INSERT, UPDATE, DELETE ON "user", session, account, verification, "twoFactor", "rateLimit" TO celahan_app');
     await client.query('GRANT SELECT ON project_access TO celahan_app');
+    await client.query('GRANT SELECT, INSERT ON consultation_ticket, consultation_event, consultation_note, consultation_command TO celahan_app');
+    await client.query('GRANT UPDATE (status, outcome, close_reason, schedule_at, schedule_zone, schedule_state, schedule_by, schedule_admin_id, version, updated_at) ON consultation_ticket TO celahan_app');
+    await client.query('GRANT USAGE ON SEQUENCE consultation_event_id_seq, consultation_note_id_seq TO celahan_app');
     await client.query('COMMIT');
     const runtimeURL = new URL(ownerURL);
     runtimeURL.username = 'celahan_app'; runtimeURL.password = password;

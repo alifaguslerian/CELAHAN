@@ -6,13 +6,13 @@ A bilingual coursework and portfolio concept demonstrating product design, front
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Current status — November 8, 2026
+## Current status — November 9, 2026
 
 The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-W1 foundation and isolated W2 accounts exist. The remaining W3 public foundation is available; the former catalog/sample routes and their content have been removed. Earlier visual acceptance does not describe this reset. W4 consultation/tickets, W5 private reports/support and W6 release remain unstarted and unauthorized. Public enrollment, real email, additional providers and deployment remain closed.
+W1 foundation and isolated W2 accounts exist. W3 public pages introduce the concept. DEC-68 authorizes W4 as one in-site consultation workflow in the existing isolated environment. W5 private reports/support and W6 release require separate authorization.
 
-Public pages now include home, eight conceptual stages, About/FAQ, privacy and custom 404. The previous service catalog, descriptions, findings section and public sample are removed; replacement content will be decided later. Retired catalog/sample URLs return 404. Account return intent carries only the known request/account task, without service-selection data. The authenticated request destination saves nothing; ticket/project/admin destinations remain protected pending-workflow notices.
+Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. From the public consultation link, guests sign in before opening the private form. Approved test accounts can create and revisit their own tickets. Authorized admins can review, respond, record internal notes, arrange an optional discussion time and close with a reason. The project destination remains a protected pending-workflow notice. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md).
 
 Accounts and sessions use Better Auth in the Next.js server and a dedicated isolated Neon PostgreSQL test database. Assessments, findings and progress remain illustrative. Visitor-entered websites are never visited, resolved, scanned, previewed, embedded or automatically linked. Code fixes belong to the website owner's programmers.
 
@@ -41,7 +41,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Development binds to http://127.0.0.1:3000. Root redirects to /id/; /en/ is the English equivalent. Public pages use the same session-aware header and render per request; they are not static exports.
+`npm run dev` listens on http://127.0.0.1:3100, which matches the sample isolated authentication origin. The root redirects to `/id/`, with `/en/` available for English. Home, About, Process and Privacy are prerendered for both locales in the production build. The shared header fetches its account state separately. Test automatic link prefetching with the production build because Next.js does not run it in development mode.
 
 ```powershell
 npm run lint
@@ -67,7 +67,13 @@ npm run test:integration
 .\.venv\Scripts\python.exe tests/e2e/accounts.py --email fresh-allowlisted@example.invalid
 ```
 
-The integration suite resets all allowlisted synthetic identities and can reset manually used test accounts. Do not run it casually. The account browser suite needs a fresh, already allowlisted synthetic email and performs account writes. Restart mailbox/server after allowlist changes. Test passwords are generated in memory. Account forms require JavaScript; disabled server-rendered controls and POST-only fallback prevent credential leakage through GET URLs.
+The W2 integration suite resets all allowlisted synthetic identities and can reset manually used test accounts. Its guard refuses a database containing consultation tickets. The account browser suite needs a fresh, already allowlisted synthetic email and performs account writes. Restart mailbox/server after allowlist changes. Test passwords are generated in memory. Account forms require JavaScript. Disabled server-rendered controls and POST-only fallback keep credentials out of GET URLs.
+
+The W4 integration harness starts a separate production preview on port 3114, creates three short-lived synthetic sessions, and cleans up records owned by its generated test identities. It requires the production build, applied consultation migration and isolated database configuration. Add `--browser` to exercise the journey in Chrome.
+
+```powershell
+node --env-file=.env.local --env-file=.env.database.local tests/integration/consultations.mts --browser
+```
 
 Reviewed SQL is in database/. npm run db:migrate applies hash-checked migrations in one locked transaction. npm run db:prepare-test-role is a one-time trusted procedure that refuses to replace an existing role. scripts/generate-auth-schema.mts refuses to overwrite saved initial SQL. Do not run these as part of a presentation reset.
 

@@ -7,6 +7,7 @@
   --ease-out: cubic-bezier(.23, 1, .32, 1); --ease-in-out: cubic-bezier(.77, 0, .175, 1);
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { margin: 0; }
 body:has(> .home-page) {
   --hero-height: max(36rem, clamp(540px, 43vw, 640px));
@@ -84,6 +85,7 @@ fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
 .context-panel, .process-panel { grid-area: 1 / 1; visibility: hidden; opacity: 0; transform: translateY(4px); transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s; pointer-events: none; }
 .context-panel { padding: 1.15rem 1.5rem; border-top: 1px solid var(--line); }
 .context-panel p { font-size: .95rem; line-height: 1.5; margin-bottom: .45rem; }
+.context-links { display: flex; flex-wrap: wrap; column-gap: 1.4rem; row-gap: .35rem; }
 .context-panel strong { font-weight: 450; }
 .context-picker:has(#context-choice-0:checked) #context-panel-0,
 .context-picker:has(#context-choice-1:checked) #context-panel-1,
@@ -166,11 +168,35 @@ details[open] > summary .faq-toggle::after { transform: rotate(0); }
 .privacy-page article > h1 em { display: block; font-size: 1.25rem; line-height: 1.5; letter-spacing: 0; font-weight: 450; margin-top: 1rem; }
 .privacy-page article > section { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; margin-top: 2.5rem; max-width: 60rem; }
 .privacy-page h2 { font-size: 1.6rem; letter-spacing: -.03em; }
-.about-edition { display: flex; justify-content: space-between; max-width: none; border-bottom: 1px solid var(--line); padding-bottom: 1rem; font-size: .9rem; }
-.about-masthead h1 { font-size: clamp(4rem, 9vw, 8rem); margin-block: 2rem; }
-.about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-.about-links { display: flex; gap: 1rem; }
-.about-craft { padding-top: 2rem; border-top: 1px solid var(--line); }
+.about-page { padding-block: clamp(2rem, 4vw, 3.75rem); }
+.about-page .about-edition {
+  display: flex; justify-content: space-between; max-width: none; margin: 0;
+  border-bottom: 1px solid var(--line); padding-bottom: .85rem; font-size: .875rem; color: var(--muted);
+}
+.about-story {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start; gap: clamp(1.5rem, 4vw, 3.5rem); margin-top: clamp(1.5rem, 3vw, 2.75rem);
+}
+.about-title h1 {
+  margin: 0 0 1rem; margin-inline-start: -.023em;
+  font-size: clamp(3rem, 7.5vw, 6.75rem);
+}
+.about-title h2 { margin: 0; font-size: clamp(1.875rem, 3.1vw, 2.75rem); line-height: 1.14; font-style: normal; }
+.about-title h2 span { display: block; }
+.about-description {
+  display: grid; justify-items: start; gap: .9rem; max-width: 56ch;
+  padding-top: clamp(.25rem, .65vw, .625rem); line-height: 1.65;
+}
+.about-description > p { margin: 0; }
+.about-page .about-craft {
+  max-width: none; margin: 1.75rem 0 0; padding-top: 1rem;
+  border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem;
+}
+@media (max-width: 52rem) {
+  .about-story { grid-template-columns: 1fr; }
+  .about-title h1 { overflow-wrap: anywhere; }
+  .about-description { padding-top: 0; }
+}
 .account-form { max-width: 32rem; margin-block: 1.5rem; }
 .account-form fieldset { display: grid; gap: 1rem; }
 .account-form label { display: grid; gap: .4rem; }
@@ -182,6 +208,43 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 .account-navigation { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
 .account-navigation a { padding-block: .5rem; font-size: .9rem; }
 .account-form .checkbox-label { display: flex; align-items: center; gap: .5rem; }
+.ticket-page { max-width: 72rem; }
+.ticket-page-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-block: 1rem; }
+.ticket-page-head .eyebrow { margin-bottom: .45rem; }
+.ticket-panel { min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: clamp(1.1rem, 2.8vw, 2rem); overflow-wrap: anywhere; }
+.ticket-panel h2 { font-size: 1.4rem; margin-bottom: .65rem; }
+.ticket-panel h2:not(:first-child) { margin-top: 1.3rem; }
+.ticket-next { background: var(--surface); border-left: 4px solid var(--steel); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.4rem; }
+.ticket-detail-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 1.3rem; align-items: start; }
+.ticket-detail-main, .ticket-detail-side { min-width: 0; display: grid; gap: 1.3rem; }
+.ticket-text { white-space: pre-wrap; }
+.ticket-state { display: inline-block; width: fit-content; border-radius: 4px; background: var(--surface); color: var(--steel-ink); padding: .25rem .55rem; font-size: .82rem; font-weight: 700; }
+.ticket-list, .ticket-events { list-style: none; padding: 0; margin-block: 1rem 0; }
+.ticket-list li { border-top: 1px solid var(--line); }
+.ticket-list li:last-child { border-bottom: 1px solid var(--line); }
+.ticket-list a { min-height: 4rem; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: .8rem; padding: .8rem .6rem; text-decoration: none; overflow-wrap: anywhere; }
+.ticket-list a:hover { background: var(--surface); }
+.ticket-list-name { display: grid; gap: .2rem; }
+.ticket-list time, .ticket-list-name span, .ticket-events li > div span { color: var(--muted); font-size: .82rem; }
+.ticket-events li { border-top: 1px solid var(--line); padding-block: .8rem; }
+.ticket-events li > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .6rem; margin-bottom: .3rem; }
+.ticket-summary { margin: 0; }
+.ticket-summary dt { font-weight: 670; margin-top: .8rem; }
+.ticket-summary dd { margin: .2rem 0 0; }
+.ticket-notes { border-left: 4px solid var(--steel-ink); }
+.consultation-intake { max-width: 51rem; margin-top: 1.5rem; }
+.consultation-form { margin-top: 1.15rem; }
+.consultation-form fieldset, .consultation-form label { display: grid; gap: .45rem; }
+.consultation-form fieldset { gap: 1rem; }
+.consultation-form :is(input:not([type=checkbox]), select, textarea) { width: 100%; min-width: 0; min-height: 44px; border: 1px solid #7b8d99; border-radius: 5px; background: var(--panel); color: var(--ink); padding: .55rem .7rem; font: inherit; }
+.consultation-form textarea { resize: vertical; }
+.consultation-form :is(select, textarea):focus-visible { outline: 3px solid var(--steel-ink); outline-offset: 4px; }
+.consultation-form .primary-action { justify-self: start; }
+.consultation-form .consultation-check { display: flex; align-items: baseline; gap: .6rem; }
+.consultation-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+@media (max-width: 56rem) {
+  .ticket-detail-grid, .consultation-fields { grid-template-columns: minmax(0, 1fr); }
+}
 .checkbox-label input { width: 1.25rem; flex: none; }
 .form-status { min-height: 1.6rem; margin-top: 1rem; }
 .auth-secrets { overflow-wrap: anywhere; border: 1px solid var(--line); padding: 1rem; }
@@ -216,6 +279,7 @@ button:disabled { cursor: not-allowed; opacity: .7; }
   .choice-input:not(:checked) + label:hover { background: #e0e9ef; }
 }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .context-panel, .process-panel { transform: none !important; transition: opacity 0ms, visibility 0ms; }
   .primary-action, .faq-toggle::after, .choice-item label, .faq-list details::details-content { transition: none; }
   .primary-action:active { transform: none; }

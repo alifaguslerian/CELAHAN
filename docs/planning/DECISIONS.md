@@ -5,6 +5,8 @@ References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS
 
 ## Current precedence
 
+DEC-68 records the owner's November 9 authorization to implement W4 as one consultation journey in the existing isolated environment. Replies, guidance and closure take place in the ticket. Intake uses the signed-in account without an additional contact field. Optional time proposals begin after admin guidance and require explicit admin confirmation.
+
 DEC-67 records the owner's selection and implementation request for 02 Glacier Steel. It also authorizes fitting the process into one desktop viewport and the account invitation and FAQ into the next, with both account action labels aligned. See [Glacier Steel validation](../validation/2026-11-08-glacier-steel.md).
 
 DEC-66 records the earlier November 8 instruction to restore static metal imagery and generate five recommendations with three-color gradients. See [static-material validation](../validation/2026-11-08-static-material.md).
@@ -49,6 +51,7 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-65 | Add pronounced material-image animation | Historical experiment superseded by DEC-66 |
 | DEC-66 | Restore static metal and review gradients | Remove the material motion and its cutouts. Generate five mockups with three gradient colors each for owner selection before applying a new palette or artwork |
 | DEC-67 | Apply 02 Glacier Steel and refine the desktop reading blocks | Use the selected three-color gradient and static steel-blue metal. Fit process and account/FAQ into separate desktop viewports with breathing room. Align the account and privacy labels |
+| DEC-68 | Implement one integrated W4 consultation workflow | Save synthetic intake, owner-visible history, admin replies and decisions, optional post-review scheduling, separate internal notes and closure in the shared site |
 
 ## Reviewable operating proposals
 

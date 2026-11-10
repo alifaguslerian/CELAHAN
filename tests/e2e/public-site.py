@@ -44,12 +44,16 @@ with sync_playwright() as p:
     for locale in ['id', 'en']:
         for path in ROUTES + ACCOUNT_ROUTES:
             response = page.goto(f'{BASE}/{locale}/{path}')
-            page.wait_for_load_state('networkidle')
+            expect(page.locator('main h1')).to_be_visible()
             assert response.status == 200, (locale, path, response.status)
             assert response.headers['x-content-type-options'] == 'nosniff'
             assert response.headers['referrer-policy'] == 'no-referrer'
             assert "frame-ancestors 'none'" in response.headers['content-security-policy']
-            assert 'no-store' in response.headers['cache-control']
+            cache = response.headers['cache-control']
+            if path in ACCOUNT_ROUTES:
+                assert 'no-store' in cache
+            else:
+                assert 's-maxage=' in cache and 'no-store' not in cache
             assert 'x-powered-by' not in response.headers
             assert page.locator('html').get_attribute('lang') == locale
             assert page.locator('main h1').count() == 1
@@ -90,6 +94,11 @@ with sync_playwright() as p:
         expect(question).to_have_attribute('open', '')
         expect(question.locator('p')).to_be_visible()
         page.screenshot(path=str(args.artifacts / f'{locale}-home.png'), full_page=True)
+        consultation = page.locator(f'#context a[href="/{locale}/login/?next=request"]:visible')
+        expect(consultation).to_have_count(1)
+        consultation.click()
+        page.wait_for_url(f'{BASE}/{locale}/login/?next=request')
+        page.goto(f'{BASE}/{locale}/')
         page.locator('.access-actions .primary-action').click()
         page.wait_for_url(f'**/{locale}/login/')
         for task in ['request', 'tickets', 'projects', 'admin']:
@@ -130,7 +139,7 @@ with sync_playwright() as p:
         cold.route('**/*', guard)
         probe = cold.new_page()
         probe.goto(f'{BASE}/{locale}/')
-        probe.wait_for_load_state('networkidle')
+        probe.evaluate('document.fonts.ready')
         result = probe.evaluate("""() => { const r = performance.getEntriesByType('resource'); return { js: r.filter(x => new URL(x.name).pathname.endsWith('.js')).reduce((s,x) => s+x.encodedBodySize,0), total: r.reduce((s,x) => s+x.encodedBodySize,0)+performance.getEntriesByType('navigation')[0].encodedBodySize, fonts: r.filter(x => /\\.(woff2?|ttf|otf)/.test(x.name)).length, artwork: r.filter(x => /artwork/.test(x.name)).length }; }""")
         assert result['js'] <= 250 * 1024 and result['total'] <= 1024 * 1024
         assert result['fonts'] == 1 and result['artwork'] == 3

@@ -1,6 +1,6 @@
 # CELAHAN Documentation
 
-Updated: November 8, 2026
+Updated: November 9, 2026
 
 The owner selected Layers under DEC-63 and authorized the desktop implementation under DEC-64. DEC-67 applies Glacier Steel to the static material imagery and updates the spacing of the process and account/FAQ blocks.
 
@@ -38,6 +38,7 @@ Retained historical records describe checks at their recorded dates, not current
 - [Layers desktop implementation](validation/2026-11-06-layers-desktop.md): native interaction/no-JS/keyboard/zoom/motion checks, actual desktop renders, payload/performance and access regression limits.
 - [Glacier Steel](validation/2026-11-08-glacier-steel.md) records the DEC-67 palette, viewport layout and checks.
 - [Checkpoint audit](validation/2026-11-08-checkpoint-audit.md) records security fixes, dead-code cleanup and desktop Lighthouse results.
+- [Integrated W4 consultation](validation/2026-11-09-w4-consultation.md) records the isolated migration, private workflow and browser checks.
 - [Static material restoration](validation/2026-11-08-static-material.md) records the DEC-66 rollback and checks.
 - [Material-image motion](validation/2026-11-06-material-motion.md) records the historical DEC-65 experiment.
 - [Service/report content reset](validation/2026-11-06-service-report-reset.md): removals, retired-route denial and safe account-return verification.

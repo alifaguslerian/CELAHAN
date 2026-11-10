@@ -1,6 +1,6 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1/W2 implemented; W3 public foundation retained; catalog/sample content removed pending redefinition; W4–W6 pending
+Status: W1/W2 and isolated W4 implemented. W3 public discovery remains available. W5 and W6 are pending.
 Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
@@ -9,6 +9,8 @@ References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flo
 Build a bilingual concept service portal with working login, a real database, consultation tickets, user/admin workflows, private illustrative project reports, and bounded follow-up. Public service discovery and the approved identity remain important.
 
 Confirmed by the owner: reactive/preventive intake; name/company/website/problem fields; contact and requested consultation schedule; prospects distinguished from users with projects; different initial/follow-up tickets; private reports; maximum three-month support and temporary discount; no code repair; documentation before implementation.
+
+DEC-68 refines the isolated consultation flow. Replies use the existing account and ticket, and optional scheduling begins after admin guidance.
 
 The owner also selected Better Auth in the Next.js server with Neon Free PostgreSQL and confirmed the first private project report publication as the support start. Permanent domain/DNS selection is deferred and must not block current planning or isolated development. Proposed details below include exact states/limits, single-owner projects, registration mechanics, scheduling semantics and calendar/cycle mechanics. These remain reviewable. Do not label them all owner-approved merely because this draft exists.
 
@@ -21,7 +23,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-01 | Public home and discovery | Layers desktop introduction, educational context/process interaction and current links; honest concept limits, no catalog/sample or fabricated achievements |
 | FUN-02 | Services and limitations | Assessment/guidance/retest scope, no code repair/forensics/certification, written permission explained |
 | FUN-03 | Eight-stage process | Canonical order, clear illustrative assessment stages, readable ordered desktop presentation |
-| FUN-04 | Consultation intake | Name, company, website, problem, contact, proposed schedule, authority statement; visible labels |
+| FUN-04 | Consultation intake | Name, optional company, inert website, need, reason, description and authority statement with visible labels. Replies use the ticket and scheduling follows review |
 | FUN-05 | Trusted validation | Server validates all writes; client validation assists UX; structured localized errors |
 | FUN-06 | Persistent ticket creation | Authenticated submission creates one owned record and server-generated reference; refresh retrieves it |
 | FUN-07 | Ticket workflow | User/admin discussion, requested/confirmed scheduling, explicit states, separate internal notes |
@@ -54,8 +56,8 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | Website | Required, at most 2,048 characters; parse locally/server-side as text; http/https, host required, no credentials/query/fragment |
 | Need | Required `reactive`, `preventive`, or `unsure_mixed`; at least one matching reason or other explanation |
 | Problem | Required, 10–3,000 characters; no secrets/evidence uploads |
-| Contact | Account email may be selected; otherwise a supported email or phone contact is required; no automatic contact verification claim |
-| Preferred schedule | Up to three future options with a supported IANA timezone; an explicit “discuss timing” option |
+| Contact | The signed-in account owns the request. In-site replies are the consultation channel under DEC-68 |
+| Discussion time | Optional after admin guidance. A future proposal includes a supported IANA time zone and requires explicit admin confirmation |
 | Authority statement | Required initial ownership/authority declaration; not legal testing permission |
 
 The owner approved email/password enrollment restricted to allowlisted synthetic identities, mandatory email verification, locally captured recovery and controlled TOTP-protected admin provisioning for W2 on October 31. Better Auth provides hashed email OTP verification/recovery and TOTP/backup-code handling. Public enrollment, real email delivery, operational recovery and phone formatting remain decisions before public collection. Authentication delivery is separate from consultation/support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
@@ -66,7 +68,7 @@ Reactive reasons: reported defacement, suspected data leakage/intrusion, reporte
 
 Public visitors browse the project introduction, conceptual process, About/FAQ and privacy. The catalog/public sample are removed pending replacement review. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
 
-Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Admin validates need, priority, timing, scope, and eligibility. In-app replies are real database writes; optional contact details support separately authorized manual follow-up, not automatic WhatsApp/email delivery.
+Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Under DEC-68, admin guidance, replies and closure are persisted in the ticket. The synthetic workflow uses in-site communication. Any external follow-up requires a separate decision.
 
 Refresh, new tabs and locale navigation do not delete stored tickets or reports. Unsaved drafts can be discarded only after an appropriate warning. Logout revokes the session and clears private UI caches, not database records. Language change never resets support dates.
 
@@ -130,7 +132,7 @@ Portfolio v1: complete approved portal flows, identity, ID/EN desktop UX, qualit
 
 Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, email provider, database adapter/runtime settings, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
 
-The owner authorized W1 on October 30 and isolated W2 on October 31. The shared shell and database-backed identity/minimal ownership boundary exist locally. These limited package checks do not mark the full scenarios above complete: ticket, consultation, report and support workflows, public enrollment and deployment remain pending.
+The owner authorized W1 on October 30, isolated W2 on October 31 and integrated W4 on November 9. The shared shell, database-backed identity and synthetic consultation workflow exist in the isolated environment. Reports, project support, public enrollment and deployment retain separate gates.
 
 ## November 6 presentation reset
 

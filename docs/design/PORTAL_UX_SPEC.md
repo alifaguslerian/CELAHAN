@@ -1,7 +1,7 @@
 # CELAHAN — Account and Service UX
 
-Updated: November 6, 2026
-Status: Account boundary and Layers public desktop implemented; later workflows/private-task designs remain planned
+Updated: November 9, 2026
+Status: Account boundary, Layers desktop and isolated W4 consultation screens implemented. W5 remains planned.
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Layers design lock](DESIGN_DIRECTION.md)
 
 ## Shared site
@@ -25,9 +25,11 @@ Login returns only to an allowlisted site task, not an external destination or f
 
 ## Consultation and tickets — W4
 
-The public invitation stays visible. Guests sign in before submitting. Initial consultation requires no project. Intake uses name, optional company, inert website, need/reasons, narrative, contact, suggested times/timezone and authority declaration. The declaration is not written testing permission. Prefill profile data where suitable and confirm a ticket-specific snapshot.
+The public invitation takes confirmed guests to sign-in with the consultation return intent, and signed-in users to the protected form. Until the header has resolved the account, the link uses the protected route so its server-side check can choose the correct destination. Initial consultation requires no project. Intake uses a prefilled editable name, optional company, inert website, need, brief reason, narrative and authority declaration. The declaration concerns the request. Replies stay in the ticket and scheduling follows guidance.
 
 Save consultation/ticket atomically with server-derived owner/reference and scoped idempotency. Show confirmed persistence only after success. Preserve unsaved text on failure; handle validation/session expiry/stale updates. A requested time is not confirmed until an authorized admin successfully saves that decision.
+
+The ticket detail puts the next action before its shared history. Admin guidance and the closure reason have dedicated space above replies. The owner sees an inert submission summary and optional discussion time. The admin uses the same site shell and a separately authorized detail view with internal notes. Closed tickets retain readable history.
 
 Own ticket list/detail includes the shared conversation and permitted actions. Admin triage minimizes personal data in summaries and separately manages shared replies and internal notes. Internal notes must never enter user HTML/JSON/RSC or hidden DOM. No automatic external service messaging/calendar, uploads or real incident response.
 
@@ -41,7 +43,7 @@ First private publication atomically starts support once. Activation, samples, f
 
 ## Route/data contracts
 
-The old public sample and catalog pages are removed and return 404; no replacement is selected. /id/login/, /id/register/ and /id/account/ handle account tasks. /id/request/ is currently an authenticated pending page. /id/tickets/, /id/projects/ and /id/admin/ currently contain protected pending-workflow notices. Later nested resources require per-object checks; an opaque ID is not a bearer credential. /en/ equivalents share records/rights.
+The retired public sample and catalog pages return 404. `/id/login/`, `/id/register/` and `/id/account/` handle account tasks. `/id/request/` contains the protected consultation form. `/id/tickets/` and `/id/tickets/[ticketId]/` show the owner's tickets. `/id/admin/` and `/id/admin/tickets/[ticketId]/` show the authorized consultation queue and detail. `/id/projects/` remains pending. The `/en/` equivalents share records and enforce the same per-object permissions.
 
 Header props expose minimal display/capability data. User DTOs omit admin notes/drafts. Save responses contain persisted results or safe localized failure states. No private metadata in social previews/sitemaps or shared caches. Current account returns preserve only request/account intent; they never carry retired catalog data.
 

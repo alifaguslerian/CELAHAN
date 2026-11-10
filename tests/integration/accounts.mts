@@ -67,6 +67,7 @@ try {
   // This dedicated synthetic database is reset only for the configured test identities.
   const ids = 'SELECT id FROM "user" WHERE email = ANY($1::text[])';
   checked((await db.query('SELECT count(*)::int n FROM "user" WHERE NOT (email = ANY($1::text[]))', [config.emails])).rows[0].n === 0, 'integration cleanup refuses unrecognized identities');
+  checked((await db.query('SELECT count(*)::int n FROM consultation_ticket')).rows[0].n === 0, 'account reset refuses a database containing consultation tickets');
   await db.query(`DELETE FROM project_access WHERE owner_id IN (${ids})`, [config.emails]);
   await db.query(`DELETE FROM privileged_audit WHERE subject_id IN (${ids})`, [config.emails]);
   await db.query('DELETE FROM "user" WHERE email = ANY($1::text[])', [config.emails]);
@@ -82,7 +83,7 @@ try {
   const meA = (await a.call('/api/account/')).data.account;
   const meB = (await b.call('/api/account/')).data.account;
   checked(Object.keys(meA).sort().join() === 'admin,hasProjects,id,name', 'session refresh exposes only the header account fields');
-  checked(meA.id !== meB.id && meA.email !== meB.email, 'sessions remain isolated');
+  checked(meA.id !== meB.id && Object.keys(meB).sort().join() === 'admin,hasProjects,id,name', 'sessions remain isolated');
   checked((await a.call('/api/account/', { name: 'Changed Synthetic Name', role: 'admin' }, 'PATCH')).response.status === 400, 'profile cannot change role');
   checked((await a.call('/api/account/', { name: '<script>inert</script>' }, 'PATCH')).response.ok, 'profile accepts escaped plain text');
   checked((await a.call('/api/account/')).data.account.name === '<script>inert</script>', 'profile persists');

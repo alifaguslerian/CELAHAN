@@ -1,7 +1,7 @@
 # CELAHAN — Architecture
 
-Status: W1/W2 retained; Layers public desktop implemented locally; later workflows/release gated
-Updated: November 6, 2026  
+Status: W1/W2 retained, Layers desktop and isolated W4 implemented. W5 and W6 remain gated.
+Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
@@ -10,7 +10,7 @@ Next.js App Router and TypeScript remain required. A server-capable application 
 
 ```mermaid
 flowchart LR
-  P[Public browser] --> W[Public pages and immutable sample]
+  P[Public browser] --> W[Public concept pages]
   U[Signed-in user or admin] --> S[Next.js server boundary]
   A[Better Auth in application server] --> S
   S --> Z[Session validation and object authorization]
@@ -152,14 +152,22 @@ The auth transport exposes only reviewed JSON POST operations, requires exact Or
 
 The local sink stores OTPs only in bounded process memory, expires them after five minutes and requires a bearer secret. A request-scoped delivery signal compensates for Better Auth suppressing callback delivery errors; failed capture returns a generic failed-delivery response. No external email or production deliverability is claimed.
 
-Every account/private query reads the database session, active/verified identity and current role/project association. The shared header receives only minimal display/capability fields. Local grant/revoke/disable operations audit metadata and revoke sessions; an admin must enroll TOTP before a role grant and sign in again afterward. Public and private site pages now render per request with private/no-store handling because the header is personalized. Full-page transitions on login/logout and bfcache/focus revalidation prevent reuse across account changes; browser evidence covers the actual tested paths only.
+Every account/private request reads the database session and active/verified identity. Role and project checks apply to the capabilities or resources the request uses. Local grant/revoke/disable operations audit metadata and revoke sessions; an admin must enroll TOTP before a role grant and sign in again afterward. Private pages render per request with private/no-store handling. Full-page transitions on login/logout and bfcache/focus revalidation prevent reuse across account changes; browser evidence covers the actual tested paths only.
+
+The PostgreSQL adapter fetches the session and current user in one join. Server components in the same render share that lookup through request-scoped React memoization. Project capability is queried separately where used. Protected API handlers resolve identity from their own request headers. The auth transport filters its response before returning it to the browser.
 
 `project_access` is the minimal ownership association needed to test capabilities and an owned resource; it does not implement project activation, reports or support. Ticket/project/admin destinations honestly state that their workflows are pending. This W2 boundary itself includes no dashboard/sidebar, ticket conversation, report draft or support calendar. W3 subsequently adds public discovery and safe consultation intent; it does not extend the database schema.
 
 ## 13. Current public content reset
 
-Public locale routes share the session-aware header/footer. Current typed content supplies the project introduction, conceptual stages, About/FAQ, privacy and not-found copy. Native links/disclosures retain public reading without JavaScript. Client boundaries remain the header, account forms and localized not-found view.
+Home, About, Process and Privacy are prerendered for ID and EN with an account-neutral header. Next.js can prefetch these public routes in production. The shared client account provider reads the minimal display/capability fields from the private, no-store account endpoint on document entry and window focus. Same-locale navigation reuses that state in memory. Native links and disclosures preserve public reading without JavaScript. Direct consultation entry still checks the session and redirects guests to sign-in with the return intent.
 
 DEC-62 removes the old catalog, definitions, report preview, public finding dataset, catalog/sample pages and service-selection return intent. Removed URLs return 404. No replacement service/report content has been selected. DEC-63 separately locks design 2, Aperture / Layers, for the desktop homepage; its future educational context/process interactions do not restore removed content or change data contracts.
 
-The request route requires a trusted session. The return intent accepts account or request, and pending destinations save no request. DEC-66 removes the material-motion client boundary. Layers renders its public text, native context/process/disclosure controls and static artwork on the server. Fonts and images use fixed first-party paths.
+The request route requires a trusted session. The return intent accepts account or request. Layers renders its public text, native context/process/disclosure controls and static artwork on the server. Fonts and images use fixed first-party paths.
+
+## W4 consultation boundary
+
+W4 uses migration `003-consultation-tickets.sql` and the restricted existing runtime role. The locale routes render authorized lists and details on the server. Client forms send bounded JSON to same-origin ticket endpoints and preserve drafts in memory. An expected account header detects a stale form after an account switch. The signed session remains the source of identity. Owner and admin mutation routes each enforce their own view and scope.
+
+The data layer scopes lists and detail reads, uses a separate admin-note query, and serializes commands with a row lock and an expected version. Ticket changes and shared events commit together. Actor-scoped request keys handle exact retries. The owner response excludes internal notes and uses private no-store handling. Application routes render submitted addresses as text.

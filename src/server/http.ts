@@ -9,8 +9,8 @@ export function privateJSON(body: unknown, status = 200, extra?: Headers) {
   return Response.json(body, { status, headers });
 }
 
-export async function boundedJSON(request: Request): Promise<unknown> {
-  if (Number(request.headers.get('content-length')) > 8192) throw new Error('Body too large');
+export async function boundedJSON(request: Request, limit = 8192): Promise<unknown> {
+  if (Number(request.headers.get('content-length')) > limit) throw new Error('Body too large');
   const reader = request.body?.getReader();
   if (!reader) throw new Error('Missing body');
   const chunks: Uint8Array[] = [];
@@ -19,7 +19,7 @@ export async function boundedJSON(request: Request): Promise<unknown> {
     const { done, value } = await reader.read();
     if (done) break;
     length += value.length;
-    if (length > 8192) { await reader.cancel(); throw new Error('Body too large'); }
+    if (length > limit) { await reader.cancel(); throw new Error('Body too large'); }
     chunks.push(value);
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));

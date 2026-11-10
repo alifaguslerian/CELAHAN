@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Updated: November 8, 2026
-Status: Layers desktop with static material imagery. W4–W6 unstarted.
+Updated: November 9, 2026
+Status: Layers desktop with static material imagery. Isolated W4 implemented. W5 and W6 remain gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -30,7 +30,7 @@ A completed package never authorizes the next. Work in the current checkout; do 
 | P2 | Presentation | Layers public desktop homepage/shared shell implemented and locally checked; private-task layouts and phone work remain separately scoped |
 | P3 | Auth/data foundation | W1 and isolated W2 implemented with historical scoped checks |
 | P4 | Public discovery | W3 content/routes remain; earlier visual acceptance is superseded |
-| P5 | Consultation/conversation/admin | W4 not started |
+| P5 | Consultation/conversation/admin | Integrated W4 implemented in the isolated environment |
 | P6 | Private reports/support | W5 not started |
 | P7 | Integrated quality | Checks accompany each change; release matrix incomplete |
 | P8 | Deployment/operations | W6 not started or authorized |
@@ -54,21 +54,17 @@ Historical checks are recorded in [W1](../validation/2026-10-30-w1-foundation.md
 
 ## W3 retained public behavior
 
-Home, eight educational stages, About/FAQ, privacy and 404 remain. The former catalog, descriptions, findings dataset and public sample are removed. Request/account return intent carries no service selection. Pending authenticated destinations save no request and implement no later workflow. New services/report content must be decided before those specific interfaces. Layers is implemented under DEC-64 with public educational context/process choices and no replacement offer or report content; it does not open W4/W5.
+Home, eight educational stages, About/FAQ, privacy and 404 remain. The former catalog, descriptions, findings dataset and public sample are removed. Request/account return intent carries only the known task. Layers provides public educational context and process choices and a link to the protected W4 consultation form.
 
 ## W4 — Consultation and tickets
 
-Entry: explicit authorization and review of field/contact/timing rules, ticket transitions, priorities and concurrency. Use synthetic data until public policy is ready.
+The owner authorized one integrated W4 on November 9. A consultation starts with context, proceeds through in-site review and replies, and ends with an actionable outcome or a reason for closure. Scheduling is optional after review. Use the existing isolated environment and synthetic data.
 
-- Implement reactive/preventive/unsure intake with authoritative server validation.
-- Atomically save consultation/initial ticket, server-derived owner/reference and scoped idempotency.
-- Provide owned list/detail/replies in the same site header.
-- Provide authorized admin triage, shared replies and separately queried internal notes.
-- Distinguish proposed/confirmed scheduling with timezone and stale-update handling.
-- Cover failed/retried saves, unsaved edits, session expiry and closed/empty states.
-- Verify two-user/admin isolation, forged privileges, note canaries, duplicate writes, scheduling races and target-egress denial.
+- Implement the consultation migration and ticket commands with session-derived ownership, a separate admin note boundary, atomic history and retry-safe writes.
+- Replace request, ticket and admin placeholders with the linked bilingual flow and a visible next action.
+- Verify two-account isolation, admin responses, retry and version conflicts, schedule confirmation and private response boundaries before recording validation.
 
-No automatic email/WhatsApp/calendar delivery, evidence uploads or real incident response. Project support is W5.
+Admin guidance supplies a reviewable next step. Time proposals are optional and follow guidance. An owner may accept an admin proposal, and an admin confirms an accepted or owner-proposed time. Closure leaves a read-only history. In-site replies use the existing account and synthetic data. Project support is W5.
 
 ## W5 — Projects, private illustrative reports and support
 

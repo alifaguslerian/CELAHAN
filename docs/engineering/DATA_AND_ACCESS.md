@@ -1,12 +1,12 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: W2 identity and minimal ownership schema implemented in an isolated test database; later workflow schema remains planned  
-Updated: November 6, 2026  
+Status: W2 identity, minimal ownership and W4 consultation tables exist in the isolated test database.  
+Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
 
-Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the generated auth schema; `002-project-access.sql` adds only ownership association and privileged-operation audit metadata. Other logical entities below are planned, not implemented tables. The previous public sample is removed; replacement report content awaits review. No report schema/data is introduced by this reset.
+Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the auth schema. `002-project-access.sql` adds minimal ownership and privileged-operation audit metadata. `003-consultation-tickets.sql` adds W4 storage. Project/report/support entities remain planned.
 
 V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, service interest, ticket reference and payment claims are never ownership proofs.
 
@@ -52,7 +52,7 @@ Auth sessions/verification/recovery records follow the reviewed Better Auth vers
 
 | Resource / action | Public | User without relationship | Owner | Admin |
 | --- | --- | --- | --- | --- |
-| Public content and immutable sample | Read | Read | Read | Read |
+| Public concept content | Read | Read | Read | Read |
 | Create consultation ticket | Login required | Own submission | Own submission | Own submission or reviewed admin workflow |
 | Read ticket/shared messages | Deny | Deny | Own ticket only | Authorized admin |
 | Reply | Deny | Deny | Own open/reviewable ticket | Authorized admin |
@@ -75,7 +75,9 @@ If the chosen database supports row-level security, evaluate it as defense in de
 
 ## 5. State machines and transactions
 
-Ticket states: new → under_review; under_review ↔ awaiting_user; reviewed scheduling → scheduled; admin outcome → resolved → closed. An owner reply on a resolved ticket can return it to under_review if allowed; closed stays read-only. All transitions validate current state and actor at execution time.
+W4 stores one consultation snapshot per `consultation_ticket`. Shared events, internal notes and command retry records use `consultation_event`, `consultation_note` and `consultation_command`. The request key is unique per owner. Commands check owner or verified admin view, lock the ticket, validate the current version and persist changes with their history and request hash in one transaction. Internal notes stay outside the shared history and leave the public version unchanged.
+
+Tickets begin in `review`. Admin clarification moves them to `awaiting_owner`, and the owner's reply returns them to `review`. Guidance moves them to `answered`. Admin closure with a shared reason makes the record read-only. Scheduling tracks `proposed`, `agreed` and `confirmed` separately. Partial unique indexes protect confirmed open-ticket times for the owner and confirming admin. Closure releases that reservation while preserving history.
 
 Project stages: scope_pending → awaiting_permission → assessment → reporting → support → closed, with reviewed cancellation. Stages represent an illustrative assessment, not target activity. No user status button can advance them.
 

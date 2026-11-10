@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
 Updated: November 6, 2026
-Status: Real portal concept; Layers public desktop implemented and checked locally; W4–W6 pending
+Status: Layers public desktop and isolated consultation workflow implemented. W5 and W6 remain gated.
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Purpose
@@ -20,11 +20,11 @@ Reactive/preventive/unsure needs describe motivations, not automatic diagnoses. 
 
 One shared site header provides public navigation and account entry beside ID/EN. Tickets appear after login, personal report/progress only for trusted project owners. No separate customer dashboard/sidebar. Initial consultation is distinct from owned-project support/retest.
 
-W1 shell and isolated W2 accounts/database exist. Public process, About and privacy pages are available. Request, ticket, project and admin workflows remain pending. Aperture / Layers uses Glacier Steel and static artwork under DEC-67, native context and process explorers, and shared account navigation. See [desktop design](../design/DESIGN_DIRECTION.md) and [local validation](../validation/2026-11-08-glacier-steel.md).
+W1 shell and isolated W2 accounts/database exist. W4 links consultation intake, private replies, guidance, optional scheduling and closure in the shared site. Project and report workflows are W5. See [desktop design](../design/DESIGN_DIRECTION.md) and [local validation](../validation/2026-11-08-glacier-steel.md).
 
 ## Service boundaries
 
-- Authenticated intake collects name, optional company, inert website, need/reasons, problem, contact, proposed schedule/timezone and initial authority declaration.
+- Authenticated intake collects name, optional company, inert website, need/reason, a description and an authority declaration. Review and replies take place in the ticket. Optional time proposals use a time zone after review.
 - The declaration is not written testing permission. Registration/selected package/company/email alone grants no project rights.
 - Maximum three-month support starts once at first private project report publication. Activation, samples, first reading, later versions/tickets/retests never start/reset it. Exact calendar/cycle mechanics remain reviewable.
 - Code fixes belong to the website owner's programmers. No actual testing, code maintenance, recovery, forensics, certification, monitoring, payment, uploads, AI or automatic service messaging.
