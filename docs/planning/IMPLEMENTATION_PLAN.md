@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Updated: November 9, 2026
-Status: Layers desktop with static material imagery. Isolated W4 implemented. W5 and W6 remain gated.
+Updated: November 10, 2026
+Status: Layers desktop with static material imagery. Isolated W4 and W5A implemented and checked. W5B and W6 remain gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -31,7 +31,7 @@ A completed package never authorizes the next. Work in the current checkout; do 
 | P3 | Auth/data foundation | W1 and isolated W2 implemented with historical scoped checks |
 | P4 | Public discovery | W3 content/routes remain; earlier visual acceptance is superseded |
 | P5 | Consultation/conversation/admin | Integrated W4 implemented in the isolated environment |
-| P6 | Private reports/support | W5 not started |
+| P6 | Private reports/support | Isolated W5A implemented and checked. W5B remains gated |
 | P7 | Integrated quality | Checks accompany each change; release matrix incomplete |
 | P8 | Deployment/operations | W6 not started or authorized |
 | P9 | Video/case study | Brief only; production follows stable actual functionality |
@@ -66,19 +66,13 @@ The owner authorized one integrated W4 on November 9. A consultation starts with
 
 Admin guidance supplies a reviewable next step. Time proposals are optional and follow guidance. An owner may accept an admin proposal, and an admin confirms an accepted or owner-proposed time. Closure leaves a read-only history. In-site replies use the existing account and synthetic data. Project support is W5.
 
-## W5 — Projects, private illustrative reports and support
+## W5A — Projects, progress and private web reports
 
-Entry: W4 checked plus explicit authorization; review calendar/expiry/cycle policy before benefit code. No unapproved discount.
+DEC-69 authorizes one project from an open consultation after admin guidance and scope agreement. The source ticket determines ownership. The owner can read progress before the first report. An authorized admin can save a draft, publish it, publish a correction with a change note, or withdraw the active version. Only the active published report is visible to the owner. The approved fictional order-portal scenario has one illustrative finding and uses plain text. First publication fixes the support dates in the same transaction under the approved Jakarta calendar rule.
 
-- Implement privileged project creation/association and audited illustrative stages.
-- Provide owned progress before first report without exposing drafts.
-- Review replacement report content/shape first, then provide versioned illustrative reports and authorized draft/publication/withdrawal.
-- Publish atomically and start support once on first private publication; later versions never reset it.
-- Implement owned support/retest requests, separate programmer assertions and illustrative admin outcomes.
-- Reserve/consume cycles atomically; handle timely requests after expiry without extending benefits.
-- Verify nested-ID isolation, reassignment, drafts/withdrawal, concurrent publication, exact expiry/month-end/leap-year, cycle races and idempotency.
+## W5B — Support, illustrative retests, realtime replies and calendar
 
-No actual retesting, code repair, anonymous report share, generated PDF or input-derived finding.
+Review eligibility and cycle policy before implementing owned support/retest requests, separate programmer assertions and illustrative admin outcomes. Reserve and consume approved cycles atomically. Add realtime updates to the existing ticket conversation and a calendar view of confirmed schedules. Catalog, PDF export and automatic discounts are deferred.
 
 ## W6 — Final verification and authorized release
 

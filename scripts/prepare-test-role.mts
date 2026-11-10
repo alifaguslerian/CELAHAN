@@ -21,6 +21,14 @@ try {
     await client.query('GRANT SELECT, INSERT ON consultation_ticket, consultation_event, consultation_note, consultation_command TO celahan_app');
     await client.query('GRANT UPDATE (status, outcome, close_reason, schedule_at, schedule_zone, schedule_state, schedule_by, schedule_admin_id, version, updated_at) ON consultation_ticket TO celahan_app');
     await client.query('GRANT USAGE ON SEQUENCE consultation_event_id_seq, consultation_note_id_seq TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.create_assessment_project(text, uuid, text, text) TO celahan_app');
+    await client.query('GRANT SELECT ON assessment_project, project_report_version, assessment_project_event, assessment_project_command TO celahan_app');
+    await client.query('GRANT INSERT (project_id, version, body, change_note) ON project_report_version TO celahan_app');
+    await client.query('GRANT INSERT (project_id, actor_id, kind, report_id) ON assessment_project_event TO celahan_app');
+    await client.query('GRANT INSERT ON assessment_project_command TO celahan_app');
+    await client.query('GRANT UPDATE (stage, first_report_id, support_started_at, support_expires_at, support_policy) ON assessment_project TO celahan_app');
+    await client.query('GRANT UPDATE (revision, state, body, change_note, published_at) ON project_report_version TO celahan_app');
+    await client.query('GRANT USAGE ON SEQUENCE assessment_project_event_id_seq TO celahan_app');
     await client.query('COMMIT');
     const runtimeURL = new URL(ownerURL);
     runtimeURL.username = 'celahan_app'; runtimeURL.password = password;

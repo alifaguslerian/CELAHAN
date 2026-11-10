@@ -2,7 +2,7 @@ import 'server-only';
 import { createHash, randomBytes } from 'node:crypto';
 import type { PoolClient } from 'pg';
 import type { AccountState } from '../auth/session';
-import { database } from './pool';
+import { database, transaction } from './pool';
 import { ticketActions, type ConsultationInput, type Need, type Schedule, type ScheduleState, type TicketCommand, type TicketStatus, type TicketView } from '@/lib/consultation';
 
 const listSize = 20;
@@ -53,19 +53,6 @@ export async function ticketDetails(actor: Actor, view: TicketView, id: string, 
   ]);
   return { ticket, schedule: scheduleOf(ticket), events: history.rows.slice(0, historySize).reverse(),
     notes: notes?.rows.slice(0, historySize), more: history.rows.length > historySize || (notes?.rows.length ?? 0) > historySize };
-}
-
-async function transaction<T>(work: (client: PoolClient) => Promise<T>): Promise<T> {
-  const client = await database().connect();
-  try {
-    await client.query('BEGIN');
-    const result = await work(client);
-    await client.query('COMMIT');
-    return result;
-  } catch (error) {
-    await client.query('ROLLBACK').catch(() => {});
-    throw error;
-  } finally { client.release(); }
 }
 
 async function activeActor(client: PoolClient, actor: Actor, view: TicketView) {

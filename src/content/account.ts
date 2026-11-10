@@ -9,7 +9,7 @@ export const accountCopy = {
     failed: 'Permintaan belum berhasil. Periksa isian dan coba lagi.', deliveryFailed: 'Pengiriman kode lokal gagal. Coba kirim ulang di halaman verifikasi atau pemulihan.', unavailable: 'Layanan akun belum tersedia. Konfigurasi database dan penampung email lokal diperlukan.', limited: 'Terlalu banyak percobaan. Tunggu sebentar sebelum mencoba lagi.',
     needJS: 'Aktifkan JavaScript untuk mengirim formulir akun. Isian tidak dikirim melalui alamat halaman.', forgot: 'Lupa kata sandi?', resend: 'Kirim ulang kode verifikasi', logout: 'Keluar',
     secret: 'Kunci penyiapan autentikator', codes: 'Kode cadangan sekali pakai', keepCodes: 'Simpan kunci dan kode cadangan secara pribadi sebelum mengonfirmasi. Jangan kirim ke chat atau repository. Tampilan ini hilang saat halaman ditutup.',
-    enabled: 'Autentikator aktif.', enable: 'Siapkan autentikator', tickets: 'Tiket', projects: 'Laporan & Progres', admin: 'Pengelolaan', later: 'Alur ini belum diimplementasikan dalam paket autentikasi. Tidak ada tiket atau laporan contoh yang dibuat sebagai data pribadi.', discard: 'Tinggalkan perubahan yang belum disimpan?',
+    enabled: 'Autentikator aktif.', enable: 'Siapkan autentikator', tickets: 'Tiket', projects: 'Laporan & Progres', admin: 'Pengelolaan', discard: 'Tinggalkan perubahan yang belum disimpan?',
   },
   en: {
     login: 'Log in', register: 'Sign up', verify: 'Verify email', recovery: 'Recover account', reset: 'Reset password', twoFactor: 'Verify authenticator', setup: 'Set up authenticator', profile: 'Profile',
@@ -21,6 +21,6 @@ export const accountCopy = {
     failed: 'The request did not succeed. Check the fields and try again.', deliveryFailed: 'Local code delivery failed. Retry from the verification or recovery page.', unavailable: 'Account services are unavailable. The isolated database and local email sink must be configured.', limited: 'Too many attempts. Wait before trying again.',
     needJS: 'Enable JavaScript to submit account forms. Fields are not sent through page URLs.', forgot: 'Forgot password?', resend: 'Resend verification code', logout: 'Log out',
     secret: 'Authenticator setup key', codes: 'Single-use backup codes', keepCodes: 'Store the key and backup codes privately before confirming. Do not send them to chat or the repository. This display disappears when you leave the page.',
-    enabled: 'Authenticator enabled.', enable: 'Set up authenticator', tickets: 'Tickets', projects: 'Reports & Progress', admin: 'Management', later: 'This workflow is not implemented in the authentication package. No sample tickets or reports are created as private records.', discard: 'Leave unsaved changes?',
+    enabled: 'Authenticator enabled.', enable: 'Set up authenticator', tickets: 'Tickets', projects: 'Reports & Progress', admin: 'Management', discard: 'Leave unsaved changes?',
   },
 } as const;

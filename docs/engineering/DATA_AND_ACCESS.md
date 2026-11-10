@@ -1,12 +1,12 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: W2 identity, minimal ownership and W4 consultation tables exist in the isolated test database.  
+Status: W2 identity, W4 consultations and W5A project and report tables exist in the isolated test database.  
 Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
 
-Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the auth schema. `002-project-access.sql` adds minimal ownership and privileged-operation audit metadata. `003-consultation-tickets.sql` adds W4 storage. Project/report/support entities remain planned.
+Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the auth schema. `002-project-access.sql` adds ownership and privileged-operation audit metadata. `003-consultation-tickets.sql` adds W4 storage. `004-private-project-reports.sql` adds projects tied to consultation tickets, private report versions, progress events and retry keys. The runtime assigns ownership through a checked database function. It retains read-only access to the ownership table itself.
 
 V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, service interest, ticket reference and payment claims are never ownership proofs.
 
@@ -91,7 +91,7 @@ Idempotent writes scope keys to actor and operation. A replay with a different p
 
 The owner confirmed the first private project report publication as the support start. In that publication transaction, set support_started_at from trusted server time, record the first published version reference/policy snapshot, and compute expiry only when those fields are unset. Concurrent publication/retries must not produce multiple starts. Project activation and public sample views do not start support.
 
-Proposed calendar rule remains reviewable: add three calendar months at the same local time in Asia/Jakarta, clamp invalid day-of-month to month end, then store UTC expiry. This is not a default 90-day period. First view, corrections, withdrawal/republication, new versions and retests do not move the original start/expiry.
+DEC-69 approves adding three calendar months at the same local time in Asia/Jakarta, clamping an invalid day to month end and storing the resulting instant. First view, corrections, withdrawal, republication, new versions and retests preserve the original start and end.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 

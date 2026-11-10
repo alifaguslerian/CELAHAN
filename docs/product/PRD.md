@@ -1,6 +1,6 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1/W2 and isolated W4 implemented. W3 public discovery remains available. W5 and W6 are pending.
+Status: W1 through W4 and isolated W5A are implemented. W5B and W6 are pending.
 Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
@@ -78,7 +78,7 @@ The owner confirmed a maximum three-month period from the first private project 
 
 The maintenance-discount concept is narrowed to a proposed follow-up security review because code maintenance is excluded. Percentage, eligible work, approval cutoff, and commercial display need confirmation; do not invent a rate or apply a charge.
 
-The former public report dataset and preview are removed under DEC-62. No replacement finding count, title, category, score or status is approved. Future private illustrative reports remain project-bound/versioned, with review before publication; they cannot be generated from an entered website. Published history and separate follow-up assertions remain integrity requirements for future content.
+The former public report dataset and preview were removed under DEC-62. DEC-69 approves one fictional order-portal scenario for W5A. Private reports belong to a project and preserve published versions. The admin reviews and publishes the active version for the owner. Follow-up assertions remain separate work for W5B.
 
 ## 6. Language, desktop accessibility and performance
 

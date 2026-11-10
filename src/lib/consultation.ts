@@ -25,12 +25,12 @@ export function isTicketId(value: unknown): value is string {
   return typeof value === 'string' && /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(value);
 }
 
-function objectWith(value: unknown, keys: readonly string[]): value is Record<string, unknown> {
+export function objectWith(value: unknown, keys: readonly string[]): value is Record<string, unknown> {
   return Boolean(value && typeof value === 'object' && !Array.isArray(value)
     && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key)));
 }
 
-function text(value: unknown, min: number, max: number): string | null {
+export function text(value: unknown, min: number, max: number): string | null {
   if (typeof value !== 'string' || /[\p{Cc}\p{Cs}]/u.test(value.replace(/[\t\n\r]/g, ''))) return null;
   const normalized = value.trim();
   return normalized.length >= min && normalized.length <= max ? normalized : null;

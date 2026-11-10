@@ -1,9 +1,11 @@
 # CELAHAN — Decisions
 
-Updated: November 8, 2026
+Updated: November 10, 2026
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
 ## Current precedence
+
+DEC-69 records the owner's November 10 approval of isolated W5A. An admin creates one project from an open consultation after guidance and confirmation of agreed scope. The requester is the project owner. The approved example is a fictional order portal with one illustrative ownership finding. The owner sees the active published web report. Admins retain version history. First publication starts support once and fixes the end at the same local time three calendar months later in Asia/Jakarta, clamped to the last valid day. W5B retains support requests, illustrative retests, realtime ticket replies and a confirmed-schedule calendar. Public catalog, automatic discounts and PDF export are deferred.
 
 DEC-68 records the owner's November 9 authorization to implement W4 as one consultation journey in the existing isolated environment. Replies, guidance and closure take place in the ticket. Intake uses the signed-in account without an additional contact field. Optional time proposals begin after admin guidance and require explicit admin confirmation.
 
@@ -52,6 +54,7 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-66 | Restore static metal and review gradients | Remove the material motion and its cutouts. Generate five mockups with three gradient colors each for owner selection before applying a new palette or artwork |
 | DEC-67 | Apply 02 Glacier Steel and refine the desktop reading blocks | Use the selected three-color gradient and static steel-blue metal. Fit process and account/FAQ into separate desktop viewports with breathing room. Align the account and privacy labels |
 | DEC-68 | Implement one integrated W4 consultation workflow | Save synthetic intake, owner-visible history, admin replies and decisions, optional post-review scheduling, separate internal notes and closure in the shared site |
+| DEC-69 | Implement isolated W5A projects and private web reports | One project per reviewed open ticket, a fictional order-portal example, owner access to the active version and a fixed Jakarta support period on first publication |
 
 ## Reviewable operating proposals
 

@@ -96,7 +96,7 @@ Confirmed: a maximum three-month period starting at the first private project re
 
 On the first private report publication, the server atomically records support_started_at, the first published version reference and a policy snapshot with the report transaction. Concurrent/retried publication must set those values only once. This supersedes the previous proposal to begin support at project activation.
 
-Proposed calendar mechanics for review: end at the same local time three calendar months later in Asia/Jakarta, clamp an invalid day to month end, then store UTC expiry. This is not 90 days by default; exact boundary tests/cycle rules remain reviewable before implementation.
+DEC-69 approves the end at the same local time three calendar months later in Asia/Jakarta. Clamp an invalid day to the last day of the month and store the resulting instant. W5B cycle rules remain subject to review.
 
 Support belongs to the stated project/scope. It never restarts on login, language change, a new ticket, later report versions/withdrawal/republication, reply, retest or project closure. A distinct new engagement requires explicit new scoping; the original project's benefit cannot be reset by relabeling it. Expiry overrides cannot silently extend this maximum; corrections require authorized audit and review.
 

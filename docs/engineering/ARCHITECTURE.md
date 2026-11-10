@@ -1,6 +1,6 @@
 # CELAHAN — Architecture
 
-Status: W1/W2 retained, Layers desktop and isolated W4 implemented. W5 and W6 remain gated.
+Status: W1/W2 retained, Layers desktop and isolated W4 and W5A implemented. W5B and W6 remain gated.
 Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
@@ -162,7 +162,7 @@ The PostgreSQL adapter fetches the session and current user in one join. Server 
 
 Home, About, Process and Privacy are prerendered for ID and EN with an account-neutral header. Next.js can prefetch these public routes in production. The shared client account provider reads the minimal display/capability fields from the private, no-store account endpoint on document entry and window focus. Same-locale navigation reuses that state in memory. Native links and disclosures preserve public reading without JavaScript. Direct consultation entry still checks the session and redirects guests to sign-in with the return intent.
 
-DEC-62 removes the old catalog, definitions, report preview, public finding dataset, catalog/sample pages and service-selection return intent. Removed URLs return 404. No replacement service/report content has been selected. DEC-63 separately locks design 2, Aperture / Layers, for the desktop homepage; its future educational context/process interactions do not restore removed content or change data contracts.
+DEC-62 removed the old catalog, definitions, public report preview, public finding dataset, catalog/sample pages and service-selection return intent. Removed URLs return 404. DEC-69 approves one private fictional report example for W5A. DEC-63 locks design 2, Aperture / Layers, for the desktop homepage.
 
 The request route requires a trusted session. The return intent accepts account or request. Layers renders its public text, native context/process/disclosure controls and static artwork on the server. Fonts and images use fixed first-party paths.
 

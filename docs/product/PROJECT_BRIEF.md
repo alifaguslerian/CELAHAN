@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
 Updated: November 6, 2026
-Status: Layers public desktop and isolated consultation workflow implemented. W5 and W6 remain gated.
+Status: Layers public desktop, isolated W4 consultations and W5A private project reports are implemented. W5B and W6 remain gated.
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Purpose
@@ -20,7 +20,7 @@ Reactive/preventive/unsure needs describe motivations, not automatic diagnoses. 
 
 One shared site header provides public navigation and account entry beside ID/EN. Tickets appear after login, personal report/progress only for trusted project owners. No separate customer dashboard/sidebar. Initial consultation is distinct from owned-project support/retest.
 
-W1 shell and isolated W2 accounts/database exist. W4 links consultation intake, private replies, guidance, optional scheduling and closure in the shared site. Project and report workflows are W5. See [desktop design](../design/DESIGN_DIRECTION.md) and [local validation](../validation/2026-11-08-glacier-steel.md).
+W1 shell and isolated W2 accounts/database exist. W4 links consultation intake, private replies, guidance, optional scheduling and closure. W5A extends the same site with owned projects and private web reports. See [desktop design](../design/DESIGN_DIRECTION.md) and [W5A validation](../validation/2026-11-10-w5a-private-projects.md).
 
 ## Service boundaries
 

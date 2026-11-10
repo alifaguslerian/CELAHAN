@@ -6,13 +6,13 @@ A bilingual coursework and portfolio concept demonstrating product design, front
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Current status — November 9, 2026
+## Current status — November 10, 2026
 
 The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-W1 foundation and isolated W2 accounts exist. W3 public pages introduce the concept. DEC-68 authorizes W4 as one in-site consultation workflow in the existing isolated environment. W5 private reports/support and W6 release require separate authorization.
+W1 foundation, isolated W2 accounts, W3 public discovery, W4 consultation and W5A private projects and reports are implemented. W5B and W6 require separate authorization.
 
-Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. From the public consultation link, guests sign in before opening the private form. Approved test accounts can create and revisit their own tickets. Authorized admins can review, respond, record internal notes, arrange an optional discussion time and close with a reason. The project destination remains a protected pending-workflow notice. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md).
+Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. Verified test users can submit consultations and follow replies and confirmed discussion times. Admins can create a project from a reviewed consultation, publish a private web report and retain its version history. Owners see progress and the active published report. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md) and [W5A validation](docs/validation/2026-11-10-w5a-private-projects.md).
 
 Accounts and sessions use Better Auth in the Next.js server and a dedicated isolated Neon PostgreSQL test database. Assessments, findings and progress remain illustrative. Visitor-entered websites are never visited, resolved, scanned, previewed, embedded or automatically linked. Code fixes belong to the website owner's programmers.
 
@@ -92,7 +92,7 @@ Use a production server. Public/shared-shell checks perform no account writes an
 
 ## Remaining gates
 
-Maximum three-month support starts once at first private project report publication. Activation, sample views, later versions/tickets/retests never restart it. Exact calendar/cycle mechanics remain reviewable. Service definitions, numerical terms and report content await new review; no replacement offer or finding dataset is published.
+The first private report sets the support period once. The end is three calendar months later in Asia/Jakarta, clamped to the last valid day. W5B support requests and retest allowances remain pending. The W5A draft editor offers one approved fictional order-portal example.
 
 Before public intake resolve enrollment/recovery/delivery, retention/deletion/backups, processors/regions, privacy contact and hosting. Synthetic projects do not make real account identities nonpersonal. No paid services or domain/DNS setup is authorized. Video/case-study production follows stable actual functionality; no deadline or video format is invented.
 

@@ -6,6 +6,9 @@ import { isTicketId, ticketActions, ticketPage, type TicketAction, type TicketVi
 import { currentPageIdentity } from '@/server/auth/session';
 import { listTickets, ticketDetails } from '@/server/data/tickets';
 import { TicketActionForm } from './forms';
+import { projectCopy } from '@/content/projects';
+import { projectForConsultation } from '@/server/data/projects';
+import { CreateProjectForm } from '@/components/projects/forms';
 import { PrivateAccountScope } from '@/components/layout/site-account';
 
 const localeFormat = { id: 'id-ID', en: 'en-GB' } as const;
@@ -86,6 +89,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
     <h1>{view === 'admin' ? copy.queue : copy.myTickets}</h1><p role="status">{copy.unavailable}</p><Link href={listPath}>{copy.back}</Link>
   </main>;
   const { ticket, schedule, events, notes, more } = detail;
+  const projectId = await projectForConsultation(actor, view, id).catch(() => null);
   const workflow = { ...ticket, schedule };
   const actions = ticketActions(workflow, view);
   const [step, recommended] = nextStep(workflow, view);
@@ -100,6 +104,11 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
       <div><h2 id="ticket-next" tabIndex={-1}>{copy.nextStep}</h2><p>{copy.nextSteps[step]}</p></div>
       {actions.length > 0 && <a className="primary-action" href="#ticket-action">{copy.act}</a>}
     </section>
+    {projectId && <p className="page-actions">
+      <Link prefetch={false} href={`/${locale}/${view === 'admin' ? 'admin/' : ''}projects/${projectId}/`}>
+        {projectCopy[locale].open}
+      </Link>
+    </p>}
     <div className="ticket-detail-grid">
       <div className="ticket-detail-main">
         {(ticket.outcome || ticket.close_reason) && <section className="ticket-panel">
@@ -118,6 +127,8 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
         </section>
       </div>
       <aside className="ticket-detail-side">
+        {view === 'admin' && !projectId && ticket.status !== 'closed' && ticket.outcome &&
+          <CreateProjectForm locale={locale} accountId={actor.id} ticketId={id} />}
         <section className="ticket-panel"><h2>{copy.schedule}</h2>
           {schedule ? <><p className="ticket-state">{copy.scheduleStates[schedule.state]}</p><p>{scheduleLabel}</p></> : <p>{copy.noSchedule}</p>}
         </section>

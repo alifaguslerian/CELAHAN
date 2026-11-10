@@ -10,8 +10,8 @@ import type { Locale } from '@/lib/routing';
 const subscribe = () => () => {};
 const zones = ['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura', 'UTC'];
 
-function useTicketSubmission(locale: Locale, accountId: string, endpoint: string) {
-  const copy = consultationCopy[locale];
+export function usePortalSubmission(locale: Locale, accountId: string, endpoint: string,
+  copy: { discard: string; saved: string; errors: Record<string, string> } = consultationCopy[locale]) {
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState('');
@@ -52,7 +52,7 @@ function useTicketSubmission(locale: Locale, accountId: string, endpoint: string
       });
       const data = await response.json();
       if (!response.ok) {
-        const code = typeof data.error === 'string' && Object.hasOwn(copy.errors, data.error) ? data.error as keyof typeof copy.errors : 'UNAVAILABLE';
+        const code = typeof data.error === 'string' && Object.hasOwn(copy.errors, data.error) ? data.error : 'UNAVAILABLE';
         setFailed(true);
         setMessage(copy.errors[code]);
         if (code === 'CONFLICT') conflict?.();
@@ -87,7 +87,7 @@ function useTicketSubmission(locale: Locale, accountId: string, endpoint: string
 
 export function ConsultationForm({ locale, name, accountId }: { locale: Locale; name: string; accountId: string }) {
   const copy = consultationCopy[locale];
-  const write = useTicketSubmission(locale, accountId, '/api/tickets/');
+  const write = usePortalSubmission(locale, accountId, '/api/tickets/');
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -126,7 +126,7 @@ export function TicketActionForm({ locale, accountId, endpoint, version, actions
 }) {
   const copy = consultationCopy[locale];
   const router = useRouter();
-  const write = useTicketSubmission(locale, accountId, endpoint);
+  const write = usePortalSubmission(locale, accountId, endpoint);
   const [choice, setChoice] = useState<TicketAction | null>(null);
   const action = choice && actions.includes(choice) ? choice : recommended;
   const form = useRef<HTMLFormElement>(null);

@@ -1,7 +1,7 @@
 # CELAHAN — Account and Service UX
 
 Updated: November 9, 2026
-Status: Account boundary, Layers desktop and isolated W4 consultation screens implemented. W5 remains planned.
+Status: Account boundary, Layers desktop, isolated W4 consultation and W5A private project screens implemented. W5B remains planned.
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Layers design lock](DESIGN_DIRECTION.md)
 
 ## Shared site
@@ -35,15 +35,15 @@ Own ticket list/detail includes the shared conversation and permitted actions. A
 
 ## Project/report/support — W5
 
-Trusted admin association grants project rights. Project selection stays inside report/progress task content. Before publication show illustrative progress/awaiting state without drafts. After publication show the authorized immutable reviewed version. Replacement report content/count must be decided before W5; the retired public dataset is not a template. Foreign/draft/withdrawn resources disclose no private metadata.
+Admin project creation starts from the reviewed ticket. The owner opens the project from the ticket or Reports & Progress. Before publication the owner sees progress and the awaiting state. After publication the owner sees the active immutable version. The draft editor includes the approved fictional order-portal example. Admins can open version history from the same project.
 
 Published corrections create new versions with change notes. Findings/paths remain inert text; no scan logs, PDF/share links, uploads or repair action. User programmer-change assertions stay separate from illustrative admin review outcomes.
 
-First private publication atomically starts support once. Activation, samples, first view, later versions/tickets/retests/locale changes never start/reset it. Dates/cycle eligibility come from trusted server records. Exact calendar/cycle rules and discount need review. Expiry ends included benefits, with report/history access governed by retention.
+First private publication atomically starts support once and stores the approved Jakarta calendar end. Expiry does not change access to the active report. W5B will use the saved dates and reviewed cycle policy for support requests.
 
 ## Route/data contracts
 
-The retired public sample and catalog pages return 404. `/id/login/`, `/id/register/` and `/id/account/` handle account tasks. `/id/request/` contains the protected consultation form. `/id/tickets/` and `/id/tickets/[ticketId]/` show the owner's tickets. `/id/admin/` and `/id/admin/tickets/[ticketId]/` show the authorized consultation queue and detail. `/id/projects/` remains pending. The `/en/` equivalents share records and enforce the same per-object permissions.
+The retired public sample and catalog pages return 404. `/id/login/`, `/id/register/` and `/id/account/` handle account tasks. `/id/request/` contains the protected consultation form. `/id/tickets/` and `/id/tickets/[ticketId]/` show the owner's tickets. `/id/admin/` and `/id/admin/tickets/[ticketId]/` show the authorized consultation queue and detail. `/id/projects/` and `/id/projects/[projectId]/` show owned projects. `/id/admin/projects/[projectId]/` manages the report from the source ticket. The `/en/` equivalents share records and enforce the same per-object permissions.
 
 Header props expose minimal display/capability data. User DTOs omit admin notes/drafts. Save responses contain persisted results or safe localized failure states. No private metadata in social previews/sitemaps or shared caches. Current account returns preserve only request/account intent; they never carry retired catalog data.
 
