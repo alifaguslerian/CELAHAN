@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { homeCopy } from '@/content/home';
 import { Hero, ContextExplorer, ProcessExplorer, AccountInvitation, Closing } from '@/components/public/home';
+import { PackagePreview } from '@/components/public/packages';
 import { FAQ } from '@/components/public/sections';
 import { isLocale } from '@/lib/routing';
 
@@ -13,6 +14,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Hero locale={locale} />
       <ContextExplorer locale={locale} />
       <ProcessExplorer locale={locale} />
+      <PackagePreview locale={locale} />
       <div id="access-and-faq" className="access-and-faq">
         <AccountInvitation locale={locale} />
         <section id="faq" className="home-faq section-space" aria-labelledby="faq-heading">

@@ -1,22 +1,22 @@
 # CELAHAN — Content and Illustration Contracts
 
-Updated: November 6, 2026
-Status: Service definitions and report content await replacement review
+Updated: November 13, 2026
+Status: DEC-71 authorizes illustrative package selection and pricing. DEC-69 authorizes one fictional private report example.
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Current content authority
 
-DEC-62 removes the former catalog, descriptions/numerical drafts and public findings dataset/preview. No replacement offers or report content are approved. Do not reconstruct old content from history/images/prompts. DEC-63 selects Layers; DEC-64 authorizes its desktop implementation. [Design Direction](../design/DESIGN_DIRECTION.md) records the visual contract. Educational context choices and process explanations restore no service catalog, finding dataset or real testing behavior.
+DEC-62 removes the former catalog, descriptions/numerical drafts and public findings dataset/preview. DEC-71 adds three new illustrative packages for public websites, accounts and data, and applications with admin panels. DEC-63 selects Layers and DEC-64 authorizes its desktop implementation. [Design Direction](../design/DESIGN_DIRECTION.md) records the visual contract.
 
-The desktop homepage/shared shell implement Layers with native public choices/disclosures, CSS motion, account controls and privacy/FAQ context. Open Threshold is retained. Removed catalog/sample routes still return 404; no placeholder catalog or fake report is published. Dedicated phone work remains deferred.
+The desktop homepage and shared shell implement Layers with native public choices, disclosures, account controls and privacy/FAQ context. Open Threshold is retained. The retired catalog and sample routes still return 404. The W5C package preview links to the new package page. Dedicated phone work remains deferred.
 
 ## Required copy
 
 | Context | Indonesian | English |
 | --- | --- | --- |
 | Concept disclaimer | Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan. | A concept project for a portfolio and university coursework. Not a real service. |
-| Current consultation availability | Pengajuan konsultasi belum dibuka. | Consultation submission is not open yet. |
-| Service review | Informasi layanan sedang disusun ulang. | Service information is being redefined. |
+| Current consultation availability | Konsultasi tersedia untuk akun uji yang diizinkan. | Consultation is available to authorized test accounts. |
+| Package prices | Harga ilustratif per proyek. | Illustrative pricing per project. |
 | No target access | Tidak ada pemindaian atau akses ke alamat aplikasi. | No scan is performed and the application address is not accessed. |
 | Code repair boundary | Perbaikan kode dikerjakan programmer pemilik website. | Code fixes are implemented by the website owner's programmers. |
 
@@ -30,15 +30,15 @@ These stages describe an academic model, not service packages, assessed targets,
 
 ## Future report content
 
-Any replacement public example needs explicit content review before publication. Do not invent findings or transplant the retired example into private projects. Future private reports require approved illustrative provenance, versioned immutable publication, exact project ownership checks and draft/internal-note separation. The content/schema remains planned W5 work. An entered website must never produce findings or become a resource URL.
+Any replacement public example needs explicit review before publication. DEC-69 authorizes one fictional order-portal example for the private draft editor. Private reports use versioned immutable publication, exact project ownership checks and draft/internal-note separation. An entered website must never produce findings or become a resource URL.
 
 User programmer-change assertions and illustrative admin review events are distinct. Corrections to an actually published future version create a new version with a change note rather than silently changing history. No generated PDF, uploads, public share token or real assessment is implied.
 
 ## Consultation and messages
 
-W4 intake remains planned and authenticated; the current request page saves nothing. Name/company/website/problem, need/reasons, contact and proposed timing require reviewed server validation. Proposed schedules are not appointments until an authorized admin confirms them. Failed writes must not claim success. Private drafts stay in memory rather than browser persistent storage or URLs.
+W4 intake stores authenticated requests in private tickets. The server validates the requested fields and the optional W5C package code. Proposed schedules become appointments after admin confirmation. Failed writes must not claim success. Private drafts stay in memory.
 
-No service selection, prices, caps, effort estimates, cycle counts or discount rate should appear before the replacement scope is decided. Existing support-publication/access policy remains a separate future workflow rule, not a new public offer.
+DEC-71 prices are illustrative per project. Package selection carries a public catalog code into intake and does not create a charge. The DEC-69 and DEC-70 support rules remain separate.
 
 ## Privacy and metadata
 

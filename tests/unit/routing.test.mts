@@ -42,3 +42,18 @@ test('consultation return intent accepts only supported tasks without catalog da
     assert.equal(localeHref('/id/login/', 'en', '', input as string), '/en/login/');
   }
 });
+
+test('a current package follows the request through language and account screens', () => {
+  const code = 'account-data-v1';
+  assert.equal(localeHref('/id/packages/', 'en'), '/en/packages/');
+  assert.equal(localeHref('/id/packages/', 'en', '#account-data-v1'), '/en/packages/#account-data-v1');
+  assert.equal(requestHref('id', code), '/id/request/?package=account-data-v1');
+  assert.equal(localeHref('/id/request/', 'en', '', null, code), '/en/request/?package=account-data-v1');
+  assert.equal(localeHref('/id/login/', 'en', '', 'request', code), '/en/login/?next=request&package=account-data-v1');
+  assert.equal(localeHref('/en/register/', 'id', '', 'request', code), '/id/register/?next=request&package=account-data-v1');
+  assert.equal(loginDestination('request', 'en', code), '/en/request/?package=account-data-v1');
+  assert.equal(loginDestination('request', 'en', 'retired'), '/en/request/');
+  assert.equal(loginDestination('account', 'en', code), '/en/account/');
+  assert.equal(localeHref('/id/login/', 'en', '', null, code), '/en/login/');
+  assert.equal(requestHref('id', [code, code]), '/id/request/');
+});

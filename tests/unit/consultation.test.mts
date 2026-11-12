@@ -3,6 +3,18 @@ import { test } from 'node:test';
 import { parseConsultation, parseTicketCommand, scheduleInstant, ticketActions } from '../../src/lib/consultation.ts';
 import { localeHref } from '../../src/lib/routing.ts';
 
+test('intake accepts only an allowlisted package and rejects client pricing', () => {
+  const intake = {
+    requestId: '87ddaf20-8192-46ed-840a-a9a48c1155ac', name: 'Demo owner', company: '',
+    website: 'https://demo.example.invalid/', need: 'preventive', reason: 'Demo',
+    description: 'An illustrative request.', authority: true,
+  };
+  assert.equal(parseConsultation({ ...intake, packageCode: 'account-data-v1' })?.packageCode, 'account-data-v1');
+  assert.equal(parseConsultation({ ...intake, packageCode: 'retired' }), null);
+  assert.equal(parseConsultation({ ...intake, packageCode: 'account-data-v1', price: 1 }), null);
+  assert.deepEqual(parseConsultation(intake), intake);
+});
+
 const requestId = '00000000-0000-0000-0000-000000000001';
 const intake = { requestId, name: '  Sample person  ', company: '', website: 'https://demo.example.invalid/path',
   need: 'preventive', reason: 'Before release', description: 'Discuss user permissions.', authority: true };
