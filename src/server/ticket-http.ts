@@ -3,11 +3,26 @@ import { isTicketId, parseConsultation, parseTicketCommand, type TicketView } fr
 import { validWriteRequest } from '@/lib/auth-policy';
 import { authEnvironment } from './auth/environment';
 import { currentIdentity } from './auth/session';
-import { applyTicketCommand, createTicket } from './data/tickets';
+import { applyTicketCommand, createTicket, ticketUpdates } from './data/tickets';
 import { boundedJSON, privateJSON } from './http';
 
 function errorResponse(error: string, status: number) {
   return privateJSON({ error }, status);
+}
+
+export async function ticketGet(request: Request, view: TicketView, id: string) {
+  try {
+    const config = authEnvironment();
+    if (!config) return errorResponse('UNAVAILABLE', 503);
+    const cursor = request.headers.get('x-celahan-event-after');
+    if (request.headers.get('host') !== new URL(config.origin).host || new URL(request.url).search) return errorResponse('DENIED', 403);
+    if (!cursor || !/^(0|[1-9]\d{0,18})$/.test(cursor) || BigInt(cursor) > 9223372036854775807n) return errorResponse('INVALID_INPUT', 400);
+    const account = await currentIdentity(request.headers);
+    if (!account || request.headers.get('x-celahan-account') !== account.id) return errorResponse('SESSION', 401);
+    if (!isTicketId(id) || (view === 'admin' && !account.admin)) return errorResponse('NOT_FOUND', 404);
+    const result = await ticketUpdates(account, view, id, cursor);
+    return result ? privateJSON(result) : errorResponse('NOT_FOUND', 404);
+  } catch { return errorResponse('UNAVAILABLE', 503); }
 }
 
 export async function ticketPost(request: Request, view: TicketView, id?: string) {

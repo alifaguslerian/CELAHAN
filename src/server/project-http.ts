@@ -1,13 +1,15 @@
 import 'server-only';
 import { isTicketId as isResourceId } from '@/lib/consultation';
 import { parseProjectCommand, parseProjectCreation } from '@/lib/projects';
+import { parseFollowUp } from '@/lib/follow-up';
 import { validWriteRequest } from '@/lib/auth-policy';
 import { authEnvironment } from './auth/environment';
 import { currentIdentity } from './auth/session';
 import { applyProjectCommand, createProject } from './data/projects';
+import { createFollowUp } from './data/follow-ups';
 import { boundedJSON, privateJSON } from './http';
 
-export async function projectPost(request: Request, id: string, target: 'ticket' | 'project') {
+export async function projectPost(request: Request, id: string, target: 'ticket' | 'project' | 'follow-up') {
   try {
     const config = authEnvironment();
     if (!config) return privateJSON({ error: 'UNAVAILABLE' }, 503);
@@ -17,9 +19,17 @@ export async function projectPost(request: Request, id: string, target: 'ticket'
     }
     const account = await currentIdentity(request.headers);
     if (!account || request.headers.get('x-celahan-account') !== account.id) return privateJSON({ error: 'SESSION' }, 401);
-    if (!account.admin || !isResourceId(id)) return privateJSON({ error: 'NOT_FOUND' }, 404);
+    if (!isResourceId(id) || (target !== 'follow-up' && !account.admin)) return privateJSON({ error: 'NOT_FOUND' }, 404);
     let body: unknown;
-    try { body = await boundedJSON(request, 64 * 1024); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
+    try { body = await boundedJSON(request, target === 'follow-up' ? 24 * 1024 : 64 * 1024); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
+    if (target === 'follow-up') {
+      const input = parseFollowUp(body);
+      if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);
+      const result = await createFollowUp(account, id, input);
+      if (result.status === 'ok') return privateJSON({ id: result.id });
+      if (result.status === 'expired' || result.status === 'cycle_used') return privateJSON({ error: result.status.toUpperCase() }, 409);
+      return failed(result.status);
+    }
     if (target === 'ticket') {
       const input = parseProjectCreation(body);
       if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);

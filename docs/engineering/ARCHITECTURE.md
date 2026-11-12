@@ -1,6 +1,6 @@
 # CELAHAN — Architecture
 
-Status: W1/W2 retained, Layers desktop and isolated W4 and W5A implemented. W5B and W6 remain gated.
+Status: W1/W2 retained, Layers desktop and isolated W4 and W5A/W5B implemented. W6 remains gated.
 Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
@@ -169,5 +169,7 @@ The request route requires a trusted session. The return intent accepts account 
 ## W4 consultation boundary
 
 W4 uses migration `003-consultation-tickets.sql` and the restricted existing runtime role. The locale routes render authorized lists and details on the server. Client forms send bounded JSON to same-origin ticket endpoints and preserve drafts in memory. An expected account header detects a stale form after an account switch. The signed session remains the source of identity. Owner and admin mutation routes each enforce their own view and scope.
+
+W5B reads shared events incrementally through the same ticket routes. The latest open conversation polls while visible, fetches at most 30 events per request and pauses in hidden tabs. Polling keeps draft input in memory and never reads the internal note table. The owner agenda selects upcoming confirmed slots on owned open tickets. The admin agenda selects slots confirmed by that admin.
 
 The data layer scopes lists and detail reads, uses a separate admin-note query, and serializes commands with a row lock and an expected version. Ticket changes and shared events commit together. Actor-scoped request keys handle exact retries. The owner response excludes internal notes and uses private no-store handling. Application routes render submitted addresses as text.

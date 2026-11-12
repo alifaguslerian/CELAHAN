@@ -1,7 +1,7 @@
 # CELAHAN — Account and Service UX
 
 Updated: November 9, 2026
-Status: Account boundary, Layers desktop, isolated W4 consultation and W5A private project screens implemented. W5B remains planned.
+Status: Account boundary, Layers desktop, isolated W4 consultation and W5A/W5B private project screens are implemented.
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Layers design lock](DESIGN_DIRECTION.md)
 
 ## Shared site
@@ -39,7 +39,7 @@ Admin project creation starts from the reviewed ticket. The owner opens the proj
 
 Published corrections create new versions with change notes. Findings/paths remain inert text; no scan logs, PDF/share links, uploads or repair action. User programmer-change assertions stay separate from illustrative admin review outcomes.
 
-First private publication atomically starts support once and stores the approved Jakarta calendar end. Expiry does not change access to the active report. W5B will use the saved dates and reviewed cycle policy for support requests.
+First private publication starts support once and stores the approved Jakarta calendar end. The project shows support status, retest allowance and follow-up actions. A user can ask about the active report after expiry and can start a new consultation for additional review. Upcoming confirmed slots appear on the ticket list with the zone and a link back to the ticket.
 
 ## Route/data contracts
 

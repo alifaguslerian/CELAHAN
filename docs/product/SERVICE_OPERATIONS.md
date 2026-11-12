@@ -56,7 +56,7 @@ Free-text messages are escaped plain text. No attachments, credentials, tokens, 
 | answered | Admin supplied guidance | Both can reply or propose a discussion time while it remains open |
 | closed | Admin closed the consultation with a shared reason | Both authorized views retain read-only history |
 
-A user may request cancellation; an admin closes it with a recorded reason. Admin-only priority, scheduling, resolution and closure are server-enforced. Replies, status changes and internal notes have separate permissions. Add pagination and refresh-after-action; no realtime websocket infrastructure is required.
+A user may request cancellation; an admin closes it with a recorded reason. Admin-only priority, scheduling, resolution and closure are server-enforced. Replies, status changes and internal notes have separate permissions. DEC-70 adds automatic shared-event updates on the latest open conversation. The agenda shows future confirmed times on open tickets. A requester sees their own times, and an admin sees times they confirmed.
 
 A saved reply must show its actual timestamp and actor. Database failure produces a retryable error and retains unsaved text. Retries use scoped idempotency so one action does not create duplicate tickets/messages. Do not mark a message sent before a successful write.
 
@@ -96,13 +96,13 @@ Confirmed: a maximum three-month period starting at the first private project re
 
 On the first private report publication, the server atomically records support_started_at, the first published version reference and a policy snapshot with the report transaction. Concurrent/retried publication must set those values only once. This supersedes the previous proposal to begin support at project activation.
 
-DEC-69 approves the end at the same local time three calendar months later in Asia/Jakarta. Clamp an invalid day to the last day of the month and store the resulting instant. W5B cycle rules remain subject to review.
+DEC-69 approves the end at the same local time three calendar months later in Asia/Jakarta. Clamp an invalid day to the last day of the month and store the resulting instant. DEC-70 confirms the illustrative cycle rules for isolated W5B.
 
 Support belongs to the stated project/scope. It never restarts on login, language change, a new ticket, later report versions/withdrawal/republication, reply, retest or project closure. A distinct new engagement requires explicit new scoping; the original project's benefit cannot be reset by relabeling it. Expiry overrides cannot silently extend this maximum; corrections require authorized audit and review.
 
 Eligibility checks server time: submitted_at must be before support_expires_at. A request received in time remains reviewable after expiry, subject to scope and remaining allowance. Expiry does not revoke access to published reports/history. After expiry users may still ask questions or request a new review, but the system must show that included benefits have ended.
 
-Guidance covers original findings and remediation explanations. Retests cover a consolidated set of original findings after the owner's programmer's changes, using the separately reviewed cycle allowance. Do not decrement on every ticket or reply. Reserve a cycle atomically when admin accepts an eligible request; mark it completed once its illustrative review is finalized. Concurrent/retried acceptance cannot exceed the allowance. Cancellation releases a reservation only before completion, with an audit event.
+Guidance covers the original finding and remediation explanation. The owner submits a separate question or retest from the active published report, even when the original consultation is closed. A retest records what the programmer changed. Permit one active request and one completed illustrative cycle per project. Questions and replies use no cycle. Admin acceptance reserves the cycle, and finalizing the illustrative result consumes it. Closing an unfinished request with a reason releases the cycle. A later correction leaves the ticket linked to its original version. If that version is withdrawn, an admin can close the outstanding request to release the cycle.
 
 This policy supersedes initial-report-based 30/60-day request windows. The former catalog-specific cycle baseline is removed; future allowances require a new service decision. A delayed first report leaves benefits unstarted until it is published. Corrections and later versions do not extend or restart the original expiry.
 

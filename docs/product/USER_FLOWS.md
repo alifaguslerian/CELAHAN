@@ -88,9 +88,9 @@ The user may report programmer changes against a published finding. They cannot 
 
 ## 8. Support and follow-up
 
-From a project the owner can choose support, retest, or follow-up review. The form changes to project/finding context rather than repeating initial intake. The server rechecks ownership, scope, submission time and cycle allowance.
+From a project the owner can ask about the active report or request an illustrative retest. The server ties the new ticket to the referenced published version and rechecks ownership, submission time and the cycle allowance. The original consultation can already be closed.
 
-Show start/expiry, remaining/reserved retest cycles, and discount terms only when approved. Timely requests remain reviewable after expiry. At expiry included benefits end, but published reports and ticket history remain available according to retention policy.
+Show the support period and current retest state. An admin can ask for clarification, accept the review, record its illustrative result or close it with a reason. Timely requests remain reviewable after expiry. When included benefits end, the active report and ticket history remain available according to retention policy, and the owner can request a new consultation.
 
 New tickets, replies, locale changes and later report versions do not reset dates. Extra scope, expired benefits or exhausted cycles produces a clear reviewed next step, never an automatic charge or blanket rejection of all communication.
 
