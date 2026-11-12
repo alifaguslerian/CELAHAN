@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { consultationCopy } from '@/content/consultation';
+import { followUpCopy } from '@/content/follow-up';
 import { disclaimer } from '@/content/shell';
-import { consultationNeeds, isTicketId, type TicketAction } from '@/lib/consultation';
+import { consultationNeeds, isTicketId, retestResults, type TicketAction } from '@/lib/consultation';
 import type { Locale } from '@/lib/routing';
+import type { PackageCode } from '@/lib/packages';
 
 const subscribe = () => () => {};
 const zones = ['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura', 'UTC'];
@@ -19,7 +21,7 @@ export function usePortalSubmission(locale: Locale, accountId: string, endpoint:
   const busy = useRef(false);
   const dirty = useRef(false);
   const status = useRef<HTMLParagraphElement>(null);
-  const attempt = useRef<{ body: string; id: string } | null>(null);
+  const attempt = useRef<{ key: string; payload: Record<string, unknown>; id: string } | null>(null);
 
   useEffect(() => {
     const beforeLeave = (event: BeforeUnloadEvent) => { if (dirty.current) event.preventDefault(); };
@@ -43,19 +45,19 @@ export function usePortalSubmission(locale: Locale, accountId: string, endpoint:
     setMessage('');
     let saved = false;
     try {
-      const body = JSON.stringify(payload);
-      if (attempt.current?.body !== body) attempt.current = { body, id: crypto.randomUUID() };
+      const key = JSON.stringify(payload.kind === 'reply' ? { kind: payload.kind, body: payload.body } : payload);
+      if (attempt.current?.key !== key) attempt.current = { key, payload, id: crypto.randomUUID() };
       const response = await fetch(endpoint, {
         method: 'POST', cache: 'no-store', redirect: 'error',
         headers: { 'Content-Type': 'application/json', 'X-Celahan-Account': accountId },
-        body: JSON.stringify({ ...payload, requestId: attempt.current.id }),
+        body: JSON.stringify({ ...attempt.current.payload, requestId: attempt.current.id }),
       });
       const data = await response.json();
       if (!response.ok) {
         const code = typeof data.error === 'string' && Object.hasOwn(copy.errors, data.error) ? data.error : 'UNAVAILABLE';
         setFailed(true);
         setMessage(copy.errors[code]);
-        if (code === 'CONFLICT') conflict?.();
+        if (code === 'CONFLICT') { attempt.current = null; conflict?.(); }
         return;
       }
       complete(data);
@@ -85,14 +87,16 @@ export function usePortalSubmission(locale: Locale, accountId: string, endpoint:
     feedback: <p className="form-status" tabIndex={-1} ref={status} role={failed ? 'alert' : 'status'}>{message}</p> };
 }
 
-export function ConsultationForm({ locale, name, accountId }: { locale: Locale; name: string; accountId: string }) {
+export function ConsultationForm({ locale, name, accountId, packageCode }: {
+  locale: Locale; name: string; accountId: string; packageCode?: PackageCode;
+}) {
   const copy = consultationCopy[locale];
   const write = usePortalSubmission(locale, accountId, '/api/tickets/');
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    void write.submit({ ...Object.fromEntries(data), authority: data.get('authority') === 'on' }, result => {
+    void write.submit({ ...Object.fromEntries(data), authority: data.get('authority') === 'on', ...(packageCode && { packageCode }) }, result => {
       if (!isTicketId(result.id)) throw new Error('Unexpected ticket response');
       write.clearDraft();
       window.location.assign(`/${locale}/tickets/${result.id}/`);
@@ -121,8 +125,8 @@ export function ConsultationForm({ locale, name, accountId }: { locale: Locale; 
   </form>;
 }
 
-export function TicketActionForm({ locale, accountId, endpoint, version, actions, recommended, scheduleLabel }: {
-  locale: Locale; accountId: string; endpoint: string; version: number; actions: TicketAction[]; recommended: TicketAction; scheduleLabel: string | null;
+export function TicketActionForm({ locale, accountId, endpoint, version, replyVersion, actions, recommended, scheduleLabel }: {
+  locale: Locale; accountId: string; endpoint: string; version: number; replyVersion: number; actions: TicketAction[]; recommended: TicketAction; scheduleLabel: string | null;
 }) {
   const copy = consultationCopy[locale];
   const router = useRouter();
@@ -138,7 +142,8 @@ export function TicketActionForm({ locale, accountId, endpoint, version, actions
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const payload = action === 'propose' ? { wallTime: data.get('wallTime'), zone: data.get('zone') } : bodyLabel ? { body: data.get('body') } : {};
-    void write.submit({ kind: action, version, ...payload }, () => {
+    const result = action === 'finish_retest' ? { result: data.get('result') } : {};
+    void write.submit({ kind: action, version: action === 'reply' ? replyVersion : version, ...payload, ...result }, () => {
       form.current?.reset();
       setChoice(null);
       router.refresh();
@@ -150,6 +155,10 @@ export function TicketActionForm({ locale, accountId, endpoint, version, actions
       <label>{copy.action}<select value={action} onChange={event => {
         if (write.discardDraft()) setChoice(event.target.value as TicketAction);
       }}>{actions.map(item => <option key={item} value={item}>{copy.actions[item]}</option>)}</select></label>
+      {action === 'finish_retest' && <label>{followUpCopy[locale].result}<select name="result" required defaultValue="" onChange={write.markDirty}>
+        <option value="" disabled>{followUpCopy[locale].selectResult}</option>
+        {retestResults.map(result => <option key={result} value={result}>{followUpCopy[locale].results[result]}</option>)}
+      </select></label>}
       {bodyLabel && <label key={action}>{bodyLabel}<textarea name="body" required maxLength={3000} rows={4} aria-describedby="ticket-visibility" onChange={write.markDirty} />
         <span id="ticket-visibility" className="supporting-copy">{action === 'note' ? copy.privateHint : copy.sharedHint}</span>
       </label>}

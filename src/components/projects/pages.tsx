@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { projectCopy } from '@/content/projects';
+import { followUpCopy } from '@/content/follow-up';
 import { disclaimer } from '@/content/shell';
 import { isTicketId as isResourceId, ticketPage } from '@/lib/consultation';
 import { reportFields } from '@/lib/projects';
@@ -10,6 +11,7 @@ import { adminProject, listOwnedProjects, ownedProject, type ReportVersion } fro
 import { reportExample } from '@/server/data/report-example';
 import { PrivateAccountScope } from '@/components/layout/site-account';
 import { ProjectActionForm, ReportEditor } from './forms';
+import { FollowUpForm } from './follow-up-form';
 
 function dateLabel(locale: Locale, date: Date | string) {
   return new Intl.DateTimeFormat(locale === 'id' ? 'id-ID' : 'en-GB', {
@@ -69,8 +71,10 @@ export async function ProjectDetail({ locale, id }: { locale: string; id: string
   if (!account) redirect(`/${locale}/login/`);
   const data = await ownedProject(account, id);
   if (!data) notFound();
-  const { project, events } = data;
+  const { project, events, followUps } = data;
   const copy = projectCopy[locale];
+  const follow = followUpCopy[locale];
+  const active = project.support_active;
   return <PrivateAccountScope id={account.id} capability="hasProjects">
     <main id="main-content" className="ticket-page" tabIndex={-1}>
       <Link prefetch={false} className="inline-link" href={`/${locale}/projects/`}>{copy.title}</Link>
@@ -89,7 +93,22 @@ export async function ProjectDetail({ locale, id }: { locale: string; id: string
         <p>{project.support_started_at && project.support_expires_at
           ? `${dateLabel(locale, project.support_started_at)} – ${dateLabel(locale, project.support_expires_at)}`
           : copy.waitingSupport}</p>
+        {project.support_expires_at && <p><strong>{active ? follow.active : follow.expired}</strong></p>}
+        {followUps?.cycle ? <p>{follow.states[followUps.cycle]}</p> : active && project.report && followUps && <p>{follow.available}</p>}
+        {!active && project.support_expires_at && <Link className="text-link" prefetch={false} href={`/${locale}/request/`}>{follow.newReview}</Link>}
       </section>
+      {(project.report || Boolean(followUps?.rows.length)) && <section className="ticket-panel">
+        <h2>{follow.title}</h2>
+        {!followUps ? <p role="status">{follow.unavailable}</p> : <>
+          {project.report && <FollowUpForm locale={locale} accountId={account.id} projectId={id} reportId={project.report.id}
+            canRetest={active && !followUps.cycle} />}
+          {followUps.rows.length > 0 && <ul className="ticket-events">{followUps.rows.map(row => <li key={row.id}>
+            <div><Link prefetch={false} href={`/${locale}/tickets/${row.id}/`}>{follow.kinds[row.kind]} · {row.reference}</Link>
+              {row.retest_state && <span>{follow.states[row.retest_state]}</span>}</div>
+            {row.retest_result && <p>{follow.results[row.retest_result]}</p>}
+          </li>)}</ul>}
+        </>}
+      </section>}
       <section className="ticket-panel">
         <h2>{copy.progress}</h2>
         <ol className="ticket-events">{events.map(event => <li key={event.id}>

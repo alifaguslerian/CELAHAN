@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import type { PoolClient } from 'pg';
 import type { AccountState } from '../auth/session';
 import type { ProjectCommand, ProjectEvent, ProjectStage, ReportBody, ReportState } from '@/lib/projects';
+import { listProjectFollowUps } from './follow-ups';
 import { database, transaction } from './pool';
 
 type Actor = Pick<AccountState, 'id' | 'admin'>;
@@ -18,14 +19,6 @@ type HistoryEvent = { id: string; kind: ProjectEvent; created_at: Date };
 type Result = 'ok' | 'missing' | 'denied' | 'conflict';
 const pageSize = 20;
 
-export async function projectForConsultation(actor: Actor, view: 'admin' | 'owner', ticketId: string) {
-  const result = await database().query<{ id: string }>(
-    `SELECT p.id FROM assessment_project p JOIN project_access a ON a.id = p.id
-     WHERE p.consultation_id = $1 AND ($2::boolean OR a.owner_id = $3)`,
-    [ticketId, view === 'admin' && actor.admin, actor.id]);
-  return result.rows[0]?.id ?? null;
-}
-
 export async function listOwnedProjects(actor: Actor, page: number) {
   const result = await database().query<ProjectSummary>(
     `SELECT p.id, p.title, p.stage FROM project_access a JOIN assessment_project p ON p.id = a.id
@@ -38,19 +31,22 @@ const projectColumns = 'p.id, p.title, p.scope, p.stage, p.consultation_id, p.su
 const reportColumns = 'id, version, revision, state, body, change_note, published_at';
 
 export async function ownedProject(actor: Actor, id: string) {
-  const result = await database().query<Project & { report: ReportVersion | null }>(
-    `SELECT ${projectColumns},
+  const result = await database().query<Project & { report: ReportVersion | null; support_active: boolean }>(
+    `SELECT ${projectColumns}, COALESCE(now() < p.support_expires_at, false) AS support_active,
        (SELECT to_jsonb(r) FROM (SELECT ${reportColumns} FROM project_report_version
           WHERE project_id = p.id AND state = 'published') r) AS report
      FROM assessment_project p JOIN project_access a ON a.id = p.id WHERE p.id = $1 AND a.owner_id = $2`,
     [id, actor.id]);
   const project = result.rows[0];
   if (!project) return null;
-  const events = await database().query<HistoryEvent>(
-    `SELECT e.id, e.kind, e.created_at FROM assessment_project_event e
-     JOIN project_access a ON a.id = e.project_id WHERE e.project_id = $1 AND a.owner_id = $2
-     ORDER BY e.id DESC LIMIT 30`, [id, actor.id]);
-  return { project, events: events.rows };
+  const [events, followUps] = await Promise.all([
+    database().query<HistoryEvent>(
+      `SELECT e.id, e.kind, e.created_at FROM assessment_project_event e
+       JOIN project_access a ON a.id = e.project_id WHERE e.project_id = $1 AND a.owner_id = $2
+       ORDER BY e.id DESC LIMIT 30`, [id, actor.id]),
+    listProjectFollowUps(actor.id, id).catch(() => null),
+  ]);
+  return { project, events: events.rows, followUps };
 }
 
 export async function adminProject(actor: Actor, id: string, page: number) {
@@ -72,6 +68,8 @@ export async function adminProject(actor: Actor, id: string, page: number) {
 
 export async function createProject(actor: Actor, ticketId: string, title: string, scope: string) {
   if (!actor.admin) return { result: 'denied' as const, project_id: null };
+  const followUp = await database().query('SELECT 1 FROM project_follow_up WHERE ticket_id = $1', [ticketId]);
+  if (followUp.rowCount) return { result: 'denied' as const, project_id: null };
   const result = await database().query<{ result: Result; project_id: string | null }>(
     'SELECT result, project_id FROM public.create_assessment_project($1, $2, $3, $4)', [actor.id, ticketId, title, scope]);
   return result.rows[0];

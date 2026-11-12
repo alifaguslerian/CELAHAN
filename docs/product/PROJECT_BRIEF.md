@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
 Updated: November 6, 2026
-Status: Layers public desktop, isolated W4 consultations and W5A private project reports are implemented. W5B and W6 remain gated.
+Status: Layers public desktop, isolated W4 consultation and W5A/W5B private projects, reports and follow-ups are implemented. W6 remains gated.
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Purpose
@@ -26,7 +26,7 @@ W1 shell and isolated W2 accounts/database exist. W4 links consultation intake, 
 
 - Authenticated intake collects name, optional company, inert website, need/reason, a description and an authority declaration. Review and replies take place in the ticket. Optional time proposals use a time zone after review.
 - The declaration is not written testing permission. Registration/selected package/company/email alone grants no project rights.
-- Maximum three-month support starts once at first private project report publication. Activation, samples, first reading, later versions/tickets/retests never start/reset it. Exact calendar/cycle mechanics remain reviewable.
+- Three calendar months of support start once at first private project report publication. Later activity never resets support. DEC-70 approves one completed illustrative cycle per isolated project.
 - Code fixes belong to the website owner's programmers. No actual testing, code maintenance, recovery, forensics, certification, monitoring, payment, uploads, AI or automatic service messaging.
 - The old public findings dataset/preview is removed. Replacement report content requires review. Future private versions require trusted ownership/publication checks; no retired content is copied into projects.
 - The temporary discount needs approved eligibility/rate/cutoff. No invented percentage or billing.

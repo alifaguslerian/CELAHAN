@@ -6,11 +6,11 @@ A bilingual coursework and portfolio concept demonstrating product design, front
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Current status — November 10, 2026
+## Current status — November 13, 2026
 
 The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-W1 foundation, isolated W2 accounts, W3 public discovery, W4 consultation and W5A private projects and reports are implemented. W5B and W6 require separate authorization.
+W1 through W4 and isolated W5A/W5B are implemented. W5C package selection adds a homepage preview and a dedicated bilingual package page with illustrative prices. A verified user can carry a package choice into a private ticket. Formal scope approval, W5D and W6 require separate authorization.
 
 Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. Verified test users can submit consultations and follow replies and confirmed discussion times. Admins can create a project from a reviewed consultation, publish a private web report and retain its version history. Owners see progress and the active published report. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md) and [W5A validation](docs/validation/2026-11-10-w5a-private-projects.md).
 
@@ -69,10 +69,10 @@ npm run test:integration
 
 The W2 integration suite resets all allowlisted synthetic identities and can reset manually used test accounts. Its guard refuses a database containing consultation tickets. The account browser suite needs a fresh, already allowlisted synthetic email and performs account writes. Restart mailbox/server after allowlist changes. Test passwords are generated in memory. Account forms require JavaScript. Disabled server-rendered controls and POST-only fallback keep credentials out of GET URLs.
 
-The W4 integration harness starts a separate production preview on port 3114, creates three short-lived synthetic sessions, and cleans up records owned by its generated test identities. It requires the production build, applied consultation migration and isolated database configuration. Add `--browser` to exercise the journey in Chrome.
+The consultation integration harness starts a production preview on port 3114, creates three short-lived synthetic sessions, and cleans up their records. It requires the production build, current migrations and isolated database configuration. The flags below include W4, W5A and W5B in Chrome.
 
 ```powershell
-node --env-file=.env.local --env-file=.env.database.local tests/integration/consultations.mts --browser
+node --env-file=.env.local --env-file=.env.database.local tests/integration/consultations.mts --follow-ups --browser
 ```
 
 Reviewed SQL is in database/. npm run db:migrate applies hash-checked migrations in one locked transaction. npm run db:prepare-test-role is a one-time trusted procedure that refuses to replace an existing role. scripts/generate-auth-schema.mts refuses to overwrite saved initial SQL. Do not run these as part of a presentation reset.
@@ -92,7 +92,7 @@ Use a production server. Public/shared-shell checks perform no account writes an
 
 ## Remaining gates
 
-The first private report sets the support period once. The end is three calendar months later in Asia/Jakarta, clamped to the last valid day. W5B support requests and retest allowances remain pending. The W5A draft editor offers one approved fictional order-portal example.
+The first private report sets support once, ending three calendar months later in Asia/Jakarta. Owners can ask about the active report or request one illustrative retest cycle per project during support. Latest open ticket conversations receive automatic updates. The ticket list shows upcoming confirmed appointments. The draft editor offers one approved fictional order-portal example.
 
 Before public intake resolve enrollment/recovery/delivery, retention/deletion/backups, processors/regions, privacy contact and hosting. Synthetic projects do not make real account identities nonpersonal. No paid services or domain/DNS setup is authorized. Video/case-study production follows stable actual functionality; no deadline or video format is invented.
 

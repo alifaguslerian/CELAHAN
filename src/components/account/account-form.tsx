@@ -12,11 +12,15 @@ import { useSiteAccount } from '@/components/layout/site-account';
 export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'twoFactor' | 'setup' | 'profile';
 const subscribe = () => () => {};
 
-export function AccountForm({ locale, mode, available, profile }: { locale: Locale; mode: AccountMode; available: boolean; profile?: { name: string; email: string; twoFactorEnabled: boolean } }) {
+export function AccountForm({ locale, mode, available, profile }: {
+  locale: Locale; mode: AccountMode; available: boolean;
+  profile?: { id: string; name: string; email: string; twoFactorEnabled: boolean };
+}) {
   const copy = accountCopy[locale];
   const { refreshAccount } = useSiteAccount();
   const search = useSearchParams();
-  const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') => localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'));
+  const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') =>
+    localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'), search.get('package'));
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [view, setView] = useState(mode);
   const [email, setEmail] = useState(profile?.email ?? '');
@@ -59,15 +63,21 @@ export function AccountForm({ locale, mode, available, profile }: { locale: Loca
     if (view === 'setup' && !setup) { path = '/two-factor/enable'; body = { password }; }
     try {
       const response = await fetch(view === 'profile' ? '/api/account/' : `/api/auth${path}/`, {
-        method: view === 'profile' ? 'PATCH' : 'POST', headers: { 'Content-Type': 'application/json' },
+        method: view === 'profile' ? 'PATCH' : 'POST',
+        headers: { 'Content-Type': 'application/json', ...(view === 'profile' && profile && { 'X-Celahan-Account': profile.id }) },
         body: JSON.stringify(view === 'profile' ? { name } : body), cache: 'no-store', redirect: 'error',
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(response.status === 429 ? copy.limited : data.error === 'DELIVERY_FAILED' ? copy.deliveryFailed : copy.failed);
+      if (!response.ok) {
+        if (view === 'profile' && data.error === 'SESSION') {
+          setError(true); setMessage(copy.sessionChanged); return;
+        }
+        throw new Error(response.status === 429 ? copy.limited : data.error === 'DELIVERY_FAILED' ? copy.deliveryFailed : copy.failed);
+      }
       dirty.current = false; setPassword(''); setOTP('');
       if (data.needsTwoFactor) { setView('twoFactor'); return; }
       if (view === 'login' || view === 'twoFactor') {
-        window.location.assign(loginDestination(search.get('next'), locale)); return;
+        window.location.assign(loginDestination(search.get('next'), locale, search.get('package'))); return;
       }
       if (view === 'register') { setView('verify'); setMessage(copy.sent); }
       if (view === 'recovery') { setView('reset'); setMessage(copy.sent); }

@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Updated: November 10, 2026
-Status: Layers desktop with static material imagery. Isolated W4 and W5A implemented and checked. W5B and W6 remain gated.
+Updated: November 13, 2026
+Status: Layers desktop with static material imagery. Isolated W4 and W5A/W5B are implemented. W5C package selection is implemented under DEC-71. W5D and W6 remain gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -31,7 +31,7 @@ A completed package never authorizes the next. Work in the current checkout; do 
 | P3 | Auth/data foundation | W1 and isolated W2 implemented with historical scoped checks |
 | P4 | Public discovery | W3 content/routes remain; earlier visual acceptance is superseded |
 | P5 | Consultation/conversation/admin | Integrated W4 implemented in the isolated environment |
-| P6 | Private reports/support | Isolated W5A implemented and checked. W5B remains gated |
+| P6 | Private reports/support | Isolated W5A/W5B implemented under DEC-69 and DEC-70 |
 | P7 | Integrated quality | Checks accompany each change; release matrix incomplete |
 | P8 | Deployment/operations | W6 not started or authorized |
 | P9 | Video/case study | Brief only; production follows stable actual functionality |
@@ -72,7 +72,15 @@ DEC-69 authorizes one project from an open consultation after admin guidance and
 
 ## W5B — Support, illustrative retests, realtime replies and calendar
 
-Review eligibility and cycle policy before implementing owned support/retest requests, separate programmer assertions and illustrative admin outcomes. Reserve and consume approved cycles atomically. Add realtime updates to the existing ticket conversation and a calendar view of confirmed schedules. Catalog, PDF export and automatic discounts are deferred.
+DEC-70 authorizes report questions and illustrative retest tickets tied to the owner's project and referenced published report. Permit one active request and one completed cycle. Record programmer claims separately from admin outcomes and reserve or consume the cycle atomically. Deliver automatic updates in the latest open ticket conversation and list upcoming confirmed appointments in the private agenda. PDF export and automatic discounts remain deferred.
+
+## W5C — Package selection and scope agreement
+
+DEC-71 authorizes a package preview after the homepage process, a dedicated bilingual package page with three illustrative prices, and transfer of the chosen package to the existing intake and ticket. A selection expresses intent. Existing scope review remains in the ticket. A formal proposal, user confirmation and versioned scope agreement require separate review.
+
+## W5D — Reports by finding and remediation follow-up
+
+Proposed scope: structured findings, priorities and per-finding retest outcomes linked to the report version. This requires separate approval.
 
 ## W6 — Final verification and authorized release
 

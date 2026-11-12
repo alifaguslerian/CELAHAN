@@ -1,9 +1,13 @@
 # CELAHAN — Decisions
 
-Updated: November 10, 2026
+Updated: November 13, 2026
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
 ## Current precedence
+
+DEC-71 records the owner's November 13 approval of the package-selection part of W5C. Combine mockup 2's homepage placement after the process with mockup 3's dedicated package page. The preview uses View package. The detail page shows scope and illustrative project prices, and Choose package carries the selection to the existing intake. The owner delegated the illustrative price choice. W5D and formal scope approval remain separate work.
+
+DEC-70 records the owner's November 11 approval of isolated W5B. An owner can start a new report question or illustrative retest from the project and its active published report. One retest may be open at a time. Admin acceptance reserves the cycle, completion consumes it, and closing an unfinished request releases it. The latest ticket conversation receives automatic updates while open, and the agenda lists upcoming confirmed appointments. No release, provider changes or real assessments are included.
 
 DEC-69 records the owner's November 10 approval of isolated W5A. An admin creates one project from an open consultation after guidance and confirmation of agreed scope. The requester is the project owner. The approved example is a fictional order portal with one illustrative ownership finding. The owner sees the active published web report. Admins retain version history. First publication starts support once and fixes the end at the same local time three calendar months later in Asia/Jakarta, clamped to the last valid day. W5B retains support requests, illustrative retests, realtime ticket replies and a confirmed-schedule calendar. Public catalog, automatic discounts and PDF export are deferred.
 
@@ -55,6 +59,8 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-67 | Apply 02 Glacier Steel and refine the desktop reading blocks | Use the selected three-color gradient and static steel-blue metal. Fit process and account/FAQ into separate desktop viewports with breathing room. Align the account and privacy labels |
 | DEC-68 | Implement one integrated W4 consultation workflow | Save synthetic intake, owner-visible history, admin replies and decisions, optional post-review scheduling, separate internal notes and closure in the shared site |
 | DEC-69 | Implement isolated W5A projects and private web reports | One project per reviewed open ticket, a fictional order-portal example, owner access to the active version and a fixed Jakarta support period on first publication |
+| DEC-70 | Implement isolated W5B follow-ups, automatic replies and confirmed agenda | New report-linked tickets, one illustrative cycle per project, updates in the existing ticket and a private upcoming agenda |
+| DEC-71 | Implement the W5C package-selection flow | Homepage preview and dedicated bilingual package page with illustrative prices, plus package-linked intake |
 
 ## Reviewable operating proposals
 
@@ -67,7 +73,7 @@ V1 single project owner, ticket statuses, internal-note separation, requested/co
 | Further desktop changes preserve the selected Layers direction and relevant actual checks | The implementation unit is authorized/checked under DEC-64; significant new layouts or later workflows retain their own scope |
 | Logo production exports, small-size checks and rights | Final identity release |
 | Field/contact/schedule limits, ticket transitions and concurrency | W4 writes |
-| Three-month calendar/expiry/cycle mechanics | W5 benefit logic |
+| Replacement allowances and support terms for real services | Any public offer |
 | Replacement services, names, scope, report content and any numerical terms | Any new catalog/sample publication |
 | Discount eligibility/rate/cutoff | Any public offer |
 | Public enrollment, actual verification/recovery delivery and operational admin recovery | Public accounts |
@@ -76,4 +82,4 @@ V1 single project owner, ticket statuses, internal-note separation, requested/co
 | Dedicated phone experience | A later separately reviewed design scope |
 | Video format/duration/language/audio rights | Video production |
 
-No fixed deadline or detailed lecturer-approved rubric is invented. Academic prototype and portfolio release remain separate milestones. Automated tours, advanced report filters, PDFs, teams, uploads, realtime chat, billing, automatic service messaging and AI remain outside v1. No Git operation is authorized by this document.
+No fixed deadline or detailed lecturer-approved rubric is invented. Academic prototype and portfolio release remain separate milestones. Automated tours, advanced report filters, PDFs, teams, uploads, standalone chat, billing, automatic service messaging and AI remain outside v1. No Git operation is authorized by this document.

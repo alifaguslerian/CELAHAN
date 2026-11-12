@@ -1,6 +1,6 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: W2 identity, W4 consultations and W5A project and report tables exist in the isolated test database.  
+Status: W2 identity, W4 consultations and W5A/W5B project, report and follow-up tables exist in the isolated test database.
 Updated: November 9, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
@@ -92,6 +92,10 @@ Idempotent writes scope keys to actor and operation. A replay with a different p
 The owner confirmed the first private project report publication as the support start. In that publication transaction, set support_started_at from trusted server time, record the first published version reference/policy snapshot, and compute expiry only when those fields are unset. Concurrent publication/retries must not produce multiple starts. Project activation and public sample views do not start support.
 
 DEC-69 approves adding three calendar months at the same local time in Asia/Jakarta, clamping an invalid day to month end and storing the resulting instant. First view, corrections, withdrawal, republication, new versions and retests preserve the original start and end.
+
+`005-project-follow-ups.sql` links a new consultation ticket to its exact project and report version. An owner query must match both ticket ownership and project access. The active published report is required for submission. An unfinished retest remains reviewable if received before expiry and its referenced version is still published or superseded. One partial unique index allows only one pending, accepted or completed retest row per project. Closing an unfinished request removes it from that constraint. Result, shared event and replay key commit in the same ticket transaction. A completed cycle remains occupied after ticket closure.
+
+`006-consultation-package.sql` adds a nullable, constrained package version code to consultation tickets. The server accepts only known codes. A package choice participates in the same request hash as the intake. Older tickets and requests without a package retain their existing behavior. Owner and admin ticket views show the choice. The public catalog supplies illustrative prices, which are never accepted as client submission fields.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 

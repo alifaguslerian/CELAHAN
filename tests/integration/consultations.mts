@@ -17,7 +17,8 @@ const secret = randomBytes(32).toString('base64url');
 const cookieName = 'better-auth.session_token';
 const roles = ['owner', 'other', 'admin'] as const;
 const emails = roles.map(role => `w4-${run}-${role}@example.invalid`);
-const checkW5A = process.argv.includes('--projects');
+const checkW5B = process.argv.includes('--follow-ups');
+const checkW5A = checkW5B || process.argv.includes('--projects');
 const childEnv = { ...process.env };
 for (const name of Object.keys(childEnv)) {
   if (name.toUpperCase() === 'DATABASE_MIGRATION_URL') delete childEnv[name];
@@ -43,11 +44,12 @@ async function fixture(role: typeof roles[number], email: string): Promise<Fixtu
   return { id, value: encodeURIComponent(`${token}.${signature}`) };
 }
 
-async function http(path: string, actor?: Fixture, data?: Record<string, unknown>, origin = base) {
+async function http(path: string, actor?: Fixture, data?: Record<string, unknown>, origin = base,
+  extraHeaders: Record<string, string> = {}, method = data ? 'POST' : 'GET') {
   const response = await fetch(base + path, {
-    redirect: 'manual', signal: AbortSignal.timeout(15000), method: data ? 'POST' : 'GET',
+    redirect: 'manual', signal: AbortSignal.timeout(15000), method,
     headers: { ...(actor ? { Cookie: `${cookieName}=${actor.value}` } : {}),
-      ...(data ? { Origin: origin, 'Content-Type': 'application/json', 'X-Celahan-Account': actor?.id ?? '' } : {}) },
+      ...(data ? { Origin: origin, 'Content-Type': 'application/json', 'X-Celahan-Account': actor?.id ?? '' } : {}), ...extraHeaders },
     body: data ? JSON.stringify(data) : undefined,
   });
   return { status: response.status, headers: response.headers, body: await response.text() };
@@ -83,8 +85,70 @@ async function browser(owner: Fixture, admin: Fixture, other: Fixture) {
   });
   const done = new Promise<number | null>((resolve, reject) => { browser.once('error', reject); browser.once('close', resolve); });
   browser.stdin.on('error', () => {});
-  browser.stdin.end(JSON.stringify({ cookieName, owner: owner.value, admin: admin.value, ...(checkW5A ? { other: other.value } : {}) }));
+  browser.stdin.end(JSON.stringify({ cookieName, owner: owner.value, admin: admin.value, followUps: checkW5B, ...(checkW5A ? { other: other.value } : {}) }));
   assert.equal(await done, 0, 'Consultation and project browser journey');
+}
+
+async function followUps(projectId: string, reportId: string, owner: Fixture, admin: Fixture, other: Fixture) {
+  const endpoint = `/api/projects/${projectId}/follow-up/`;
+  const input = { requestId: randomUUID(), reportId, kind: 'retest', body: 'The programmer updated access checks in the fictional order portal.' };
+  result(await http(endpoint, other, input), 404, 'only the project owner can create a follow-up');
+  result(await http(endpoint, owner, { ...input, reportId: randomUUID() }), 409, 'report must belong to project and be active');
+  result(await http(endpoint, owner, { ...input, retest_state: 'accepted' }), 400, 'owner cannot submit privileged fields');
+  const [first, retry] = await Promise.all([http(endpoint, owner, input), http(endpoint, owner, input)]);
+  const id = result(first, 200, 'retest submitted').id;
+  assert.equal(result(retry, 200, 'concurrent retry returns the same ticket').id, id);
+  assert.equal(result(await http(endpoint, owner, { ...input, requestId: randomUUID() }), 409, 'another active retest denied').error, 'CYCLE_USED');
+  await command(id, owner, false, 1, 'accept_retest', {}, 403);
+  await command(id, admin, true, 1, 'finish_retest', { result: 'not_verified', body: 'Too early.' }, 403);
+  await command(id, admin, true, 1, 'accept_retest');
+  await command(id, admin, true, 2, 'close', { body: 'The illustrative review was canceled before completion.' });
+  const competing = await Promise.all([1, 2].map(() => http(endpoint, owner, { ...input, requestId: randomUUID() })));
+  assert.deepEqual(competing.map(response => response.status).sort(), [200, 409], 'cancellation releases exactly one reservation');
+  const nextId = result(competing.find(response => response.status === 200)!, 200, 'replacement retest').id;
+  await command(nextId, admin, true, 1, 'clarify', { body: 'What changed in the access check?' });
+  await command(nextId, owner, false, 2, 'reply', { body: 'The example verifies the owner before showing the order.' });
+  await command(nextId, admin, true, 3, 'accept_retest');
+  const finish = { requestId: randomUUID(), version: 4, kind: 'finish_retest', result: 'resolved_in_example', body: 'The illustrative example checks ownership.' };
+  const adminTicket = `/api/admin/tickets/${nextId}/`;
+  for (const response of await Promise.all([http(adminTicket, admin, finish), http(adminTicket, admin, finish)])) result(response, 200, 'finish is retry-safe');
+  const project = await http(`/en/projects/${projectId}/`, owner);
+  assert.ok(project.body.includes('Resolved in the example') && project.body.includes('Cycle completed'));
+  await command(nextId, admin, true, 5, 'close', { body: 'The finished review is closed.' });
+  assert.equal(result(await http(endpoint, owner, { ...input, requestId: randomUUID() }), 409, 'closing a completed cycle does not restore it').error, 'CYCLE_USED');
+  result(await http(endpoint, owner, { ...input, requestId: randomUUID(), kind: 'question' }), 200, 'questions do not require a cycle');
+}
+
+async function expiredSupport(owner: Fixture, admin: Fixture) {
+  const source = await create(owner);
+  await command(source, admin, true, 1, 'outcome', { body: 'Review the fictional access rules.' });
+  const projectId = result(await http(`/api/admin/tickets/${source}/project/`, admin, {
+    requestId: randomUUID(), title: 'Historical fictional project', scope: 'Illustrative order history review', agreed: true,
+  }), 200, 'create expired-support fixture').id;
+  const reportId = (await db.query<{ id: string }>(`INSERT INTO project_report_version(project_id, version, state, body, change_note, published_at)
+    VALUES ($1, 1, 'published', $2, '', now() - interval '4 months') RETURNING id`, [projectId, JSON.stringify({
+    summary: 'Historical sample report', scope: 'Fictional orders', finding: 'Illustrative ownership issue',
+    impact: 'Illustrative exposure', recommendation: 'Check ownership',
+  })])).rows[0].id;
+  await db.query(`UPDATE assessment_project p SET first_report_id = r.id, stage = 'published', support_started_at = r.published_at,
+    support_expires_at = public.w5a_support_expiry(r.published_at), support_policy = 'three-calendar-months-asia-jakarta-v1'
+    FROM project_report_version r WHERE p.id = $1 AND r.project_id = p.id AND r.id = $2`, [projectId, reportId]);
+  const endpoint = `/api/projects/${projectId}/follow-up/`;
+  const input = { requestId: randomUUID(), reportId, kind: 'retest', body: 'The fictional developer changed ownership checks.' };
+  assert.equal(result(await http(endpoint, owner, input), 409, 'expiry ends included submissions').error, 'EXPIRED');
+  const question = { ...input, requestId: randomUUID(), kind: 'question' };
+  result(await http(endpoint, owner, question), 200, 'questions remain possible after expiry');
+  const page = await http(`/en/projects/${projectId}/`, owner);
+  assert.ok(page.body.includes('Support ended') && page.body.includes('Historical sample report'));
+
+  // Seed a synthetic historical request received within the previous support window.
+  const timely = await create(owner);
+  await db.query(`UPDATE consultation_ticket SET created_at = (SELECT support_expires_at - interval '1 day'
+    FROM assessment_project WHERE id = $2) WHERE id = $1`, [timely, projectId]);
+  await db.query(`INSERT INTO project_follow_up(ticket_id, project_id, report_id, kind, retest_state)
+    VALUES ($1, $2, $3, 'retest', 'pending')`, [timely, projectId, reportId]);
+  await command(timely, admin, true, 1, 'accept_retest');
+  await command(timely, admin, true, 2, 'finish_retest', { result: 'not_verified', body: 'The historical example has insufficient detail.' });
 }
 
 async function projects(ticketId: string, owner: Fixture, admin: Fixture, other: Fixture) {
@@ -132,6 +196,7 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   const started = await period();
   assert.equal(started.first_report_id, reportId);
   assert.ok(started.support_started_at && started.support_expires_at && started.support_policy);
+  if (checkW5B) await followUps(projectId, reportId, owner, admin, other);
   const dates = await runtime.query(`SELECT
     public.w5a_support_expiry('2025-01-31 10:15+07') = '2025-04-30 10:15+07'::timestamptz AS month_end,
     public.w5a_support_expiry('2023-11-30 10:15+07') = '2024-02-29 10:15+07'::timestamptz AS leap_day,
@@ -168,14 +233,23 @@ try {
   const admin = await fixture('admin', emails[2]);
   assert.equal(result(await http('/api/account/', owner), 200, 'session').account.id, owner.id);
   assert.equal(result(await http('/api/account/', admin), 200, 'admin session').account.admin, true);
+  stage = 'account profile session binding';
+  const profile = { name: 'Audit synthetic profile' };
+  result(await http('/api/account/', other, profile, base, { 'X-Celahan-Account': owner.id }, 'PATCH'), 401, 'a stale profile cannot update a different account');
+  assert.equal(result(await http('/api/account/', other), 200, 'unchanged profile').account.name, 'W4 other');
+  result(await http('/api/account/', other, profile, base, {}, 'PATCH'), 200, 'current account can update its profile');
+  assert.equal(result(await http('/api/account/', other), 200, 'saved profile').account.name, profile.name);
   stage = 'intake and access boundaries';
-  const request = { ...intake, requestId: randomUUID() };
+  const request = { ...intake, requestId: randomUUID(), packageCode: 'account-data-v1' };
   result(await http('/api/tickets/', undefined, request), 401, 'guest denied');
   result(await http('/api/tickets/', owner, request, 'https://foreign.invalid'), 403, 'foreign origin denied');
   result(await http('/api/tickets/', owner, { ...request, ownerId: other.id }), 400, 'forged owner denied');
   result(await http('/api/tickets/', owner, { ...request, website: 'https://demo.example.invalid/?private=1' }), 400, 'query rejected');
   const [id, retry] = await Promise.all([create(owner, request), create(owner, request)]);
   assert.equal(id, retry, 'concurrent retry returns one ticket');
+  assert.equal((await db.query('SELECT package_code FROM consultation_ticket WHERE id=$1', [id])).rows[0].package_code, request.packageCode);
+  assert.ok((await http(`/id/admin/tickets/${id}/`, admin)).body.includes('Keamanan Akun &amp; Data'));
+  result(await http('/api/tickets/', owner, { ...request, packageCode: 'website-public-v1' }), 409, 'a replay cannot change the chosen package');
   result(await http('/api/tickets/', owner, { ...request, reason: 'Changed on replay' }), 409, 'changed retry rejected');
   const foreign = await http(`/id/tickets/${id}/`, other);
   assert.equal(foreign.status, 404);
@@ -200,6 +274,18 @@ try {
   assert.ok(escaped.body.includes('&lt;script&gt;ticket-canary&lt;/script&gt;'));
   assert.ok(!escaped.body.includes('<script>ticket-canary</script>'));
   assert.ok(!escaped.body.includes(`href="${intake.website}`));
+  if (checkW5B) {
+    const updatesPath = `/api/tickets/${id}/`;
+    const updates = (actor: Fixture, after: string) => http(updatesPath, actor, undefined, base, {
+      'X-Celahan-Account': actor.id, 'X-Celahan-Event-After': after,
+    });
+    const history = result(await updates(owner, '0'), 200, 'owner receives authorized update events');
+    assert.deepEqual(history.events.map((event: { kind: string }) => event.kind), ['created', 'clarify', 'reply']);
+    assert.ok(!JSON.stringify(history).includes(noteCanary));
+    assert.deepEqual(result(await updates(owner, history.events.at(-1).id), 200, 'cursor receives only new events').events, []);
+    result(await updates(other, '0'), 404, 'foreign account cannot read updates');
+    result(await updates(owner, '9223372036854775808'), 400, 'cursor cannot exceed bigint');
+  }
   stage = 'scheduling and closure';
   await command(id, admin, true, 3, 'outcome', { body: 'Discuss login and the access boundary between roles.' });
   if (checkW5A) {
@@ -207,16 +293,29 @@ try {
     await projects(id, owner, admin, other);
     stage = 'scheduling and closure';
   }
+  if (checkW5B) {
+    stage = 'W5B expired support and timely review';
+    await expiredSupport(owner, admin);
+    stage = 'scheduling and closure';
+  }
   const wallTime = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 16);
   await command(id, admin, true, 4, 'propose', { wallTime, zone: 'UTC' });
   await command(id, admin, true, 5, 'confirm', {}, 403);
   await command(id, owner, false, 5, 'agree');
   await command(id, admin, true, 6, 'confirm');
+  if (checkW5B) {
+    for (const [path, actor] of [['/en/tickets/', owner], ['/id/admin/', admin]] as const) {
+      const agenda = (await http(path, actor)).body.split('id="agenda"')[1]?.split('</section>')[0];
+      assert.ok(agenda?.includes(id) && agenda.includes('UTC'), 'confirmed appointment is linked and shows its zone');
+    }
+    assert.ok(!(await http('/en/tickets/', other)).body.includes(id));
+  }
   const overlapping = await create(other);
   await command(overlapping, admin, true, 1, 'outcome', { body: 'Discuss the second sample.' });
   await command(overlapping, other, false, 2, 'propose', { wallTime, zone: 'UTC' });
   assert.equal((await command(overlapping, admin, true, 3, 'confirm', {}, 409)).error, 'SLOT_TAKEN');
   await command(id, admin, true, 7, 'close', { body: 'The sample consultation has been concluded.' });
+  if (checkW5B) assert.ok(!(await http('/en/tickets/', owner)).body.split('id="agenda"')[1]?.split('</section>')[0].includes(id));
   await command(id, owner, false, 8, 'reply', { body: 'Should fail' }, 403);
   const closed = await http(`/en/tickets/${id}/`, owner);
   assert.ok(closed.body.includes('The sample consultation has been concluded.'));
@@ -231,6 +330,7 @@ try {
   await db.query('UPDATE "user" SET "twoFactorEnabled"=false WHERE id=$1', [admin.id]);
   assert.equal((await http('/en/admin/', admin)).status, 404);
   console.log('W4 passed creation/retry, ownership, admin role, note privacy, escaped text, stale writes, time acceptance/conflicts and closure.');
+  if (checkW5B) console.log('W5B passed report linkage, owner scope, cycle replay, cancellation, completion, private updates and confirmed agenda.');
 } catch (error) {
   const code = error && typeof error === 'object' && 'code' in error && typeof error.code === 'string' && /^[A-Z0-9_]{1,30}$/.test(error.code) ? error.code : null;
   console.error(error instanceof assert.AssertionError ? error.message : `W4 integration failed during ${stage}${code ? ` (${code})` : ''}. Private diagnostics withheld.`);
@@ -259,6 +359,7 @@ try {
         await client.query(`DELETE FROM consultation_note WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
         await client.query(`DELETE FROM consultation_event WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
         await client.query('DELETE FROM consultation_ticket WHERE owner_id = ANY($1::text[])', [fixtureIds]);
+        await client.query('DELETE FROM "rateLimit" WHERE key = ANY($1::text[])', [fixtureIds.map(id => `profile:${id}`)]);
         await client.query('DELETE FROM "user" WHERE id = ANY($1::text[])', [fixtureIds]);
         await client.query('COMMIT');
       } catch {

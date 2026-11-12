@@ -1,6 +1,6 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1 through W4 and isolated W5A are implemented. W5B and W6 are pending.
+Status: W1 through W4 and isolated W5A/W5B are implemented. W5C package selection is implemented under DEC-71. W5D and W6 are pending.
 Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
@@ -20,7 +20,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 
 | ID | Requirement | Acceptance |
 | --- | --- | --- |
-| FUN-01 | Public home and discovery | Layers desktop introduction, educational context/process interaction and current links; honest concept limits, no catalog/sample or fabricated achievements |
+| FUN-01 | Public home and discovery | Layers desktop introduction, educational context/process, W5C package preview and honest concept limits |
 | FUN-02 | Services and limitations | Assessment/guidance/retest scope, no code repair/forensics/certification, written permission explained |
 | FUN-03 | Eight-stage process | Canonical order, clear illustrative assessment stages, readable ordered desktop presentation |
 | FUN-04 | Consultation intake | Name, optional company, inert website, need, reason, description and authority statement with visible labels. Replies use the ticket and scheduling follows review |
@@ -34,7 +34,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-12 | Safe errors and 404 | Localized failure states without raw URLs, secrets, private resource existence, or misleading success |
 | FUN-13 | Public/supporting content | About, FAQ, privacy, boundaries, localized metadata and working navigation |
 | FUN-14 | Honest loading/failure | Public content useful without JS; no unsafe GET fallback, duplicate write, or fake success after failure |
-| FUN-15 | Service catalog — deferred | Former names/scopes removed. Replacement service definitions/names/terms require owner review; no invented offers |
+| FUN-15 | Illustrative service packages | Three bilingual package options with scope and illustrative prices. Verified intake stores an optional versioned selection under DEC-71 |
 | FUN-16 | Fit and consultation | Unsure/mixed path, no forced upgrade, submission does not equal scope or appointment approval |
 | FUN-17 | Follow-up support | Project-linked guidance/retest requests, eligibility visible, no warranty of all damage |
 | FUN-18 | Visual continuity | Design 2 Layers with retained Open Threshold, Glacier Steel and static material imagery under DEC-67, native interactions and reduced-motion support for control feedback |
@@ -66,19 +66,19 @@ Reactive reasons: reported defacement, suspected data leakage/intrusion, reporte
 
 ## 4. Roles and persistent behavior
 
-Public visitors browse the project introduction, conceptual process, About/FAQ and privacy. The catalog/public sample are removed pending replacement review. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
+Public visitors browse the project introduction, conceptual process, About/FAQ, privacy and the illustrative package page. DEC-71 adds package selection as an optional path into verified intake. They see ordinary login/signup beside ID/EN and no private ticket/report entry. Signed-in users see their avatar/menu and Tiket; only authorized project owners see Laporan & Progres. A project awaiting its first report still shows progress and an awaiting-publication state. Keep the existing website header and normal task content, with no separate customer dashboard/sidebar or return-to-site control. A user logs in before submitting or viewing private records. All new accounts start as users; admin access is provisioned separately. Prospects and customers share the user role; project relationship determines resources and support rights.
 
-Initial consultation tickets have no project requirement. Support/retest tickets require a project owned by the actor. Under DEC-68, admin guidance, replies and closure are persisted in the ticket. The synthetic workflow uses in-site communication. Any external follow-up requires a separate decision.
+Initial consultation tickets have no project requirement. Under DEC-70, report questions and retests create a separate ticket from an owned project and its active published report. New shared events appear automatically in the existing ticket conversation. The agenda lists upcoming confirmed appointments and links to their source tickets. The synthetic workflow uses in-site communication. Any external follow-up requires a separate decision.
 
 Refresh, new tabs and locale navigation do not delete stored tickets or reports. Unsaved drafts can be discarded only after an appropriate warning. Logout revokes the session and clears private UI caches, not database records. Language change never resets support dates.
 
 ## 5. Support and reports
 
-The owner confirmed a maximum three-month period from the first private project report publication, with start/expiry visible to the user. Project activation, public sample views and the user's first report view do not start it; later report versions do not reset it. Exact calendar/timezone boundary rules still require review. Support is project-bound, does not reset with a ticket/retest, and is not unlimited maintenance. Earlier initial-report-based 30/60-day windows are superseded. Cycle allowances must be reviewed alongside replacement service definitions; no old catalog allowance is retained.
+The owner confirmed three calendar months from first private publication under DEC-69, with start and expiry visible in Asia/Jakarta. Later report versions and ticket activity never restart support. DEC-70 approves one completed illustrative cycle for an isolated project. Any replacement service allowance requires separate approval.
 
 The maintenance-discount concept is narrowed to a proposed follow-up security review because code maintenance is excluded. Percentage, eligible work, approval cutoff, and commercial display need confirmation; do not invent a rate or apply a charge.
 
-The former public report dataset and preview were removed under DEC-62. DEC-69 approves one fictional order-portal scenario for W5A. Private reports belong to a project and preserve published versions. The admin reviews and publishes the active version for the owner. Follow-up assertions remain separate work for W5B.
+The former public report dataset and preview were removed under DEC-62. DEC-69 approves one fictional order-portal scenario for W5A. Private reports belong to a project and preserve published versions. The admin reviews and publishes the active version for the owner. W5B stores the owner's account of the programmer's changes separately from the admin's illustrative result. One completed cycle is available per isolated project. Ordinary questions use no cycle.
 
 ## 6. Language, desktop accessibility and performance
 
@@ -110,7 +110,7 @@ The former public report dataset and preview were removed under DEC-62. DEC-69 a
 | AC-05 | Refresh/deep link retrieves an authorized ticket; logout requires login; unknown/foreign resources disclose no private content |
 | AC-06 | ID/EN shared-site navigation and user/admin tasks work at reviewed desktop widths, enlarged text and keyboard; guest/prospect/project-owner menu states are correct without a separate dashboard |
 | AC-07 | JS/network failure cannot submit data via URL, falsely confirm success, or duplicate writes |
-| AC-08 | Retired catalog/sample destinations return 404 and are absent from current navigation; no replacement content is fabricated |
+| AC-08 | Retired catalog/sample routes return 404; the new package route presents only the approved illustrative categories and clearly labels prices |
 | AC-09 | Uncertain scope or urgent reactive need requires reviewed triage; no forced sale or automatic diagnosis |
 | AC-10 | Unauthenticated user and user B cannot read/mutate user A's ticket, messages, project or report through any endpoint |
 | AC-11 | Both locales truthfully disclose content redefinition and preserve account/privacy boundaries; no removed catalog/data resurfaces |
@@ -130,9 +130,9 @@ Academic prototype: real authentication/database and a complete user consultatio
 
 Portfolio v1: complete approved portal flows, identity, ID/EN desktop UX, quality evidence, deployment and truthful privacy information. Video/case study follows stable functionality.
 
-Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, live calendar integration, organizational team access, realtime chat infrastructure, generated PDFs, monitoring and PWA/offline private data. Exact scheduling, enrollment, email provider, database adapter/runtime settings, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
+Excluded: actual scans, third-party target access, code fixes, incident recovery/forensics, certification, billing/payments, uploads, AI, automated service/contact messaging, external calendar integration, organizational team access, standalone chat, generated PDFs, monitoring and PWA/offline private data. Enrollment, email provider, retention, discount and final asset choices remain open in Decisions. Better Auth + Neon Free is selected; no paid plan/add-on or account provisioning is authorized. Permanent domain/registrar/DNS choice is a later email/deployment decision; public enrollment cannot claim working delivery before it is tested.
 
-The owner authorized W1 on October 30, isolated W2 on October 31 and integrated W4 on November 9. The shared shell, database-backed identity and synthetic consultation workflow exist in the isolated environment. Reports, project support, public enrollment and deployment retain separate gates.
+The owner authorized W1 on October 30, isolated W2 on October 31, integrated W4 on November 9, isolated W5A on November 10 and isolated W5B on November 11. Public enrollment and deployment retain separate gates.
 
 ## November 6 presentation reset
 
@@ -140,4 +140,4 @@ The reset removed previous visual assets, galleries, characters and dedicated ph
 
 ## Service and report reset (DEC-62)
 
-The former catalog, its descriptions, public findings dataset/preview, and related routes/docs remain removed. Early concepts containing retired content cannot restore it. The newly selected Layers homepage contains educational context/process navigation and account entry, not replacement services or a sample report. Its selection does not decide future catalog/report content. Open Threshold remains; service/report decisions are required before those specific interfaces, independently of the desktop homepage design lock.
+The former catalog, its descriptions, public findings dataset/preview, and related routes/docs remain removed. DEC-71 authorizes a separate package page and homepage preview within Layers. Open Threshold remains. Replacement public report content requires a separate decision.

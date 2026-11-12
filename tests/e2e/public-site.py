@@ -16,7 +16,7 @@ if origin.scheme != 'http' or origin.hostname != '127.0.0.1' or not origin.port 
     parser.error('Use a loopback HTTP origin with an explicit port and no path/query/fragment.')
 BASE = args.base
 args.artifacts.mkdir(parents=True, exist_ok=True)
-ROUTES = ['', 'process/', 'about/', 'privacy/']
+ROUTES = ['', 'process/', 'about/', 'privacy/', 'packages/']
 ACCOUNT_ROUTES = ['login/', 'register/', 'account/recovery/', 'account/reset-password/', 'account/verify-email/', 'account/two-factor/']
 RETIRED = ['services/', 'services/retired/', 'report/']
 VIEWPORTS = [(1024, 768), (1366, 768), (1920, 1080)]
@@ -48,7 +48,12 @@ with sync_playwright() as p:
             assert response.status == 200, (locale, path, response.status)
             assert response.headers['x-content-type-options'] == 'nosniff'
             assert response.headers['referrer-policy'] == 'no-referrer'
-            assert "frame-ancestors 'none'" in response.headers['content-security-policy']
+            csp = response.headers['content-security-policy']
+            assert "frame-ancestors 'none'" in csp
+            assert "default-src 'self'" in csp
+            assert "script-src 'self' 'unsafe-inline'" in csp
+            assert "script-src-attr 'none'" in csp
+            assert "'unsafe-eval'" not in csp
             cache = response.headers['cache-control']
             if path in ACCOUNT_ROUTES:
                 assert 'no-store' in cache
@@ -62,7 +67,7 @@ with sync_playwright() as p:
             if locale == 'en':
                 assert page.locator('footer p[lang=en]').inner_text() == TRANSLATION
             assert page.locator('header a[href*="/tickets/"], header a[href*="/projects/"], header a[href*="/admin/"]').count() == 0
-            assert page.locator('a[href*="/services/"], a[href*="/report/"], a[href*="package="], #packages, #report, .finding-list').count() == 0
+            assert page.locator('a[href*="/services/"], a[href*="/report/"], #packages, #report, .finding-list').count() == 0
             assert page.locator('main canvas, .menu-trigger').count() == 0
             for image in page.locator('main img').all():
                 assert image.get_attribute('src') in ['/artwork/glacier-steel-hero.webp', '/artwork/glacier-steel-detail.webp', '/artwork/glacier-steel-account.webp']
@@ -94,6 +99,22 @@ with sync_playwright() as p:
         expect(question).to_have_attribute('open', '')
         expect(question.locator('p')).to_be_visible()
         page.screenshot(path=str(args.artifacts / f'{locale}-home.png'), full_page=True)
+        preview = page.locator('.package-preview')
+        assert preview.evaluate("(section) => section.previousElementSibling.id === 'process' && section.nextElementSibling.id === 'access-and-faq'")
+        expect(preview.locator('.package-card a')).to_have_text(['Lihat paket' if locale == 'id' else 'View package'] * 3)
+        preview.locator('.package-card a').nth(1).click()
+        page.wait_for_url(f'{BASE}/{locale}/packages/#account-data-v1')
+        expect(page.locator('.package-price')).to_have_text(
+            ['Rp2.500.000', 'Rp5.000.000', 'Rp8.000.000'] if locale == 'id' else ['IDR 2,500,000', 'IDR 5,000,000', 'IDR 8,000,000'])
+        expect(page.locator('.package-card .package-scope li')).to_have_count(9)
+        page.goto(f'{BASE}/{locale}/packages/')
+        page.screenshot(path=str(args.artifacts / f'{locale}-packages.png'), full_page=True)
+        page.locator('#account-data-v1 .primary-action').click()
+        page.wait_for_url(f'{BASE}/{locale}/login/?next=request&package=account-data-v1')
+        other = 'en' if locale == 'id' else 'id'
+        page.get_by_role('link', name='EN — English' if locale == 'id' else 'ID — Bahasa Indonesia', exact=True).click()
+        page.wait_for_url(f'{BASE}/{other}/login/?next=request&package=account-data-v1')
+        page.goto(f'{BASE}/{locale}/')
         consultation = page.locator(f'#context a[href="/{locale}/login/?next=request"]:visible')
         expect(consultation).to_have_count(1)
         consultation.click()
@@ -131,6 +152,11 @@ with sync_playwright() as p:
         assert urlsplit(plain.url).path == f'/{locale}/process/'
         assert plain.locator('.process-grid li').count() == 8
         plain.goto(f'{BASE}/{locale}/')
+        plain.locator('.package-preview .primary-action').first.click()
+        assert plain.url == f'{BASE}/{locale}/packages/#website-public-v1'
+        plain.locator('#website-public-v1 .primary-action').click()
+        assert plain.url == f'{BASE}/{locale}/login/?next=request&package=website-public-v1'
+        plain.goto(f'{BASE}/{locale}/')
         plain.locator('.access-actions .primary-action').click()
         assert plain.url == f'{BASE}/{locale}/login/'
         fallback.close()
@@ -142,8 +168,12 @@ with sync_playwright() as p:
         probe.evaluate('document.fonts.ready')
         result = probe.evaluate("""() => { const r = performance.getEntriesByType('resource'); return { js: r.filter(x => new URL(x.name).pathname.endsWith('.js')).reduce((s,x) => s+x.encodedBodySize,0), total: r.reduce((s,x) => s+x.encodedBodySize,0)+performance.getEntriesByType('navigation')[0].encodedBodySize, fonts: r.filter(x => /\\.(woff2?|ttf|otf)/.test(x.name)).length, artwork: r.filter(x => /artwork/.test(x.name)).length }; }""")
         assert result['js'] <= 250 * 1024 and result['total'] <= 1024 * 1024
-        assert result['fonts'] == 1 and result['artwork'] == 3
+        assert result['fonts'] == 1 and 1 <= result['artwork'] <= 3, result
         measurements.append({'locale': locale, **result})
+        for artwork in probe.locator('main img').all():
+            artwork.scroll_into_view_if_needed()
+            expect(artwork).to_have_js_property('complete', True)
+            assert artwork.evaluate('(img) => img.naturalWidth > 0')
         cold.close()
 
     root = context.request.get(BASE + '/', max_redirects=0)
@@ -161,4 +191,4 @@ with sync_playwright() as p:
     browser.close()
 assert not errors, errors
 assert not outside, outside
-print(json.dumps({'result': 'PASS', 'public_routes': 8, 'account_routes': 12, 'retired_route_checks': 6, 'desktop_viewports': VIEWPORTS, 'keyboard': 'passed', 'no_js': 'passed', 'outside_requests': 0, 'page_errors': 0, 'cold_encoded_bytes': measurements}))
+print(json.dumps({'result': 'PASS', 'public_routes': 2 * len(ROUTES), 'account_routes': 12, 'retired_route_checks': 6, 'desktop_viewports': VIEWPORTS, 'keyboard': 'passed', 'no_js': 'passed', 'outside_requests': 0, 'page_errors': 0, 'cold_encoded_bytes': measurements}))

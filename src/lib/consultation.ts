@@ -1,21 +1,37 @@
+import { isPackageCode, type PackageCode } from './packages.ts';
+
 export const consultationNeeds = ['reactive', 'preventive', 'unsure_mixed'] as const;
 export type Need = typeof consultationNeeds[number];
 export type TicketView = 'owner' | 'admin';
 export type TicketStatus = 'review' | 'awaiting_owner' | 'answered' | 'closed';
 export type ScheduleState = 'proposed' | 'agreed' | 'confirmed';
 type TextAction = 'reply' | 'clarify' | 'outcome' | 'close' | 'note';
-export type TicketAction = TextAction | 'propose' | 'agree' | 'confirm';
+export type TicketAction = TextAction | 'propose' | 'agree' | 'confirm' | 'accept_retest' | 'finish_retest';
+export const retestResults = ['resolved_in_example', 'unresolved_in_example', 'not_verified'] as const;
+export type RetestResult = typeof retestResults[number];
+export type ConversationEvent = {
+  id: string; actor: TicketView; kind: Exclude<TicketAction, 'note'> | 'created';
+  body: string | null; created_at: string; schedule_at: string | null; schedule_zone: string | null;
+};
+
+export function ticketTimestamp(locale: 'id' | 'en', value: Date | string, zone = 'Asia/Jakarta') {
+  const time = new Intl.DateTimeFormat(locale === 'id' ? 'id-ID' : 'en-GB', {
+    dateStyle: 'medium', timeStyle: 'short', timeZone: zone,
+  }).format(new Date(value));
+  return `${time} · ${zone}`;
+}
 
 export type ConsultationInput = {
   requestId: string; name: string; company: string; website: string; need: Need;
-  reason: string; description: string; authority: true;
+  reason: string; description: string; authority: true; packageCode?: PackageCode;
 };
 
 type CommandBase = { requestId: string; version: number };
 export type TicketCommand = CommandBase & (
   { kind: TextAction; body: string } |
   { kind: 'propose'; at: string; zone: string } |
-  { kind: 'agree' | 'confirm' }
+  { kind: 'agree' | 'confirm' | 'accept_retest' } |
+  { kind: 'finish_retest'; result: RetestResult; body: string }
 );
 
 export type Schedule = { at: string; zone: string; state: ScheduleState; by: TicketView };
@@ -37,7 +53,10 @@ export function text(value: unknown, min: number, max: number): string | null {
 }
 
 export function parseConsultation(value: unknown): ConsultationInput | null {
-  if (!objectWith(value, ['requestId', 'name', 'company', 'website', 'need', 'reason', 'description', 'authority'])) return null;
+  const fields = ['requestId', 'name', 'company', 'website', 'need', 'reason', 'description', 'authority'];
+  if (!objectWith(value, fields) && !objectWith(value, [...fields, 'packageCode'])) return null;
+  const packageCode = isPackageCode(value.packageCode) ? value.packageCode : null;
+  if (Object.hasOwn(value, 'packageCode') && !packageCode) return null;
   const { requestId, need, authority } = value;
   const name = text(value.name, 2, 80);
   const company = text(value.company, 0, 120);
@@ -51,7 +70,7 @@ export function parseConsultation(value: unknown): ConsultationInput | null {
     const address = new URL(website);
     if (!address.hostname || address.username || address.password || website.split('/')[2].includes('@')) return null;
   } catch { return null; }
-  return { requestId, name, company, website, need: need as Need, reason, description, authority };
+  return { requestId, name, company, website, need: need as Need, reason, description, authority, ...(packageCode && { packageCode }) };
 }
 
 export function scheduleInstant(wallTime: unknown, zone: unknown): string | null {
@@ -91,7 +110,13 @@ export function parseTicketCommand(value: unknown): TicketCommand | null {
       const at = scheduleInstant(value.wallTime, value.zone);
       return at && typeof value.zone === 'string' ? { requestId, version, kind, at, zone: value.zone } : null;
     }
-    case 'agree': case 'confirm':
+    case 'finish_retest': {
+      if (!objectWith(value, [...base, 'result', 'body'])) return null;
+      const body = text(value.body, 1, 3000);
+      const result = retestResults.find(option => option === value.result);
+      return body && result ? { requestId, version, kind, result, body } : null;
+    }
+    case 'agree': case 'confirm': case 'accept_retest':
       return objectWith(value, base) ? { requestId, version, kind } : null;
     default: return null;
   }
