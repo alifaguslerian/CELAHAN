@@ -14,7 +14,8 @@ export async function AccountPage({ locale, mode }: { locale: Locale; mode: Acco
   } catch { available = false; }
   if (mode === 'profile' && !profile) redirect(`/${locale}/login/?next=account`);
   if (profile) return <PrivateAccountScope id={profile.id}>
-    <AccountForm locale={locale} mode={mode} available={available} profile={{ name: profile.name, email: profile.email, twoFactorEnabled: profile.twoFactorEnabled }} />
+    <AccountForm locale={locale} mode={mode} available={available}
+      profile={{ id: profile.id, name: profile.name, email: profile.email, twoFactorEnabled: profile.twoFactorEnabled }} />
   </PrivateAccountScope>;
   return <AccountForm locale={locale} mode={mode} available={available} />;
 }

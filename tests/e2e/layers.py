@@ -41,7 +41,8 @@ with sync_playwright() as p:
           new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__shifts += e.value; }).observe({type:'layout-shift', buffered:true});
           new PerformanceObserver(l => { window.__lcp = l.getEntries().at(-1).startTime; }).observe({type:'largest-contentful-paint', buffered:true});""")
         page.goto(f'{args.base}/{locale}/')
-        page.wait_for_load_state('networkidle')
+        page.evaluate('document.fonts.ready')
+        page.locator('.hero-scene').evaluate('(image) => image.decode()')
         artwork = page.locator('.home-page img[src^="/artwork/"]')
         expect(artwork).to_have_count(4)
         page.mouse.move(1000, 450)
@@ -147,13 +148,13 @@ with sync_playwright() as p:
           new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__shifts += e.value; }).observe({type:'layout-shift', buffered:true});
           new PerformanceObserver(l => { window.__lcp = l.getEntries().at(-1).startTime; }).observe({type:'largest-contentful-paint', buffered:true});""")
         probe.goto(f'{args.base}/{locale}/')
-        probe.wait_for_load_state('networkidle')
-        for selector in ['.process-art', '.account-art']:
+        probe.evaluate('document.fonts.ready')
+        probe.locator('.hero-scene').evaluate('(image) => image.decode()')
+        probe.wait_for_function('window.__lcp > 0')
+        for selector in ['.process-art', '.account-art', '.closing-art']:
             image = probe.locator(selector)
             image.scroll_into_view_if_needed()
             image.evaluate('(image) => image.decode()')
-        probe.locator('.site-footer').scroll_into_view_if_needed()
-        probe.wait_for_load_state('networkidle')
         metrics = probe.evaluate("""() => { const r=performance.getEntriesByType('resource'); return {
           js:r.filter(x=>new URL(x.name).pathname.endsWith('.js')).reduce((s,x)=>s+x.encodedBodySize,0),
           total:r.reduce((s,x)=>s+x.encodedBodySize,0)+performance.getEntriesByType('navigation')[0].encodedBodySize,
@@ -179,7 +180,9 @@ with sync_playwright() as p:
         cdp.send('Network.emulateNetworkConditions', {'offline': False, 'latency': 80, 'downloadThroughput': 200000, 'uploadThroughput': 100000, 'connectionType': 'cellular4g'})
         cdp.send('Emulation.setCPUThrottlingRate', {'rate': 4})
         slow.goto(f'{args.base}/{locale}/')
-        slow.wait_for_load_state('networkidle')
+        slow.evaluate('document.fonts.ready')
+        slow.locator('.hero-scene').evaluate('(image) => image.decode()')
+        slow.wait_for_function('window.__lcp > 0')
         slow.evaluate('async () => { await Promise.all(document.getAnimations().map(a => a.finished.catch(() => {}))); }')
         sample = slow.evaluate('({lcp_ms:window.__lcp, cls:window.__shifts})')
         sample['choice_two_frames_ms'] = slow.evaluate("""async () => { const start=performance.now(); document.querySelector('label[for=context-choice-0]').click(); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))); return performance.now()-start; }""")

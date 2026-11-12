@@ -29,7 +29,7 @@ Existing T identifiers now describe the revised portal baseline. Historical test
 | T-11 | QLT-03, AC-03 | Target URL never contacted client/server; intended data only to approved auth/app/database destinations |
 | T-12 | QLT-02, 04 | Actual lint/typecheck/build, meaningful tests, measured assets/JS/query behavior |
 | T-13 | FUN-15–16 | Removed catalog/sample URLs return 404 in ID/EN; no retired content/links. Replacement service/report acceptance requires review |
-| T-14 | AC-11 | Under DEC-62, catalog names/scopes/terms are removed. No replacement offers/findings without review. Future support/access policy remains separately governed |
+| T-14 | AC-11 | Retired offers and findings remain absent under DEC-62. DEC-71 permits three illustrative packages and prices. Selection uses a constrained public code. Report access and support remain separately governed |
 | T-15 | FUN-18, QLT-06 | Compare actual Layers desktop to selected reference: hero, context, normal 4×2 process/detail, account, dark FAQ, type/palette and ID/EN. Check reduced motion/text enlargement separately. Layers validation records local results, not a release pass |
 | T-16 | FUN-19, 21, AC-06, 18 | Signup/login/recovery/logout and reviewed gates; shared header beside ID/EN for guest/prospect/project owner/admin; no forced dashboard; hidden ticket/report entries cannot bypass server checks |
 | T-17 | AC-10, 12 | Two-user/admin object and nested-ID read/write/list/count isolation; no mass-assigned privileges |
@@ -147,6 +147,6 @@ Remove verified unused code/imports/dependencies/experiments and duplicate logic
 
 Secrets, local environments, real data, dumps, private keys, reports/logs/caches and generated output stay out of the repository. Schema/migrations and safe synthetic fixtures can be versioned. Ignore rules do not sanitize previously tracked secrets. Following DEC-45 and [Agent Instructions](../../AGENTS.md), propose English commit suggestions in chat only after a coherent change has been reviewed and its relevant checks have run. Group related files by purpose, separate independent purposes and defer suggestions for unfinished work; do not require one suggestion per file or edit. Git is entirely manual.
 
-Current state: W1 foundation, isolated W2 identity, W3 public discovery and isolated W4 consultation exist. Earlier W2 checks establish their recorded account scope. W4 checks are recorded separately. Reports, support, public enrollment and deployment retain separate validation and authorization gates.
+Current state: W1 through W4, isolated W5A/W5B and W5C package selection have recorded checks. Earlier validation remains scoped to its date and environment. Public enrollment and deployment retain separate authorization gates.
 
 See [W2 validation](../validation/2026-10-31-w2-accounts.md) for actual commands, database/browser evidence, the remaining development-tooling advisory and unrun checks.

@@ -14,9 +14,10 @@ function checked(condition: unknown, label: string): asserts condition { assert.
 
 class Browser {
   cookies = new Map<string, string>();
-  async call(path: string, body?: unknown, method = body === undefined ? 'GET' : 'POST', origin: string | null = config!.origin) {
+  async call(path: string, body?: unknown, method = body === undefined ? 'GET' : 'POST', origin: string | null = config!.origin, accountId?: string) {
     const headers: Record<string, string> = { 'Content-Type': 'application/json', Cookie: [...this.cookies].map(([key, value]) => `${key}=${value}`).join('; ') };
     if (origin) headers.Origin = origin;
+    if (accountId) headers['X-Celahan-Account'] = accountId;
     const response = await fetch(config!.origin + path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), redirect: 'manual' });
     for (const cookie of response.headers.getSetCookie()) {
       const [pair] = cookie.split(';'); const index = pair.indexOf('=');
@@ -84,8 +85,8 @@ try {
   const meB = (await b.call('/api/account/')).data.account;
   checked(Object.keys(meA).sort().join() === 'admin,hasProjects,id,name', 'session refresh exposes only the header account fields');
   checked(meA.id !== meB.id && Object.keys(meB).sort().join() === 'admin,hasProjects,id,name', 'sessions remain isolated');
-  checked((await a.call('/api/account/', { name: 'Changed Synthetic Name', role: 'admin' }, 'PATCH')).response.status === 400, 'profile cannot change role');
-  checked((await a.call('/api/account/', { name: '<script>inert</script>' }, 'PATCH')).response.ok, 'profile accepts escaped plain text');
+  checked((await a.call('/api/account/', { name: 'Changed Synthetic Name', role: 'admin' }, 'PATCH', config.origin, meA.id)).response.status === 400, 'profile cannot change role');
+  checked((await a.call('/api/account/', { name: '<script>inert</script>' }, 'PATCH', config.origin, meA.id)).response.ok, 'profile accepts escaped plain text');
   checked((await a.call('/api/account/')).data.account.name === '<script>inert</script>', 'profile persists');
   checked((await b.call('/api/account/')).data.account.name !== '<script>inert</script>', 'profile mutation cannot affect another account');
   checked((await b.call(`/api/account/?userId=${meA.id}`)).response.status === 400, 'identity override is rejected');

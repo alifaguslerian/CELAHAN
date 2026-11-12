@@ -1,4 +1,4 @@
-import { currentAccount } from '@/server/auth/session';
+import { currentAccount, currentIdentity } from '@/server/auth/session';
 import { authEnvironment } from '@/server/auth/environment';
 import { database } from '@/server/data/pool';
 import { validWriteRequest } from '@/lib/auth-policy';
@@ -21,16 +21,19 @@ export async function PATCH(request: Request) {
   try {
     const config = authEnvironment();
     if (!config || request.headers.get('host') !== new URL(config.origin).host || new URL(request.url).search || !validWriteRequest(request.headers.get('origin'), config.origin, request.headers.get('content-type'))) return privateJSON({ error: 'DENIED' }, 403);
-    const account = await currentAccount(request.headers);
-    if (!account) return privateJSON({ error: 'DENIED' }, 401);
+    const account = await currentIdentity(request.headers);
+    if (!account || request.headers.get('x-celahan-account') !== account.id) return privateJSON({ error: 'SESSION' }, 401);
+    let body: unknown;
+    try { body = await boundedJSON(request); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
+    if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).join() !== 'name' || !('name' in body)
+      || typeof body.name !== 'string' || body.name.trim().length < 2 || body.name.length > 80 || /[\p{Cc}\p{Cs}]/u.test(body.name)) {
+      return privateJSON({ error: 'INVALID_INPUT' }, 400);
+    }
     const limit = await database().query<{ count: number }>(
       'INSERT INTO "rateLimit"(id, key, count, "lastRequest") VALUES ($1, $2, 1, $3) ON CONFLICT (key) DO UPDATE SET count = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN 1 ELSE "rateLimit".count + 1 END, "lastRequest" = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN $3 ELSE "rateLimit"."lastRequest" END RETURNING count',
       [randomUUID(), `profile:${account.id}`, Date.now()]);
     if (limit.rows[0].count > 20) return privateJSON({ error: 'RATE_LIMITED' }, 429);
-    let body: unknown;
-    try { body = await boundedJSON(request); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
-    if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).join() !== 'name' || !('name' in body) || typeof body.name !== 'string' || body.name.trim().length < 2 || body.name.length > 80) return privateJSON({ error: 'INVALID_INPUT' }, 400);
     const update = await database().query('UPDATE "user" SET name = $1, "updatedAt" = now() WHERE id = $2 AND "accountEnabled" = true AND "emailVerified" = true', [body.name.trim(), account.id]);
-    return update.rowCount ? privateJSON({ ok: true }) : privateJSON({ error: 'DENIED' }, 401);
+    return update.rowCount ? privateJSON({ ok: true }) : privateJSON({ error: 'SESSION' }, 401);
   } catch { return privateJSON({ error: 'UNAVAILABLE' }, 503); }
 }

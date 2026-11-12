@@ -3,7 +3,11 @@ import type { NextConfig } from 'next';
 const contentSecurityPolicy = [
   "object-src 'none'", "base-uri 'none'", "frame-ancestors 'none'", "form-action 'self'",
   "img-src 'self'", "font-src 'self'",
-  ...(process.env.NODE_ENV === 'production' ? ["connect-src 'self'"] : []),
+  ...(process.env.NODE_ENV === 'production' ? [
+    // Prerendered Next.js HTML uses inline hydration scripts.
+    "default-src 'self'", "script-src 'self' 'unsafe-inline'", "script-src-attr 'none'",
+    "style-src 'self' 'unsafe-inline'", "connect-src 'self'",
+  ] : []),
 ].join('; ');
 
 const config: NextConfig = {
