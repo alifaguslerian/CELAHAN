@@ -1,6 +1,6 @@
 import { authentication } from '@/server/auth/instance';
 import { authEnvironment } from '@/server/auth/environment';
-import { allowedTestEmail, validAuthBody, validWriteRequest } from '@/lib/auth-policy';
+import { allowedTestEmail, authFailure, validAuthBody, validWriteRequest } from '@/lib/auth-policy';
 import { boundedJSON, privateJSON } from '@/server/http';
 import { deliveryState } from '@/server/auth/delivery';
 
@@ -29,15 +29,8 @@ export async function POST(request: Request) {
     if (state.failed) return privateJSON({ error: 'DELIVERY_FAILED' }, 503, headers);
     const retry = response.headers.get('X-Retry-After');
     if (retry) headers.set('Retry-After', retry);
-    if (!response.ok) return privateJSON({ error: response.status === 429 ? 'RATE_LIMITED' : 'AUTH_FAILED' }, response.status >= 500 ? 503 : response.status, headers);
-    const result = await response.json();
-    const output: Record<string, unknown> = { ok: true };
-    if (result.twoFactorRedirect === true) output.needsTwoFactor = true;
-    if (path === '/two-factor/enable') {
-      output.totpURI = result.totpURI;
-      output.backupCodes = result.backupCodes;
-    }
-    return privateJSON(output, 200, headers);
+    if (!response.ok) return privateJSON({ error: authFailure(response.status) }, response.status >= 500 ? 503 : response.status, headers);
+    return privateJSON({ ok: true }, 200, headers);
   } catch { return privateJSON({ error: 'UNAVAILABLE' }, 503); }
 }
 

@@ -9,12 +9,12 @@ import type { Locale } from '@/lib/routing';
 import { localeHref, loginDestination } from '@/lib/routing';
 import { useSiteAccount } from '@/components/layout/site-account';
 
-export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'twoFactor' | 'setup' | 'profile';
+export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'profile';
 const subscribe = () => () => {};
 
 export function AccountForm({ locale, mode, available, profile }: {
   locale: Locale; mode: AccountMode; available: boolean;
-  profile?: { id: string; name: string; email: string; twoFactorEnabled: boolean };
+  profile?: { id: string; name: string; email: string };
 }) {
   const copy = accountCopy[locale];
   const { refreshAccount } = useSiteAccount();
@@ -27,12 +27,10 @@ export function AccountForm({ locale, mode, available, profile }: {
   const [name, setName] = useState(profile?.name ?? '');
   const [password, setPassword] = useState('');
   const [otp, setOTP] = useState('');
-  const [backup, setBackup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const [setup, setSetup] = useState<{ secret: string; codes: string[] } | null>(null);
   const dirty = useRef(false);
   const status = useRef<HTMLParagraphElement>(null);
 
@@ -54,51 +52,48 @@ export function AccountForm({ locale, mode, available, profile }: {
     if (pending) return;
     setPending(true); setMessage(''); setError(false);
     let path = '/sign-in/email';
-    let body: Record<string, string> = { email, password };
-    if (view === 'register') { path = '/sign-up/email'; body = { email, password, name }; }
-    if (view === 'verify') { path = '/email-otp/verify-email'; body = { email, otp }; }
-    if (view === 'recovery') { path = '/email-otp/request-password-reset'; body = { email }; }
-    if (view === 'reset') { path = '/email-otp/reset-password'; body = { email, otp, password }; }
-    if (view === 'twoFactor' || (view === 'setup' && setup)) { path = backup ? '/two-factor/verify-backup-code' : '/two-factor/verify-totp'; body = { code: otp }; }
-    if (view === 'setup' && !setup) { path = '/two-factor/enable'; body = { password }; }
+    const address = email.trim();
+    let body: Record<string, string> = { email: address, password };
+    if (view === 'register') { path = '/sign-up/email'; body = { email: address, password, name }; }
+    if (view === 'verify') { path = '/email-otp/verify-email'; body = { email: address, otp }; }
+    if (view === 'recovery') { path = '/email-otp/request-password-reset'; body = { email: address }; }
+    if (view === 'reset') { path = '/email-otp/reset-password'; body = { email: address, otp, password }; }
     try {
       const response = await fetch(view === 'profile' ? '/api/account/' : `/api/auth${path}/`, {
         method: view === 'profile' ? 'PATCH' : 'POST',
         headers: { 'Content-Type': 'application/json', ...(view === 'profile' && profile && { 'X-Celahan-Account': profile.id }) },
-        body: JSON.stringify(view === 'profile' ? { name } : body), cache: 'no-store', redirect: 'error',
+        body: JSON.stringify(view === 'profile' ? { name } : body), cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(16000),
       });
       const data = await response.json();
       if (!response.ok) {
-        if (view === 'profile' && data.error === 'SESSION') {
-          setError(true); setMessage(copy.sessionChanged); return;
-        }
-        throw new Error(response.status === 429 ? copy.limited : data.error === 'DELIVERY_FAILED' ? copy.deliveryFailed : copy.failed);
+        setError(true);
+        const messages: Record<string, string> = {
+          SESSION: copy.sessionChanged, DELIVERY_FAILED: copy.deliveryFailed, UNAVAILABLE: copy.serviceRetry, RATE_LIMITED: copy.limited,
+        };
+        setMessage(Object.hasOwn(messages, data.error) ? messages[data.error] : copy.failed);
+        return;
       }
       dirty.current = false; setPassword(''); setOTP('');
-      if (data.needsTwoFactor) { setView('twoFactor'); return; }
-      if (view === 'login' || view === 'twoFactor') {
+      if (view === 'login') {
         window.location.assign(loginDestination(search.get('next'), locale, search.get('package'))); return;
       }
       if (view === 'register') { setView('verify'); setMessage(copy.sent); }
       if (view === 'recovery') { setView('reset'); setMessage(copy.sent); }
       if (view === 'verify' || view === 'reset') { setView('login'); setMessage(view === 'verify' ? copy.verified : copy.resetDone); }
       if (view === 'profile') { setMessage(copy.saved); void refreshAccount(); }
-      if (view === 'setup' && !setup) {
-        setSetup({ secret: new URL(data.totpURI).searchParams.get('secret') ?? '', codes: data.backupCodes });
-      } else if (view === 'setup') window.location.assign(`/${locale}/account/`);
-    } catch (cause) { setError(true); setMessage(cause instanceof Error && (cause.message === copy.limited || cause.message === copy.failed || cause.message === copy.deliveryFailed) ? cause.message : copy.failed); }
+    } catch { setError(true); setMessage(copy.serviceRetry); }
     finally { setPending(false); status.current?.focus(); }
   }
 
   const needsEmail = ['login', 'register', 'verify', 'recovery', 'reset'].includes(view);
-  const needsPassword = ['login', 'register', 'reset'].includes(view) || (view === 'setup' && !setup);
-  const needsOTP = ['verify', 'reset', 'twoFactor'].includes(view) || (view === 'setup' && setup);
+  const needsPassword = ['login', 'register', 'reset'].includes(view);
+  const needsOTP = ['verify', 'reset'].includes(view);
 
   async function resendVerification() {
     if (pending) return;
     setPending(true); setError(false);
     try {
-      const response = await fetch('/api/auth/email-otp/send-verification-otp/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, type: 'email-verification' }), cache: 'no-store', redirect: 'error' });
+      const response = await fetch('/api/auth/email-otp/send-verification-otp/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.trim(), type: 'email-verification' }), cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(16000) });
       if (!response.ok) throw new Error();
       setMessage(copy.sent);
     } catch { setError(true); setMessage(copy.failed); }
@@ -115,9 +110,7 @@ export function AccountForm({ locale, mode, available, profile }: {
           {view === 'profile' && <p>{copy.email}: {profile?.email}</p>}
           {needsEmail && <label>{copy.email}<input name="email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} /></label>}
           {needsPassword && <div><label htmlFor="password">{view === 'reset' ? copy.newPassword : copy.password}</label><div className="password-field"><input id="password" name="password" type={showPassword ? 'text' : 'password'} autoComplete={view === 'register' || view === 'reset' ? 'new-password' : 'current-password'} required minLength={15} maxLength={128} value={password} onChange={(event) => setPassword(event.target.value)} aria-describedby="password-help" /><button type="button" aria-pressed={showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ? copy.hide : copy.show}</button></div><p id="password-help" className="field-help">{copy.passwordHelp}</p></div>}
-          {setup && <section className="auth-secrets" aria-label={copy.setup}><p>{copy.keepCodes}</p><h2>{copy.secret}</h2><code>{setup.secret}</code><h2>{copy.codes}</h2><ul>{setup.codes.map((code) => <li key={code}><code>{code}</code></li>)}</ul></section>}
-          {needsOTP && <label>{view === 'twoFactor' || view === 'setup' ? copy.code : copy.otp}<input name="otp" autoComplete="one-time-code" inputMode={backup ? 'text' : 'numeric'} required minLength={6} maxLength={backup ? 40 : 6} pattern={backup ? undefined : '[0-9]{6}'} value={otp} onChange={(event) => setOTP(event.target.value)} /></label>}
-          {view === 'twoFactor' && <label className="checkbox-label"><input type="checkbox" checked={backup} onChange={(event) => { setBackup(event.target.checked); setOTP(''); }} />{copy.backup}</label>}
+          {needsOTP && <label>{copy.otp}<input name="otp" autoComplete="one-time-code" inputMode="numeric" required minLength={6} maxLength={6} pattern="[0-9]{6}" value={otp} onChange={(event) => setOTP(event.target.value.trim())} /></label>}
           <button className="primary-action" type="submit">{pending ? copy.saving : view === 'profile' ? copy.save : copy.submit}</button>
           <div><p className="disclaimer" lang="id">{disclaimer.id}</p>{locale === 'en' && <p className="disclaimer" lang="en">{disclaimer.en}</p>}</div>
         </fieldset>
@@ -125,7 +118,6 @@ export function AccountForm({ locale, mode, available, profile }: {
       <p ref={status} tabIndex={-1} role={error ? 'alert' : 'status'} className="form-status">{message}</p>
       {view === 'verify' && <button type="button" className="text-button" disabled={pending} onClick={resendVerification}>{copy.resend}</button>}
       <noscript><p>{copy.needJS}</p></noscript>
-      {view === 'profile' && <p>{profile?.twoFactorEnabled ? copy.enabled : <button className="text-button" onClick={() => setView('setup')}>{copy.enable}</button>}</p>}
       <nav className="account-navigation" aria-label={locale === 'id' ? 'Bantuan akun' : 'Account help'}>
         <Link href={entryHref('login')}>{copy.login}</Link><Link href={entryHref('register')}>{copy.register}</Link><Link href={entryHref('account/recovery')}>{copy.forgot}</Link><Link href={entryHref('account/verify-email')}>{copy.verify}</Link>
       </nav>

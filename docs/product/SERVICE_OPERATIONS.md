@@ -74,7 +74,7 @@ Proposed priority is based on reviewed impact/urgency, project support eligibili
 
 ## 8. Project and assessment lifecycle
 
-A project records owner, approved package/scope, illustrative provenance and stage. Proposed stages: scope_pending, awaiting_permission, assessment, reporting, support, closed, cancelled. Consultation tickets and projects have distinct lifecycles.
+A project records its owner, agreed scope, illustrative provenance and stage. Under DEC-72 the admin proposes a title, included scope, exclusions and deliverables in the source ticket. The owner approves the current version or explains what needs to change. The admin submits revisions as new versions before project creation. The package choice remains an intake preference and the illustrative price stays outside the agreement. Consultation tickets and projects have distinct lifecycles.
 
 Only authorized admins advance project stages, with an event history. The user cannot click “start testing” to advance a private project. Progress describes an illustrative scenario; do not show fabricated scan logs, actual-testing timestamps or completion percentages. A declaration checkbox does not replace written authorization.
 

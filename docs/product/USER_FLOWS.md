@@ -13,7 +13,7 @@ Routes use id/en locale prefixes and shared slugs within the same website and he
 | Public | /id/, /id/process/, /id/about/ | Project introduction and conceptual process |
 | Public | /id/privacy/ | Actual account/privacy boundaries |
 | Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Isolated W2 email/password verification/recovery; no public delivery |
-| Admin identity check | /id/account/two-factor/ | Isolated authenticator challenge before admin access; no public admin signup |
+
 | Signed-in user | /id/request/ | Consultation form |
 | Signed-in user | /id/tickets/, /id/tickets/[ticketId]/, /id/account/ | Own tickets/conversation and profile within the shared website |
 | Project owner | /id/projects/[projectId]/ | Authorized project and support information |
@@ -29,7 +29,7 @@ Browse the project introduction, conceptual process, About/FAQ and privacy witho
 
 ## 3. Account entry
 
-The screen-level baseline is in Portal UX Specification. The owner approved email/password signup for allowlisted synthetic identities, mandatory verification, local-capture recovery/reset and controlled TOTP-protected admin access for W2. These account flows now use the isolated database; no external email or public enrollment is enabled. Public delivery/recovery procedures retain separate release gates.
+The screen-level baseline is in Portal UX Specification. The owner approved email/password signup for allowlisted synthetic identities, mandatory verification, local-capture recovery/reset and controlled administrator provisioning for W2. DEC-73 applies the same email/password sign-in flow to verified synthetic users and administrators. These account flows now use the isolated database; no external email or public enrollment is enabled. Public delivery/recovery procedures retain separate release gates.
 
 1. Choose login or the reviewed enrollment flow. No account is an admin by default.
 2. The selected provider/library authenticates and establishes a secure session.

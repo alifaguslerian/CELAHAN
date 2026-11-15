@@ -1,6 +1,6 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1 through W4 and isolated W5A/W5B are implemented. W5C package selection is implemented under DEC-71. W5D and W6 are pending.
+Status: W1 through W4 and isolated W5A/W5B/W5C are implemented. W5D and W6 are pending.
 Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
@@ -27,7 +27,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-05 | Trusted validation | Server validates all writes; client validation assists UX; structured localized errors |
 | FUN-06 | Persistent ticket creation | Authenticated submission creates one owned record and server-generated reference; refresh retrieves it |
 | FUN-07 | Ticket workflow | User/admin discussion, requested/confirmed scheduling, explicit states, separate internal notes |
-| FUN-08 | Project workflow | Admin creates/assigns a project, records reviewed scope and illustrative stage; user cannot self-assign |
+| FUN-08 | Project workflow | The ticket owner approves a structured scope version or requests changes. An authorized admin creates a project from the current approved version |
 | FUN-09 | Public sample report — deferred | Old dataset/page removed; replacement content and public presentation need new review |
 | FUN-10 | Private project report | Authorized owner/admin only; draft/published versions; all findings explicitly illustrative |
 | FUN-11 | Future report-reading help — deferred | Review explanations alongside replacement report content; no AI or website analysis |
@@ -60,7 +60,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | Discussion time | Optional after admin guidance. A future proposal includes a supported IANA time zone and requires explicit admin confirmation |
 | Authority statement | Required initial ownership/authority declaration; not legal testing permission |
 
-The owner approved email/password enrollment restricted to allowlisted synthetic identities, mandatory email verification, locally captured recovery and controlled TOTP-protected admin provisioning for W2 on October 31. Better Auth provides hashed email OTP verification/recovery and TOTP/backup-code handling. Public enrollment, real email delivery, operational recovery and phone formatting remain decisions before public collection. Authentication delivery is separate from consultation/support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
+The owner approved email/password enrollment restricted to allowlisted synthetic identities, mandatory email verification, locally captured recovery and controlled administrator provisioning for W2 on October 31. DEC-73 uses email/password login for verified synthetic users and admins. Better Auth provides hashed email codes for enrollment and recovery. Public enrollment, real email delivery, operational recovery and phone formatting remain decisions before public collection. Authentication delivery is separate from consultation/support messaging. Schema and server length limits must match reviewed UI rules. Never fetch the website to validate it.
 
 Reactive reasons: reported defacement, suspected data leakage/intrusion, reported malicious-site/blacklist warning, other. Preventive: pre-release third-party review, standards/partnership/tender requirements, periodic check, other. Neither reason confirms compromise, blacklist status, or compliance.
 

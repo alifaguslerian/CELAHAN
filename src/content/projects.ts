@@ -1,7 +1,7 @@
 export const projectCopy = {
   id: {
     title: 'Laporan & Progres', admin: 'Kelola proyek', create: 'Buat proyek', open: 'Lihat proyek',
-    projectTitle: 'Judul proyek', scope: 'Ruang lingkup', agreement: 'Ruang lingkup sudah disepakati di percakapan tiket.',
+    scope: 'Ruang lingkup',
     empty: 'Proyek belum tersedia.', missingReport: 'Laporan privat belum tersedia.', source: 'Tiket konsultasi',
     progress: 'Riwayat progres', illustrative: 'Progres dan temuan menggambarkan skenario ilustratif.',
     report: 'Laporan privat', editor: 'Draf laporan', version: 'Versi', history: 'Riwayat versi',
@@ -25,7 +25,7 @@ export const projectCopy = {
   },
   en: {
     title: 'Reports & Progress', admin: 'Manage project', create: 'Create project', open: 'View project',
-    projectTitle: 'Project title', scope: 'Scope', agreement: 'The scope was agreed in the ticket conversation.',
+    scope: 'Scope',
     empty: 'No projects are available yet.', missingReport: 'A private report is not available yet.', source: 'Consultation ticket',
     progress: 'Progress history', illustrative: 'Progress and findings describe an illustrative scenario.',
     report: 'Private report', editor: 'Report draft', version: 'Version', history: 'Version history',

@@ -3,7 +3,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import type { PoolClient } from 'pg';
 import type { AccountState } from '../auth/session';
 import { database, transaction } from './pool';
-import { ticketActions, type ConsultationInput, type ConversationEvent, type Need, type RetestResult, type Schedule, type ScheduleState, type TicketCommand, type TicketStatus, type TicketView } from '@/lib/consultation';
+import { ticketActions, type ConsultationInput, type ConversationEvent, type Need, type RetestResult, type Schedule, type ScheduleState, type ScopeProposal, type TicketCommand, type TicketStatus, type TicketView } from '@/lib/consultation';
 import { followUpActions, type FollowUpKind, type RetestState } from '@/lib/follow-up';
 import type { PackageCode } from '@/lib/packages';
 
@@ -84,21 +84,29 @@ export async function ticketDetails(actor: Actor, view: TicketView, id: string, 
   const ticket = result.rows[0];
   if (!ticket) return null;
   const offset = (page - 1) * historySize;
-  const [history, notes] = await Promise.all([
+  const [history, notes, scopes] = await Promise.all([
     database().query<Event>(`SELECT id, actor, kind, body, created_at, schedule_at, schedule_zone
       FROM consultation_event WHERE ticket_id = $1 ORDER BY id DESC LIMIT $2 OFFSET $3`, [id, historySize + 1, offset]),
     view === 'admin' ? database().query<Note>(`SELECT id, body, created_at FROM consultation_note
       WHERE ticket_id = $1 ORDER BY id DESC LIMIT $2 OFFSET $3`, [id, historySize + 1, offset]) : null,
+    ticket.follow_up_kind ? null : database().query<Omit<ScopeProposal, 'proposed_at' | 'decided_at'> & {
+      proposed_at: Date; decided_at: Date | null;
+    }>(`SELECT version, title, included, excluded, deliverables, decision,
+      decision_note, proposed_at, decided_at FROM consultation_scope_proposal
+      WHERE ticket_id = $1 ORDER BY version DESC LIMIT $2 OFFSET $3`, [id, historySize + 1, offset]),
   ]);
   return { ticket, schedule: scheduleOf(ticket), events: history.rows.slice(0, historySize).reverse(),
-    notes: notes?.rows.slice(0, historySize), more: history.rows.length > historySize || (notes?.rows.length ?? 0) > historySize };
+    scopes: scopes?.rows.slice(0, historySize).map(proposal => ({ ...proposal,
+      proposed_at: proposal.proposed_at.toISOString(), decided_at: proposal.decided_at?.toISOString() ?? null,
+    })) ?? [], notes: notes?.rows.slice(0, historySize),
+    more: [history, notes, scopes].some(result => (result?.rows.length ?? 0) > historySize) };
 }
 
 export async function activeActor(client: PoolClient, actor: Actor, view: TicketView) {
   if (view === 'admin' && !actor.admin) return false;
   // UPDATE privilege on the identity row is required by PostgreSQL to lock it. W2 already grants it.
   const result = await client.query(`SELECT id FROM "user" WHERE id = $1 AND "accountEnabled" AND "emailVerified"
-    AND (NOT $2::boolean OR (role = 'admin' AND "twoFactorEnabled")) FOR SHARE`, [actor.id, view === 'admin']);
+    AND (NOT $2::boolean OR role = 'admin') FOR SHARE`, [actor.id, view === 'admin']);
   return result.rowCount === 1;
 }
 
@@ -144,7 +152,25 @@ export async function applyTicketCommand(actor: Actor, view: TicketView, id: str
       if (existing.rows[0]) return existing.rows[0].request_hash === hash ? 'ok' : 'conflict';
       if (ticket.version !== command.version) return 'conflict';
       const schedule = scheduleOf(ticket);
-      if (command.kind === 'accept_retest' || command.kind === 'finish_retest') {
+      if (command.kind === 'propose_scope' || command.kind === 'approve_scope' || command.kind === 'revise_scope') {
+        if (ticket.status === 'closed' || ticket.follow_up_kind || (command.kind === 'propose_scope') !== (view === 'admin')) return 'denied';
+        const project = await client.query('SELECT 1 FROM assessment_project WHERE consultation_id = $1', [id]);
+        if (project.rowCount) return 'conflict';
+        const current = await client.query<{ version: number; decision: ScopeProposal['decision'] }>(
+          'SELECT version, decision FROM consultation_scope_proposal WHERE ticket_id = $1 ORDER BY version DESC LIMIT 1', [id]);
+        const latest = current.rows[0];
+        if (command.kind === 'propose_scope') {
+          await client.query(`INSERT INTO consultation_scope_proposal (ticket_id, version, title, included, excluded, deliverables, proposed_by)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [id, (latest?.version ?? 0) + 1, command.title, command.included, command.excluded, command.deliverables, actor.id]);
+        } else {
+          if (!latest || latest.version !== command.scopeVersion || latest.decision) return 'conflict';
+          await client.query(`UPDATE consultation_scope_proposal SET decision = $3, decision_note = $4, decided_by = $5, decided_at = clock_timestamp()
+            WHERE ticket_id = $1 AND version = $2`,
+          [id, latest.version, command.kind === 'approve_scope' ? 'approved' : 'changes_requested',
+            command.kind === 'revise_scope' ? command.body : null, actor.id]);
+        }
+      } else if (command.kind === 'accept_retest' || command.kind === 'finish_retest') {
         if (ticket.status === 'closed' || view !== 'admin' || ticket.follow_up_kind !== 'retest') return 'denied';
         const followUp = await client.query<Pick<FollowUp, 'project_id' | 'retest_state'>>(
           'SELECT project_id, retest_state FROM project_follow_up WHERE ticket_id = $1', [id]);

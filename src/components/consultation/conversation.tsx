@@ -20,6 +20,7 @@ export function TicketConversation({ events, live, olderHref, pagination, ...for
   useEffect(() => {
     if (!live) return;
     let after = initialCursor;
+    let idleChecks = 0;
     let timer: ReturnType<typeof setTimeout>;
     let current: AbortController | null = null;
     let disposed = false;
@@ -32,7 +33,7 @@ export function TicketConversation({ events, live, olderHref, pagination, ...for
       let delay = 4000;
       try {
         const response = await fetch(endpoint, {
-          cache: 'no-store', redirect: 'error', signal: AbortSignal.any([request.signal, AbortSignal.timeout(8000)]),
+          cache: 'no-store', redirect: 'error', signal: AbortSignal.any([request.signal, AbortSignal.timeout(12000)]),
           headers: { 'X-Celahan-Account': accountId, 'X-Celahan-Event-After': after },
         });
         if ([401, 403, 404].includes(response.status)) halted = true;
@@ -40,7 +41,9 @@ export function TicketConversation({ events, live, olderHref, pagination, ...for
         const batch = await response.json() as { events: ConversationEvent[]; version: number };
         if (disposed || request.signal.aborted) return;
         after = batch.events.at(-1)?.id ?? after;
+        idleChecks = batch.events.length ? 0 : idleChecks + 1;
         if (batch.events.length === 30) delay = 200;
+        else if (idleChecks >= 2) delay = 8000;
         if (batch.events.some(event => event.kind === 'close')) halted = true;
         setUpdates(previous => {
           const version = batch.events.length < 30 ? batch.version : previous.version;
@@ -63,7 +66,7 @@ export function TicketConversation({ events, live, olderHref, pagination, ...for
     function onVisibility() {
       clearTimeout(timer);
       if (document.hidden) current?.abort();
-      else void check();
+      else { idleChecks = 0; void check(); }
     }
     timer = setTimeout(check, 1500);
     document.addEventListener('visibilitychange', onVisibility);

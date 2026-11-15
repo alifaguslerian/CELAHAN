@@ -44,7 +44,7 @@ export function Header({ locale }: { locale: Locale }) {
     if (!account) return;
     setLogoutPending(true); setLogoutError('');
     try {
-      const response = await fetch('/api/auth/sign-out/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', cache: 'no-store' });
+      const response = await fetch('/api/auth/sign-out/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', cache: 'no-store', signal: AbortSignal.timeout(12000) });
       if (!response.ok) throw new Error();
       window.location.replace(`/${locale}/`);
     } catch { setLogoutError(copy.logoutFailed); setLogoutPending(false); }

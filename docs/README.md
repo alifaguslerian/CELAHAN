@@ -43,6 +43,9 @@ Retained historical records describe checks at their recorded dates, not current
 - [W5B project follow-ups, ticket updates and agenda](validation/2026-11-11-w5b-follow-ups.md) records isolated cycle, ownership, live reply and agenda checks.
 - [W5C package selection](validation/2026-11-13-w5c-package-selection.md) records the public preview, detailed package page and isolated ticket checks.
 - [W5C checkpoint audit](validation/2026-11-13-w5c-checkpoint-audit.md) records the profile fix, browser policy, query cleanup and local measurements.
+- [W5C scope agreement](validation/2026-11-14-w5c-scope-agreement.md) records the isolated migration, versioned approval, and project creation checks.
+- [Local stability and admin login](validation/2026-11-14-local-stability.md) records the login diagnosis, Neon behavior, and final browser checks.
+- [Password-only isolated login](validation/2026-11-14-password-only-login.md) records migration 008 and the verified account isolation.
 - [Static material restoration](validation/2026-11-08-static-material.md) records the DEC-66 rollback and checks.
 - [Material-image motion](validation/2026-11-06-material-motion.md) records the historical DEC-65 experiment.
 - [Service/report content reset](validation/2026-11-06-service-report-reset.md): removals, retired-route denial and safe account-return verification.

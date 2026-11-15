@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import type { PoolClient } from 'pg';
 import type { AccountState } from '../auth/session';
 import type { ProjectCommand, ProjectEvent, ProjectStage, ReportBody, ReportState } from '@/lib/projects';
+import type { ScopeProposal } from '@/lib/consultation';
 import { listProjectFollowUps } from './follow-ups';
 import { database, transaction } from './pool';
 
@@ -11,6 +12,7 @@ type ProjectSummary = { id: string; title: string; stage: ProjectStage };
 type Project = ProjectSummary & {
   scope: string; consultation_id: string; support_started_at: Date | null; support_expires_at: Date | null;
 };
+type ProjectWithAgreement = Project & { agreement: ScopeProposal | null };
 export type ReportVersion = {
   id: string; version: number; revision: number; state: ReportState; body: ReportBody;
   change_note: string; published_at: Date | string | null;
@@ -28,11 +30,14 @@ export async function listOwnedProjects(actor: Actor, page: number) {
 }
 
 const projectColumns = 'p.id, p.title, p.scope, p.stage, p.consultation_id, p.support_started_at, p.support_expires_at';
+const agreementColumn = `(SELECT to_jsonb(s) FROM (SELECT version, title, included, excluded, deliverables,
+  decision, decision_note, proposed_at, decided_at FROM consultation_scope_proposal
+  WHERE ticket_id = p.consultation_id AND version = p.scope_version) s) AS agreement`;
 const reportColumns = 'id, version, revision, state, body, change_note, published_at';
 
 export async function ownedProject(actor: Actor, id: string) {
-  const result = await database().query<Project & { report: ReportVersion | null; support_active: boolean }>(
-    `SELECT ${projectColumns}, COALESCE(now() < p.support_expires_at, false) AS support_active,
+  const result = await database().query<ProjectWithAgreement & { report: ReportVersion | null; support_active: boolean }>(
+    `SELECT ${projectColumns}, ${agreementColumn}, COALESCE(now() < p.support_expires_at, false) AS support_active,
        (SELECT to_jsonb(r) FROM (SELECT ${reportColumns} FROM project_report_version
           WHERE project_id = p.id AND state = 'published') r) AS report
      FROM assessment_project p JOIN project_access a ON a.id = p.id WHERE p.id = $1 AND a.owner_id = $2`,
@@ -51,7 +56,8 @@ export async function ownedProject(actor: Actor, id: string) {
 
 export async function adminProject(actor: Actor, id: string, page: number) {
   if (!actor.admin) return null;
-  const result = await database().query<Project>(`SELECT ${projectColumns} FROM assessment_project p WHERE p.id = $1`, [id]);
+  const result = await database().query<ProjectWithAgreement>(
+    `SELECT ${projectColumns}, ${agreementColumn} FROM assessment_project p WHERE p.id = $1`, [id]);
   const project = result.rows[0];
   if (!project) return null;
   const [current, history] = await Promise.all([
@@ -66,12 +72,10 @@ export async function adminProject(actor: Actor, id: string, page: number) {
   };
 }
 
-export async function createProject(actor: Actor, ticketId: string, title: string, scope: string) {
+export async function createProject(actor: Actor, ticketId: string, scopeVersion: number) {
   if (!actor.admin) return { result: 'denied' as const, project_id: null };
-  const followUp = await database().query('SELECT 1 FROM project_follow_up WHERE ticket_id = $1', [ticketId]);
-  if (followUp.rowCount) return { result: 'denied' as const, project_id: null };
   const result = await database().query<{ result: Result; project_id: string | null }>(
-    'SELECT result, project_id FROM public.create_assessment_project($1, $2, $3, $4)', [actor.id, ticketId, title, scope]);
+    'SELECT result, project_id FROM public.create_assessment_project($1, $2, $3)', [actor.id, ticketId, scopeVersion]);
   return result.rows[0];
 }
 
@@ -149,7 +153,7 @@ export async function applyProjectCommand(actor: Actor, id: string, command: Pro
   return transaction(async client => {
     const admin = await client.query(
       `SELECT id FROM "user" WHERE id = $1 AND "accountEnabled" AND "emailVerified"
-       AND role = 'admin' AND "twoFactorEnabled" FOR SHARE`, [actor.id]);
+       AND role = 'admin' FOR SHARE`, [actor.id]);
     if (!admin.rowCount) return 'denied';
     const result = await client.query<Project>(`SELECT ${projectColumns} FROM assessment_project p WHERE p.id = $1 FOR UPDATE`, [id]);
     const project = result.rows[0];

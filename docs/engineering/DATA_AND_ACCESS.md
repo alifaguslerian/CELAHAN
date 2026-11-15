@@ -1,7 +1,7 @@
 # CELAHAN — Data Model and Access Rules
 
 Status: W2 identity, W4 consultations and W5A/W5B project, report and follow-up tables exist in the isolated test database.
-Updated: November 9, 2026  
+Updated: November 14, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
@@ -9,6 +9,8 @@ References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS
 Use the owner-selected Neon Free PostgreSQL database with foreign keys, unique constraints, transactions and reviewed migrations. W2 uses Better Auth 1.7.14's built-in PostgreSQL adapter and pg 8.23.1 in the Next.js server with a dedicated PostgreSQL 17 test database. `database/001-identity.sql` contains the auth schema. `002-project-access.sql` adds ownership and privileged-operation audit metadata. `003-consultation-tickets.sql` adds W4 storage. `004-private-project-reports.sql` adds projects tied to consultation tickets, private report versions, progress events and retry keys. The runtime assigns ownership through a checked database function. It retains read-only access to the ownership table itself.
 
 V1 proposes one owner account per project. Roles are user/admin. Customer status is derived from project association/history and does not grant access to every project. Account email, company name, target URL, service interest, ticket reference and payment claims are never ownership proofs.
+
+Existing verified, active synthetic accounts, including administrators, sign in with email and password under DEC-73. Migration 008 removes the old authenticator records and updates the project-creation function while preserving its role, owner and approved-scope checks. Email codes remain available for enrollment and recovery.
 
 Identity comes from the trusted session. Never accept role/owner/support fields by mass assignment. A private resource lookup must include the actor's authorized relationship, not fetch first and trust a UI check later. See [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
 
@@ -96,6 +98,8 @@ DEC-69 approves adding three calendar months at the same local time in Asia/Jaka
 `005-project-follow-ups.sql` links a new consultation ticket to its exact project and report version. An owner query must match both ticket ownership and project access. The active published report is required for submission. An unfinished retest remains reviewable if received before expiry and its referenced version is still published or superseded. One partial unique index allows only one pending, accepted or completed retest row per project. Closing an unfinished request removes it from that constraint. Result, shared event and replay key commit in the same ticket transaction. A completed cycle remains occupied after ticket closure.
 
 `006-consultation-package.sql` adds a nullable, constrained package version code to consultation tickets. The server accepts only known codes. A package choice participates in the same request hash as the intake. Older tickets and requests without a package retain their existing behavior. Owner and admin ticket views show the choice. The public catalog supplies illustrative prices, which are never accepted as client submission fields.
+
+`007-ticket-scope-agreement.sql` stores versioned scope proposals and owner decisions. A composite foreign key links new projects to the exact consultation and approved version. Proposal actions and project creation serialize on the source ticket. The project function copies the approved title and included scope and checks the current owner decision. A repeated creation for the same approved version returns the original project. Existing projects have a null agreement reference and retain their saved scope.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 

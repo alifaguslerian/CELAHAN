@@ -19,12 +19,12 @@ export function SiteAccountProvider({ children }: { children: ReactNode }) {
     const controller = new AbortController();
     request.current = controller;
     try {
-      const response = await fetch('/api/account/', { cache: 'no-store', signal: controller.signal });
+      const response = await fetch('/api/account/', { cache: 'no-store', signal: AbortSignal.any([controller.signal, AbortSignal.timeout(12000)]) });
       if (!response.ok && response.status !== 401) return;
       const next: SiteAccount | null = response.ok ? (await response.json()).account : null;
       if (controller.signal.aborted) return;
       const previous = current.current;
-      if (previous !== undefined && (previous?.id !== next?.id || previous?.admin !== next?.admin || previous?.hasProjects !== next?.hasProjects)) {
+      if (previous !== undefined && (previous?.id !== next?.id || (previous?.admin && !next?.admin) || (previous?.hasProjects && !next?.hasProjects))) {
         window.location.reload();
         return;
       }
@@ -37,13 +37,16 @@ export function SiteAccountProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initialCheck = window.setTimeout(refreshAccount, 0);
     const restore = (event: PageTransitionEvent) => { if (event.persisted) window.location.reload(); };
+    const onFocus = () => {
+      if (!request.current) void refreshAccount();
+    };
     window.addEventListener('pageshow', restore);
-    window.addEventListener('focus', refreshAccount);
+    window.addEventListener('focus', onFocus);
     return () => {
       window.clearTimeout(initialCheck);
       request.current?.abort();
       window.removeEventListener('pageshow', restore);
-      window.removeEventListener('focus', refreshAccount);
+      window.removeEventListener('focus', onFocus);
     };
   }, [refreshAccount]);
 

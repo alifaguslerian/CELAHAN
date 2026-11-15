@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { authFailure } from '../../src/lib/auth-policy.ts';
 
 const policy = await import('../../src/lib/auth-policy.ts').catch(() => null);
 
@@ -27,3 +28,13 @@ test('auth writes require an exact origin and bounded JSON without privileged fi
   assert.equal(policy.validAuthBody('/email-otp/send-verification-otp', { email: 'user-a@example.invalid', type: 'sign-in' }), false);
 });
 
+test('password login only accepts credentials and second-factor routes are retired', () => {
+  assert.ok(policy);
+  assert.equal(policy.validAuthBody('/sign-in/email', { email: 'user-a@example.invalid', password: 'a-long-test-password' }), true);
+  assert.equal(policy.validAuthBody('/two-factor/enable', { password: 'a-long-test-password' }), false);
+  assert.equal(policy.validAuthBody('/two-factor/verify-totp', { code: '123456' }), false);
+  assert.equal(policy.validAuthBody('/two-factor/verify-backup-code', { code: 'example-code' }), false);
+  assert.equal(authFailure(429), 'RATE_LIMITED');
+  assert.equal(authFailure(401), 'AUTH_FAILED');
+  assert.equal(authFailure(500), 'UNAVAILABLE');
+});

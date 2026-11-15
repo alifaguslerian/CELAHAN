@@ -1,4 +1,4 @@
-import { isTicketId as isResourceId, objectWith, text } from './consultation.ts';
+import { isTicketId as isResourceId, isPositiveVersion, objectWith, text } from './consultation.ts';
 
 export const reportFields = ['summary', 'scope', 'finding', 'impact', 'recommendation'] as const;
 export type ReportBody = Record<typeof reportFields[number], string>;
@@ -14,10 +14,8 @@ export type ProjectCommand = { requestId: string } & (
 );
 
 export function parseProjectCreation(value: unknown) {
-  if (!objectWith(value, ['requestId', 'title', 'scope', 'agreed']) || !isResourceId(value.requestId) || value.agreed !== true) return null;
-  const title = text(value.title, 2, 120);
-  const scope = text(value.scope, 10, 2000);
-  return title && scope ? { title, scope } : null;
+  return objectWith(value, ['requestId', 'scopeVersion']) && isResourceId(value.requestId) && isPositiveVersion(value.scopeVersion)
+    ? { scopeVersion: value.scopeVersion } : null;
 }
 
 function parseReport(value: unknown): ReportBody | null {

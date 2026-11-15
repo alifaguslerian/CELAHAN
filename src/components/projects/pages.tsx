@@ -12,6 +12,7 @@ import { reportExample } from '@/server/data/report-example';
 import { PrivateAccountScope } from '@/components/layout/site-account';
 import { ProjectActionForm, ReportEditor } from './forms';
 import { FollowUpForm } from './follow-up-form';
+import { ScopeSummary } from '@/components/consultation/scope';
 
 function dateLabel(locale: Locale, date: Date | string) {
   return new Intl.DateTimeFormat(locale === 'id' ? 'id-ID' : 'en-GB', {
@@ -45,7 +46,7 @@ function ReportText({ locale, version }: { locale: Locale; version: ReportVersio
 }
 
 export async function ProjectIndex({ locale, requestedPage }: { locale: Locale; requestedPage: unknown }) {
-  const account = await currentPageAccount().catch(() => null);
+  const account = await currentPageAccount();
   if (!account) redirect(`/${locale}/login/`);
   if (!account.hasProjects) notFound();
   const copy = projectCopy[locale];
@@ -67,7 +68,7 @@ export async function ProjectIndex({ locale, requestedPage }: { locale: Locale; 
 
 export async function ProjectDetail({ locale, id }: { locale: string; id: string }) {
   if (!isLocale(locale) || !isResourceId(id)) notFound();
-  const account = await currentPageIdentity().catch(() => null);
+  const account = await currentPageIdentity();
   if (!account) redirect(`/${locale}/login/`);
   const data = await ownedProject(account, id);
   if (!data) notFound();
@@ -81,7 +82,8 @@ export async function ProjectDetail({ locale, id }: { locale: string; id: string
       <header className="ticket-page-head"><h1>{project.title}</h1><span className="ticket-state">{copy.stages[project.stage]}</span></header>
       <p className="scope-note">{copy.illustrative}</p>
       <section className="ticket-panel">
-        <h2>{copy.scope}</h2><p className="ticket-text">{project.scope}</p>
+        <h2>{copy.scope}</h2>
+        {project.agreement ? <ScopeSummary locale={locale} proposal={project.agreement} agreement /> : <p className="ticket-text">{project.scope}</p>}
         <Link prefetch={false} className="text-link" href={`/${locale}/tickets/${project.consultation_id}/`}>{copy.source}</Link>
       </section>
       <section className="ticket-panel">
@@ -121,7 +123,7 @@ export async function ProjectDetail({ locale, id }: { locale: string; id: string
 
 export async function AdminProjectDetail({ locale, id, requestedPage }: { locale: string; id: string; requestedPage: unknown }) {
   if (!isLocale(locale) || !isResourceId(id)) notFound();
-  const account = await currentPageIdentity().catch(() => null);
+  const account = await currentPageIdentity();
   if (!account) redirect(`/${locale}/login/`);
   if (!account.admin) notFound();
   const page = ticketPage(requestedPage);
@@ -137,7 +139,8 @@ export async function AdminProjectDetail({ locale, id, requestedPage }: { locale
         <span className="ticket-state">{copy.stages[project.stage]}</span>
       </header>
       <section className="ticket-panel">
-        <h2>{copy.scope}</h2><p className="ticket-text">{project.scope}</p>
+        <h2>{copy.scope}</h2>
+        {project.agreement ? <ScopeSummary locale={locale} proposal={project.agreement} agreement /> : <p className="ticket-text">{project.scope}</p>}
         {project.stage === 'created' && <ProjectActionForm {...form} />}
         {published && <ProjectActionForm {...form} reportId={published.id} />}
       </section>

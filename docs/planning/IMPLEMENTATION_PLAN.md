@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Updated: November 13, 2026
-Status: Layers desktop with static material imagery. Isolated W4 and W5A/W5B are implemented. W5C package selection is implemented under DEC-71. W5D and W6 remain gated.
+Updated: November 14, 2026
+Status: Layers desktop with static material imagery. Isolated W4 and W5A/W5B/W5C are implemented. W5D and W6 remain gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -48,7 +48,7 @@ A completed package never authorizes the next. Work in the current checkout; do 
 
 ## W1 and W2 retained foundation
 
-W1 provides server-capable Next.js/TypeScript, ID/EN routes and one shared site shell. W2 provides Better Auth 1.7.14, pg 8.23.1, reviewed identity/minimal ownership SQL and an isolated Neon database. Passwords are 15–128 characters; sessions last eight hours, with no cookie-data cache. Email OTP is hashed with local capture. Admin provisioning requires verified identity/TOTP and revokes existing sessions. Runtime uses a restricted pooled role; owner credentials are loaded only by manual scripts.
+W1 provides server-capable Next.js/TypeScript, ID/EN routes and one shared site shell. W2 provides Better Auth 1.7.14, pg 8.23.1, reviewed identity/minimal ownership SQL and an isolated Neon database. Passwords are 15–128 characters; sessions last eight hours, with no cookie-data cache. Email OTP is hashed with local capture. DEC-73 uses email/password login for all verified synthetic accounts, including administrators. Admin provisioning requires an active, verified identity and revokes existing sessions. Runtime uses a restricted pooled role; owner credentials are loaded only by manual scripts.
 
 Historical checks are recorded in [W1](../validation/2026-10-30-w1-foundation.md) and [W2](../validation/2026-10-31-w2-accounts.md). They do not establish a new design, deployment or later workflows.
 
@@ -76,7 +76,7 @@ DEC-70 authorizes report questions and illustrative retest tickets tied to the o
 
 ## W5C — Package selection and scope agreement
 
-DEC-71 authorizes a package preview after the homepage process, a dedicated bilingual package page with three illustrative prices, and transfer of the chosen package to the existing intake and ticket. A selection expresses intent. Existing scope review remains in the ticket. A formal proposal, user confirmation and versioned scope agreement require separate review.
+DEC-71 authorizes the homepage preview, dedicated bilingual package page with illustrative prices and package-linked intake. DEC-72 adds versioned scope proposals and explicit owner decisions in the source ticket. Admins create new projects from the current owner-approved version. Project detail preserves the agreement. Older projects retain their existing saved scope.
 
 ## W5D — Reports by finding and remediation follow-up
 

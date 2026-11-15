@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { createHmac, randomBytes, randomUUID } from 'node:crypto';
+import { randomBytes, randomUUID } from 'node:crypto';
 import { setTimeout as wait } from 'node:timers/promises';
 import { Pool } from 'pg';
+import { hashPassword } from 'better-auth/crypto';
 import { authEnvironment, isolatedOwnerDatabaseURL } from '../../src/server/auth/environment.ts';
 
 const config = authEnvironment();
@@ -34,14 +35,18 @@ type Fixture = { id: string; value: string };
 
 async function fixture(role: typeof roles[number], email: string): Promise<Fixture> {
   const id = randomUUID();
-  const token = randomBytes(32).toString('base64url');
-  const signature = createHmac('sha256', secret).update(token).digest('base64');
-  // Short-lived post-login fixtures use the session format of the pinned Better Auth version.
-  await db.query('INSERT INTO "user" (id, name, email, "emailVerified", "twoFactorEnabled", role, "accountEnabled") VALUES ($1,$2,$3,true,$4,$5,true)',
-    [id, `W4 ${role}`, email, role === 'admin', role === 'admin' ? 'admin' : 'user']);
+  const password = randomBytes(24).toString('base64url');
+  await db.query('INSERT INTO "user" (id, name, email, "emailVerified", role, "accountEnabled") VALUES ($1,$2,$3,true,$4,true)',
+    [id, `W4 ${role}`, email, role === 'admin' ? 'admin' : 'user']);
   fixtureIds.push(id);
-  await db.query(`INSERT INTO session (id, "userId", token, "expiresAt", "updatedAt") VALUES ($1,$2,$3,now() + interval '10 minutes',now())`, [randomUUID(), id, token]);
-  return { id, value: encodeURIComponent(`${token}.${signature}`) };
+  await db.query('INSERT INTO account (id, "accountId", "providerId", "userId", password, "updatedAt") VALUES ($1,$2,$3,$2,$4,now())',
+    [randomUUID(), id, 'credential', await hashPassword(password)]);
+  const login = await http('/api/auth/sign-in/email/', undefined, { email, password });
+  assert.deepEqual(result(login, 200, `${role} password sign-in`), { ok: true });
+  const cookie = login.headers.getSetCookie().find(item => item.startsWith(`${cookieName}=`));
+  const value = cookie?.split(';', 1)[0].slice(cookieName.length + 1);
+  assert.ok(value, `${role} sign-in creates a session`);
+  return { id, value };
 }
 
 async function http(path: string, actor?: Fixture, data?: Record<string, unknown>, origin = base,
@@ -121,9 +126,12 @@ async function followUps(projectId: string, reportId: string, owner: Fixture, ad
 
 async function expiredSupport(owner: Fixture, admin: Fixture) {
   const source = await create(owner);
-  await command(source, admin, true, 1, 'outcome', { body: 'Review the fictional access rules.' });
+  await command(source, admin, true, 1, 'propose_scope', {
+    title: 'Historical fictional project', included: 'Illustrative order history review', excluded: 'Admin panel', deliverables: 'Private report',
+  });
+  await command(source, owner, false, 2, 'approve_scope', { scopeVersion: 1 });
   const projectId = result(await http(`/api/admin/tickets/${source}/project/`, admin, {
-    requestId: randomUUID(), title: 'Historical fictional project', scope: 'Illustrative order history review', agreed: true,
+    requestId: randomUUID(), scopeVersion: 1,
   }), 200, 'create expired-support fixture').id;
   const reportId = (await db.query<{ id: string }>(`INSERT INTO project_report_version(project_id, version, state, body, change_note, published_at)
     VALUES ($1, 1, 'published', $2, '', now() - interval '4 months') RETURNING id`, [projectId, JSON.stringify({
@@ -153,17 +161,36 @@ async function expiredSupport(owner: Fixture, admin: Fixture) {
 
 async function projects(ticketId: string, owner: Fixture, admin: Fixture, other: Fixture) {
   const createPath = `/api/admin/tickets/${ticketId}/project/`;
-  const input = { requestId: randomUUID(), title: 'Fictional order portal', scope: 'Illustrative order history review', agreed: true };
+  const input = { requestId: randomUUID(), scopeVersion: 3 };
+  const proposal = { title: 'Fictional order portal', included: 'Illustrative order history review', excluded: 'Admin panel', deliverables: 'Private report' };
   result(await http(createPath, owner, input), 404, 'project creation requires admin');
   result(await http(createPath, admin, { ...input, ownerId: other.id }), 400, 'owner is derived from ticket');
-  result(await http(createPath, admin, { ...input, agreed: false }), 400, 'scope agreement is required');
-  const newTicket = await create(owner);
-  result(await http(`/api/admin/tickets/${newTicket}/project/`, admin, input), 409, 'guidance required before creation');
+  result(await http(createPath, admin, { ...input, agreed: true, scope: 'Client scope override' }), 400, 'only stored scope can create the project');
+  result(await http(createPath, admin, input), 409, 'owner approval required before creation');
+  await command(ticketId, owner, false, 1, 'propose_scope', proposal, 403);
+  await command(ticketId, admin, true, 1, 'propose_scope', proposal);
+  await command(ticketId, admin, true, 2, 'approve_scope', { scopeVersion: 1 }, 403);
+  await command(ticketId, other, false, 2, 'approve_scope', { scopeVersion: 1 }, 404);
+  await command(ticketId, owner, false, 2, 'revise_scope', { scopeVersion: 1, body: 'Please include the recovery process.' });
+  await command(ticketId, admin, true, 3, 'propose_scope', { ...proposal, included: 'Order history and account recovery' });
+  await command(ticketId, owner, false, 4, 'approve_scope', { scopeVersion: 1 }, 409);
+  const approval = { requestId: randomUUID(), version: 4, kind: 'approve_scope', scopeVersion: 2 };
+  for (const response of await Promise.all([
+    http(`/api/tickets/${ticketId}/`, owner, approval), http(`/api/tickets/${ticketId}/`, owner, approval),
+  ])) result(response, 200, 'approval replay is safe');
+  await command(ticketId, admin, true, 5, 'propose_scope', {
+    ...proposal, included: 'Order history and account recovery', deliverables: 'Private report with remediation priorities',
+  });
+  result(await http(createPath, admin, { ...input, scopeVersion: 2 }), 409, 'revision supersedes a previous approval');
+  result(await http(createPath, admin, input), 409, 'the replacement version needs its own approval');
+  await command(ticketId, owner, false, 6, 'approve_scope', { scopeVersion: 3 });
+  result(await http(createPath, admin, { ...input, scopeVersion: 1 }), 409, 'only the latest approved version can create a project');
   const [first, retry] = await Promise.all([http(createPath, admin, input), http(createPath, admin, input)]);
   const projectId: string = result(first, 200, 'create project').id;
   assert.match(projectId, /^[0-9a-f-]{36}$/);
   assert.equal(result(retry, 200, 'project retry').id, projectId);
-  result(await http(createPath, admin, { ...input, title: 'Different project title' }), 409, 'one project per consultation');
+  await command(ticketId, admin, true, 7, 'propose_scope', proposal, 409);
+  assert.equal((await db.query('SELECT scope_version FROM assessment_project WHERE id = $1', [projectId])).rows[0].scope_version, 3);
   const path = `/id/projects/${projectId}/`;
   const adminPath = `/id/admin/projects/${projectId}/`;
   const api = `/api/admin/projects/${projectId}/`;
@@ -180,6 +207,7 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   assert.equal(pending.status, 200);
   assert.match(pending.headers.get('cache-control') ?? '', /no-store/);
   assert.ok(!pending.body.includes(canary) && !pending.body.includes(reportId));
+  assert.ok(pending.body.includes('Kesepakatan versi') && pending.body.includes('Order history and account recovery'));
   assert.equal((await http(adminPath, owner)).status, 404);
   assert.equal((await http(path, other)).status, 404);
   const before = await db.query("SELECT first_report_id FROM assessment_project WHERE id = $1", [projectId]);
@@ -217,6 +245,16 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   assert.ok((await http(adminPath, admin)).body.includes(canary));
   assert.deepEqual(await period(), started);
   console.log('W5A passed ownership, drafts, publication and retry, correction, withdrawal, runtime grants and Jakarta calendar expiry.');
+}
+
+async function legacyScope(owner: Fixture) {
+  const ticket = await create(owner);
+  const projectId = (await db.query('INSERT INTO project_access(owner_id) VALUES ($1) RETURNING id', [owner.id])).rows[0].id;
+  await db.query(`INSERT INTO assessment_project(id, consultation_id, title, scope)
+    VALUES ($1,$2,'Legacy synthetic project','Original scope stored before versioning')`, [projectId, ticket]);
+  const response = await http(`/en/projects/${projectId}/`, owner);
+  assert.equal(response.status, 200);
+  assert.ok(response.body.includes('Original scope stored before versioning'));
 }
 
 try {
@@ -290,7 +328,10 @@ try {
   await command(id, admin, true, 3, 'outcome', { body: 'Discuss login and the access boundary between roles.' });
   if (checkW5A) {
     stage = 'W5A project and report lifecycle';
-    await projects(id, owner, admin, other);
+    const scopedTicket = await create(owner, { ...request, requestId: randomUUID() });
+    await projects(scopedTicket, owner, admin, other);
+    await legacyScope(owner);
+    console.log('W5C passed proposal revision, owner approval, stale version denial, replay and legacy scope compatibility.');
     stage = 'scheduling and closure';
   }
   if (checkW5B) {
@@ -327,7 +368,7 @@ try {
   stage = 'revoked account and admin access';
   await db.query('UPDATE "user" SET "accountEnabled"=false WHERE id=$1', [other.id]);
   await command(overlapping, other, false, 3, 'reply', { body: 'Disabled account' }, 401);
-  await db.query('UPDATE "user" SET "twoFactorEnabled"=false WHERE id=$1', [admin.id]);
+  await db.query("UPDATE \"user\" SET role='user' WHERE id=$1", [admin.id]);
   assert.equal((await http('/en/admin/', admin)).status, 404);
   console.log('W4 passed creation/retry, ownership, admin role, note privacy, escaped text, stale writes, time acceptance/conflicts and closure.');
   if (checkW5B) console.log('W5B passed report linkage, owner scope, cycle replay, cancellation, completion, private updates and confirmed agenda.');
@@ -358,6 +399,7 @@ try {
         await client.query(`DELETE FROM consultation_command WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
         await client.query(`DELETE FROM consultation_note WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
         await client.query(`DELETE FROM consultation_event WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
+        await client.query(`DELETE FROM consultation_scope_proposal WHERE ticket_id IN (${fixtureTickets})`, [fixtureIds]);
         await client.query('DELETE FROM consultation_ticket WHERE owner_id = ANY($1::text[])', [fixtureIds]);
         await client.query('DELETE FROM "rateLimit" WHERE key = ANY($1::text[])', [fixtureIds.map(id => `profile:${id}`)]);
         await client.query('DELETE FROM "user" WHERE id = ANY($1::text[])', [fixtureIds]);

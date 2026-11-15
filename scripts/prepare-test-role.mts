@@ -16,12 +16,14 @@ try {
     await client.query('BEGIN');
     await client.query(`CREATE ROLE celahan_app LOGIN PASSWORD ${escapeLiteral(password)} NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION`);
     await client.query('GRANT USAGE ON SCHEMA public TO celahan_app');
-    await client.query('GRANT SELECT, INSERT, UPDATE, DELETE ON "user", session, account, verification, "twoFactor", "rateLimit" TO celahan_app');
+    await client.query('GRANT SELECT, INSERT, UPDATE, DELETE ON "user", session, account, verification, "rateLimit" TO celahan_app');
     await client.query('GRANT SELECT ON project_access TO celahan_app');
     await client.query('GRANT SELECT, INSERT ON consultation_ticket, consultation_event, consultation_note, consultation_command TO celahan_app');
     await client.query('GRANT UPDATE (status, outcome, close_reason, schedule_at, schedule_zone, schedule_state, schedule_by, schedule_admin_id, version, updated_at) ON consultation_ticket TO celahan_app');
     await client.query('GRANT USAGE ON SEQUENCE consultation_event_id_seq, consultation_note_id_seq TO celahan_app');
-    await client.query('GRANT EXECUTE ON FUNCTION public.create_assessment_project(text, uuid, text, text) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.create_assessment_project(text, uuid, integer) TO celahan_app');
+    await client.query('GRANT SELECT, INSERT ON consultation_scope_proposal TO celahan_app');
+    await client.query('GRANT UPDATE (decision, decision_note, decided_by, decided_at) ON consultation_scope_proposal TO celahan_app');
     await client.query('GRANT SELECT ON assessment_project, project_report_version, assessment_project_event, assessment_project_command TO celahan_app');
     await client.query('GRANT INSERT (project_id, version, body, change_note) ON project_report_version TO celahan_app');
     await client.query('GRANT INSERT (project_id, actor_id, kind, report_id) ON assessment_project_event TO celahan_app');

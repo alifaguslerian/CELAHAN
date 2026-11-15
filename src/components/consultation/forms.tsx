@@ -48,7 +48,7 @@ export function usePortalSubmission(locale: Locale, accountId: string, endpoint:
       const key = JSON.stringify(payload.kind === 'reply' ? { kind: payload.kind, body: payload.body } : payload);
       if (attempt.current?.key !== key) attempt.current = { key, payload, id: crypto.randomUUID() };
       const response = await fetch(endpoint, {
-        method: 'POST', cache: 'no-store', redirect: 'error',
+        method: 'POST', cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(16000),
         headers: { 'Content-Type': 'application/json', 'X-Celahan-Account': accountId },
         body: JSON.stringify({ ...attempt.current.payload, requestId: attempt.current.id }),
       });

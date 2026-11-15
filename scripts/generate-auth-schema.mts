@@ -10,7 +10,7 @@ const pool = new Pool({ connectionString: isolatedOwnerDatabaseURL(config.databa
 try {
   const plan = await getMigrations(authOptions(pool));
   if (plan.unsafeChanges.length || plan.schemaProblems.length) throw new Error('Migration requires review');
-  await writeFile('database/001-identity.sql', '-- Generated from Better Auth 1.7.14 with email OTP, TOTP and database rate limiting.\n' + await plan.compileMigrations(), { flag: 'wx' });
+  await writeFile('database/001-identity.sql', '-- Generated from Better Auth 1.7.14 with email OTP and database rate limiting.\n' + await plan.compileMigrations(), { flag: 'wx' });
   console.log('Identity SQL generated for review; no migration applied.');
 } catch { console.error('Schema generation failed; private database details withheld.'); process.exitCode = 1; }
 finally { await pool.end(); }

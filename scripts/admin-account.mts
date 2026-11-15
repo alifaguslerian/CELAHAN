@@ -9,9 +9,9 @@ try {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    const result = await client.query('SELECT id, "twoFactorEnabled", "emailVerified", "accountEnabled" FROM "user" WHERE email = $1 FOR UPDATE', [email]);
+    const result = await client.query('SELECT id, "emailVerified", "accountEnabled" FROM "user" WHERE email = $1 FOR UPDATE', [email]);
     const user = result.rows[0];
-    if (!user || (action === 'grant_admin' && (!user.twoFactorEnabled || !user.emailVerified || !user.accountEnabled))) throw new Error('Identity gates unmet');
+    if (!user || (action === 'grant_admin' && (!user.emailVerified || !user.accountEnabled))) throw new Error('Identity gates unmet');
     if (action === 'grant_admin' || action === 'revoke_admin') await client.query('UPDATE "user" SET role = $1, "updatedAt" = now() WHERE id = $2', [action === 'grant_admin' ? 'admin' : 'user', user.id]);
     else await client.query('UPDATE "user" SET "accountEnabled" = $1, "updatedAt" = now() WHERE id = $2', [action === 'enable_account', user.id]);
     await client.query('DELETE FROM session WHERE "userId" = $1', [user.id]);

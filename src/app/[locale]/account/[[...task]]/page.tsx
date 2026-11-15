@@ -9,7 +9,7 @@ export const metadata = { robots: { index: false, follow: false } };
 export default async function Account({ params }: { params: Promise<{ locale: string; task?: string[] }> }) {
   const { locale, task } = await params;
   if (!isLocale(locale)) notFound();
-  const modes: Record<string, AccountMode> = { '': 'profile', 'verify-email': 'verify', recovery: 'recovery', 'reset-password': 'reset', 'two-factor': 'twoFactor' };
+  const modes: Record<string, AccountMode> = { '': 'profile', 'verify-email': 'verify', recovery: 'recovery', 'reset-password': 'reset' };
   const path = task?.join('/') ?? '';
   if (!Object.hasOwn(modes, path)) notFound();
   return <AccountPage locale={locale} mode={modes[path]} />;

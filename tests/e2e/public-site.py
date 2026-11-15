@@ -17,7 +17,7 @@ if origin.scheme != 'http' or origin.hostname != '127.0.0.1' or not origin.port 
 BASE = args.base
 args.artifacts.mkdir(parents=True, exist_ok=True)
 ROUTES = ['', 'process/', 'about/', 'privacy/', 'packages/']
-ACCOUNT_ROUTES = ['login/', 'register/', 'account/recovery/', 'account/reset-password/', 'account/verify-email/', 'account/two-factor/']
+ACCOUNT_ROUTES = ['login/', 'register/', 'account/recovery/', 'account/reset-password/', 'account/verify-email/']
 RETIRED = ['services/', 'services/retired/', 'report/']
 VIEWPORTS = [(1024, 768), (1366, 768), (1920, 1080)]
 DISCLAIMER = 'Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.'
@@ -127,7 +127,7 @@ with sync_playwright() as p:
             assert urlsplit(page.url).path == f'/{locale}/login/'
         page.goto(f'{BASE}/{locale}/request/?package=retired&website=private-value')
         assert page.url == f'{BASE}/{locale}/login/?next=request'
-        for path in ['login', 'register', 'account/verify-email', 'account/recovery', 'account/reset-password', 'account/two-factor']:
+        for path in ['login', 'register', 'account/verify-email', 'account/recovery', 'account/reset-password']:
             page.goto(f'{BASE}/{locale}/{path}/?next=request&package=retired&email=private-value')
             for anchor in page.locator('.account-links a, .account-navigation a').all():
                 assert 'package=' not in anchor.get_attribute('href')
@@ -135,7 +135,7 @@ with sync_playwright() as p:
             page.get_by_role('link', name='EN — English' if locale == 'id' else 'ID — Bahasa Indonesia', exact=True).click()
             other = 'en' if locale == 'id' else 'id'
             page.wait_for_url(f'**/{other}/{path}/?next=request')
-        for path in RETIRED + ['unknown-reset/']:
+        for path in RETIRED + ['unknown-reset/', 'account/two-factor/']:
             response = page.goto(f'{BASE}/{locale}/{path}')
             assert response.status == 404, (locale, path, response.status)
             assert page.locator('a[href*="/services/"], a[href*="/report/"]').count() == 0

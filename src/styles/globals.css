@@ -230,7 +230,6 @@ details[open] > summary .faq-toggle::after { transform: rotate(0); }
 button:disabled { cursor: not-allowed; opacity: .7; }
 .account-navigation { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
 .account-navigation a { padding-block: .5rem; font-size: .9rem; }
-.account-form .checkbox-label { display: flex; align-items: center; gap: .5rem; }
 .ticket-page { max-width: 72rem; }
 .ticket-page-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-block: 1rem; }
 .ticket-page-head h1 { overflow-wrap: anywhere; }
@@ -265,6 +264,10 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 .consultation-form textarea { resize: vertical; }
 .consultation-form :is(select, textarea):focus-visible { outline: 3px solid var(--steel-ink); outline-offset: 4px; }
 .consultation-form .primary-action { justify-self: start; }
+.scope-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+.scope-history { margin-top: 1rem; }
+.scope-history details { border-top: 1px solid var(--line); padding-block: .65rem; }
+.scope-history h3 { margin-bottom: .55rem; }
 .consultation-form .consultation-check { display: flex; align-items: baseline; gap: .6rem; }
 .follow-up-options { display: flex; flex-wrap: wrap; gap: .25rem 1.3rem; }
 .consultation-form .follow-up-options label { min-height: 44px; align-items: center; }
@@ -272,9 +275,7 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 @media (max-width: 56rem) {
   .ticket-detail-grid, .consultation-fields { grid-template-columns: minmax(0, 1fr); }
 }
-.checkbox-label input { width: 1.25rem; flex: none; }
 .form-status { min-height: 1.6rem; margin-top: 1rem; }
-.auth-secrets { overflow-wrap: anywhere; border: 1px solid var(--line); padding: 1rem; }
 .account-menu { position: relative; margin: 0; }
 .account-menu summary { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: .5rem; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; list-style: none; }
 .account-menu summary::-webkit-details-marker { display: none; }

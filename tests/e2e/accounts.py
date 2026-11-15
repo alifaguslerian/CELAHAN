@@ -3,11 +3,7 @@
 import json
 import argparse
 import sys
-import base64
-import hashlib
-import hmac
 import secrets
-import time
 import urllib.request
 from pathlib import Path
 
@@ -65,7 +61,7 @@ with sync_playwright() as playwright:
     page = context.new_page()
     page.on('pageerror', lambda error: errors.append(str(error)))
     for locale in ['id', 'en']:
-        for route in ['login', 'register', 'account/recovery', 'account/reset-password', 'account/verify-email', 'account/two-factor']:
+        for route in ['login', 'register', 'account/recovery', 'account/reset-password', 'account/verify-email']:
             response = page.goto(f'{BASE}/{locale}/{route}/')
             assert response.status == 200
             assert 'no-store' in response.headers['cache-control']
@@ -149,19 +145,6 @@ with sync_playwright() as playwright:
         page.set_viewport_size({'width': width, 'height': 960})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width': 1366, 'height': 768})
-    page.get_by_role('button', name='Siapkan autentikator', exact=True).click()
-    page.get_by_label('Kata sandi', exact=True).fill(PASSWORD)
-    page.get_by_role('button', name='Lanjutkan', exact=True).click()
-    expect(page.locator('.auth-secrets')).to_be_visible()
-    secret = page.locator('.auth-secrets code').first.inner_text()
-    key = base64.b32decode(secret + '=' * ((8 - len(secret) % 8) % 8))
-    digest = hmac.new(key, int(time.time() // 30).to_bytes(8, 'big'), hashlib.sha1).digest()
-    offset = digest[-1] & 15
-    code = str((int.from_bytes(digest[offset:offset+4], 'big') & 0x7fffffff) % 1000000).zfill(6)
-    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-    page.get_by_label('Kode autentikator', exact=True).fill(code)
-    page.get_by_role('button', name='Lanjutkan', exact=True).click()
-    expect(page.get_by_text('Autentikator aktif.', exact=True)).to_be_visible()
     page.get_by_label('Menu akun', exact=True).click()
     page.get_by_role('button', name='Keluar', exact=True).click()
     page.wait_for_url(BASE + '/id/')

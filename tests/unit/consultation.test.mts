@@ -2,6 +2,20 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { parseConsultation, parseTicketCommand, scheduleInstant, ticketActions } from '../../src/lib/consultation.ts';
 import { localeHref } from '../../src/lib/routing.ts';
+import { parseProjectCreation } from '../../src/lib/projects.ts';
+
+test('scope proposals require structured content and owner decisions identify one version', () => {
+  const base = { requestId: '87ddaf20-8192-46ed-840a-a9a48c1155ac', version: 1 };
+  const proposal = { ...base, kind: 'propose_scope', title: 'Portal demo', included: 'Riwayat pesanan', excluded: 'Panel admin', deliverables: 'Laporan privat' };
+  assert.deepEqual(parseTicketCommand(proposal), proposal);
+  assert.equal(parseTicketCommand({ ...proposal, price: 5000000 }), null);
+  assert.equal(parseTicketCommand({ ...proposal, excluded: '' }), null);
+  assert.deepEqual(parseTicketCommand({ ...base, kind: 'approve_scope', scopeVersion: 2 }), { ...base, kind: 'approve_scope', scopeVersion: 2 });
+  assert.equal(parseTicketCommand({ ...base, kind: 'revise_scope', scopeVersion: 2, body: ' ' }), null);
+  assert.equal(parseTicketCommand({ ...base, kind: 'approve_scope', scopeVersion: 0 }), null);
+  assert.deepEqual(parseProjectCreation({ requestId: base.requestId, scopeVersion: 2 }), { scopeVersion: 2 });
+  assert.equal(parseProjectCreation({ requestId: base.requestId, title: 'Forged', scope: 'An arbitrary scope', agreed: true }), null);
+});
 
 test('intake accepts only an allowlisted package and rejects client pricing', () => {
   const intake = {

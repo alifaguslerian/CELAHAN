@@ -17,26 +17,25 @@ function Notice({ locale }: { locale: Locale }) {
   </div>;
 }
 
-export function CreateProjectForm({ locale, accountId, ticketId }: { locale: Locale; accountId: string; ticketId: string }) {
+export function CreateProjectForm({ locale, accountId, ticketId, scopeVersion }: {
+  locale: Locale; accountId: string; ticketId: string; scopeVersion: number;
+}) {
   const copy = projectCopy[locale];
+  const router = useRouter();
   const path = `/api/admin/tickets/${ticketId}/project/`;
   const write = usePortalSubmission(locale, accountId, path, copy);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    void write.submit({ title: data.get('title'), scope: data.get('scope'), agreed: data.get('agreed') === 'on' }, result => {
+    void write.submit({ scopeVersion }, result => {
       if (!isResourceId(result.id)) throw new Error('Invalid project response');
       write.clearDraft();
       window.location.assign(`/${locale}/admin/projects/${result.id}/`);
-    });
+    }, () => router.refresh());
   }
   return <section className="ticket-panel">
     <h2>{copy.create}</h2>
     <form className="consultation-form" method="post" action={path} onSubmit={submit}>
-      <fieldset disabled={write.disabled} onChange={write.markDirty}>
-        <label>{copy.projectTitle}<input name="title" required minLength={2} maxLength={120} /></label>
-        <label>{copy.scope}<textarea name="scope" required minLength={10} maxLength={2000} rows={4} /></label>
-        <label className="consultation-check"><input type="checkbox" name="agreed" required />{copy.agreement}</label>
+      <fieldset disabled={write.disabled}>
         <button type="submit" className="primary-action">{write.pending ? copy.saving : copy.create}</button>
         <Notice locale={locale} />
       </fieldset>

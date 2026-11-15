@@ -6,11 +6,11 @@ A bilingual coursework and portfolio concept demonstrating product design, front
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Current status — November 13, 2026
+## Current status — November 14, 2026
 
 The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-W1 through W4 and isolated W5A/W5B are implemented. W5C package selection adds a homepage preview and a dedicated bilingual package page with illustrative prices. A verified user can carry a package choice into a private ticket. Formal scope approval, W5D and W6 require separate authorization.
+W1 through W4 and isolated W5A/W5B and W5C are implemented. W5C adds bilingual illustrative packages, package-linked tickets and owner approval of versioned scope proposals. New projects use the latest owner-approved scope. W5D and W6 require separate authorization.
 
 Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. Verified test users can submit consultations and follow replies and confirmed discussion times. Admins can create a project from a reviewed consultation, publish a private web report and retain its version history. Owners see progress and the active published report. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md) and [W5A validation](docs/validation/2026-11-10-w5a-private-projects.md).
 
@@ -25,7 +25,7 @@ Start with [the grouped index](docs/README.md), [Project Brief](docs/product/PRO
 Pinned in package.json and package-lock.json: Next.js 16.4.5, React/React DOM 19.3.1, TypeScript 5.9.3, Better Auth 1.7.14 and pg 8.23.1. Node >=26.10.0 <27 and npm >=12 <13 are required. Vercel remains an unprovisioned hosting target.
 
 - Next.js/React: server-capable App Router rendering and focused client interactions.
-- Better Auth: password hashing, database sessions, hashed email OTP and TOTP/backup-code flows. No custom authentication cryptography or second managed-auth service.
+- Better Auth: password hashing, database sessions, hashed email OTP for enrollment and recovery. No custom authentication cryptography or second managed-auth service.
 - pg: pooled, parameterized PostgreSQL access and controlled migration/admin scripts; no separate ORM.
 - server-only: build-time protection for server modules.
 - TypeScript/types and ESLint plugins: strict checking, Next and hooks lint rules.
@@ -59,6 +59,8 @@ See variable names in [.env.example](.env.example), never working secret values 
 
 Only explicitly allowlisted @example.invalid accounts are accepted. BETTER_AUTH_URL must match the chosen loopback port. The bearer-protected local mailbox captures verification/recovery codes in bounded memory; no external email is sent. Codes expire after five minutes and disappear on exit.
 
+Existing verified test users and administrators sign in with email and password. On the Windows profile that created the encrypted W5C credential file, run `.\scripts\w5c-login.ps1 admin password` to copy the test administrator password. Use `user1 password` or `user2 password` for the other accounts. The helper reads the ignored DPAPI file and copies only the requested value to the clipboard. Use a distinct browser profile, private session or browser for each concurrent account.
+
 ```powershell
 npm run mailbox
 # In separate terminals, after building:
@@ -77,7 +79,7 @@ node --env-file=.env.local --env-file=.env.database.local tests/integration/cons
 
 Reviewed SQL is in database/. npm run db:migrate applies hash-checked migrations in one locked transaction. npm run db:prepare-test-role is a one-time trusted procedure that refuses to replace an existing role. scripts/generate-auth-schema.mts refuses to overwrite saved initial SQL. Do not run these as part of a presentation reset.
 
-Admin provisioning uses npm run account:admin -- grant_admin <allowlisted-synthetic-email> only after verification and TOTP enrollment. revoke_admin, disable_account and enable_account also revoke sessions and record metadata. No public role selector or default admin exists.
+Admin provisioning uses npm run account:admin -- grant_admin <allowlisted-synthetic-email> only for active, email-verified synthetic accounts. revoke_admin, disable_account and enable_account also revoke sessions and record metadata. No public role selector or default admin exists.
 
 ## Desktop browser checks
 

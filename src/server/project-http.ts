@@ -33,7 +33,7 @@ export async function projectPost(request: Request, id: string, target: 'ticket'
     if (target === 'ticket') {
       const input = parseProjectCreation(body);
       if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);
-      const result = await createProject(account, id, input.title, input.scope);
+      const result = await createProject(account, id, input.scopeVersion);
       if (result.result === 'ok') return privateJSON({ id: result.project_id });
       return failed(result.result);
     }

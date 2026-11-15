@@ -12,10 +12,11 @@ import { listTickets, ticketAgenda, ticketDetails } from '@/server/data/tickets'
 import { TicketConversation } from './conversation';
 import { projectCopy } from '@/content/projects';
 import { CreateProjectForm } from '@/components/projects/forms';
+import { TicketScope } from './scope';
 import { PrivateAccountScope } from '@/components/layout/site-account';
 
 export async function ticketViewer(locale: Locale, view: TicketView, returnTo?: 'request', packageCode?: PackageCode) {
-  const account = await currentPageIdentity().catch(() => null);
+  const account = await currentPageIdentity();
   if (!account) redirect(localeHref(`/${locale}/login/`, locale, '', returnTo, packageCode));
   if (view === 'admin' && !account.admin) notFound();
   return account;
@@ -112,7 +113,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
   if (!detail) return <main id="main-content" className="ticket-page" tabIndex={-1}>
     <h1>{view === 'admin' ? copy.queue : copy.myTickets}</h1><p role="status">{copy.unavailable}</p><Link href={listPath}>{copy.back}</Link>
   </main>;
-  const { ticket, schedule, events, notes, more } = detail;
+  const { ticket, schedule, events, scopes, notes, more } = detail;
   const projectId = ticket.project_id;
   const workflow = { ...ticket, schedule };
   const retestActions = followUpActions(ticket.retest_state, view, ticket.status !== 'closed' && ticket.reviewable);
@@ -121,6 +122,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
   const recommended = ticket.status === 'awaiting_owner' ? defaultAction : (retestActions[0] ?? defaultAction);
   const scheduleLabel = schedule && timestamp(locale, schedule.at, schedule.zone);
   const endpoint = view === 'admin' ? `/api/admin/tickets/${id}/` : `/api/tickets/${id}/`;
+  const canNegotiate = !ticket.follow_up_kind && !projectId && ticket.status !== 'closed' && page === 1;
   return <PrivateAccountScope id={actor.id} capability={view === 'admin' ? 'admin' : undefined}><main id="main-content" className="ticket-page" tabIndex={-1}>
     <Link href={listPath} className="inline-link" prefetch={false}>{copy.back}</Link>
     <header className="ticket-page-head"><div><p className="eyebrow">CELAHAN / {ticket.follow_up_kind ? follow.kinds[ticket.follow_up_kind] : copy.needs[ticket.need]}</p><h1>{ticket.reference}</h1></div>
@@ -138,6 +140,9 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
     </p>}
     <div className="ticket-detail-grid">
       <div className="ticket-detail-main">
+        {!ticket.follow_up_kind && (scopes.length > 0 || canNegotiate) &&
+          <TicketScope locale={locale} accountId={actor.id} endpoint={endpoint} version={ticket.version}
+            proposals={scopes} admin={view === 'admin'} editable={canNegotiate} latest={page === 1} />}
         {ticket.retest_result && <section className="ticket-panel">
           <h2>{follow.result}</h2><p>{follow.results[ticket.retest_result]}</p>
         </section>}
@@ -157,8 +162,8 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
         </section>
       </div>
       <aside className="ticket-detail-side">
-        {view === 'admin' && !projectId && ticket.status !== 'closed' && ticket.outcome &&
-          <CreateProjectForm locale={locale} accountId={actor.id} ticketId={id} />}
+        {view === 'admin' && canNegotiate && scopes[0]?.decision === 'approved' &&
+          <CreateProjectForm locale={locale} accountId={actor.id} ticketId={id} scopeVersion={scopes[0].version} />}
         <section className="ticket-panel"><h2>{copy.schedule}</h2>
           {schedule ? <><p className="ticket-state">{copy.scheduleStates[schedule.state]}</p><p>{scheduleLabel}</p></> : <p>{copy.noSchedule}</p>}
         </section>

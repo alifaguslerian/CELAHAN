@@ -8,9 +8,16 @@ export type ScheduleState = 'proposed' | 'agreed' | 'confirmed';
 type TextAction = 'reply' | 'clarify' | 'outcome' | 'close' | 'note';
 export type TicketAction = TextAction | 'propose' | 'agree' | 'confirm' | 'accept_retest' | 'finish_retest';
 export const retestResults = ['resolved_in_example', 'unresolved_in_example', 'not_verified'] as const;
+export const scopeFields = ['title', 'included', 'excluded', 'deliverables'] as const;
+export type ScopeAction = 'propose_scope' | 'approve_scope' | 'revise_scope';
+export type ScopeContent = Record<typeof scopeFields[number], string>;
+export type ScopeProposal = ScopeContent & {
+  version: number; decision: 'approved' | 'changes_requested' | null;
+  decision_note: string | null; proposed_at: string; decided_at: string | null;
+};
 export type RetestResult = typeof retestResults[number];
 export type ConversationEvent = {
-  id: string; actor: TicketView; kind: Exclude<TicketAction, 'note'> | 'created';
+  id: string; actor: TicketView; kind: Exclude<TicketAction, 'note'> | ScopeAction | 'created';
   body: string | null; created_at: string; schedule_at: string | null; schedule_zone: string | null;
 };
 
@@ -31,7 +38,10 @@ export type TicketCommand = CommandBase & (
   { kind: TextAction; body: string } |
   { kind: 'propose'; at: string; zone: string } |
   { kind: 'agree' | 'confirm' | 'accept_retest' } |
-  { kind: 'finish_retest'; result: RetestResult; body: string }
+  { kind: 'finish_retest'; result: RetestResult; body: string } |
+  ({ kind: 'propose_scope' } & ScopeContent) |
+  { kind: 'approve_scope'; scopeVersion: number } |
+  { kind: 'revise_scope'; scopeVersion: number; body: string }
 );
 
 export type Schedule = { at: string; zone: string; state: ScheduleState; by: TicketView };
@@ -50,6 +60,10 @@ export function text(value: unknown, min: number, max: number): string | null {
   if (typeof value !== 'string' || /[\p{Cc}\p{Cs}]/u.test(value.replace(/[\t\n\r]/g, ''))) return null;
   const normalized = value.trim();
   return normalized.length >= min && normalized.length <= max ? normalized : null;
+}
+
+export function isPositiveVersion(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value > 0 && value <= 2147483647;
 }
 
 export function parseConsultation(value: unknown): ConsultationInput | null {
@@ -97,9 +111,25 @@ export function scheduleInstant(wallTime: unknown, zone: unknown): string | null
 export function parseTicketCommand(value: unknown): TicketCommand | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const { requestId, version, kind } = value as Record<string, unknown>;
-  if (!isTicketId(requestId) || typeof version !== 'number' || !Number.isInteger(version) || version < 1 || version > 2147483647) return null;
+  if (!isTicketId(requestId) || !isPositiveVersion(version)) return null;
   const base = ['requestId', 'version', 'kind'];
   switch (kind) {
+    case 'propose_scope': {
+      if (!objectWith(value, [...base, ...scopeFields])) return null;
+      const title = text(value.title, 2, 120);
+      const included = text(value.included, 10, 2000);
+      const excluded = text(value.excluded, 1, 2000);
+      const deliverables = text(value.deliverables, 1, 2000);
+      return title && included && excluded && deliverables ? { requestId, version, kind, title, included, excluded, deliverables } : null;
+    }
+    case 'approve_scope':
+      return objectWith(value, [...base, 'scopeVersion']) && isPositiveVersion(value.scopeVersion)
+        ? { requestId, version, kind, scopeVersion: value.scopeVersion } : null;
+    case 'revise_scope': {
+      if (!objectWith(value, [...base, 'scopeVersion', 'body']) || !isPositiveVersion(value.scopeVersion)) return null;
+      const body = text(value.body, 1, 3000);
+      return body ? { requestId, version, kind, scopeVersion: value.scopeVersion, body } : null;
+    }
     case 'reply': case 'clarify': case 'outcome': case 'close': case 'note': {
       if (!objectWith(value, [...base, 'body'])) return null;
       const body = text(value.body, 1, 3000);

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { randomBytes, createHmac } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { Pool } from 'pg';
 import { authEnvironment, isolatedOwnerDatabaseURL } from '../../src/server/auth/environment.ts';
@@ -37,15 +37,6 @@ async function otp(email: string, type: string) {
   const message = messages.findLast((item) => item.email === email && item.type === type);
   assert.ok(message, 'local sink must receive a message');
   return message.otp;
-}
-
-function totp(secret: string) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-  const bits = [...secret.toUpperCase().replace(/=+$/, '')].map((char) => alphabet.indexOf(char).toString(2).padStart(5, '0')).join('');
-  const key = Buffer.from((bits.match(/.{8}/g) ?? []).map((byte) => parseInt(byte, 2)));
-  const counter = Buffer.alloc(8); counter.writeBigUInt64BE(BigInt(Math.floor(Date.now() / 30000)));
-  const hash = createHmac('sha1', key).update(counter).digest(); const offset = hash[19] & 15;
-  return ((hash.readUInt32BE(offset) & 0x7fffffff) % 1000000).toString().padStart(6, '0');
 }
 
 function admin(action: string, email: string, expected = 0) {
@@ -97,10 +88,8 @@ try {
   checked(denied.response.status === 404 && JSON.stringify(denied.data) === JSON.stringify(missing.data), 'foreign and nonexistent resources are indistinguishable');
   checked((await a.call('/api/account/')).data.account.hasProjects && !(await b.call('/api/account/')).data.account.hasProjects, 'capabilities derive from owned relation');
   for (const [browser, owns] of [[a, true], [b, false]] as const) {
-    const response = await fetch(config.origin + '/id/', { headers: { Cookie: [...browser.cookies].map(([key, value]) => `${key}=${value}`).join('; ') } });
-    const html = await response.text();
-    checked(html.includes('href="/id/tickets/"') && html.includes('href="/id/projects/"') === owns, 'rendered shared navigation follows trusted project capabilities');
-    checked(response.headers.get('cache-control')?.includes('no-store'), 'personalized HTML is not shared-cacheable');
+    const state = (await browser.call('/api/account/')).data.account;
+    checked(state.hasProjects === owns && !state.admin, 'shared navigation receives only trusted account capabilities');
   }
   await db.query('DELETE FROM project_access WHERE id = $1', [project]);
   checked(!(await a.call('/api/account/')).data.account.hasProjects, 'ownership revocation updates capabilities immediately');
@@ -116,29 +105,14 @@ try {
   checked(!(await b.call('/api/auth/sign-in/email/', { email: config.emails[1], password })).response.ok, 'old password no longer signs in');
   await db.query('DELETE FROM "rateLimit"');
   await signup(adminBrowser, config.emails[2]);
-  admin('grant_admin', config.emails[2], 1);
-  const setupResponse = await fetch(config.origin + '/api/auth/two-factor/enable/', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: config.origin, Cookie: [...adminBrowser.cookies].map(([k, v]) => `${k}=${v}`).join('; ') }, body: JSON.stringify({ password }) });
-  const setup = await setupResponse.json();
-  checked(setupResponse.ok && Array.isArray(setup.backupCodes), 'authenticator enrollment returns private setup material only to its session');
-  const secret = new URL(setup.totpURI).searchParams.get('secret'); assert.ok(secret);
-  checked((await adminBrowser.call('/api/auth/two-factor/verify-totp/', { code: totp(secret) })).response.ok, 'TOTP setup is verified');
   admin('grant_admin', config.emails[2]);
   checked((await adminBrowser.call('/api/admin/access/')).response.status === 403, 'granting admin revokes earlier session');
-  const challenge = await adminBrowser.call('/api/auth/sign-in/email/', { email: config.emails[2], password });
-  checked(challenge.data.needsTwoFactor === true, 'admin sign-in requires TOTP');
-  checked((await adminBrowser.call('/api/admin/access/')).response.status === 403, 'password-only challenge has no admin access');
-  checked((await adminBrowser.call('/api/auth/two-factor/verify-totp/', { code: totp(secret) })).response.ok, 'admin TOTP signs in');
-  checked((await adminBrowser.call('/api/admin/access/')).response.ok, 'verified admin is authorized');
-  checked((await (await fetch(config.origin + '/en/', { headers: { Cookie: [...adminBrowser.cookies].map(([k, v]) => `${k}=${v}`).join('; ') } })).text()).includes('href="/en/admin/"'), 'authorized admin navigation uses shared site');
+  const login = await adminBrowser.call('/api/auth/sign-in/email/', { email: config.emails[2], password });
+  checked(login.response.ok && Object.keys(login.data).join() === 'ok', 'administrator signs in with password only');
+  checked((await adminBrowser.call('/api/admin/access/')).response.ok, 'verified administrator is authorized');
+  checked((await b.call('/api/admin/access/')).response.status === 403, 'ordinary account has no admin access');
   admin('revoke_admin', config.emails[2]);
   checked((await adminBrowser.call('/api/admin/access/')).response.status === 403, 'revoked admin is denied');
-  await adminBrowser.call('/api/auth/sign-out/', {});
-  await adminBrowser.call('/api/auth/sign-in/email/', { email: config.emails[2], password });
-  checked((await adminBrowser.call('/api/auth/two-factor/verify-backup-code/', { code: setup.backupCodes[0] })).response.ok, 'backup recovery code completes second factor');
-  await adminBrowser.call('/api/auth/sign-out/', {});
-  await db.query('DELETE FROM "rateLimit"');
-  await adminBrowser.call('/api/auth/sign-in/email/', { email: config.emails[2], password });
-  checked(!(await adminBrowser.call('/api/auth/two-factor/verify-backup-code/', { code: setup.backupCodes[0] })).response.ok, 'backup code replay is denied');
   await db.query('DELETE FROM "rateLimit"');
   checked((await a.call('/api/auth/sign-in/email/', { email: config.emails[0], password })).response.ok, 'account remains recoverable after logout');
   await db.query('UPDATE session SET "expiresAt" = now() - interval \'1 minute\' WHERE "userId" = $1', [meA.id]);

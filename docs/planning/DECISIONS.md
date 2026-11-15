@@ -1,9 +1,13 @@
 # CELAHAN — Decisions
 
-Updated: November 13, 2026
+Updated: November 14, 2026
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
 ## Current precedence
+
+DEC-73 authorizes password-only sign-in for verified synthetic accounts, including administrators. It retires authenticator and backup-code flows while retaining database sessions, controlled admin provisioning and server-side resource checks. Public authentication remains a separate decision.
+
+DEC-72 records the owner's November 14 authorization to finish isolated W5C. An admin proposes a project title, included scope, exclusions and deliverables on an open consultation. The ticket owner approves that version or requests changes with a reason. Revisions create new versions. The project uses the latest approved version and preserves it as the agreement record. The gate applies to new projects, including older open tickets with no project and requests without a package. Project creation freezes the agreement. Pre-existing projects retain their saved scope. Illustrative prices remain outside the approval.
 
 DEC-71 records the owner's November 13 approval of the package-selection part of W5C. Combine mockup 2's homepage placement after the process with mockup 3's dedicated package page. The preview uses View package. The detail page shows scope and illustrative project prices, and Choose package carries the selection to the existing intake. The owner delegated the illustrative price choice. W5D and formal scope approval remain separate work.
 
@@ -45,7 +49,7 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-45 | Reviewed purpose-based commit checkpoints | English suggestions in chat only; Git remains manual |
 | DEC-46 | W1 foundation authorized | Implemented locally; historical checks have explicit limits |
 | DEC-47 | Isolated W2 authorized with dedicated database setup | No public enrollment, external email, paid services or deployment |
-| DEC-48 | Synthetic allowlist, verified email, local recovery and controlled admin TOTP | Public identity/recovery policy remains gated |
+| DEC-48 | Synthetic allowlist, verified email, local recovery and controlled admin TOTP | DEC-73 supersedes the TOTP requirement for isolated sign-in |
 | DEC-49 | W3 public discovery authorized | Public content remains; former presentation acceptance is superseded by DEC-61 |
 | DEC-50 | All numerical package terms are deferred | Earlier numerical publication gate; the catalog is now removed by DEC-62. Independently confirmed three-month future support rule remains |
 | DEC-54 | Future checkpoints should be smaller coherent behaviors | Do not manufacture counts or split working behavior into incomplete fragments |
@@ -61,6 +65,8 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-69 | Implement isolated W5A projects and private web reports | One project per reviewed open ticket, a fictional order-portal example, owner access to the active version and a fixed Jakarta support period on first publication |
 | DEC-70 | Implement isolated W5B follow-ups, automatic replies and confirmed agenda | New report-linked tickets, one illustrative cycle per project, updates in the existing ticket and a private upcoming agenda |
 | DEC-71 | Implement the W5C package-selection flow | Homepage preview and dedicated bilingual package page with illustrative prices, plus package-linked intake |
+| DEC-72 | Implement isolated W5C scope approval | Versioned admin proposals, explicit owner decisions and project creation from the current approved scope |
+| DEC-73 | Use email and password for isolated sign-in | Remove authenticator and backup-code workflows. Preserve active/verified identities, role and ownership checks, and login throttling. |
 
 ## Reviewable operating proposals
 

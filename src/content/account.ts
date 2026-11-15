@@ -1,7 +1,7 @@
 export const accountCopy = {
   id: {
-    login: 'Masuk', register: 'Daftar', verify: 'Verifikasi email', recovery: 'Pulihkan akun', reset: 'Atur ulang kata sandi', twoFactor: 'Verifikasi autentikator', setup: 'Siapkan autentikator', profile: 'Profil',
-    name: 'Nama', email: 'Email', password: 'Kata sandi', newPassword: 'Kata sandi baru', otp: 'Kode dari email', code: 'Kode autentikator', backup: 'Gunakan kode cadangan', submit: 'Lanjutkan', save: 'Simpan nama', saving: 'Memproses…', show: 'Tampilkan kata sandi', hide: 'Sembunyikan kata sandi',
+    login: 'Masuk', register: 'Daftar', verify: 'Verifikasi email', recovery: 'Pulihkan akun', reset: 'Atur ulang kata sandi', profile: 'Profil',
+    name: 'Nama', email: 'Email', password: 'Kata sandi', newPassword: 'Kata sandi baru', otp: 'Kode dari email', submit: 'Lanjutkan', save: 'Simpan nama', saving: 'Memproses…', show: 'Tampilkan kata sandi', hide: 'Sembunyikan kata sandi',
     boundary: 'Pengujian terisolasi dengan identitas sintetis yang diizinkan. Data akun disimpan di database uji. Pendaftaran publik dan pengiriman email sungguhan belum dibuka.',
     passwordHelp: 'Gunakan 15–128 karakter. Tempel dan pengelola kata sandi didukung.',
     sent: 'Permintaan diterima. Jika akun memenuhi syarat, kode tersedia di penampung email lokal. Tidak ada email yang dikirim ke luar.',
@@ -9,12 +9,12 @@ export const accountCopy = {
     sessionChanged: 'Sesi akun berubah atau berakhir. Buka kembali profil sebelum menyimpan.',
     failed: 'Permintaan belum berhasil. Periksa isian dan coba lagi.', deliveryFailed: 'Pengiriman kode lokal gagal. Coba kirim ulang di halaman verifikasi atau pemulihan.', unavailable: 'Layanan akun belum tersedia. Konfigurasi database dan penampung email lokal diperlukan.', limited: 'Terlalu banyak percobaan. Tunggu sebentar sebelum mencoba lagi.',
     needJS: 'Aktifkan JavaScript untuk mengirim formulir akun. Isian tidak dikirim melalui alamat halaman.', forgot: 'Lupa kata sandi?', resend: 'Kirim ulang kode verifikasi',
-    secret: 'Kunci penyiapan autentikator', codes: 'Kode cadangan sekali pakai', keepCodes: 'Simpan kunci dan kode cadangan secara pribadi sebelum mengonfirmasi. Jangan kirim ke chat atau repository. Tampilan ini hilang saat halaman ditutup.',
-    enabled: 'Autentikator aktif.', enable: 'Siapkan autentikator', discard: 'Tinggalkan perubahan yang belum disimpan?',
+    discard: 'Tinggalkan perubahan yang belum disimpan?',
+    serviceRetry: 'Layanan akun belum merespons. Coba lagi sebentar.',
   },
   en: {
-    login: 'Log in', register: 'Sign up', verify: 'Verify email', recovery: 'Recover account', reset: 'Reset password', twoFactor: 'Verify authenticator', setup: 'Set up authenticator', profile: 'Profile',
-    name: 'Name', email: 'Email', password: 'Password', newPassword: 'New password', otp: 'Code from email', code: 'Authenticator code', backup: 'Use a backup code', submit: 'Continue', save: 'Save name', saving: 'Processing…', show: 'Show password', hide: 'Hide password',
+    login: 'Log in', register: 'Sign up', verify: 'Verify email', recovery: 'Recover account', reset: 'Reset password', profile: 'Profile',
+    name: 'Name', email: 'Email', password: 'Password', newPassword: 'New password', otp: 'Code from email', submit: 'Continue', save: 'Save name', saving: 'Processing…', show: 'Show password', hide: 'Hide password',
     boundary: 'Isolated testing with allowlisted synthetic identities. Account data is stored in the test database. Public enrollment and real email delivery are not open.',
     passwordHelp: 'Use 15–128 characters. Pasting and password managers are supported.',
     sent: 'Request received. If the account is eligible, a code is available in the local email sink. No external email is sent.',
@@ -22,7 +22,7 @@ export const accountCopy = {
     sessionChanged: 'Your session changed or expired. Reopen your profile before saving.',
     failed: 'The request did not succeed. Check the fields and try again.', deliveryFailed: 'Local code delivery failed. Retry from the verification or recovery page.', unavailable: 'Account services are unavailable. The isolated database and local email sink must be configured.', limited: 'Too many attempts. Wait before trying again.',
     needJS: 'Enable JavaScript to submit account forms. Fields are not sent through page URLs.', forgot: 'Forgot password?', resend: 'Resend verification code',
-    secret: 'Authenticator setup key', codes: 'Single-use backup codes', keepCodes: 'Store the key and backup codes privately before confirming. Do not send them to chat or the repository. This display disappears when you leave the page.',
-    enabled: 'Authenticator enabled.', enable: 'Set up authenticator', discard: 'Leave unsaved changes?',
+    discard: 'Leave unsaved changes?',
+    serviceRetry: 'The account service has not responded. Try again shortly.',
   },
 } as const;

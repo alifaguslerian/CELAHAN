@@ -1,5 +1,5 @@
 import type { BetterAuthOptions } from 'better-auth';
-import { emailOTP, twoFactor } from 'better-auth/plugins';
+import { emailOTP } from 'better-auth/plugins';
 import { allowedTestEmail } from '../../lib/auth-policy.ts';
 import { authEnvironment } from './environment.ts';
 import type { Pool } from 'pg';
@@ -54,7 +54,6 @@ export function authOptions(pool: Pool): BetterAuthOptions {
           }
         },
       }),
-      twoFactor({ issuer: 'CELAHAN', totpOptions: { digits: 6, period: 30 }, backupCodeOptions: { storeBackupCodes: 'encrypted' } }),
     ],
   };
 }

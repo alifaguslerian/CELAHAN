@@ -19,7 +19,7 @@ No external avatar lookup/upload. Header visibility never grants access. Every e
 
 ## Accounts
 
-W2 supports only allowlisted synthetic email/password accounts, mandatory verification, local-capture recovery and controlled TOTP-protected admin provisioning. Passwords remain 15–128 characters. Public enrollment/delivery/admin recovery are separate gates. Preserve autofill/paste, labeled fields/show-hide control, safe errors, unsaved-edit warning, POST-only fallback and disabled unhydrated controls. Do not expose credentials/session/recovery codes in URLs/logs/browser storage.
+W2 supports only allowlisted synthetic email/password accounts, mandatory verification, local-capture recovery and owner-controlled admin provisioning. DEC-73 uses email and password at sign-in for verified synthetic accounts, including admins. Passwords remain 15–128 characters. Public enrollment/delivery/admin recovery are separate gates. Preserve autofill/paste, labeled fields/show-hide control, safe errors, unsaved-edit warning, POST-only fallback and disabled unhydrated controls. Do not expose credentials/session/recovery codes in URLs/logs/browser storage.
 
 Login returns only to an allowlisted site task, not an external destination or forced overview. Logout revokes the session and clears/revalidates private UI; it does not delete records. Account-menu Escape returns focus; bfcache/focus revalidation must remain after presentation changes.
 
@@ -30,6 +30,8 @@ The public invitation takes confirmed guests to sign-in with the consultation re
 Save consultation/ticket atomically with server-derived owner/reference and scoped idempotency. Show confirmed persistence only after success. Preserve unsaved text on failure; handle validation/session expiry/stale updates. A requested time is not confirmed until an authorized admin successfully saves that decision.
 
 The ticket detail puts the next action before its shared history. Admin guidance and the closure reason have dedicated space above replies. The owner sees an inert submission summary and optional discussion time. The admin uses the same site shell and a separately authorized detail view with internal notes. Closed tickets retain readable history.
+
+Under DEC-72, an open consultation without a project presents the current scope proposal, version history and role-specific actions. The owner approves the displayed version or requests changes with a reason. The admin can offer a new version before creating a project from the approved version. The project displays that agreement under Scope. The ticket includes a refresh control to load current scope actions while both parties work in separate tabs.
 
 Own ticket list/detail includes the shared conversation and permitted actions. Admin triage minimizes personal data in summaries and separately manages shared replies and internal notes. Internal notes must never enter user HTML/JSON/RSC or hidden DOM. No automatic external service messaging/calendar, uploads or real incident response.
 
