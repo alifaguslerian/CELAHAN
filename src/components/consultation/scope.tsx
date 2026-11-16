@@ -5,20 +5,22 @@ import { ScopeForm, ScopeRefresh } from './scope-forms';
 
 export function ScopeSummary({ locale, proposal, agreement = false }: { locale: Locale; proposal: ScopeProposal; agreement?: boolean }) {
   const copy = scopeCopy[locale];
-  return <>
-    <p><strong>{agreement ? copy.agreedVersion : copy.version} {proposal.version}</strong></p>
-    <dl className="ticket-summary">
-      {scopeFields.map(field => <div key={field}>
+  return <div className="scope-summary">
+    <div className="scope-status">
+      <strong>{agreement ? copy.agreedVersion : copy.version} {proposal.version}</strong>
+      {proposal.decision && <span className="ticket-state">{copy[proposal.decision]}</span>}
+    </div>
+    <dl className="ticket-summary reading-fields">
+      {scopeFields.filter(field => !agreement || field !== 'title').map(field => <div key={field}>
         <dt>{copy.fields[field]}</dt><dd className="ticket-text">{proposal[field]}</dd>
       </div>)}
     </dl>
-    <p className="supporting-copy">{copy.proposedAt} <time dateTime={new Date(proposal.proposed_at).toISOString()}>{ticketTimestamp(locale, proposal.proposed_at)}</time></p>
-    {proposal.decision && proposal.decided_at && <>
-      <p><strong>{copy[proposal.decision]}</strong></p>
-      {proposal.decision_note && <p className="ticket-text">{proposal.decision_note}</p>}
-      <p className="supporting-copy">{copy.decidedAt} <time dateTime={new Date(proposal.decided_at).toISOString()}>{ticketTimestamp(locale, proposal.decided_at)}</time></p>
-    </>}
-  </>;
+    {proposal.decision_note && <p className="scope-response ticket-text">{proposal.decision_note}</p>}
+    <div className="scope-dates supporting-copy">
+      <p>{copy.proposedAt} <time dateTime={new Date(proposal.proposed_at).toISOString()}>{ticketTimestamp(locale, proposal.proposed_at)}</time></p>
+      {proposal.decided_at && <p>{copy.decidedAt} <time dateTime={new Date(proposal.decided_at).toISOString()}>{ticketTimestamp(locale, proposal.decided_at)}</time></p>}
+    </div>
+  </div>;
 }
 
 export function TicketScope({ locale, accountId, endpoint, version, proposals, admin, editable, latest }: {

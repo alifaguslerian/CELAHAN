@@ -193,6 +193,14 @@ with sync_playwright() as playwright:
         owner.reload()
         expect(owner.locator('main')).to_contain_text('Dalam skenario, akun A')
         expect(owner.locator('main')).not_to_contain_text('Internal browser fixture canary')
+        for page in [owner, admin]:
+            for width in [1440, 1024]:
+                page.set_viewport_size({'width': width, 'height': 900})
+                primary = page.locator('.project-detail-grid .ticket-detail-main')
+                secondary = page.locator('.project-detail-grid .ticket-detail-side')
+                assert primary.bounding_box()['x'] < secondary.bounding_box()['x']
+                assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+            page.set_viewport_size({'width': 1440, 'height': 900})
         other_context = context_for(browser, 'other')
         other = other_context.new_page()
         denied = other.goto(owner.url)

@@ -255,6 +255,28 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 .ticket-summary dt { font-weight: 670; margin-top: .8rem; }
 .ticket-summary dd { margin: .2rem 0 0; }
 .ticket-notes { border-left: 4px solid var(--steel-ink); }
+.portal-detail .ticket-page-head { align-items: flex-start; margin-block: .85rem 1rem; }
+.portal-detail .ticket-page-head h1 { max-width: 32ch; font-size: clamp(1.85rem, 3.2vw, 2.65rem); letter-spacing: -.04em; line-height: 1.13; }
+.portal-detail .ticket-page-head .ticket-state { margin-top: .2rem; }
+.portal-detail .ticket-detail-grid { gap: clamp(1.4rem, 2.5vw, 2.1rem); }
+.portal-detail :is(.ticket-detail-main, .ticket-detail-side) { gap: 1.5rem; }
+.portal-detail .ticket-panel h2 { margin-bottom: .9rem; }
+.project-detail-grid { margin-top: 1.75rem; }
+.reading-fields { display: grid; gap: 1rem; }
+.reading-fields dt { margin-top: 0; color: var(--muted); font-size: .85rem; }
+.reading-fields dd { max-width: 69ch; margin-top: .3rem; line-height: 1.6; }
+.portal-context { background: var(--surface); }
+.portal-context > p + p { margin-top: .45rem; }
+.portal-context-link { display: inline-flex; margin-top: .9rem; }
+.ticket-conversation #ticket-action { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+.ticket-conversation .ticket-events li > div { align-items: baseline; }
+.ticket-conversation .ticket-events li > div:last-child { margin-bottom: 0; }
+.ticket-conversation .ticket-events .ticket-text { margin-top: .5rem; max-width: 68ch; }
+.report-text { display: grid; gap: 1rem; }
+.report-date { font-size: .84rem; }
+.report-disclaimer { padding-top: .85rem; border-top: 1px solid var(--line); }
+.report-history details { border-top: 1px solid var(--line); }
+.report-history details > .report-text { padding-block: .25rem 1.25rem; }
 .consultation-intake { max-width: 51rem; margin-top: 1.5rem; }
 .intake-package { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; margin-top: 1rem; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
 .consultation-form { margin-top: 1.15rem; }
@@ -265,9 +287,18 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 .consultation-form :is(select, textarea):focus-visible { outline: 3px solid var(--steel-ink); outline-offset: 4px; }
 .consultation-form .primary-action { justify-self: start; }
 .scope-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
-.scope-history { margin-top: 1rem; }
-.scope-history details { border-top: 1px solid var(--line); padding-block: .65rem; }
-.scope-history h3 { margin-bottom: .55rem; }
+.scope-summary { display: grid; gap: 1.15rem; }
+.scope-status { display: flex; flex-wrap: wrap; gap: .45rem .75rem; align-items: center; }
+.scope-status > strong { font-size: .9rem; }
+.scope-dates { display: grid; gap: .25rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .79rem; }
+.scope-response { padding-left: .8rem; border-left: 2px solid var(--steel); }
+.scope-summary + p { margin-top: 1rem; }
+.scope-history { margin-top: 1.25rem; }
+.scope-history details { border-top: 1px solid var(--line); }
+.scope-history h3 { margin-bottom: .45rem; font-size: 1rem; }
+.scope-history summary, .report-history summary { cursor: pointer; padding-block: .7rem; font-size: .9rem; }
+.scope-history details > .scope-summary { padding-block: .35rem 1.25rem; }
+#ticket-scope-heading ~ .text-button { margin-top: 1rem; }
 .consultation-form .consultation-check { display: flex; align-items: baseline; gap: .6rem; }
 .follow-up-options { display: flex; flex-wrap: wrap; gap: .25rem 1.3rem; }
 .consultation-form .follow-up-options label { min-height: 44px; align-items: center; }
@@ -277,7 +308,8 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 }
 .form-status { min-height: 1.6rem; margin-top: 1rem; }
 .account-menu { position: relative; margin: 0; }
-.account-menu summary { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: .5rem; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; list-style: none; }
+.account-menu summary { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: .5rem; border: 1px solid var(--steel-ink); border-radius: 50%; background: var(--steel-ink); color: var(--panel); cursor: pointer; list-style: none; }
+.account-menu summary:hover, .account-menu[open] summary { border-color: var(--ink); background: var(--ink); }
 .account-menu summary::-webkit-details-marker { display: none; }
 .account-menu-panel { position: absolute; top: calc(100% + .5rem); right: 0; z-index: 3; display: grid; gap: .5rem; min-width: 12rem; border: 1px solid var(--line); border-radius: 6px; padding: 1rem; background: var(--panel); }
 .account-menu-panel a { padding: .5rem; }

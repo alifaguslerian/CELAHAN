@@ -31,6 +31,8 @@ Save consultation/ticket atomically with server-derived owner/reference and scop
 
 The ticket detail puts the next action before its shared history. Admin guidance and the closure reason have dedicated space above replies. The owner sees an inert submission summary and optional discussion time. The admin uses the same site shell and a separately authorized detail view with internal notes. Closed tickets retain readable history.
 
+On desktop, the ticket keeps scope and conversation in the primary column. The adjacent column starts with the submission summary and groups scheduling and internal notes below it. Scope version and decision appear together, while dates and earlier proposals have their own reading space.
+
 Under DEC-72, an open consultation without a project presents the current scope proposal, version history and role-specific actions. The owner approves the displayed version or requests changes with a reason. The admin can offer a new version before creating a project from the approved version. The project displays that agreement under Scope. The ticket includes a refresh control to load current scope actions while both parties work in separate tabs.
 
 Own ticket list/detail includes the shared conversation and permitted actions. Admin triage minimizes personal data in summaries and separately manages shared replies and internal notes. Internal notes must never enter user HTML/JSON/RSC or hidden DOM. No automatic external service messaging/calendar, uploads or real incident response.
@@ -38,6 +40,8 @@ Own ticket list/detail includes the shared conversation and permitted actions. A
 ## Project/report/support — W5
 
 Admin project creation starts from the reviewed ticket. The owner opens the project from the ticket or Reports & Progress. Before publication the owner sees progress and the awaiting state. After publication the owner sees the active immutable version. The draft editor includes the approved fictional order-portal example. Admins can open version history from the same project.
+
+The owner project puts the private report and follow-up in the primary column, with agreement, support, and progress beside them. The admin project places the report editor and version history in the primary column, with the agreed scope beside them.
 
 Published corrections create new versions with change notes. Findings/paths remain inert text; no scan logs, PDF/share links, uploads or repair action. User programmer-change assertions stay separate from illustrative admin review outcomes.
 

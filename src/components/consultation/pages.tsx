@@ -123,7 +123,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
   const scheduleLabel = schedule && timestamp(locale, schedule.at, schedule.zone);
   const endpoint = view === 'admin' ? `/api/admin/tickets/${id}/` : `/api/tickets/${id}/`;
   const canNegotiate = !ticket.follow_up_kind && !projectId && ticket.status !== 'closed' && page === 1;
-  return <PrivateAccountScope id={actor.id} capability={view === 'admin' ? 'admin' : undefined}><main id="main-content" className="ticket-page" tabIndex={-1}>
+  return <PrivateAccountScope id={actor.id} capability={view === 'admin' ? 'admin' : undefined}><main id="main-content" className="ticket-page portal-detail" tabIndex={-1}>
     <Link href={listPath} className="inline-link" prefetch={false}>{copy.back}</Link>
     <header className="ticket-page-head"><div><p className="eyebrow">CELAHAN / {ticket.follow_up_kind ? follow.kinds[ticket.follow_up_kind] : copy.needs[ticket.need]}</p><h1>{ticket.reference}</h1></div>
       <span className="ticket-state">{copy.statuses[ticket.status]}</span>
@@ -152,7 +152,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
           {ticket.outcome && <><h2>{copy.outcome}</h2><p className="ticket-text">{ticket.outcome}</p></>}
           {ticket.close_reason && <><h2>{copy.closeReason}</h2><p className="ticket-text">{ticket.close_reason}</p></>}
         </section>}
-        <section className="ticket-panel">
+        <section className="ticket-panel ticket-conversation">
           <h2>{copy.history}</h2>
           <TicketConversation key={`${id}:${page}`} locale={locale} accountId={actor.id} endpoint={endpoint} version={ticket.version}
             actions={actions} recommended={recommended} scheduleLabel={scheduleLabel} live={page === 1 && ticket.status !== 'closed'}
@@ -164,21 +164,21 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
       <aside className="ticket-detail-side">
         {view === 'admin' && canNegotiate && scopes[0]?.decision === 'approved' &&
           <CreateProjectForm locale={locale} accountId={actor.id} ticketId={id} scopeVersion={scopes[0].version} />}
-        <section className="ticket-panel"><h2>{copy.schedule}</h2>
-          {schedule ? <><p className="ticket-state">{copy.scheduleStates[schedule.state]}</p><p>{scheduleLabel}</p></> : <p>{copy.noSchedule}</p>}
-        </section>
         <section className="ticket-panel"><h2>{copy.submission}</h2>
-          <dl className="ticket-summary">
-            <dt>{copy.name}</dt><dd>{ticket.name}</dd>
-            {ticket.company && <><dt>{copy.company}</dt><dd>{ticket.company}</dd></>}
-            <dt>{copy.website}</dt><dd>{ticket.website}</dd>
-            {ticket.package_code && <><dt>{packageCopy[locale].selected}</dt><dd>{packageCopy[locale].items[ticket.package_code].name}</dd></>}
-            {ticket.follow_up_kind ? <><dt>{follow.reportVersion}</dt><dd>{ticket.report_version}</dd></>
-              : <><dt>{copy.reason}</dt><dd>{ticket.reason}</dd></>}
-            <dt>{copy.description}</dt><dd className="ticket-text">{ticket.description}</dd>
+          <dl className="ticket-summary reading-fields">
+            <div><dt>{copy.name}</dt><dd>{ticket.name}</dd></div>
+            {ticket.company && <div><dt>{copy.company}</dt><dd>{ticket.company}</dd></div>}
+            <div><dt>{copy.website}</dt><dd>{ticket.website}</dd></div>
+            {ticket.package_code && <div><dt>{packageCopy[locale].selected}</dt><dd>{packageCopy[locale].items[ticket.package_code].name}</dd></div>}
+            {ticket.follow_up_kind ? <div><dt>{follow.reportVersion}</dt><dd>{ticket.report_version}</dd></div>
+              : <div><dt>{copy.reason}</dt><dd>{ticket.reason}</dd></div>}
+            <div><dt>{copy.description}</dt><dd className="ticket-text">{ticket.description}</dd></div>
           </dl>
         </section>
-        {view === 'admin' && notes && <section className="ticket-panel ticket-notes">
+        <section className="ticket-panel portal-context"><h2>{copy.schedule}</h2>
+          {schedule ? <><p className="ticket-state">{copy.scheduleStates[schedule.state]}</p><p>{scheduleLabel}</p></> : <p>{copy.noSchedule}</p>}
+        </section>
+        {view === 'admin' && notes && <section className="ticket-panel ticket-notes portal-context">
           <h2>{copy.notes}</h2><p className="supporting-copy">{copy.notesHint}</p>
           {notes.length === 0 ? <p>{copy.noNotes}</p> : <ul className="ticket-events">{notes.map(note => <li key={note.id}>
             <time dateTime={note.created_at.toISOString()}>{timestamp(locale, note.created_at)}</time><p className="ticket-text">{note.body}</p>
