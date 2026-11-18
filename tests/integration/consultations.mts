@@ -96,10 +96,13 @@ async function browser(owner: Fixture, admin: Fixture, other: Fixture) {
 
 async function followUps(projectId: string, reportId: string, owner: Fixture, admin: Fixture, other: Fixture) {
   const endpoint = `/api/projects/${projectId}/follow-up/`;
-  const input = { requestId: randomUUID(), reportId, kind: 'retest', body: 'The programmer updated access checks in the fictional order portal.' };
+  const withoutSelection = { requestId: randomUUID(), reportId, kind: 'retest', body: 'The programmer updated access checks in the fictional order portal.' };
+  const input = { ...withoutSelection, findings: [1, 2] };
   result(await http(endpoint, other, input), 404, 'only the project owner can create a follow-up');
   result(await http(endpoint, owner, { ...input, reportId: randomUUID() }), 409, 'report must belong to project and be active');
   result(await http(endpoint, owner, { ...input, retest_state: 'accepted' }), 400, 'owner cannot submit privileged fields');
+  result(await http(endpoint, owner, { ...input, findings: [3] }), 409, 'selection must belong to this report version');
+  result(await http(endpoint, owner, withoutSelection), 409, 'structured retest must select findings');
   const [first, retry] = await Promise.all([http(endpoint, owner, input), http(endpoint, owner, input)]);
   const id = result(first, 200, 'retest submitted').id;
   assert.equal(result(retry, 200, 'concurrent retry returns the same ticket').id, id);
@@ -114,14 +117,23 @@ async function followUps(projectId: string, reportId: string, owner: Fixture, ad
   await command(nextId, admin, true, 1, 'clarify', { body: 'What changed in the access check?' });
   await command(nextId, owner, false, 2, 'reply', { body: 'The example verifies the owner before showing the order.' });
   await command(nextId, admin, true, 3, 'accept_retest');
-  const finish = { requestId: randomUUID(), version: 4, kind: 'finish_retest', result: 'resolved_in_example', body: 'The illustrative example checks ownership.' };
+  const finish = { requestId: randomUUID(), version: 4, kind: 'finish_retest', outcomes: [
+    { finding: 1, result: 'resolved_in_example' }, { finding: 2, result: 'not_verified' },
+  ], body: 'The illustrative review records each selected finding.' };
   const adminTicket = `/api/admin/tickets/${nextId}/`;
+  result(await http(adminTicket, admin, { ...finish, outcomes: finish.outcomes.slice(0, 1) }), 409, 'outcomes must cover every selection');
+  result(await http(adminTicket, admin, { ...finish, outcomes: [finish.outcomes[0], { finding: 3, result: 'not_verified' }] }), 409, 'outcomes cannot replace a selection');
+  await command(nextId, admin, true, 4, 'finish_retest', { result: 'not_verified', body: 'A structured retest has individual outcomes.' }, 409);
   for (const response of await Promise.all([http(adminTicket, admin, finish), http(adminTicket, admin, finish)])) result(response, 200, 'finish is retry-safe');
   const project = await http(`/en/projects/${projectId}/`, owner);
-  assert.ok(project.body.includes('Resolved in the example') && project.body.includes('Cycle completed'));
+  assert.ok(project.body.includes('Illustrative result') && project.body.includes('Cycle completed'));
+  const ticket = await http(`/en/tickets/${nextId}/`, owner);
+  assert.ok(ticket.body.includes('Resolved in the example') && ticket.body.includes('Unverified'));
+  assert.equal((await http(`/en/tickets/${nextId}/`, other)).status, 404);
   await command(nextId, admin, true, 5, 'close', { body: 'The finished review is closed.' });
   assert.equal(result(await http(endpoint, owner, { ...input, requestId: randomUUID() }), 409, 'closing a completed cycle does not restore it').error, 'CYCLE_USED');
-  result(await http(endpoint, owner, { ...input, requestId: randomUUID(), kind: 'question' }), 200, 'questions do not require a cycle');
+  result(await http(endpoint, owner, { ...withoutSelection, requestId: randomUUID(), kind: 'question' }), 200, 'questions do not require a cycle');
+  return nextId;
 }
 
 async function expiredSupport(owner: Fixture, admin: Fixture) {
@@ -195,7 +207,10 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   const adminPath = `/id/admin/projects/${projectId}/`;
   const api = `/api/admin/projects/${projectId}/`;
   const canary = `fictional-draft-${run}`;
-  const body = { summary: canary, scope: 'Fictional order history', finding: 'Illustrative ownership issue', impact: 'Illustrative record exposure', recommendation: 'Check the owner from the session' };
+  const body = { summary: canary, scope: 'Fictional order history', findings: [
+    { title: 'Original ownership finding', description: 'Illustrative ownership issue', impact: 'Illustrative record exposure', recommendation: 'Check the owner from the session', priority: 'high' },
+    { title: 'Original recovery finding', description: 'Illustrative recovery issue', impact: 'Recovery ambiguity', recommendation: 'Use one-time recovery codes', priority: 'medium' },
+  ] };
   const draft = { kind: 'save', requestId: randomUUID(), reportId: null, revision: 0, body, changeNote: '' };
   result(await http(api, owner, draft), 404, 'owner cannot edit report');
   result(await http(api, admin, { ...draft, supportExpiresAt: '2099-01-01' }), 400, 'client expiry is rejected');
@@ -224,7 +239,7 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   const started = await period();
   assert.equal(started.first_report_id, reportId);
   assert.ok(started.support_started_at && started.support_expires_at && started.support_policy);
-  if (checkW5B) await followUps(projectId, reportId, owner, admin, other);
+  const retestId = checkW5B ? await followUps(projectId, reportId, owner, admin, other) : null;
   const dates = await runtime.query(`SELECT
     public.w5a_support_expiry('2025-01-31 10:15+07') = '2025-04-30 10:15+07'::timestamptz AS month_end,
     public.w5a_support_expiry('2023-11-30 10:15+07') = '2024-02-29 10:15+07'::timestamptz AS leap_day,
@@ -232,7 +247,9 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   assert.deepEqual(dates.rows[0], { month_end: true, leap_day: true, restricted: true });
   await assert.rejects(runtime.query("UPDATE project_report_version SET body = '{}' WHERE id = $1", [reportId]), { code: 'P0001' });
   result(await http(api, admin, { ...draft, requestId: randomUUID() }), 409, 'correction requires a change note');
-  const correction = { ...draft, requestId: randomUUID(), changeNote: 'Clarify the example', body: { ...body, summary: 'Corrected illustrative version' } };
+  const correction = { ...draft, requestId: randomUUID(), changeNote: 'Clarify the example', body: {
+    ...body, summary: 'Corrected illustrative version', findings: [{ ...body.findings[0], title: 'Corrected ownership finding' }],
+  } };
   result(await http(api, admin, correction), 200, 'save correction');
   const next = await db.query<{ id: string }>("SELECT id FROM project_report_version WHERE project_id = $1 AND state = 'draft'", [projectId]);
   const nextId = next.rows[0].id;
@@ -240,6 +257,13 @@ async function projects(ticketId: string, owner: Fixture, admin: Fixture, other:
   result(await http(api, admin, { ...publish, requestId: randomUUID(), reportId: nextId }), 200, 'publish correction');
   const corrected = await http(path, owner);
   assert.ok(corrected.body.includes('Corrected illustrative version') && !corrected.body.includes(canary));
+  if (retestId) {
+    const history = await http(`/en/tickets/${retestId}/`, owner);
+    assert.ok(history.body.includes('Original recovery finding') && !history.body.includes('Corrected ownership finding'));
+    result(await http(`/api/projects/${projectId}/follow-up/`, owner, {
+      requestId: randomUUID(), reportId, kind: 'retest', findings: [1], body: 'A retest must start from the active report.',
+    }), 409, 'new retests cannot reference a superseded report');
+  }
   result(await http(api, admin, { kind: 'withdraw', requestId: randomUUID(), reportId: nextId }), 200, 'withdraw active version');
   assert.ok(!(await http(path, owner)).body.includes('Corrected illustrative version'));
   assert.ok((await http(adminPath, admin)).body.includes(canary));

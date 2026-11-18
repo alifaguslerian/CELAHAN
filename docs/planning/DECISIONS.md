@@ -1,9 +1,11 @@
 # CELAHAN — Decisions
 
-Updated: November 14, 2026
+Updated: November 18, 2026
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
 ## Current precedence
+
+DEC-74 records the owner's November 18 approval of isolated W5D. A private version contains structured findings with a title, explanation, impact, high/medium/low remediation priority, and recommendation. The owner selects findings from one active published version in one request; the admin records one illustrative outcome per selected finding before completing the existing project-wide cycle. Existing reports keep their format. Corrections publish a new version, while prior requests remain tied to their original version and support dates.
 
 DEC-73 authorizes password-only sign-in for verified synthetic accounts, including administrators. It retires authenticator and backup-code flows while retaining database sessions, controlled admin provisioning and server-side resource checks. Public authentication remains a separate decision.
 
@@ -67,6 +69,7 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-71 | Implement the W5C package-selection flow | Homepage preview and dedicated bilingual package page with illustrative prices, plus package-linked intake |
 | DEC-72 | Implement isolated W5C scope approval | Versioned admin proposals, explicit owner decisions and project creation from the current approved scope |
 | DEC-73 | Use email and password for isolated sign-in | Remove authenticator and backup-code workflows. Preserve active/verified identities, role and ownership checks, and login throttling. |
+| DEC-74 | Implement isolated W5D findings and illustrative retests | Structured private reports, multi-finding selection, and outcomes bound to the requested report version |
 
 ## Reviewable operating proposals
 

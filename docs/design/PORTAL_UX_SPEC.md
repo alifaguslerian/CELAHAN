@@ -43,6 +43,8 @@ Admin project creation starts from the reviewed ticket. The owner opens the proj
 
 The owner project puts the private report and follow-up in the primary column, with agreement, support, and progress beside them. The admin project places the report editor and version history in the primary column, with the agreed scope beside them.
 
+W5D groups each published finding under its title and remediation priority. The retest form shows the selectable findings from the active version. The resulting ticket displays the referenced version, selected finding titles, and each illustrative outcome after admin completion.
+
 Published corrections create new versions with change notes. Findings/paths remain inert text; no scan logs, PDF/share links, uploads or repair action. User programmer-change assertions stay separate from illustrative admin review outcomes.
 
 First private publication starts support once and stores the approved Jakarta calendar end. The project shows support status, retest allowance and follow-up actions. A user can ask about the active report after expiry and can start a new consultation for additional review. Upcoming confirmed slots appear on the ticket list with the zone and a link back to the ticket.

@@ -125,10 +125,12 @@ export function ConsultationForm({ locale, name, accountId, packageCode }: {
   </form>;
 }
 
-export function TicketActionForm({ locale, accountId, endpoint, version, replyVersion, actions, recommended, scheduleLabel }: {
+export function TicketActionForm({ locale, accountId, endpoint, version, replyVersion, actions, recommended, scheduleLabel, retestFindings }: {
   locale: Locale; accountId: string; endpoint: string; version: number; replyVersion: number; actions: TicketAction[]; recommended: TicketAction; scheduleLabel: string | null;
+  retestFindings: { number: number; title: string }[];
 }) {
   const copy = consultationCopy[locale];
+  const follow = followUpCopy[locale];
   const router = useRouter();
   const write = usePortalSubmission(locale, accountId, endpoint);
   const [choice, setChoice] = useState<TicketAction | null>(null);
@@ -142,7 +144,9 @@ export function TicketActionForm({ locale, accountId, endpoint, version, replyVe
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const payload = action === 'propose' ? { wallTime: data.get('wallTime'), zone: data.get('zone') } : bodyLabel ? { body: data.get('body') } : {};
-    const result = action === 'finish_retest' ? { result: data.get('result') } : {};
+    const result = action === 'finish_retest' ? retestFindings.length
+      ? { outcomes: retestFindings.map(finding => ({ finding: finding.number, result: data.get(`result-${finding.number}`) })) }
+      : { result: data.get('result') } : {};
     void write.submit({ kind: action, version: action === 'reply' ? replyVersion : version, ...payload, ...result }, () => {
       form.current?.reset();
       setChoice(null);
@@ -155,10 +159,15 @@ export function TicketActionForm({ locale, accountId, endpoint, version, replyVe
       <label>{copy.action}<select value={action} onChange={event => {
         if (write.discardDraft()) setChoice(event.target.value as TicketAction);
       }}>{actions.map(item => <option key={item} value={item}>{copy.actions[item]}</option>)}</select></label>
-      {action === 'finish_retest' && <label>{followUpCopy[locale].result}<select name="result" required defaultValue="" onChange={write.markDirty}>
-        <option value="" disabled>{followUpCopy[locale].selectResult}</option>
-        {retestResults.map(result => <option key={result} value={result}>{followUpCopy[locale].results[result]}</option>)}
-      </select></label>}
+      {action === 'finish_retest' && <div className="retest-findings">
+        {(retestFindings.length ? retestFindings : [{ number: 0, title: '' }]).map(({ number, title }) =>
+          <label key={number}>{number ? `${number}. ${title}` : follow.result}
+            <select name={number ? `result-${number}` : 'result'} required defaultValue="" onChange={write.markDirty}>
+              <option value="" disabled>{follow.selectResult}</option>
+              {retestResults.map(result => <option key={result} value={result}>{follow.results[result]}</option>)}
+            </select>
+          </label>)}
+      </div>}
       {bodyLabel && <label key={action}>{bodyLabel}<textarea name="body" required maxLength={3000} rows={4} aria-describedby="ticket-visibility" onChange={write.markDirty} />
         <span id="ticket-visibility" className="supporting-copy">{action === 'note' ? copy.privateHint : copy.sharedHint}</span>
       </label>}

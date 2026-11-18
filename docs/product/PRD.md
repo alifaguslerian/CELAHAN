@@ -1,6 +1,6 @@
 # CELAHAN — Product Requirements Document
 
-Status: W1 through W4 and isolated W5A/W5B/W5C are implemented. W5D and W6 are pending.
+Status: W1 through W4 and isolated W5A–W5D are implemented. W6 is pending.
 Version: 1.7 Layers desktop implementation · November 6, 2026  
 References: [Brief](PROJECT_BRIEF.md), [Operations](SERVICE_OPERATIONS.md), [Flows](USER_FLOWS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Decisions](../planning/DECISIONS.md)
 
@@ -44,7 +44,7 @@ Existing FUN identifiers are revised in place for the new scope. Historical vali
 | FUN-22 | Admin management | Authorized triage, priority, scheduling, project assignment, report publication and internal notes in shared-site task content |
 | FUN-23 | Customer relationship | Derived from server-owned project association/history, never a signup checkbox or client flag |
 | FUN-24 | Three-month benefits | Start at first private project report publication; stored start/expiry, reviewed calendar/cycle rules and temporary follow-up-review discount |
-| FUN-25 | Retest lifecycle | User reports a fix; admin records illustrative review outcome; immutable published report history |
+| FUN-25 | Retest lifecycle | Owner selects findings from a published version and describes changes; admin records one illustrative outcome per selected finding in the project-wide cycle |
 | FUN-26 | Privacy operations | Accurate collection/retention notice, deletion process and access controls approved before public intake |
 
 ## 3. Intake and field baseline

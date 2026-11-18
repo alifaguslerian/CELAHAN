@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
-Updated: November 14, 2026
-Status: Layers desktop with static material imagery. Isolated W4 and W5A/W5B/W5C are implemented. W5D and W6 remain gated.
+Updated: November 18, 2026
+Status: Layers desktop with static material imagery. Isolated W4 and W5A–W5D are implemented. W6 remains gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -80,7 +80,7 @@ DEC-71 authorizes the homepage preview, dedicated bilingual package page with il
 
 ## W5D — Reports by finding and remediation follow-up
 
-Proposed scope: structured findings, priorities and per-finding retest outcomes linked to the report version. This requires separate approval.
+DEC-74 authorizes structured findings, remediation priorities, and per-finding illustrative outcomes linked to the requested report version. The owner selects one or more findings in one project-wide cycle. Existing published reports retain their original content, and corrections do not restart support.
 
 ## W6 — Final verification and authorized release
 

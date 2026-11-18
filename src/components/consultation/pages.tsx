@@ -146,6 +146,16 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
         {ticket.retest_result && <section className="ticket-panel">
           <h2>{follow.result}</h2><p>{follow.results[ticket.retest_result]}</p>
         </section>}
+        {ticket.selected_findings?.length ? <section className="ticket-panel">
+          <h2>{ticket.retest_state === 'completed' ? follow.result : follow.selectedFindings}</h2>
+          <p className="supporting-copy">{follow.reportVersion} · {ticket.report_version}</p>
+          <ol className="ticket-events">
+            {ticket.selected_findings.map(finding => <li key={finding.number}>
+              <strong>{finding.number}. {finding.title}</strong>
+              {finding.result && <p>{follow.results[finding.result]}</p>}
+            </li>)}
+          </ol>
+        </section> : null}
         {view === 'admin' && !ticket.reviewable && (ticket.retest_state === 'pending' || ticket.retest_state === 'accepted')
           && <p className="ticket-panel">{follow.withdrawn}</p>}
         {(ticket.outcome || ticket.close_reason) && <section className="ticket-panel">
@@ -156,6 +166,7 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
           <h2>{copy.history}</h2>
           <TicketConversation key={`${id}:${page}`} locale={locale} accountId={actor.id} endpoint={endpoint} version={ticket.version}
             actions={actions} recommended={recommended} scheduleLabel={scheduleLabel} live={page === 1 && ticket.status !== 'closed'}
+            retestFindings={view === 'admin' ? ticket.selected_findings?.map(({ number, title }) => ({ number, title })) ?? [] : []}
             events={events.map(event => ({ ...event, created_at: event.created_at.toISOString(), schedule_at: event.schedule_at?.toISOString() ?? null }))}
             pagination={page > 1 || more ? <Pagination locale={locale} path={path} page={page} more={more} /> : null}
             olderHref={page === 1 ? `${path}?page=2` : null} />

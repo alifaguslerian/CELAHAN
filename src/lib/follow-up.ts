@@ -1,15 +1,18 @@
-import { isTicketId, objectWith, text, type TicketView } from './consultation.ts';
+import { findingNumbers, isTicketId, objectWith, text, type TicketView } from './consultation.ts';
 
 export type FollowUpKind = 'question' | 'retest';
 export type RetestState = 'pending' | 'accepted' | 'completed' | 'canceled';
-export type FollowUpInput = { requestId: string; reportId: string; kind: FollowUpKind; body: string };
+export type FollowUpInput = { requestId: string; reportId: string; kind: FollowUpKind; body: string; findings?: number[] };
 
 export function parseFollowUp(value: unknown): FollowUpInput | null {
-  if (!objectWith(value, ['requestId', 'reportId', 'kind', 'body'])) return null;
+  const fields = ['requestId', 'reportId', 'kind', 'body'];
+  if (!objectWith(value, fields) && !objectWith(value, [...fields, 'findings'])) return null;
   const { requestId, reportId, kind } = value;
   const body = text(value.body, 10, 3000);
   if (!isTicketId(requestId) || !isTicketId(reportId) || (kind !== 'question' && kind !== 'retest') || !body) return null;
-  return { requestId, reportId, kind, body };
+  const findings = findingNumbers(value.findings);
+  if (Object.hasOwn(value, 'findings') && (kind !== 'retest' || !findings)) return null;
+  return { requestId, reportId, kind, body, ...(findings && { findings }) };
 }
 
 export function followUpActions(state: RetestState | null, view: TicketView, reviewable: boolean) {

@@ -21,7 +21,7 @@ export async function projectPost(request: Request, id: string, target: 'ticket'
     if (!account || request.headers.get('x-celahan-account') !== account.id) return privateJSON({ error: 'SESSION' }, 401);
     if (!isResourceId(id) || (target !== 'follow-up' && !account.admin)) return privateJSON({ error: 'NOT_FOUND' }, 404);
     let body: unknown;
-    try { body = await boundedJSON(request, target === 'follow-up' ? 24 * 1024 : 64 * 1024); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
+    try { body = await boundedJSON(request, target === 'project' ? 200 * 1024 : 24 * 1024); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
     if (target === 'follow-up') {
       const input = parseFollowUp(body);
       if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);

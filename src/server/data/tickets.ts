@@ -18,6 +18,7 @@ type TicketRow = TicketSummary & {
 };
 type FollowUp = {
   project_id: string; report_version: number; retest_state: RetestState | null; retest_result: RetestResult | null; reviewable: boolean;
+  selected_findings: { number: number; title: string; result: RetestResult | null }[] | null;
 };
 type Event = {
   id: string; actor: TicketView; kind: Exclude<TicketCommand['kind'], 'note'> | 'created';
@@ -72,6 +73,10 @@ export async function ticketDetails(actor: Actor, view: TicketView, id: string, 
     `SELECT t.id, t.reference, t.need, t.status, t.updated_at, t.package_code, t.name, t.company, t.website,
        t.reason, t.description, t.outcome, t.close_reason, t.version, t.schedule_at, t.schedule_zone, t.schedule_state, t.schedule_by,
        f.kind AS follow_up_kind, f.retest_state, f.retest_result, r.version AS report_version,
+       (SELECT jsonb_agg(jsonb_build_object('number', n.finding, 'title', r.body->'findings'->(n.finding - 1)->>'title',
+         'result', f.finding_results[n.position]) ORDER BY n.position)
+        FROM unnest(f.finding_numbers) WITH ORDINALITY n(finding, position)
+        WHERE r.state IN ('published', 'superseded')) AS selected_findings,
        COALESCE(f.project_id, (
          SELECT source.id FROM assessment_project source JOIN project_access a_source ON a_source.id = source.id
          WHERE source.consultation_id = t.id AND ($1::boolean OR a_source.owner_id = $2)
@@ -172,8 +177,8 @@ export async function applyTicketCommand(actor: Actor, view: TicketView, id: str
         }
       } else if (command.kind === 'accept_retest' || command.kind === 'finish_retest') {
         if (ticket.status === 'closed' || view !== 'admin' || ticket.follow_up_kind !== 'retest') return 'denied';
-        const followUp = await client.query<Pick<FollowUp, 'project_id' | 'retest_state'>>(
-          'SELECT project_id, retest_state FROM project_follow_up WHERE ticket_id = $1', [id]);
+        const followUp = await client.query<Pick<FollowUp, 'project_id' | 'retest_state'> & { finding_numbers: number[] }>(
+          'SELECT project_id, retest_state, finding_numbers FROM project_follow_up WHERE ticket_id = $1', [id]);
         const cycle = followUp.rows[0];
         if (!cycle || !followUpActions(cycle.retest_state, view, true).some(action => action === command.kind)) return 'denied';
         // Serialize review decisions with report publication and withdrawal.
@@ -183,6 +188,12 @@ export async function applyTicketCommand(actor: Actor, view: TicketView, id: str
           JOIN project_report_version r ON r.project_id = f.project_id AND r.id = f.report_id
           WHERE f.ticket_id = $1 AND r.state IN ('published', 'superseded') AND t.created_at < p.support_expires_at`, [id]);
         if (!report.rowCount) return 'conflict';
+        if (command.kind === 'finish_retest') {
+          const selected = cycle.finding_numbers;
+          if (selected.length
+            ? !command.outcomes || command.outcomes.length !== selected.length || selected.some((number, index) => command.outcomes?.[index].finding !== number)
+            : !command.result) return 'conflict';
+        }
       } else if (!ticketActions({ ...ticket, schedule }, view).includes(command.kind)) return 'denied';
       const changed = await writeCommand(client, id, actor, view, ticket, schedule, command);
       if (changed !== 'ok') return changed;
@@ -219,7 +230,8 @@ async function writeCommand(client: PoolClient, id: string, actor: Actor, view: 
       await client.query("UPDATE project_follow_up SET retest_state = 'accepted' WHERE ticket_id = $1", [id]);
       break;
     case 'finish_retest':
-      await client.query("UPDATE project_follow_up SET retest_state = 'completed', retest_result = $2 WHERE ticket_id = $1", [id, command.result]);
+      await client.query("UPDATE project_follow_up SET retest_state = 'completed', retest_result = $2, finding_results = $3 WHERE ticket_id = $1",
+        [id, command.result ?? null, command.outcomes?.map(item => item.result) ?? null]);
       status = 'answered';
       break;
     case 'propose':

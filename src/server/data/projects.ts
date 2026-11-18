@@ -113,7 +113,7 @@ async function saveDraft(client: PoolClient, project: Project, actor: Actor, com
 
 async function publish(client: PoolClient, id: string, actor: Actor, command: Extract<ProjectCommand, { kind: 'publish' }>): Promise<Result> {
   const draft = await client.query(
-    "SELECT id FROM project_report_version WHERE project_id = $1 AND id = $2 AND revision = $3 AND state = 'draft'",
+    "SELECT id FROM project_report_version WHERE project_id = $1 AND id = $2 AND revision = $3 AND state = 'draft' AND body ? 'findings'",
     [id, command.reportId, command.revision]);
   if (!draft.rowCount) return 'conflict';
   await client.query("UPDATE project_report_version SET state = 'superseded' WHERE project_id = $1 AND state = 'published'", [id]);

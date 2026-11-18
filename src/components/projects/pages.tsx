@@ -4,7 +4,7 @@ import { projectCopy } from '@/content/projects';
 import { followUpCopy } from '@/content/follow-up';
 import { disclaimer } from '@/content/shell';
 import { isTicketId as isResourceId, ticketPage } from '@/lib/consultation';
-import { reportFields } from '@/lib/projects';
+import { reportFields, reportOverview } from '@/lib/projects';
 import { isLocale, type Locale } from '@/lib/routing';
 import { currentPageAccount, currentPageIdentity } from '@/server/auth/session';
 import { adminProject, listOwnedProjects, ownedProject, type ReportVersion } from '@/server/data/projects';
@@ -31,14 +31,30 @@ function Pages({ locale, path, page, more }: { locale: Locale; path: string; pag
 
 function ReportText({ locale, version }: { locale: Locale; version: ReportVersion }) {
   const copy = projectCopy[locale];
+  const { body } = version;
   return <div className="report-text">
     {version.published_at && <p className="supporting-copy report-date"><time dateTime={new Date(version.published_at).toISOString()}>{dateLabel(locale, version.published_at)}</time></p>}
     {version.change_note && <p className="ticket-text"><strong>{copy.changeNote}</strong> · {version.change_note}</p>}
-    <dl className="ticket-summary reading-fields">
-      {reportFields.map(field => <div key={field}>
-        <dt>{copy.fields[field]}</dt><dd className="ticket-text">{version.body[field]}</dd>
-      </div>)}
-    </dl>
+    {'findings' in body ? <>
+      <dl className="ticket-summary reading-fields">
+        {reportOverview.map(field => <div key={field}><dt>{copy.fields[field]}</dt><dd className="ticket-text">{body[field]}</dd></div>)}
+      </dl>
+      <div className="report-findings">
+        <h3>{copy.findings}</h3>
+        <ol>{body.findings.map((finding, index) => <li key={index}>
+          <header><h4>{index + 1}. {finding.title}</h4><span className="ticket-state finding-priority" data-priority={finding.priority}>
+            {copy.priority} · {copy.priorities[finding.priority]}
+          </span></header>
+          <p className="ticket-text">{finding.description}</p>
+          <dl className="ticket-summary reading-fields">
+            <div><dt>{copy.fields.impact}</dt><dd className="ticket-text">{finding.impact}</dd></div>
+            <div><dt>{copy.fields.recommendation}</dt><dd className="ticket-text">{finding.recommendation}</dd></div>
+          </dl>
+        </li>)}</ol>
+      </div>
+    </> : <dl className="ticket-summary reading-fields">
+      {reportFields.map(field => <div key={field}><dt>{copy.fields[field]}</dt><dd className="ticket-text">{body[field]}</dd></div>)}
+    </dl>}
     <div className="report-disclaimer">
       <p className="disclaimer" lang="id">{disclaimer.id}</p>
       {locale === 'en' && <p className="disclaimer" lang="en">{disclaimer.en}</p>}
@@ -91,12 +107,14 @@ export async function ProjectDetail({ locale, id }: { locale: string; id: string
           {(project.report || Boolean(followUps?.rows.length)) && <section className="ticket-panel">
             <h2>{follow.title}</h2>
             {!followUps ? <p role="status">{follow.unavailable}</p> : <>
-              {project.report && <FollowUpForm locale={locale} accountId={account.id} projectId={id} reportId={project.report.id}
+              {project.report && <FollowUpForm key={project.report.id} locale={locale} accountId={account.id} projectId={id} reportId={project.report.id}
+                findings={'findings' in project.report.body ? project.report.body.findings.map(finding => finding.title) : []}
                 canRetest={active && !followUps.cycle} />}
               {followUps.rows.length > 0 && <ul className="ticket-events">{followUps.rows.map(row => <li key={row.id}>
                 <div><Link prefetch={false} href={`/${locale}/tickets/${row.id}/`}>{follow.kinds[row.kind]} · {row.reference}</Link>
                   {row.retest_state && <span>{follow.states[row.retest_state]}</span>}</div>
                 {row.retest_result && <p>{follow.results[row.retest_result]}</p>}
+                {row.has_finding_results && <p className="supporting-copy">{follow.result} · {copy.version} {row.report_version}</p>}
               </li>)}</ul>}
             </>}
           </section>}

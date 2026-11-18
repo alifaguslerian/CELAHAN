@@ -273,6 +273,16 @@ button:disabled { cursor: not-allowed; opacity: .7; }
 .ticket-conversation .ticket-events li > div:last-child { margin-bottom: 0; }
 .ticket-conversation .ticket-events .ticket-text { margin-top: .5rem; max-width: 68ch; }
 .report-text { display: grid; gap: 1rem; }
+.report-findings { display: grid; gap: .75rem; }
+.report-findings ol { display: grid; gap: .8rem; list-style: none; margin: 0; padding: 0; }
+.report-findings li { display: grid; gap: .8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1rem; }
+.report-findings li header { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem .8rem; }
+.report-findings h4 { margin: 0; font-size: 1rem; }
+.finding-priority { background: var(--panel); }
+.finding-priority[data-priority="high"] { background: #fae9e1; color: #75351e; }
+.finding-priority[data-priority="medium"] { background: #f6efd8; color: #625017; }
+.finding-editor, .retest-findings { display: grid; gap: .75rem; padding: 1rem; border: 1px solid var(--line); border-radius: 6px; }
+.finding-editor .text-button, .finding-add { justify-self: start; }
 .report-date { font-size: .84rem; }
 .report-disclaimer { padding-top: .85rem; border-top: 1px solid var(--line); }
 .report-history details { border-top: 1px solid var(--line); }

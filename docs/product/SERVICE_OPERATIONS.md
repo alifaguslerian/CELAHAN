@@ -88,6 +88,8 @@ Future illustrative drafts require newly reviewed report content/provenance. No 
 
 Published versions are immutable. Corrections create a new version with a change note; withdrawal removes user access while preserving authorized administrative history. Users see published versions only. Findings/paths render as inert text. PDF generation, uploads and public share links are deferred.
 
+Under DEC-74, each structured finding has a title, description, impact, high/medium/low remediation priority, and recommendation. The admin assigns priority based on impact. An owner may select several findings from the active published report in one retest. The admin supplies an illustrative outcome for every selection to complete the cycle. Existing reports and legacy single-result retests remain readable.
+
 A user may report that their programmer addressed a finding. This creates a follow-up assertion, not a verified status. An admin may add an explicitly illustrative review outcome: resolved_in_example, unresolved_in_example, or not_verified. Keep those events separate from the reviewed report content and published version. No button performs a real retest.
 
 ## 10. Three-month support baseline

@@ -1,14 +1,19 @@
-import { isTicketId as isResourceId, isPositiveVersion, objectWith, text } from './consultation.ts';
+import { isTicketId as isResourceId, isPositiveVersion, maxFindings, objectWith, text } from './consultation.ts';
 
 export const reportFields = ['summary', 'scope', 'finding', 'impact', 'recommendation'] as const;
-export type ReportBody = Record<typeof reportFields[number], string>;
+export const reportOverview = ['summary', 'scope'] as const;
+export const findingFields = ['title', 'description', 'impact', 'recommendation'] as const;
+export const findingPriorities = ['high', 'medium', 'low'] as const;
+export type Finding = Record<typeof findingFields[number], string> & { priority: typeof findingPriorities[number] };
+export type StructuredReport = Record<typeof reportOverview[number], string> & { findings: Finding[] };
+export type ReportBody = StructuredReport | Record<typeof reportFields[number], string>;
 export type ProjectStage = 'created' | 'preparing' | 'published';
 export type ProjectEvent = 'created' | 'preparing' | 'published' | 'withdrawn';
 export type ReportState = 'draft' | 'published' | 'superseded' | 'withdrawn';
 
 export type ProjectCommand = { requestId: string } & (
   { kind: 'prepare' } |
-  { kind: 'save'; reportId: string | null; revision: number; body: ReportBody; changeNote: string } |
+  { kind: 'save'; reportId: string | null; revision: number; body: StructuredReport; changeNote: string } |
   { kind: 'publish'; reportId: string; revision: number } |
   { kind: 'withdraw'; reportId: string }
 );
@@ -18,14 +23,23 @@ export function parseProjectCreation(value: unknown) {
     ? { scopeVersion: value.scopeVersion } : null;
 }
 
-function parseReport(value: unknown): ReportBody | null {
-  if (!objectWith(value, reportFields)) return null;
+function parseReport(value: unknown): StructuredReport | null {
+  if (!objectWith(value, [...reportOverview, 'findings']) || !Array.isArray(value.findings)
+    || !value.findings.length || value.findings.length > maxFindings) return null;
   const summary = text(value.summary, 1, 3000);
   const scope = text(value.scope, 1, 3000);
-  const finding = text(value.finding, 1, 3000);
-  const impact = text(value.impact, 1, 3000);
-  const recommendation = text(value.recommendation, 1, 3000);
-  return summary && scope && finding && impact && recommendation ? { summary, scope, finding, impact, recommendation } : null;
+  const findings: Finding[] = [];
+  for (const item of value.findings) {
+    if (!objectWith(item, [...findingFields, 'priority'])) return null;
+    const title = text(item.title, 1, 160);
+    const description = text(item.description, 1, 3000);
+    const impact = text(item.impact, 1, 3000);
+    const recommendation = text(item.recommendation, 1, 3000);
+    const priority = findingPriorities.find(option => option === item.priority);
+    if (!title || !description || !impact || !recommendation || !priority) return null;
+    findings.push({ title, description, impact, recommendation, priority });
+  }
+  return summary && scope ? { summary, scope, findings } : null;
 }
 
 export function parseProjectCommand(value: unknown): ProjectCommand | null {

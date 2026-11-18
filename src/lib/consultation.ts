@@ -16,6 +16,15 @@ export type ScopeProposal = ScopeContent & {
   decision_note: string | null; proposed_at: string; decided_at: string | null;
 };
 export type RetestResult = typeof retestResults[number];
+export const maxFindings = 6;
+export type FindingOutcome = { finding: number; result: RetestResult };
+
+export function findingNumbers(value: unknown): number[] | null {
+  if (!Array.isArray(value) || !value.length || value.length > maxFindings
+    || !value.every(item => isPositiveVersion(item) && item <= maxFindings)
+    || new Set(value).size !== value.length) return null;
+  return [...value].sort((a, b) => a - b);
+}
 export type ConversationEvent = {
   id: string; actor: TicketView; kind: Exclude<TicketAction, 'note'> | ScopeAction | 'created';
   body: string | null; created_at: string; schedule_at: string | null; schedule_zone: string | null;
@@ -38,7 +47,7 @@ export type TicketCommand = CommandBase & (
   { kind: TextAction; body: string } |
   { kind: 'propose'; at: string; zone: string } |
   { kind: 'agree' | 'confirm' | 'accept_retest' } |
-  { kind: 'finish_retest'; result: RetestResult; body: string } |
+  ({ kind: 'finish_retest'; body: string } & ({ result: RetestResult; outcomes?: never } | { outcomes: FindingOutcome[]; result?: never })) |
   ({ kind: 'propose_scope' } & ScopeContent) |
   { kind: 'approve_scope'; scopeVersion: number } |
   { kind: 'revise_scope'; scopeVersion: number; body: string }
@@ -141,10 +150,23 @@ export function parseTicketCommand(value: unknown): TicketCommand | null {
       return at && typeof value.zone === 'string' ? { requestId, version, kind, at, zone: value.zone } : null;
     }
     case 'finish_retest': {
-      if (!objectWith(value, [...base, 'result', 'body'])) return null;
+      if (!objectWith(value, [...base, 'result', 'body']) && !objectWith(value, [...base, 'outcomes', 'body'])) return null;
       const body = text(value.body, 1, 3000);
+      if (!body) return null;
+      if (Object.hasOwn(value, 'outcomes')) {
+        if (!Array.isArray(value.outcomes) || value.outcomes.length > maxFindings) return null;
+        const outcomes: FindingOutcome[] = [];
+        for (const item of value.outcomes) {
+          if (!objectWith(item, ['finding', 'result']) || !isPositiveVersion(item.finding)) return null;
+          const result = retestResults.find(option => option === item.result);
+          if (!result) return null;
+          outcomes.push({ finding: item.finding, result });
+        }
+        return findingNumbers(outcomes.map(item => item.finding))
+          ? { requestId, version, kind, body, outcomes: outcomes.sort((a, b) => a.finding - b.finding) } : null;
+      }
       const result = retestResults.find(option => option === value.result);
-      return body && result ? { requestId, version, kind, result, body } : null;
+      return result ? { requestId, version, kind, result, body } : null;
     }
     case 'agree': case 'confirm': case 'accept_retest':
       return objectWith(value, base) ? { requestId, version, kind } : null;

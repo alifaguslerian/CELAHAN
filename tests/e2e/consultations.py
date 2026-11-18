@@ -180,6 +180,14 @@ with sync_playwright() as playwright:
         admin.get_by_role('button', name='Isi dengan contoh ilustratif').click()
         expect(admin.get_by_label('Ringkasan')).to_have_value(
             'Skenario ilustratif pada portal pesanan fiktif. Contoh ini membahas pemeriksaan kepemilikan data pesanan.')
+        admin.get_by_role('button', name='Tambah temuan').click()
+        second = admin.get_by_role('group', name='Temuan 2', exact=True)
+        second.get_by_label('Judul temuan').fill('Masa berlaku pemulihan akun')
+        second.get_by_label('Prioritas perbaikan').select_option('medium')
+        second.get_by_label('Penjelasan singkat').fill('Skenario fiktif ini meninjau berapa lama kode pemulihan seharusnya berlaku.')
+        second.get_by_label('Dampak ilustratif').fill('Kode yang masih berlaku dapat menambah risiko akses ke akun.')
+        second.get_by_label('Saran perbaikan').fill('Batasi masa berlaku kode dan pastikan kode hanya dapat digunakan sekali.')
+        second.screenshot(path=str(artifacts / 'w5d-editor-id.png'), animations='disabled')
         admin.get_by_role('button', name='Simpan draf').click()
         publish = admin.get_by_role('button', name='Terbitkan draf tersimpan')
         expect(publish).to_be_enabled()
@@ -192,6 +200,7 @@ with sync_playwright() as playwright:
         expect(admin.get_by_role('button', name='Tarik laporan aktif')).to_be_visible()
         owner.reload()
         expect(owner.locator('main')).to_contain_text('Dalam skenario, akun A')
+        expect(owner.locator('.report-findings > ol > li')).to_have_count(2)
         expect(owner.locator('main')).not_to_contain_text('Internal browser fixture canary')
         for page in [owner, admin]:
             for width in [1440, 1024]:
@@ -213,6 +222,11 @@ with sync_playwright() as playwright:
         expect(other.get_by_label('Nama', exact=True)).to_have_value('Audit profile browser')
         other_context.close()
         owner.screenshot(path=str(artifacts / 'w5a-owner-report-en.png'), full_page=True)
+        report_url = owner.url
+        owner.goto(report_url.replace('/en/projects/', '/id/projects/', 1))
+        owner.get_by_role('heading', name='Laporan privat · Versi 1').locator('..').screenshot(
+            path=str(artifacts / 'w5d-laporan-id.png'), animations='disabled')
+        owner.goto(report_url)
         admin.get_by_role('link', name='Tiket konsultasi', exact=True).click()
         owner.get_by_role('link', name='Consultation ticket', exact=True).click()
         print('W5A Chromium journey passed from reviewed ticket to private publication and second-account denial.')
@@ -225,6 +239,9 @@ with sync_playwright() as playwright:
         owner.get_by_role('link', name='View project', exact=True).click()
         follow = owner.get_by_role('heading', name='Report follow-up').locator('..')
         follow.get_by_role('radio', name='Request a retest').check()
+        expect(follow.get_by_role('button', name='Request a retest')).to_be_disabled()
+        follow.get_by_role('checkbox', name='1. Kepemilikan riwayat pesanan').check()
+        follow.get_by_role('checkbox', name='2. Masa berlaku pemulihan akun').check()
         project_url = owner.url
         follow.get_by_label('What did your developer change?').fill('The developer updated ownership checks in the fictional project.')
         follow.get_by_role('button', name='Request a retest').click()
@@ -237,7 +254,7 @@ with sync_playwright() as playwright:
         owner_form.locator('textarea').fill('My draft stays here while an admin replies.')
         action(admin, 'reply', 'Pesan baru muncul otomatis di tiket.')
         owner.bring_to_front()
-        expect(owner.locator('.ticket-events')).to_contain_text('Pesan baru muncul otomatis di tiket.', timeout=15000)
+        expect(owner.locator('.ticket-conversation .ticket-events')).to_contain_text('Pesan baru muncul otomatis di tiket.', timeout=15000)
         expect(owner_form.locator('textarea')).to_have_value('My draft stays here while an admin replies.')
         owner_form.get_by_role('button', name='Send reply').click()
         expect(owner_form.get_by_role('status')).to_have_text('Changes saved.', timeout=17000)
@@ -245,15 +262,22 @@ with sync_playwright() as playwright:
         action(admin, 'accept_retest')
         finish = admin.locator('#ticket-action')
         finish.locator('select').first.select_option('finish_retest')
-        finish.locator('[name=result]').select_option('resolved_in_example')
+        finish.locator('[name=result-1]').select_option('resolved_in_example')
+        finish.locator('[name=result-2]').select_option('unresolved_in_example')
         finish.locator('textarea').fill('Skenario fiktif memeriksa pemilik pesanan.')
         finish.get_by_role('button', name='Simpan hasil ilustratif').click()
         expect(finish.get_by_role('status')).to_have_text('Perubahan tersimpan.')
-        owner.goto(project_url)
+        owner.reload()
         expect(owner.get_by_text('Resolved in the example')).to_be_visible()
+        expect(owner.get_by_text('Still present in the example')).to_be_visible()
+        owner.goto(owner.url.replace('/en/tickets/', '/id/tickets/', 1))
+        owner.get_by_role('heading', name='Hasil ilustratif', exact=True).locator('..').screenshot(
+            path=str(artifacts / 'w5d-hasil-uji-ulang-id.png'), animations='disabled')
+        owner.goto(project_url)
         expect(owner.get_by_role('radio', name='Request a retest')).to_have_count(0)
         owner.screenshot(path=str(artifacts / 'w5b-owner-result-en.png'), full_page=True)
         print('W5B Chromium journey passed follow-up after source closure, live reply with draft preservation, result and agenda.')
+        print('W5D Chromium journey passed multi-finding publication, selection and individual illustrative outcomes.')
     assert owner.evaluate('localStorage.length + sessionStorage.length') == 0
 
     no_js = context_for(browser, 'owner', java_script_enabled=False)

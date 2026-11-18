@@ -32,7 +32,7 @@ try {
     await client.query('GRANT UPDATE (revision, state, body, change_note, published_at) ON project_report_version TO celahan_app');
     await client.query('GRANT USAGE ON SEQUENCE assessment_project_event_id_seq TO celahan_app');
     await client.query('GRANT SELECT, INSERT ON project_follow_up TO celahan_app');
-    await client.query('GRANT UPDATE (retest_state, retest_result) ON project_follow_up TO celahan_app');
+    await client.query('GRANT UPDATE (retest_state, retest_result, finding_results) ON project_follow_up TO celahan_app');
     await client.query('COMMIT');
     const runtimeURL = new URL(ownerURL);
     runtimeURL.username = 'celahan_app'; runtimeURL.password = password;
