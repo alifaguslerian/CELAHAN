@@ -25,6 +25,9 @@ __pycache__/
 *.pfx
 playwright/.auth/
 
+# Local academic submissions containing student details
+/docx/
+
 # Temporary output and machine-specific files
 *.log
 *.tmp
