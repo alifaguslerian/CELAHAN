@@ -21,6 +21,8 @@ export async function POST(request: Request) {
     const forwarded = new Headers({ 'Content-Type': 'application/json', origin: config.origin, 'x-celahan-client-ip': '127.0.0.1' });
     const cookie = request.headers.get('cookie');
     if (cookie) forwarded.set('cookie', cookie);
+    const userAgent = request.headers.get('user-agent');
+    if (userAgent) forwarded.set('user-agent', userAgent.slice(0, 300));
     // This transport is loopback-only; client-supplied proxy/IP headers never reach the rate limiter.
     const state = { failed: false };
     const response = await deliveryState.run(state, () => authentication().handler(new Request(config.origin + '/api/auth' + path, { method: 'POST', headers: forwarded, body: JSON.stringify(body) })));

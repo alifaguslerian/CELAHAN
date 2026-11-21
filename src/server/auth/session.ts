@@ -6,7 +6,7 @@ import { authentication } from './instance';
 import { authEnvironment } from './environment';
 import { database } from '../data/pool';
 
-type AccountIdentity = { id: string; name: string; email: string; admin: boolean };
+type AccountIdentity = { id: string; sessionId: string; name: string; email: string; emailVerified: boolean; admin: boolean };
 export type AccountState = AccountIdentity & { hasProjects: boolean };
 
 export async function currentIdentity(headers: Headers): Promise<AccountIdentity | null> {
@@ -16,7 +16,8 @@ export async function currentIdentity(headers: Headers): Promise<AccountIdentity
   const user = session.user;
   if (!user.emailVerified || !('accountEnabled' in user) || user.accountEnabled !== true) return null;
   return {
-    id: user.id, name: user.name, email: user.email, admin: 'role' in user && user.role === 'admin',
+    id: user.id, sessionId: session.session.id, name: user.name, email: user.email,
+    emailVerified: Boolean(user.emailVerified), admin: 'role' in user && user.role === 'admin',
   };
 }
 

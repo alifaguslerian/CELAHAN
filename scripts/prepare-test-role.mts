@@ -22,6 +22,8 @@ try {
     await client.query('GRANT UPDATE (status, outcome, close_reason, schedule_at, schedule_zone, schedule_state, schedule_by, schedule_admin_id, version, updated_at) ON consultation_ticket TO celahan_app');
     await client.query('GRANT USAGE ON SEQUENCE consultation_event_id_seq, consultation_note_id_seq TO celahan_app');
     await client.query('GRANT EXECUTE ON FUNCTION public.create_assessment_project(text, uuid, integer) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.reset_user_simulation_data(text) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.delete_test_account(text) TO celahan_app');
     await client.query('GRANT SELECT, INSERT ON consultation_scope_proposal TO celahan_app');
     await client.query('GRANT UPDATE (decision, decision_note, decided_by, decided_at) ON consultation_scope_proposal TO celahan_app');
     await client.query('GRANT SELECT ON assessment_project, project_report_version, assessment_project_event, assessment_project_command TO celahan_app');

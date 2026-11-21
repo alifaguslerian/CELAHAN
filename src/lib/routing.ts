@@ -9,7 +9,7 @@ export function isLocale(value: string): value is Locale {
 export function localeHref(pathname: string, locale: Locale, hash = '', returnTo?: string | null, packageCode?: unknown): string {
   const detail = /^\/(?:id|en)\/(tickets|projects|admin\/(?:tickets|projects))\/([^/]+)\/?$/.exec(pathname);
   if (detail && isTicketId(detail[2])) return `/${locale}/${detail[1]}/${detail[2]}/`;
-  const match = /^\/(?:id|en)(?:\/(login|register|account(?:\/(?:verify-email|recovery|reset-password))?|tickets|projects|admin|process|about|privacy|request|packages))?\/?$/.exec(pathname);
+  const match = /^\/(?:id|en)(?:\/(login|register|account(?:\/(?:verify-email|recovery|reset-password|tickets|security|settings))?|tickets|projects|admin|process|about|privacy|request|packages))?\/?$/.exec(pathname);
   if (!match) return `/${locale}/`;
   const destination = match[1] ? `${match[1]}/` : '';
   const anchor = (!destination && ['#about', '#boundaries', '#process', '#faq', '#consultation', '#context'].includes(hash))
