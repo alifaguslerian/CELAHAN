@@ -13,6 +13,9 @@ export const confirmationCopy = {
     confirmTime: { title: 'Konfirmasi jadwal?', description: 'Jadwal ini akan muncul di agenda admin dan pemohon.', action: 'Konfirmasi jadwal' },
     createProject: { title: 'Buat proyek', description: 'Versi cakupan yang disetujui akan dicatat sebagai kesepakatan proyek.', action: 'Konfirmasi pembuatan' },
     finishRetest: { title: 'Finalisasi uji ulang?', description: 'Hasil ilustratif akan ditampilkan kepada pemilik dan jatah uji ulang proyek akan digunakan.', action: 'Finalisasi uji ulang' },
+    revokeSession: { title: 'Cabut sesi ini?', description: 'Perangkat atau tab yang menggunakan sesi tersebut harus masuk kembali untuk mengakses akun.', action: 'Cabut sesi', caution: true },
+    resetSimulation: { title: 'Reset data simulasi?', description: 'Seluruh tiket konsultasi uji, riwayat percakapan, dan proyek milik akun ini akan dihapus permanen dari database uji.', action: 'Reset data simulasi', caution: true },
+    deleteAccount: { title: 'Hapus akun uji?', description: 'Akun sintetis ini beserta seluruh tiket, proyek, dan sesi aktifnya akan dihapus permanen dan Anda akan langsung keluar.', action: 'Hapus akun uji', caution: true },
   },
   en: {
     cancel: 'Cancel', stay: 'Keep editing',
@@ -28,5 +31,8 @@ export const confirmationCopy = {
     confirmTime: { title: 'Confirm appointment?', description: 'This appointment will appear in the admin and requester agendas.', action: 'Confirm appointment' },
     createProject: { title: 'Create project', description: 'The approved scope version will be recorded as the project agreement.', action: 'Confirm creation' },
     finishRetest: { title: 'Finalize the retest?', description: 'The owner will see the illustrative results and the project’s retest allowance will be used.', action: 'Finalize retest' },
+    revokeSession: { title: 'Revoke this session?', description: 'The browser or device using this session will need to sign in again to access the account.', action: 'Revoke session', caution: true },
+    resetSimulation: { title: 'Reset simulation data?', description: 'All test consultation tickets, conversation history, and projects owned by this account will be permanently deleted from the test database.', action: 'Reset simulation data', caution: true },
+    deleteAccount: { title: 'Delete test account?', description: 'This synthetic account along with all owned tickets, projects, and active sessions will be permanently removed and you will be signed out.', action: 'Delete test account', caution: true },
   },
 } as const;

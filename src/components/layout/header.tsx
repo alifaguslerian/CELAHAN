@@ -89,9 +89,29 @@ export function Header({ locale }: { locale: Locale }) {
             ))}
           </nav>
           {account ? <details className="account-links account-menu" ref={accountMenu}>
-            <summary aria-label={locale === 'id' ? 'Menu akun' : 'Account menu'}><span aria-hidden="true">{account.name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()}</span></summary>
-            <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{copy.profile}</Link><button type="button"
-              onClick={() => confirm(confirmationCopy[locale].logout, () => { void logout(); })} disabled={logoutPending}>{logoutPending ? copy.logoutPending : copy.logout}</button><p role="alert">{logoutError}</p></div>
+            <summary aria-label={copy.accountMenu}><span aria-hidden="true">{account.name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()}</span></summary>
+            <div className="account-menu-panel">
+              <div className="account-menu-header">
+                <p className="account-menu-name">{account.name}</p>
+                <p className="account-menu-email">{account.email}</p>
+                <div className="account-menu-badges">
+                  <span className="account-badge account-badge--test">{copy.accountBadgeTest}</span>
+                  <span className={`account-badge ${account.emailVerified ? 'account-badge--verified' : 'account-badge--unverified'}`}>
+                    {account.emailVerified ? copy.accountBadgeVerified : copy.accountBadgeUnverified}
+                  </span>
+                </div>
+              </div>
+              <nav className="account-menu-nav" aria-label={locale === 'id' ? 'Tautan akun' : 'Account links'}>
+                <Link href={`/${locale}/account/`} prefetch={false} onClick={() => accountMenu.current?.removeAttribute('open')}>{copy.accountMenuProfile}</Link>
+                <Link href={`/${locale}/account/tickets/`} prefetch={false} onClick={() => accountMenu.current?.removeAttribute('open')}>{copy.accountMenuTickets}</Link>
+                <Link href={`/${locale}/account/security/`} prefetch={false} onClick={() => accountMenu.current?.removeAttribute('open')}>{copy.accountMenuSecurity}</Link>
+                <Link href={`/${locale}/account/settings/`} prefetch={false} onClick={() => accountMenu.current?.removeAttribute('open')}>{copy.accountMenuSettings}</Link>
+              </nav>
+              <hr className="account-menu-divider" />
+              <button type="button" className="account-menu-logout"
+                onClick={() => confirm(confirmationCopy[locale].logout, () => { void logout(); })} disabled={logoutPending}>{logoutPending ? copy.logoutPending : copy.logout}</button>
+              <p role="alert">{logoutError}</p>
+            </div>
           </details> : <Suspense fallback={<AccountEntry locale={locale} pathname={path} />}>
             <AccountEntryWithIntent locale={locale} pathname={path} />
           </Suspense>}

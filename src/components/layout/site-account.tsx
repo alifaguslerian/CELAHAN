@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
-type SiteAccount = { id: string; name: string; hasProjects: boolean; admin: boolean };
+type SiteAccount = { id: string; name: string; email: string; emailVerified: boolean; hasProjects: boolean; admin: boolean };
 
 const SiteAccountContext = createContext<{
   account: SiteAccount | null | undefined;
