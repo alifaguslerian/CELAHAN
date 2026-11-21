@@ -1,7 +1,7 @@
 # CELAHAN — Release and Portfolio
 
-Status: W1 through W4 and W5A are available in the isolated desktop environment. Portfolio release remains pending.  
-Updated: November 10, 2026  
+Status: W1 through W4 and W5A–W5D are available in the isolated desktop environment. W6 local desktop verification is recorded. Portfolio release remains pending.  
+Updated: November 18, 2026  
 References: [Plan](../planning/IMPLEMENTATION_PLAN.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](../planning/DECISIONS.md)
 
 ## 1. Handoff levels
@@ -23,6 +23,18 @@ The owner selects visibility/license and performs Git manually unless a specific
 ## 3. Prototype demonstration
 
 Use isolated synthetic accounts A/B plus an approved admin demonstration, never shared production admin credentials. Show login, reactive/preventive intake, saved ticket after refresh, admin reply/schedule confirmation, user retrieval and denial of another user's private report.
+
+### Local desktop demo — Toko Reka
+
+Start the current local build with `npm run build` and `npm run start -- --port 3100` from the repository. If the development server already owns port 3100, stop it first. The isolated auth origin must match the server. Use separate browser sessions for the ticket owner, administrator, and second user. On the Windows profile already holding the encrypted demo credentials, `.\scripts\w5c-login.ps1 user1`, `.\scripts\w5c-login.ps1 admin`, and `.\scripts\w5c-login.ps1 user2` copy each password to the clipboard.
+
+1. The owner picks **Keamanan Akun & Data** and submits a ticket for the fictional Toko Reka order portal at `https://toko-reka.example.invalid`. The request asks how customers are limited to their own orders.
+2. In **Pengelolaan**, the admin proposes reviewing sign-in and order ownership. The owner asks to include password recovery. The admin sends the revised scope, and the owner approves it. Open the project created from the approved version.
+3. Save a draft with two illustrative findings, order-history ownership and recovery-code expiry. Show the awaiting report state as the owner. Publish the draft and open the two findings in **Laporan & Progres**.
+4. Select both findings in a single retest request. The administrator records one illustrative outcome for each. Open the ticket as the owner and point out the referenced report version.
+5. Paste the project's URL into the second user's session and show the generic 404. Use a new synthetic project for a second run that needs another retest cycle.
+
+Suggested opening: “CELAHAN lets a site owner turn a security concern into a traceable request, agree on what will be reviewed, and receive a private report with remediation priorities. This demo uses a fictional order portal. The accounts, tickets, approvals, and report permissions are working application features; the assessment content is illustrative.”
 
 Clearly label illustrative findings and project stages. Explain what is incomplete, how to run the actual prototype, and why target scanning/code repair is excluded. Show implemented desktop ID/EN behavior; dedicated phone presentation is deferred. Record sanitized evidence without exposing auth/provider secrets.
 

@@ -47,6 +47,7 @@ Retained historical records describe checks at their recorded dates, not current
 - [Local stability and admin login](validation/2026-11-14-local-stability.md) records the login diagnosis, Neon behavior, and final browser checks.
 - [Password-only isolated login](validation/2026-11-14-password-only-login.md) records migration 008 and the verified account isolation.
 - [W5D findings and retest outcomes](validation/2026-11-18-w5d-report-findings.md) records migration 009 and the multi-finding journey.
+- [W6 local desktop verification](validation/2026-11-18-w6-local-desktop.md) records the demo rehearsal, privacy checks, measurements, and open release gates.
 - [Static material restoration](validation/2026-11-08-static-material.md) records the DEC-66 rollback and checks.
 - [Material-image motion](validation/2026-11-06-material-motion.md) records the historical DEC-65 experiment.
 - [Service/report content reset](validation/2026-11-06-service-report-reset.md): removals, retired-route denial and safe account-return verification.

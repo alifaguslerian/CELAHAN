@@ -1,7 +1,7 @@
 # CELAHAN — Implementation Plan
 
 Updated: November 18, 2026
-Status: Layers desktop with static material imagery. Isolated W4 and W5A–W5D are implemented. W6 remains gated.
+Status: Layers desktop with static material imagery. Isolated W4 and W5A–W5D are implemented. The W6 local demo verification is recorded. Hosted release remains gated.
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Account UX](../design/PORTAL_UX_SPEC.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Quality](../engineering/QUALITY_AND_SECURITY.md), [Decisions](DECISIONS.md)
 
 ## Current authorized work
@@ -33,7 +33,7 @@ A completed package never authorizes the next. Work in the current checkout; do 
 | P5 | Consultation/conversation/admin | Integrated W4 implemented in the isolated environment |
 | P6 | Private reports/support | Isolated W5A/W5B implemented under DEC-69 and DEC-70 |
 | P7 | Integrated quality | Checks accompany each change; release matrix incomplete |
-| P8 | Deployment/operations | W6 not started or authorized |
+| P8 | Deployment/operations | Hosted preview and public release remain gated |
 | P9 | Video/case study | Brief only; production follows stable actual functionality |
 
 ## Reset acceptance
@@ -83,6 +83,8 @@ DEC-71 authorizes the homepage preview, dedicated bilingual package page with il
 DEC-74 authorizes structured findings, remediation priorities, and per-finding illustrative outcomes linked to the requested report version. The owner selects one or more findings in one project-wide cycle. Existing published reports retain their original content, and corrections do not restart support.
 
 ## W6 — Final verification and authorized release
+
+The owner authorized the local verification and desktop demo rehearsal on November 18. See the [W6 validation record](../validation/2026-11-18-w6-local-desktop.md) for exercised checks and open items.
 
 Entry: W1–W5 checked; approve identity/rights, public enrollment/delivery/recovery, retention/deletion/backups, hosting/processors and explicit deployment scope.
 
