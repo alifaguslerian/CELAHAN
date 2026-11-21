@@ -123,15 +123,18 @@ export async function TicketDetailPage({ locale, view, id, page: requestedPage }
   const scheduleLabel = schedule && timestamp(locale, schedule.at, schedule.zone);
   const endpoint = view === 'admin' ? `/api/admin/tickets/${id}/` : `/api/tickets/${id}/`;
   const canNegotiate = !ticket.follow_up_kind && !projectId && ticket.status !== 'closed' && page === 1;
+  const scopeNeedsDecision = view === 'owner' && canNegotiate && scopes[0] && !scopes[0].decision;
+  const nextAction = actions.includes(recommended) ? recommended : actions[0];
   return <PrivateAccountScope id={actor.id} capability={view === 'admin' ? 'admin' : undefined}><main id="main-content" className="ticket-page portal-detail" tabIndex={-1}>
     <Link href={listPath} className="inline-link" prefetch={false}>{copy.back}</Link>
     <header className="ticket-page-head"><div><p className="eyebrow">CELAHAN / {ticket.follow_up_kind ? follow.kinds[ticket.follow_up_kind] : copy.needs[ticket.need]}</p><h1>{ticket.reference}</h1></div>
       <span className="ticket-state">{copy.statuses[ticket.status]}</span>
     </header>
     <section className="ticket-next ticket-panel" aria-labelledby="ticket-next">
-      <div><h2 id="ticket-next" tabIndex={-1}>{copy.nextStep}</h2><p>{ticket.retest_state && step !== 'waiting' && step !== 'waitingAdmin'
-        ? follow.states[ticket.retest_state] : copy.nextSteps[step]}</p></div>
-      {actions.length > 0 && <a className="primary-action" href="#ticket-action">{copy.act}</a>}
+      <div><h2 id="ticket-next" tabIndex={-1}>{copy.nextStep}</h2><p>{scopeNeedsDecision ? copy.scopeDecision
+        : (ticket.retest_state && step !== 'waiting' && step !== 'waitingAdmin' ? follow.states[ticket.retest_state] : copy.nextSteps[step])}</p></div>
+      {scopeNeedsDecision ? <a className="primary-action" href="#ticket-scope-heading">{copy.reviewScope}</a>
+        : nextAction && <a className="primary-action" href="#ticket-action">{copy.actions[nextAction]}</a>}
     </section>
     {projectId && <p className="page-actions">
       <Link prefetch={false} href={`/${locale}/${view === 'admin' ? 'admin/' : ''}projects/${projectId}/`}>

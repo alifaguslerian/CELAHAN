@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SiteAccountProvider } from '@/components/layout/site-account';
+import { ActionConfirmationProvider } from '@/components/layout/action-confirmation';
 import { shell } from '@/content/shell';
 import { isLocale } from '@/lib/routing';
 import '@/styles/globals.css';
@@ -24,12 +25,14 @@ export default async function SiteLayout({ children, params }: Readonly<{ childr
     <html lang={locale} data-scroll-behavior="smooth">
       <head><link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
       <body>
-        <a className="skip-link" href="#main-content">{shell[locale].skip}</a>
-        <SiteAccountProvider>
-          <Header locale={locale} />
-          {children}
-        </SiteAccountProvider>
-        <Footer locale={locale} />
+        <ActionConfirmationProvider locale={locale}>
+          <a className="skip-link" href="#main-content">{shell[locale].skip}</a>
+          <SiteAccountProvider>
+            <Header locale={locale} />
+            {children}
+          </SiteAccountProvider>
+          <Footer locale={locale} />
+        </ActionConfirmationProvider>
       </body>
     </html>
   );

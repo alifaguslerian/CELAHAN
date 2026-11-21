@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import { confirmationCopy } from '@/content/confirmation';
+import { useActionConfirmation } from '@/components/layout/action-confirmation';
 import { scopeCopy } from '@/content/scope';
 import { disclaimer } from '@/content/shell';
 import { scopeFields, type ScopeProposal } from '@/lib/consultation';
@@ -14,23 +16,30 @@ export function ScopeForm({ locale, accountId, endpoint, version, scope, admin }
   const copy = scopeCopy[locale];
   const router = useRouter();
   const write = usePortalSubmission(locale, accountId, endpoint);
+  const { confirm } = useActionConfirmation();
+  const [revising, setRevising] = useState(false);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    const submitter = (event.nativeEvent as SubmitEvent).submitter;
-    const requestChanges = submitter?.getAttribute('value') === 'revise_scope';
     if (!admin && !scope) return;
     const payload = admin
       ? { kind: 'propose_scope', ...Object.fromEntries(scopeFields.map(field => [field, data.get(field)])) }
-      : requestChanges
-        ? { kind: 'revise_scope', scopeVersion: scope?.version, body: data.get('body') }
-        : { kind: 'approve_scope', scopeVersion: scope?.version };
+      : { kind: 'revise_scope', scopeVersion: scope?.version, body: data.get('body') };
     void write.submit({ ...payload, version }, () => {
       form.reset();
       router.refresh();
     }, () => router.refresh(), 'ticket-scope-heading');
+  }
+
+  function approve() {
+    if (!scope) return;
+    const prompt = confirmationCopy[locale].approve;
+    confirm({ ...prompt, title: `${copy.approve} ${copy.versionWord} ${scope.version}?` }, () => {
+      void write.submit({ kind: 'approve_scope', scopeVersion: scope.version, version },
+        () => router.refresh(), () => router.refresh(), 'ticket-scope-heading');
+    });
   }
 
   return <form className="consultation-form" method="post" action={endpoint} onSubmit={submit}>
@@ -41,13 +50,16 @@ export function ScopeForm({ locale, accountId, endpoint, version, scope, admin }
           <textarea name={field} defaultValue={scope?.[field]} required minLength={field === 'included' ? 10 : 1} maxLength={2000} rows={3} />
         </label>)}
         <button className="primary-action" type="submit">{scope ? copy.revise : copy.send}</button>
-      </> : <>
-        <label>{copy.reason}<textarea name="body" required maxLength={3000} rows={3} /></label>
+      </> : revising ? <>
+        <label>{copy.reason}<textarea name="body" required maxLength={3000} rows={3} autoFocus /></label>
         <div className="scope-actions">
-          <button className="primary-action" type="submit" value="approve_scope" formNoValidate>{copy.approve}</button>
-          <button className="primary-action" type="submit" value="revise_scope">{copy.request}</button>
+          <button className="primary-action" type="submit">{copy.sendRequest}</button>
+          <button className="text-button" type="button" onClick={() => write.changeAction(() => setRevising(false))}>{confirmationCopy[locale].cancel}</button>
         </div>
-      </>}
+      </> : <div className="scope-actions">
+        <button className="primary-action" type="button" onClick={approve}>{copy.approve} {copy.versionWord} {scope?.version}</button>
+        <button className="text-button" type="button" onClick={() => setRevising(true)}>{copy.request}</button>
+      </div>}
       <p className="disclaimer" lang="id">{disclaimer.id}</p>
       {locale === 'en' && <p className="disclaimer" lang="en">{disclaimer.en}</p>}
     </fieldset>

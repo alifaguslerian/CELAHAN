@@ -128,11 +128,12 @@ with sync_playwright() as playwright:
     page.goto(BASE + '/en/account/')
     expect(page.get_by_label('Name', exact=True)).to_have_value('Synthetic Browser')
     page.get_by_label('Name', exact=True).fill('Discarded Synthetic Name')
-    page.once('dialog', lambda dialog: dialog.dismiss())
     page.get_by_role('link', name='ID — Bahasa Indonesia', exact=True).click()
+    expect(page.get_by_role('dialog', name='Leave this page?')).to_be_visible()
+    page.get_by_role('button', name='Keep editing').click()
     assert page.url == BASE + '/en/account/'
-    page.once('dialog', lambda dialog: dialog.accept())
     page.get_by_role('link', name='ID — Bahasa Indonesia', exact=True).click()
+    page.get_by_role('dialog').get_by_role('button', name='Leave page').click()
     page.wait_for_url(BASE + '/id/account/')
     expect(page.get_by_label('Nama', exact=True)).to_have_value('Synthetic Browser')
     page.get_by_label('Nama', exact=True).fill('<script>synthetic-canary</script>')
@@ -147,6 +148,7 @@ with sync_playwright() as playwright:
     page.set_viewport_size({'width': 1366, 'height': 768})
     page.get_by_label('Menu akun', exact=True).click()
     page.get_by_role('button', name='Keluar', exact=True).click()
+    page.get_by_role('dialog', name='Keluar dari akun?').get_by_role('button', name='Keluar dari akun').click()
     page.wait_for_url(BASE + '/id/')
     assert page.get_by_label('Menu akun', exact=True).count() == 0
     page.go_back()

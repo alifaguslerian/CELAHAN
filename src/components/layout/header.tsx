@@ -4,9 +4,11 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { shell } from '@/content/shell';
+import { confirmationCopy } from '@/content/confirmation';
 import { localeHref, type Locale } from '@/lib/routing';
 import { Brand } from './brand';
 import { useSiteAccount } from './site-account';
+import { useActionConfirmation } from './action-confirmation';
 
 function AccountEntry({ locale, pathname, returnTo, packageCode }: { locale: Locale; pathname: string; returnTo?: string | null; packageCode?: string | null }) {
   const copy = shell[locale];
@@ -26,6 +28,7 @@ function AccountEntryWithIntent({ locale, pathname }: { locale: Locale; pathname
 export function Header({ locale }: { locale: Locale }) {
   const copy = shell[locale];
   const { account } = useSiteAccount();
+  const { confirm, clearDrafts } = useActionConfirmation();
   const pathname = usePathname();
   const path = pathname.replace(/\/$/, '');
   const accountMenu = useRef<HTMLDetailsElement>(null);
@@ -34,6 +37,7 @@ export function Header({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     const onOutside = (event: PointerEvent) => {
+      if (event.target instanceof Element && event.target.closest('.action-dialog[open]')) return;
       if (event.target instanceof Node && !accountMenu.current?.contains(event.target)) accountMenu.current?.removeAttribute('open');
     };
     document.addEventListener('pointerdown', onOutside);
@@ -46,6 +50,7 @@ export function Header({ locale }: { locale: Locale }) {
     try {
       const response = await fetch('/api/auth/sign-out/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', cache: 'no-store', signal: AbortSignal.timeout(12000) });
       if (!response.ok) throw new Error();
+      clearDrafts();
       window.location.replace(`/${locale}/`);
     } catch { setLogoutError(copy.logoutFailed); setLogoutPending(false); }
   }
@@ -85,7 +90,8 @@ export function Header({ locale }: { locale: Locale }) {
           </nav>
           {account ? <details className="account-links account-menu" ref={accountMenu}>
             <summary aria-label={locale === 'id' ? 'Menu akun' : 'Account menu'}><span aria-hidden="true">{account.name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase()}</span></summary>
-            <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{copy.profile}</Link><button type="button" onClick={logout} disabled={logoutPending}>{logoutPending ? copy.logoutPending : copy.logout}</button><p role="alert">{logoutError}</p></div>
+            <div className="account-menu-panel"><Link href={`/${locale}/account/`} prefetch={false}>{copy.profile}</Link><button type="button"
+              onClick={() => confirm(confirmationCopy[locale].logout, () => { void logout(); })} disabled={logoutPending}>{logoutPending ? copy.logoutPending : copy.logout}</button><p role="alert">{logoutError}</p></div>
           </details> : <Suspense fallback={<AccountEntry locale={locale} pathname={path} />}>
             <AccountEntryWithIntent locale={locale} pathname={path} />
           </Suspense>}

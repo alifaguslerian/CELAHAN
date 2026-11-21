@@ -75,6 +75,15 @@ export function isPositiveVersion(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value > 0 && value <= 2147483647;
 }
 
+export function consultationWebsite(value: unknown): string | null {
+  const website = text(value, 1, 2048);
+  if (!website || !/^https?:\/\/[^/]/i.test(website) || /[\s?#\\]/u.test(website)) return null;
+  try {
+    const address = new URL(website);
+    return address.hostname && !address.username && !address.password && !website.split('/')[2].includes('@') ? website : null;
+  } catch { return null; }
+}
+
 export function parseConsultation(value: unknown): ConsultationInput | null {
   const fields = ['requestId', 'name', 'company', 'website', 'need', 'reason', 'description', 'authority'];
   if (!objectWith(value, fields) && !objectWith(value, [...fields, 'packageCode'])) return null;
@@ -83,16 +92,11 @@ export function parseConsultation(value: unknown): ConsultationInput | null {
   const { requestId, need, authority } = value;
   const name = text(value.name, 2, 80);
   const company = text(value.company, 0, 120);
-  const website = text(value.website, 1, 2048);
+  const website = consultationWebsite(value.website);
   const reason = text(value.reason, 1, 160);
   const description = text(value.description, 10, 3000);
   if (!isTicketId(requestId) || authority !== true || !name || company === null || !website || !reason || !description
-    || typeof need !== 'string' || !consultationNeeds.some(option => option === need)
-    || !/^https?:\/\/[^/]/i.test(website) || /[\s?#\\]/u.test(website)) return null;
-  try {
-    const address = new URL(website);
-    if (!address.hostname || address.username || address.password || website.split('/')[2].includes('@')) return null;
-  } catch { return null; }
+    || typeof need !== 'string' || !consultationNeeds.some(option => option === need)) return null;
   return { requestId, name, company, website, need: need as Need, reason, description, authority, ...(packageCode && { packageCode }) };
 }
 

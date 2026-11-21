@@ -23,6 +23,18 @@ W2 supports only allowlisted synthetic email/password accounts, mandatory verifi
 
 Login returns only to an allowlisted site task, not an external destination or forced overview. Logout revokes the session and clears/revalidates private UI; it does not delete records. Account-menu Escape returns focus; bfcache/focus revalidation must remain after presentation changes.
 
+## Desktop action confirmations
+
+Use a shared ID/EN dialog styled with the portal palette for leaving unsaved forms through site links, switching a ticket action with unsaved input, replacing report content with an example, approving a specific scope version, publishing a report, and withdrawing access. The safe action gets initial focus. Escape dismisses the dialog and returns focus to the initiating control. Reload and tab close retain the browser-managed warning for unsaved input.
+
+Attach the link and unload handlers while at least one form has unsaved input. A failed sign-out preserves the draft and allows retry.
+
+Confirm sign-out, ticket closure, final scheduling approval, project creation from a scope version, and retest finalization. The dialog describes the consequence of each action. Routine replies submit directly.
+
+Show consultation validation beside the affected fields and focus the first issue. Keep server validation, submission retry semantics and status feedback. Surface the recommended ticket action in the next-step panel. For pending owner scope decisions, lead to the proposal and reveal the reason field when the owner chooses to request changes.
+
+Center the consultation heading and form on the same content column. Dialog actions share an evenly spaced row on desktop. Keep the background at its current scroll position while a dialog is open and restore scrolling on dismissal.
+
 ## Consultation and tickets — W4
 
 The public invitation takes confirmed guests to sign-in with the consultation return intent, and signed-in users to the protected form. Until the header has resolved the account, the link uses the protected route so its server-side check can choose the correct destination. Initial consultation requires no project. Intake uses a prefilled editable name, optional company, inert website, need, brief reason, narrative and authority declaration. The declaration concerns the request. Replies stay in the ticket and scheduling follows guidance.

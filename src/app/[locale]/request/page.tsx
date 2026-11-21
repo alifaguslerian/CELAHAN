@@ -20,7 +20,7 @@ export default async function Request({ params, searchParams }: {
   const account = await ticketViewer(locale, 'owner', 'request', packageCode);
   const copy = consultationCopy[locale];
   const packages = packageCopy[locale];
-  return <PrivateAccountScope id={account.id}><main id="main-content" className="ticket-page" tabIndex={-1}>
+  return <PrivateAccountScope id={account.id}><main id="main-content" className="consultation-page" tabIndex={-1}>
     <p className="eyebrow">CELAHAN / {locale === 'id' ? 'Konsultasi' : 'Consultation'}</p>
     <h1>{copy.title}</h1><p className="scope-note">{copy.intro}</p>
     <section className="ticket-panel consultation-intake" aria-label={copy.title}>

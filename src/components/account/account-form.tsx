@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useRef, useState, useSyncExternalStore } from 'react';
 import { accountCopy } from '@/content/account';
 import { disclaimer } from '@/content/shell';
 import type { Locale } from '@/lib/routing';
 import { localeHref, loginDestination } from '@/lib/routing';
 import { useSiteAccount } from '@/components/layout/site-account';
+import { useUnsavedDraft } from '@/components/layout/action-confirmation';
+import { confirmationCopy } from '@/content/confirmation';
 
 export type AccountMode = 'login' | 'register' | 'verify' | 'recovery' | 'reset' | 'profile';
 const subscribe = () => () => {};
@@ -31,21 +33,8 @@ export function AccountForm({ locale, mode, available, profile }: {
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const dirty = useRef(false);
+  const { markDirty, clearDraft } = useUnsavedDraft(confirmationCopy[locale].leave);
   const status = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    const warn = (event: BeforeUnloadEvent) => { if (dirty.current) event.preventDefault(); };
-    const warnNavigation = (event: MouseEvent) => {
-      const link = event.target instanceof Element ? event.target.closest('a') : null;
-      if (!dirty.current || !link?.href || link.href === window.location.href) return;
-      if (!window.confirm(copy.discard)) { event.preventDefault(); event.stopPropagation(); }
-      else dirty.current = false;
-    };
-    window.addEventListener('beforeunload', warn);
-    document.addEventListener('click', warnNavigation, true);
-    return () => { window.removeEventListener('beforeunload', warn); document.removeEventListener('click', warnNavigation, true); };
-  }, [copy.discard]);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,7 +62,7 @@ export function AccountForm({ locale, mode, available, profile }: {
         setMessage(Object.hasOwn(messages, data.error) ? messages[data.error] : copy.failed);
         return;
       }
-      dirty.current = false; setPassword(''); setOTP('');
+      clearDraft(); setPassword(''); setOTP('');
       if (view === 'login') {
         window.location.assign(loginDestination(search.get('next'), locale, search.get('package'))); return;
       }
@@ -104,7 +93,7 @@ export function AccountForm({ locale, mode, available, profile }: {
     <h1>{copy[view]}</h1>
     <p className="supporting-copy">{copy.boundary}</p>
     {!available ? <p role="status">{copy.unavailable}</p> : <>
-      <form className="account-form" onSubmit={submit} onChange={() => { dirty.current = true; }} method="post" action="/api/auth/form-unavailable/">
+      <form className="account-form" onSubmit={submit} onChange={markDirty} method="post" action="/api/auth/form-unavailable/">
         <fieldset disabled={pending || !hydrated}>
           {(view === 'register' || view === 'profile') && <label>{copy.name}<input name="name" autoComplete="name" required minLength={2} maxLength={80} value={name} onChange={(event) => setName(event.target.value)} /></label>}
           {view === 'profile' && <p>{copy.email}: {profile?.email}</p>}

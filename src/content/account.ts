@@ -9,7 +9,6 @@ export const accountCopy = {
     sessionChanged: 'Sesi akun berubah atau berakhir. Buka kembali profil sebelum menyimpan.',
     failed: 'Permintaan belum berhasil. Periksa isian dan coba lagi.', deliveryFailed: 'Pengiriman kode lokal gagal. Coba kirim ulang di halaman verifikasi atau pemulihan.', unavailable: 'Layanan akun belum tersedia. Konfigurasi database dan penampung email lokal diperlukan.', limited: 'Terlalu banyak percobaan. Tunggu sebentar sebelum mencoba lagi.',
     needJS: 'Aktifkan JavaScript untuk mengirim formulir akun. Isian tidak dikirim melalui alamat halaman.', forgot: 'Lupa kata sandi?', resend: 'Kirim ulang kode verifikasi',
-    discard: 'Tinggalkan perubahan yang belum disimpan?',
     serviceRetry: 'Layanan akun belum merespons. Coba lagi sebentar.',
   },
   en: {
@@ -22,7 +21,6 @@ export const accountCopy = {
     sessionChanged: 'Your session changed or expired. Reopen your profile before saving.',
     failed: 'The request did not succeed. Check the fields and try again.', deliveryFailed: 'Local code delivery failed. Retry from the verification or recovery page.', unavailable: 'Account services are unavailable. The isolated database and local email sink must be configured.', limited: 'Too many attempts. Wait before trying again.',
     needJS: 'Enable JavaScript to submit account forms. Fields are not sent through page URLs.', forgot: 'Forgot password?', resend: 'Resend verification code',
-    discard: 'Leave unsaved changes?',
     serviceRetry: 'The account service has not responded. Try again shortly.',
   },
 } as const;

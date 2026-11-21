@@ -9,6 +9,8 @@ import { findingFields, findingPriorities, reportOverview, type Finding, type St
 import type { Locale } from '@/lib/routing';
 import type { ReportVersion } from '@/server/data/projects';
 import { usePortalSubmission } from '@/components/consultation/forms';
+import { useActionConfirmation } from '@/components/layout/action-confirmation';
+import { confirmationCopy } from '@/content/confirmation';
 
 function Notice({ locale }: { locale: Locale }) {
   return <div>
@@ -21,16 +23,21 @@ export function CreateProjectForm({ locale, accountId, ticketId, scopeVersion }:
   locale: Locale; accountId: string; ticketId: string; scopeVersion: number;
 }) {
   const copy = projectCopy[locale];
+  const { confirm } = useActionConfirmation();
   const router = useRouter();
   const path = `/api/admin/tickets/${ticketId}/project/`;
   const write = usePortalSubmission(locale, accountId, path, copy);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    void write.submit({ scopeVersion }, result => {
-      if (!isResourceId(result.id)) throw new Error('Invalid project response');
-      write.clearDraft();
-      window.location.assign(`/${locale}/admin/projects/${result.id}/`);
-    }, () => router.refresh());
+    const prompt = confirmationCopy[locale].createProject;
+    const version = locale === 'id' ? 'cakupan versi' : 'scope version';
+    confirm({ ...prompt, title: `${prompt.title} · ${version} ${scopeVersion}?` }, () => {
+      void write.submit({ scopeVersion }, result => {
+        if (!isResourceId(result.id)) throw new Error('Invalid project response');
+        write.clearDraft();
+        window.location.assign(`/${locale}/admin/projects/${result.id}/`);
+      }, () => router.refresh());
+    });
   }
   return <section className="ticket-panel">
     <h2>{copy.create}</h2>
@@ -52,6 +59,8 @@ export function ReportEditor({ locale, accountId, projectId, draft, example, cor
   draft?: ReportVersion; example: StructuredReport; correction: boolean;
 }) {
   const copy = projectCopy[locale];
+  const prompts = confirmationCopy[locale];
+  const { confirm } = useActionConfirmation();
   const router = useRouter();
   const path = `/api/admin/projects/${projectId}/`;
   const write = usePortalSubmission(locale, accountId, path, copy);
@@ -77,8 +86,19 @@ export function ReportEditor({ locale, accountId, projectId, draft, example, cor
   }
 
   function publish() {
-    if (!draft || changed || !window.confirm(copy.publishConfirm)) return;
-    void write.submit({ kind: 'publish', reportId: draft.id, revision: draft.revision }, () => router.refresh());
+    if (!draft || changed) return;
+    confirm({ ...prompts.publish, title: `${prompts.publish.title} · ${copy.version} ${draft.version}?` }, () => {
+      void write.submit({ kind: 'publish', reportId: draft.id, revision: draft.revision }, () => router.refresh());
+    });
+  }
+
+  function useExample() {
+    function replace() {
+      setSummary(example.summary); setScope(example.scope); setFindings(example.findings); write.markDirty();
+    }
+    const hasContent = summary.trim() || scope.trim() || findings.some(finding => findingFields.some(field => finding[field].trim()) || finding.priority);
+    if (hasContent) confirm(prompts.useExample, replace);
+    else replace();
   }
 
   return <section className="ticket-panel">
@@ -111,9 +131,7 @@ export function ReportEditor({ locale, accountId, projectId, draft, example, cor
           value={changeNote} onChange={event => setChangeNote(event.target.value)} /></label>}
         <div className="page-actions">
           <button type="submit" className="primary-action">{write.pending ? copy.saving : copy.save}</button>
-          <button type="button" className="text-button" onClick={() => {
-            setSummary(example.summary); setScope(example.scope); setFindings(example.findings); write.markDirty();
-          }}>{copy.template}</button>
+          <button type="button" className="text-button" onClick={useExample}>{copy.template}</button>
           {draft && <button type="button" className="text-button" disabled={changed} onClick={publish}>{copy.publish}</button>}
         </div>
         {draft && changed && <p className="supporting-copy">{copy.saveFirst}</p>}
@@ -126,13 +144,15 @@ export function ReportEditor({ locale, accountId, projectId, draft, example, cor
 
 export function ProjectActionForm({ locale, accountId, projectId, reportId }: ProjectFormProps & { reportId?: string }) {
   const copy = projectCopy[locale];
+  const { confirm } = useActionConfirmation();
   const router = useRouter();
   const path = `/api/admin/projects/${projectId}/`;
   const write = usePortalSubmission(locale, accountId, path, copy);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (reportId && !window.confirm(copy.withdrawConfirm)) return;
-    void write.submit(reportId ? { kind: 'withdraw', reportId } : { kind: 'prepare' }, () => router.refresh());
+    const save = () => { void write.submit(reportId ? { kind: 'withdraw', reportId } : { kind: 'prepare' }, () => router.refresh()); };
+    if (reportId) confirm(confirmationCopy[locale].withdraw, save);
+    else save();
   }
   return <form method="post" action={path} onSubmit={submit} className="consultation-form">
     <button type="submit" className="text-button" disabled={write.disabled}>{reportId ? copy.withdraw : copy.prepare}</button>

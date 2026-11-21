@@ -8,7 +8,6 @@ export const projectCopy = {
     support: 'Periode dukungan', waitingSupport: 'Periode dimulai saat laporan privat pertama terbit.',
     prepare: 'Mulai penyusunan laporan', template: 'Isi dengan contoh ilustratif', save: 'Simpan draf',
     publish: 'Terbitkan draf tersimpan', withdraw: 'Tarik laporan aktif',
-    publishConfirm: 'Terbitkan versi ini untuk pemilik proyek?', withdrawConfirm: 'Tarik akses pemilik ke laporan aktif?',
     changeNote: 'Catatan perubahan', saveFirst: 'Simpan perubahan sebelum menerbitkan.',
     fields: { summary: 'Ringkasan', scope: 'Ruang lingkup laporan', finding: 'Contoh temuan', impact: 'Dampak ilustratif', recommendation: 'Saran perbaikan' },
     findings: 'Temuan ilustratif', finding: 'Temuan', findingTitle: 'Judul temuan', description: 'Penjelasan singkat',
@@ -17,7 +16,7 @@ export const projectCopy = {
     stages: { created: 'Proyek dibuat', preparing: 'Penyusunan laporan', published: 'Laporan terbit' },
     events: { created: 'Proyek dibuat', preparing: 'Penyusunan laporan dimulai', published: 'Versi laporan diterbitkan', withdrawn: 'Laporan aktif ditarik' },
     states: { draft: 'Draf', published: 'Terbit', superseded: 'Digantikan', withdrawn: 'Ditarik' },
-    saved: 'Perubahan tersimpan.', saving: 'Menyimpan…', discard: 'Tinggalkan perubahan yang belum disimpan?',
+    saved: 'Perubahan tersimpan.', saving: 'Menyimpan…',
     previous: 'Sebelumnya', next: 'Selanjutnya',
     errors: {
       INVALID_INPUT: 'Periksa kembali isian proyek atau laporan.', SESSION: 'Sesi berubah. Buka ulang halaman sebelum melanjutkan.',
@@ -35,7 +34,6 @@ export const projectCopy = {
     support: 'Support period', waitingSupport: 'The period starts when the first private report is published.',
     prepare: 'Start preparing the report', template: 'Fill with the illustrative example', save: 'Save draft',
     publish: 'Publish saved draft', withdraw: 'Withdraw active report',
-    publishConfirm: 'Publish this version for the project owner?', withdrawConfirm: 'Withdraw owner access to the active report?',
     changeNote: 'Change note', saveFirst: 'Save your changes before publishing.',
     fields: { summary: 'Summary', scope: 'Report scope', finding: 'Example finding', impact: 'Illustrative impact', recommendation: 'Suggested remediation' },
     findings: 'Illustrative findings', finding: 'Finding', findingTitle: 'Finding title', description: 'Short explanation',
@@ -44,7 +42,7 @@ export const projectCopy = {
     stages: { created: 'Project created', preparing: 'Report in preparation', published: 'Report published' },
     events: { created: 'Project created', preparing: 'Report preparation started', published: 'Report version published', withdrawn: 'Active report withdrawn' },
     states: { draft: 'Draft', published: 'Published', superseded: 'Superseded', withdrawn: 'Withdrawn' },
-    saved: 'Changes saved.', saving: 'Saving…', discard: 'Leave your unsaved changes?',
+    saved: 'Changes saved.', saving: 'Saving…',
     previous: 'Previous', next: 'Next',
     errors: {
       INVALID_INPUT: 'Review the project or report entries.', SESSION: 'The session changed. Reopen the page before continuing.',

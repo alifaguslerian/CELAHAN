@@ -6,6 +6,7 @@ export const scopeCopy = {
     approved: 'Disetujui pemilik tiket', changes_requested: 'Pemilik meminta perubahan',
     pendingHistory: 'Belum diputuskan', proposedAt: 'Diusulkan', decidedAt: 'Diputuskan',
     send: 'Kirim usulan', edit: 'Ubah usulan', revise: 'Kirim revisi', approve: 'Setujui cakupan', request: 'Minta perubahan',
+    versionWord: 'versi', sendRequest: 'Kirim permintaan perubahan',
     reason: 'Bagian mana yang perlu diubah?', previous: 'Riwayat usulan', refresh: 'Muat ulang cakupan',
   },
   en: {
@@ -15,6 +16,7 @@ export const scopeCopy = {
     approved: 'Approved by the ticket owner', changes_requested: 'The owner requested changes',
     pendingHistory: 'No decision recorded', proposedAt: 'Proposed', decidedAt: 'Decided',
     send: 'Send proposal', edit: 'Edit proposal', revise: 'Send revision', approve: 'Approve scope', request: 'Request changes',
+    versionWord: 'version', sendRequest: 'Send change request',
     reason: 'What needs to change?', previous: 'Proposal history', refresh: 'Refresh scope',
   },
 } as const;
