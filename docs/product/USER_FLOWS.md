@@ -1,7 +1,7 @@
 # CELAHAN — User and Admin Flows
 
-Status: W1 shared shell, isolated W2 accounts and isolated W4 consultations implemented. Project and report workflows remain planned.  
-Updated: November 9, 2026  
+Status: W1–W4, isolated W5A–W5D, and DEC-75/76 account UI and 4-tab management hub are implemented locally. Hosted release remains gated.  
+Updated: November 21, 2026  
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Architecture](../engineering/ARCHITECTURE.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Portal UX](../design/PORTAL_UX_SPEC.md)
 
 ## 1. Route map
@@ -15,7 +15,7 @@ Routes use id/en locale prefixes and shared slugs within the same website and he
 | Account | /id/login/, /id/register/, /id/account/verify-email/, /id/account/recovery/, /id/account/reset-password/ | Isolated W2 email/password verification/recovery; no public delivery |
 
 | Signed-in user | /id/request/ | Consultation form |
-| Signed-in user | /id/tickets/, /id/tickets/[ticketId]/, /id/account/ | Own tickets/conversation and profile within the shared website |
+| Signed-in user | /id/tickets/, /id/tickets/[ticketId]/, /id/account/, /id/account/tickets/, /id/account/security/, /id/account/settings/ | Own tickets/conversation and 4-tab account hub (profile, tickets/packages, security/sessions, settings) within the shared website |
 | Project owner | /id/projects/[projectId]/ | Authorized project and support information |
 | Project owner | /id/projects/[projectId]/reports/[reportId]/ | Published illustrative report |
 | Admin | /id/admin/, /id/admin/tickets/[ticketId]/ | Triage and protected internal notes |

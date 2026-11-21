@@ -1,9 +1,13 @@
 # CELAHAN — Decisions
 
-Updated: November 18, 2026
+Updated: November 21, 2026
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Plan](IMPLEMENTATION_PLAN.md)
 
 ## Current precedence
+
+DEC-76 records the owner's November 21 approval of the expanded navbar avatar dropdown and 4-tab bilingual account management hub (`/account/`, `/account/tickets/`, `/account/security/`, `/account/settings/`). Migrations `010-account-management.sql` and `011-fix-delete-test-account.sql` add optional `profile_context` and `preferred_locale` preferences plus `SECURITY DEFINER` cleanup functions for resetting owned simulation data and deleting non-admin synthetic test accounts. Users can update passwords via Better Auth and revoke other active database sessions; Google and GitHub connected-account rows remain honest placeholders until OAuth is authorized.
+
+DEC-75 records the owner's November 21 selection and implementation of the uniform single-screen Glacier Steel split-card layout for `/login/` and `/register/`, pairing a dedicated multi-layer brushed-metal panel (`public/artwork/glacier-steel-auth.webp`) with a transparent header, top-right mode switcher, inline password toggle, and placeholder Google/GitHub/Apple buttons that report honest isolated-testing status without external requests.
 
 DEC-74 records the owner's November 18 approval of isolated W5D. A private version contains structured findings with a title, explanation, impact, high/medium/low remediation priority, and recommendation. The owner selects findings from one active published version in one request; the admin records one illustrative outcome per selected finding before completing the existing project-wide cycle. Existing reports keep their format. Corrections publish a new version, while prior requests remain tied to their original version and support dates.
 
@@ -70,6 +74,8 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-72 | Implement isolated W5C scope approval | Versioned admin proposals, explicit owner decisions and project creation from the current approved scope |
 | DEC-73 | Use email and password for isolated sign-in | Remove authenticator and backup-code workflows. Preserve active/verified identities, role and ownership checks, and login throttling. |
 | DEC-74 | Implement isolated W5D findings and illustrative retests | Structured private reports, multi-finding selection, and outcomes bound to the requested report version |
+| DEC-75 | Redesign login and register into a single-screen Glacier Steel split layout | Dedicated brushed-metal artwork (`glacier-steel-auth.webp`), transparent header, top-right mode switcher, inline password toggle, and honest placeholder Google/GitHub/Apple UI |
+| DEC-76 | Expand avatar menu and add 4-tab bilingual account management hub | Profile context, active package/ticket table, password change, active session revocation, OAuth status placeholders, language preference, simulation reset, and admin-protected test account deletion |
 
 ## Reviewable operating proposals
 

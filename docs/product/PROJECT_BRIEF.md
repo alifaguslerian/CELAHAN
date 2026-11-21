@@ -1,7 +1,7 @@
 # CELAHAN — Project Brief
 
-Updated: November 6, 2026
-Status: Layers public desktop, isolated W4 consultation and W5A/W5B private projects, reports and follow-ups are implemented. W6 remains gated.
+Updated: November 21, 2026
+Status: Layers public desktop, isolated W4–W5D workflows, W6 local desktop verification, and DEC-75/76 account UI and hub are implemented. Hosted release remains gated.
 References: [PRD](PRD.md), [Operations](SERVICE_OPERATIONS.md), [Decisions](../planning/DECISIONS.md)
 
 ## Purpose

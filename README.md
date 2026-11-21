@@ -6,11 +6,11 @@ A bilingual coursework and portfolio concept demonstrating product design, front
 >
 > A concept project for a portfolio and university coursework. Not a real service.
 
-## Current status — November 18, 2026
+## Current status — November 21, 2026
 
 The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
 
-W1 through W4 and isolated W5A–W5D are implemented. W5C adds bilingual illustrative packages, package-linked tickets and owner approval of versioned scope proposals. W5D adds structured private report findings, remediation priorities and per-finding illustrative results in one retest cycle. [W6 local desktop verification](docs/validation/2026-11-18-w6-local-desktop.md) is recorded. Hosted release requires separate authorization.
+W1 through W4 and isolated W5A–W5D are implemented. W5C adds bilingual illustrative packages, package-linked tickets and owner approval of versioned scope proposals. W5D adds structured private report findings, remediation priorities and per-finding illustrative results in one retest cycle. [W6 local desktop verification](docs/validation/2026-11-18-w6-local-desktop.md) is recorded. Under DEC-75 and DEC-76, login/register use a uniform single-screen Glacier Steel split layout (with placeholder Google/GitHub/Apple buttons), and signed-in users have an expanded avatar menu and a 4-tab bilingual account management hub (`/account/`, `/account/tickets/`, `/account/security/`, `/account/settings/`). See [Account UI and hub validation](docs/validation/2026-11-21-account-ui-and-hub.md). Hosted release requires separate authorization.
 
 Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. Verified test users can submit consultations and follow replies and confirmed discussion times. Admins can create a project from a reviewed consultation, publish a private web report and retain its version history. Owners see progress and the active published report. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md) and [W5A validation](docs/validation/2026-11-10-w5a-private-projects.md).
 
@@ -31,7 +31,7 @@ Pinned in package.json and package-lock.json: Next.js 16.4.5, React/React DOM 19
 - TypeScript/types and ESLint plugins: strict checking, Next and hooks lint rules.
 - Python Playwright: development-only browser checks; Node's built-in runner handles units. Python is not an application dependency.
 
-The desktop serves three WebP material assets totaling 91,626 bytes. Sources, prompts and hashes are recorded in design/desktop/material-manifest.json. Inter Latin WOFF2 is self-hosted with OFL and uses 48,256 bytes. See the [checkpoint audit](docs/validation/2026-11-08-checkpoint-audit.md) for measured desktop and security checks.
+The desktop serves four WebP material assets totaling 142,832 bytes. Sources, prompts and hashes are recorded in design/desktop/material-manifest.json. Inter Latin WOFF2 is self-hosted with OFL and uses 48,256 bytes. See the [checkpoint audit](docs/validation/2026-11-08-checkpoint-audit.md) for measured desktop and security checks.
 
 ## Local setup
 

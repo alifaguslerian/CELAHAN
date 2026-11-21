@@ -1,6 +1,6 @@
 # CELAHAN Documentation
 
-Updated: November 13, 2026
+Updated: November 21, 2026
 
 The owner selected Layers under DEC-63 and authorized the desktop implementation under DEC-64. DEC-67 applies Glacier Steel to the static material imagery and updates the spacing of the process and account/FAQ blocks.
 
@@ -48,6 +48,7 @@ Retained historical records describe checks at their recorded dates, not current
 - [Password-only isolated login](validation/2026-11-14-password-only-login.md) records migration 008 and the verified account isolation.
 - [W5D findings and retest outcomes](validation/2026-11-18-w5d-report-findings.md) records migration 009 and the multi-finding journey.
 - [W6 local desktop verification](validation/2026-11-18-w6-local-desktop.md) records the demo rehearsal, privacy checks, measurements, and open release gates.
+- [Account UI redesign and management hub](validation/2026-11-21-account-ui-and-hub.md) records the Glacier Steel split login/register layout, migrations 010–011, expanded avatar menu, 4-tab account hub, and full regression checks.
 - [Static material restoration](validation/2026-11-08-static-material.md) records the DEC-66 rollback and checks.
 - [Material-image motion](validation/2026-11-06-material-motion.md) records the historical DEC-65 experiment.
 - [Service/report content reset](validation/2026-11-06-service-report-reset.md): removals, retired-route denial and safe account-return verification.

@@ -1,7 +1,7 @@
 # CELAHAN — Account and Service UX
 
-Updated: November 9, 2026
-Status: Account boundary, Layers desktop, isolated W4 consultation and W5A/W5B private project screens are implemented.
+Updated: November 21, 2026
+Status: Account boundary, Layers desktop, isolated W4–W5D workflows, Glacier Steel split login/register UI, and the 4-tab account hub are implemented.
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Operations](../product/SERVICE_OPERATIONS.md), [Data and Access](../engineering/DATA_AND_ACCESS.md), [Layers design lock](DESIGN_DIRECTION.md)
 
 ## Shared site
@@ -20,6 +20,10 @@ No external avatar lookup/upload. Header visibility never grants access. Every e
 ## Accounts
 
 W2 supports only allowlisted synthetic email/password accounts, mandatory verification, local-capture recovery and owner-controlled admin provisioning. DEC-73 uses email and password at sign-in for verified synthetic accounts, including admins. Passwords remain 15–128 characters. Public enrollment/delivery/admin recovery are separate gates. Preserve autofill/paste, labeled fields/show-hide control, safe errors, unsaved-edit warning, POST-only fallback and disabled unhydrated controls. Do not expose credentials/session/recovery codes in URLs/logs/browser storage.
+
+Under DEC-75, `/login/` and `/register/` render a uniform single-screen Glacier Steel split card over a transparent account header, pairing a brushed-metal visual panel (`glacier-steel-auth.webp`) with a white form panel, top-right `Masuk | Daftar` switcher, inline eye visibility toggle, and placeholder Google/GitHub/Apple buttons that report honest isolated-testing status without external requests.
+
+Under DEC-76, the signed-in navbar avatar dropdown displays a static identity header (name, email, `Akun Uji`/`Test Account` and `Terverifikasi`/`Verified` badges), links to all four account tabs (`/account/`, `/account/tickets/`, `/account/security/`, `/account/settings/`), a hairline divider, and confirmed logout. The 4-tab bilingual hub covers profile details and optional role/context, active package and owned consultation ticket table (with inert plain-text target addresses), password update, active session listing/revocation and OAuth placeholder status, plus language preference and confirmed Danger Zone actions (simulation data reset and admin-protected synthetic account deletion).
 
 Login returns only to an allowlisted site task, not an external destination or forced overview. Logout revokes the session and clears/revalidates private UI; it does not delete records. Account-menu Escape returns focus; bfcache/focus revalidation must remain after presentation changes.
 
@@ -63,7 +67,7 @@ First private publication starts support once and stores the approved Jakarta ca
 
 ## Route/data contracts
 
-The retired public sample and catalog pages return 404. `/id/login/`, `/id/register/` and `/id/account/` handle account tasks. `/id/request/` contains the protected consultation form. `/id/tickets/` and `/id/tickets/[ticketId]/` show the owner's tickets. `/id/admin/` and `/id/admin/tickets/[ticketId]/` show the authorized consultation queue and detail. `/id/projects/` and `/id/projects/[projectId]/` show owned projects. `/id/admin/projects/[projectId]/` manages the report from the source ticket. The `/en/` equivalents share records and enforce the same per-object permissions.
+The retired public sample and catalog pages return 404. `/id/login/`, `/id/register/`, `/id/account/`, `/id/account/tickets/`, `/id/account/security/` and `/id/account/settings/` handle account entry and management tasks. `/id/request/` contains the protected consultation form. `/id/tickets/` and `/id/tickets/[ticketId]/` show the owner's tickets. `/id/admin/` and `/id/admin/tickets/[ticketId]/` show the authorized consultation queue and detail. `/id/projects/` and `/id/projects/[projectId]/` show owned projects. `/id/admin/projects/[projectId]/` manages the report from the source ticket. The `/en/` equivalents share records and enforce the same per-object permissions.
 
 Header props expose minimal display/capability data. User DTOs omit admin notes/drafts. Save responses contain persisted results or safe localized failure states. No private metadata in social previews/sitemaps or shared caches. Current account returns preserve only request/account intent; they never carry retired catalog data.
 

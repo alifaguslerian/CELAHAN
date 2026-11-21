@@ -1,7 +1,7 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: W2 identity, W4 consultations and W5A/W5B project, report and follow-up tables exist in the isolated test database.
-Updated: November 14, 2026  
+Status: W2 identity, W4–W5D consultation/project/report/follow-up tables, and DEC-76 account management preferences and cleanup functions exist in the isolated test database (migrations 001–011).
+Updated: November 21, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
@@ -102,6 +102,8 @@ DEC-69 approves adding three calendar months at the same local time in Asia/Jaka
 `006-consultation-package.sql` adds a nullable, constrained package version code to consultation tickets. The server accepts only known codes. A package choice participates in the same request hash as the intake. Older tickets and requests without a package retain their existing behavior. Owner and admin ticket views show the choice. The public catalog supplies illustrative prices, which are never accepted as client submission fields.
 
 `007-ticket-scope-agreement.sql` stores versioned scope proposals and owner decisions. A composite foreign key links new projects to the exact consultation and approved version. Proposal actions and project creation serialize on the source ticket. The project function copies the approved title and included scope and checks the current owner decision. A repeated creation for the same approved version returns the original project. Existing projects have a null agreement reference and retain their saved scope.
+
+`010-account-management.sql` and `011-fix-delete-test-account.sql` add allowlisted `profile_context` and `preferred_locale` columns to `"user"` and grant `celahan_app` execute access to two `SECURITY DEFINER` cleanup functions: `reset_user_simulation_data(actor)` (removes only the actor's owned test tickets, follow-ups, and projects) and `delete_test_account(actor)` (removes a non-admin synthetic test account and its owned records, refusing `role <> 'user'`). Session revocation via `DELETE /api/account/sessions/` is scoped strictly to `userId = actor AND id <> currentSessionId`.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 
