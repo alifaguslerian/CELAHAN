@@ -2,7 +2,7 @@ export const accountCopy = {
   id: {
     login: 'Masuk', register: 'Daftar', verify: 'Verifikasi email', recovery: 'Pulihkan akun', reset: 'Atur ulang kata sandi', profile: 'Profil',
     name: 'Nama', email: 'Email', password: 'Kata sandi', newPassword: 'Kata sandi baru', otp: 'Kode dari email', submit: 'Lanjutkan', save: 'Simpan nama', saving: 'Memproses…', show: 'Tampilkan kata sandi', hide: 'Sembunyikan kata sandi',
-    boundary: 'Pengujian terisolasi dengan identitas sintetis yang diizinkan. Data akun disimpan di database uji. Pendaftaran publik dan pengiriman email sungguhan belum dibuka.',
+    boundary: 'Akun uji terisolasi disimpan di database uji.',
     passwordHelp: 'Gunakan 15–128 karakter. Tempel dan pengelola kata sandi didukung.',
     sent: 'Permintaan diterima. Jika akun memenuhi syarat, kode tersedia di penampung email lokal. Tidak ada email yang dikirim ke luar.',
     verified: 'Email terverifikasi. Silakan masuk.', saved: 'Nama tersimpan.', resetDone: 'Kata sandi diperbarui. Silakan masuk kembali.',
@@ -10,11 +10,13 @@ export const accountCopy = {
     failed: 'Permintaan belum berhasil. Periksa isian dan coba lagi.', deliveryFailed: 'Pengiriman kode lokal gagal. Coba kirim ulang di halaman verifikasi atau pemulihan.', unavailable: 'Layanan akun belum tersedia. Konfigurasi database dan penampung email lokal diperlukan.', limited: 'Terlalu banyak percobaan. Tunggu sebentar sebelum mencoba lagi.',
     needJS: 'Aktifkan JavaScript untuk mengirim formulir akun. Isian tidak dikirim melalui alamat halaman.', forgot: 'Lupa kata sandi?', resend: 'Kirim ulang kode verifikasi',
     serviceRetry: 'Layanan akun belum merespons. Coba lagi sebentar.',
+    or: 'atau', socialGroup: 'Opsi masuk dengan akun eksternal', continueWith: 'Lanjutkan dengan',
+    providerUnavailablePrefix: 'Opsi ', providerUnavailableSuffix: ' belum diaktifkan pada pengujian terisolasi. Gunakan email dan kata sandi untuk saat ini.',
   },
   en: {
     login: 'Log in', register: 'Sign up', verify: 'Verify email', recovery: 'Recover account', reset: 'Reset password', profile: 'Profile',
     name: 'Name', email: 'Email', password: 'Password', newPassword: 'New password', otp: 'Code from email', submit: 'Continue', save: 'Save name', saving: 'Processing…', show: 'Show password', hide: 'Hide password',
-    boundary: 'Isolated testing with allowlisted synthetic identities. Account data is stored in the test database. Public enrollment and real email delivery are not open.',
+    boundary: 'Isolated test accounts are stored in the test database.',
     passwordHelp: 'Use 15–128 characters. Pasting and password managers are supported.',
     sent: 'Request received. If the account is eligible, a code is available in the local email sink. No external email is sent.',
     verified: 'Email verified. Please log in.', saved: 'Name saved.', resetDone: 'Password updated. Please log in again.',
@@ -22,5 +24,7 @@ export const accountCopy = {
     failed: 'The request did not succeed. Check the fields and try again.', deliveryFailed: 'Local code delivery failed. Retry from the verification or recovery page.', unavailable: 'Account services are unavailable. The isolated database and local email sink must be configured.', limited: 'Too many attempts. Wait before trying again.',
     needJS: 'Enable JavaScript to submit account forms. Fields are not sent through page URLs.', forgot: 'Forgot password?', resend: 'Resend verification code',
     serviceRetry: 'The account service has not responded. Try again shortly.',
+    or: 'or', socialGroup: 'External account options', continueWith: 'Continue with',
+    providerUnavailablePrefix: '', providerUnavailableSuffix: ' sign-in is not enabled in isolated testing yet. Use email and password for now.',
   },
 } as const;

@@ -40,6 +40,18 @@
       "bytes": 31464,
       "export_sha256": "cba1a64cdb00e465dc0e9e32a6fde8f695685f9d67e697b8cdf903837ec644d8",
       "mode": "RGB"
+    },
+    {
+      "name": "layers-auth",
+      "source": "material-sources/layers-auth.jpg",
+      "tool_output": "glacier_steel_auth_source_1795253727491.jpg",
+      "source_sha256": "5cbbd3ed9c405936cb2b5aff80aebf084ba74f849a785bdca2da8b2a4e474fe8",
+      "export": "../../public/artwork/glacier-steel-auth.webp",
+      "width": 900,
+      "height": 1200,
+      "bytes": 51206,
+      "export_sha256": "833067b170b3db5f1371512331b6ab22e32b3e565a40c948bf1652d12f8e3077",
+      "mode": "RGB"
     }
   ],
   "font": {

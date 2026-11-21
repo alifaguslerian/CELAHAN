@@ -70,7 +70,7 @@ with sync_playwright() as p:
             assert page.locator('a[href*="/services/"], a[href*="/report/"], #packages, #report, .finding-list').count() == 0
             assert page.locator('main canvas, .menu-trigger').count() == 0
             for image in page.locator('main img').all():
-                assert image.get_attribute('src') in ['/artwork/glacier-steel-hero.webp', '/artwork/glacier-steel-detail.webp', '/artwork/glacier-steel-account.webp']
+                assert image.get_attribute('src') in ['/artwork/glacier-steel-hero.webp', '/artwork/glacier-steel-detail.webp', '/artwork/glacier-steel-account.webp', '/artwork/glacier-steel-auth.webp']
             assert page.locator('meta[name=description]').get_attribute('content')
             for width, height in VIEWPORTS:
                 page.set_viewport_size({'width': width, 'height': height})
