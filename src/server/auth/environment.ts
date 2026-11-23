@@ -1,3 +1,18 @@
+import type { OAuthProvider } from '../../lib/auth-policy.ts';
+
+export type OAuthClientConfig = { clientId: string; clientSecret: string };
+
+function readOAuthPair(clientId?: string, clientSecret?: string): OAuthClientConfig | null {
+  const id = (clientId ?? '').trim();
+  const secret = (clientSecret ?? '').trim();
+  if (!id && !secret) return null;
+  if (!id || !secret || id.length < 8 || secret.length < 8
+    || /[\s\p{Cc}\p{Cs}]/u.test(id) || /[\s\p{Cc}\p{Cs}]/u.test(secret)) {
+    throw new Error('Invalid OAuth provider configuration');
+  }
+  return { clientId: id, clientSecret: secret };
+}
+
 function isolatedDatabase(value: string): URL {
   let url;
   try { url = new URL(value); } catch { throw new Error('Invalid isolated database configuration'); }
@@ -36,5 +51,22 @@ export function authEnvironment(env: Readonly<Record<string, string | undefined>
     throw new Error('Invalid isolated authentication configuration');
   }
   isolatedDatabase(databaseURL);
-  return { origin, secret, databaseURL, mailboxURL, mailboxSecret, emails };
+  const oauth = {
+    google: readOAuthPair(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET),
+    github: readOAuthPair(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET),
+  };
+  return { origin, secret, databaseURL, mailboxURL, mailboxSecret, emails, oauth };
+}
+
+export function enabledOAuthProviders(env: Readonly<Record<string, string | undefined>> = process.env): OAuthProvider[] {
+  try {
+    const config = authEnvironment(env);
+    if (!config) return [];
+    const active: OAuthProvider[] = [];
+    if (config.oauth.google) active.push('google');
+    if (config.oauth.github) active.push('github');
+    return active;
+  } catch {
+    return [];
+  }
 }

@@ -1,12 +1,11 @@
 import { currentAccount, currentIdentity } from '@/server/auth/session';
 import { authEnvironment } from '@/server/auth/environment';
-import { database } from '@/server/data/pool';
 import { deleteTestAccount, updateAccountProfile } from '@/server/data/account';
 import { validWriteRequest } from '@/lib/auth-policy';
 import { isProfileContext, type ProfileContext } from '@/lib/account';
 import { isLocale, type Locale } from '@/lib/routing';
 import { boundedJSON, privateJSON } from '@/server/http';
-import { randomUUID } from 'node:crypto';
+import { consumeRateLimit, rateLimitResponse } from '@/server/rate-limit';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,14 +13,6 @@ function checkWriteOrigin(request: Request, origin: string, requireJSON: boolean
   if (request.headers.get('host') !== new URL(origin).host || new URL(request.url).search) return false;
   if (requireJSON) return validWriteRequest(request.headers.get('origin'), origin, request.headers.get('content-type'));
   return request.headers.get('origin') === origin;
-}
-
-async function consumeRateLimit(key: string, max: number) {
-  const limit = await database().query<{ count: number }>(
-    'INSERT INTO "rateLimit"(id, key, count, "lastRequest") VALUES ($1, $2, 1, $3) ON CONFLICT (key) DO UPDATE SET count = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN 1 ELSE "rateLimit".count + 1 END, "lastRequest" = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN $3 ELSE "rateLimit"."lastRequest" END RETURNING count',
-    [randomUUID(), key, Date.now()],
-  );
-  return limit.rows[0].count <= max;
 }
 
 export async function GET(request: Request) {
@@ -65,7 +56,8 @@ export async function PATCH(request: Request) {
       patch.preferredLocale = record.preferredLocale;
     }
 
-    if (!await consumeRateLimit(`profile:${account.id}`, 20)) return privateJSON({ error: 'RATE_LIMITED' }, 429);
+    const limit = await consumeRateLimit(`profile:${account.id}`, 20);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
     const updated = await updateAccountProfile(account.id, patch);
     return updated ? privateJSON({ ok: true }) : privateJSON({ error: 'SESSION' }, 401);
   } catch { return privateJSON({ error: 'UNAVAILABLE' }, 503); }
@@ -77,6 +69,8 @@ export async function DELETE(request: Request) {
     if (!config || !checkWriteOrigin(request, config.origin, false)) return privateJSON({ error: 'DENIED' }, 403);
     const account = await currentIdentity(request.headers);
     if (!account || request.headers.get('x-celahan-account') !== account.id) return privateJSON({ error: 'SESSION' }, 401);
+    const limit = await consumeRateLimit(`delete-account:${account.id}`, 5);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
     const result = await deleteTestAccount(account.id);
     if (result === 'admin_protected') return privateJSON({ error: 'ADMIN_PROTECTED' }, 403);
     if (result !== 'ok') return privateJSON({ error: 'SESSION' }, 401);

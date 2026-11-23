@@ -3,6 +3,7 @@ import { authEnvironment } from '@/server/auth/environment';
 import { revokeOtherSession } from '@/server/data/account';
 import { validWriteRequest } from '@/lib/auth-policy';
 import { boundedJSON, privateJSON } from '@/server/http';
+import { consumeRateLimit, rateLimitResponse } from '@/server/rate-limit';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,8 @@ export async function DELETE(request: Request) {
     }
     const account = await currentIdentity(request.headers);
     if (!account || request.headers.get('x-celahan-account') !== account.id) return privateJSON({ error: 'SESSION' }, 401);
+    const limit = await consumeRateLimit(`session-revoke:${account.id}`, 20);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
     let body: unknown;
     try { body = await boundedJSON(request); } catch { return privateJSON({ error: 'INVALID_INPUT' }, 400); }
     if (!body || typeof body !== 'object' || Array.isArray(body)) return privateJSON({ error: 'INVALID_INPUT' }, 400);

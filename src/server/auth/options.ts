@@ -1,17 +1,38 @@
 import type { BetterAuthOptions } from 'better-auth';
 import { emailOTP } from 'better-auth/plugins';
-import { allowedTestEmail } from '../../lib/auth-policy.ts';
+import { allowedTestEmail, sanitizeOAuthName, validOAuthEmail } from '../../lib/auth-policy.ts';
 import { authEnvironment } from './environment.ts';
 import type { Pool } from 'pg';
-import { deliveryState } from './delivery.ts';
+import { deliveryState, oauthFlowState } from './delivery.ts';
 
 export function authOptions(pool: Pool): BetterAuthOptions {
   const config = authEnvironment();
   if (!config) throw new Error('Authentication is unavailable');
+  const socialProviders: BetterAuthOptions['socialProviders'] = {
+    ...(config.oauth.google ? {
+      google: {
+        clientId: config.oauth.google.clientId,
+        clientSecret: config.oauth.google.clientSecret,
+      },
+    } : {}),
+    ...(config.oauth.github ? {
+      github: {
+        clientId: config.oauth.github.clientId,
+        clientSecret: config.oauth.github.clientSecret,
+      },
+    } : {}),
+  };
   return {
     appName: 'CELAHAN', baseURL: config.origin, secret: config.secret, database: pool,
     trustedOrigins: [config.origin],
     logger: { disabled: true }, telemetry: { enabled: false },
+    socialProviders,
+    account: {
+      accountLinking: {
+        enabled: true,
+        trustedProviders: ['google', 'github'],
+      },
+    },
     emailAndPassword: { enabled: true, minPasswordLength: 15, maxPasswordLength: 128, requireEmailVerification: true, autoSignIn: false, revokeSessionsOnPasswordReset: true },
     session: { expiresIn: 60 * 60 * 8, updateAge: 60 * 30, freshAge: 60 * 10, cookieCache: { enabled: false } },
     advanced: {
@@ -25,10 +46,36 @@ export function authOptions(pool: Pool): BetterAuthOptions {
       role: { type: 'string', defaultValue: 'user', input: false },
       accountEnabled: { type: 'boolean', defaultValue: true, input: false },
     } },
-    rateLimit: { enabled: true, storage: 'database', window: 60, max: 60,
-      customRules: { '/sign-up/email': { window: 60, max: 5 }, '/sign-in/email': { window: 60, max: 10 } } },
+    rateLimit: {
+      enabled: true, storage: 'database', window: 60, max: 60,
+      customRules: {
+        '/sign-up/email': { window: 60, max: 5 },
+        '/sign-in/email': { window: 60, max: 10 },
+        '/sign-in/social': { window: 60, max: 15 },
+        '/callback/google': { window: 60, max: 20 },
+        '/callback/github': { window: 60, max: 20 },
+        '/email-otp/send-verification-otp': { window: 60, max: 5 },
+        '/email-otp/verify-email': { window: 60, max: 10 },
+        '/email-otp/request-password-reset': { window: 60, max: 5 },
+        '/email-otp/reset-password': { window: 60, max: 10 },
+      },
+    },
     databaseHooks: {
       user: { create: { before: async (user) => {
+        const oauthFlow = oauthFlowState.getStore();
+        if (oauthFlow) {
+          if (!user.emailVerified || !validOAuthEmail(user.email)) return false;
+          return {
+            data: {
+              ...user,
+              name: sanitizeOAuthName(user.name, user.email),
+              email: user.email.toLowerCase(),
+              role: 'user',
+              accountEnabled: true,
+              image: null,
+            },
+          };
+        }
         if (!allowedTestEmail(user.email, config.emails)) return false;
         return { data: { ...user, role: 'user', accountEnabled: true, image: null } };
       } } },

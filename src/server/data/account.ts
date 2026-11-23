@@ -90,6 +90,7 @@ export async function accountTicketsAndPackage(userId: string): Promise<{
 export async function accountSecurityOverview(userId: string, currentSessionId: string): Promise<{
   sessions: AccountSessionRecord[];
   providers: string[];
+  hasPassword: boolean;
 }> {
   const [sessions, accounts] = await Promise.all([
     database().query<{
@@ -101,11 +102,13 @@ export async function accountSecurityOverview(userId: string, currentSessionId: 
        ORDER BY ("id" = $2) DESC, "updatedAt" DESC LIMIT 20`,
       [userId, currentSessionId],
     ),
-    database().query<{ providerId: string }>(
-      'SELECT DISTINCT "providerId" FROM account WHERE "userId" = $1',
+    database().query<{ providerId: string; has_password: boolean }>(
+      'SELECT "providerId", (password IS NOT NULL) AS has_password FROM account WHERE "userId" = $1',
       [userId],
     ),
   ]);
+  const providers = [...new Set(accounts.rows.map((row) => row.providerId))];
+  const hasPassword = accounts.rows.some((row) => row.providerId === 'credential' && row.has_password);
   return {
     sessions: sessions.rows.map((row) => ({
       id: row.id,
@@ -116,8 +119,20 @@ export async function accountSecurityOverview(userId: string, currentSessionId: 
       expiresAt: row.expiresAt.toISOString(),
       current: row.id === currentSessionId,
     })),
-    providers: accounts.rows.map((row) => row.providerId),
+    providers,
+    hasPassword,
   };
+}
+
+export async function accountHasPassword(userId: string): Promise<boolean> {
+  const result = await database().query<{ exists: boolean }>(
+    `SELECT EXISTS(
+       SELECT 1 FROM account
+       WHERE "userId" = $1 AND "providerId" = 'credential' AND password IS NOT NULL
+     ) AS exists`,
+    [userId],
+  );
+  return Boolean(result.rows[0]?.exists);
 }
 
 export async function updateAccountProfile(userId: string, patch: {

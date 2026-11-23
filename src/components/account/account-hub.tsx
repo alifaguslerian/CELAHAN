@@ -12,6 +12,7 @@ import {
   type AccountTab, type ProfileContext,
 } from '@/lib/account';
 import { packagePrices, type PackageCode } from '@/lib/packages';
+import type { OAuthProvider } from '@/lib/auth-policy';
 import type { Locale } from '@/lib/routing';
 import type { AccountProfileRecord, AccountSessionRecord, AccountTicketRecord } from '@/server/data/account';
 import { useActionConfirmation, useUnsavedDraft } from '@/components/layout/action-confirmation';
@@ -69,6 +70,8 @@ export function AccountHub({
   tickets,
   initialSessions,
   connectedProviders,
+  hasPassword,
+  enabledProviders,
 }: {
   locale: Locale;
   tab: AccountTab;
@@ -77,6 +80,8 @@ export function AccountHub({
   tickets: AccountTicketRecord[];
   initialSessions: AccountSessionRecord[];
   connectedProviders: string[];
+  hasPassword: boolean;
+  enabledProviders: readonly OAuthProvider[];
 }) {
   const copy = accountHubCopy[locale];
   const authText = accountCopy[locale];
@@ -509,42 +514,48 @@ export function AccountHub({
             <div className="account-hub-stack">
               <div className="account-hub-card">
                 <h2>{copy.security.passwordTitle}</h2>
-                <form className="account-hub-form" onSubmit={changePassword} onChange={markDirty} method="post" action="/api/auth/form-unavailable/">
-                  <fieldset disabled={passwordPending}>
-                    <div>
-                      <label htmlFor="current-password">{copy.security.currentPassword}</label>
-                      <div className="password-field">
-                        <input id="current-password" name="currentPassword" type={showCurrent ? 'text' : 'password'} autoComplete="current-password" required maxLength={128} value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} />
-                        <button type="button" className="password-toggle" aria-label={showCurrent ? authText.hide : authText.show} aria-pressed={showCurrent} onClick={() => setShowCurrent(!showCurrent)}>
-                          <EyeIcon visible={showCurrent} />
-                        </button>
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="new-password">{copy.security.newPassword}</label>
-                      <div className="password-field">
-                        <input id="new-password" name="newPassword" type={showNew ? 'text' : 'password'} autoComplete="new-password" required minLength={15} maxLength={128} value={newPassword} onChange={(event) => setNewPassword(event.target.value)} aria-describedby="security-password-help" />
-                        <button type="button" className="password-toggle" aria-label={showNew ? authText.hide : authText.show} aria-pressed={showNew} onClick={() => setShowNew(!showNew)}>
-                          <EyeIcon visible={showNew} />
-                        </button>
-                      </div>
-                      <p id="security-password-help" className="field-help">{copy.security.passwordHelp}</p>
-                    </div>
-                    <div>
-                      <label htmlFor="confirm-password">{copy.security.confirmPassword}</label>
-                      <div className="password-field">
-                        <input id="confirm-password" name="confirmPassword" type={showConfirm ? 'text' : 'password'} autoComplete="new-password" required minLength={15} maxLength={128} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-                        <button type="button" className="password-toggle" aria-label={showConfirm ? authText.hide : authText.show} aria-pressed={showConfirm} onClick={() => setShowConfirm(!showConfirm)}>
-                          <EyeIcon visible={showConfirm} />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="account-hub-actions">
-                      <button type="submit" className="primary-action">{passwordPending ? copy.security.updating : copy.security.updatePassword}</button>
-                    </div>
-                  </fieldset>
-                </form>
-                <p ref={passwordStatusRef} tabIndex={-1} role={passwordStatus.error ? 'alert' : 'status'} className="form-status">{passwordStatus.text}</p>
+                {hasPassword ? (
+                  <>
+                    <form className="account-hub-form" onSubmit={changePassword} onChange={markDirty} method="post" action="/api/auth/form-unavailable/">
+                      <fieldset disabled={passwordPending}>
+                        <div>
+                          <label htmlFor="current-password">{copy.security.currentPassword}</label>
+                          <div className="password-field">
+                            <input id="current-password" name="currentPassword" type={showCurrent ? 'text' : 'password'} autoComplete="current-password" required maxLength={128} value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} />
+                            <button type="button" className="password-toggle" aria-label={showCurrent ? authText.hide : authText.show} aria-pressed={showCurrent} onClick={() => setShowCurrent(!showCurrent)}>
+                              <EyeIcon visible={showCurrent} />
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <label htmlFor="new-password">{copy.security.newPassword}</label>
+                          <div className="password-field">
+                            <input id="new-password" name="newPassword" type={showNew ? 'text' : 'password'} autoComplete="new-password" required minLength={15} maxLength={128} value={newPassword} onChange={(event) => setNewPassword(event.target.value)} aria-describedby="security-password-help" />
+                            <button type="button" className="password-toggle" aria-label={showNew ? authText.hide : authText.show} aria-pressed={showNew} onClick={() => setShowNew(!showNew)}>
+                              <EyeIcon visible={showNew} />
+                            </button>
+                          </div>
+                          <p id="security-password-help" className="field-help">{copy.security.passwordHelp}</p>
+                        </div>
+                        <div>
+                          <label htmlFor="confirm-password">{copy.security.confirmPassword}</label>
+                          <div className="password-field">
+                            <input id="confirm-password" name="confirmPassword" type={showConfirm ? 'text' : 'password'} autoComplete="new-password" required minLength={15} maxLength={128} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+                            <button type="button" className="password-toggle" aria-label={showConfirm ? authText.hide : authText.show} aria-pressed={showConfirm} onClick={() => setShowConfirm(!showConfirm)}>
+                              <EyeIcon visible={showConfirm} />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="account-hub-actions">
+                          <button type="submit" className="primary-action">{passwordPending ? copy.security.updating : copy.security.updatePassword}</button>
+                        </div>
+                      </fieldset>
+                    </form>
+                    <p ref={passwordStatusRef} tabIndex={-1} role={passwordStatus.error ? 'alert' : 'status'} className="form-status">{passwordStatus.text}</p>
+                  </>
+                ) : (
+                  <p className="supporting-copy">{copy.security.oauthOnlyPassword}</p>
+                )}
               </div>
 
               <div className="account-hub-card">
@@ -592,17 +603,24 @@ export function AccountHub({
                   {(['google', 'github'] as const).map((provider) => {
                     const label = provider === 'google' ? 'Google' : 'GitHub';
                     const isLinked = connectedProviders.includes(provider);
+                    const isConfigured = enabledProviders.includes(provider);
+                    const description = isLinked
+                      ? copy.security.connected
+                      : isConfigured ? copy.security.notConnectedAvailable : copy.security.notConnected;
+                    const badgeLabel = isLinked
+                      ? copy.security.connected
+                      : isConfigured ? copy.security.availableBadge : copy.security.notConfiguredBadge;
                     return (
                       <li key={provider} className="account-provider-row">
                         <div className="account-provider-info">
                           <span className="account-provider-icon"><OAuthProviderIcon provider={provider} /></span>
                           <div>
                             <strong>{label}</strong>
-                            <p className="supporting-copy">{isLinked ? copy.security.connected : copy.security.notConnected}</p>
+                            <p className="supporting-copy">{description}</p>
                           </div>
                         </div>
                         <span className={`account-badge ${isLinked ? 'account-badge--verified' : 'account-badge--test'}`}>
-                          {isLinked ? copy.security.connected : copy.badges.test}
+                          {badgeLabel}
                         </span>
                       </li>
                     );

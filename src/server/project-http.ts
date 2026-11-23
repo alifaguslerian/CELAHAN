@@ -8,6 +8,7 @@ import { currentIdentity } from './auth/session';
 import { applyProjectCommand, createProject } from './data/projects';
 import { createFollowUp } from './data/follow-ups';
 import { boundedJSON, privateJSON } from './http';
+import { consumeRateLimit, rateLimitResponse } from './rate-limit';
 
 export async function projectPost(request: Request, id: string, target: 'ticket' | 'project' | 'follow-up') {
   try {
@@ -25,6 +26,8 @@ export async function projectPost(request: Request, id: string, target: 'ticket'
     if (target === 'follow-up') {
       const input = parseFollowUp(body);
       if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);
+      const limit = await consumeRateLimit(`follow-up:${account.id}`, 20);
+      if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
       const result = await createFollowUp(account, id, input);
       if (result.status === 'ok') return privateJSON({ id: result.id });
       if (result.status === 'expired' || result.status === 'cycle_used') return privateJSON({ error: result.status.toUpperCase() }, 409);
@@ -33,12 +36,16 @@ export async function projectPost(request: Request, id: string, target: 'ticket'
     if (target === 'ticket') {
       const input = parseProjectCreation(body);
       if (!input) return privateJSON({ error: 'INVALID_INPUT' }, 400);
+      const limit = await consumeRateLimit(`project-cmd:${account.id}`, 120);
+      if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
       const result = await createProject(account, id, input.scopeVersion);
       if (result.result === 'ok') return privateJSON({ id: result.project_id });
       return failed(result.result);
     }
     const command = parseProjectCommand(body);
     if (!command) return privateJSON({ error: 'INVALID_INPUT' }, 400);
+    const limit = await consumeRateLimit(`project-cmd:${account.id}`, 120);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
     const result = await applyProjectCommand(account, id, command);
     return result === 'ok' ? privateJSON({ ok: true }) : failed(result);
   } catch { return privateJSON({ error: 'UNAVAILABLE' }, 503); }

@@ -1,10 +1,10 @@
-import { randomUUID } from 'node:crypto';
 import { currentIdentity } from '@/server/auth/session';
 import { authentication } from '@/server/auth/instance';
 import { authEnvironment } from '@/server/auth/environment';
-import { database } from '@/server/data/pool';
+import { accountHasPassword } from '@/server/data/account';
 import { validWriteRequest } from '@/lib/auth-policy';
 import { boundedJSON, privateJSON } from '@/server/http';
+import { consumeRateLimit, rateLimitResponse } from '@/server/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -31,11 +31,9 @@ export async function POST(request: Request) {
       return privateJSON({ error: 'INVALID_INPUT' }, 400);
     }
 
-    const limit = await database().query<{ count: number }>(
-      'INSERT INTO "rateLimit"(id, key, count, "lastRequest") VALUES ($1, $2, 1, $3) ON CONFLICT (key) DO UPDATE SET count = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN 1 ELSE "rateLimit".count + 1 END, "lastRequest" = CASE WHEN "rateLimit"."lastRequest" < $3 - 60000 THEN $3 ELSE "rateLimit"."lastRequest" END RETURNING count',
-      [randomUUID(), `password:${account.id}`, Date.now()],
-    );
-    if (limit.rows[0].count > 10) return privateJSON({ error: 'RATE_LIMITED' }, 429);
+    const limit = await consumeRateLimit(`password:${account.id}`, 10);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
+    if (!await accountHasPassword(account.id)) return privateJSON({ error: 'NO_LOCAL_PASSWORD' }, 400);
 
     const forwarded = new Headers({ 'Content-Type': 'application/json', origin: config.origin, 'x-celahan-client-ip': '127.0.0.1' });
     const cookie = request.headers.get('cookie');

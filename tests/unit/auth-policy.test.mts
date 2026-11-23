@@ -38,3 +38,46 @@ test('password login only accepts credentials and second-factor routes are retir
   assert.equal(authFailure(401), 'AUTH_FAILED');
   assert.equal(authFailure(500), 'UNAVAILABLE');
 });
+
+test('social OAuth sign-in blocks unsupported providers, open redirects, and privileged fields', () => {
+  assert.ok(policy);
+  assert.equal(policy.validAuthBody('/sign-in/social', {
+    provider: 'google', callbackURL: '/id/account/', errorCallbackURL: '/id/login/?oauth=failed',
+  }), true);
+  assert.equal(policy.validAuthBody('/sign-in/social', {
+    provider: 'github', callbackURL: '/en/request/?package=web-core', errorCallbackURL: '/en/register/?oauth=failed',
+  }), true);
+  for (const bad of [
+    { provider: 'apple', callbackURL: '/id/account/', errorCallbackURL: '/id/login/' },
+    { provider: 'google', callbackURL: 'https://evil.invalid/', errorCallbackURL: '/id/login/' },
+    { provider: 'google', callbackURL: '//evil.invalid/phish', errorCallbackURL: '/id/login/' },
+    { provider: 'google', callbackURL: '/id/../admin/', errorCallbackURL: '/id/login/' },
+    { provider: 'github', callbackURL: '/id/account/', errorCallbackURL: 'javascript:alert(1)' },
+    { provider: 'google', callbackURL: '/id/account/', errorCallbackURL: '/id/login/', role: 'admin' },
+  ]) {
+    assert.equal(policy.validAuthBody('/sign-in/social', bad), false);
+  }
+  assert.equal(policy.validOAuthCallbackPath('/callback/google'), 'google');
+  assert.equal(policy.validOAuthCallbackPath('/callback/github'), 'github');
+  assert.equal(policy.validOAuthCallbackPath('/callback/apple'), null);
+  assert.equal(policy.validOAuthCallbackPath('/callback/google/extra'), null);
+
+  assert.equal(policy.validOAuthAuthorizeURL('google', 'https://accounts.google.com/o/oauth2/v2/auth?client_id=x'), true);
+  assert.equal(policy.validOAuthAuthorizeURL('github', 'https://github.com/login/oauth/authorize?client_id=x'), true);
+  for (const badURL of [
+    'http://accounts.google.com/o/oauth2/v2/auth',
+    'https://accounts.google.com.attacker.invalid/auth',
+    'https://github.com.attacker.invalid/login',
+    'https://evil.invalid/oauth',
+    'javascript:alert(1)',
+  ]) {
+    assert.equal(policy.validOAuthAuthorizeURL('google', badURL), false);
+    assert.equal(policy.validOAuthAuthorizeURL('github', badURL), false);
+  }
+
+  assert.equal(policy.validOAuthEmail('user.name+tag@gmail.com'), true);
+  assert.equal(policy.validOAuthEmail('not-an-email'), false);
+  assert.equal(policy.validOAuthEmail('bad email@gmail.com'), false);
+  assert.equal(policy.sanitizeOAuthName('  Ada\u0000  Lovelace  ', 'ada@gmail.com'), 'Ada Lovelace');
+  assert.equal(policy.sanitizeOAuthName('A', 'developer@gmail.com'), 'developer');
+});

@@ -5,6 +5,7 @@ import { authEnvironment } from './auth/environment';
 import { currentIdentity } from './auth/session';
 import { applyTicketCommand, createTicket, ticketUpdates } from './data/tickets';
 import { boundedJSON, privateJSON } from './http';
+import { consumeRateLimit, rateLimitResponse } from './rate-limit';
 
 function errorResponse(error: string, status: number) {
   return privateJSON({ error }, status);
@@ -40,6 +41,8 @@ export async function ticketPost(request: Request, view: TicketView, id?: string
     if (id === undefined) {
       const input = parseConsultation(body);
       if (!input) return errorResponse('INVALID_INPUT', 400);
+      const limit = await consumeRateLimit(`ticket-create:${account.id}`, 20);
+      if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
       const result = await createTicket(account, input);
       if (result.status === 'ok') return privateJSON({ id: result.id });
       return result.status === 'conflict' ? errorResponse('CONFLICT', 409) : errorResponse('SESSION', 401);
@@ -47,6 +50,8 @@ export async function ticketPost(request: Request, view: TicketView, id?: string
     if (!isTicketId(id)) return errorResponse('NOT_FOUND', 404);
     const command = parseTicketCommand(body);
     if (!command) return errorResponse('INVALID_INPUT', 400);
+    const limit = await consumeRateLimit(`ticket-cmd:${account.id}`, account.admin ? 120 : 40);
+    if (!limit.allowed) return rateLimitResponse(limit.retryAfter);
     const result = await applyTicketCommand(account, view, id, command);
     switch (result) {
       case 'ok': return privateJSON({ ok: true });

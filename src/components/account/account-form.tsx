@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useRef, useState, useSyncExternalStore } from 'react';
 import { accountCopy } from '@/content/account';
 import { disclaimer } from '@/content/shell';
+import type { OAuthProvider } from '@/lib/auth-policy';
 import type { Locale } from '@/lib/routing';
 import { localeHref, loginDestination } from '@/lib/routing';
 import { useSiteAccount } from '@/components/layout/site-account';
@@ -65,9 +66,10 @@ function ProviderIcon({ provider }: { provider: ExternalProvider }) {
   );
 }
 
-export function AccountForm({ locale, mode, available, profile }: {
+export function AccountForm({ locale, mode, available, profile, oauthProviders = [] }: {
   locale: Locale; mode: AccountMode; available: boolean;
   profile?: { id: string; name: string; email: string };
+  oauthProviders?: readonly OAuthProvider[];
 }) {
   const copy = accountCopy[locale];
   const { refreshAccount } = useSiteAccount();
@@ -75,6 +77,7 @@ export function AccountForm({ locale, mode, available, profile }: {
   const entryHref = (mode: 'login' | 'register' | 'account/recovery' | 'account/verify-email') =>
     localeHref(`/${locale}/${mode}/`, locale, '', search.get('next'), search.get('package'));
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
+  const initialOAuthError = search.get('oauth') === 'failed' || Boolean(search.get('error'));
   const [view, setView] = useState(mode);
   const [email, setEmail] = useState(profile?.email ?? '');
   const [name, setName] = useState(profile?.name ?? '');
@@ -82,8 +85,8 @@ export function AccountForm({ locale, mode, available, profile }: {
   const [otp, setOTP] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [pending, setPending] = useState(false);
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState(false);
+  const [message, setMessage] = useState(initialOAuthError ? copy.oauthFailed : '');
+  const [error, setError] = useState(initialOAuthError);
   const { markDirty, clearDraft } = useUnsavedDraft(confirmationCopy[locale].leave);
   const status = useRef<HTMLParagraphElement>(null);
 
@@ -131,10 +134,46 @@ export function AccountForm({ locale, mode, available, profile }: {
   const showExternalProviders = view === 'login' || view === 'register';
   const isAuthCard = view !== 'profile';
 
-  function selectExternalProvider(provider: ExternalProvider) {
+  async function selectExternalProvider(provider: ExternalProvider) {
+    if (pending) return;
+    const providerId: OAuthProvider | null = provider === 'Google' ? 'google' : provider === 'GitHub' ? 'github' : null;
+    if (!providerId || !oauthProviders.includes(providerId)) {
+      setError(false);
+      setMessage(`${copy.providerUnavailablePrefix}${provider}${copy.providerUnavailableSuffix}`);
+      status.current?.focus();
+      return;
+    }
+    setPending(true);
     setError(false);
-    setMessage(`${copy.providerUnavailablePrefix}${provider}${copy.providerUnavailableSuffix}`);
-    status.current?.focus();
+    setMessage(copy.oauthRedirecting);
+    try {
+      const callbackURL = loginDestination(search.get('next'), locale, search.get('package'));
+      const errorCallbackURL = `/${locale}/${view === 'register' ? 'register' : 'login'}/?oauth=failed`;
+      const response = await fetch('/api/auth/sign-in/social/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ provider: providerId, callbackURL, errorCallbackURL }),
+        cache: 'no-store',
+        redirect: 'error',
+        signal: AbortSignal.timeout(16000),
+      });
+      const data = await response.json().catch(() => ({})) as { error?: string; url?: string };
+      if (!response.ok || typeof data.url !== 'string') {
+        setError(true);
+        setMessage(data.error === 'RATE_LIMITED' ? copy.limited : data.error === 'PROVIDER_UNAVAILABLE'
+          ? `${copy.providerUnavailablePrefix}${provider}${copy.providerUnavailableSuffix}` : copy.oauthFailed);
+        setPending(false);
+        status.current?.focus();
+        return;
+      }
+      clearDraft();
+      window.location.assign(data.url);
+    } catch {
+      setError(true);
+      setMessage(copy.serviceRetry);
+      setPending(false);
+      status.current?.focus();
+    }
   }
 
   async function resendVerification() {

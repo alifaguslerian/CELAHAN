@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { authEnvironment } from '@/server/auth/environment';
+import { authEnvironment, enabledOAuthProviders } from '@/server/auth/environment';
 import { currentPageIdentity } from '@/server/auth/session';
 import { accountProfile, accountSecurityOverview, accountTicketsAndPackage } from '@/server/data/account';
 import { isAccountTab, type AccountTab } from '@/lib/account';
@@ -15,6 +15,7 @@ export async function AccountPage({ locale, mode }: { locale: Locale; mode: Acco
   try {
     available = Boolean(authEnvironment());
   } catch { available = false; }
+  const oauthProviders = available ? enabledOAuthProviders() : [];
 
   if (isAccountTab(mode)) {
     const identity = available ? await currentPageIdentity() : null;
@@ -23,7 +24,9 @@ export async function AccountPage({ locale, mode }: { locale: Locale; mode: Acco
     if (!profile) redirect(`/${locale}/login/?next=account`);
     const [ticketData, securityData] = await Promise.all([
       mode === 'tickets' ? accountTicketsAndPackage(identity.id) : Promise.resolve({ activePackageCode: null, tickets: [] }),
-      mode === 'security' ? accountSecurityOverview(identity.id, identity.sessionId) : Promise.resolve({ sessions: [], providers: [] }),
+      mode === 'security'
+        ? accountSecurityOverview(identity.id, identity.sessionId)
+        : Promise.resolve({ sessions: [], providers: [], hasPassword: true }),
     ]);
     return (
       <PrivateAccountScope id={profile.id}>
@@ -36,10 +39,12 @@ export async function AccountPage({ locale, mode }: { locale: Locale; mode: Acco
           tickets={ticketData.tickets}
           initialSessions={securityData.sessions}
           connectedProviders={securityData.providers}
+          hasPassword={securityData.hasPassword}
+          enabledProviders={oauthProviders}
         />
       </PrivateAccountScope>
     );
   }
 
-  return <AccountForm locale={locale} mode={mode} available={available} />;
+  return <AccountForm locale={locale} mode={mode} available={available} oauthProviders={oauthProviders} />;
 }
