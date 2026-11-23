@@ -1,7 +1,7 @@
 # CELAHAN — Data Model and Access Rules
 
-Status: W2 identity, W4–W5D consultation/project/report/follow-up tables, and DEC-76 account management preferences and cleanup functions exist in the isolated test database (migrations 001–011).
-Updated: November 21, 2026  
+Status: W2 identity, W4–W5D consultation/project/report/follow-up tables, DEC-76 account management preferences/cleanup, and DEC-78 `SECURITY DEFINER` admin account/audit functions exist in the isolated test database (migrations 001–012).
+Updated: November 23, 2026  
 References: [PRD](../product/PRD.md), [Operations](../product/SERVICE_OPERATIONS.md), [Architecture](ARCHITECTURE.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. Scope and identity
@@ -104,6 +104,8 @@ DEC-69 approves adding three calendar months at the same local time in Asia/Jaka
 `007-ticket-scope-agreement.sql` stores versioned scope proposals and owner decisions. A composite foreign key links new projects to the exact consultation and approved version. Proposal actions and project creation serialize on the source ticket. The project function copies the approved title and included scope and checks the current owner decision. A repeated creation for the same approved version returns the original project. Existing projects have a null agreement reference and retain their saved scope.
 
 `010-account-management.sql` and `011-fix-delete-test-account.sql` add allowlisted `profile_context` and `preferred_locale` columns to `"user"` and grant `celahan_app` execute access to two `SECURITY DEFINER` cleanup functions: `reset_user_simulation_data(actor)` (removes only the actor's owned test tickets, follow-ups, and projects) and `delete_test_account(actor)` (removes a non-admin synthetic test account and its owned records, refusing `role <> 'user'`). Session revocation via `DELETE /api/account/sessions/` is scoped strictly to `userId = actor AND id <> currentSessionId`.
+
+`012-admin-account-management.sql` expands `privileged_audit.action` to include `revoke_sessions` and adds three `SECURITY DEFINER` functions granted to `celahan_app`: `admin_list_accounts(actor_id)`, `admin_list_audit_log(actor_id)`, and `admin_update_account_access(actor_id, target_id, requested_action)`. Each verifies an active, verified `admin` actor, restricts web actions to `disable_account`/`enable_account`/`revoke_sessions` (keeping `grant_admin`/`revoke_admin` strictly CLI-only), refuses self or peer-admin targeting, revokes target sessions atomically, and writes an immutable `privileged_audit` entry.
 
 Boundary is exclusive: submitted_at < support_expires_at. Use database/server time, never client time. Recheck at submission and admin acceptance; timely submissions can remain eligible after expiry. New replies cannot transform a late new request into an earlier eligible one.
 

@@ -76,6 +76,8 @@ DEC-61 records the owner's November 6 presentation reset. It supersedes all earl
 | DEC-74 | Implement isolated W5D findings and illustrative retests | Structured private reports, multi-finding selection, and outcomes bound to the requested report version |
 | DEC-75 | Redesign login and register into a single-screen Glacier Steel split layout | Dedicated brushed-metal artwork (`glacier-steel-auth.webp`), transparent header, top-right mode switcher, inline password toggle, and honest placeholder Google/GitHub/Apple UI |
 | DEC-76 | Expand avatar menu and add 4-tab bilingual account management hub | Profile context, active package/ticket table, password change, active session revocation, OAuth status placeholders, language preference, simulation reset, and admin-protected test account deletion |
+| DEC-77 | Enable Google & GitHub PKCE OAuth with shared atomic rate limiting and security headers | Pairwise optional OAuth env config, verified-email enforcement, safe internal redirect checks, fail-closed callback handling, zero external avatar fetches, shared PostgreSQL rate limiter with `Retry-After`, `X-Frame-Options: DENY`, COOP, and static `/artwork/*` caching |
+| DEC-78 | Add SECURITY DEFINER admin account management, RBAC access matrix, and audit log | Migration `012-admin-account-management.sql`, CLI-only role promotion (`grant_admin`/`revoke_admin` via `npm run account:admin`), bilingual `/[locale]/admin/accounts/` UI, self/peer-admin protection, instant session revocation, and API session/host hardening |
 
 ## Reviewable operating proposals
 

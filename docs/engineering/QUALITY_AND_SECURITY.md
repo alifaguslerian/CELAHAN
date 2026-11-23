@@ -1,7 +1,7 @@
 # CELAHAN — Quality, Security, and Validation
 
-Status: W1–W5D, W6 local desktop verification, and DEC-75/76 account UI/hub checks are recorded locally; hosted release verification remains pending.  
-Updated: November 21, 2026  
+Status: W1–W5D, W6 local desktop verification, DEC-75/76 account UI/hub, and DEC-77/78 OAuth, rate-limiting, and admin RBAC audits are recorded locally; hosted release verification remains pending.  
+Updated: November 23, 2026  
 References: [PRD](../product/PRD.md), [Architecture](ARCHITECTURE.md), [Data and Access](DATA_AND_ACCESS.md), [Operations](../product/SERVICE_OPERATIONS.md)
 
 ## 1. Evidence and scope

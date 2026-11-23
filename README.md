@@ -1,39 +1,140 @@
+<div align="center">
+
 # CELAHAN
 
-A bilingual coursework and portfolio concept demonstrating product design, frontend development and backend engineering for a web security assessment portal.
+**Bilingual Web Application Security Assessment Portal — Architecture, UX & Security Engineering Showcase**
 
-> Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.5-0F172A?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3.1-0F172A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-0F172A?style=flat-square&logo=typescript&logoColor=3178C6)](https://www.typescriptlang.org/)
+[![Better Auth](https://img.shields.io/badge/Better_Auth-1.7.14-0F172A?style=flat-square)](https://www.better-auth.com/)
+[![PostgreSQL](https://img.shields.io/badge/Neon_PostgreSQL-17-0F172A?style=flat-square&logo=postgresql&logoColor=4169E1)](https://neon.tech/)
+[![License / Scope](https://img.shields.io/badge/Status-Academic_%26_Portfolio_Concept-1E3A5F?style=flat-square)](#concept-boundary)
+
+> **Proyek konsep untuk portofolio dan tugas kuliah. Bukan layanan sungguhan.**
 >
-> A concept project for a portfolio and university coursework. Not a real service.
+> *A concept project for a portfolio and university coursework. Not a real service.*
 
-## Current status — November 21, 2026
+<br />
 
-The **Aperture / Layers** desktop homepage uses the **Glacier Steel** palette and static metal imagery under DEC-67. The public context and process controls work without JavaScript. See [Design Direction](docs/design/DESIGN_DIRECTION.md) and [Glacier Steel validation](docs/validation/2026-11-08-glacier-steel.md).
+<img src="docs/assets/preview-home.png" alt="CELAHAN — Aperture / Layers Glacier Steel Homepage" width="100%" />
 
-W1 through W4 and isolated W5A–W5D are implemented. W5C adds bilingual illustrative packages, package-linked tickets and owner approval of versioned scope proposals. W5D adds structured private report findings, remediation priorities and per-finding illustrative results in one retest cycle. [W6 local desktop verification](docs/validation/2026-11-18-w6-local-desktop.md) is recorded. Under DEC-75 and DEC-76, login/register use a uniform single-screen Glacier Steel split layout (with placeholder Google/GitHub/Apple buttons), and signed-in users have an expanded avatar menu and a 4-tab bilingual account management hub (`/account/`, `/account/tickets/`, `/account/security/`, `/account/settings/`). See [Account UI and hub validation](docs/validation/2026-11-21-account-ui-and-hub.md). Hosted release requires separate authorization.
+</div>
 
-Public pages include home, eight conceptual stages, About/FAQ, privacy and custom 404. Retired catalog and sample URLs return 404. Verified test users can submit consultations and follow replies and confirmed discussion times. Admins can create a project from a reviewed consultation, publish a private web report and retain its version history. Owners see progress and the active published report. See [W4 validation](docs/validation/2026-11-09-w4-consultation.md) and [W5A validation](docs/validation/2026-11-10-w5a-private-projects.md).
+---
 
-Accounts and sessions use Better Auth in the Next.js server and a dedicated isolated Neon PostgreSQL test database. Assessments, findings and progress remain illustrative. Visitor-entered websites are never visited, resolved, scanned, previewed, embedded or automatically linked. Code fixes belong to the website owner's programmers.
+## Overview
 
-## Documentation
+**CELAHAN** is a full-stack bilingual (**Bahasa Indonesia `/id/`** & **English `/en/`**) web application security assessment portal built as an end-to-end product design, frontend engineering, and backend security case study.
 
-Start with [the grouped index](docs/README.md), [Project Brief](docs/product/PROJECT_BRIEF.md), [PRD](docs/product/PRD.md), [Decisions](docs/planning/DECISIONS.md) and [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md). [Agent Instructions](AGENTS.md) govern scope, privacy and entirely manual Git. The [Aperture / Layers design lock](docs/design/DESIGN_DIRECTION.md) is the selected desktop visual authority, with implementation evidence recorded separately.
+It demonstrates how a security-sensitive client portal should be engineered from the ground up: **least-privilege PostgreSQL roles**, **`SECURITY DEFINER` database guardrails**, **PKCE OAuth 2.0 (Google & GitHub)**, **atomic database-backed rate limiting**, **strict IDOR/RBAC isolation**, **versioned private reports**, and a custom **Glacier Steel** desktop design system with zero third-party runtime assets.
 
-## Stack and dependencies
+### Concept Boundary
 
-Pinned in package.json and package-lock.json: Next.js 16.4.5, React/React DOM 19.3.1, TypeScript 5.9.3, Better Auth 1.7.14 and pg 8.23.1. Node >=26.10.0 <27 and npm >=12 <13 are required. Vercel remains an unprovisioned hosting target.
+- Accounts, OAuth sign-in, consultation tickets, scope approvals, private reports, and admin audit logs run against a real isolated **Neon PostgreSQL 17** database (`celahan_w2`).
+- Security assessments, findings, remediation priorities, and retest outcomes are **illustrative only**.
+- Visitor-entered target websites are **strictly treated as inert plain text** — CELAHAN never visits, resolves DNS, scans, previews, embeds, or auto-links submitted targets.
 
-- Next.js/React: server-capable App Router rendering and focused client interactions.
-- Better Auth: password hashing, database sessions, hashed email OTP for enrollment and recovery. No custom authentication cryptography or second managed-auth service.
-- pg: pooled, parameterized PostgreSQL access and controlled migration/admin scripts; no separate ORM.
-- server-only: build-time protection for server modules.
-- TypeScript/types and ESLint plugins: strict checking, Next and hooks lint rules.
-- Python Playwright: development-only browser checks; Node's built-in runner handles units. Python is not an application dependency.
+---
 
-The desktop serves four WebP material assets totaling 142,832 bytes. Sources, prompts and hashes are recorded in design/desktop/material-manifest.json. Inter Latin WOFF2 is self-hosted with OFL and uses 48,256 bytes. See the [checkpoint audit](docs/validation/2026-11-08-checkpoint-audit.md) for measured desktop and security checks.
+## Visual Showcase
 
-## Local setup
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/assets/preview-auth.png" alt="Unified Glacier Steel Split-Card Login with Google & GitHub OAuth" />
+      <p align="center"><strong>Unified Auth Split-Card</strong><br /><sub>Single-screen Glacier Steel login/register with Google &amp; GitHub PKCE OAuth and inline password controls.</sub></p>
+    </td>
+    <td width="50%">
+      <img src="docs/assets/preview-account-hub.png" alt="4-Tab Bilingual Account Management Hub" />
+      <p align="center"><strong>4-Tab Account Management Hub</strong><br /><sub>Profile context, active package &amp; tickets, session revocation, OAuth status, language preference, and self-service deletion.</sub></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="docs/assets/preview-packages.png" alt="Bilingual Illustrative Assessment Packages" />
+      <p align="center"><strong>Illustrative Service Packages</strong><br /><sub>Bilingual scope tiers with package-linked consultation intake and versioned scope approval.</sub></p>
+    </td>
+    <td width="50%">
+      <img src="docs/assets/preview-home.png" alt="Aperture / Layers Glacier Steel Public Experience" />
+      <p align="center"><strong>Glacier Steel Public Shell</strong><br /><sub>Self-hosted Inter WOFF2, static brushed-metal WebP art, and progressive enhancement without JS.</sub></p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Architecture & Security Flow
+
+```mermaid
+flowchart LR
+  subgraph Client["Browser (ID / EN)"]
+    PUB["Public Pages\n(SSG / No-JS Safe)"]
+    AUTH["Login / Register\n(Email OTP + Google/GitHub PKCE)"]
+    HUB["Account Hub & Portal\n(Tickets, Reports, Admin)"]
+  end
+
+  subgraph Server["Next.js 16.4.5 App Router Boundary"]
+    HDR["Security Headers\n(CSP, COOP, XFO, nosniff)"]
+    RL["Atomic PostgreSQL\nRate Limiter + Retry-After"]
+    BA["Better Auth 1.7.14\n(Sessions, PKCE, Account Linking)"]
+    RBAC["Session & Object\nAuthorization Layer"]
+  end
+
+  subgraph DB["Neon PostgreSQL 17 (celahan_w2 · TLS verify-full)"]
+    ROLE["Restricted Runtime Role\n(celahan_app)"]
+    SDEF["SECURITY DEFINER Functions\n(Admin RBAC, Audit, Project & Cleanup)"]
+    AUDIT["privileged_audit\n& Versioned Tables"]
+  end
+
+  PUB --> HDR
+  AUTH --> RL --> BA --> ROLE
+  HUB --> RL --> RBAC --> ROLE
+  ROLE --> SDEF --> AUDIT
+```
+
+---
+
+## Role-Based Access Control (RBAC) Matrix
+
+CELAHAN enforces deny-by-default authorization at both the Next.js server boundary and PostgreSQL `SECURITY DEFINER` layer:
+
+| Role | Permitted Access | Strictly Restricted / Denied |
+| --- | --- | --- |
+| **Anonymous Visitor** | Public concept pages (`Home`, `About`, `Process`, `Packages`, `Privacy`), `Log in`, `Sign up`. | All private APIs (`/api/account/*`, `/api/tickets/*`, `/api/projects/*`, `/api/admin/*`) and all private routes (`401`/`403`/redirect). |
+| **Standard User** *(Email / Google / GitHub)* | Own profile & context, own active sessions, own consultation tickets & replies, own approved projects & published reports, simulation reset, and self-service account deletion. | Other users' tickets, projects, or sessions (anti-IDOR `404`), all `/admin/*` pages & APIs (`403`/`404`), internal admin notes, and role escalation. |
+| **Verified Admin** | Full consultation queue, separate internal admin notes, versioned scope proposals, project creation & report publishing, retest management, `/admin/accounts/` overview, disabling standard users, revoking standard user sessions, and immutable `privileged_audit` log. | Promoting/revoking Admin roles via browser (**CLI owner DB only**), disabling own account (`SELF_PROTECTED`), or modifying peer Admins (`ADMIN_PROTECTED`). |
+
+---
+
+## Key Capabilities & Security Controls
+
+| Area | Implemented Controls |
+| --- | --- |
+| **Authentication & OAuth** | Better Auth `1.7.14` with **Google & GitHub PKCE (`S256`) OAuth** (verified-email enforcement, safe internal redirect validation, fail-closed callback handling, verified account linking, zero external avatar fetches) + isolated local email/password OTP (`15–128` char passwords, hashed 5-minute OTPs). |
+| **Session Hygiene** | 8-hour database-backed `HttpOnly` `SameSite=Lax` sessions (no client token storage), instant session revocation on password change (`revokeOtherSessions: true`), manual per-device revocation in Account Hub, and instant wipe on admin disable/revoke. |
+| **Rate Limiting** | Shared atomic PostgreSQL rate limiter ([rate-limit.ts](src/server/rate-limit.ts)) returning accurate `429 RATE_LIMITED` + `Retry-After` headers across auth, OAuth, account, ticket, project, follow-up, and admin endpoints. |
+| **Database Hardening** | Least-privilege pooled runtime role (`celahan_app`), separate owner credential (`.env.database.local`) for hash-checked migrations (`001`–`012`) and CLI admin ops, `sslmode=verify-full`, parameterized SQL only, and `SECURITY DEFINER` functions with `SET search_path = pg_catalog, pg_temp`. |
+| **HTTP & Browser Headers** | Strict `Content-Security-Policy` (`frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'none'`, `img-src 'self'`), `X-Frame-Options: DENY`, `Cross-Origin-Opener-Policy: same-origin`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, `Cache-Control: private, no-store` on private routes, and static caching on `/artwork/*`. |
+| **Workflow Depth (W1–W5D)** | Package-linked consultations, live incremental ticket polling, confirmed Asia/Jakarta scheduling, versioned scope approval, immutable private report versions, structured findings, and single-cycle illustrative retesting. |
+
+---
+
+## Tech Stack
+
+| Layer | Technology (Pinned) | Purpose |
+| --- | --- | --- |
+| **Framework** | Next.js `16.4.5` (App Router) · React `19.3.1` · TypeScript `5.9.3` | Server-first rendering, typed route handlers, and focused client islands. |
+| **Authentication** | Better Auth `1.7.14` | Database sessions, password hashing, hashed email OTP, and Google/GitHub PKCE OAuth. |
+| **Database** | Neon PostgreSQL `17` · `pg` `8.23.1` | Pooled parameterized SQL, hash-checked migrations (`database/001`–`012`), and `SECURITY DEFINER` guardrails. |
+| **Design & Assets** | Custom CSS (`Glacier Steel`) · Inter Latin WOFF2 (`48 KiB`) · WebP metal art | Zero external CDN/font/image fetches; 4 static material assets documented in `design/desktop/material-manifest.json`. |
+| **Verification** | Node `node:test` · ESLint `10` · Python Playwright (Chrome) | Unit tests (28 suites), live OAuth/RBAC/IDOR security harnesses, and full ID/EN browser E2E. |
+
+---
+
+## Local Setup & Configuration
+
+**Prerequisites:** Node `>=26.10.0 <27`, npm `>=12 <13`, and an isolated Neon PostgreSQL database (`celahan_w2`).
 
 ```powershell
 $env:NEXT_TELEMETRY_DISABLED = '1'
@@ -41,61 +142,69 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-`npm run dev` listens on http://127.0.0.1:3100, which matches the sample isolated authentication origin. The root redirects to `/id/`, with `/en/` available for English. Home, About, Process and Privacy are prerendered for both locales in the production build. The shared header fetches its account state separately. Test automatic link prefetching with the production build because Next.js does not run it in development mode.
+`npm run dev` serves on `http://127.0.0.1:3100` (`/` redirects to `/id/`, English at `/en/`).
+
+### Environment Files (Ignored by Git)
+
+1. Copy variable names from [.env.example](.env.example) into `.env.local` (runtime config loaded by Next.js) and `.env.database.local` (owner-only `DATABASE_MIGRATION_URL`, never loaded by Next.js).
+2. To enable real **Google & GitHub OAuth** locally, add your free OAuth app credentials to `.env.local`:
+   ```env
+   GOOGLE_CLIENT_ID=<your-google-client-id>.apps.googleusercontent.com
+   GOOGLE_CLIENT_SECRET=<your-google-client-secret>
+   GITHUB_CLIENT_ID=<your-github-client-id>
+   GITHUB_CLIENT_SECRET=<your-github-client-secret>
+   ```
+   - **Google Authorized Redirect URI:** `http://127.0.0.1:3100/api/auth/callback/google`
+   - **GitHub Authorization Callback URL:** `http://127.0.0.1:3100/api/auth/callback/github`
+
+### Database Migrations & Admin CLI
 
 ```powershell
+# Apply hash-checked SQL migrations (001–012)
+npm run db:migrate
+
+# List registered accounts, roles, and connected OAuth providers
+npm run account:admin -- list
+
+# Promote / revoke an active, verified account (CLI-only by design)
+npm run account:admin -- grant_admin user@example.com
+npm run account:admin -- revoke_admin user@example.com
+npm run account:admin -- disable_account user@example.com
+npm run account:admin -- enable_account user@example.com
+```
+
+---
+
+## Verification & Quality Gates
+
+```powershell
+# Static analysis, type safety, unit tests (28/28), and production build
 npm run lint
 npm run typecheck
 npm test
 npm run build
-npm run start -- --port 3100
-```
 
-Typecheck generates route types before TypeScript. Build/start never migrate or provision resources. Account services stay unavailable unless isolated auth is explicitly configured. Keep telemetry opt-out enabled.
-
-## Isolated accounts
-
-See variable names in [.env.example](.env.example), never working secret values in chat or source. Runtime configuration belongs in ignored .env.local. Owner-only DATABASE_MIGRATION_URL belongs in separate ignored .env.database.local, which Next.js does not load. Runtime uses a restricted pooled role. Owner tooling checks that both connection strings target the same isolated Neon endpoint and `celahan_w2` database with verified TLS. The owner endpoint can be direct or pooled.
-
-Only explicitly allowlisted @example.invalid accounts are accepted. BETTER_AUTH_URL must match the chosen loopback port. The bearer-protected local mailbox captures verification/recovery codes in bounded memory; no external email is sent. Codes expire after five minutes and disappear on exit.
-
-Existing verified test users and administrators sign in with email and password. On the Windows profile that created the encrypted W5C credential file, run `.\scripts\w5c-login.ps1 admin password` to copy the test administrator password. Use `user1 password` or `user2 password` for the other accounts. The helper reads the ignored DPAPI file and copies only the requested value to the clipboard. Use a distinct browser profile, private session or browser for each concurrent account.
-
-```powershell
-npm run mailbox
-# In separate terminals, after building:
-npm run start -- --port 3100
-npm run test:integration
-.\.venv\Scripts\python.exe tests/e2e/accounts.py --email fresh-allowlisted@example.invalid
-```
-
-The W2 integration suite resets all allowlisted synthetic identities and can reset manually used test accounts. Its guard refuses a database containing consultation tickets. The account browser suite needs a fresh, already allowlisted synthetic email and performs account writes. Restart mailbox/server after allowlist changes. Test passwords are generated in memory. Account forms require JavaScript. Disabled server-rendered controls and POST-only fallback keep credentials out of GET URLs.
-
-The consultation integration harness starts a production preview on port 3114, creates three short-lived synthetic sessions, and cleans up their records. It requires the production build, current migrations and isolated database configuration. The flags below include W4, W5A and W5B in Chrome.
-
-```powershell
+# Full isolated integration + Chrome E2E suite (W4, W5A–W5D, RBAC, IDOR)
 node --env-file=.env.local --env-file=.env.database.local tests/integration/consultations.mts --follow-ups --browser
-```
 
-Reviewed SQL is in database/. npm run db:migrate applies hash-checked migrations in one locked transaction. npm run db:prepare-test-role is a one-time trusted procedure that refuses to replace an existing role. scripts/generate-auth-schema.mts refuses to overwrite saved initial SQL. Do not run these as part of a presentation reset.
-
-Admin provisioning uses npm run account:admin -- grant_admin <allowlisted-synthetic-email> only for active, email-verified synthetic accounts. revoke_admin, disable_account and enable_account also revoke sessions and record metadata. No public role selector or default admin exists.
-
-## Desktop browser checks
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe -m playwright install chromium
+# Public shell & no-outside-origin Playwright checks
 .\.venv\Scripts\python.exe tests/e2e/public-site.py --base http://127.0.0.1:3100
 ```
 
-Use a production server. Public/shared-shell checks perform no account writes and block outside-origin browser requests. Add --channel chrome to use an installed Chrome in an isolated headless test profile if Playwright's Chromium binary is unavailable. The additional Layers suite is .venv/Scripts/python.exe tests/e2e/layers.py --channel chrome. Screenshots remain in ignored test-results/. The [Layers validation](docs/validation/2026-11-06-layers-desktop.md) covers actual desktop interactions and local performance; phone, physical-device, screen-reader and deployment support are not established. Historical W1/W2 outcomes retain their original scope.
+---
 
-## Remaining gates
+## Documentation Index
 
-The first private report sets support once, ending three calendar months later in Asia/Jakarta. Owners can ask about the active report or request one illustrative retest cycle per project during support. Latest open ticket conversations receive automatic updates. The ticket list shows upcoming confirmed appointments. The draft editor offers one approved fictional order-portal example.
+Start with [docs/README.md](docs/README.md) for the complete documentation map:
 
-Before public intake resolve enrollment/recovery/delivery, retention/deletion/backups, processors/regions, privacy contact and hosting. Synthetic projects do not make real account identities nonpersonal. No paid services or domain/DNS setup is authorized. Video/case-study production follows stable actual functionality; no deadline or video format is invented.
+- **Product:** [Project Brief](docs/product/PROJECT_BRIEF.md) · [PRD](docs/product/PRD.md) · [User Flows](docs/product/USER_FLOWS.md) · [Service Operations](docs/product/SERVICE_OPERATIONS.md)
+- **Design:** [Aperture / Layers Design Lock](docs/design/DESIGN_DIRECTION.md) · [Logo Guidelines](docs/design/LOGO_GUIDELINES.md) · [Portal UX Spec](docs/design/PORTAL_UX_SPEC.md)
+- **Engineering:** [Architecture](docs/engineering/ARCHITECTURE.md) · [Data & Access](docs/engineering/DATA_AND_ACCESS.md) · [Quality & Security](docs/engineering/QUALITY_AND_SECURITY.md)
+- **Planning & Governance:** [Decisions (DEC-01–78)](docs/planning/DECISIONS.md) · [Implementation Plan](docs/planning/IMPLEMENTATION_PLAN.md) · [Agent Instructions](AGENTS.md)
+- **Latest Validation:** [OAuth, Admin RBAC & Security Audit (2026-11-23)](docs/validation/2026-11-23-oauth-and-admin-rbac.md) · [Account UI & Hub (2026-11-21)](docs/validation/2026-11-21-account-ui-and-hub.md)
 
-Git is entirely manual unless a specific operation is requested. Reviewed checkpoint suggestions belong in chat, in English, with related files grouped by purpose.
+---
+
+### Release Gates
+
+Hosted public deployment remains separately authorized. Before public production release, finalize public HTTPS origin configuration, production email delivery (if password enrollment is opened), retention/backup procedures, and privacy contact details. Git operations are entirely manual.

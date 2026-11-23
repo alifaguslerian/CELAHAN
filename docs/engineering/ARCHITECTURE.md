@@ -1,7 +1,7 @@
 # CELAHAN — Architecture
 
-Status: W1–W4, isolated W5A–W5D, W6 local desktop verification, and DEC-75/76 account UI and hub are implemented. Hosted release remains gated.
-Updated: November 21, 2026  
+Status: W1–W4, isolated W5A–W5D, W6 local desktop verification, DEC-75/76 account UI/hub, and DEC-77/78 Google/GitHub OAuth, atomic rate limiting, and admin RBAC management are implemented. Hosted release remains gated.
+Updated: November 23, 2026  
 References: [PRD](../product/PRD.md), [Flows](../product/USER_FLOWS.md), [Data and Access](DATA_AND_ACCESS.md), [Quality](QUALITY_AND_SECURITY.md)
 
 ## 1. System boundaries
