@@ -55,6 +55,7 @@ export async function TicketListPage({ locale, view, page: requestedPage, agenda
   return <PrivateAccountScope id={actor.id} capability={view === 'admin' ? 'admin' : undefined}><main id="main-content" className="ticket-page" tabIndex={-1}>
     <header className="ticket-page-head"><div><p className="eyebrow">CELAHAN / {locale === 'id' ? 'Konsultasi' : 'Consultation'}</p><h1>{title}</h1></div>
       {view === 'owner' && <Link className="primary-action" href={`/${locale}/request/`} prefetch={false}>{copy.title}</Link>}
+      {view === 'admin' && <Link className="text-button" href={`/${locale}/admin/accounts/`} prefetch={false}>{locale === 'id' ? 'Akun & Hak Akses' : 'Accounts & Access'}</Link>}
     </header>
     {view === 'admin' && <p className="scope-note">{copy.queueIntro}</p>}
     <p className="page-actions"><a href="#agenda">{follow.agenda}</a></p>

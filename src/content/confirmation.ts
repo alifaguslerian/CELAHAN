@@ -16,6 +16,9 @@ export const confirmationCopy = {
     revokeSession: { title: 'Cabut sesi ini?', description: 'Perangkat atau tab yang menggunakan sesi tersebut harus masuk kembali untuk mengakses akun.', action: 'Cabut sesi', caution: true },
     resetSimulation: { title: 'Reset data simulasi?', description: 'Seluruh tiket konsultasi uji, riwayat percakapan, dan proyek milik akun ini akan dihapus permanen dari database uji.', action: 'Reset data simulasi', caution: true },
     deleteAccount: { title: 'Hapus akun uji?', description: 'Akun sintetis ini beserta seluruh tiket, proyek, dan sesi aktifnya akan dihapus permanen dan Anda akan langsung keluar.', action: 'Hapus akun uji', caution: true },
+    adminDisableAccount: { title: 'Nonaktifkan akun pengguna?', description: 'Pengguna tidak akan dapat masuk dan seluruh sesi aktifnya akan langsung dicabut. Tindakan ini dicatat pada log audit.', action: 'Nonaktifkan akun', caution: true },
+    adminEnableAccount: { title: 'Aktifkan kembali akun pengguna?', description: 'Pengguna akan dapat masuk kembali ke portal. Tindakan ini dicatat pada log audit.', action: 'Aktifkan akun' },
+    adminRevokeSessions: { title: 'Cabut semua sesi pengguna?', description: 'Pengguna akan langsung keluar dari semua perangkat dan harus masuk kembali. Tindakan ini dicatat pada log audit.', action: 'Cabut semua sesi', caution: true },
   },
   en: {
     cancel: 'Cancel', stay: 'Keep editing',
@@ -34,5 +37,8 @@ export const confirmationCopy = {
     revokeSession: { title: 'Revoke this session?', description: 'The browser or device using this session will need to sign in again to access the account.', action: 'Revoke session', caution: true },
     resetSimulation: { title: 'Reset simulation data?', description: 'All test consultation tickets, conversation history, and projects owned by this account will be permanently deleted from the test database.', action: 'Reset simulation data', caution: true },
     deleteAccount: { title: 'Delete test account?', description: 'This synthetic account along with all owned tickets, projects, and active sessions will be permanently removed and you will be signed out.', action: 'Delete test account', caution: true },
+    adminDisableAccount: { title: 'Disable user account?', description: 'The user will be blocked from signing in and all active sessions will be revoked immediately. This action is recorded in the audit log.', action: 'Disable account', caution: true },
+    adminEnableAccount: { title: 'Re-enable user account?', description: 'The user will be allowed to sign in again. This action is recorded in the audit log.', action: 'Enable account' },
+    adminRevokeSessions: { title: 'Revoke all user sessions?', description: 'The user will be signed out from every device immediately. This action is recorded in the audit log.', action: 'Revoke all sessions', caution: true },
   },
 } as const;

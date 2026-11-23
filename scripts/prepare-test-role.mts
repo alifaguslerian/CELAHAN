@@ -24,6 +24,9 @@ try {
     await client.query('GRANT EXECUTE ON FUNCTION public.create_assessment_project(text, uuid, integer) TO celahan_app');
     await client.query('GRANT EXECUTE ON FUNCTION public.reset_user_simulation_data(text) TO celahan_app');
     await client.query('GRANT EXECUTE ON FUNCTION public.delete_test_account(text) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.admin_list_accounts(text) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.admin_list_audit_log(text) TO celahan_app');
+    await client.query('GRANT EXECUTE ON FUNCTION public.admin_update_account_access(text, text, text) TO celahan_app');
     await client.query('GRANT SELECT, INSERT ON consultation_scope_proposal TO celahan_app');
     await client.query('GRANT UPDATE (decision, decision_note, decided_by, decided_at) ON consultation_scope_proposal TO celahan_app');
     await client.query('GRANT SELECT ON assessment_project, project_report_version, assessment_project_event, assessment_project_command TO celahan_app');

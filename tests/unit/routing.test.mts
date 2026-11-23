@@ -18,6 +18,7 @@ test('language switching preserves current tasks and reviewed public anchors', (
   assert.equal(localeHref('/id/account/tickets/', 'en'), '/en/account/tickets/');
   assert.equal(localeHref('/en/account/security/', 'id'), '/id/account/security/');
   assert.equal(localeHref('/id/account/settings/', 'en'), '/en/account/settings/');
+  assert.equal(localeHref('/id/admin/accounts/', 'en'), '/en/admin/accounts/');
   assert.equal(localeHref('/en/account/recovery/', 'id'), '/id/account/recovery/');
   assert.equal(localeHref('/id/projects/', 'en'), '/en/projects/');
   assert.equal(localeHref('/id/login/', 'en', '', 'account'), '/en/login/?next=account');
