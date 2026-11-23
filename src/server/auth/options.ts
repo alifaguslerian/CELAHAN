@@ -33,13 +33,14 @@ export function authOptions(pool: Pool): BetterAuthOptions {
         trustedProviders: ['google', 'github'],
       },
     },
-    emailAndPassword: { enabled: true, minPasswordLength: 15, maxPasswordLength: 128, requireEmailVerification: true, autoSignIn: false, revokeSessionsOnPasswordReset: true },
+    emailAndPassword: { enabled: config.mode === 'isolated', minPasswordLength: 15, maxPasswordLength: 128, requireEmailVerification: true, autoSignIn: false, revokeSessionsOnPasswordReset: true },
     session: { expiresIn: 60 * 60 * 8, updateAge: 60 * 30, freshAge: 60 * 10, cookieCache: { enabled: false } },
     advanced: {
       database: { joins: true },
+      useSecureCookies: config.secureCookies,
       disableCSRFCheck: false, disableOriginCheck: false,
       ipAddress: { ipAddressHeaders: ['x-celahan-client-ip'] },
-      defaultCookieAttributes: { httpOnly: true, sameSite: 'lax', path: '/' },
+      defaultCookieAttributes: { httpOnly: true, sameSite: 'lax', path: '/', secure: config.secureCookies },
     },
     user: { additionalFields: {
       // The public auth route filters the response. Server session checks need these fields.
@@ -89,7 +90,9 @@ export function authOptions(pool: Pool): BetterAuthOptions {
         storeOTP: 'hashed', expiresIn: 300, allowedAttempts: 3,
         async sendVerificationOTP({ email, otp, type }) {
           try {
-            if (!allowedTestEmail(email, config.emails) || !['email-verification', 'forget-password'].includes(type)) throw new Error();
+            if (!config.mailboxURL || !config.mailboxSecret
+              || !allowedTestEmail(email, config.emails)
+              || !['email-verification', 'forget-password'].includes(type)) throw new Error();
             const result = await fetch(config.mailboxURL, {
               method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${config.mailboxSecret}` },
               body: JSON.stringify({ email, otp, type }), signal: AbortSignal.timeout(3000), redirect: 'error', cache: 'no-store',

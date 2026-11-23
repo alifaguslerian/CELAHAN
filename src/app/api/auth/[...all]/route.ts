@@ -10,6 +10,15 @@ import { deliveryState, oauthFlowState } from '@/server/auth/delivery';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+function trustedClientIp(request: Request, mode: 'isolated' | 'hosted'): string {
+  if (mode !== 'hosted') return '127.0.0.1';
+  const raw = request.headers.get('x-vercel-forwarded-for')
+    ?? request.headers.get('x-forwarded-for')?.split(',')[0]
+    ?? '';
+  const candidate = raw.trim();
+  return /^[0-9a-fA-F:.]{3,45}$/.test(candidate) ? candidate : 'hosted-unknown';
+}
+
 function privateRedirect(location: string, extra?: Headers) {
   const headers = new Headers(extra);
   headers.set('Location', location);
@@ -48,12 +57,12 @@ export async function POST(request: Request) {
       }
     }
     if ('email' in body && !allowedTestEmail(body.email, config.emails)) return privateJSON({ error: 'AUTH_FAILED' }, 400);
-    const forwarded = new Headers({ 'Content-Type': 'application/json', origin: config.origin, 'x-celahan-client-ip': '127.0.0.1' });
+    const forwarded = new Headers({ 'Content-Type': 'application/json', origin: config.origin, 'x-celahan-client-ip': trustedClientIp(request, config.mode) });
     const cookie = request.headers.get('cookie');
     if (cookie) forwarded.set('cookie', cookie);
     const userAgent = request.headers.get('user-agent');
     if (userAgent) forwarded.set('user-agent', userAgent.slice(0, 300));
-    // This transport is loopback-only; client-supplied proxy/IP headers never reach the rate limiter.
+    // Client IP is fixed on loopback and derived only from Vercel's trusted edge header when hosted.
     const state = { failed: false };
     const response = await deliveryState.run(state, () => authentication().handler(new Request(config.origin + '/api/auth' + path, { method: 'POST', headers: forwarded, body: JSON.stringify(body) })));
     const headers = new Headers();
@@ -81,7 +90,7 @@ export async function GET(request: Request) {
     const provider = validOAuthCallbackPath(path);
     if (!provider || !config.oauth[provider]) return privateJSON({ error: 'NOT_FOUND' }, 404);
 
-    const forwarded = new Headers({ 'x-celahan-client-ip': '127.0.0.1' });
+    const forwarded = new Headers({ 'x-celahan-client-ip': trustedClientIp(request, config.mode) });
     const cookie = request.headers.get('cookie');
     if (cookie) forwarded.set('cookie', cookie);
     const userAgent = request.headers.get('user-agent');

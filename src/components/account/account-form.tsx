@@ -66,10 +66,11 @@ function ProviderIcon({ provider }: { provider: ExternalProvider }) {
   );
 }
 
-export function AccountForm({ locale, mode, available, profile, oauthProviders = [] }: {
+export function AccountForm({ locale, mode, available, profile, oauthProviders = [], passwordAuthEnabled = true }: {
   locale: Locale; mode: AccountMode; available: boolean;
   profile?: { id: string; name: string; email: string };
   oauthProviders?: readonly OAuthProvider[];
+  passwordAuthEnabled?: boolean;
 }) {
   const copy = accountCopy[locale];
   const { refreshAccount } = useSiteAccount();
@@ -199,8 +200,22 @@ export function AccountForm({ locale, mode, available, profile, oauthProviders =
         </nav>
       )}
     </div>
-    <p className="supporting-copy">{copy.boundary}</p>
+    <p className="supporting-copy">{passwordAuthEnabled ? copy.boundary : copy.hostedBoundary}</p>
     {!available ? <p role="status">{copy.unavailable}</p> : <>
+      {!passwordAuthEnabled && showExternalProviders ? (
+        <div className="account-form">
+          <div className="social-providers" role="group" aria-label={copy.socialGroup}>
+            {externalProviders.filter((p) => (p === 'Google' && oauthProviders.includes('google')) || (p === 'GitHub' && oauthProviders.includes('github'))).map((provider) => (
+              <button key={provider} type="button" className="social-provider-button" disabled={pending || !hydrated}
+                aria-label={`${copy.continueWith} ${provider}`} title={`${copy.continueWith} ${provider}`}
+                onClick={() => selectExternalProvider(provider)}>
+                <ProviderIcon provider={provider} />
+              </button>
+            ))}
+          </div>
+          <p className="field-help">{copy.hostedOAuthNote}</p>
+        </div>
+      ) : (
       <form className="account-form" onSubmit={submit} onChange={markDirty} method="post" action="/api/auth/form-unavailable/">
         <fieldset disabled={pending || !hydrated}>
           {(view === 'register' || view === 'profile') && <label>{copy.name}<input name="name" autoComplete="name" required minLength={2} maxLength={80} value={name} onChange={(event) => setName(event.target.value)} /></label>}
@@ -223,6 +238,7 @@ export function AccountForm({ locale, mode, available, profile, oauthProviders =
           </>}
         </fieldset>
       </form>
+      )}
       <p ref={status} tabIndex={-1} role={error ? 'alert' : 'status'} className="form-status">{message}</p>
       {view === 'verify' && <button type="button" className="text-button" disabled={pending} onClick={resendVerification}>{copy.resend}</button>}
       <noscript><p>{copy.needJS}</p></noscript>

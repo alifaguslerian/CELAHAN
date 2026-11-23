@@ -37,11 +37,50 @@ export function isolatedOwnerDatabaseURL(runtimeURL: string, ownerURL = process.
   return ownerURL;
 }
 
+function hostedOrigin(value: string): string {
+  let parsed: URL;
+  try { parsed = new URL(value); } catch { throw new Error('Invalid hosted authentication origin'); }
+  if (parsed.protocol !== 'https:' || !parsed.hostname || parsed.hostname === 'localhost'
+    || /^127\.|^0\.|^10\.|^192\.168\.|^\[::1\]$/i.test(parsed.hostname)
+    || parsed.pathname !== '/' || parsed.search || parsed.hash || value.endsWith('/')) {
+    throw new Error('Hosted authentication origin must be a clean public HTTPS origin');
+  }
+  return parsed.origin;
+}
+
 export function authEnvironment(env: Readonly<Record<string, string | undefined>> = process.env) {
-  if (env.CELAHAN_ISOLATED_AUTH !== 'true') return null;
-  const origin = env.BETTER_AUTH_URL ?? '';
+  const hosted = env.CELAHAN_HOSTED_AUTH === 'true';
+  const isolated = env.CELAHAN_ISOLATED_AUTH === 'true';
+  if (!hosted && !isolated) return null;
+  if (hosted && isolated) throw new Error('Choose either hosted or isolated authentication mode');
+
   const secret = env.BETTER_AUTH_SECRET ?? '';
   const databaseURL = env.DATABASE_URL ?? '';
+  const oauth = {
+    google: readOAuthPair(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET),
+    github: readOAuthPair(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET),
+  };
+
+  if (hosted) {
+    const origin = hostedOrigin(env.BETTER_AUTH_URL ?? '');
+    if (secret.length < 32 || (!oauth.google && !oauth.github)) {
+      throw new Error('Invalid hosted authentication configuration');
+    }
+    isolatedDatabase(databaseURL);
+    return {
+      mode: 'hosted' as const,
+      secureCookies: true,
+      origin,
+      secret,
+      databaseURL,
+      mailboxURL: '',
+      mailboxSecret: '',
+      emails: [] as string[],
+      oauth,
+    };
+  }
+
+  const origin = env.BETTER_AUTH_URL ?? '';
   const mailboxURL = env.CELAHAN_MAILBOX_URL ?? '';
   const mailboxSecret = env.CELAHAN_MAILBOX_SECRET ?? '';
   const emails = (env.CELAHAN_TEST_EMAILS ?? '').split(',').filter(Boolean);
@@ -51,11 +90,17 @@ export function authEnvironment(env: Readonly<Record<string, string | undefined>
     throw new Error('Invalid isolated authentication configuration');
   }
   isolatedDatabase(databaseURL);
-  const oauth = {
-    google: readOAuthPair(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET),
-    github: readOAuthPair(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET),
+  return {
+    mode: 'isolated' as const,
+    secureCookies: false,
+    origin,
+    secret,
+    databaseURL,
+    mailboxURL,
+    mailboxSecret,
+    emails,
+    oauth,
   };
-  return { origin, secret, databaseURL, mailboxURL, mailboxSecret, emails, oauth };
 }
 
 export function enabledOAuthProviders(env: Readonly<Record<string, string | undefined>> = process.env): OAuthProvider[] {

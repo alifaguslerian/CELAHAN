@@ -12,8 +12,11 @@ export type AccountViewMode = Exclude<AccountMode, 'profile'> | AccountTab;
 
 export async function AccountPage({ locale, mode }: { locale: Locale; mode: AccountViewMode }) {
   let available: boolean;
+  let passwordAuthEnabled = true;
   try {
-    available = Boolean(authEnvironment());
+    const config = authEnvironment();
+    available = Boolean(config);
+    passwordAuthEnabled = config?.mode === 'isolated';
   } catch { available = false; }
   const oauthProviders = available ? enabledOAuthProviders() : [];
 
@@ -46,5 +49,5 @@ export async function AccountPage({ locale, mode }: { locale: Locale; mode: Acco
     );
   }
 
-  return <AccountForm locale={locale} mode={mode} available={available} oauthProviders={oauthProviders} />;
+  return <AccountForm locale={locale} mode={mode} available={available} oauthProviders={oauthProviders} passwordAuthEnabled={passwordAuthEnabled} />;
 }

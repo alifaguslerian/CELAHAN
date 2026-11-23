@@ -62,3 +62,29 @@ test('optional Google and GitHub OAuth credentials validate pairwise without lea
     assert.deepEqual(enabledOAuthProviders({ ...config, ...broken }), []);
   }
 });
+
+test('hosted HTTPS mode enables secure cookies and requires HTTPS origin plus at least one OAuth provider', () => {
+  const hosted = {
+    CELAHAN_HOSTED_AUTH: 'true',
+    BETTER_AUTH_URL: 'https://celahan.vercel.app',
+    BETTER_AUTH_SECRET: randomBytes(32).toString('base64url'),
+    DATABASE_URL: config.DATABASE_URL,
+    GOOGLE_CLIENT_ID: '12345678-prod.apps.googleusercontent.com',
+    GOOGLE_CLIENT_SECRET: 'GOCSPX-prod-secret-value',
+  };
+  const parsed = authEnvironment(hosted);
+  assert.equal(parsed?.mode, 'hosted');
+  assert.equal(parsed?.secureCookies, true);
+  assert.equal(parsed?.origin, 'https://celahan.vercel.app');
+  assert.deepEqual(enabledOAuthProviders(hosted), ['google']);
+
+  for (const bad of [
+    { BETTER_AUTH_URL: 'http://celahan.vercel.app' },
+    { BETTER_AUTH_URL: 'https://celahan.vercel.app/' },
+    { BETTER_AUTH_URL: 'https://127.0.0.1:3100' },
+    { GOOGLE_CLIENT_ID: '', GOOGLE_CLIENT_SECRET: '' },
+    { CELAHAN_ISOLATED_AUTH: 'true' },
+  ]) {
+    assert.throws(() => authEnvironment({ ...hosted, ...bad }));
+  }
+});
