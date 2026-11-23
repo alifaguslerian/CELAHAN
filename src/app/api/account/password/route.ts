@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const response = await authentication().handler(new Request(config.origin + '/api/auth/change-password', {
       method: 'POST',
       headers: forwarded,
-      body: JSON.stringify({ currentPassword, newPassword, revokeOtherSessions: false }),
+      body: JSON.stringify({ currentPassword, newPassword, revokeOtherSessions: true }),
     }));
     const responseHeaders = new Headers();
     for (const setCookie of response.headers.getSetCookie()) responseHeaders.append('Set-Cookie', setCookie);

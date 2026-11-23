@@ -76,7 +76,7 @@ export async function GET(request: Request) {
     const config = authEnvironment();
     if (!config) return privateJSON({ error: 'NOT_FOUND' }, 404);
     const url = new URL(request.url);
-    if (request.headers.get('host') !== new URL(config.origin).host) return privateJSON({ error: 'DENIED' }, 403);
+    if (request.headers.get('host') !== new URL(config.origin).host || url.search.length > 2048) return privateJSON({ error: 'DENIED' }, 403);
     const path = url.pathname.replace(/^\/api\/auth/, '').replace(/\/$/, '');
     const provider = validOAuthCallbackPath(path);
     if (!provider || !config.oauth[provider]) return privateJSON({ error: 'NOT_FOUND' }, 404);

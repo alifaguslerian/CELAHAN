@@ -1,3 +1,4 @@
+import { authEnvironment } from '@/server/auth/environment';
 import { currentIdentity } from '@/server/auth/session';
 import { database } from '@/server/data/pool';
 import { privateJSON } from '@/server/http';
@@ -7,6 +8,11 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request, { params }: { params: Promise<{ projectId: string }> }) {
   try {
+    const config = authEnvironment();
+    if (!config) return privateJSON({ error: 'UNAVAILABLE' }, 503);
+    if (request.headers.get('host') !== new URL(config.origin).host || new URL(request.url).search) {
+      return privateJSON({ error: 'DENIED' }, 403);
+    }
     const account = await currentIdentity(request.headers);
     if (!account) return privateJSON({ error: 'DENIED' }, 401);
     const { projectId } = await params;

@@ -17,6 +17,9 @@ function checkWriteOrigin(request: Request, origin: string, requireJSON: boolean
 
 export async function GET(request: Request) {
   try {
+    const config = authEnvironment();
+    if (!config) return privateJSON({ error: 'DENIED' }, 401);
+    if (request.headers.get('host') !== new URL(config.origin).host) return privateJSON({ error: 'DENIED' }, 403);
     if (new URL(request.url).search) return privateJSON({ error: 'INVALID_INPUT' }, 400);
     const account = await currentAccount(request.headers);
     if (!account) return privateJSON({ error: 'DENIED' }, 401);
@@ -76,6 +79,7 @@ export async function DELETE(request: Request) {
     if (result !== 'ok') return privateJSON({ error: 'SESSION' }, 401);
     const headers = new Headers();
     headers.append('Set-Cookie', 'better-auth.session_token=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax');
+    headers.append('Set-Cookie', '__Secure-better-auth.session_token=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure');
     return privateJSON({ ok: true }, 200, headers);
   } catch { return privateJSON({ error: 'UNAVAILABLE' }, 503); }
 }
