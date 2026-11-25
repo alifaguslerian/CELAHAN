@@ -203,17 +203,23 @@ export function AccountForm({ locale, mode, available, profile, oauthProviders =
     <p className="supporting-copy">{passwordAuthEnabled ? copy.boundary : copy.hostedBoundary}</p>
     {!available ? <p role="status">{copy.unavailable}</p> : <>
       {!passwordAuthEnabled && showExternalProviders ? (
-        <div className="account-form">
-          <div className="social-providers" role="group" aria-label={copy.socialGroup}>
+        <div className="account-form account-form--hosted">
+          <div className="social-providers social-providers--hosted" role="group" aria-label={copy.socialGroup}>
             {externalProviders.filter((p) => (p === 'Google' && oauthProviders.includes('google')) || (p === 'GitHub' && oauthProviders.includes('github'))).map((provider) => (
-              <button key={provider} type="button" className="social-provider-button" disabled={pending || !hydrated}
-                aria-label={`${copy.continueWith} ${provider}`} title={`${copy.continueWith} ${provider}`}
+              <button key={provider} type="button" className="social-provider-button social-provider-button--labeled" disabled={pending || !hydrated}
+                aria-label={`${copy.continueWith} ${provider}`}
                 onClick={() => selectExternalProvider(provider)}>
                 <ProviderIcon provider={provider} />
+                <span>{copy.continueWith} {provider}</span>
               </button>
             ))}
           </div>
-          <p className="field-help">{copy.hostedOAuthNote}</p>
+          <div className="hosted-auth-summary">
+            <p className="hosted-auth-summary-title">{copy.hostedFactsTitle}</p>
+            <ul>
+              {copy.hostedFacts.map((fact) => <li key={fact}>{fact}</li>)}
+            </ul>
+          </div>
         </div>
       ) : (
       <form className="account-form" onSubmit={submit} onChange={markDirty} method="post" action="/api/auth/form-unavailable/">
@@ -244,9 +250,13 @@ export function AccountForm({ locale, mode, available, profile, oauthProviders =
       <noscript><p>{copy.needJS}</p></noscript>
       <div className="account-panel-foot">
         <nav className="account-navigation" aria-label={locale === 'id' ? 'Bantuan akun' : 'Account help'}>
-          {!isAuthCard && <Link href={entryHref('login')}>{copy.login}</Link>}
-          {view !== 'recovery' && <Link href={entryHref('account/recovery')}>{copy.forgot}</Link>}
-          {view !== 'verify' && <Link href={entryHref('account/verify-email')}>{copy.verify}</Link>}
+          {!passwordAuthEnabled && isAuthCard ? (
+            <Link href={`/${locale}/privacy/`}>{copy.hostedPrivacyLink}</Link>
+          ) : <>
+            {!isAuthCard && <Link href={entryHref('login')}>{copy.login}</Link>}
+            {view !== 'recovery' && <Link href={entryHref('account/recovery')}>{copy.forgot}</Link>}
+            {view !== 'verify' && <Link href={entryHref('account/verify-email')}>{copy.verify}</Link>}
+          </>}
         </nav>
         <div className="account-disclaimer"><p className="disclaimer" lang="id">{disclaimer.id}</p>{locale === 'en' && <p className="disclaimer" lang="en">{disclaimer.en}</p>}</div>
       </div>

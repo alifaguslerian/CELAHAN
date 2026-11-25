@@ -290,6 +290,13 @@ body:has(> .account-page) > .site-header {
 .social-providers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
 .social-provider-button { display: grid; place-items: center; min-height: 39px; padding: .36rem; border: 1px solid color-mix(in srgb, var(--line) 72%, transparent); border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgb(23 31 38 / 3%); transition: background-color 150ms ease, border-color 150ms ease, transform 150ms var(--ease-out); }
 .social-provider-button svg { display: block; width: 20px; height: 20px; }
+.account-form--hosted { display: grid; gap: 1.15rem; margin-block: 1.15rem .35rem; }
+.social-providers--hosted { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+.social-provider-button--labeled { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; width: 100%; min-height: 48px; padding: .65rem 1rem; font-size: .925rem; font-weight: 620; letter-spacing: -.01em; }
+.social-provider-button--labeled:hover:not(:disabled) { border-color: var(--steel); background: color-mix(in srgb, var(--paper) 65%, #fff); }
+.hosted-auth-summary { display: grid; gap: .5rem; padding: .95rem 1.05rem; border: 1px solid color-mix(in srgb, var(--line) 68%, transparent); border-radius: 10px; background: color-mix(in srgb, var(--paper) 75%, #fff); }
+.hosted-auth-summary-title { margin: 0; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--steel-ink); }
+.hosted-auth-summary ul { margin: 0; padding-left: 1.05rem; display: grid; gap: .38rem; font-size: .8rem; line-height: 1.45; color: var(--muted); }
 .text-button, .account-menu-panel button { min-height: 44px; padding: .5rem .75rem; border: 1px solid #777e78; border-radius: 5px; color: var(--ink); background: var(--panel); }
 button:disabled { cursor: not-allowed; opacity: .7; }
 .account-page .form-status { min-height: 0; margin-top: .45rem; font-size: .82rem; color: var(--steel-ink); }
